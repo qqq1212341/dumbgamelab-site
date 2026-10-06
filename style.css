@@ -1,0 +1,82 @@
+:root {
+  --bg: #fbf5e9; --bg2: #f2e6cf; --ink: #3d2a16; --ink-soft: #7b6244;
+  --card: #ffffff; --line: #e6d6b8; --acc: #ff6a3d;
+  --shadow: 0 10px 30px rgba(74, 47, 20, .10);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1611; --bg2: #241c15; --ink: #f4e7d2; --ink-soft: #b9a284;
+    --card: #2a211a; --line: #3d3128; --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1611; --bg2: #241c15; --ink: #f4e7d2; --ink-soft: #b9a284;
+  --card: #2a211a; --line: #3d3128; --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--ink); background: var(--bg);
+  background-image: linear-gradient(180deg, var(--bg2), var(--bg) 360px);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--acc); }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
+
+nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; flex-wrap: wrap; }
+nav .home { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 800; }
+nav .home img { width: 36px; height: 36px; border-radius: 10px; }
+nav ul { list-style: none; display: flex; gap: 16px; margin: 0; padding: 0; flex-wrap: wrap; }
+nav ul a { color: var(--ink-soft); text-decoration: none; font-size: 15px; font-weight: 600; }
+nav ul a:hover { color: var(--ink); }
+
+.hero { text-align: center; padding: 48px 0 24px; }
+.hero img { width: 120px; height: 120px; border-radius: 28px; box-shadow: var(--shadow); }
+.hero h1 { font-size: clamp(32px, 7vw, 48px); margin: 18px 0 0; letter-spacing: -.02em; }
+.hero p { color: var(--ink-soft); margin: 8px auto 0; max-width: 560px; }
+
+h2 { font-size: 24px; margin: 56px 0 16px; letter-spacing: -.01em; }
+h3 { font-size: 18px; margin: 28px 0 8px; }
+p, li { color: var(--ink-soft); }
+.lead { font-size: 17px; }
+
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); }
+.card {
+  display: grid; grid-template-columns: 88px 1fr; gap: 16px; align-items: start;
+  padding: 18px; background: var(--card); border: 1px solid var(--line);
+  border-radius: 20px; box-shadow: var(--shadow); border-top: 4px solid var(--accent, var(--acc));
+}
+.card img { width: 88px; height: 88px; border-radius: 20px; display: block; }
+.card h3 { margin: 0; font-size: 19px; color: var(--ink); }
+.card .genre { font-size: 12px; font-weight: 700; color: var(--accent, var(--acc)); margin: 2px 0 0; }
+.card p { margin: 8px 0 0; font-size: 14px; }
+.cta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+.store { display: inline-block; padding: 9px 15px; border-radius: 12px; background: var(--accent, var(--acc));
+  color: #fff; font-size: 14px; font-weight: 650; text-decoration: none; }
+.soon { display: inline-block; padding: 8px 14px; border-radius: 12px; border: 1.5px dashed var(--line);
+  color: var(--ink-soft); font-size: 14px; font-weight: 600; }
+
+.pillars { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+.pillar { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+.pillar h3 { margin: 0 0 6px; color: var(--ink); }
+.pillar p { margin: 0; font-size: 14px; }
+
+.info { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 18px; }
+.info dl { display: grid; grid-template-columns: max-content 1fr; gap: 10px 20px; margin: 14px 0; }
+.info dt { font-weight: 700; color: var(--ink); }
+.info dd { margin: 0; color: var(--ink-soft); }
+
+.doc h1 { font-size: 32px; margin: 32px 0 4px; }
+.doc .updated { font-size: 14px; }
+.doc h2 { font-size: 20px; margin: 36px 0 8px; }
+
+footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+footer .links { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+footer a { color: var(--ink-soft); }
+html, body { overflow-x: hidden; }
+.info dd, .info a { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  .info dl { grid-template-columns: 1fr; gap: 2px 0; }
+  .info dd { margin-bottom: 10px; }
+  nav ul { gap: 12px; }
+}
