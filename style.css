@@ -1,6 +1,6 @@
 :root {
   --bg: #fbf5e9; --bg2: #f2e6cf; --ink: #3d2a16; --ink-soft: #7b6244;
-  --card: #ffffff; --line: #e6d6b8; --acc: #ff6a3d;
+  --card: #ffffff; --line: #e6d6b8; --acc: #7d30bc;
   --shadow: 0 10px 30px rgba(74, 47, 20, .10);
 }
 @media (prefers-color-scheme: dark) {
