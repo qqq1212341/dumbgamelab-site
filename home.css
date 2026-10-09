@@ -192,3 +192,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: -.01
   .reel-track, .stars, .logo-stage.idle .pc img { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+.hero-mail { margin: 22px 0 0; font-size: 15px; color: rgba(255,255,255,.6); }
+.hero-mail a { color: var(--y); font-weight: 700; text-decoration: none; }
+.hero-mail a:hover { text-decoration: underline; }
+.foot .links a.mail { color: var(--y); }
