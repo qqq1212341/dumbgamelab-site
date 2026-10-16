@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://dumbgamelab.com/sitemap.xml
+
+#DaumWebMasterTool:1d38ddb84a7442fe2161f989a94eac579b06f5f003f8f025083bf65c9c25f673:rxMAIPpDJGq/yeiwYrtIMA==
