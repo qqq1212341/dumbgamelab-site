@@ -1,0 +1,17 @@
+{
+  "category": "词语",
+  "title": "“Eorin Baekseong”并不是指孩子",
+  "hook": "《训民正音》序文里的“eorida”意思是愚笨，不是年幼",
+  "summary": "15世纪“eorida”的意思是愚笨，16世纪以后才出现“年纪小”的意思，如今这个意思成了主流。",
+  "panels": [
+    {"text": ["世宗大王创制的《训民正音》。", "用谚文解释它的版本里有这样一句：“eorin baekseong i nireugojyeo bae isyeodo”。"]},
+    {"text": ["这里的“eorin”不是年纪小的意思。", "它的意思是“愚笨的”。"]},
+    {"word": "Eorida", "mean": "15世纪时的意思是愚笨"},
+    {"text": "“孩子”原来是指愚笨的人？"},
+    {"text": ["在“eoriseokda(愚笨)”这个词出现之前，", "“eorida”承担着这个意思。"]},
+    {"text": ["16世纪以后出现了“年纪小”的意思。", "随着时间推移，这个意思成了主流。"]},
+    {"text": ["“eorini(孩子)”是“eorin”加上“i”形成的词。", "文献中从17世纪开始出现。"]},
+    {"text": "词义还真是随心所欲地变"}
+  ],
+  "sources": ["National Institute of Korean Language: Eorida and Eoriseokda", "National Institute of Korean Language: Origin of Eorini"]
+}

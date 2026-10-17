@@ -1,0 +1,53 @@
+{
+  "id": "gold-medal-silver",
+  "day": 19,
+  "category": "스포츠",
+  "title": "올림픽 금메달은 사실 거의 은이다",
+  "hook": "올림픽 금메달에 든 금은 겨우 6g이다",
+  "cover": "medal-gold",
+  "panels": [
+    {
+      "type": "image",
+      "img": "medal-gold",
+      "text": [
+        "모든 선수의 꿈, 올림픽 금메달.",
+        "그런데 순금이 아니다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "규정상 금메달은 92.5% 이상이 은이다.",
+        "그 위에 금 6g을 입힌다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "6g",
+      "mean": "금메달에 들어가는 금의 양"
+    },
+    {
+      "type": "say",
+      "text": "금메달인데 속은 은이라고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "은메달도 은 92.5%로 만든다.",
+        "재료만 보면 금메달은",
+        "은메달에 금을 한 겹 입힌 것이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그래도 금메달은 금메달이지"
+    }
+  ],
+  "summary": "올림픽 금메달은 은에 금 6g을 입힌 것이다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Olympic medal",
+      "url": "https://en.wikipedia.org/wiki/Olympic_medal"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "category": "Words",
+  "title": "We Almost Answered the Phone With Ahoy",
+  "hook": "Bell, who invented the telephone, wanted calls to start with ahoy instead of hello",
+  "summary": "Bell wanted ahoy as the phone greeting, but Edison's hello caught on.",
+  "panels": [
+    { "text": ["When the telephone first came along, there was one problem.", "What do you say when you pick it up?"] },
+    { "text": ["Alexander Graham Bell, the inventor of the telephone,", "suggested ahoy, a greeting used on ships."] },
+    { "word": "Ahoy!", "mean": "a call ships used to hail each other" },
+    { "text": "Ahoy instead of hello?" },
+    { "text": ["But the word Thomas Edison used won out.", "That word was hello."] },
+    { "text": ["Along with the telephone,", "hello spread far and wide as a greeting."] },
+    { "text": ["Now ahoy is something people say for fun", "when they're putting on a pirate voice."] },
+    { "text": "Maybe I'll start answering calls with ahoy today" }
+  ],
+  "sources": ["Wikipedia: Ahoy", "Wikipedia: Hello"]
+}

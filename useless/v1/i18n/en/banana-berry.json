@@ -1,0 +1,18 @@
+{
+  "category": "Food",
+  "title": "Bananas Are Berries",
+  "hook": "Strawberries aren't berries, but bananas are",
+  "summary": "In botany, bananas and tomatoes are berries, while strawberries and raspberries are not.",
+  "panels": [
+    { "text": ["In botany, a banana is a berry.", "That puts it on the same team as blueberries."] },
+    { "text": "Wait, a banana is a berry?" },
+    { "word": "BERRY", "mean": "a fruit that grows from one flower, with its seeds inside the flesh" },
+    { "text": ["In botany, being a berry has nothing to do with the name.", "If it grows from one flower, is soft all the way through,", "and has its seeds tucked in the flesh, it's a berry."] },
+    { "text": ["So grapes, tomatoes, eggplants and cucumbers are berries too.", "The bananas we eat have almost no seeds that can sprout,", "but the fruit is still built like a berry."] },
+    { "text": ["Strawberries, on the other hand, aren't berries.", "Each of those tiny dots on the outside is a fruit of its own,", "with a real seed inside."] },
+    { "text": ["The red part we eat", "is the base that held up the flower, swollen up."] },
+    { "text": "It has berry in its name and it's not a berry?" },
+    { "text": ["Raspberries aren't berries either.", "They're lots of tiny fruits clumped together."] }
+  ],
+  "sources": ["Wikipedia: Berry (botany)", "Wikipedia: Strawberry", "Wikipedia: Banana"]
+}

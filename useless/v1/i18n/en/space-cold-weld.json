@@ -1,0 +1,17 @@
+{
+  "category": "Space",
+  "title": "In Space, Metal Just Sticks to Metal",
+  "hook": "Two clean pieces of metal that touch in a vacuum can bond as if welded",
+  "summary": "In a vacuum, clean surfaces of the same metal can bond on contact without any heat. Spacecraft designers have to watch out for it.",
+  "panels": [
+    {"text": ["Galileo, the probe sent to Jupiter.", "Its big antenna never fully opened."]},
+    {"text": ["In air, metal surfaces are coated with thin oxide layers and grease.", "That's why they don't stick when they touch."]},
+    {"word": "Cold welding", "mean": "Metal bonding from contact alone, with no heat"},
+    {"text": ["When clean surfaces of the same metal touch in a vacuum,", "the atoms can't tell they belong to different pieces", "and just become one lump."]},
+    {"text": "Metal sticks to metal with no glue?"},
+    {"text": ["It was first recognized as a general phenomenon in the 1940s.", "Some mechanical problems in early satellites", "were blamed on it."]},
+    {"text": ["In 1991, Galileo's big antenna never fully deployed.", "A European Space Agency paper cites this", "as a documented case of cold welding."]},
+    {"text": "In space, being clean is the problem"}
+  ],
+  "sources": ["Wikipedia: Cold welding", "Wikipedia: Galileo (spacecraft)"]
+}

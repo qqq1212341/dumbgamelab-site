@@ -1,0 +1,16 @@
+{
+  "category": "Psikologi",
+  "title": "Anjing Juga Bisa Ketularan Menguap",
+  "hook": "Kalau kamu menguap, anjing di rumahmu bisa ikut menguap",
+  "summary": "Menguap bisa menular bukan cuma antarmanusia, tapi juga ke hewan lain seperti anjing.",
+  "panels": [
+    { "text": ["Kalau melihat orang lain menguap,", "tanpa sadar kita ikut menguap."] },
+    { "text": "Baca ini saja kamu sudah menguap, kan?" },
+    { "word": "Menguap menular", "mean": "menguap yang ikut keluar karena melihat orang lain menguap" },
+    { "text": ["Ini bukan cuma terjadi antarmanusia.", "Hal ini juga sudah diamati pada simpanse, anjing, kucing, dan burung."] },
+    { "text": ["Bahkan bisa menular ke spesies lain.", "Saat manusia menguap, anjing kadang ikut menguap."] },
+    { "text": ["Kenapa menguap bisa menular, belum ada jawaban pastinya.", "Ada banyak hipotesis, salah satunya", "menguap membuat seluruh kelompok sama-sama kembali siaga."] },
+    { "text": "Nanti aku coba eksperimen menguap di depan anjing" }
+  ],
+  "sources": ["Wikipedia: Yawn"]
+}

@@ -1,0 +1,17 @@
+{
+  "category": "Sejarah",
+  "title": "Di Inggris, Setiap Jendela Dikenai Pajak",
+  "hook": "Masih ada rumah yang jendelanya ditembok demi menghindari pajak jendela",
+  "summary": "Inggris memberlakukan pajak berdasarkan jumlah jendela pada 1696 dan menghapusnya pada 1851. Rumah dengan jendela yang ditutup demi menghindari pajak itu masih ada.",
+  "panels": [
+    {"text": ["Rumah tua dengan jendela yang ditutup batu dan bata.", "Rumah seperti ini masih ada di berbagai penjuru Inggris."]},
+    {"text": ["Pada 1696 Inggris memberlakukan pajak jendela.", "Pajaknya dihitung", "berdasarkan jumlah jendela di rumah."]},
+    {"text": ["Orang saat itu membenci pajak penghasilan.", "Mereka tidak mau membuka penghasilan ke negara.", "Jendela cukup dihitung dari luar, jadi mudah."]},
+    {"text": "Jendela ditembok biar nggak bayar pajak?"},
+    {"text": ["Bekas jendela yang penuh ditutup bata.", "Beberapa rumah menyisakan ruangnya untuk dipasangi kaca lagi setelah pajak dihapus."]},
+    {"text": ["Makin besar rumah dan banyak jendela, makin tinggi pajaknya.", "Jadi rumah yang lebih makmur membayar lebih banyak."]},
+    {"text": ["Pajak ini dihapus pada 1851.", "Prancis juga punya pajak serupa dari 1798 sampai 1926."]},
+    {"text": "Dulu sinar matahari pun dipajaki"}
+  ],
+  "sources": ["Wikipedia: Window tax"]
+}

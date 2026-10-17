@@ -1,0 +1,17 @@
+{
+  "category": "Geografi",
+  "title": "Penerbangan Terpendek di Dunia Selesai dalam 1 Menit",
+  "hook": "Di Skotlandia ada penerbangan berjadwal yang sudah mendarat 1 menit setelah lepas landas",
+  "summary": "Penerbangan antara Westray dan Papa Westray di Kepulauan Orkney berjarak 2,7 km dan selesai dalam 1 menit lebih sedikit.",
+  "panels": [
+    { "text": ["Kepulauan Orkney di utara Skotlandia.", "Ada pesawat yang menghubungkan dua pulau kecil di sini."] },
+    { "text": ["Dari Pulau Westray ke Pulau Papa Westray,", "jaraknya sekitar 2,7 km."] },
+    { "word": "1 menit 30 detik", "mean": "waktu terbang yang tertulis di jadwal" },
+    { "text": ["Di jadwal tertulis 1 menit 30 detik,", "tapi waktu terbang sebenarnya sedikit di atas 1 menit."] },
+    { "text": "Baru pasang sabuk pengaman, sudah sampai" },
+    { "text": ["Rekor tercepatnya 53 detik."] },
+    { "text": ["Rute ini sudah beroperasi sejak 1967,", "dan sampai sekarang masih jadi penerbangan penumpang berjadwal terpendek di dunia."] },
+    { "text": "Naik pesawat, 1 menit kemudian sudah di pulau lain" }
+  ],
+  "sources": ["Wikipedia: Westray to Papa Westray flight"]
+}

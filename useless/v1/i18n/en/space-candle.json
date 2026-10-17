@@ -1,0 +1,16 @@
+{
+  "category": "Space",
+  "title": "In Space, Candle Flames Are Round",
+  "hook": "Light a candle in space, and the flame turns into a ball instead of rising up",
+  "summary": "In space, hot air doesn't rise, so a candle flame burns round and blue.",
+  "panels": [
+    { "text": ["A candle flame always rises up to a point.", "It's so obvious you've probably never wondered why."] },
+    { "text": ["The hot air around the flame is light, so it rises.", "Cooler air from below flows in to fill the gap.", "This flow pulls the flame up into a long, thin shape."] },
+    { "text": "So what about in space, where nothing has weight?" },
+    { "text": ["This is a candle lit on the space station.", "Hot air doesn't rise there,", "so the flame spreads out into a round shape."] },
+    { "text": ["The color is different too.", "On Earth, soot rises, so the top of the flame looks yellow.", "In space, the flame is bluer and burns better."] },
+    { "text": ["On the space station, they also run experiments that set drops of fuel on fire.", "Once lit, the flame burns like a ball wrapped around the drop."] },
+    { "text": "Guess birthday cake candles would be round in space too" }
+  ],
+  "sources": ["Wikipedia: Flame", "Wikipedia: International Space Station"]
+}

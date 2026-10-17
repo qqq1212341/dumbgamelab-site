@@ -1,0 +1,17 @@
+{
+  "category": "Kata",
+  "title": "Halo di Telepon Hampir Jadi Ahoy",
+  "hook": "Bell, penemu telepon, ingin sapaan pertama di telepon adalah ahoy, bukan hello",
+  "summary": "Bell ingin sapaan telepon berupa ahoy, tapi yang menyebar adalah hello dari Edison.",
+  "panels": [
+    { "text": ["Saat telepon baru muncul, ada satu masalah.", "Begitu gagang telepon diangkat, harus bilang apa?"] },
+    { "text": ["Alexander Graham Bell, penemu telepon,", "mengusulkan ahoy, sapaan yang dipakai di kapal."] },
+    { "word": "Ahoy!", "mean": "kata untuk saling memanggil antarkapal" },
+    { "text": "Ahoy, bukan halo?" },
+    { "text": ["Tapi kata yang dipakai Thomas Edison yang menang.", "Kata itu adalah Hello."] },
+    { "text": ["Hello menjadi sapaan yang menyebar luas", "bersama telepon."] },
+    { "text": ["Sekarang ahoy jadi kata yang dipakai iseng", "saat menirukan gaya bicara bajak laut."] },
+    { "text": "Apa mulai hari ini aku angkat telepon pakai ahoy saja?" }
+  ],
+  "sources": ["Wikipedia: Ahoy", "Wikipedia: Hello"]
+}

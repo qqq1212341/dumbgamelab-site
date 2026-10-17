@@ -1,0 +1,75 @@
+{
+  "id": "iss-16-sunrises",
+  "day": 22,
+  "category": "우주",
+  "title": "하루에 해돋이를 16번 보는 사람들",
+  "hook": "우주정거장에 사는 사람들은 하루에 해가 열다섯 번 넘게 뜨는 걸 본다",
+  "cover": "iss-station",
+  "panels": [
+    {
+      "type": "image",
+      "img": "iss-station",
+      "text": [
+        "지구 위 약 400km를 도는 국제우주정거장.",
+        "우주비행사들이 사는 집이자 실험실이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 정거장은 시속 약 2만 8천km로 달린다.",
+        "서울에서 부산까지 1분도 안 걸리는 빠르기다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "총알보다 빠르겠다"
+    },
+    {
+      "type": "word",
+      "word": "93분",
+      "mean": "지구를 한 바퀴 도는 데 걸리는 시간"
+    },
+    {
+      "type": "video",
+      "video": "iss-night",
+      "text": [
+        "한 바퀴 돌 때마다 낮과 밤을 한 번씩 지난다.",
+        "해가 지고 나면 밤 쪽 도시 불빛이 반짝인다."
+      ]
+    },
+    {
+      "type": "video",
+      "video": "iss-sunrise",
+      "text": [
+        "그리고 다시 낮 쪽으로 넘어가는 순간.",
+        "지구 가장자리가 밝아지며 해가 뜬다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "하루에 지구를 15바퀴 반쯤 돈다.",
+        "그래서 우주비행사는 하루에 해돋이를 15~16번 본다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "아침이 16번이면 아침밥도 16번?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "해가 기준이 될 수 없으니 우주정거장은 시계로 하루를 정한다.",
+        "세계 표준시(UTC)에 맞춰 자고 일어난다."
+      ]
+    }
+  ],
+  "summary": "우주정거장은 93분마다 지구를 한 바퀴 돌아서, 하루에 해돋이를 15~16번 본다.",
+  "sources": [
+    {
+      "title": "Wikipedia: International Space Station",
+      "url": "https://en.wikipedia.org/wiki/International_Space_Station"
+    }
+  ]
+}

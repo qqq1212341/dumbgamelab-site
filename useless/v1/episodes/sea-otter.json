@@ -1,0 +1,94 @@
+{
+  "id": "sea-otter",
+  "day": 2,
+  "category": "동물",
+  "title": "해달은 손잡고 잔다",
+  "hook": "해달이 자면서 손을 잡는 데는 이유가 있다",
+  "cover": "otter-hands",
+  "panels": [
+    {
+      "type": "image",
+      "img": "otter-face",
+      "text": [
+        "이 얼굴의 주인은 해달이다.",
+        "평생 땅을 거의 안 밟고 바다 위에서 산다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "otter-raft",
+      "text": [
+        "해달은 물 위에 누워서 잔다.",
+        "문제는 파도다.",
+        "자는 동안 파도가 친구를 멀리 데려가 버린다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "자고 일어났는데 혼자면 너무 슬프잖아"
+    },
+    {
+      "type": "image",
+      "img": "otter-hands",
+      "text": [
+        "그래서 가끔 손을 잡는다.",
+        "옆 해달과 앞발을 잡고 있으면",
+        "따로따로 떠내려가지 않는다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "otter-kelp",
+      "text": [
+        "손잡을 친구가 없으면 켈프를 몸에 감는다.",
+        "바다 밑에 뿌리내린 긴 해조류라서",
+        "닻처럼 붙잡아 준다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이렇게 모여서 떠 있는 해달 무리를",
+        "영어로 raft라고 부른다.",
+        "뗏목이라는 뜻이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "무리 이름까지 귀여운 건 반칙이지"
+    },
+    {
+      "type": "image",
+      "img": "otter-baby",
+      "text": [
+        "새끼는 엄마 배 위에서 잔다.",
+        "새끼 털에는 공기가 잔뜩 차 있어서",
+        "잠수하고 싶어도 못 하고 둥둥 뜬다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "하나 더.",
+        "해달 겨드랑이에는 늘어진 가죽 주머니가 있다.",
+        "여기에 먹이와 아끼는 돌을 넣고 다닌다.",
+        "그 돌로 배 위에서 조개를 깨 먹는다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "나도 주머니에 최애 돌 넣고 다니고 싶다"
+    }
+  ],
+  "summary": "해달은 떠내려가지 않으려고 손을 잡고 자고, 겨드랑이에 아끼는 돌을 넣고 다닌다.",
+  "sources": [
+    {
+      "title": "Monterey Bay Aquarium: Sea otter",
+      "url": "https://www.montereybayaquarium.org/animals/animals-a-to-z/sea-otter"
+    },
+    {
+      "title": "Wikipedia: Sea otter",
+      "url": "https://en.wikipedia.org/wiki/Sea_otter"
+    }
+  ]
+}

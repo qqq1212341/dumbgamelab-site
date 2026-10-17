@@ -1,0 +1,82 @@
+{
+  "id": "barcode-gum",
+  "day": 6,
+  "category": "생활",
+  "title": "처음 찍힌 바코드는 껌이었다",
+  "hook": "세상에서 처음 바코드로 계산한 물건은 껌 한 묶음이었다",
+  "cover": "barcode-scanner",
+  "panels": [
+    {
+      "type": "image",
+      "img": "barcode-scanner",
+      "text": [
+        "계산대에서 삑 하는 그 소리.",
+        "바코드는 생각보다 오래된 발명이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "미국의 노먼 조지프 우드랜드는",
+        "해변 모래 위에 모스 부호를 그리다가 아이디어를 얻었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "모스 부호의 점과 선을 아래로 쭉 늘이면",
+        "가는 막대와 굵은 막대가 된다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "1952",
+      "mean": "바코드 특허가 나온 해"
+    },
+    {
+      "type": "text",
+      "text": [
+        "하지만 그걸 읽을 기계가 없었다.",
+        "실제 가게에서 쓰이기까지 20년 넘게 걸렸다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "barcode-gum",
+      "text": [
+        "1974년 6월 26일, 미국 오하이오주의 한 슈퍼마켓.",
+        "처음 바코드를 찍어 계산한 물건은",
+        "리글리 쥬시 프루트 껌 10개들이 한 묶음이었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "역사적인 첫 손님이 껌이라니"
+    },
+    {
+      "type": "text",
+      "text": [
+        "그 껌 포장의 복제품은",
+        "미국 스미스소니언 박물관에 전시됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "막대의 굵기와 간격에 숫자가 숨어 있다.",
+        "기계는 그 숫자로 무슨 물건인지 찾는다."
+      ]
+    }
+  ],
+  "summary": "바코드는 모래에 그린 모스 부호에서 나왔고, 처음 찍힌 물건은 껌이었다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Barcode",
+      "url": "https://en.wikipedia.org/wiki/Barcode"
+    },
+    {
+      "title": "Wikipedia: Universal Product Code",
+      "url": "https://en.wikipedia.org/wiki/Universal_Product_Code"
+    }
+  ]
+}

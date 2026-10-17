@@ -1,0 +1,18 @@
+{
+  "category": "Psychology",
+  "title": "Repeat a Word and Its Meaning Disappears",
+  "hook": "Say one word over and over and something strange happens",
+  "summary": "Repeat the same word again and again and its meaning briefly disappears. This is called semantic satiation.",
+  "panels": [
+    { "text": ["Try saying this word over and over in your head.", "Apple, apple, apple, apple, apple."] },
+    { "text": ["apple apple apple apple apple apple", "apple apple apple apple apple apple"] },
+    { "text": "Huh? Apple doesn't feel like apple anymore" },
+    { "text": ["Suddenly the word sounds like a strange noise.", "This is called semantic satiation."] },
+    { "word": "Semantic satiation", "mean": "when repeating a word makes it lose its meaning for a moment" },
+    { "text": ["In 1962, at McGill University in Canada,", "Leon Jakobovits James gave it this name in his PhD thesis."] },
+    { "text": ["Staring at one word for a long time without saying it does something similar.", "It's that feeling when familiar letters suddenly look weird."] },
+    { "text": ["Luckily, it's only for a moment.", "After a bit, the word gets its meaning back."] },
+    { "text": "Apple. Okay, it's apple again" }
+  ],
+  "sources": ["Wikipedia: Semantic satiation"]
+}

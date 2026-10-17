@@ -1,0 +1,17 @@
+{
+  "category": "The Body",
+  "title": "A Month in Space Makes You 2.5 cm Taller",
+  "hook": "Without gravity the spine stretches, and astronauts grow taller",
+  "summary": "After about a month in weightlessness, height increases by roughly 2.5 cm, and tears cannot flow but ball up instead.",
+  "panels": [
+    {"text": ["An astronaut watches a drink float inside the space station.", "Strange things happen to the body up here too."]},
+    {"text": ["On Earth, gravity presses on your spine all day.", "You are a bit taller after a night lying down", "because that pressure eases for a while."]},
+    {"text": ["In space this pressure is gone altogether.", "After about a month, height goes up by roughly 2.5 cm."]},
+    {"text": "If I went to space I could be a basketball player"},
+    {"text": ["An astronaut floating aboard the station.", "With nothing to hold up, the bones do less work too."]},
+    {"text": ["The bones weaken in return.", "On the Russian Mir station,", "an average loss of 1 to 2 percent a month was recorded."]},
+    {"text": ["Even if you cry, the tears don't run down.", "They stick together and ball up."]},
+    {"text": "So in space you can cry and your face stays dry"}
+  ],
+  "sources": ["Wikipedia: Effect of spaceflight on the human body", "Wikipedia: Spaceflight osteopenia"]
+}

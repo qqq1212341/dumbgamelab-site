@@ -1,0 +1,17 @@
+{
+  "category": "Tubuh",
+  "title": "Sebulan di Luar Angkasa, Tinggimu Bertambah 2,5 cm",
+  "hook": "Tanpa gravitasi tulang belakang memanjang dan astronaut bertambah tinggi",
+  "summary": "Setelah sekitar sebulan tanpa bobot, tinggi bertambah sekitar 2,5 cm, dan air mata tidak mengalir melainkan menggumpal seperti bola.",
+  "panels": [
+    {"text": ["Seorang astronaut menatap minumannya melayang di stasiun luar angkasa.", "Di sini tubuh pun mengalami hal-hal aneh."]},
+    {"text": ["Di Bumi, gravitasi menekan tulang belakangmu sepanjang hari.", "Kamu sedikit lebih tinggi setelah semalam berbaring", "karena tekanan itu mereda sejenak."]},
+    {"text": ["Di luar angkasa tekanan ini hilang sama sekali.", "Setelah sekitar sebulan, tinggi bertambah kira-kira 2,5 cm."]},
+    {"text": "Kalau aku ke luar angkasa, aku bisa jadi pemain basket"},
+    {"text": ["Seorang astronaut melayang di stasiun luar angkasa.", "Tidak ada beban untuk ditopang, jadi tulang pun bekerja lebih ringan."]},
+    {"text": ["Sebagai gantinya, tulang melemah.", "Di stasiun Mir milik Rusia,", "tercatat rata-rata 1 sampai 2 persen tulang hilang tiap bulan."]},
+    {"text": ["Kalau menangis pun, air mata tidak mengalir.", "Air mata saling menempel dan menggumpal seperti bola."]},
+    {"text": "Jadi di luar angkasa menangis pun wajah tetap kering"}
+  ],
+  "sources": ["Wikipedia: Effect of spaceflight on the human body", "Wikipedia: Spaceflight osteopenia"]
+}

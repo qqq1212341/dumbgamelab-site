@@ -1,0 +1,18 @@
+{
+  "category": "Kehidupan Sehari-hari",
+  "title": "Barcode Pertama yang Dipindai Adalah Permen Karet",
+  "hook": "Barang pertama di dunia yang dibayar lewat barcode adalah satu pak permen karet",
+  "summary": "Barcode lahir dari kode Morse yang digambar di pasir, dan barang pertama yang dipindai adalah permen karet.",
+  "panels": [
+    { "text": ["Bunyi bip di kasir itu.", "Barcode ternyata penemuan yang lebih tua dari dugaan."] },
+    { "text": ["Norman Joseph Woodland dari Amerika", "mendapat ide saat menggambar kode Morse di pasir pantai."] },
+    { "text": ["Kalau titik dan garis kode Morse ditarik memanjang ke bawah,", "jadilah batang tipis dan batang tebal."] },
+    { "word": "1952", "mean": "Tahun paten barcode keluar" },
+    { "text": ["Tapi belum ada mesin untuk membacanya.", "Butuh lebih dari 20 tahun sampai barcode dipakai di toko sungguhan."] },
+    { "text": ["26 Juni 1974, sebuah supermarket di Ohio, Amerika.", "Barang pertama yang dibayar dengan memindai barcode", "adalah satu pak permen karet Wrigley's Juicy Fruit isi 10."] },
+    { "text": "Tamu pertama yang bersejarah ternyata permen karet" },
+    { "text": ["Replika bungkus permen karet itu", "dipamerkan di Museum Smithsonian, Amerika."] },
+    { "text": ["Tebal dan jarak antarbatang menyimpan angka.", "Dari angka itu, mesin mencari tahu barang apa itu."] }
+  ],
+  "sources": ["Wikipedia: Barcode", "Wikipedia: Universal Product Code"]
+}

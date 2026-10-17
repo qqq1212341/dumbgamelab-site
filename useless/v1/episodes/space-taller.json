@@ -1,0 +1,75 @@
+{
+  "id": "space-taller",
+  "day": 27,
+  "category": "몸",
+  "title": "우주에 한 달 있으면 키가 2.5cm 큰다",
+  "hook": "중력이 없으면 척추가 늘어나 우주비행사의 키가 커진다",
+  "cover": "iss-drink",
+  "panels": [
+    {
+      "type": "image",
+      "img": "iss-drink",
+      "text": [
+        "국제우주정거장 안에서 둥둥 뜬 음료를 보는 우주비행사.",
+        "여기서는 몸에도 이상한 일이 생긴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "지구에서는 중력이 하루 종일 척추를 누른다.",
+        "밤새 누워 있으면 키가 조금 커지는 것도",
+        "이 눌림이 잠깐 풀리기 때문이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "우주에서는 이 눌림이 아예 없다.",
+        "한 달쯤 지나면 키가 약 2.5cm 커진다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "나도 우주 가면 농구 선수 되겠다"
+    },
+    {
+      "type": "image",
+      "img": "iss-airlock",
+      "text": [
+        "우주정거장에서 둥둥 떠 있는 우주비행사.",
+        "몸을 버틸 일이 없으니 뼈도 일을 덜 한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "대신 뼈는 약해진다.",
+        "러시아 미르 정거장에서는",
+        "한 달에 평균 1~2퍼센트씩 뼈가 줄어든 기록이 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "울어도 눈물은 흐르지 않는다.",
+        "서로 달라붙어 공처럼 뭉치기 때문이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "우주에서는 울어도 얼굴이 안 젖는구나"
+    }
+  ],
+  "summary": "무중력에서는 한 달쯤 지나면 키가 약 2.5cm 커지고, 울어도 눈물은 흐르지 않고 공처럼 뭉친다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Effect of spaceflight on the human body",
+      "url": "https://en.wikipedia.org/wiki/Effect_of_spaceflight_on_the_human_body"
+    },
+    {
+      "title": "Wikipedia: Spaceflight osteopenia",
+      "url": "https://en.wikipedia.org/wiki/Spaceflight_osteopenia"
+    }
+  ]
+}

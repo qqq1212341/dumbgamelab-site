@@ -1,0 +1,67 @@
+{
+  "id": "ketchup-fish",
+  "day": 16,
+  "category": "음식",
+  "title": "케첩은 원래 생선 소스였다",
+  "hook": "케첩이라는 이름은 생선 절인 국물에서 왔다",
+  "cover": "ketchup-bottle",
+  "panels": [
+    {
+      "type": "image",
+      "img": "ketchup-bottle",
+      "text": [
+        "감자튀김엔 역시 케첩.",
+        "그런데 케첩은 원래 토마토 소스가 아니었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "ketchup-fishsauce",
+      "text": [
+        "케첩이라는 말은 중국 남부 푸젠 지방 말에서 왔다는 설명이 있다.",
+        "생선이나 조개를 절인 국물을 부르던 말이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "케첩이 생선이었다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "옛날 케첩 요리법에는 별의별 재료가 다 들어갔다.",
+        "버섯, 굴, 홍합, 호두로 만든 케첩도 있었다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "1812",
+      "mean": "처음 알려진 토마토 케첩 요리법이 나온 해"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1812년 미국의 제임스 미스가",
+        "토마토 케첩 요리법을 처음 남겼다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1817년의 토마토 케첩 요리법에는",
+        "멸치와 빨간 색을 내는 벌레까지 들어갔다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "벌레 들어간 케첩은 좀..."
+    }
+  ],
+  "summary": "케첩은 원래 생선 절인 국물을 부르던 말이었고, 토마토 케첩은 1800년대에 나왔다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Ketchup",
+      "url": "https://en.wikipedia.org/wiki/Ketchup"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "category": "Kata",
+  "title": "OK Dulunya Lelucon Salah Eja",
+  "hook": "OK awalnya lelucon yang sengaja ditulis salah",
+  "summary": "OK adalah lelucon salah eja dari all correct menjadi oll korrect yang bertahan lewat slogan pemilu.",
+  "panels": [
+    { "text": ["Hari ini kamu mungkin sudah beberapa kali bilang OK.", "Tapi dua huruf ini awalnya cuma lelucon."] },
+    { "text": ["Musim panas 1838, Boston, Amerika.", "Koran-koran sedang dilanda tren aneh.", "Isinya menyingkat kata jadi huruf awal", "bahkan sengaja menulisnya dengan salah."] },
+    { "word": "O.W.", "mean": "oll wright, maksudnya all right" },
+    { "word": "G.T.", "mean": "gone to Texas, artinya kabur ke Texas" },
+    { "text": "Koran zaman dulu juga suka bercanda ya" },
+    { "text": ["Boston Morning Post, 23 Maret 1839.", "Di sanalah o.k. muncul.", "Singkatan dari all correct yang sengaja ditulis salah jadi oll korrect."] },
+    { "text": "Yang artinya benar malah ditulis salah?" },
+    { "text": ["Kebanyakan kata lelucon seperti ini cepat hilang.", "OK bertahan berkat orang ini.", "Martin Van Buren, presiden Amerika ke-8."] },
+    { "text": ["Kampung halamannya Kinderhook, jadi julukannya Old Kinderhook.", "Pada pemilu 1840, para pendukungnya menyebut OK sebagai singkatan julukan itu.", "Vote for OK. Pilih OK."] },
+    { "text": ["Pemilu tahun itu membuat seluruh negeri heboh.", "Van Buren kalah di pemilu itu.", "Yang menang adalah OK."] },
+    { "text": "Presidennya kalah, tapi istilahnya yang bertahan" },
+    { "text": ["Kisah ini baru terungkap pada tahun 1960-an.", "Ahli bahasa Allen Walker Read", "menemukannya dengan membuka koran-koran lama satu per satu."] }
+  ],
+  "sources": ["Wikipedia: OK (ringkasan penelitian Allen Walker Read)", "Wikipedia: Martin Van Buren"]
+}

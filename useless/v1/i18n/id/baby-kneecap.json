@@ -1,0 +1,17 @@
+{
+  "category": "Tubuh",
+  "title": "Bayi Lahir Tanpa Tempurung Lutut",
+  "hook": "Bayi yang baru lahir belum punya tempurung lutut yang keras",
+  "summary": "Tempurung lutut bayi masih berupa tulang rawan dan mulai jadi tulang sekitar umur tiga tahun. Jumlah tulang justru berkurang seiring tumbuh besar.",
+  "panels": [
+    { "text": ["Lutut bayi yang sedang merangkak.", "Sebenarnya di dalamnya belum ada tulang yang keras."] },
+    { "text": ["Bayi lahir dengan tempurung lutut dari tulang rawan yang lunak.", "Tulang rawan tidak terlihat jelas di rontgen,", "jadi tempat tempurung lututnya tampak kosong."] },
+    { "text": "Berarti lututnya empuk-empuk?" },
+    { "text": ["Tulang rawan adalah jaringan yang lunak tapi liat", "yang membentuk telinga atau ujung hidung."] },
+    { "text": ["Sekitar umur tiga tahun, tulang mulai terbentuk di dalam tulang rawan itu.", "Lalu selama beberapa tahun, berubah jadi tulang yang keras."] },
+    { "word": "270 → 206", "mean": "Jumlah tulang bayi baru lahir dan orang dewasa" },
+    { "text": ["Tulang bayi ada sekitar 270.", "Seiring tumbuh, beberapa tulang menyatu jadi satu,", "dan saat dewasa jumlahnya jadi sekitar 206."] },
+    { "text": "Makin besar, tulangnya malah makin sedikit?" }
+  ],
+  "sources": ["Wikipedia: Patella", "Wikipedia: Human skeleton"]
+}

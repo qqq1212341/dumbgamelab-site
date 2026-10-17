@@ -1,0 +1,18 @@
+{
+  "category": "Space",
+  "title": "On Venus, the Sun Rises in the West",
+  "hook": "Venus spins the opposite way from Earth, so the sun rises in the west",
+  "summary": "Venus spins backward, so the sun rises in the west, and one spin takes longer than its whole year.",
+  "panels": [
+    { "text": ["Venus, Earth's next-door planet.", "It's about the same size as Earth, but it spins the exact opposite way."] },
+    { "text": ["Most planets spin in place in the same direction.", "Venus spins backward."] },
+    { "text": ["So on Venus,", "the sun rises in the west and sets in the east."] },
+    { "text": "So there really is a place where the sun rises in the west" },
+    { "text": ["And it spins really slowly.", "One full spin in place takes 243 days."] },
+    { "word": "243 > 225", "mean": "in days: one spin takes longer than one trip around the sun" },
+    { "text": ["It takes 225 days to go around the sun once.", "So before it finishes one full spin,", "its year is already over."] },
+    { "text": ["From one sunrise to the next takes about 117 days."] },
+    { "text": "On Venus, you could nap for months" }
+  ],
+  "sources": ["Wikipedia: Venus"]
+}

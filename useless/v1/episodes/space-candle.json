@@ -1,0 +1,69 @@
+{
+  "id": "space-candle",
+  "day": 23,
+  "category": "우주",
+  "title": "우주에서는 촛불이 동그랗다",
+  "hook": "우주에서 촛불을 켜면 불꽃이 위로 솟지 않고 공처럼 된다",
+  "cover": "flame-candle",
+  "panels": [
+    {
+      "type": "text",
+      "text": [
+        "촛불은 늘 위로 뾰족하게 솟는다.",
+        "너무 당연해서 이유를 생각해 본 적도 없을 것이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "불꽃 주변의 뜨거운 공기는 가벼워서 위로 올라간다.",
+        "빈자리로 아래쪽 차가운 공기가 들어온다.",
+        "이 흐름이 불꽃을 위로 길쭉하게 끌어 올린다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 무게가 없는 우주에서는?"
+    },
+    {
+      "type": "image",
+      "img": "flame-candle",
+      "text": [
+        "우주정거장에서 켠 촛불이다.",
+        "뜨거운 공기가 위로 올라가지 않으니",
+        "불꽃이 동그랗게 퍼진다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "색도 다르다.",
+        "지구에서는 그을음이 위로 올라가 불꽃 위쪽이 노랗게 보인다.",
+        "우주에서는 불꽃이 더 파랗고 더 잘 탄다."
+      ]
+    },
+    {
+      "type": "video",
+      "video": "flame-ball",
+      "text": [
+        "우주정거장에서는 연료 방울에 불을 붙이는 실험도 한다.",
+        "불이 붙자 불꽃이 방울을 감싼 공처럼 탄다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "생일 케이크 촛불도 우주에선 동그랗겠네"
+    }
+  ],
+  "summary": "우주에서는 뜨거운 공기가 위로 올라가지 않아서 촛불이 동그랗고 파랗게 탄다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Flame",
+      "url": "https://en.wikipedia.org/wiki/Flame"
+    },
+    {
+      "title": "Wikipedia: International Space Station",
+      "url": "https://en.wikipedia.org/wiki/International_Space_Station"
+    }
+  ]
+}

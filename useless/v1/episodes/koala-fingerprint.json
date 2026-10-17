@@ -1,0 +1,73 @@
+{
+  "id": "koala-fingerprint",
+  "day": 13,
+  "category": "동물",
+  "title": "코알라 지문은 사람이랑 헷갈린다",
+  "hook": "전자현미경으로 봐도 코알라와 사람 지문은 구별하기 어렵다",
+  "cover": "koala",
+  "panels": [
+    {
+      "type": "image",
+      "img": "koala",
+      "text": [
+        "나무를 꼭 끌어안은 코알라.",
+        "손가락 끝을 자세히 보면 놀라운 게 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "코알라에게도 지문이 있다.",
+        "사람처럼 손가락 끝에 무늬가 새겨져 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "한 연구에서는 전자현미경으로 봐도",
+        "코알라 지문과 사람 지문을 구별하기 어려웠다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "코알라가 범인이면 어떡해?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "코알라는 사람과 아주 먼 동물이다.",
+        "고릴라나 침팬지가 아니라 캥거루 쪽 친척이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "koala-zoo",
+      "text": [
+        "코알라는 하루 대부분을 나무 위에서 보낸다.",
+        "나뭇가지를 꽉 쥐고 매달려 산다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "나무를 타거나 무언가를 꽉 쥐며 사는 동물들은",
+        "저마다 지문을 갖게 됐다고 본다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "손 쓰는 방식이 비슷하면 지문도 닮는구나"
+    }
+  ],
+  "summary": "코알라 지문은 전자현미경으로 봐도 사람 지문과 구별하기 어려울 만큼 닮았다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Fingerprint",
+      "url": "https://en.wikipedia.org/wiki/Fingerprint"
+    },
+    {
+      "title": "Wikipedia: Koala",
+      "url": "https://en.wikipedia.org/wiki/Koala"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "category": "Psikologi",
+  "title": "Kata yang Diulang Terus Kehilangan Arti",
+  "hook": "Kalau satu kata diucapkan terus, terjadi hal aneh",
+  "summary": "Kalau satu kata diulang terus-menerus, artinya hilang sebentar. Ini disebut kejenuhan semantik.",
+  "panels": [
+    { "text": ["Coba ucapkan kata ini terus dalam hati.", "Apel, apel, apel, apel, apel."] },
+    { "text": ["Apel apel apel apel apel apel", "apel apel apel apel apel apel"] },
+    { "text": "Eh? Apel kok tidak terasa seperti apel" },
+    { "text": ["Katanya tiba-tiba terdengar seperti bunyi asing.", "Ini disebut kejenuhan semantik."] },
+    { "word": "Kejenuhan semantik", "mean": "Kata kehilangan arti sebentar karena diulang terus" },
+    { "text": ["Pada 1962, di Universitas McGill, Kanada,", "Leon Jakobovits James memberi nama ini dalam disertasi doktoralnya."] },
+    { "text": ["Menatap satu kata lama-lama tanpa mengucapkannya juga bisa memicu hal serupa.", "Persis rasa saat tulisan yang sudah akrab tiba-tiba tampak janggal."] },
+    { "text": ["Untungnya cuma sebentar.", "Tak lama kemudian, kata itu kembali ke arti aslinya."] },
+    { "text": "Apel. Oke, sudah jadi apel lagi" }
+  ],
+  "sources": ["Wikipedia: Semantic satiation"]
+}

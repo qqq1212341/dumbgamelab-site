@@ -1,0 +1,23 @@
+{
+  "category": "Words",
+  "title": "Space Comes in Three Words",
+  "hook": "Astronauts can't go to the universe. Why?",
+  "summary": "An astronaut can't go to the universe. They're already inside it.",
+  "panels": [
+    { "text": ["English has three words for outer space.", "space, universe, cosmos."] },
+    { "text": "Don't all three just mean outer space?" },
+    { "word": "SPACE", "mean": "the empty stretch beyond Earth" },
+    { "text": ["Astronauts go out into space.", "It comes from Latin spatium, meaning room or extent.", "That's why a parking spot is a parking space too."] },
+    { "text": "A parking lot and outer space are the same word?" },
+    { "word": "UNIVERSE", "mean": "everything that exists" },
+    { "text": ["Every dot in this photo is a galaxy, not a star.", "Galaxies, light, time, you and me.", "Add up everything that exists and you get the universe.", "In Latin it means turned into one."] },
+    { "word": "COSMOS", "mean": "the universe as an ordered whole" },
+    { "text": ["The Greek word kosmos meant order.", "It also meant decoration and adornment.", "See the universe as one well-arranged world and you call it the cosmos."] },
+    { "text": "The universe means decoration?" },
+    { "text": ["Cosmetic comes from the same root.", "It means to put a face in order.", "The cosmos and makeup are relatives."] },
+    { "text": ["To sum up:", "astronauts go to space,", "scientists measure the universe,", "and poets sing of the cosmos."] },
+    { "text": ["So an astronaut can't go to the universe.", "They're already inside it."] },
+    { "text": "And the Chinese characters, 宇宙?" },
+    { "text": ["The ancient Chinese book Huainanzi says:", "all directions and up and down are called 宇,", "and the span from past to present is called 宙.", "From the start, the word joined space and time."] }
+  ]
+}

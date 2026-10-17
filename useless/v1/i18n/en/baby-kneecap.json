@@ -1,0 +1,17 @@
+{
+  "category": "The Body",
+  "title": "Babies Are Born Without Kneecaps",
+  "hook": "Newborn babies don't have hard kneecaps",
+  "summary": "A baby's kneecaps are cartilage and start turning into bone around age three. The number of bones actually goes down as you grow.",
+  "panels": [
+    { "text": ["A crawling baby's knees.", "Actually, there's no hard bone in there yet."] },
+    { "text": ["Babies are born with kneecaps made of soft cartilage.", "Cartilage barely shows up on X-rays,", "so the spot where the kneecap goes looks empty."] },
+    { "text": "So their knees are squishy?" },
+    { "text": ["Cartilage is the soft but tough tissue", "that makes up your ears and the tip of your nose."] },
+    { "text": ["Around age three, bone starts forming inside the cartilage.", "Over several years, it turns into hard bone."] },
+    { "word": "270 → 206", "mean": "number of bones in a newborn and in an adult" },
+    { "text": ["A baby has about 270 bones.", "As it grows, several of them fuse into one,", "so an adult ends up with about 206."] },
+    { "text": "You get fewer bones as you grow up?" }
+  ],
+  "sources": ["Wikipedia: Patella", "Wikipedia: Human skeleton"]
+}

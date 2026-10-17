@@ -1,0 +1,17 @@
+{
+  "category": "Geografi",
+  "title": "Di Antarktika, Jam Pun Ikut Asal Paket",
+  "hook": "Jam di stasiun Kutub Selatan, titik paling bawah Bumi, diatur mengikuti Selandia Baru",
+  "summary": "Stasiun di Kutub Selatan memakai waktu Selandia Baru, mengikuti negara yang mengirim pasokannya.",
+  "panels": [
+    { "text": ["Titik paling bawah Bumi, Kutub Selatan.", "Semua garis bujur bertemu di satu titik ini."] },
+    { "text": ["Zona waktu dibagi mengikuti garis bujur.", "Lalu, di tempat semua garis bujur berkumpul, sekarang jam berapa?"] },
+    { "text": "Bukannya di sana semua jam jadi benar?" },
+    { "text": ["Di Kutub Selatan ada Stasiun Kutub Selatan Amundsen-Scott milik Amerika Serikat.", "Stasiun ini memakai waktu Selandia Baru."] },
+    { "text": ["Sebab pangkalan yang mengirim pasokannya", "ada di Christchurch, Selandia Baru."] },
+    { "text": ["Stasiun lain di Antarktika juga mirip.", "Mereka memakai waktu negara yang mengklaim wilayah di sana", "atau negara yang mengirim pasokan."] },
+    { "text": ["Karena itu, di benua Antarktika ada banyak zona waktu yang bercampur."] },
+    { "text": "Aku juga mau jadwal hidupku ikut jam paket datang" }
+  ],
+  "sources": ["Wikipedia: Time in Antarctica", "Wikipedia: Amundsen-Scott South Pole Station"]
+}

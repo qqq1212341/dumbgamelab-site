@@ -1,0 +1,19 @@
+{
+  "category": "Sains",
+  "title": "Jam Satelit GPS Sengaja Diatur Lebih Lambat",
+  "hook": "Jam di satelit GPS sengaja diatur meleset sebelum diluncurkan",
+  "summary": "Karena teori relativitas, jam satelit GPS jadi lebih cepat 38 mikrodetik per hari. Karena itu, sebelum diluncurkan, jamnya sengaja diatur lebih lambat.",
+  "panels": [
+    { "text": ["Aplikasi peta tahu lokasimu berkat satelit GPS.", "Satelit-satelit itu mengorbit sangat tinggi di atas Bumi."] },
+    { "text": ["Satelit membawa jam yang sangat akurat dan terus mengirim sinyal waktu.", "Ponsel mengukur jarak dari lamanya sinyal itu sampai."] },
+    { "text": ["Jadi kalau jamnya meleset sedikit saja,", "posisinya bisa meleset jauh."] },
+    { "text": ["Di sinilah Einstein muncul.", "Menurut teori relativitas, waktu tidak mengalir sama cepat di semua tempat."] },
+    { "text": ["Kalau bergerak cepat, waktu jadi lebih lambat.", "Karena itu, jam satelit jadi lebih lambat sekitar 7 mikrodetik per hari."] },
+    { "text": ["Di tempat yang gravitasinya lemah, waktu jadi lebih cepat.", "Jam satelit yang berada tinggi di atas jadi lebih cepat sekitar 45 mikrodetik per hari."] },
+    { "word": "+38μs", "mean": "Kalau keduanya digabung, segini jam satelit jadi lebih cepat tiap hari" },
+    { "text": "38 per sejuta detik kan bukan apa-apa?" },
+    { "text": ["Cahaya menempuh sekitar 300 m dalam 1 mikrodetik, jadi 38 mikrodetik berarti sekitar 11 km.", "Bagi GPS yang mengukur jarak lewat waktu, ini selisih besar."] },
+    { "text": ["Karena itu, sebelum diluncurkan, jam satelit GPS sengaja diatur lebih lambat sebanyak selisih ini.", "Teori relativitas bekerja setiap hari di balik petunjuk arah kita."] }
+  ],
+  "sources": ["Wikipedia: Error analysis for the Global Positioning System", "Wikipedia: Global Positioning System"]
+}

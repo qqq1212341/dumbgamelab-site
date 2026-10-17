@@ -1,0 +1,17 @@
+{
+  "category": "Musik",
+  "title": "Tidak Ada Kucing di dalam Senar Catgut",
+  "hook": "Senar biola zaman dulu dibuat dari usus domba atau kambing",
+  "summary": "Meski bernama catgut, tidak ada catatan senar dibuat dari usus kucing. Bahannya terutama usus domba atau kambing, dan sebagian pemain masih memakainya.",
+  "panels": [
+    {"text": ["Senar biola yang kencang.", "Dulu senar ini dibuat dari usus hewan."]},
+    {"word": "Catgut", "mean": "Secara harfiah \"usus kucing\", tali dari serat usus hewan"},
+    {"text": ["Namun tidak ada catatan senar dibuat dari usus kucing.", "Yang paling sering dipakai adalah usus domba atau kambing."]},
+    {"text": "Yang memberi nama harus minta maaf ke kucing"},
+    {"text": ["Sebuah biola tua.", "Senar harpa, kecapi, selo, dan gitar akustik juga dari usus."]},
+    {"text": ["Asal nama ini tidak jelas.", "Ada teori bahwa \"kit\", kata lama untuk biola kecil,", "tertukar dengan \"kit\", anak kucing."]},
+    {"text": ["Kebanyakan senar sekarang dari baja atau bahan sintetis.", "Meski begitu pemain klasik masih memakai senar usus,", "karena bunyinya lebih kaya dan gelap."]},
+    {"text": "Syukurlah kucingnya aman"}
+  ],
+  "sources": ["Wikipedia: Catgut"]
+}

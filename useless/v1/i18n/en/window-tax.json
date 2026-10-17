@@ -1,0 +1,17 @@
+{
+  "category": "History",
+  "title": "In England You Paid Tax on Every Window",
+  "hook": "Houses still stand with perfectly good windows bricked up to dodge the window tax",
+  "summary": "England introduced a tax based on the number of windows in 1696 and repealed it in 1851. Houses with windows blocked to avoid it still survive.",
+  "panels": [
+    {"text": ["An old house with windows blocked by stone and brick.", "You can still find houses like this across Britain."]},
+    {"text": ["In 1696 England introduced a window tax.", "It taxed a house", "according to how many windows it had."]},
+    {"text": ["People then hated the idea of an income tax.", "They didn't want to disclose what they earned.", "Windows could be counted from outside, so it was easy."]},
+    {"text": "They blocked up windows to dodge tax?"},
+    {"text": ["A window space packed solid with brick.", "Some houses kept the spaces to reglaze once the tax was gone."]},
+    {"text": ["The bigger the house and the more windows, the higher the tax.", "It made wealthier households pay more."]},
+    {"text": ["This tax was repealed in 1851.", "France had one too, from 1798 to 1926."]},
+    {"text": "Back when even sunlight got taxed"}
+  ],
+  "sources": ["Wikipedia: Window tax"]
+}

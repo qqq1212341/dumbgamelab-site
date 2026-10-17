@@ -1,0 +1,18 @@
+{
+  "category": "Animals",
+  "title": "Sea Otters Hold Hands While They Sleep",
+  "hook": "Sea otters hold hands in their sleep for a reason",
+  "summary": "Sea otters hold hands in their sleep so they don't drift apart, and they carry a favorite rock under one arm.",
+  "panels": [
+    { "text": ["This face belongs to a sea otter.", "It spends nearly its whole life at sea, barely touching land."] },
+    { "text": ["Sea otters sleep floating on the water.", "The problem is the waves.", "While they sleep, waves can carry a friend far away."] },
+    { "text": "Waking up alone would be so sad" },
+    { "text": ["So sometimes they hold hands.", "If they grip the paws of the otter next to them,", "they won't drift apart."] },
+    { "text": ["With no friend to hold, they wrap kelp around their bodies.", "Kelp is a long seaweed rooted on the seafloor,", "so it holds them like an anchor."] },
+    { "text": ["A group of otters floating together like this", "is called a raft in English.", "Yes, a raft."] },
+    { "text": "Even the name for the group is cute. That's cheating" },
+    { "text": ["Pups sleep on their mother's belly.", "A pup's fur is so full of air", "that it can't dive even if it wants to. It just bobs along."] },
+    { "text": ["One more thing.", "Under each arm, a sea otter has a loose pocket of skin.", "They keep food and a favorite rock in it.", "They use that rock to crack open clams on their belly."] },
+    { "text": "I want a pocket for my favorite rock too" }
+  ]
+}

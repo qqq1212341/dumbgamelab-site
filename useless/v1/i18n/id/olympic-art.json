@@ -1,0 +1,17 @@
+{
+  "category": "Olahraga",
+  "title": "Olimpiade Pernah Memberi Medali Emas untuk Puisi dan Lukisan",
+  "hook": "Pendiri Olimpiade memenangi medali emas sastra dengan nama samaran",
+  "summary": "Dari 1912 sampai 1948 Olimpiade punya cabang seni, dan Coubertin meraih emas sastra 1912 lewat puisi yang dikirim dengan nama samaran.",
+  "panels": [
+    {"text": ["Pierre de Coubertin, pencipta Olimpiade.", "Ia ingin seni ada di Olimpiade sama seperti olahraga."]},
+    {"text": ["Dari 1912 sampai 1948 Olimpiade punya perlombaan seni.", "Arsitektur, sastra, musik, lukisan, dan patung", "menjadi lima kategorinya."]},
+    {"text": ["Karya harus terinspirasi dari olahraga.", "Medali diberikan seperti untuk atlet."]},
+    {"text": "Medali emas buat melukis? Aku mau ikut"},
+    {"text": ["\"Ode to Sport\", karya peraih emas sastra 1912.", "Pesertanya bernama Georges Hohrod dan Martin Eschbach."]},
+    {"text": ["Kedua nama itu adalah nama samaran Coubertin.", "Ia orang Prancis tetapi mendaftar dengan nama Jerman."]},
+    {"text": ["Pada 1949 IOC menghapus cabang ini", "karena kebanyakan pesertanya seniman profesional, bertentangan dengan semangat amatir."]},
+    {"text": "Menang emas di lomba yang dia buat sendiri"}
+  ],
+  "sources": ["Wikipedia: Art competitions at the Olympic Games"]
+}

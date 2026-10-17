@@ -1,0 +1,404 @@
+{
+ "schema": 1,
+ "version": "33-f5ca3034c9",
+ "epoch": "2026-10-12",
+ "credits": "credits.json",
+ "episodes": [
+  {
+   "id": "space-words",
+   "day": 1,
+   "hash": "bdcc273ba822c6da",
+   "ep": "episodes/space-words.json",
+   "i18n": {
+    "en": "i18n/en/space-words.json",
+    "ja": "i18n/ja/space-words.json",
+    "id": "i18n/id/space-words.json",
+    "zh": "i18n/zh/space-words.json"
+   }
+  },
+  {
+   "id": "sea-otter",
+   "day": 2,
+   "hash": "67b12b8a63f35039",
+   "ep": "episodes/sea-otter.json",
+   "i18n": {
+    "en": "i18n/en/sea-otter.json",
+    "ja": "i18n/ja/sea-otter.json",
+    "id": "i18n/id/sea-otter.json",
+    "zh": "i18n/zh/sea-otter.json"
+   }
+  },
+  {
+   "id": "ok",
+   "day": 3,
+   "hash": "5750851afab0e8b5",
+   "ep": "episodes/ok.json",
+   "i18n": {
+    "en": "i18n/en/ok.json",
+    "ja": "i18n/ja/ok.json",
+    "id": "i18n/id/ok.json",
+    "zh": "i18n/zh/ok.json"
+   }
+  },
+  {
+   "id": "banana-berry",
+   "day": 4,
+   "hash": "4a4f16f38c69439f",
+   "ep": "episodes/banana-berry.json",
+   "i18n": {
+    "en": "i18n/en/banana-berry.json",
+    "ja": "i18n/ja/banana-berry.json",
+    "id": "i18n/id/banana-berry.json",
+    "zh": "i18n/zh/banana-berry.json"
+   }
+  },
+  {
+   "id": "gps-relativity",
+   "day": 5,
+   "hash": "42f16b35cee66bce",
+   "ep": "episodes/gps-relativity.json",
+   "i18n": {
+    "en": "i18n/en/gps-relativity.json",
+    "ja": "i18n/ja/gps-relativity.json",
+    "id": "i18n/id/gps-relativity.json",
+    "zh": "i18n/zh/gps-relativity.json"
+   }
+  },
+  {
+   "id": "barcode-gum",
+   "day": 6,
+   "hash": "4dfe1d0989f297bb",
+   "ep": "episodes/barcode-gum.json",
+   "i18n": {
+    "en": "i18n/en/barcode-gum.json",
+    "ja": "i18n/ja/barcode-gum.json",
+    "id": "i18n/id/barcode-gum.json",
+    "zh": "i18n/zh/barcode-gum.json"
+   }
+  },
+  {
+   "id": "baby-kneecap",
+   "day": 7,
+   "hash": "4abf1c7469a5d59b",
+   "ep": "episodes/baby-kneecap.json",
+   "i18n": {
+    "en": "i18n/en/baby-kneecap.json",
+    "ja": "i18n/ja/baby-kneecap.json",
+    "id": "i18n/id/baby-kneecap.json",
+    "zh": "i18n/zh/baby-kneecap.json"
+   }
+  },
+  {
+   "id": "semantic-satiation",
+   "day": 8,
+   "hash": "5a97fa56f861817a",
+   "ep": "episodes/semantic-satiation.json",
+   "i18n": {
+    "en": "i18n/en/semantic-satiation.json",
+    "ja": "i18n/ja/semantic-satiation.json",
+    "id": "i18n/id/semantic-satiation.json",
+    "zh": "i18n/zh/semantic-satiation.json"
+   }
+  },
+  {
+   "id": "naked-mole-rat",
+   "day": 9,
+   "hash": "f7b9941e400644c6",
+   "ep": "episodes/naked-mole-rat.json",
+   "i18n": {
+    "en": "i18n/en/naked-mole-rat.json",
+    "ja": "i18n/ja/naked-mole-rat.json",
+    "id": "i18n/id/naked-mole-rat.json",
+    "zh": "i18n/zh/naked-mole-rat.json"
+   }
+  },
+  {
+   "id": "newton-mint",
+   "day": 10,
+   "hash": "4f6949ae80ca1c91",
+   "ep": "episodes/newton-mint.json",
+   "i18n": {
+    "en": "i18n/en/newton-mint.json",
+    "ja": "i18n/ja/newton-mint.json",
+    "id": "i18n/id/newton-mint.json",
+    "zh": "i18n/zh/newton-mint.json"
+   }
+  },
+  {
+   "id": "do-was-ut",
+   "day": 11,
+   "hash": "8d91d2ad04616860",
+   "ep": "episodes/do-was-ut.json",
+   "i18n": {
+    "en": "i18n/en/do-was-ut.json",
+    "ja": "i18n/ja/do-was-ut.json",
+    "id": "i18n/id/do-was-ut.json",
+    "zh": "i18n/zh/do-was-ut.json"
+   }
+  },
+  {
+   "id": "south-pole-time",
+   "day": 12,
+   "hash": "ef195e0fb0501ec2",
+   "ep": "episodes/south-pole-time.json",
+   "i18n": {
+    "en": "i18n/en/south-pole-time.json",
+    "ja": "i18n/ja/south-pole-time.json",
+    "id": "i18n/id/south-pole-time.json",
+    "zh": "i18n/zh/south-pole-time.json"
+   }
+  },
+  {
+   "id": "koala-fingerprint",
+   "day": 13,
+   "hash": "ecbf4668600bcf35",
+   "ep": "episodes/koala-fingerprint.json",
+   "i18n": {
+    "en": "i18n/en/koala-fingerprint.json",
+    "ja": "i18n/ja/koala-fingerprint.json",
+    "id": "i18n/id/koala-fingerprint.json",
+    "zh": "i18n/zh/koala-fingerprint.json"
+   }
+  },
+  {
+   "id": "yawn-dog",
+   "day": 14,
+   "hash": "4bbc261141914576",
+   "ep": "episodes/yawn-dog.json",
+   "i18n": {
+    "en": "i18n/en/yawn-dog.json",
+    "ja": "i18n/ja/yawn-dog.json",
+    "id": "i18n/id/yawn-dog.json",
+    "zh": "i18n/zh/yawn-dog.json"
+   }
+  },
+  {
+   "id": "morning-height",
+   "day": 15,
+   "hash": "f27db4f3179aa3a8",
+   "ep": "episodes/morning-height.json",
+   "i18n": {
+    "en": "i18n/en/morning-height.json",
+    "ja": "i18n/ja/morning-height.json",
+    "id": "i18n/id/morning-height.json",
+    "zh": "i18n/zh/morning-height.json"
+   }
+  },
+  {
+   "id": "ketchup-fish",
+   "day": 16,
+   "hash": "8d8d79c5af19596d",
+   "ep": "episodes/ketchup-fish.json",
+   "i18n": {
+    "en": "i18n/en/ketchup-fish.json",
+    "ja": "i18n/ja/ketchup-fish.json",
+    "id": "i18n/id/ketchup-fish.json",
+    "zh": "i18n/zh/ketchup-fish.json"
+   }
+  },
+  {
+   "id": "qr-baduk",
+   "day": 17,
+   "hash": "ddfea84c32d74a61",
+   "ep": "episodes/qr-baduk.json",
+   "i18n": {
+    "en": "i18n/en/qr-baduk.json",
+    "ja": "i18n/ja/qr-baduk.json",
+    "id": "i18n/id/qr-baduk.json",
+    "zh": "i18n/zh/qr-baduk.json"
+   }
+  },
+  {
+   "id": "hello-ahoy",
+   "day": 18,
+   "hash": "e7cc477b1debbe4a",
+   "ep": "episodes/hello-ahoy.json",
+   "i18n": {
+    "en": "i18n/en/hello-ahoy.json",
+    "ja": "i18n/ja/hello-ahoy.json",
+    "id": "i18n/id/hello-ahoy.json",
+    "zh": "i18n/zh/hello-ahoy.json"
+   }
+  },
+  {
+   "id": "gold-medal-silver",
+   "day": 19,
+   "hash": "1661b9da74a65038",
+   "ep": "episodes/gold-medal-silver.json",
+   "i18n": {
+    "en": "i18n/en/gold-medal-silver.json",
+    "ja": "i18n/ja/gold-medal-silver.json",
+    "id": "i18n/id/gold-medal-silver.json",
+    "zh": "i18n/zh/gold-medal-silver.json"
+   }
+  },
+  {
+   "id": "venus-west",
+   "day": 20,
+   "hash": "0733b0a13eb867c9",
+   "ep": "episodes/venus-west.json",
+   "i18n": {
+    "en": "i18n/en/venus-west.json",
+    "ja": "i18n/ja/venus-west.json",
+    "id": "i18n/id/venus-west.json",
+    "zh": "i18n/zh/venus-west.json"
+   }
+  },
+  {
+   "id": "shortest-flight",
+   "day": 21,
+   "hash": "f33de66c6da68665",
+   "ep": "episodes/shortest-flight.json",
+   "i18n": {
+    "en": "i18n/en/shortest-flight.json",
+    "ja": "i18n/ja/shortest-flight.json",
+    "id": "i18n/id/shortest-flight.json",
+    "zh": "i18n/zh/shortest-flight.json"
+   }
+  },
+  {
+   "id": "iss-16-sunrises",
+   "day": 22,
+   "hash": "b1c7af3a2b780a36",
+   "ep": "episodes/iss-16-sunrises.json",
+   "i18n": {
+    "en": "i18n/en/iss-16-sunrises.json",
+    "ja": "i18n/ja/iss-16-sunrises.json",
+    "id": "i18n/id/iss-16-sunrises.json",
+    "zh": "i18n/zh/iss-16-sunrises.json"
+   }
+  },
+  {
+   "id": "space-candle",
+   "day": 23,
+   "hash": "9a944977347f0d2a",
+   "ep": "episodes/space-candle.json",
+   "i18n": {
+    "en": "i18n/en/space-candle.json",
+    "ja": "i18n/ja/space-candle.json",
+    "id": "i18n/id/space-candle.json",
+    "zh": "i18n/zh/space-candle.json"
+   }
+  },
+  {
+   "id": "crow-faces",
+   "day": 24,
+   "hash": "0c5207f968b3de87",
+   "ep": "episodes/crow-faces.json",
+   "i18n": {
+    "en": "i18n/en/crow-faces.json",
+    "ja": "i18n/ja/crow-faces.json",
+    "id": "i18n/id/crow-faces.json",
+    "zh": "i18n/zh/crow-faces.json"
+   }
+  },
+  {
+   "id": "spaghetti-tree",
+   "day": 25,
+   "hash": "d1b15363d59003ad",
+   "ep": "episodes/spaghetti-tree.json",
+   "i18n": {
+    "en": "i18n/en/spaghetti-tree.json",
+    "ja": "i18n/ja/spaghetti-tree.json",
+    "id": "i18n/id/spaghetti-tree.json",
+    "zh": "i18n/zh/spaghetti-tree.json"
+   }
+  },
+  {
+   "id": "space-cold-weld",
+   "day": 26,
+   "hash": "0eec81f4d03aae34",
+   "ep": "episodes/space-cold-weld.json",
+   "i18n": {
+    "en": "i18n/en/space-cold-weld.json",
+    "ja": "i18n/ja/space-cold-weld.json",
+    "id": "i18n/id/space-cold-weld.json",
+    "zh": "i18n/zh/space-cold-weld.json"
+   }
+  },
+  {
+   "id": "space-taller",
+   "day": 27,
+   "hash": "e988226cc57ec743",
+   "ep": "episodes/space-taller.json",
+   "i18n": {
+    "en": "i18n/en/space-taller.json",
+    "ja": "i18n/ja/space-taller.json",
+    "id": "i18n/id/space-taller.json",
+    "zh": "i18n/zh/space-taller.json"
+   }
+  },
+  {
+   "id": "olympic-art",
+   "day": 28,
+   "hash": "45a3998ad8558b88",
+   "ep": "episodes/olympic-art.json",
+   "i18n": {
+    "en": "i18n/en/olympic-art.json",
+    "ja": "i18n/ja/olympic-art.json",
+    "id": "i18n/id/olympic-art.json",
+    "zh": "i18n/zh/olympic-art.json"
+   }
+  },
+  {
+   "id": "diomede-islands",
+   "day": 29,
+   "hash": "0cbf3f23575a546c",
+   "ep": "episodes/diomede-islands.json",
+   "i18n": {
+    "en": "i18n/en/diomede-islands.json",
+    "ja": "i18n/ja/diomede-islands.json",
+    "id": "i18n/id/diomede-islands.json",
+    "zh": "i18n/zh/diomede-islands.json"
+   }
+  },
+  {
+   "id": "catgut-strings",
+   "day": 30,
+   "hash": "426d98d9cf91185b",
+   "ep": "episodes/catgut-strings.json",
+   "i18n": {
+    "en": "i18n/en/catgut-strings.json",
+    "ja": "i18n/ja/catgut-strings.json",
+    "id": "i18n/id/catgut-strings.json",
+    "zh": "i18n/zh/catgut-strings.json"
+   }
+  },
+  {
+   "id": "window-tax",
+   "day": 31,
+   "hash": "33d2e7242c926287",
+   "ep": "episodes/window-tax.json",
+   "i18n": {
+    "en": "i18n/en/window-tax.json",
+    "ja": "i18n/ja/window-tax.json",
+    "id": "i18n/id/window-tax.json",
+    "zh": "i18n/zh/window-tax.json"
+   }
+  },
+  {
+   "id": "bubble-wrap",
+   "day": 32,
+   "hash": "c5cc38000c1c6c1a",
+   "ep": "episodes/bubble-wrap.json",
+   "i18n": {
+    "en": "i18n/en/bubble-wrap.json",
+    "ja": "i18n/ja/bubble-wrap.json",
+    "id": "i18n/id/bubble-wrap.json",
+    "zh": "i18n/zh/bubble-wrap.json"
+   }
+  },
+  {
+   "id": "eorida-fool",
+   "day": 33,
+   "hash": "de92b84150c978a3",
+   "ep": "episodes/eorida-fool.json",
+   "i18n": {
+    "en": "i18n/en/eorida-fool.json",
+    "ja": "i18n/ja/eorida-fool.json",
+    "id": "i18n/id/eorida-fool.json",
+    "zh": "i18n/zh/eorida-fool.json"
+   }
+  }
+ ]
+}

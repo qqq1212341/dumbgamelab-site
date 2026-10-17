@@ -1,0 +1,18 @@
+{
+  "category": "Hewan",
+  "title": "Berang-berang Laut Tidur Sambil Bergandengan Tangan",
+  "hook": "Berang-berang laut bergandengan tangan saat tidur, ada alasannya",
+  "summary": "Berang-berang laut tidur sambil bergandengan tangan supaya tidak hanyut, dan membawa batu kesayangan di bawah ketiak.",
+  "panels": [
+    { "text": ["Pemilik wajah ini adalah berang-berang laut.", "Hampir seumur hidup mereka tinggal di atas laut dan nyaris tak menginjak daratan."] },
+    { "text": ["Berang-berang laut tidur sambil mengapung di air.", "Masalahnya adalah ombak.", "Saat tidur, ombak bisa membawa teman mereka pergi jauh."] },
+    { "text": "Bangun tidur sendirian pasti sedih banget" },
+    { "text": ["Karena itu, kadang mereka bergandengan tangan.", "Kalau kaki depan saling menggenggam dengan berang-berang di sebelah,", "mereka tidak hanyut terpisah."] },
+    { "text": ["Kalau tidak ada teman untuk digenggam, mereka melilitkan kelp ke tubuh.", "Kelp adalah rumput laut panjang yang berakar di dasar laut,", "jadi menahan mereka seperti jangkar."] },
+    { "text": ["Kelompok berang-berang yang mengapung bersama seperti ini", "dalam bahasa Inggris disebut raft.", "Artinya rakit."] },
+    { "text": "Nama kelompoknya saja sudah imut, ini curang" },
+    { "text": ["Anaknya tidur di atas perut sang induk.", "Bulu anak berang-berang penuh udara,", "jadi mau menyelam pun tidak bisa dan hanya mengapung."] },
+    { "text": ["Satu lagi.", "Di bawah ketiak berang-berang laut ada kantong kulit yang longgar.", "Di situ mereka menyimpan makanan dan batu kesayangan.", "Batu itu dipakai untuk memecahkan kerang di atas perut."] },
+    { "text": "Aku juga mau bawa batu favorit di saku" }
+  ]
+}

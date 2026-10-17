@@ -1,0 +1,17 @@
+{
+  "category": "Geography",
+  "title": "In Antarctica, Even the Time Zone Follows the Delivery Guy",
+  "hook": "At the very bottom of the Earth, the South Pole station's clocks are set to New Zealand time",
+  "summary": "The South Pole station runs on New Zealand time, because that's where its supplies are sent from.",
+  "panels": [
+    { "text": ["The very bottom of the Earth: the South Pole.", "Every line of longitude meets at this one point."] },
+    { "text": ["Time zones are divided up by longitude.", "So what time is it where all the lines of longitude meet?"] },
+    { "text": "Wouldn't every time be right?" },
+    { "text": ["The South Pole is home to America's Amundsen-Scott South Pole Station.", "This station uses New Zealand time."] },
+    { "text": ["That's because the base that sends it supplies", "is in Christchurch, New Zealand."] },
+    { "text": ["Other stations in Antarctica are similar.", "They use the time of the country that claims the land", "or the country that sends them supplies."] },
+    { "text": ["So Antarctica has lots of time zones all mixed together."] },
+    { "text": "I wish I could live on delivery time too" }
+  ],
+  "sources": ["Wikipedia: Time in Antarctica", "Wikipedia: Amundsen-Scott South Pole Station"]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "space-words",
+  "day": 1,
+  "category": "말",
+  "title": "우주는 세 단어다",
+  "hook": "우주비행사는 universe에 갈 수 없다. 왜일까?",
+  "cover": "space-bluemarble",
+  "panels": [
+    {
+      "type": "image",
+      "img": "space-bluemarble",
+      "text": [
+        "영어로 우주는 세 단어다.",
+        "space, universe, cosmos."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "셋 다 그냥 우주 아니야?"
+    },
+    {
+      "type": "word",
+      "word": "SPACE",
+      "mean": "지구 바깥의 빈 곳"
+    },
+    {
+      "type": "image",
+      "img": "space-eva",
+      "text": [
+        "우주비행사가 나가는 곳은 space다.",
+        "라틴어 spatium(빈 자리, 넓이)에서 왔다.",
+        "그래서 주차 자리도 parking space다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "주차장이랑 우주가 같은 단어였어?"
+    },
+    {
+      "type": "word",
+      "word": "UNIVERSE",
+      "mean": "있는 것 전부"
+    },
+    {
+      "type": "image",
+      "img": "space-hudf",
+      "text": [
+        "이 사진의 점 하나하나는 별이 아니라 은하다.",
+        "은하도, 빛도, 시간도, 너도 나도.",
+        "있는 것을 전부 합치면 universe다.",
+        "라틴어로 하나로 합쳐진 것이라는 뜻이다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "COSMOS",
+      "mean": "질서 있게 짜인 우주"
+    },
+    {
+      "type": "image",
+      "img": "space-m51",
+      "text": [
+        "그리스어 kosmos는 질서라는 뜻이었다.",
+        "꾸밈, 장식이라는 뜻도 있었다.",
+        "우주를 잘 짜인 하나의 세계로 볼 때 cosmos라고 한다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "우주가 장식이라고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "화장품을 뜻하는 cosmetic도 같은 뿌리다.",
+        "얼굴을 가지런히 꾸민다는 뜻이다.",
+        "우주와 화장품은 친척이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "space-pillars",
+      "text": [
+        "정리하면 이렇다.",
+        "우주비행사는 space에 가고",
+        "과학자는 universe를 재고",
+        "시인은 cosmos를 노래한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 우주비행사는 universe에 갈 수 없다.",
+        "이미 그 안에 있으니까."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "한자 우주(宇宙)는 어때?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "옛 중국 책 《회남자》에 이렇게 나온다.",
+        "사방과 위아래를 宇라 하고",
+        "옛날부터 지금까지를 宙라 한다.",
+        "우주는 처음부터 공간과 시간을 합친 말이었다."
+      ]
+    }
+  ],
+  "summary": "우주비행사는 universe에 갈 수 없다. 이미 그 안에 있으니까.",
+  "sources": [
+    {
+      "title": "Online Etymology Dictionary: space",
+      "url": "https://www.etymonline.com/word/space"
+    },
+    {
+      "title": "Online Etymology Dictionary: universe",
+      "url": "https://www.etymonline.com/word/universe"
+    },
+    {
+      "title": "Online Etymology Dictionary: cosmos",
+      "url": "https://www.etymonline.com/word/cosmos"
+    },
+    {
+      "title": "Online Etymology Dictionary: cosmetic",
+      "url": "https://www.etymonline.com/word/cosmetic"
+    },
+    {
+      "title": "淮南子 齊俗訓 (Wikisource)",
+      "url": "https://zh.wikisource.org/wiki/淮南子/齊俗訓"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "category": "Sejarah",
+  "title": "Newton Pernah Jadi Detektif Pemburu Pemalsu Uang",
+  "hook": "Newton, penemu hukum gravitasi, menyamar untuk memburu pemalsu uang di masa tuanya",
+  "summary": "Newton menghabiskan 30 tahun terakhir hidupnya di Royal Mint, bahkan sampai menyamar, dan membuat 28 pemalsu uang dihukum.",
+  "panels": [
+    { "text": ["Isaac Newton, yang terkenal dengan apel dan hukum gravitasi.", "30 tahun terakhir hidupnya diisi pekerjaan yang sama sekali berbeda."] },
+    { "text": ["Pada 1696, Newton masuk Royal Mint, Percetakan Uang Kerajaan Inggris.", "Di sanalah koin negara dibuat."] },
+    { "text": ["Menurut hitungan Newton,", "sekitar 20% koin yang dikumpulkan ternyata palsu."] },
+    { "text": "Satu dari lima koin ternyata palsu?" },
+    { "text": ["Newton mulai memburu sendiri para pemalsu.", "Ia menyamar sebagai pelanggan tetap kedai minum", "dan mengumpulkan bukti sendiri."] },
+    { "word": "28 orang", "mean": "jumlah pemalsu yang dibawa Newton ke pengadilan sampai dihukum" },
+    { "text": ["Salah satunya William Chaloner, pemalsu kelas kakap.", "Ia dihukum mati pada 1699."] },
+    { "text": ["Newton juga membuat berat koin lebih seragam.", "Selisih berat koin emas guinea yang dulu tidak menentu jadi jauh lebih kecil."] },
+    { "text": "Fisikawan sampai jadi detektif juga" }
+  ],
+  "sources": ["Wikipedia: Isaac Newton", "Wikipedia: William Chaloner"]
+}

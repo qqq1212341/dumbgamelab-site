@@ -1,0 +1,17 @@
+{
+  "category": "Everyday Life",
+  "title": "Bubble Wrap Started Out as Wallpaper",
+  "hook": "Bubble wrap began when two shower curtains were stuck together",
+  "summary": "In 1957 two engineers sealed shower curtains together to trap air bubbles. They failed to sell it as wallpaper before it found its place as packaging.",
+  "panels": [
+    {"text": ["Bubble wrap inside a parcel box.", "But it did not start out as packaging."]},
+    {"text": ["In 1957 in New Jersey, two engineers", "sealed two shower curtains together.", "Air bubbles got trapped in between."]},
+    {"text": ["The two tried to sell it as wallpaper.", "It didn't sell."]},
+    {"text": "A room walled in bubble wrap would never be boring"},
+    {"text": ["Next they sold it as greenhouse insulation.", "That didn't take off either."]},
+    {"text": ["Packaging packed with tiny air pockets.", "Only in 1961 did people notice it protects goods."]},
+    {"word": "IBM 1401", "mean": "The computer first shipped wrapped in it"},
+    {"text": "A failed wallpaper ended up protecting computers"}
+  ],
+  "sources": ["Wikipedia: Bubble Wrap"]
+}

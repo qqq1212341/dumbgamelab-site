@@ -1,0 +1,17 @@
+{
+  "category": "Hewan",
+  "title": "Gagak Mengingat Wajahmu dan Menyebarkan Kabar",
+  "hook": "Gagak bisa membedakan wajah manusia dan tampaknya mengabarkan soal orang jahat ke gagak lain",
+  "summary": "Gagak mengenali wajah manusia satu per satu dan diketahui menyebarkan kabar soal orang berbahaya lewat suaranya.",
+  "panels": [
+    {"text": ["Seekor gagak menatapmu lekat-lekat.", "Mata itu mungkin mengingat wajahmu."]},
+    {"text": ["Gagak bisa mengenali wajah manusia satu per satu.", "Saat melihat wajah yang mengancam,", "bagian otak yang terkait perhatian dan rasa takut menyala."]},
+    {"text": "Kemarin aku nggak bikin salah sama gagak, kan?"},
+    {"text": ["Gagak diduga menyampaikan kabar soal orang berbahaya", "ke gagak lain lewat suaranya."]},
+    {"text": ["Seekor gagak membawa kue dari tempat sampah.", "Gagak juga terkenal pandai memakai alat."]},
+    {"text": ["Gagak raven bahkan bisa mengenali dirinya di cermin.", "Wajar kalau mereka terkenal cerdas."]},
+    {"text": ["Jadi di depan gagak,", "lebih aman kalau kamu bersikap sopan."]},
+    {"text": "Di depan gagak aku harus jadi anak baik"}
+  ],
+  "sources": ["Wikipedia: Corvus (genus)"]
+}

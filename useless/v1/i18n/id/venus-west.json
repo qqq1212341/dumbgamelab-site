@@ -1,0 +1,18 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Di Venus, Matahari Terbit dari Barat",
+  "hook": "Venus berputar berlawanan dengan Bumi, jadi matahari terbit dari barat",
+  "summary": "Venus berputar terbalik sehingga matahari terbit dari barat, dan satu kali berputar pada porosnya lebih lama daripada satu tahunnya.",
+  "panels": [
+    { "text": ["Planet di sebelah Bumi, Venus.", "Ukurannya mirip Bumi, tapi cara berputarnya justru kebalikannya."] },
+    { "text": ["Sebagian besar planet berputar pada porosnya ke arah yang sama.", "Venus berputar terbalik."] },
+    { "text": ["Karena itu, di Venus", "matahari terbit dari barat dan terbenam di timur."] },
+    { "text": "Ternyata memang ada tempat matahari terbit dari barat" },
+    { "text": ["Selain itu, putarannya sangat lambat.", "Untuk berputar satu kali pada porosnya, butuh 243 hari."] },
+    { "word": "243 hari > 225 hari", "mean": "satu putaran pada poros lebih lama daripada satu putaran mengelilingi Matahari" },
+    { "text": ["Untuk mengelilingi Matahari satu kali, butuh 225 hari.", "Sebelum selesai berputar satu kali pada porosnya,", "satu tahun sudah lebih dulu berakhir."] },
+    { "text": ["Dari matahari terbit sampai terbit lagi, butuh sekitar 117 hari."] },
+    { "text": "Di Venus, tidur siang pun bisa berbulan-bulan ya" }
+  ],
+  "sources": ["Wikipedia: Venus"]
+}

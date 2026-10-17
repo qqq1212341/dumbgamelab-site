@@ -1,0 +1,18 @@
+{
+  "category": "Music",
+  "title": "Do-Re-Mi Used to Be Ut-Re-Mi",
+  "hook": "The do re mi fa sol la ti from music class started with ut instead of do",
+  "summary": "Do-re-mi comes from the first syllable of each line of an 11th-century Latin chant, and do was originally ut.",
+  "panels": [
+    { "text": ["The do re mi fa sol la ti", "you sang in music class.", "Who came up with these names?"] },
+    { "text": ["Guido of Arezzo, an Italian music theorist from the 11th century.", "He's the one who gave each note a name."] },
+    { "text": ["He picked a Latin chant dedicated to John the Baptist.", "Each line of this chant starts one note higher than the line before."] },
+    { "text": ["So he used the first syllable of each line as a note name.", "Ut, Re, Mi, Fa, Sol, La."] },
+    { "text": "Huh? Ut, not do?" },
+    { "word": "UT → DO", "mean": "changed in Italy in the 1600s" },
+    { "text": ["In Italy in the 1600s,", "ut was changed to do, which ends in a vowel."] },
+    { "text": ["The seventh note, ti (or si), was added much later.", "Guido originally had only six note names."] },
+    { "text": "So we're still singing chant lyrics from a thousand years ago" }
+  ],
+  "sources": ["Wikipedia: Solfège", "Wikipedia: Ut queant laxis", "Wikipedia: Guido of Arezzo"]
+}

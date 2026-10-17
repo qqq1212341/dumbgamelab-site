@@ -1,0 +1,15 @@
+{
+  "category": "Sports",
+  "title": "Olympic Gold Medals Are Mostly Silver",
+  "hook": "An Olympic gold medal has only 6 g of gold in it",
+  "summary": "An Olympic gold medal is silver coated with 6 g of gold.",
+  "panels": [
+    { "text": ["Every athlete's dream: an Olympic gold medal.", "But it's not solid gold."] },
+    { "text": ["By the rules, a gold medal is at least 92.5% silver.", "Then it's coated with 6 g of gold."] },
+    { "word": "6 g", "mean": "how much gold goes into a gold medal" },
+    { "text": "It's a gold medal but it's silver inside?" },
+    { "text": ["Silver medals are made of 92.5% silver too.", "So going by materials alone, a gold medal", "is a silver medal with a layer of gold on top."] },
+    { "text": "Still, a gold medal's a gold medal" }
+  ],
+  "sources": ["Wikipedia: Olympic medal"]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "morning-height",
+  "day": 15,
+  "category": "몸",
+  "title": "아침의 나는 저녁의 나보다 키가 크다",
+  "hook": "키는 아침에 재야 제일 크게 나온다",
+  "cover": "height-astronaut",
+  "panels": [
+    {
+      "type": "text",
+      "text": [
+        "아침에 잰 키와 저녁에 잰 키는 다르다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "에이, 키가 하루 만에 변한다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "한 연구에서 어린이 100명의 키를 쟀다.",
+        "아침에 일어났을 때보다",
+        "오후 4~5시에 평균 1.5cm쯤 작았다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "1.5cm",
+      "mean": "아침부터 오후까지 줄어든 평균 키"
+    },
+    {
+      "type": "text",
+      "text": [
+        "하루 종일 중력을 받으며 서고 앉다 보면",
+        "몸이 아주 조금 눌린다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "height-astronaut",
+      "text": [
+        "그럼 중력이 거의 없는 우주에서는?",
+        "한 달 안에 뼈대가 쭉 펴지면서",
+        "키가 약 2.5cm 커진다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "키 크고 싶으면 우주로 가야겠다"
+    }
+  ],
+  "summary": "사람 키는 아침에 가장 크고 오후엔 조금 줄어든다. 우주에선 2.5cm쯤 커진다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Human height",
+      "url": "https://en.wikipedia.org/wiki/Human_height"
+    },
+    {
+      "title": "Wikipedia: Effect of spaceflight on the human body",
+      "url": "https://en.wikipedia.org/wiki/Effect_of_spaceflight_on_the_human_body"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "category": "Musik",
+  "title": "Do-Re-Mi Dulunya Ut-Re-Mi",
+  "hook": "Do re mi fa sol la si yang kita nyanyikan di pelajaran musik, awalnya pakai ut, bukan do",
+  "summary": "Do-re-mi berasal dari suku kata pertama tiap baris himne Latin abad ke-11, dan do dulunya bernama ut.",
+  "panels": [
+    { "text": ["Waktu pelajaran musik, kita menyanyikan", "do re mi fa sol la si.", "Siapa yang memberi nama-nama ini?"] },
+    { "text": ["Guido d'Arezzo, ahli teori musik Italia abad ke-11.", "Dialah yang memberi nama pada tiap nada."] },
+    { "text": ["Yang ia pilih adalah himne Latin untuk Yohanes Pembaptis.", "Setiap ganti baris, himne ini dimulai satu nada lebih tinggi."] },
+    { "text": ["Jadi suku kata pertama tiap baris ia pakai sebagai nama nada.", "Ut, Re, Mi, Fa, Sol, La."] },
+    { "text": "Eh? Bukan do, tapi ut?" },
+    { "word": "UT → DO", "mean": "berubah di Italia pada tahun 1600-an" },
+    { "text": ["Di Italia pada tahun 1600-an,", "ut diganti menjadi do, yang berakhiran huruf vokal."] },
+    { "text": ["Nada ketujuh, si, baru ditambahkan jauh kemudian.", "Awalnya, nama nada buatan Guido hanya enam."] },
+    { "text": "Jadi kita masih menyanyikan lirik himne seribu tahun lalu, ya" }
+  ],
+  "sources": ["Wikipedia: Solfège", "Wikipedia: Ut queant laxis", "Wikipedia: Guido of Arezzo"]
+}

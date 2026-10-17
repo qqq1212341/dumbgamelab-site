@@ -1,0 +1,79 @@
+{
+  "id": "newton-mint",
+  "day": 10,
+  "category": "역사",
+  "title": "뉴턴은 위조범 잡는 탐정이었다",
+  "hook": "만유인력의 뉴턴은 말년에 변장하고 위조범을 쫓았다",
+  "cover": "newton",
+  "coverFocus": "50% 25%",
+  "panels": [
+    {
+      "type": "image",
+      "img": "newton",
+      "text": [
+        "사과와 만유인력으로 유명한 아이작 뉴턴.",
+        "그의 인생 마지막 30년은 전혀 다른 일로 채워졌다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1696년 뉴턴은 영국 조폐국에 들어갔다.",
+        "나라의 동전을 만드는 곳이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "뉴턴이 따져 보니",
+        "거둬들인 동전의 약 20%가 가짜였다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "다섯 개 중 하나가 가짜라고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "뉴턴은 직접 위조범을 쫓기 시작했다.",
+        "선술집 단골손님처럼 변장하고",
+        "증거를 스스로 모았다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "28명",
+      "mean": "뉴턴이 법정에 세워 처벌받게 한 위조범 수"
+    },
+    {
+      "type": "text",
+      "text": [
+        "그중에는 악명 높은 위조범 윌리엄 챌로너도 있었다.",
+        "그는 1699년 처형됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "뉴턴은 동전 무게도 고르게 만들었다.",
+        "들쭉날쭉하던 기니 금화의 무게 차이를 크게 줄였다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "물리학자가 탐정까지 하다니"
+    }
+  ],
+  "summary": "뉴턴은 말년 30년을 조폐국에서 보내며 변장까지 해서 위조범 28명을 처벌받게 했다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Isaac Newton",
+      "url": "https://en.wikipedia.org/wiki/Isaac_Newton"
+    },
+    {
+      "title": "Wikipedia: William Chaloner",
+      "url": "https://en.wikipedia.org/wiki/William_Chaloner"
+    }
+  ]
+}

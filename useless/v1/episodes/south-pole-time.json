@@ -1,0 +1,73 @@
+{
+  "id": "south-pole-time",
+  "day": 12,
+  "category": "지리",
+  "title": "남극에서는 시간도 택배 오는 곳 따라 정한다",
+  "hook": "지구 맨 아래 남극점 기지의 시계는 뉴질랜드에 맞춰져 있다",
+  "cover": "pole-marker",
+  "panels": [
+    {
+      "type": "image",
+      "img": "pole-marker",
+      "text": [
+        "지구의 맨 아래, 남극점.",
+        "모든 경도선이 이 한 점에서 만난다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "시간대는 경도를 따라 나뉜다.",
+        "그럼 경도선이 다 모이는 곳은 지금 몇 시일까?"
+      ]
+    },
+    {
+      "type": "say",
+      "text": "모든 시간이 다 맞는 거 아니야?"
+    },
+    {
+      "type": "image",
+      "img": "pole-station",
+      "text": [
+        "남극점에는 미국의 아문센 스콧 기지가 있다.",
+        "이 기지는 뉴질랜드 시간을 쓴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "물자를 보내 주는 기지가",
+        "뉴질랜드 크라이스트처치에 있어서다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "남극의 다른 기지들도 비슷하다.",
+        "영토를 주장하는 나라나",
+        "물자를 보내 주는 나라의 시간을 쓴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 남극 대륙에는 시간대가 여러 개 섞여 있다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "나도 택배 오는 시간에 맞춰 살고 싶다"
+    }
+  ],
+  "summary": "남극점 기지는 물자를 보내 주는 뉴질랜드에 맞춰 뉴질랜드 시간을 쓴다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Time in Antarctica",
+      "url": "https://en.wikipedia.org/wiki/Time_in_Antarctica"
+    },
+    {
+      "title": "Wikipedia: Amundsen-Scott South Pole Station",
+      "url": "https://en.wikipedia.org/wiki/Amundsen%E2%80%93Scott_South_Pole_Station"
+    }
+  ]
+}

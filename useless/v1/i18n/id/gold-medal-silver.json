@@ -1,0 +1,15 @@
+{
+  "category": "Olahraga",
+  "title": "Medali Emas Olimpiade Sebenarnya Hampir Semuanya Perak",
+  "hook": "Emas di dalam medali emas Olimpiade cuma 6 g",
+  "summary": "Medali emas Olimpiade adalah perak yang dilapisi emas 6 g.",
+  "panels": [
+    { "text": ["Impian semua atlet, medali emas Olimpiade.", "Tapi medali ini bukan emas murni."] },
+    { "text": ["Menurut aturan, minimal 92,5% medali emas adalah perak.", "Lalu di atasnya dilapisi emas 6 g."] },
+    { "word": "6 g", "mean": "jumlah emas di dalam medali emas" },
+    { "text": "Medali emas, tapi dalamnya perak?" },
+    { "text": ["Medali perak juga dibuat dari perak 92,5%.", "Jadi kalau dilihat dari bahannya saja, medali emas", "adalah medali perak yang dilapisi selapis emas."] },
+    { "text": "Tetap saja, medali emas ya medali emas" }
+  ],
+  "sources": ["Wikipedia: Olympic medal"]
+}

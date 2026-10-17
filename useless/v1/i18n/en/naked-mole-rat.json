@@ -1,0 +1,20 @@
+{
+  "category": "Animals",
+  "title": "There's a Rat That's 37 Years Old",
+  "hook": "A regular mouse lives 2 to 3 years, but this rat lives more than 37",
+  "summary": "The naked mole-rat lives more than 37 years, and its chance of dying doesn't go up as it gets older.",
+  "panels": [
+    { "text": ["Meet the naked mole-rat, which lives underground in East Africa.", "It has almost no fur, and its front teeth stick right out."] },
+    { "text": "Kind of odd looking, but weirdly cute" },
+    { "text": ["A house mouse lives about 2 to 3 years, even with good care.", "But this rat has been recorded living more than 37 years."] },
+    { "word": "37 years", "mean": "the longest lifespan on record for a rodent" },
+    { "text": ["What's even stranger is how it ages.", "For most mammals, humans included,", "the chance of dying keeps going up with age."] },
+    { "text": ["Not for the naked mole-rat.", "Its chance of dying doesn't go up as it gets older."] },
+    { "text": "Wait, so it doesn't get old?" },
+    { "text": ["It's a stretch to say it doesn't get old,", "but at least being older doesn't put it at more risk."] },
+    { "text": ["It rarely gets cancer, either.", "Scientists are studying it to find the secret to its long life."] },
+    { "text": ["The way they live is unusual too.", "Like ants or bees, one queen has all the babies,", "and the rest are split into workers and soldiers."] },
+    { "text": "Guess we shouldn't make fun of it for being ugly" }
+  ],
+  "sources": ["Wikipedia: Naked mole-rat", "Wikipedia: House mouse"]
+}

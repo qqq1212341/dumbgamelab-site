@@ -1,0 +1,23 @@
+{
+  "category": "Kata",
+  "title": "Satu Alam Semesta, Tiga Kata",
+  "hook": "Astronaut tidak bisa pergi ke universe. Kenapa?",
+  "summary": "Astronaut tidak bisa pergi ke universe. Mereka sudah ada di dalamnya.",
+  "panels": [
+    { "text": ["Dalam bahasa Inggris, alam semesta punya tiga kata.", "space, universe, cosmos."] },
+    { "text": "Bukannya ketiganya sama saja?" },
+    { "word": "SPACE", "mean": "ruang kosong di luar Bumi" },
+    { "text": ["Astronaut melayang di space.", "Kata ini berasal dari bahasa Latin spatium (tempat kosong, luas).", "Makanya tempat parkir juga disebut parking space."] },
+    { "text": "Tempat parkir dan luar angkasa ternyata kata yang sama?" },
+    { "word": "UNIVERSE", "mean": "segala yang ada" },
+    { "text": ["Setiap titik di foto ini bukan bintang, tapi galaksi.", "Galaksi, cahaya, waktu, kamu, dan aku.", "Semua yang ada kalau digabung jadi universe.", "Dalam bahasa Latin artinya sesuatu yang menyatu jadi satu."] },
+    { "word": "COSMOS", "mean": "alam semesta yang tertata rapi" },
+    { "text": ["Kata Yunani kosmos berarti keteraturan.", "Artinya juga hiasan.", "Kalau alam semesta dilihat sebagai satu dunia yang tertata, namanya cosmos."] },
+    { "text": "Alam semesta itu hiasan?" },
+    { "text": ["Cosmetic yang berarti kosmetik juga berakar sama.", "Artinya merapikan wajah.", "Jadi alam semesta dan kosmetik masih bersaudara."] },
+    { "text": ["Ringkasnya begini.", "Astronaut pergi ke space,", "ilmuwan mengukur universe,", "dan penyair menyanyikan cosmos."] },
+    { "text": ["Jadi astronaut tidak bisa pergi ke universe.", "Mereka sudah ada di dalamnya."] },
+    { "text": "Kalau aksara Tionghoa 宇宙 bagaimana?" },
+    { "text": ["Buku Tiongkok kuno Huainanzi menulis begini.", "Seluruh penjuru dan atas bawah disebut 宇,", "dari dulu sampai sekarang disebut 宙.", "Sejak awal, kata ini menggabungkan ruang dan waktu."] }
+  ]
+}

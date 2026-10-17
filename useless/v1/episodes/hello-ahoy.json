@@ -1,0 +1,71 @@
+{
+  "id": "hello-ahoy",
+  "day": 18,
+  "category": "말",
+  "title": "전화 받을 때 아호이라고 할 뻔했다",
+  "hook": "전화를 발명한 벨은 첫인사로 헬로 대신 아호이를 원했다",
+  "cover": "hello-phone",
+  "panels": [
+    {
+      "type": "image",
+      "img": "hello-phone",
+      "text": [
+        "전화가 처음 생겼을 때 문제가 하나 있었다.",
+        "수화기를 들면 뭐라고 말해야 하지?"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "전화기 발명가 알렉산더 그레이엄 벨은",
+        "배에서 쓰던 인사 아호이를 제안했다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "Ahoy!",
+      "mean": "배끼리 서로 부를 때 쓰던 말"
+    },
+    {
+      "type": "say",
+      "text": "여보세요 대신 아호이?"
+    },
+    {
+      "type": "image",
+      "img": "hello-edison",
+      "text": [
+        "그런데 토머스 에디슨이 쓴 말이 이겼다.",
+        "Hello, 헬로였다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "헬로는 전화와 함께",
+        "널리 퍼진 인사가 됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "아호이는 지금 해적 말투를 흉내 낼 때",
+        "장난스럽게 쓰는 말이 됐다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "오늘부터 전화 받을 때 아호이 해 볼까"
+    }
+  ],
+  "summary": "벨은 전화 인사로 아호이를 원했지만, 에디슨의 헬로가 퍼졌다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Ahoy",
+      "url": "https://en.wikipedia.org/wiki/Ahoy"
+    },
+    {
+      "title": "Wikipedia: Hello",
+      "url": "https://en.wikipedia.org/wiki/Hello"
+    }
+  ]
+}

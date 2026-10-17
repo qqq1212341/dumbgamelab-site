@@ -1,0 +1,18 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Orang-Orang yang Melihat Matahari Terbit 16 Kali Sehari",
+  "hook": "Orang yang tinggal di stasiun luar angkasa melihat matahari terbit lebih dari 15 kali sehari",
+  "summary": "Stasiun luar angkasa mengelilingi Bumi sekali setiap 93 menit, jadi penghuninya melihat matahari terbit 15 sampai 16 kali sehari.",
+  "panels": [
+    { "text": ["Stasiun Luar Angkasa Internasional, yang mengorbit sekitar 400 km di atas Bumi.", "Tempat ini rumah sekaligus laboratorium bagi para astronaut."] },
+    { "text": ["Stasiun ini melaju dengan kecepatan sekitar 28.000 km per jam.", "Cukup cepat untuk menempuh Seoul ke Busan, sekitar 325 km, dalam waktu kurang dari 1 menit."] },
+    { "text": "Pasti lebih cepat dari peluru" },
+    { "word": "93 menit", "mean": "waktu yang dibutuhkan untuk mengelilingi Bumi satu kali" },
+    { "text": ["Setiap satu putaran, stasiun ini melewati siang dan malam masing-masing sekali.", "Setelah matahari terbenam, lampu-lampu kota di sisi malam berkelap-kelip."] },
+    { "text": ["Lalu tibalah saat stasiun kembali menyeberang ke sisi siang.", "Tepi Bumi mulai terang, dan matahari pun terbit."] },
+    { "text": ["Dalam sehari, stasiun ini mengelilingi Bumi sekitar 15 setengah kali.", "Karena itu, astronaut melihat matahari terbit 15 sampai 16 kali sehari."] },
+    { "text": "Pagi 16 kali, berarti sarapan juga 16 kali?" },
+    { "text": ["Matahari tidak bisa jadi patokan, jadi stasiun luar angkasa memakai jam untuk menentukan hari.", "Mereka tidur dan bangun mengikuti waktu standar dunia (UTC)."] }
+  ],
+  "sources": ["Wikipedia: International Space Station"]
+}

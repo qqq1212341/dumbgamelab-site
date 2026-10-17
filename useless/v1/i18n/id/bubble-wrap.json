@@ -1,0 +1,17 @@
+{
+  "category": "Kehidupan Sehari-hari",
+  "title": "Bubble Wrap Awalnya Dibuat sebagai Wallpaper",
+  "hook": "Bubble wrap bermula dari dua tirai kamar mandi yang direkatkan",
+  "summary": "Pada 1957 dua insinyur merekatkan tirai kamar mandi hingga menjebak gelembung udara. Gagal dijual sebagai wallpaper, produk itu akhirnya dipakai sebagai bahan kemasan.",
+  "panels": [
+    {"text": ["Bubble wrap di dalam kotak paket.", "Tetapi awalnya ini bukan bahan kemasan."]},
+    {"text": ["Pada 1957 di New Jersey, dua insinyur", "merekatkan dua tirai kamar mandi.", "Gelembung udara terjebak di antaranya."]},
+    {"text": ["Keduanya mencoba menjualnya sebagai wallpaper.", "Tidak laku."]},
+    {"text": "Kalau seluruh dinding kamar bubble wrap, pasti nggak bosan"},
+    {"text": ["Berikutnya mereka menjualnya sebagai isolasi rumah kaca.", "Itu pun tidak meledak."]},
+    {"text": ["Bahan kemasan penuh kantong udara kecil.", "Baru pada 1961 orang menyadari ini melindungi barang."]},
+    {"word": "IBM 1401", "mean": "Komputer pertama yang dikirim dengan dibungkus bubble wrap"},
+    {"text": "Wallpaper yang gagal malah melindungi komputer"}
+  ],
+  "sources": ["Wikipedia: Bubble Wrap"]
+}

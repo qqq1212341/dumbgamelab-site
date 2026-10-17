@@ -1,0 +1,16 @@
+{
+  "category": "Kehidupan Sehari-hari",
+  "title": "Kode QR Lahir dari Papan Permainan Go",
+  "hook": "Titik hitam dan putih pada kode QR terinspirasi dari batu permainan Go",
+  "summary": "Kode QR dibuat di Jepang pada 1994, terinspirasi dari pola hitam putih batu Go.",
+  "panels": [
+    { "text": ["Kode QR yang kita pindai setiap hari.", "Dari mana asal pola kotak-kotak ini?"] },
+    { "text": ["Kode QR dibuat pada 1994", "oleh Denso Wave, perusahaan suku cadang mobil di Jepang.", "Awalnya dipakai untuk melacak suku cadang di pabrik mobil."] },
+    { "text": ["Hara Masahiro, pemimpin tim pengembangnya,", "terinspirasi dari batu hitam dan batu putih di atas papan Go."] },
+    { "text": "Jadi dia bikin kode QR sambil main Go?" },
+    { "text": ["Tiga kotak besar di sudutnya adalah penanda posisi kode QR.", "Polanya dipilih yang hampir tidak pernah muncul di barang cetakan,", "jadi jarang tertukar dengan gambar lain."] },
+    { "word": "QR", "mean": "singkatan Quick Response, artinya respons cepat" },
+    { "text": "Mulai sekarang, lihat kode QR pasti ingat papan Go" }
+  ],
+  "sources": ["Wikipedia: QR code"]
+}

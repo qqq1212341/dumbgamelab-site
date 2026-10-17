@@ -1,0 +1,17 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Di Luar Angkasa, Logam Menempel dengan Sendirinya",
+  "hook": "Dua logam bersih yang bersentuhan di ruang hampa bisa menyatu seperti dilas",
+  "summary": "Di ruang hampa, permukaan bersih dari logam yang sama bisa menyatu saat bersentuhan tanpa panas. Perancang pesawat antariksa harus mewaspadainya.",
+  "panels": [
+    {"text": ["Wahana Galileo yang dikirim ke Jupiter.", "Antena besarnya tidak pernah terbuka penuh."]},
+    {"text": ["Di udara, permukaan logam tertutup lapisan oksida tipis dan lemak.", "Karena itu mereka tidak menempel saat bersentuhan."]},
+    {"word": "Pengelasan dingin", "mean": "Logam menyatu hanya karena bersentuhan, tanpa panas"},
+    {"text": ["Saat permukaan bersih dari logam yang sama bersentuhan di ruang hampa,", "atom-atomnya tidak tahu mereka dari dua potong berbeda", "dan langsung menyatu jadi satu."]},
+    {"text": "Logam nempel ke logam tanpa lem?"},
+    {"text": ["Fenomena ini pertama kali dikenal luas pada tahun 1940-an.", "Sebagian kerusakan mekanis pada satelit awal", "dianggap disebabkan olehnya."]},
+    {"text": ["Pada 1991, antena besar Galileo tidak terbuka penuh.", "Makalah Badan Antariksa Eropa menyebut kejadian ini", "sebagai contoh pengelasan dingin yang terdokumentasi."]},
+    {"text": "Di luar angkasa, bersih justru jadi masalah"}
+  ],
+  "sources": ["Wikipedia: Cold welding", "Wikipedia: Galileo (spacecraft)"]
+}

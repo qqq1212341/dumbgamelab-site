@@ -1,0 +1,17 @@
+{
+  "category": "Hewan",
+  "title": "Sidik Jari Koala Bisa Dikira Milik Manusia",
+  "hook": "Bahkan dengan mikroskop elektron, sidik jari koala dan manusia sulit dibedakan",
+  "summary": "Sidik jari koala begitu mirip sidik jari manusia sampai sulit dibedakan, bahkan dengan mikroskop elektron.",
+  "panels": [
+    { "text": ["Koala yang memeluk pohon erat-erat.", "Kalau ujung jarinya dilihat dari dekat, ada hal yang mengejutkan."] },
+    { "text": ["Koala juga punya sidik jari.", "Seperti manusia, ada pola garis di ujung jarinya."] },
+    { "text": ["Dalam sebuah penelitian, bahkan dengan mikroskop elektron,", "sidik jari koala dan sidik jari manusia sulit dibedakan."] },
+    { "text": "Gimana kalau pelakunya koala?" },
+    { "text": ["Padahal koala hewan yang hubungannya sangat jauh dengan manusia.", "Kerabatnya bukan gorila atau simpanse, tapi kanguru."] },
+    { "text": ["Koala menghabiskan sebagian besar harinya di atas pohon.", "Hidupnya bergelantungan sambil mencengkeram dahan erat-erat."] },
+    { "text": ["Hewan yang hidupnya memanjat pohon atau mencengkeram sesuatu erat-erat", "diperkirakan masing-masing jadi punya sidik jari sendiri-sendiri."] },
+    { "text": "Kalau cara pakai tangannya mirip, sidik jarinya juga ikut mirip ya" }
+  ],
+  "sources": ["Wikipedia: Fingerprint", "Wikipedia: Koala"]
+}

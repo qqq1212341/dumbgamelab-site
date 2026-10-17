@@ -1,0 +1,17 @@
+{
+  "category": "Geografi",
+  "title": "Pulau Kemarin dan Pulau Besok Jaraknya Kurang dari 4 km",
+  "hook": "Dua pulau di Selat Bering berselisih hampir sehari karena garis tanggal",
+  "summary": "Big Diomede milik Rusia dan Little Diomede milik AS hanya berjarak 3,8 km, tetapi garis tanggal melintas di antaranya sehingga jamnya beda 21 jam.",
+  "panels": [
+    {"text": ["Di Selat Bering, antara Alaska dan Siberia,", "ada dua pulau yang berdampingan."]},
+    {"text": ["Big Diomede milik Rusia", "dan Little Diomede milik Amerika Serikat.", "Di titik terdekat jaraknya hanya 3,8 km."]},
+    {"text": ["Garis Tanggal Internasional melintas di antara keduanya.", "Hanya terpisah satu garis,", "tetapi tanggalnya berbeda."]},
+    {"word": "21 jam", "mean": "Selisih waktu Big Diomede lebih maju dari Little Diomede (20 jam saat musim panas)"},
+    {"text": "Pulau sebelah sudah besok?"},
+    {"text": ["Pada musim dingin, jembatan es biasanya terbentuk di antara kedua pulau.", "Perairan Diomede yang berselimut es, difoto awal 1900-an."]},
+    {"text": ["Karena itu Big Diomede dijuluki Pulau Besok", "dan Little Diomede dijuluki Pulau Kemarin."]},
+    {"text": "Selangkah saja bedanya sehari"}
+  ],
+  "sources": ["Wikipedia: Diomede Islands"]
+}

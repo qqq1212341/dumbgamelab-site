@@ -1,0 +1,16 @@
+{
+  "category": "Tubuh",
+  "title": "Kamu Versi Pagi Lebih Tinggi daripada Versi Malam",
+  "hook": "Ukur tinggi badan pagi hari, hasilnya paling tinggi",
+  "summary": "Tinggi badan manusia paling tinggi pada pagi hari dan sedikit berkurang pada sore hari. Di luar angkasa, tinggi badan bertambah sekitar 2,5 cm.",
+  "panels": [
+    { "text": ["Tinggi badan yang diukur pagi hari dan malam hari itu berbeda."] },
+    { "text": "Ah, masa tinggi badan berubah dalam sehari?" },
+    { "text": ["Sebuah penelitian mengukur tinggi badan 100 anak.", "Dibanding saat baru bangun pagi,", "pada pukul 4 sampai 5 sore tinggi mereka rata-rata sekitar 1,5 cm lebih pendek."] },
+    { "word": "1,5 cm", "mean": "rata-rata tinggi yang berkurang dari pagi sampai sore" },
+    { "text": ["Seharian berdiri dan duduk di bawah tarikan gravitasi", "membuat tubuh tertekan, walau cuma sedikit."] },
+    { "text": ["Lalu bagaimana di luar angkasa yang hampir tanpa gravitasi?", "Dalam waktu sebulan, rangka tubuh meregang lurus,", "dan tinggi badan bertambah sekitar 2,5 cm."] },
+    { "text": "Kalau mau tinggi, berarti harus ke luar angkasa" }
+  ],
+  "sources": ["Wikipedia: Human height", "Wikipedia: Effect of spaceflight on the human body"]
+}

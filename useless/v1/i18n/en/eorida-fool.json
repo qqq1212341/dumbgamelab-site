@@ -1,0 +1,17 @@
+{
+  "category": "Words",
+  "title": "\"Eorin Baekseong\" Did Not Mean Children",
+  "hook": "In the preface to Hunminjeongeum, the word \"eorida\" meant foolish, not young",
+  "summary": "In the 15th century \"eorida\" meant foolish. The sense of \"young\" appeared from the 16th century and is the main meaning today.",
+  "panels": [
+    {"text": ["The Hunminjeongeum book made under King Sejong.", "A version of it written out in Hangul has the line \"eorin baekseong i nireugojyeo bae isyeodo.\""]},
+    {"text": ["Here \"eorin\" does not mean young.", "It means \"foolish.\""]},
+    {"word": "Eorida", "mean": "In the 15th century it meant foolish"},
+    {"text": "So a \"child\" was originally a foolish person?"},
+    {"text": ["Before the word \"eoriseokda\" (foolish) existed,", "\"eorida\" carried that meaning."]},
+    {"text": ["From the 16th century the sense of \"young\" appeared.", "Over time it became the main meaning."]},
+    {"text": ["\"Eorini\" (child) is \"eorin\" plus \"i.\"", "It shows up in texts from the 17th century."]},
+    {"text": "Word meanings just drift wherever they like"}
+  ],
+  "sources": ["National Institute of Korean Language: Eorida and Eoriseokda", "National Institute of Korean Language: Origin of Eorini"]
+}

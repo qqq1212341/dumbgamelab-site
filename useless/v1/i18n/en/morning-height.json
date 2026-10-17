@@ -1,0 +1,16 @@
+{
+  "category": "The Body",
+  "title": "Morning You Is Taller Than Evening You",
+  "hook": "You'll measure tallest if you do it in the morning",
+  "summary": "People are tallest in the morning and a little shorter by the afternoon. In space, they get about 2.5 cm taller.",
+  "panels": [
+    { "text": ["Your height in the morning and your height in the evening aren't the same."] },
+    { "text": "Come on, your height changes in a single day?" },
+    { "text": ["One study measured the height of 100 children.", "Compared to when they woke up,", "they were about 1.5 cm shorter on average between 4 and 5 PM."] },
+    { "word": "1.5 cm", "mean": "average height lost from morning to afternoon" },
+    { "text": ["Standing and sitting under gravity all day", "squishes your body down just a tiny bit."] },
+    { "text": ["So what about space, where there's almost no gravity?", "Within a month, the skeleton stretches out,", "and you get about 2.5 cm taller."] },
+    { "text": "If I wanna be taller, I'm going to space" }
+  ],
+  "sources": ["Wikipedia: Human height", "Wikipedia: Effect of spaceflight on the human body"]
+}

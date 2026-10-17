@@ -1,0 +1,17 @@
+{
+  "category": "Food",
+  "title": "Ketchup Used to Be Fish Sauce",
+  "hook": "The word ketchup came from a name for pickled fish brine",
+  "summary": "Ketchup was first a word for pickled fish brine, and tomato ketchup came along in the 1800s.",
+  "panels": [
+    { "text": ["Nothing goes with fries like ketchup.", "But ketchup didn't start out as a tomato sauce."] },
+    { "text": ["One explanation is that the word comes from the local language of Fujian, in southern China.", "It was the name for brine from pickled fish or shellfish."] },
+    { "text": "Wait, ketchup was fish?" },
+    { "text": ["Old ketchup recipes used all kinds of things.", "There were ketchups made from mushrooms, oysters, mussels and walnuts."] },
+    { "word": "1812", "mean": "the year of the first known tomato ketchup recipe" },
+    { "text": ["In 1812, James Mease of the US", "wrote down the first tomato ketchup recipe."] },
+    { "text": ["An 1817 tomato ketchup recipe", "even had anchovies and bugs used to make it red."] },
+    { "text": "Ketchup with bugs in it is a bit much..." }
+  ],
+  "sources": ["Wikipedia: Ketchup"]
+}

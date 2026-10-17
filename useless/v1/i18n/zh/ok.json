@@ -1,0 +1,21 @@
+{
+  "category": "词语",
+  "title": "OK 原来是个拼错的玩笑",
+  "hook": "OK 最早是一个故意写错的玩笑",
+  "summary": "OK 来自一个把 all correct 写错成 oll korrect 的玩笑，后来借着竞选口号活了下来。",
+  "panels": [
+    { "text": ["今天你应该也说过几次 OK 吧。", "可这两个字母，原本是个玩笑。"] },
+    { "text": ["1838年夏天，美国波士顿。", "报纸之间流行起一种奇怪的风潮。", "就是把词语缩成首字母，", "甚至还故意写错的文字游戏。"] },
+    { "word": "O.W.", "mean": "oll wright，也就是 all right" },
+    { "word": "G.T.", "mean": "gone to Texas，溜到得州去了" },
+    { "text": "原来老报纸也会玩梗啊" },
+    { "text": ["1839年3月23日，《波士顿晨邮报》。", "这期报纸上登出了 o.k. 这个词。", "它是把 all correct 写错成 oll korrect，再缩写而成的。"] },
+    { "text": "表示“全对”的词，居然写错了？" },
+    { "text": ["这类玩笑词大多很快就消失了。", "OK 能活下来，多亏了这个人。", "美国第8任总统范布伦（Martin Van Buren）。"] },
+    { "text": ["他的家乡是金德胡克，所以外号叫 Old Kinderhook。", "1840年大选时，支持者们力推说 OK 就是这个外号的缩写。", "Vote for OK。投 OK 一票。"] },
+    { "text": ["那年的选举闹得全国沸沸扬扬。", "范布伦输掉了那场选举。", "赢的是 OK。"] },
+    { "text": "总统输了，只有流行语留了下来" },
+    { "text": ["这段来历在20世纪60年代被查明。", "语言学家里德（Allen Walker Read）", "一张一张翻查旧报纸，把它找了出来。"] }
+  ],
+  "sources": ["Wikipedia: OK（Allen Walker Read 的研究整理）", "Wikipedia: Martin Van Buren"]
+}

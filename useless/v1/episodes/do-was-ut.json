@@ -1,0 +1,84 @@
+{
+  "id": "do-was-ut",
+  "day": 11,
+  "category": "음악",
+  "title": "도레미는 원래 우트레미였다",
+  "hook": "음악 시간에 부르는 도레미파솔라시, 처음엔 도 대신 우트였다",
+  "cover": "doremi-guido",
+  "coverFocus": "50% 30%",
+  "panels": [
+    {
+      "type": "text",
+      "text": [
+        "음악 시간에 부르는",
+        "도 레 미 파 솔 라 시.",
+        "이 이름은 누가 지었을까?"
+      ]
+    },
+    {
+      "type": "image",
+      "img": "doremi-guido",
+      "text": [
+        "11세기 이탈리아의 음악 이론가 귀도 다레초.",
+        "그가 음마다 이름을 붙였다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "doremi-hymn",
+      "text": [
+        "그가 고른 건 세례 요한에게 바치는 라틴어 성가였다.",
+        "이 성가는 줄이 바뀔 때마다 한 음씩 높아지며 시작한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 줄마다 첫 음절을 음 이름으로 썼다.",
+        "Ut, Re, Mi, Fa, Sol, La."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "어? 도가 아니라 우트?"
+    },
+    {
+      "type": "word",
+      "word": "UT → DO",
+      "mean": "1600년대 이탈리아에서 바뀌었다"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1600년대 이탈리아에서",
+        "ut는 모음으로 끝나는 do로 바뀌었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "일곱 번째 음 시는 훨씬 나중에 붙었다.",
+        "귀도의 음 이름은 원래 여섯 개뿐이었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "천 년 전 성가 가사를 지금도 부르고 있었네"
+    }
+  ],
+  "summary": "도레미는 11세기 라틴어 성가의 줄 첫 음절에서 왔고, 도는 원래 우트(ut)였다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Solfège",
+      "url": "https://en.wikipedia.org/wiki/Solf%C3%A8ge"
+    },
+    {
+      "title": "Wikipedia: Ut queant laxis",
+      "url": "https://en.wikipedia.org/wiki/Ut_queant_laxis"
+    },
+    {
+      "title": "Wikipedia: Guido of Arezzo",
+      "url": "https://en.wikipedia.org/wiki/Guido_of_Arezzo"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "banana-berry",
+  "day": 4,
+  "category": "음식",
+  "title": "바나나는 베리다",
+  "hook": "딸기는 베리가 아닌데 바나나는 베리다",
+  "cover": "banana-bunch",
+  "panels": [
+    {
+      "type": "image",
+      "img": "banana-bunch",
+      "text": [
+        "식물학에서 바나나는 베리다.",
+        "블루베리랑 같은 편이라는 뜻이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "엥? 바나나가 베리라고?"
+    },
+    {
+      "type": "word",
+      "word": "BERRY",
+      "mean": "꽃 하나에서 자라고, 씨가 과육 속에 든 열매"
+    },
+    {
+      "type": "text",
+      "text": [
+        "식물학의 베리는 이름과 상관없다.",
+        "꽃 하나에서 자라 속까지 말랑하고",
+        "씨가 과육 안에 박혀 있으면 베리다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 포도, 토마토, 가지, 오이도 베리다.",
+        "우리가 먹는 바나나엔 싹이 트는 씨가 거의 없지만",
+        "열매 구조는 그대로 베리다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "banana-strawberry",
+      "text": [
+        "반면 딸기는 베리가 아니다.",
+        "겉에 붙은 깨알 같은 점이 하나하나 다 열매고",
+        "그 안에 진짜 씨가 들어 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "우리가 먹는 빨간 부분은",
+        "꽃을 받치던 꽃턱이 부풀어 오른 것이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "이름에 베리가 들어가는데 베리가 아니라니"
+    },
+    {
+      "type": "text",
+      "text": [
+        "라즈베리도 베리가 아니다.",
+        "작은 열매 여러 개가 뭉친 것이다."
+      ]
+    }
+  ],
+  "summary": "식물학에선 바나나와 토마토가 베리고, 딸기와 라즈베리는 베리가 아니다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Berry (botany)",
+      "url": "https://en.wikipedia.org/wiki/Berry_(botany)"
+    },
+    {
+      "title": "Wikipedia: Strawberry",
+      "url": "https://en.wikipedia.org/wiki/Strawberry"
+    },
+    {
+      "title": "Wikipedia: Banana",
+      "url": "https://en.wikipedia.org/wiki/Banana"
+    }
+  ]
+}

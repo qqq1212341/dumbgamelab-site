@@ -1,0 +1,16 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Di Luar Angkasa, Api Lilin Berbentuk Bulat",
+  "hook": "Kalau lilin dinyalakan di luar angkasa, apinya tidak menjulang ke atas, tapi jadi seperti bola",
+  "summary": "Di luar angkasa, udara panas tidak naik ke atas, jadi api lilin menyala bulat dan biru.",
+  "panels": [
+    { "text": ["Api lilin selalu menjulang lancip ke atas.", "Saking biasanya, kamu mungkin tidak pernah memikirkan alasannya."] },
+    { "text": ["Udara panas di sekitar api itu ringan, jadi naik ke atas.", "Udara dingin dari bawah masuk mengisi tempat yang kosong.", "Aliran inilah yang menarik api ke atas sampai memanjang."] },
+    { "text": "Terus, gimana di luar angkasa yang tanpa bobot?" },
+    { "text": ["Ini lilin yang dinyalakan di stasiun luar angkasa.", "Karena udara panas tidak naik ke atas,", "apinya menyebar jadi bulat."] },
+    { "text": ["Warnanya juga beda.", "Di Bumi, jelaga naik ke atas, jadi bagian atas api terlihat kuning.", "Di luar angkasa, apinya lebih biru dan menyala lebih baik."] },
+    { "text": ["Di stasiun luar angkasa juga ada eksperimen menyalakan tetesan bahan bakar.", "Begitu menyala, apinya terbakar seperti bola yang membungkus tetesan itu."] },
+    { "text": "Lilin kue ulang tahun juga bakal bulat di luar angkasa ya" }
+  ],
+  "sources": ["Wikipedia: Flame", "Wikipedia: International Space Station"]
+}

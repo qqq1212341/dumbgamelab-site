@@ -1,0 +1,19 @@
+{
+  "category": "Science",
+  "title": "GPS Satellite Clocks Are Set Slow on Purpose",
+  "hook": "GPS satellites go up with their clocks set wrong on purpose",
+  "summary": "Because of relativity, GPS satellite clocks run 38 microseconds fast each day. So before launch, they're set to run slow on purpose.",
+  "panels": [
+    { "text": ["Your map app knows where you are thanks to GPS satellites.", "They circle the Earth in very high orbits."] },
+    { "text": ["Each satellite carries a precise clock and keeps sending time signals.", "Your phone measures distance by how long a signal takes to arrive."] },
+    { "text": ["So if a clock is off by even a tiny bit,", "your location ends up way off."] },
+    { "text": ["This is where Einstein comes in.", "According to relativity, time doesn't flow at the same speed everywhere."] },
+    { "text": ["Moving fast slows time down.", "Because of this, satellite clocks fall behind by about 7 microseconds a day."] },
+    { "text": ["Where gravity is weaker, time speeds up.", "Up that high, satellite clocks gain about 45 microseconds a day."] },
+    { "word": "+38μs", "mean": "both added up: how much faster the satellite clock runs each day" },
+    { "text": "38 millionths of a second is nothing, right?" },
+    { "text": ["Light travels about 300 m in 1 microsecond, so 38 microseconds is about 11 km.", "For GPS, which measures distance using time, that's a big difference."] },
+    { "text": ["So before launch, GPS satellite clocks are set to run slow by that much on purpose.", "Relativity is at work in your directions every day."] }
+  ],
+  "sources": ["Wikipedia: Error analysis for the Global Positioning System", "Wikipedia: Global Positioning System"]
+}

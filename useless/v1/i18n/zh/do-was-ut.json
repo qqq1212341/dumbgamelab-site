@@ -1,0 +1,18 @@
+{
+  "category": "音乐",
+  "title": "Do Re Mi 原本是 Ut Re Mi",
+  "hook": "音乐课上唱的 do re mi fa sol la si，一开始唱的不是 do，而是 ut",
+  "summary": "Do Re Mi 来自11世纪一首拉丁语圣歌每句的第一个音节，Do 原本是 Ut。",
+  "panels": [
+    { "text": ["音乐课上唱的", "do re mi fa sol la si。", "这些名字是谁起的？"] },
+    { "text": ["11世纪意大利的音乐理论家圭多（Guido of Arezzo）。", "是他给每个音起了名字。"] },
+    { "text": ["他选的是一首献给施洗约翰的拉丁语圣歌。", "这首圣歌每换一句，起头的音就高一个音。"] },
+    { "text": ["于是他把每句的第一个音节拿来当音名。", "Ut, Re, Mi, Fa, Sol, La。"] },
+    { "text": "咦？不是 Do，是 Ut？" },
+    { "word": "UT → DO", "mean": "17世纪在意大利改的" },
+    { "text": ["到了17世纪的意大利，", "ut 换成了以元音结尾的 do。"] },
+    { "text": ["第七个音 Si 是很久以后才加上的。", "圭多的音名原本只有六个。"] },
+    { "text": "一千年前的圣歌歌词，我们到现在还在唱啊" }
+  ],
+  "sources": ["Wikipedia: Solfège", "Wikipedia: Ut queant laxis", "Wikipedia: Guido of Arezzo"]
+}

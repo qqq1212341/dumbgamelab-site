@@ -1,0 +1,17 @@
+{
+  "category": "Music",
+  "title": "There's No Cat in Catgut",
+  "hook": "Old violin strings were made from sheep or goat intestines",
+  "summary": "Despite its name, catgut has never been documented as made from cats. It came mostly from sheep or goat intestines, and some players still use it.",
+  "panels": [
+    {"text": ["The taut strings of a violin.", "They used to be made from animal intestines."]},
+    {"word": "Catgut", "mean": "Literally \"cat gut,\" a cord made from fibers in animal intestines"},
+    {"text": ["But it has never been documented as made from cats.", "Sheep or goat intestines were what people mostly used."]},
+    {"text": "Whoever named it owes the cats an apology"},
+    {"text": ["An old violin.", "Harp, lute, cello and acoustic guitar strings were gut too."]},
+    {"text": ["Where the name comes from is unclear.", "One theory says \"kit,\" an old word for a small fiddle,", "got confused with \"kit,\" a young cat."]},
+    {"text": ["Most strings today are steel or synthetic.", "Still, classical players keep using gut strings,", "because they give a richer, darker sound."]},
+    {"text": "So the cats were safe all along"}
+  ],
+  "sources": ["Wikipedia: Catgut"]
+}

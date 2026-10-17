@@ -1,0 +1,17 @@
+{
+  "category": "Sports",
+  "title": "The Olympics Once Gave Gold Medals for Poems and Paintings",
+  "hook": "The founder of the Olympics won a gold medal in literature under a pen name",
+  "summary": "From 1912 to 1948 the Olympics held art competitions, and Coubertin won the 1912 literature gold with a poem entered under pseudonyms.",
+  "panels": [
+    {"text": ["Pierre de Coubertin, who created the Olympics.", "He wanted art in the Games as much as sport."]},
+    {"text": ["From 1912 to 1948 the Olympics had art competitions.", "Architecture, literature, music, painting and sculpture", "made up the five categories."]},
+    {"text": ["Entries had to be inspired by sport.", "Medals were awarded just as for athletes."]},
+    {"text": "A gold medal for painting? I want in"},
+    {"text": ["\"Ode to Sport,\" the 1912 literature gold medal work.", "The entrants were named Georges Hohrod and Martin Eschbach."]},
+    {"text": ["Both names were Coubertin's pseudonyms.", "He was French but entered under German names."]},
+    {"text": ["In 1949 the IOC dropped the events,", "since most entrants were professional artists, against the amateur spirit."]},
+    {"text": "Winning gold at a contest you created yourself"}
+  ],
+  "sources": ["Wikipedia: Art competitions at the Olympic Games"]
+}

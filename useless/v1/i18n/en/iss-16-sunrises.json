@@ -1,0 +1,18 @@
+{
+  "category": "Space",
+  "title": "The People Who See 16 Sunrises a Day",
+  "hook": "People living on the space station see the sun rise more than 15 times a day",
+  "summary": "The space station goes around Earth every 93 minutes, so the people on board see 15 to 16 sunrises a day.",
+  "panels": [
+    { "text": ["The International Space Station, circling about 400 km above Earth.", "It's both a home and a lab for astronauts."] },
+    { "text": ["The station zooms along at about 28,000 km/h.", "That's fast enough to go from Seoul to Busan, about 325 km, in under a minute."] },
+    { "text": "That's gotta be faster than a bullet" },
+    { "word": "93 min", "mean": "the time it takes to go around Earth once" },
+    { "text": ["Every time around, it passes through one day and one night.", "After the sun sets, city lights sparkle on the night side."] },
+    { "text": ["Then comes the moment it crosses back to the day side.", "The edge of Earth lights up, and the sun rises."] },
+    { "text": ["It goes around Earth about 15 and a half times a day.", "So astronauts see 15 to 16 sunrises a day."] },
+    { "text": "16 mornings? Then 16 breakfasts too?" },
+    { "text": ["The sun can't be the guide up there, so the station sets its day by the clock.", "Astronauts go to sleep and wake up on UTC, the world's standard time."] }
+  ],
+  "sources": ["Wikipedia: International Space Station"]
+}

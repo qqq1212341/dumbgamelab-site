@@ -1,0 +1,17 @@
+{
+  "category": "Makanan",
+  "title": "Ketchup Dulunya Saus Ikan",
+  "hook": "Nama ketchup berasal dari air rendaman ikan yang diasinkan",
+  "summary": "Ketchup awalnya sebutan untuk air rendaman ikan yang diasinkan, dan ketchup tomat baru muncul pada tahun 1800-an.",
+  "panels": [
+    { "text": ["Kentang goreng paling cocok dengan ketchup.", "Tapi awalnya ketchup bukan saus tomat."] },
+    { "text": ["Ada penjelasan bahwa kata ketchup berasal dari bahasa daerah Fujian di Tiongkok selatan.", "Kata itu dipakai untuk air rendaman ikan atau kerang yang diasinkan."] },
+    { "text": "Hah, ketchup dulunya ikan?" },
+    { "text": ["Resep ketchup zaman dulu memakai segala macam bahan.", "Ada juga ketchup dari jamur, tiram, kerang hijau, dan walnut."] },
+    { "word": "1812", "mean": "tahun munculnya resep ketchup tomat pertama yang diketahui" },
+    { "text": ["Pada 1812, James Mease dari Amerika", "menuliskan resep ketchup tomat untuk pertama kalinya."] },
+    { "text": ["Resep ketchup tomat tahun 1817", "bahkan memakai ikan teri dan serangga pemberi warna merah."] },
+    { "text": "Ketchup isi serangga itu agak..." }
+  ],
+  "sources": ["Wikipedia: Ketchup"]
+}

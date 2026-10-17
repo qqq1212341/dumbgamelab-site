@@ -1,0 +1,88 @@
+{
+  "id": "gps-relativity",
+  "day": 5,
+  "category": "과학",
+  "title": "GPS 위성 시계는 일부러 느리게 맞춘다",
+  "hook": "GPS 위성에 실린 시계는 일부러 틀리게 맞춰서 쏘아 올린다",
+  "cover": "gps-satellite",
+  "panels": [
+    {
+      "type": "image",
+      "img": "gps-satellite",
+      "text": [
+        "지도 앱이 내 위치를 아는 건 GPS 위성 덕분이다.",
+        "위성들은 지구 위 아주 높은 궤도를 돈다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "위성은 정확한 시계를 싣고 시간 신호를 계속 보낸다.",
+        "휴대폰은 신호가 도착하는 데 걸린 시간으로 거리를 잰다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 시계가 아주 조금만 틀려도",
+        "위치가 크게 어긋난다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "gps-einstein",
+      "text": [
+        "여기서 아인슈타인이 나온다.",
+        "상대성이론에 따르면 시간은 어디서나 같은 빠르기로 흐르지 않는다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "빨리 움직이면 시간이 느려진다.",
+        "위성 시계는 이것 때문에 하루에 약 7마이크로초 늦어진다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "중력이 약한 곳에선 시간이 빨라진다.",
+        "높이 떠 있는 위성 시계는 하루에 약 45마이크로초 빨라진다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "+38μs",
+      "mean": "둘을 합치면 위성 시계가 하루에 빨라지는 시간"
+    },
+    {
+      "type": "say",
+      "text": "100만분의 38초면 아무것도 아니잖아?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "빛은 1마이크로초에 약 300m를 가니까, 38마이크로초면 약 11km다.",
+        "시간으로 거리를 재는 GPS에겐 큰 차이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그래서 GPS 위성 시계는 발사 전에 이만큼 일부러 느리게 맞춰 둔다.",
+        "상대성이론은 매일 우리 길 찾기 안에서 일하고 있다."
+      ]
+    }
+  ],
+  "summary": "GPS 위성 시계는 상대성이론 때문에 하루 38마이크로초 빨라진다. 그래서 발사 전에 일부러 느리게 맞춘다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Error analysis for the Global Positioning System",
+      "url": "https://en.wikipedia.org/wiki/Error_analysis_for_the_Global_Positioning_System"
+    },
+    {
+      "title": "Wikipedia: Global Positioning System",
+      "url": "https://en.wikipedia.org/wiki/Global_Positioning_System"
+    }
+  ]
+}

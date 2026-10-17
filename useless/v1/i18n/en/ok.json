@@ -1,0 +1,21 @@
+{
+  "category": "Words",
+  "title": "OK Started as a Joke About Bad Spelling",
+  "hook": "OK began as a joke, spelled wrong on purpose",
+  "summary": "OK is a joke misspelling of all correct as oll korrect that survived by riding an election slogan.",
+  "panels": [
+    { "text": ["You've probably said OK a few times today.", "But these two letters started out as a joke."] },
+    { "text": ["Summer 1838, Boston.", "A strange fad was spreading through the newspapers.", "It was a game of shortening phrases to initials", "and even misspelling them on purpose."] },
+    { "word": "O.W.", "mean": "oll wright, as in all right" },
+    { "word": "G.T.", "mean": "gone to Texas, meaning they took off" },
+    { "text": "Newspapers were cracking jokes back then too" },
+    { "text": ["March 23, 1839, the Boston Morning Post.", "It ran o.k. there.", "It was short for all correct, misspelled as oll korrect."] },
+    { "text": "They misspelled all correct on purpose?" },
+    { "text": ["Most of these joke words died out fast.", "OK survived thanks to this man.", "Martin Van Buren, the 8th US president."] },
+    { "text": ["His hometown was Kinderhook, so his nickname was Old Kinderhook.", "In the 1840 election, his supporters pushed OK as short for that nickname.", "Vote for OK. OK gets my vote."] },
+    { "text": ["That election got the whole country buzzing.", "Van Buren lost it.", "The winner was OK."] },
+    { "text": "The president lost and the slang stayed" },
+    { "text": ["This story came out in the 1960s.", "Linguist Allen Walker Read", "dug it up by searching old newspapers page by page."] }
+  ],
+  "sources": ["Wikipedia: OK (summary of Allen Walker Read's research)", "Wikipedia: Martin Van Buren"]
+}

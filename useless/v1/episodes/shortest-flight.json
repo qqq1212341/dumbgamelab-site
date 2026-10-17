@@ -1,0 +1,66 @@
+{
+  "id": "shortest-flight",
+  "day": 21,
+  "category": "지리",
+  "title": "세상에서 제일 짧은 비행은 1분이면 끝난다",
+  "hook": "스코틀랜드에는 이륙하고 1분이면 내리는 정기 비행기가 있다",
+  "cover": "flight-plane",
+  "panels": [
+    {
+      "type": "image",
+      "img": "flight-plane",
+      "text": [
+        "스코틀랜드 북쪽 오크니 제도.",
+        "작은 섬 두 개를 잇는 비행기가 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "웨스트레이 섬에서 파파웨스트레이 섬까지",
+        "거리는 약 2.7km다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "1분 30초",
+      "mean": "시간표에 적힌 비행 시간"
+    },
+    {
+      "type": "text",
+      "text": [
+        "시간표에는 1분 30초라고 적혀 있지만",
+        "실제로 나는 시간은 1분 남짓이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "안전벨트 매면 벌써 도착하겠네"
+    },
+    {
+      "type": "text",
+      "text": [
+        "가장 빨랐던 기록은 53초다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "flight-airport",
+      "text": [
+        "1967년부터 다닌 노선이고",
+        "지금도 세계에서 가장 짧은 정기 여객 비행이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "비행기 타고 1분 만에 다른 섬이라니"
+    }
+  ],
+  "summary": "오크니 제도의 웨스트레이와 파파웨스트레이를 잇는 비행은 2.7km, 1분 남짓이면 끝난다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Westray to Papa Westray flight",
+      "url": "https://en.wikipedia.org/wiki/Westray_to_Papa_Westray_flight"
+    }
+  ]
+}

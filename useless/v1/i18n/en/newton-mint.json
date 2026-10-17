@@ -1,0 +1,18 @@
+{
+  "category": "History",
+  "title": "Newton Was a Detective Who Caught Counterfeiters",
+  "hook": "Late in life, Newton of gravity fame chased counterfeiters in disguise",
+  "summary": "Newton spent the last 30 years of his life at the Royal Mint, and even went in disguise to get 28 counterfeiters punished.",
+  "panels": [
+    { "text": ["Isaac Newton, famous for the apple and gravity.", "The last 30 years of his life were filled with something totally different."] },
+    { "text": ["In 1696, Newton joined England's Royal Mint.", "It's the place that makes the country's coins."] },
+    { "text": ["When Newton looked into it,", "about 20% of the coins brought in were fake."] },
+    { "text": "One in five was fake?" },
+    { "text": ["Newton started chasing counterfeiters himself.", "He dressed up like a regular at the local taverns", "and gathered the evidence on his own."] },
+    { "word": "28", "mean": "the number of counterfeiters Newton took to court and got punished" },
+    { "text": ["Among them was the notorious counterfeiter William Chaloner.", "He was executed in 1699."] },
+    { "text": ["Newton also made coin weights more even.", "Gold guinea coins used to be all over the place in weight, and he cut that gap way down."] },
+    { "text": "A physicist playing detective too?" }
+  ],
+  "sources": ["Wikipedia: Isaac Newton", "Wikipedia: William Chaloner"]
+}

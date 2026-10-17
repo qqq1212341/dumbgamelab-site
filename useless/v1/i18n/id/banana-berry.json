@@ -1,0 +1,18 @@
+{
+  "category": "Makanan",
+  "title": "Pisang Itu Beri",
+  "hook": "Stroberi bukan beri, tapi pisang justru beri",
+  "summary": "Dalam botani, pisang dan tomat termasuk beri, sedangkan stroberi dan raspberry bukan.",
+  "panels": [
+    { "text": ["Dalam botani, pisang termasuk beri.", "Artinya pisang satu golongan dengan blueberry."] },
+    { "text": "Hah? Pisang itu beri?" },
+    { "word": "BERI", "mean": "buah yang tumbuh dari satu bunga, bijinya ada di dalam daging buah" },
+    { "text": ["Beri dalam botani tidak ada hubungannya dengan nama.", "Kalau tumbuh dari satu bunga, lunak sampai ke dalam,", "dan bijinya tertanam di daging buah, itulah beri."] },
+    { "text": ["Karena itu anggur, tomat, terung, dan mentimun juga beri.", "Pisang yang kita makan hampir tidak punya biji yang bisa tumbuh,", "tapi struktur buahnya tetap beri."] },
+    { "text": ["Sebaliknya, stroberi bukan beri.", "Bintik-bintik kecil di permukaannya masing-masing adalah buah,", "dan di dalamnya ada biji yang sebenarnya."] },
+    { "text": ["Bagian merah yang kita makan", "adalah dasar bunga, bagian penopang bunga, yang membengkak."] },
+    { "text": "Namanya ada beri-nya, tapi bukan beri?" },
+    { "text": ["Raspberry juga bukan beri.", "Raspberry adalah kumpulan banyak buah kecil yang menyatu."] }
+  ],
+  "sources": ["Wikipedia: Berry (botany)", "Wikipedia: Strawberry", "Wikipedia: Banana"]
+}

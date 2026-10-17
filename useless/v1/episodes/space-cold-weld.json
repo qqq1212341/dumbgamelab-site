@@ -1,0 +1,73 @@
+{
+  "id": "space-cold-weld",
+  "day": 26,
+  "category": "우주",
+  "title": "우주에서는 금속끼리 그냥 달라붙는다",
+  "hook": "깨끗한 금속 두 개가 진공에서 닿으면 용접한 것처럼 붙는다",
+  "cover": "galileo-orbiter",
+  "panels": [
+    {
+      "type": "image",
+      "img": "galileo-orbiter",
+      "text": [
+        "목성으로 날아간 탐사선 갈릴레오.",
+        "이 탐사선은 안테나가 끝내 다 펴지지 않는 사고를 겪었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "공기 속 금속 표면은 얇은 산화막과 기름때로 덮여 있다.",
+        "그래서 서로 닿아도 붙지 않는다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "냉간 압접",
+      "mean": "열 없이 맞닿는 것만으로 금속이 붙는 현상"
+    },
+    {
+      "type": "text",
+      "text": [
+        "진공에서 깨끗한 같은 종류의 금속 면이 닿으면",
+        "원자들은 서로 다른 조각인 줄 모르고",
+        "그대로 한 덩어리가 된다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "접착제 없이 금속끼리 붙는다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1940년대에 이 현상이 처음 일반적인 성질로 알려졌다.",
+        "초기 인공위성의 기계 고장 일부도",
+        "이것 때문이었다고 본다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1991년 갈릴레오의 대형 안테나가 끝내 다 펴지지 않았다.",
+        "유럽우주국 논문은 이 일을",
+        "냉간 압접의 기록된 사례로 든다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "우주에서는 깨끗한 게 오히려 문제네"
+    }
+  ],
+  "summary": "진공에서 깨끗한 같은 종류의 금속 면이 닿으면 열 없이도 붙는다. 우주선 설계자가 조심해야 하는 현상이다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Cold welding",
+      "url": "https://en.wikipedia.org/wiki/Cold_welding"
+    },
+    {
+      "title": "Wikipedia: Galileo (spacecraft)",
+      "url": "https://en.wikipedia.org/wiki/Galileo_(spacecraft)"
+    }
+  ]
+}

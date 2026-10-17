@@ -1,0 +1,16 @@
+{
+  "category": "Psychology",
+  "title": "Your Dog Can Catch Your Yawns",
+  "hook": "When you yawn, your dog might yawn right along with you",
+  "summary": "Yawns don't just spread between people. They can spread to other animals too, like dogs.",
+  "panels": [
+    { "text": ["When you see someone yawn,", "you yawn too without meaning to."] },
+    { "text": "You yawned just reading this, didn't you?" },
+    { "word": "Contagious yawn", "mean": "a yawn you catch from seeing someone else yawn" },
+    { "text": ["And it's not just a human thing.", "It's been seen in chimpanzees, dogs, cats and birds too."] },
+    { "text": ["It can even jump between species.", "When a person yawns, a dog will sometimes yawn too."] },
+    { "text": ["There's still no clear answer for why yawns spread.", "One idea is that it makes the whole group perk up together.", "That's just one of several theories."] },
+    { "text": "Time to run a yawn test on my dog" }
+  ],
+  "sources": ["Wikipedia: Yawn"]
+}

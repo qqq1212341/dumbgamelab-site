@@ -1,0 +1,73 @@
+{
+  "id": "semantic-satiation",
+  "day": 8,
+  "category": "심리",
+  "title": "같은 말을 반복하면 뜻이 사라진다",
+  "hook": "한 단어를 계속 말하면 이상한 일이 생긴다",
+  "cover": "satiation-typewriter",
+  "panels": [
+    {
+      "type": "image",
+      "img": "satiation-typewriter",
+      "text": [
+        "속으로 이 단어를 계속 말해 보자.",
+        "사과, 사과, 사과, 사과, 사과."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사과 사과 사과 사과 사과 사과",
+        "사과 사과 사과 사과 사과 사과"
+      ]
+    },
+    {
+      "type": "say",
+      "text": "어? 사과가 사과 같지 않아"
+    },
+    {
+      "type": "text",
+      "text": [
+        "단어가 갑자기 낯선 소리처럼 들린다.",
+        "이걸 의미 포화라고 부른다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "의미 포화",
+      "mean": "같은 말을 되풀이하면 잠깐 뜻을 잃는 현상"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1962년 캐나다 맥길대학교에서",
+        "레온 야코보비츠 제임스가 박사 논문에 붙인 이름이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "소리 내지 않고 한 단어를 오래 쳐다봐도 비슷한 일이 생긴다.",
+        "익숙한 글자가 어색해 보이는 바로 그 느낌이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "다행히 잠깐이다.",
+        "조금 지나면 단어는 원래 뜻으로 돌아온다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "사과. 좋아, 다시 사과다"
+    }
+  ],
+  "summary": "같은 말을 계속 되풀이하면 잠깐 뜻이 사라지는 의미 포화가 일어난다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Semantic satiation",
+      "url": "https://en.wikipedia.org/wiki/Semantic_satiation"
+    }
+  ]
+}

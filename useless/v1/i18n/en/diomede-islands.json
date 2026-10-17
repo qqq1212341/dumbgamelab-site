@@ -1,0 +1,17 @@
+{
+  "category": "Geography",
+  "title": "Yesterday Island and Tomorrow Island Are Under 4 km Apart",
+  "hook": "Two islands in the Bering Strait are almost a day apart in time because of the date line",
+  "summary": "Russia's Big Diomede and the US's Little Diomede are 3.8 km apart, yet the date line runs between them and clocks differ by 21 hours.",
+  "panels": [
+    {"text": ["In the Bering Strait, between Alaska and Siberia,", "two islands sit side by side."]},
+    {"text": ["Big Diomede belongs to Russia", "and Little Diomede belongs to the US.", "At the closest point they are only 3.8 km apart."]},
+    {"text": ["The International Date Line runs between them.", "With one line in the middle,", "the date changes."]},
+    {"word": "21 hours", "mean": "How far Big Diomede runs ahead of Little Diomede (20 in summer)"},
+    {"text": "The next island is already tomorrow?"},
+    {"text": ["In winter an ice bridge often forms between the islands.", "The icy waters near the Diomedes, photographed in the early 1900s."]},
+    {"text": ["So Big Diomede is nicknamed Tomorrow Island", "and Little Diomede Yesterday Island."]},
+    {"text": "One step and a whole day passes"}
+  ],
+  "sources": ["Wikipedia: Diomede Islands"]
+}

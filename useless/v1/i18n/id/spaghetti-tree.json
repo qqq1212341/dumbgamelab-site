@@ -1,0 +1,18 @@
+{
+  "category": "Makanan",
+  "title": "BBC Pernah Bilang Spageti Tumbuh di Pohon",
+  "hook": "Pada April Mop 1957, ratusan warga Inggris menelepon untuk bertanya cara menanam pohon spageti",
+  "summary": "Pada April Mop 1957 BBC menayangkan laporan keluarga Swiss memanen spageti dari pohon, dan ratusan penonton bertanya cara menanamnya.",
+  "panels": [
+    {"text": ["Spageti itu tumbuh di mana?", "Di Inggris tahun 1957, banyak orang tidak tahu."]},
+    {"text": ["Saat itu spageti makanan asing di Inggris.", "Banyak orang tidak tahu", "bahwa bahannya tepung dan air."]},
+    {"text": ["Pada 1 April tahun itu, acara berita BBC Panorama", "menayangkan laporan tiga menit.", "Isinya keluarga di Swiss selatan memanen spageti dari pohon."]},
+    {"text": ["Laporan itu menampilkan festival panen di Ticino, Swiss selatan.", "Pemandangannya yang meyakinkan menambah kesan nyata."]},
+    {"text": ["Narasinya dibacakan penyiar terpercaya Richard Dimbleby.", "Konon ia dengan senang hati meminjamkan wibawanya", "agar leluconnya berhasil."]},
+    {"text": "Kalau bapak yang dipercaya yang bilang, ya percaya aja"},
+    {"text": ["Diperkirakan delapan juta orang menonton.", "Keesokan harinya ratusan orang menelepon", "untuk meragukannya atau bertanya cara menanam."]},
+    {"word": "Kaleng saus tomat", "mean": "Bahan dalam saran menanam dari BBC"},
+    {"text": "Tancapkan ranting spageti di kaleng lalu berdoa saja"}
+  ],
+  "sources": ["Wikipedia: Spaghetti-tree hoax"]
+}

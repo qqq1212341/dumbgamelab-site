@@ -1,0 +1,20 @@
+{
+  "category": "Hewan",
+  "title": "Ada Tikus yang Umurnya 37 Tahun",
+  "hook": "Tikus biasa hidup 2 sampai 3 tahun, tapi tikus ini hidup lebih dari 37 tahun",
+  "summary": "Tikus tanah telanjang hidup lebih dari 37 tahun, dan peluang matinya tidak naik walau umurnya bertambah.",
+  "panels": [
+    { "text": ["Ini tikus tanah telanjang yang hidup di bawah tanah Afrika Timur.", "Hampir tidak berbulu, dan gigi depannya mencuat keluar."] },
+    { "text": "Tampangnya agak aneh, tapi kok lucu juga ya" },
+    { "text": ["Tikus rumah yang dirawat baik pun hidupnya sekitar 2 sampai 3 tahun.", "Tapi tikus ini pernah tercatat hidup lebih dari 37 tahun."] },
+    { "word": "37 tahun", "mean": "rekor umur terpanjang di antara hewan pengerat" },
+    { "text": ["Yang lebih ajaib lagi adalah caranya menua.", "Pada kebanyakan mamalia, termasuk manusia,", "peluang mati makin naik seiring bertambahnya umur."] },
+    { "text": ["Tikus tanah telanjang tidak begitu.", "Walau makin tua, peluang matinya tidak naik."] },
+    { "text": "Berarti dia tidak menua?" },
+    { "text": ["Belum bisa dibilang tidak menua,", "tapi setidaknya makin tua tidak membuatnya makin berisiko."] },
+    { "text": ["Hewan ini juga jarang terkena kanker.", "Para ilmuwan menelitinya untuk mencari rahasia umur panjang."] },
+    { "text": ["Cara hidupnya juga unik.", "Seperti semut atau lebah, hanya satu ratu yang melahirkan anak,", "dan sisanya terbagi menjadi pekerja dan prajurit."] },
+    { "text": "Ternyata dia tidak pantas diejek jelek" }
+  ],
+  "sources": ["Wikipedia: Naked mole-rat", "Wikipedia: House mouse"]
+}

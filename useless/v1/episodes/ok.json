@@ -1,0 +1,102 @@
+{
+  "id": "ok",
+  "day": 3,
+  "category": "말",
+  "title": "OK는 맞춤법이 틀린 농담이었다",
+  "hook": "OK는 원래 일부러 틀리게 쓴 농담이었다",
+  "cover": "ok-vanburen",
+  "coverFocus": "50% 12%",
+  "panels": [
+    {
+      "type": "text",
+      "text": [
+        "오늘도 OK를 몇 번은 말했을 것이다.",
+        "그런데 이 두 글자는 원래 농담이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1838년 여름 미국 보스턴.",
+        "신문들 사이에 이상한 유행이 돌았다.",
+        "말을 머리글자로 줄이고",
+        "일부러 틀리게 쓰기까지 하는 장난이었다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "O.W.",
+      "mean": "oll wright, 그러니까 all right"
+    },
+    {
+      "type": "word",
+      "word": "G.T.",
+      "mean": "gone to Texas, 텍사스로 떴다"
+    },
+    {
+      "type": "say",
+      "text": "옛날 신문도 드립을 쳤구나"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1839년 3월 23일 보스턴 모닝 포스트.",
+        "여기에 o.k.가 실렸다.",
+        "all correct를 oll korrect로 틀리게 쓰고 줄인 말이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "맞다는 말을 틀리게 썼다고?"
+    },
+    {
+      "type": "image",
+      "img": "ok-vanburen",
+      "text": [
+        "이런 장난 말은 대부분 금방 사라졌다.",
+        "OK가 살아남은 건 이 사람 덕분이다.",
+        "미국 8대 대통령 마틴 밴 뷰런."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "고향이 킨더후크라서 별명이 Old Kinderhook였다.",
+        "1840년 대선 때 지지자들은 OK가 그 별명의 줄임말이라고 밀었다.",
+        "Vote for OK. OK에게 한 표를."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "ok-cartoon",
+      "text": [
+        "그해 선거는 온 나라가 시끄러웠다.",
+        "밴 뷰런은 그 선거에서 졌다.",
+        "이긴 건 OK였다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "대통령은 지고 유행어만 남았네"
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 이야기는 1960년대에 밝혀졌다.",
+        "언어학자 앨런 워커 리드가",
+        "옛 신문을 한 장씩 뒤져서 찾아냈다."
+      ]
+    }
+  ],
+  "summary": "OK는 all correct를 oll korrect로 틀리게 쓴 농담이 선거 구호를 타고 살아남은 말이다.",
+  "sources": [
+    {
+      "title": "Wikipedia: OK (Allen Walker Read의 연구 정리)",
+      "url": "https://en.wikipedia.org/wiki/OK"
+    },
+    {
+      "title": "Wikipedia: Martin Van Buren",
+      "url": "https://en.wikipedia.org/wiki/Martin_Van_Buren"
+    }
+  ]
+}

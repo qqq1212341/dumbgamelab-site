@@ -1,0 +1,17 @@
+{
+  "category": "Animals",
+  "title": "Koala Fingerprints Can Pass for Human Ones",
+  "hook": "Even under an electron microscope, koala and human fingerprints are hard to tell apart",
+  "summary": "Koala fingerprints look so much like human ones that they're hard to tell apart even under an electron microscope.",
+  "panels": [
+    { "text": ["A koala, hugging a tree tight.", "Look closely at its fingertips and you'll find a surprise."] },
+    { "text": ["Koalas have fingerprints.", "Just like people, they have patterns on the tips of their fingers."] },
+    { "text": ["In one study, even under an electron microscope,", "koala and human fingerprints were hard to tell apart."] },
+    { "text": "What if the koala did it?" },
+    { "text": ["Koalas are only very distantly related to us.", "Their relatives are kangaroos, not gorillas or chimps."] },
+    { "text": ["Koalas spend most of the day up in trees.", "They live hanging on, gripping the branches tight."] },
+    { "text": ["Animals that climb trees or live by gripping things tight", "are thought to have each developed fingerprints separately."] },
+    { "text": "So if you use your hands the same way, your fingerprints look alike too" }
+  ],
+  "sources": ["Wikipedia: Fingerprint", "Wikipedia: Koala"]
+}

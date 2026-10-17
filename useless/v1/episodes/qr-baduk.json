@@ -1,0 +1,62 @@
+{
+  "id": "qr-baduk",
+  "day": 17,
+  "category": "생활",
+  "title": "QR코드는 바둑판에서 태어났다",
+  "hook": "QR코드의 검은 점과 흰 점은 바둑돌에서 아이디어를 얻었다",
+  "cover": "qr-baduk",
+  "panels": [
+    {
+      "type": "image",
+      "img": "qr-code",
+      "text": [
+        "매일 찍는 QR코드.",
+        "이 네모난 무늬는 어디서 왔을까?"
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "QR코드는 1994년",
+        "일본의 자동차 부품 회사 덴소 웨이브에서 만들었다.",
+        "처음엔 자동차 공장에서 부품을 추적하는 데 썼다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "qr-baduk",
+      "text": [
+        "개발팀을 이끈 하라 마사히로는",
+        "바둑판 위의 검은 돌과 흰 돌에서 영감을 받았다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "바둑 두다가 QR코드를 만들었다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "모서리의 큰 네모 세 개는 QR코드의 위치를 알려 주는 표시다.",
+        "인쇄물에 거의 안 나오는 무늬를 골라서",
+        "다른 그림과 헷갈릴 일이 적다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "QR",
+      "mean": "Quick Response, 빠른 응답의 줄임말"
+    },
+    {
+      "type": "say",
+      "text": "이제 QR코드 보면 바둑판이 생각나겠다"
+    }
+  ],
+  "summary": "QR코드는 1994년 일본에서 바둑돌의 흑백 무늬에서 영감을 받아 만들어졌다.",
+  "sources": [
+    {
+      "title": "Wikipedia: QR code",
+      "url": "https://en.wikipedia.org/wiki/QR_code"
+    }
+  ]
+}

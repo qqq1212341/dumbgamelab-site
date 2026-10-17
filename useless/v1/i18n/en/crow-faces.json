@@ -1,0 +1,17 @@
+{
+  "category": "Animals",
+  "title": "Crows Remember Your Face and Spread the Word",
+  "hook": "Crows can tell human faces apart, and they seem to pass the word about bad ones",
+  "summary": "Crows recognize individual human faces and are known to spread word of dangerous people with their calls.",
+  "panels": [
+    {"text": ["A crow is staring right at you.", "Those eyes might remember your face."]},
+    {"text": ["Crows can pick out individual human faces.", "When they see a threatening face,", "brain regions linked to attention and fear light up."]},
+    {"text": "I did nothing to a crow yesterday, right?"},
+    {"text": ["Crows are thought to pass word of dangerous people", "to other crows through their calls."]},
+    {"text": ["A crow carrying off a cookie from the trash.", "Crows are also known for using tools."]},
+    {"text": ["Ravens can even recognize themselves in a mirror.", "There's a reason they have a reputation for brains."]},
+    {"text": ["So around crows,", "it's safer to mind your manners."]},
+    {"text": "I'd better be good in front of crows"}
+  ],
+  "sources": ["Wikipedia: Corvus (genus)"]
+}

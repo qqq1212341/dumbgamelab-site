@@ -1,0 +1,18 @@
+{
+  "category": "Everyday Life",
+  "title": "The First Barcode Scan Was Gum",
+  "hook": "The first thing ever rung up with a barcode was a pack of gum",
+  "summary": "The barcode came from Morse code drawn in sand, and the first thing scanned was gum.",
+  "panels": [
+    { "text": ["That beep at the checkout.", "The barcode is older than you'd think."] },
+    { "text": ["Norman Joseph Woodland, an American,", "got the idea while drawing Morse code in the sand at the beach."] },
+    { "text": ["Stretch the dots and dashes of Morse code straight down", "and you get thin bars and thick bars."] },
+    { "word": "1952", "mean": "the year the barcode patent was granted" },
+    { "text": ["But there was no machine to read it.", "It took more than 20 years to reach real stores."] },
+    { "text": ["June 26, 1974, a supermarket in Ohio, USA.", "The first item ever rung up with a barcode", "was a 10-pack of Wrigley's Juicy Fruit gum."] },
+    { "text": "The historic first customer was gum?" },
+    { "text": ["A replica of that gum pack", "went on display at the Smithsonian museum in the US."] },
+    { "text": ["Numbers are hidden in the width and spacing of the bars.", "The machine uses those numbers to look up the product."] }
+  ],
+  "sources": ["Wikipedia: Barcode", "Wikipedia: Universal Product Code"]
+}

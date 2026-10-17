@@ -1,0 +1,17 @@
+{
+  "category": "Geography",
+  "title": "The World's Shortest Flight Is Over in a Minute",
+  "hook": "In Scotland, there's a regular flight that lands a minute after takeoff",
+  "summary": "The flight between Westray and Papa Westray in the Orkney Islands covers 2.7 km and takes just over a minute.",
+  "panels": [
+    { "text": ["The Orkney Islands, in the far north of Scotland.", "There's a plane that links two small islands here."] },
+    { "text": ["From Westray to Papa Westray,", "it's about 2.7 km."] },
+    { "word": "1 min 30 sec", "mean": "the flight time on the timetable" },
+    { "text": ["The timetable says 1 minute 30 seconds,", "but the actual time in the air is just over a minute."] },
+    { "text": "You'd be there by the time you buckle up" },
+    { "text": ["The fastest flight on record took 53 seconds."] },
+    { "text": ["The route has been flying since 1967,", "and it's still the shortest scheduled passenger flight in the world."] },
+    { "text": "One minute on a plane and you're on another island" }
+  ],
+  "sources": ["Wikipedia: Westray to Papa Westray flight"]
+}

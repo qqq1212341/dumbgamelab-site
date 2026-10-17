@@ -1,0 +1,92 @@
+{
+  "id": "naked-mole-rat",
+  "day": 9,
+  "category": "동물",
+  "title": "37살 먹은 쥐가 있다",
+  "hook": "보통 쥐는 2~3년 사는데, 이 쥐는 37년 넘게 산다",
+  "cover": "molerat",
+  "coverFocus": "25% 75%",
+  "panels": [
+    {
+      "type": "image",
+      "img": "molerat",
+      "text": [
+        "동아프리카 땅속에 사는 벌거숭이두더지쥐.",
+        "털은 거의 없고 앞니만 툭 튀어나왔다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "생긴 건 좀 그래도 묘하게 귀엽네"
+    },
+    {
+      "type": "text",
+      "text": [
+        "집쥐는 잘 보살펴 줘도 2~3년쯤 산다.",
+        "그런데 이 쥐는 37년 넘게 산 기록이 있다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "37년",
+      "mean": "설치류 가운데 가장 긴 수명 기록"
+    },
+    {
+      "type": "text",
+      "text": [
+        "더 신기한 건 나이 드는 방식이다.",
+        "사람을 비롯한 대부분의 포유류는",
+        "나이가 들수록 죽을 확률이 점점 올라간다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "벌거숭이두더지쥐는 그렇지 않다.",
+        "나이를 먹어도 죽을 확률이 올라가지 않는다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 늙지 않는다는 거야?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "늙지 않는다고까지 말하긴 어렵지만",
+        "적어도 나이가 많다고 더 위험해지지는 않는다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "암에도 잘 걸리지 않는다.",
+        "과학자들이 오래 사는 비결을 찾으려고 연구하고 있다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "molerat-colony",
+      "text": [
+        "사는 방식도 독특하다.",
+        "개미나 벌처럼 여왕 하나가 새끼를 낳고",
+        "나머지는 일꾼과 병정으로 나뉜다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "못생겼다고 놀릴 게 아니었네"
+    }
+  ],
+  "summary": "벌거숭이두더지쥐는 37년 넘게 살고, 나이를 먹어도 죽을 확률이 올라가지 않는다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Naked mole-rat",
+      "url": "https://en.wikipedia.org/wiki/Naked_mole-rat"
+    },
+    {
+      "title": "Wikipedia: House mouse",
+      "url": "https://en.wikipedia.org/wiki/House_mouse"
+    }
+  ]
+}

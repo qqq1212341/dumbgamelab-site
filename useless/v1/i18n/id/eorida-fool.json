@@ -1,0 +1,17 @@
+{
+  "category": "Kata",
+  "title": "\"Eorin Baekseong\" Bukan Berarti Anak-anak",
+  "hook": "Dalam kata pengantar Hunminjeongeum, kata \"eorida\" berarti bodoh, bukan muda",
+  "summary": "Pada abad ke-15 kata \"eorida\" berarti bodoh. Makna \"muda\" muncul sejak abad ke-16 dan kini menjadi makna utama.",
+  "panels": [
+    {"text": ["Buku Hunminjeongeum yang dibuat Raja Sejong.", "Versi yang ditulis dalam Hangul memuat kalimat \"eorin baekseong i nireugojyeo bae isyeodo\"."]},
+    {"text": ["Di sini \"eorin\" bukan berarti muda.", "Artinya \"bodoh\"."]},
+    {"word": "Eorida", "mean": "Pada abad ke-15 artinya bodoh"},
+    {"text": "Jadi \"anak-anak\" awalnya berarti orang bodoh?"},
+    {"text": ["Sebelum kata \"eoriseokda\" (bodoh) ada,", "\"eorida\" yang memikul arti itu."]},
+    {"text": ["Sejak abad ke-16 muncul makna \"muda\".", "Seiring waktu makna itu menjadi yang utama."]},
+    {"text": ["\"Eorini\" (anak) berasal dari \"eorin\" ditambah \"i\".", "Kata ini muncul dalam naskah sejak abad ke-17."]},
+    {"text": "Arti kata mengalir ke mana-mana sesukanya"}
+  ],
+  "sources": ["National Institute of Korean Language: Eorida and Eoriseokda", "National Institute of Korean Language: Origin of Eorini"]
+}
