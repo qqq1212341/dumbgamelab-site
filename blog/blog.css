@@ -91,3 +91,4 @@ th { background: var(--navy); color: #fff; font-weight: 700; }
   .gamebox { grid-template-columns: 64px 1fr; padding: 18px; }
   .gamebox img { width: 64px; height: 64px; border-radius: 16px; }
 }
+.gb-title a{color:inherit;text-decoration:none}
