@@ -196,3 +196,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: -.01
 .hero-mail a { color: var(--y); font-weight: 700; text-decoration: none; }
 .hero-mail a:hover { text-decoration: underline; }
 .foot .links a.mail { color: var(--y); }
+
+.subscribe { background: #fff; border-top: 1px solid rgba(0,0,0,.08); }
+.subscribe form { max-width: 1200px; margin: 0 auto; padding: 22px 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 15px; }
+.subscribe p { margin: 0; flex: 1 1 260px; color: #0d1530; font-weight: 700; }
+.subscribe input[type=email] { flex: 1 1 220px; min-width: 0; padding: 10px 12px; border: 1px solid #d9d2c3; border-radius: 8px; font: inherit; }
+.subscribe button { padding: 10px 18px; border: 0; border-radius: 8px; background: #0d1530; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
