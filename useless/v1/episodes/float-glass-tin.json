@@ -1,0 +1,61 @@
+{
+  "id": "float-glass-tin",
+  "contentNotice": null,
+  "day": 43,
+  "category": "생활",
+  "title": "유리를 펴 주는 바닥이 액체 금속이다",
+  "hook": "창문에 쓰는 판유리는 녹인 주석 위에 띄워서 만들기도 한다",
+  "summary": "대표적인 판유리 제조법에서는 녹인 유리를 녹은 주석 위에 띄운다. 유리가 길고 평평하게 퍼진 뒤, 두께를 조절하고 천천히 식혀 잘라 낸다.",
+  "cover": "float-glass-factory",
+  "sources": [
+    {
+      "title": "AGC: How is glass made?",
+      "url": "https://agc-electronics.com/en/specialty-glass/blog/detail/how-is-glass-made"
+    },
+    {
+      "title": "Saint-Gobain: Float glass process",
+      "url": "https://eg.saint-gobain-glass.com/technical-information-about-glass"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "float-glass-factory",
+      "text": [
+        "넓은 창문 유리는 어떻게 그렇게 평평할까? 사진은 판유리를 옮기는 공장 설비다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "대표적인 판유리 제조법에서는 녹인 유리를 녹아 있는 금속 위에 띄운다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "바닥까지 액체라고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "아래에 깔리는 금속은 주석이다. 주석과 섞이지 않는 뜨거운 유리가 그 위로 퍼지며 길고 평평한 띠가 된다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그냥 부어 놓고 끝은 아니다. 공장에서는 두께와 너비도 조절한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이후 천천히 식히고 검사해 잘라 내면 건물에 쓸 판유리가 나온다. 모든 유리 제품을 이 방식으로 만드는 것은 아니다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "창문 되기 전에 금속 위에서 떠 있었구나."
+    }
+  ]
+}

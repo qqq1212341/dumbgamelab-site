@@ -1,0 +1,39 @@
+{
+  "category": "Everyday life",
+  "title": "Deliver the mail. Now catch the boat!",
+  "hook": "After delivering letters, these carriers jump back onto a moving mailboat",
+  "summary": "On Geneva Lake in Wisconsin, summer mail carriers jump between docks and a moving boat. If they miss the return jump, the captain comes back for them.",
+  "panels": [
+    {
+      "text": [
+        "On Geneva Lake in Wisconsin, a mailboat visits lakeside homes in summer."
+      ]
+    },
+    {
+      "text": [
+        "A carrier jumps from the moving boat onto a dock, delivers letters and picks up outgoing mail."
+      ]
+    },
+    {
+      "text": "Excuse me! Your coworker is still ashore!"
+    },
+    {
+      "text": [
+        "Then it's time to jump back onto the boat, which is still moving. The letters have arrived. The carrier is chasing the ride."
+      ]
+    },
+    {
+      "text": [
+        "It's real mail delivery, not a movie shoot. Passengers ride along to watch, too."
+      ]
+    },
+    {
+      "text": [
+        "Nobody gets abandoned. If a carrier misses the return jump, the captain comes back to pick them up."
+      ]
+    },
+    {
+      "text": "Delivery complete. Please collect the carrier next."
+    }
+  ]
+}

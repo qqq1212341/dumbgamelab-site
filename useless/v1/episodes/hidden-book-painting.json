@@ -1,0 +1,61 @@
+{
+  "id": "hidden-book-painting",
+  "contentNotice": null,
+  "day": 37,
+  "category": "역사",
+  "title": "이 책, 옆구리에 그림을 숨겼다",
+  "hook": "페이지를 살짝 비스듬히 펼쳤더니, 금빛 옆면에서 풍경화가 나타났다",
+  "summary": "페이지 가장자리에 숨긴 그림은 책장을 비스듬히 펼치면 나타난다. 서로 다른 방향으로 펼칠 때 두 그림이 드러나는 책도 있다.",
+  "cover": "fore-edge-book",
+  "sources": [
+    {
+      "title": "Folger Shakespeare Library: Fore-edge paintings",
+      "url": "https://www.folger.edu/blogs/collation/fore-edge-paintings/"
+    },
+    {
+      "title": "University of Sydney Library: Hidden fore-edge paintings",
+      "url": "https://www.library.sydney.edu.au/stories/hidden-fore-edge-paintings"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "fore-edge-book",
+      "text": [
+        "책을 닫았을 때는 옆면에 금빛만 보인다. 그런데 페이지를 살짝 비스듬히 펼치면 그림이 나타난다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "종이 가장자리에 그림을 숨기는 책 공예다. 페이지를 부채처럼 펼쳐 고정한 면에 그림을 그린다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "책 속 말고 책 옆을 보라고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "가지런히 닫았을 때와 비스듬히 펼쳤을 때 보이는 부분이 달라진다. 금박 옆면은 숨은 그림을 가리는 역할도 한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "실제로 이런 장식이 들어간 셰익스피어 희곡집도 남아 있다. 사진은 이 기법을 쓴 다른 책의 예다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그림이 두 개인 책도 있다. 한쪽으로 펼치면 한 장면, 반대쪽으로 펼치면 다른 장면이 나온다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "이 책은 옆으로도 읽어야 하네."
+    }
+  ]
+}

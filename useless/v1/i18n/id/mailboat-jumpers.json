@@ -1,0 +1,39 @@
+{
+  "category": "Keseharian",
+  "title": "Surat diantar. Cepat, kejar kapalnya!",
+  "hook": "Setelah mengantar surat, petugas harus melompat kembali ke kapal pos yang masih bergerak",
+  "summary": "Di Danau Geneva, Wisconsin, petugas pos musim panas melompat antara dermaga dan kapal yang bergerak. Jika gagal naik kembali, kapten akan menjemput mereka.",
+  "panels": [
+    {
+      "text": [
+        "Di Danau Geneva, Wisconsin, Amerika Serikat, kapal pos mendatangi rumah-rumah tepi danau saat musim panas."
+      ]
+    },
+    {
+      "text": [
+        "Petugas melompat dari kapal yang bergerak ke dermaga, memasukkan surat ke kotak pos, lalu mengambil surat yang hendak dikirim."
+      ]
+    },
+    {
+      "text": "Permisi! Rekan kerjanya belum naik!"
+    },
+    {
+      "text": [
+        "Kini giliran melompat kembali ke kapal yang masih bergerak. Surat sudah sampai, tetapi petugasnya masih mengejar kapal."
+      ]
+    },
+    {
+      "text": [
+        "Ini pengantaran surat sungguhan, bukan syuting film. Kapal ini juga membawa penumpang yang menonton prosesnya."
+      ]
+    },
+    {
+      "text": [
+        "Petugas yang gagal naik tidak ditinggalkan begitu saja. Kalau tidak sempat kembali, kapten akan berputar untuk menjemputnya."
+      ]
+    },
+    {
+      "text": "Surat terkirim. Sekarang tolong jemput petugasnya."
+    }
+  ]
+}

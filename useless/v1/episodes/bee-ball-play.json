@@ -1,0 +1,62 @@
+{
+  "id": "bee-ball-play",
+  "contentNotice": "insects",
+  "day": 35,
+  "category": "동물",
+  "title": "밥은 저쪽인데, 이 벌은 공을 굴린다",
+  "hook": "공을 굴려도 간식은 안 나오는데, 벌들이 자꾸 다시 찾아왔다",
+  "summary": "뒤영벌은 먹이 보상 없이도 작은 공을 반복해서 굴렸다. 연구진은 이 행동이 동물의 놀이 기준에 맞는다고 봤다.",
+  "cover": "bee-ball-cover",
+  "sources": [
+    {
+      "title": "Animal Behaviour: Do bumble bees play?",
+      "url": "https://doi.org/10.1016/j.anbehav.2022.08.013"
+    },
+    {
+      "title": "Queen Mary University: Bumble bees play",
+      "url": "https://www.qmul.ac.uk/news/latest-news/2022/se/first-ever-study-shows-bumble-bees-play.html"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "bee-ball-cover",
+      "text": [
+        "통통한 뒤영벌 앞에 작은 나무 공을 놓았다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "먹이가 있는 곳으로 바로 갈 길도 열려 있었다. 그런데 벌들은 옆으로 들러 공을 굴렸다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "공 굴리면 간식이라도 나와?"
+    },
+    {
+      "type": "video",
+      "video": "bee-ball-loop",
+      "text": [
+        "이 실험에서는 공을 굴려도 먹이 보상이 없었다. 그런데도 벌들은 돌아와 같은 행동을 반복했다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구진은 이런 행동이 동물의 놀이 기준에 맞는다고 봤다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "다른 실험에서는 공을 굴렸던 방의 색도 선호했다. 공 하나가 밥 먹으러 가는 길의 새로운 들를 곳이 된 셈이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "밥은 먹어야겠고, 공은 그냥 못 지나치겠고."
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "boxer-crab-gloves",
+  "contentNotice": "animal-splitting",
+  "day": 38,
+  "category": "동물",
+  "title": "이 게는 장갑 한 짝을 두 짝으로 만든다",
+  "hook": "말미잘 한쪽을 치웠더니, 게가 남은 말미잘을 반으로 나눴다",
+  "summary": "복서게 한 종을 대상으로 한 실험에서, 한쪽 말미잘을 잃은 게는 남은 것을 둘로 나눴다. 두 조각은 며칠에 걸쳐 각각의 말미잘로 재생됐다.",
+  "cover": "boxer-crab-anemones",
+  "sources": [
+    {
+      "title": "PeerJ: Boxer crabs and sea anemones",
+      "url": "https://peerj.com/articles/2954/"
+    },
+    {
+      "title": "PeerJ research release: Boxer crabs split anemones",
+      "url": "https://phys.org/news/2017-01-boxer-crabs-anemones-clones.html"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "boxer-crab-anemones",
+      "text": [
+        "작은 게가 양쪽 집게에 복슬복슬한 장갑을 들고 있다. 사실은 살아 있는 말미잘이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구진은 복서게 한 종의 말미잘을 한쪽만 떼어내 봤다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "한 짝만 남으면 어떻게 해?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "게는 남은 말미잘을 붙잡고 둘로 나눴다. 새 말미잘을 어디선가 가져온 것이 아니었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "망가뜨린 것 같지만 여기서 끝이 아니다. 나뉜 두 조각이 며칠 동안 각각의 말미잘로 재생됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "게는 다시 양쪽 집게에 하나씩 들게 됐다. 남아 있던 한 짝에서 새로운 한 쌍이 생긴 셈이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "내 양말도 이러면 짝 잃을 걱정 없겠다."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "category": "Hewan",
+  "title": "Makanan di sana, tapi lebah ini memilih bola",
+  "hook": "Menggelindingkan bola tidak mendapat camilan, tetapi lebah-lebah ini terus kembali",
+  "summary": "Lebah bumblebee berulang kali menggelindingkan bola kecil tanpa hadiah makanan. Peneliti menilai perilaku ini memenuhi kriteria bermain pada hewan.",
+  "panels": [
+    {
+      "text": [
+        "Peneliti meletakkan bola-bola kayu kecil di depan lebah bumblebee yang bertubuh gempal."
+      ]
+    },
+    {
+      "text": [
+        "Jalan langsung menuju makanan tetap terbuka. Namun, lebah-lebah itu mampir ke samping untuk menggelindingkan bola."
+      ]
+    },
+    {
+      "text": "Apa bolanya mengeluarkan camilan?"
+    },
+    {
+      "text": [
+        "Dalam percobaan ini, menggelindingkan bola tidak menghasilkan hadiah makanan. Meski begitu, lebah-lebah kembali dan mengulanginya."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti menilai perilaku ini memenuhi kriteria bermain pada hewan."
+      ]
+    },
+    {
+      "text": [
+        "Dalam percobaan lain, lebah juga lebih menyukai warna ruangan yang terkait dengan kegiatan itu. Sebuah bola menjadi tempat singgah di jalan menuju makanan."
+      ]
+    },
+    {
+      "text": "Makan tetap perlu. Tapi bola ini tak bisa dilewatkan."
+    }
+  ]
+}

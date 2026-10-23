@@ -1,0 +1,39 @@
+{
+  "category": "Animals",
+  "title": "Food's over there. This bee rolls a ball.",
+  "hook": "Rolling the balls earned no treats, but these bees kept coming back",
+  "summary": "Bumblebees repeatedly rolled small balls without a food reward. Researchers found that the behavior met criteria for animal play.",
+  "panels": [
+    {
+      "text": [
+        "Researchers placed small wooden balls in front of bumblebees."
+      ]
+    },
+    {
+      "text": [
+        "A clear route led straight to food. Yet the bees took a detour to roll the balls."
+      ]
+    },
+    {
+      "text": "Do they get a snack for that?"
+    },
+    {
+      "text": [
+        "In this experiment, rolling a ball earned no food. Still, the bees returned and did it again."
+      ]
+    },
+    {
+      "text": [
+        "Researchers found that this behavior met criteria for animal play."
+      ]
+    },
+    {
+      "text": [
+        "In another experiment, the bees preferred the color of a room associated with ball rolling. A ball had become a stop on the way to lunch."
+      ]
+    },
+    {
+      "text": "Gotta eat. But first, that ball."
+    }
+  ]
+}

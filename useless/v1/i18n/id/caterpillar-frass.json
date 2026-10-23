@@ -1,0 +1,39 @@
+{
+  "category": "Hewan",
+  "title": "Ada alasan ulat ini melontarkan kotoran jauh-jauh",
+  "hook": "Membuang kotoran jauh dari rumah bisa membantu menyamarkan alamat ulat",
+  "summary": "Satu jenis ulat yang tinggal di lipatan daun melontarkan kotorannya jauh-jauh. Baunya dapat memberi petunjuk lokasi kepada tawon pemburu, sehingga jejak yang dibuang bisa mengurangi risiko ditemukan.",
+  "panels": [
+    {
+      "text": [
+        "Seekor ulat melipat daun menjadi rumah. Ia menjulurkan bagian belakang tubuhnya dan melontarkan sebutir kotoran ke kejauhan."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti menyelidiki mengapa jenis ulat ini membuang kotorannya. Apakah ia hanya suka rumah yang bersih?"
+      ]
+    },
+    {
+      "text": "Sampahnya harus dibuang sejauh itu?"
+    },
+    {
+      "text": [
+        "Percobaan pada ulat ini menunjukkan bahwa bau kotorannya menarik tawon yang memburu ulat."
+      ]
+    },
+    {
+      "text": [
+        "Dalam percobaan lain, ulat di dekat kotoran juga lebih berisiko dimangsa."
+      ]
+    },
+    {
+      "text": [
+        "Kotoran di depan rumah seperti petunjuk bertuliskan, 'Ada ulat di sini.' Melontarkannya jauh dapat mengurangi jejak yang ditemukan musuh."
+      ]
+    },
+    {
+      "text": "Kukira membuang sampah, ternyata menghapus alamat."
+    }
+  ]
+}

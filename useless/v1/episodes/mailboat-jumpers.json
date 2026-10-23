@@ -1,0 +1,61 @@
+{
+  "id": "mailboat-jumpers",
+  "contentNotice": null,
+  "day": 36,
+  "category": "생활",
+  "title": "우편 넣고 뛰어! 배가 그냥 간다",
+  "hook": "편지를 배달하고 돌아오려면, 움직이는 우편배로 다시 뛰어야 한다",
+  "summary": "미국 위스콘신의 제네바 호수에서는 여름에 움직이는 배를 오가며 우편을 배달한다. 제때 다시 못 타면 선장이 돌아와 태워 준다.",
+  "cover": "mailboat-walworth",
+  "sources": [
+    {
+      "title": "USPS: On Lake Geneva, the mail comes by boat",
+      "url": "https://news.usps.com/2024/08/19/on-lake-geneva-the-mail-comes-by-boat/"
+    },
+    {
+      "title": "U.S. Mailboat: History",
+      "url": "https://usmailboat.com/history/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "mailboat-walworth",
+      "text": [
+        "미국 위스콘신의 제네바 호수. 여름이면 우편배가 호숫가 집들을 찾아온다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "배달원은 움직이는 배에서 부두로 뛰어내린다. 우편함에 편지를 넣고, 보낼 편지도 챙긴다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "저기요, 직원 아직 안 탔는데요?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "이제 아직 움직이는 배로 다시 뛰어 올라갈 차례다. 편지는 도착했는데 배달원은 배를 쫓아 달린다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "영화 촬영이 아니라 실제 우편 배달이다. 이 배에는 그 모습을 구경하는 승객도 탄다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그렇다고 못 탄 사람을 두고 가 버리지는 않는다. 제때 돌아오지 못하면 선장이 다시 와서 태운다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "배송 완료. 이제 나도 회수해 주세요."
+    }
+  ]
+}

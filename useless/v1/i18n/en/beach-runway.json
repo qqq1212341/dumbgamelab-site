@@ -1,0 +1,39 @@
+{
+  "category": "Geography",
+  "title": "This airport waits for the tide to go out",
+  "hook": "Its runway is a beach, so flights work around the tides",
+  "summary": "Barra Airport in Scotland uses a beach as its runway. Scheduled flights follow the tides. Once the airport closes and the windsock is down, people can walk on the beach.",
+  "panels": [
+    {
+      "text": [
+        "At one airport, flying means checking the tides. Barra Airport in Scotland has a beach for a runway."
+      ]
+    },
+    {
+      "text": [
+        "Scheduled passenger planes land on sand covered and uncovered by the sea. Flight times work around the tides."
+      ]
+    },
+    {
+      "text": "The sea is still using the runway!"
+    },
+    {
+      "text": [
+        "This isn't merely an airport near the beach. Planes use the same space that the water occupies."
+      ]
+    },
+    {
+      "text": [
+        "Once the airport closes and the windsock is down, people can walk there as on any beach."
+      ]
+    },
+    {
+      "text": [
+        "Someone arrives by plane, and later someone else takes a seaside stroll in the same place."
+      ]
+    },
+    {
+      "text": "The sea gets a say in the flight schedule."
+    }
+  ]
+}

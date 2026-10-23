@@ -1,0 +1,39 @@
+{
+  "category": "Sejarah",
+  "title": "Buku ini menyembunyikan lukisan di sisinya",
+  "hook": "Miringkan sedikit susunan halamannya, dan lukisan pemandangan muncul dari tepi emasnya",
+  "summary": "Lukisan tersembunyi di tepi halaman muncul saat halaman direntangkan miring. Ada pula buku yang menampilkan lukisan berbeda jika dibuka ke arah sebaliknya.",
+  "panels": [
+    {
+      "text": [
+        "Saat buku tertutup, tepinya hanya tampak keemasan. Namun, rentangkan halaman sedikit miring, dan sebuah lukisan muncul."
+      ]
+    },
+    {
+      "text": [
+        "Ini teknik menghias tepi halaman buku. Halamannya direntangkan seperti kipas dan ditahan, lalu bagian tepi yang terbuka dilukis."
+      ]
+    },
+    {
+      "text": "Bukan di dalam, tapi di samping bukunya?"
+    },
+    {
+      "text": [
+        "Permukaan yang terlihat berbeda saat halaman dirapikan dan direntangkan miring. Lapisan emas di tepinya juga membantu menutupi lukisan."
+      ]
+    },
+    {
+      "text": [
+        "Sebuah buku drama Shakespeare dengan hiasan ini masih tersimpan. Foto ini menunjukkan buku lain yang memakai teknik serupa."
+      ]
+    },
+    {
+      "text": [
+        "Ada buku yang menyimpan dua lukisan. Rentangkan ke satu arah untuk melihat satu pemandangan, dan ke arah sebaliknya untuk pemandangan lain."
+      ]
+    },
+    {
+      "text": "Buku ini harus dibaca dari samping juga, ya."
+    }
+  ]
+}

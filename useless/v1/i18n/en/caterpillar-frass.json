@@ -1,0 +1,39 @@
+{
+  "category": "Animals",
+  "title": "There's a reason this caterpillar flings poop",
+  "hook": "Flinging poop far from home can help hide a caterpillar's address",
+  "summary": "One leaf-sheltering caterpillar flings its poop away. The smell can guide hunting wasps to it, so removing the clue can reduce the risk of discovery.",
+  "panels": [
+    {
+      "text": [
+        "A caterpillar folds a leaf into a home. It sticks its rear end outside and flicks a pellet of poop away."
+      ]
+    },
+    {
+      "text": [
+        "Researchers studied why this caterpillar species removes its poop. Is it simply a neat housekeeper?"
+      ]
+    },
+    {
+      "text": "Does the trash really need to go that far?"
+    },
+    {
+      "text": [
+        "Experiments with this caterpillar showed that the smell of its poop attracted wasps that hunt caterpillars."
+      ]
+    },
+    {
+      "text": [
+        "In a separate experiment, caterpillars near poop also faced a higher risk of being eaten."
+      ]
+    },
+    {
+      "text": [
+        "Poop left outside the home acts like a sign saying, 'Caterpillar lives here.' Flinging it away can remove that clue."
+      ]
+    },
+    {
+      "text": "Not taking out the trash. Erasing the address."
+    }
+  ]
+}

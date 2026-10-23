@@ -1,0 +1,61 @@
+{
+  "id": "beach-runway",
+  "contentNotice": null,
+  "day": 40,
+  "category": "지리",
+  "title": "이 공항은 바닷물이 빠져야 비행기가 온다",
+  "hook": "활주로가 모래사장이라, 비행기 시간표도 밀물과 썰물에 맞춘다",
+  "summary": "스코틀랜드 바러 공항은 해변을 활주로로 쓴다. 정기편 운항은 조수에 맞추며, 공항이 닫히고 바람자루가 내려간 뒤에는 해변 산책도 가능하다.",
+  "cover": "barra-beach-airport",
+  "sources": [
+    {
+      "title": "HIAL: Barra Airport information",
+      "url": "https://www.hial.co.uk/barra-airport/airport-information-4/1"
+    },
+    {
+      "title": "Loganair: Fly Barra",
+      "url": "https://www.loganair.co.uk/flybarra/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "barra-beach-airport",
+      "text": [
+        "비행기를 타는데 밀물 시간도 봐야 하는 공항이 있다. 스코틀랜드 바러 공항의 활주로는 해변이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "물이 드나드는 모래사장에 정기 여객기가 내려앉는다. 그래서 비행 시간표도 밀물과 썰물에 맞춘다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "활주로가 아직 바다 출근 중인데?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "바다가 가까운 공항이라는 정도가 아니다. 바닷물이 쓰던 자리를 비행기가 이어 쓴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "공항이 닫히고 바람자루가 내려가면 사람들은 그곳을 다시 해변으로 산책할 수 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "방금 누군가 비행기로 도착한 곳이, 다른 사람에게는 바닷가 산책길이 되는 셈이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "비행기 시간표에 바다 일정도 끼어 있네."
+    }
+  ]
+}

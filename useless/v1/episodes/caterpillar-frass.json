@@ -1,0 +1,61 @@
+{
+  "id": "caterpillar-frass",
+  "contentNotice": "insects-waste",
+  "day": 41,
+  "category": "동물",
+  "title": "똥을 멀리 쏘는 데도 사정이 있다",
+  "hook": "애벌레가 똥을 집 밖으로 멀리 튕긴다. 집 주소를 남기지 않는 셈이다",
+  "summary": "잎집에 사는 한 애벌레는 똥을 멀리 튕겨 보낸다. 똥 냄새가 사냥하는 벌에게 위치 단서가 되므로, 흔적을 치우면 들킬 위험을 줄일 수 있다.",
+  "cover": "skipper-caterpillar",
+  "sources": [
+    {
+      "title": "Ecology Letters: Good housekeeping in caterpillars",
+      "url": "https://datanuggets.org/wp-content/uploads/2014/10/Weiss-2003-Ecology-Letters.pdf"
+    },
+    {
+      "title": "NSTA: Caterpillar frass research",
+      "url": "https://static.nsta.org/case_study_docs/case_studies/caterpillars.pdf"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "skipper-caterpillar",
+      "text": [
+        "잎을 접어 집을 만든 애벌레. 엉덩이를 밖으로 내밀더니 똥 알갱이를 툭, 멀리 튕긴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구진은 이 종의 애벌레가 왜 똥을 치우는지 조사했다. 단순히 집을 깔끔하게 쓰려는 걸까?"
+      ]
+    },
+    {
+      "type": "say",
+      "text": "쓰레기는 멀리 버리는 주의인가?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 애벌레를 연구한 실험에서는 똥 냄새가 애벌레를 사냥하는 벌을 불러 모았다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "별도 실험에서도 똥 가까이에 있던 애벌레가 잡아먹힐 위험이 더 컸다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "집 앞에 남긴 똥이 ‘여기 애벌레 살아요’라는 단서가 된 것이다. 멀리 치우면 적에게 들킬 흔적을 줄일 수 있다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "쓰레기 버리는 줄 알았더니, 집 주소 지우는 중이었네."
+    }
+  ]
+}

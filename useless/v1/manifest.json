@@ -1,13 +1,13 @@
 {
  "schema": 1,
- "version": "33-f5ca3034c9",
+ "version": "43-587536372f",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
   {
    "id": "space-words",
    "day": 1,
-   "hash": "bdcc273ba822c6da",
+   "hash": "054594ec6e55f4cd",
    "ep": "episodes/space-words.json",
    "i18n": {
     "en": "i18n/en/space-words.json",
@@ -19,7 +19,7 @@
   {
    "id": "sea-otter",
    "day": 2,
-   "hash": "67b12b8a63f35039",
+   "hash": "74b17d723ce74a77",
    "ep": "episodes/sea-otter.json",
    "i18n": {
     "en": "i18n/en/sea-otter.json",
@@ -31,7 +31,7 @@
   {
    "id": "ok",
    "day": 3,
-   "hash": "5750851afab0e8b5",
+   "hash": "eb5defa47484eeda",
    "ep": "episodes/ok.json",
    "i18n": {
     "en": "i18n/en/ok.json",
@@ -43,7 +43,7 @@
   {
    "id": "banana-berry",
    "day": 4,
-   "hash": "4a4f16f38c69439f",
+   "hash": "9ce6c267e0c5db83",
    "ep": "episodes/banana-berry.json",
    "i18n": {
     "en": "i18n/en/banana-berry.json",
@@ -55,7 +55,7 @@
   {
    "id": "gps-relativity",
    "day": 5,
-   "hash": "42f16b35cee66bce",
+   "hash": "49aa0856e3e90d13",
    "ep": "episodes/gps-relativity.json",
    "i18n": {
     "en": "i18n/en/gps-relativity.json",
@@ -67,7 +67,7 @@
   {
    "id": "barcode-gum",
    "day": 6,
-   "hash": "4dfe1d0989f297bb",
+   "hash": "648384c155e6134a",
    "ep": "episodes/barcode-gum.json",
    "i18n": {
     "en": "i18n/en/barcode-gum.json",
@@ -79,7 +79,7 @@
   {
    "id": "baby-kneecap",
    "day": 7,
-   "hash": "4abf1c7469a5d59b",
+   "hash": "1318ca9d12457987",
    "ep": "episodes/baby-kneecap.json",
    "i18n": {
     "en": "i18n/en/baby-kneecap.json",
@@ -91,7 +91,7 @@
   {
    "id": "semantic-satiation",
    "day": 8,
-   "hash": "5a97fa56f861817a",
+   "hash": "08aa0dc8d8cf9d71",
    "ep": "episodes/semantic-satiation.json",
    "i18n": {
     "en": "i18n/en/semantic-satiation.json",
@@ -103,7 +103,7 @@
   {
    "id": "naked-mole-rat",
    "day": 9,
-   "hash": "f7b9941e400644c6",
+   "hash": "260e6ad887c28765",
    "ep": "episodes/naked-mole-rat.json",
    "i18n": {
     "en": "i18n/en/naked-mole-rat.json",
@@ -115,7 +115,7 @@
   {
    "id": "newton-mint",
    "day": 10,
-   "hash": "4f6949ae80ca1c91",
+   "hash": "c99a9eeeca12ddd0",
    "ep": "episodes/newton-mint.json",
    "i18n": {
     "en": "i18n/en/newton-mint.json",
@@ -127,7 +127,7 @@
   {
    "id": "do-was-ut",
    "day": 11,
-   "hash": "8d91d2ad04616860",
+   "hash": "a283059b3002e64d",
    "ep": "episodes/do-was-ut.json",
    "i18n": {
     "en": "i18n/en/do-was-ut.json",
@@ -139,7 +139,7 @@
   {
    "id": "south-pole-time",
    "day": 12,
-   "hash": "ef195e0fb0501ec2",
+   "hash": "2cd3bd1328b66ead",
    "ep": "episodes/south-pole-time.json",
    "i18n": {
     "en": "i18n/en/south-pole-time.json",
@@ -151,7 +151,7 @@
   {
    "id": "koala-fingerprint",
    "day": 13,
-   "hash": "ecbf4668600bcf35",
+   "hash": "c53934aca5a92088",
    "ep": "episodes/koala-fingerprint.json",
    "i18n": {
     "en": "i18n/en/koala-fingerprint.json",
@@ -163,7 +163,7 @@
   {
    "id": "yawn-dog",
    "day": 14,
-   "hash": "4bbc261141914576",
+   "hash": "3c94b3f6914b13fe",
    "ep": "episodes/yawn-dog.json",
    "i18n": {
     "en": "i18n/en/yawn-dog.json",
@@ -175,7 +175,7 @@
   {
    "id": "morning-height",
    "day": 15,
-   "hash": "f27db4f3179aa3a8",
+   "hash": "c285bcfaf63e206e",
    "ep": "episodes/morning-height.json",
    "i18n": {
     "en": "i18n/en/morning-height.json",
@@ -187,7 +187,7 @@
   {
    "id": "ketchup-fish",
    "day": 16,
-   "hash": "8d8d79c5af19596d",
+   "hash": "483b7ff636012e7c",
    "ep": "episodes/ketchup-fish.json",
    "i18n": {
     "en": "i18n/en/ketchup-fish.json",
@@ -199,7 +199,7 @@
   {
    "id": "qr-baduk",
    "day": 17,
-   "hash": "ddfea84c32d74a61",
+   "hash": "6e0a8b469c1fecba",
    "ep": "episodes/qr-baduk.json",
    "i18n": {
     "en": "i18n/en/qr-baduk.json",
@@ -211,7 +211,7 @@
   {
    "id": "hello-ahoy",
    "day": 18,
-   "hash": "e7cc477b1debbe4a",
+   "hash": "453cb104541a0ff2",
    "ep": "episodes/hello-ahoy.json",
    "i18n": {
     "en": "i18n/en/hello-ahoy.json",
@@ -223,7 +223,7 @@
   {
    "id": "gold-medal-silver",
    "day": 19,
-   "hash": "1661b9da74a65038",
+   "hash": "554ab46beeabdd42",
    "ep": "episodes/gold-medal-silver.json",
    "i18n": {
     "en": "i18n/en/gold-medal-silver.json",
@@ -235,7 +235,7 @@
   {
    "id": "venus-west",
    "day": 20,
-   "hash": "0733b0a13eb867c9",
+   "hash": "69652bde0870c6f8",
    "ep": "episodes/venus-west.json",
    "i18n": {
     "en": "i18n/en/venus-west.json",
@@ -247,7 +247,7 @@
   {
    "id": "shortest-flight",
    "day": 21,
-   "hash": "f33de66c6da68665",
+   "hash": "0635b609b6fbf58d",
    "ep": "episodes/shortest-flight.json",
    "i18n": {
     "en": "i18n/en/shortest-flight.json",
@@ -259,7 +259,7 @@
   {
    "id": "iss-16-sunrises",
    "day": 22,
-   "hash": "b1c7af3a2b780a36",
+   "hash": "0e7bbd8f8abb9049",
    "ep": "episodes/iss-16-sunrises.json",
    "i18n": {
     "en": "i18n/en/iss-16-sunrises.json",
@@ -271,7 +271,7 @@
   {
    "id": "space-candle",
    "day": 23,
-   "hash": "9a944977347f0d2a",
+   "hash": "29f44204ed4de278",
    "ep": "episodes/space-candle.json",
    "i18n": {
     "en": "i18n/en/space-candle.json",
@@ -283,7 +283,7 @@
   {
    "id": "crow-faces",
    "day": 24,
-   "hash": "0c5207f968b3de87",
+   "hash": "25f17cc45578cdc2",
    "ep": "episodes/crow-faces.json",
    "i18n": {
     "en": "i18n/en/crow-faces.json",
@@ -295,7 +295,7 @@
   {
    "id": "spaghetti-tree",
    "day": 25,
-   "hash": "d1b15363d59003ad",
+   "hash": "686885c9ae4e6199",
    "ep": "episodes/spaghetti-tree.json",
    "i18n": {
     "en": "i18n/en/spaghetti-tree.json",
@@ -307,7 +307,7 @@
   {
    "id": "space-cold-weld",
    "day": 26,
-   "hash": "0eec81f4d03aae34",
+   "hash": "188a7f0fe301a650",
    "ep": "episodes/space-cold-weld.json",
    "i18n": {
     "en": "i18n/en/space-cold-weld.json",
@@ -319,7 +319,7 @@
   {
    "id": "space-taller",
    "day": 27,
-   "hash": "e988226cc57ec743",
+   "hash": "96d638f9016921e0",
    "ep": "episodes/space-taller.json",
    "i18n": {
     "en": "i18n/en/space-taller.json",
@@ -331,7 +331,7 @@
   {
    "id": "olympic-art",
    "day": 28,
-   "hash": "45a3998ad8558b88",
+   "hash": "797a7d34b0c2d58d",
    "ep": "episodes/olympic-art.json",
    "i18n": {
     "en": "i18n/en/olympic-art.json",
@@ -343,7 +343,7 @@
   {
    "id": "diomede-islands",
    "day": 29,
-   "hash": "0cbf3f23575a546c",
+   "hash": "6b47cc9e5db11c4a",
    "ep": "episodes/diomede-islands.json",
    "i18n": {
     "en": "i18n/en/diomede-islands.json",
@@ -355,7 +355,7 @@
   {
    "id": "catgut-strings",
    "day": 30,
-   "hash": "426d98d9cf91185b",
+   "hash": "d3f6e0044123a421",
    "ep": "episodes/catgut-strings.json",
    "i18n": {
     "en": "i18n/en/catgut-strings.json",
@@ -367,7 +367,7 @@
   {
    "id": "window-tax",
    "day": 31,
-   "hash": "33d2e7242c926287",
+   "hash": "39e1b06ea95ecf0d",
    "ep": "episodes/window-tax.json",
    "i18n": {
     "en": "i18n/en/window-tax.json",
@@ -379,7 +379,7 @@
   {
    "id": "bubble-wrap",
    "day": 32,
-   "hash": "c5cc38000c1c6c1a",
+   "hash": "915f2fb9b11dcdd1",
    "ep": "episodes/bubble-wrap.json",
    "i18n": {
     "en": "i18n/en/bubble-wrap.json",
@@ -391,13 +391,133 @@
   {
    "id": "eorida-fool",
    "day": 33,
-   "hash": "de92b84150c978a3",
+   "hash": "12920037493221fb",
    "ep": "episodes/eorida-fool.json",
    "i18n": {
     "en": "i18n/en/eorida-fool.json",
     "ja": "i18n/ja/eorida-fool.json",
     "id": "i18n/id/eorida-fool.json",
     "zh": "i18n/zh/eorida-fool.json"
+   }
+  },
+  {
+   "id": "bee-ball-play",
+   "day": 35,
+   "hash": "a5e3a1f3c7557bce",
+   "ep": "episodes/bee-ball-play.json",
+   "i18n": {
+    "en": "i18n/en/bee-ball-play.json",
+    "ja": "i18n/ja/bee-ball-play.json",
+    "id": "i18n/id/bee-ball-play.json",
+    "zh": "i18n/zh/bee-ball-play.json"
+   }
+  },
+  {
+   "id": "mailboat-jumpers",
+   "day": 36,
+   "hash": "5d36c3383473a707",
+   "ep": "episodes/mailboat-jumpers.json",
+   "i18n": {
+    "en": "i18n/en/mailboat-jumpers.json",
+    "ja": "i18n/ja/mailboat-jumpers.json",
+    "id": "i18n/id/mailboat-jumpers.json",
+    "zh": "i18n/zh/mailboat-jumpers.json"
+   }
+  },
+  {
+   "id": "hidden-book-painting",
+   "day": 37,
+   "hash": "0ec7a53d3dfe3db3",
+   "ep": "episodes/hidden-book-painting.json",
+   "i18n": {
+    "en": "i18n/en/hidden-book-painting.json",
+    "ja": "i18n/ja/hidden-book-painting.json",
+    "id": "i18n/id/hidden-book-painting.json",
+    "zh": "i18n/zh/hidden-book-painting.json"
+   }
+  },
+  {
+   "id": "boxer-crab-gloves",
+   "day": 38,
+   "hash": "7e5fb1334176bb71",
+   "ep": "episodes/boxer-crab-gloves.json",
+   "i18n": {
+    "en": "i18n/en/boxer-crab-gloves.json",
+    "ja": "i18n/ja/boxer-crab-gloves.json",
+    "id": "i18n/id/boxer-crab-gloves.json",
+    "zh": "i18n/zh/boxer-crab-gloves.json"
+   }
+  },
+  {
+   "id": "ice-cream-disguise",
+   "day": 39,
+   "hash": "ec7a2baefe03dceb",
+   "ep": "episodes/ice-cream-disguise.json",
+   "i18n": {
+    "en": "i18n/en/ice-cream-disguise.json",
+    "ja": "i18n/ja/ice-cream-disguise.json",
+    "id": "i18n/id/ice-cream-disguise.json",
+    "zh": "i18n/zh/ice-cream-disguise.json"
+   }
+  },
+  {
+   "id": "beach-runway",
+   "day": 40,
+   "hash": "b6447472ebea0aad",
+   "ep": "episodes/beach-runway.json",
+   "i18n": {
+    "en": "i18n/en/beach-runway.json",
+    "ja": "i18n/ja/beach-runway.json",
+    "id": "i18n/id/beach-runway.json",
+    "zh": "i18n/zh/beach-runway.json"
+   }
+  },
+  {
+   "id": "caterpillar-frass",
+   "day": 41,
+   "hash": "e6c8ed33988d046a",
+   "ep": "episodes/caterpillar-frass.json",
+   "i18n": {
+    "en": "i18n/en/caterpillar-frass.json",
+    "ja": "i18n/ja/caterpillar-frass.json",
+    "id": "i18n/id/caterpillar-frass.json",
+    "zh": "i18n/zh/caterpillar-frass.json"
+   }
+  },
+  {
+   "id": "curling-pebbles",
+   "day": 42,
+   "hash": "3b182498fc772fdf",
+   "ep": "episodes/curling-pebbles.json",
+   "i18n": {
+    "en": "i18n/en/curling-pebbles.json",
+    "ja": "i18n/ja/curling-pebbles.json",
+    "id": "i18n/id/curling-pebbles.json",
+    "zh": "i18n/zh/curling-pebbles.json"
+   }
+  },
+  {
+   "id": "float-glass-tin",
+   "day": 43,
+   "hash": "d8b1a3c60c5954c0",
+   "ep": "episodes/float-glass-tin.json",
+   "i18n": {
+    "en": "i18n/en/float-glass-tin.json",
+    "ja": "i18n/ja/float-glass-tin.json",
+    "id": "i18n/id/float-glass-tin.json",
+    "zh": "i18n/zh/float-glass-tin.json"
+   }
+  },
+  {
+   "id": "table-galleon-cannon",
+   "day": 44,
+   "hash": "166f713f7517ecc6",
+   "ep": "episodes/table-galleon-cannon.json",
+   "i18n": {
+    "en": "i18n/en/table-galleon-cannon.json",
+    "ja": "i18n/ja/table-galleon-cannon.json",
+    "id": "i18n/id/table-galleon-cannon.json",
+    "zh": "i18n/zh/table-galleon-cannon.json"
    }
   }
  ]

@@ -1,0 +1,39 @@
+{
+  "category": "Animals",
+  "title": "One glove becomes two for this crab",
+  "hook": "When researchers removed one anemone, the crab split the remaining one",
+  "summary": "In an experiment with one species of boxer crab, crabs split a remaining anemone after losing the other. The two pieces regenerated over several days.",
+  "panels": [
+    {
+      "text": [
+        "This little crab carries a fluffy glove in each claw. Those gloves are actually living sea anemones."
+      ]
+    },
+    {
+      "text": [
+        "Researchers removed one anemone from a species of boxer crab."
+      ]
+    },
+    {
+      "text": "What do you do with just one glove?"
+    },
+    {
+      "text": [
+        "The crab gripped the remaining anemone and divided it in two. It didn't fetch a new one from elsewhere."
+      ]
+    },
+    {
+      "text": [
+        "That sounds destructive, but the story continues. Over several days, each piece regenerated into an anemone."
+      ]
+    },
+    {
+      "text": [
+        "The crab once again held one in each claw. The remaining glove had become a fresh pair."
+      ]
+    },
+    {
+      "text": "If only my socks could do that."
+    }
+  ]
+}

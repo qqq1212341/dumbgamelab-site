@@ -1,0 +1,62 @@
+{
+  "id": "table-galleon-cannon",
+  "contentNotice": null,
+  "day": 44,
+  "category": "역사",
+  "title": "식탁 장식이 대포까지 쏜다고?",
+  "hook": "배 모양 식탁 장식에 시계, 움직이는 인형, 자동 대포까지 들어 있었다",
+  "summary": "16세기 말 기계식 배 장식에는 시계, 인형, 음악과 자동 대포가 들어 있었다. 훗날 제작한 작동 모형은 실제 화약으로 포성까지 재현했다.",
+  "cover": "table-galleon-full",
+  "sources": [
+    {
+      "title": "British Museum: Mechanical Galleon",
+      "url": "https://www.britishmuseum.org/collection/object/H_1866-1030-1"
+    },
+    {
+      "title": "Museum Speelklok: Automata",
+      "url": "https://www.museumspeelklok.nl/en/automata/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "table-galleon-full",
+      "text": [
+        "식탁 위의 화려한 배 모형. 사진 속 유물은 16세기 말에 만든 기계식 배 장식이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "시계와 움직이는 인형, 음악 장치가 들어 있었다. 원래는 바퀴로 움직이기도 했다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "식탁 장식에 기능이 왜 이렇게 많아?"
+    },
+    {
+      "type": "image",
+      "img": "table-galleon",
+      "text": [
+        "앞쪽에는 자동으로 발사되는 작은 대포까지 달려 있었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "네덜란드의 한 박물관은 이런 배의 작동 모형을 새로 만들었다. 사진 속 원본 유물과는 다른 모형이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그 모형은 실제 화약으로 포성도 재현했다. 박물관 설명에 따르면 시연에 총기 허가까지 필요했다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "밥상에 배를 올리랬지, 해전 하랬냐고."
+    }
+  ]
+}

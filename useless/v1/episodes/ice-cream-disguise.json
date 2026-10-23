@@ -1,0 +1,66 @@
+{
+  "id": "ice-cream-disguise",
+  "contentNotice": null,
+  "day": 39,
+  "category": "음식",
+  "title": "후식이 아스파라거스로 위장했다",
+  "hook": "접시에 나온 채소, 알고 보니 모양만 채소인 아이스크림이었다",
+  "summary": "옛 아이스크림 틀은 아스파라거스나 물고기 같은 모양도 만들었다. 채소 맛이라는 이야기가 아니라 후식의 모양에 관한 이야기다.",
+  "cover": "fancy-ices",
+  "sources": [
+    {
+      "title": "London Museum: Agnes Marshall, queen of ice cream",
+      "url": "https://www.londonmuseum.org.uk/collections/london-stories/agnes-marshall-victorian-queen-of-ice-cream/"
+    },
+    {
+      "title": "Colonial Williamsburg: Historic ice cream",
+      "url": "https://research.colonialwilliamsburg.org/Foundation/journal/Spring10/icecream.cfm"
+    },
+    {
+      "title": "Agnes B. Marshall: The Book of Ices, mould catalogue",
+      "url": "https://archive.org/details/b21506061/page/n67/mode/1up"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "fancy-ices",
+      "text": [
+        "후식 접시에 아스파라거스가 올라왔다면? 옛 아이스크림에는 이런 변장도 있었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "요리사 아그네스 마셜은 아스파라거스, 물고기, 백조 같은 모양의 디저트 틀을 소개하고 팔았다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "채소인 줄 알고 마음의 준비까지 했는데."
+    },
+    {
+      "type": "image",
+      "img": "asparagus-ice-mould",
+      "text": [
+        "아이스크림을 틀에 채워 모양을 잡는 방식이다. 사진은 마셜의 책에 실린 여러 아이스크림 디자인이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "역사박물관에서도 이런 틀로 옛 디저트를 재현한다. 꺼낼 때는 틀을 따뜻한 물에 잠깐 담가 가장자리를 떨어뜨린다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "아스파라거스 모양과 아스파라거스 맛은 다른 이야기다. 여기서 확인한 건 모양을 만드는 틀이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "아이스크림이 채소 분장까지 했네."
+    }
+  ]
+}

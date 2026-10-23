@@ -1,0 +1,39 @@
+{
+  "category": "History",
+  "title": "This book hides a picture in its edges",
+  "hook": "Fan the pages slightly, and a landscape appears in the gilt edge",
+  "summary": "Some books hide paintings on their page edges. Fanning the pages reveals them, and some books show a different picture in each direction.",
+  "panels": [
+    {
+      "text": [
+        "With the book closed, the edge looks golden. Fan the pages slightly, and a picture appears."
+      ]
+    },
+    {
+      "text": [
+        "It's a book-decorating technique. The pages are fanned and held in place so their exposed edges can be painted."
+      ]
+    },
+    {
+      "text": "Not inside the book. Along its side?"
+    },
+    {
+      "text": [
+        "Closing and fanning the pages exposes different surfaces. Gilding can help conceal the hidden picture."
+      ]
+    },
+    {
+      "text": [
+        "A volume of Shakespeare's plays with this decoration survives. The photo shows another book using the technique."
+      ]
+    },
+    {
+      "text": [
+        "Some books hide two pictures. Fan the pages one way for one scene, and the other way for another."
+      ]
+    },
+    {
+      "text": "Guess I'll have to read this one sideways, too."
+    }
+  ]
+}
