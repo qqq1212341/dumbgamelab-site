@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://dumbgamelab.com/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://dumbgamelab.com/press/</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://dumbgamelab.com/support/</loc><lastmod>2026-10-24</lastmod></url>
@@ -394,6 +394,258 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/what-is-idle-tycoon/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/what-is-idle-tycoon/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/what-is-idle-tycoon/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ko/blog/space-words/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-words/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-eva.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-hudf.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-m51.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-pillars.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/space-words/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-words/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-eva.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-hudf.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-m51.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-pillars.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/space-words/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-words/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-words/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-eva.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-hudf.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-m51.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/space-pillars.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/sea-otter/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-hands.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-face.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-raft.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-kelp.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/sea-otter/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-hands.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-face.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-raft.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-kelp.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/sea-otter/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/sea-otter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/sea-otter/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-hands.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-face.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-raft.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-kelp.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/otter-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/ok/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ok/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-cartoon.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/ok/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ok/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-cartoon.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/ok/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ok/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ok/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/ok-cartoon.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/banana-berry/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-strawberry.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/banana-berry/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-strawberry.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/banana-berry/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/banana-berry/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/banana-berry/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/banana-strawberry.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/gps-relativity/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-einstein.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/gps-relativity/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-einstein.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/gps-relativity/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gps-relativity/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gps-relativity/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/gps-einstein.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/barcode-gum/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-gum.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/barcode-gum/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-gum.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/barcode-gum/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/barcode-gum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/barcode-gum/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/barcode-gum.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/baby-kneecap/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/knee-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/baby-kneecap/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/knee-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/baby-kneecap/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/baby-kneecap/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/baby-kneecap/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/knee-baby.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/semantic-satiation/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/semantic-satiation/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/semantic-satiation/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/semantic-satiation/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/semantic-satiation/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/naked-mole-rat/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat-colony.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/naked-mole-rat/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat-colony.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/naked-mole-rat/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/naked-mole-rat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/naked-mole-rat/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/molerat-colony.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/newton-mint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/newton.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/newton-mint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/newton.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/newton-mint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/newton-mint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/newton-mint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/newton.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/do-was-ut/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-hymn.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/do-was-ut/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-hymn.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/do-was-ut/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-was-ut/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-was-ut/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/doremi-hymn.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/south-pole-time/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-marker.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-station.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/south-pole-time/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-marker.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-station.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/south-pole-time/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/south-pole-time/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/south-pole-time/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-marker.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/pole-station.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/koala-fingerprint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala-zoo.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/koala-fingerprint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala-zoo.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/koala-fingerprint/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/koala-fingerprint/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/koala-fingerprint/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/koala-zoo.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/fur-real/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ko/blog/fur-real/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ja/blog/fur-real/</loc><lastmod>2026-10-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
   <url><loc>https://dumbgamelab.com/en/games/pcbangalba/</loc><lastmod>2026-10-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>

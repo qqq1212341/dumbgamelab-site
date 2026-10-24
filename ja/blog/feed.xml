@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Dumb Game Lab ブログ</title>
+  <link>https://dumbgamelab.com/ja/blog/</link>
+  <atom:link href="https://dumbgamelab.com/ja/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
+  <language>ja</language>
+  <item>
+    <title>ネカフェ経営ゲームの最初の30分：何分で何を買えばお金が回りだす？</title>
+    <link>https://dumbgamelab.com/ja/blog/pc-bang-first-30-minutes-guide/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-first-30-minutes-guide/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ネカフェ経営を新しいセーブで始め、ゲーム内15日(実時間30分)を実際に回して測りました。最初のPCを買うタイミング、ステージ2に必要な13万ウォン、ステージ3の49万ウォン、お金をためるだけだと1日の売上が39%下がることまで、数字で書いています。</description>
+  </item>
+  <item>
+    <title>英語の「宇宙」は3つある</title>
+    <link>https://dumbgamelab.com/ja/blog/space-words/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-words/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>宇宙飛行士はuniverseには行けない。もうその中にいるからだ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>ラッコは手をつないで眠る</title>
+    <link>https://dumbgamelab.com/ja/blog/sea-otter/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/sea-otter/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ラッコは流されないように手をつないで眠り、わきの下にお気に入りの石を入れて持ち歩く。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>OKは綴りを間違えた冗談だった</title>
+    <link>https://dumbgamelab.com/ja/blog/ok/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ok/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>OKは、all correctをoll korrectとわざと間違えて書いた冗談が、選挙のスローガンに乗って生き残った言葉だ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>バナナはベリーだ</title>
+    <link>https://dumbgamelab.com/ja/blog/banana-berry/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/banana-berry/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>植物学では、バナナとトマトはベリーで、イチゴとラズベリーはベリーではない。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>GPS衛星の時計はわざと遅く合わせる</title>
+    <link>https://dumbgamelab.com/ja/blog/gps-relativity/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/gps-relativity/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>GPS衛星の時計は、相対性理論のせいで1日に38マイクロ秒進む。だから打ち上げ前に、わざと遅く合わせておく。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>最初に読み取られたバーコードはガムだった</title>
+    <link>https://dumbgamelab.com/ja/blog/barcode-gum/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/barcode-gum/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>バーコードは砂に描いたモールス信号から生まれ、最初に読み取られた商品はガムだった。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>赤ちゃんはひざのお皿なしで生まれる</title>
+    <link>https://dumbgamelab.com/ja/blog/baby-kneecap/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/baby-kneecap/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>赤ちゃんのひざのお皿は軟骨で、3歳ごろから骨になりはじめる。骨の数は成長するとむしろ減る。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>同じ言葉をくり返すと意味が消える</title>
+    <link>https://dumbgamelab.com/ja/blog/semantic-satiation/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/semantic-satiation/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>同じ言葉をくり返し続けると、一時的に意味が消える意味飽和が起きる。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>37歳のネズミがいる</title>
+    <link>https://dumbgamelab.com/ja/blog/naked-mole-rat/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/naked-mole-rat/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ハダカデバネズミは37年以上生き、年をとっても死ぬ確率が上がらない。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>ニュートンは偽造犯を捕まえる探偵だった</title>
+    <link>https://dumbgamelab.com/ja/blog/newton-mint/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/newton-mint/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ニュートンは晩年の30年を造幣局で過ごし、変装までして偽造犯28人を処罰に追い込んだ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>ドレミは、もともとウトレミだった</title>
+    <link>https://dumbgamelab.com/ja/blog/do-was-ut/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/do-was-ut/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ドレミは11世紀のラテン語の聖歌で、各行の最初の音節から来ている。ドはもともとウト(ut)だった。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>南極では、時間も宅配便の送り元で決まる</title>
+    <link>https://dumbgamelab.com/ja/blog/south-pole-time/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/south-pole-time/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>南極点の基地は、物資を送ってくれるニュージーランドに合わせて、ニュージーランドの時間を使う。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>コアラの指紋は人間とまぎらわしい</title>
+    <link>https://dumbgamelab.com/ja/blog/koala-fingerprint/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/koala-fingerprint/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>コアラの指紋は、電子顕微鏡で見ても人間の指紋と見分けにくいほど似ている。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>ゲームのプレスリリース1通で台湾の記事に:送ったメール、記事との照合、流入8日間</title>
+    <link>https://dumbgamelab.com/ja/blog/press-release-taiwan-124-installs/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/press-release-taiwan-124-installs/</guid>
+    <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
+    <description>インディーゲームのプレスリリースを台湾のゲームメディア、バハムート GNN にメール1通で送ったところ、11時間半後に記事になりました。メールの組み立て、記者が使った部分、流入が何日続いたか、7日後に何人残ったかを実測の数字で書きます。</description>
+  </item>
+  <item>
+    <title>チムジルバンの卵とシッケ、なぜいつもセットなのか</title>
+    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-egg-and-sikhye/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-egg-and-sikhye/</guid>
+    <pubDate>Wed, 21 Oct 2026 15:00:00 GMT</pubDate>
+    <description>チムジルバンの売店で売る焼き卵とシッケをまとめました。ゆで卵との違い、シッケにお酒は入っているか、値段、缶シッケのカロリー、おでこで割ってはいけない理由まで、出典つきで書いています。</description>
+  </item>
+  <item>
+    <title>放置系タイクーンとは？アプリを閉じていても店が動くゲーム</title>
+    <link>https://dumbgamelab.com/ja/blog/what-is-idle-tycoon/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-idle-tycoon/</guid>
+    <pubDate>Tue, 20 Oct 2026 15:00:00 GMT</pubDate>
+    <description>放置系タイクーンは、店や鉱山を育てる経営ゲームに自動収入とオフライン収入を足したジャンルです。クリッカーとの違い、お金がたまる5つの仕組み、オフライン収入が実際にいくらなのかを、自社ゲームの数字で説明します。</description>
+  </item>
+  <item>
+    <title>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</title>
+    <link>https://dumbgamelab.com/ja/blog/best-bathhouse-onsen-games/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-bathhouse-onsen-games/</guid>
+    <pubDate>Sun, 18 Oct 2026 15:00:00 GMT</pubDate>
+    <description>温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</description>
+  </item>
+  <item>
+    <title>個人開発の1か月：稼いだお金1万5000ウォン、使ったお金34万5000ウォン</title>
+    <link>https://dumbgamelab.com/ja/blog/solo-dev-monthly-report-2026-10/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/solo-dev-monthly-report-2026-10/</guid>
+    <pubDate>Fri, 16 Oct 2026 15:00:00 GMT</pubDate>
+    <description>個人ゲーム開発者が2026年10月の帳簿をそのまま公開します。稼いだ額と使った額、1日のAdMob収益、プレスリリース1通で増えたインストール、伸びなかったことまで数字で書きました。</description>
+  </item>
+  <item>
+    <title>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</title>
+    <link>https://dumbgamelab.com/ja/blog/best-idle-tycoon-games-offline/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-idle-tycoon-games-offline/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</description>
+  </item>
+  <item>
+    <title>ゲーム発展国（Game Dev Story）に似たゲーム、カイロソフト以外で遊べる7本</title>
+    <link>https://dumbgamelab.com/ja/blog/games-like-game-dev-story/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/games-like-game-dev-story/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ゲーム発展国（Game Dev Story）を遊び終えた人が次に選ぶ経営ゲームを、Steam、App Store、Google Playから7本選びました。価格、評価、対応言語を1つの表で比べ、自社ゲームの弱点も書いています。</description>
+  </item>
+  <item>
+    <title>Internet Cafe Simulatorに似たゲーム、スマホでも遊べる7本</title>
+    <link>https://dumbgamelab.com/ja/blog/games-like-internet-cafe-simulator/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/games-like-internet-cafe-simulator/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Internet Cafe Simulator 1、2に近いネットカフェ経営ゲームを、SteamとスマホのゲームからPC・スマホ別に選びました。対応機種、定価、オフライン、ジャンルを1つの表で比べ、自社ゲームの弱点も正直に書きました。</description>
+  </item>
+  <item>
+    <title>チムジルバンでやってはいけないこと：韓国サウナのルールと入り方の注意点</title>
+    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-etiquette/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-etiquette/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>韓国のチムジルバンで下着は着る？タトゥーは入れる？スマホはどこまで使える？浴場と共用サウナフロアで迷いやすい入り方のルールを、疑問の順にまとめました。施設ごとに違う部分は分けて書いています。</description>
+  </item>
+  <item>
+    <title>チムジルバンの入り方：初めてでも迷わない韓国サウナ完全ガイド</title>
+    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-guide/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-guide/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>チムジルバンは、男女別の浴場と、館内着で過ごす共用のサウナ、休憩室、仮眠室がそろった韓国式サウナです。入り方の順番、下着はどうする？、羊タオルの巻き方、ゆで卵とシッケ、料金、ルール、外国人向けのコツをまとめました。</description>
+  </item>
+  <item>
+    <title>ネットカフェの呼び名は国ごとに違う：2000年代、あの頃の風景</title>
+    <link>https://dumbgamelab.com/ja/blog/pc-bang-names-around-the-world/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-names-around-the-world/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>インドネシアのwarnet、ベトナムのquán net、台湾の網咖、中国の网吧、ブラジルのlan house、日本のネットカフェ、タイのร้านเกม。呼び名は違っても、2000年代のあの店の風景はよく似ています。当時遊んだゲームと思い出の場面をまとめました。</description>
+  </item>
+  <item>
+    <title>韓国のPCバン（PC房）とは？初めてでも迷わない使い方ガイド</title>
+    <link>https://dumbgamelab.com/ja/blog/what-is-a-pc-bang/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-pc-bang/</guid>
+    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
+    <description>韓国のPCバン（PC房）は、ゲーミングPCを1時間1,000〜2,000ウォン台で借りられて、席からラーメンまで注文できる場所です。料金、キオスクでの入り方、食事、24時間営業のルール、外国人向けのコツをまとめました。</description>
+  </item>
+</channel>
+</rss>

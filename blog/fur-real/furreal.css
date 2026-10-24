@@ -1,0 +1,55 @@
+/* 알고있여우? 글·허브 — 앱과 같은 크림 바탕 + 여우 주황 하나(값 = genres/apps/games/UselessApp/src/data/brand.ts COLOR). blog.css 위에 얹는다. */
+body.fr { --fr-cream: #fff7ec; --fr-cream2: #fbefdf; --fr-ink: #3a2a1e; --fr-muted: #74604f; --fr-line: #efe0cc; --fr-accent: #f28c28; --fr-accent-ink: #2e1f14; --fr-soft: #ffe7cc; --fr-deep: #8a4510;
+  background: var(--fr-cream); color: var(--fr-ink); }
+body.fr a { color: var(--fr-deep); }
+body.fr .phead { background: var(--fr-cream2); color: var(--fr-ink); border-bottom: 1px solid var(--fr-line); }
+body.fr .crumb, body.fr .meta { color: var(--fr-muted); }
+body.fr .crumb a { color: var(--fr-deep); }
+body.fr .kicker { color: var(--fr-deep); letter-spacing: .04em; text-transform: none; }
+body.fr .phead h1 { font-family: var(--body); font-weight: 900; }
+body.fr .lead { color: var(--fr-ink); font-size: 20px; font-weight: 700; }
+body.fr .pbody { margin-top: 0; padding-top: 28px; }
+body.fr .pbody p, body.fr .pbody li { color: var(--fr-ink); }
+body.fr figure img, body.fr figure video { border-radius: 16px; border: 1px solid var(--fr-line); background: var(--fr-cream2); max-height: 620px; width: auto; max-width: 100%; margin: 0 auto; display: block; }
+body.fr .pbody > figure:first-child img { width: 100%; aspect-ratio: auto; max-height: 560px; object-fit: cover; }
+body.fr figcaption { color: var(--fr-muted); font-size: 13px; }
+body.fr .tldr { background: #fff; border-left-color: var(--fr-accent); border-radius: 0 16px 16px 0; }
+body.fr .tldr b { display: block; font-size: 14px; color: var(--fr-deep); margin-bottom: 4px; }
+.fr-q { display: flex; align-items: center; gap: 12px; font-size: 24px !important; }
+.fr-q img, .fr-say img { width: 44px; height: 44px; border-radius: 50%; background: var(--fr-soft); flex: none; }
+.fr-q span, .fr-say span { background: #fff; border: 2px solid var(--fr-line); border-radius: 16px; padding: 8px 14px; }
+.fr-say { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.fr-word { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; background: var(--fr-soft); border-radius: 16px; padding: 14px 18px; }
+.fr-word b { font-size: 26px; letter-spacing: .04em; color: var(--fr-accent-ink); }
+.fr-word span { color: var(--fr-ink); }
+.fr-short video { display: block; margin: 0 auto; max-width: 360px; width: 100%; height: auto; border-radius: 16px; background: #000; }
+.fr-refs h2 { font-size: 20px !important; margin-top: 40px !important; }
+.fr-refs li { font-size: 15px; overflow-wrap: anywhere; }
+.fr-app { display: grid; grid-template-columns: 88px 1fr; gap: 18px; align-items: start; background: #fff; border: 2px solid var(--fr-line); border-radius: 16px; padding: 22px; margin: 44px 0 0; }
+.fr-app img { border-radius: 20px; }
+.fr-app p { margin: 0 0 4px; }
+.fr-app-name { font-size: 22px; font-weight: 900; }
+.fr-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.fr-store { display: inline-flex; padding: 11px 20px; border-radius: 999px; background: var(--fr-accent); color: var(--fr-accent-ink) !important; font-weight: 800; font-size: 15px; text-decoration: none; }
+.fr-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 32px 0 0; }
+.fr-nav a { display: block; background: #fff; border: 1px solid var(--fr-line); border-radius: 16px; padding: 12px 16px; text-decoration: none; color: var(--fr-ink) !important; font-weight: 700; line-height: 1.4; }
+.fr-nav a[rel=next] { text-align: right; }
+.fr-nav small { display: block; color: var(--fr-muted); font-weight: 400; font-size: 13px; }
+body.fr .pcard { border-color: var(--fr-line); }
+.fr-card .pc-type { color: var(--fr-deep); }
+.fr-all { text-align: right; font-weight: 700; }
+.fr-hub { display: flex; gap: 20px; align-items: center; }
+.fr-hub img { width: 96px; height: 96px; border-radius: 50%; background: var(--fr-soft); flex: none; }
+body.fr .cards.wide { margin-top: 28px; }
+.fr-hub-app { margin-top: 0; }
+.fr-strip { background: #fff7ec; border-bottom: 1px solid #efe0cc; }
+.fr-strip-in { max-width: 1100px; margin: 0 auto; padding: 8px 20px 20px; }
+.fr-strip h2 { font-size: 22px; margin: 18px 0 14px; }
+.fr-strip h2 a { color: #3a2a1e; text-decoration: none; }
+.fr-strip .fr-all a { color: #8a4510; }
+@media (max-width: 560px) {
+  .fr-q { font-size: 20px !important; }
+  .fr-app { grid-template-columns: 64px 1fr; padding: 18px; }
+  .fr-app img { width: 64px; height: 64px; border-radius: 16px; }
+  .fr-hub { flex-direction: column; align-items: flex-start; }
+}
