@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "version": "43-587536372f",
+ "version": "43-95d2d33b22",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -295,7 +295,7 @@
   {
    "id": "spaghetti-tree",
    "day": 25,
-   "hash": "686885c9ae4e6199",
+   "hash": "8725eab31de049a2",
    "ep": "episodes/spaghetti-tree.json",
    "i18n": {
     "en": "i18n/en/spaghetti-tree.json",
