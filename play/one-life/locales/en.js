@@ -2470,5 +2470,7 @@ window.__DGL_STRINGS = {
 "식구와 같이 떠난다":"Go with my family",
 "전역하고 떠난다":"Leave the military and go",
 "짐을 싸서 {0}에 건너가 {1} 일부터 시작했다":"Packed up and moved to {0}. Starting out as: {1}",
-"짐을 싸서 {0}에 건너가 {1} 일을 이어 갔다":"Packed up and moved to {0}, still working as: {1}"
+"짐을 싸서 {0}에 건너가 {1} 일을 이어 갔다":"Packed up and moved to {0}, still working as: {1}",
+"복사했다":"Copied",
+"오늘 같은 곳에서 태어난 친구와 비교해 봐":"Compare with a friend born in the same place today"
 };
