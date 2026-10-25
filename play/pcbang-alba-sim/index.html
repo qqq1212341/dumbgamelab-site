@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"f6e222987","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}]};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"15493ac11","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}]};</script>
 <meta name="description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PC방 키우기 · Internet Cafe: Idle Tycoon">
@@ -111,6 +111,10 @@
     /* 폭 제한 없음 — 넓은 화면(PC·태블릿)은 월드를 옆으로 넓히고 고정 UI 는 가운데 칸에 모은다(엔진 render/responsiveViewport) */
     #game { position: relative; width: 100%; height: calc(100% - var(--dgl-safe-top) - env(safe-area-inset-bottom)); margin: var(--dgl-safe-top) auto 0; background: url('assets/bg-title.webp') center/cover no-repeat; }
     #game::before { content: ''; position: absolute; z-index: 0; top: 9%; left: 19%; width: 62%; aspect-ratio: 2.7; background: url('assets/ui/logo.png') center/contain no-repeat; }
+    /* 부팅 점 셋 — 느린 기기(에뮬레이터 등)에서 번들을 읽는 동안 «켜지는 중»이 보이게. 그림 파일 없이 CSS 만이라 첫 칠에 바로 선다.
+       z-index 0 이라 캔버스(1)가 그려지면 그 밑으로 가려진다(로고 ::before 와 같은 방식) */
+    #game::after { content: ''; position: absolute; z-index: 0; left: calc(50% - 30px); bottom: 16%; width: 12px; height: 12px; border-radius: 50%; background: #f6c86a; box-shadow: 24px 0 #f6c86a, 48px 0 #f6c86a; animation: dgl-boot-dots 1.1s ease-in-out infinite alternate; }
+    @keyframes dgl-boot-dots { from { opacity: .25; } to { opacity: 1; } }
     #game canvas { position: relative; z-index: 1; }
     :root { --dgl-safe-top: env(safe-area-inset-top); }
     html.dgl-native-android { --dgl-safe-top: max(24px, env(safe-area-inset-top)); }
@@ -156,7 +160,7 @@
       font-display: block;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-ytTpkAuW.js"></script>
+  <script type="module" crossorigin src="./assets/index-CMqS7X-O.js"></script>
 </head>
 <body>
   <div id="game"></div>
