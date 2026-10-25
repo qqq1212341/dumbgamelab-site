@@ -93,14 +93,16 @@ function discover(row, r){
   if(!state.dex.includes(k)){ state.dex.push(k); checkBook(); return true; }
   return false;
 }
-function pageRows(p){ return DATA.book[p] || []; }
+/* 도감 쪽 = 희귀도 7쪽 + (핼러윈 중이거나 으스스를 얻었으면) 으스스 쪽 */
+function bookPages(){ return DATA.book.length + (HW.on() || state.dex.some(k => /_7$/.test(k)) ? 1 : 0); }
+function pageRows(p){ return p >= DATA.book.length ? DATA.eventBook : (DATA.book[p] || []); }
 function pageHas(p, row){ return state.dex.includes(rk(row, p)); }
 function pageCount(p){ return pageRows(p).filter(row => pageHas(p, row)).length; }
 function pageDone(p){ return pageRows(p).length > 0 && pageCount(p) >= pageRows(p).length; }
 function checkBook(){
-  for(let p = 0; p < DATA.book.length; p++) if(pageDone(p) && !state.book.includes(p)){ state.book.push(p); window.__bookNew = p; }
+  for(let p = 0; p < bookPages(); p++) if(pageDone(p) && !state.book.includes(p)){ state.book.push(p); window.__bookNew = p; }
 }
-function dexTotal(){ return DATA.book.reduce((s, rows) => s + rows.length, 0); }
+function dexTotal(){ let n = 0; for(let p = 0; p < bookPages(); p++) n += pageRows(p).length; return n; }
 
 /* ---------- 환생(원작 rebirthManager: 필요 생물 N마리 + 돈 → 배율·아이템·잠금 시간 · 돈은 0으로) ---------- */
 function rebirthTask(){ return DATA.rebirth[state.task] || null; }

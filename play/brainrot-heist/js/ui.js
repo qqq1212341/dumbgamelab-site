@@ -3,19 +3,20 @@
    규칙은 econ.js 가 쥔다 — 여기는 부르고 보여 주기만 한다. */
 const $ = (id) => document.getElementById(id);
 function sheetOpen(){ return $("sheet").classList.contains("show"); }
-function openSheet(html, wide = false){ const c = $("sheetBody"); c.innerHTML = html; c.classList.toggle("wide", wide); c.scrollTop = 0; $("sheet").classList.add("show"); }
+function openSheet(html, wide = false, kind = ""){ const c = $("sheetBody"); c.innerHTML = html; c.dataset.k = kind; c.classList.toggle("wide", wide); c.scrollTop = 0; $("sheet").classList.add("show"); }
 function closeSheet(){ $("sheet").classList.remove("show"); refreshChrome(); }
 const cimg = (row, cls = "") => `<img class="sh-img ${cls}" src="assets/creatures/${rowOf(row).id}.png" alt="">`;
 const rchip = (r) => { const c = RARITY_COLORS[r]; return `<span class="chip" style="--c:${c.color === "#1b1b1b" ? "#444" : c.color}">${rarityName(r)}</span>`; };
 const rframe = (r) => { const c = RARITY_COLORS[r]; return c.color === "#1b1b1b" ? "#2b2b2b" : c.color; };
-function slotImg(row){ return row === LUCKY_ROW ? "assets/props/luckybox.png" : `assets/creatures/${rowOf(row).id}.png`; }
+function slotImg(row, r){ return row === LUCKY_ROW ? (r === 6 ? "assets/props/hwbox.png" : "assets/props/luckybox.png") : `assets/creatures/${rowOf(row).id}.png`; }
 function tile(row, r, label, ok = true){
-  return `<div class="tile${ok ? "" : " dim"}" style="--c:${rframe(r)}"><img src="${slotImg(row)}" alt=""><b>${label}</b></div>`;
+  return `<div class="tile${ok ? "" : " dim"}" style="--c:${rframe(r)}"><img src="${slotImg(row, r)}" alt=""><b>${label}</b></div>`;
 }
 
 /* ---------- 하단 메뉴 · 아이템 줄 · 털러 가기 버튼 ---------- */
 function refreshChrome(){
   const base = mode === "base";
+  if(typeof placeFabs === "function") placeFabs();
   const rb = $("raidBtn");
   if(rb){
     rb.classList.toggle("hide", !base);
@@ -50,7 +51,7 @@ $("itemBar").addEventListener("click", e => {
   const b = e.target.closest("[data-item]"); if(!b) return;
   const id = +b.dataset.item, fx = ITEM_FX[id];
   if(mode === "raid"){ RAID.useItem(id); refreshItemBar(); return; }
-  if(fx.kind === "base"){ if(useItem(id)){ if(lockBase()){ SFX.lock(); saveState(); } refreshChrome(); } return; }
+  if(fx.kind === "base"){ if(useItem(id)){ if(lockBase()){ SFX.lock(); saveState(); NET.sync(); } refreshChrome(); } return; }
   armed = armed === id ? 0 : id; SFX.zap(); pop(W / 2, layout().baseTop + 8, armed ? T("armed", { name: T("item_" + id) }) : "", "#cfe8ff"); refreshItemBar();
 });
 
@@ -133,7 +134,7 @@ function openFuseSheet(msg = ""){
 let bookPage = 0;
 function openBookSheet(p = bookPage){
   bookPage = p; state.bookSeen = state.book.length; saveState();
-  const tabs = DATA.book.map((_, i) => `<button class="tab${i === p ? " on" : ""}${pageDone(i) ? " done" : ""}" data-act="book" data-p="${i}" style="--c:${rframe(i)}">${rarityName(i)}</button>`).join("");
+  const tabs = Array.from({ length: bookPages() }, (_, i) => `<button class="tab${i === p ? " on" : ""}${pageDone(i) ? " done" : ""}" data-act="book" data-p="${i}" style="--c:${rframe(i)}">${rarityName(i)}</button>`).join("");
   const rows = pageRows(p).map(row => { const got = pageHas(p, row), id = rowOf(row).id;
     return `<div class="bk${got ? "" : " unk"}" style="--c:${rframe(p)}"><img src="${slotImg(row)}" alt=""><b>${got ? creatureName(id) : "???"}</b></div>`; }).join("");
   openSheet(`<div class="sh-title">${T("bkTitle")} <small>${state.dex.length}/${dexTotal()}</small></div>
@@ -143,37 +144,7 @@ function openBookSheet(p = bookPage){
     <div class="sh-btns"><button class="btn" data-act="close">${T("close")}</button></div>`, true);
 }
 
-/* ---------- 털러 가기 · 결과 · 자리 비운 동안 ---------- */
-function raidTargets(){
-  let best = 0; for(const sl of state.slots) if(sl && sl.row !== LUCKY_ROW) best = Math.max(best, sl.r);
-  return [0, 1, 2].map(tier => {
-    let r = Math.min(6, best + tier), list = DATA.pool[r];
-    while((!list || !list.length) && r > 0){ r--; list = DATA.pool[r]; }
-    const cand = list.filter(row => row !== LUCKY_ROW && incomeOf(row, r) > 0);
-    return { tier, row: cand[Math.floor(Math.random() * cand.length)], r };
-  });
-}
-function openRaidSheet(){
-  const free = freeSlotIdx(reservedSlots());
-  const cards = raidTargets().map(t => `<button class="raid-card" data-act="raid" data-row="${t.row}" data-r="${t.r}" data-tier="${t.tier}" ${free < 0 ? "disabled" : ""}>
-      ${cimg(t.row, "sm")}<span class="rc-name">${creatureName(rowOf(t.row).id)}</span>${rchip(t.r)}
-      <span class="rc-inc">${T("income", { v: fmt(incomeOf(t.row, t.r)) })}</span><span class="rc-diff d${t.tier}">${T("diff" + t.tier)}</span></button>`).join("");
-  openSheet(`<div class="sh-title">${T("raidTitle")}</div>${free < 0 ? `<div class="sh-warn">${T("raidNoSlot")}</div>` : ""}
-    <div class="raid-cards">${cards}</div><div class="sh-btns"><button class="btn" data-act="close">${T("close")}</button></div>`);
-}
-function startRaid(row, r, tier){
-  const slot = freeSlotIdx(reservedSlots()); if(slot < 0) return;
-  closeSheet(); mode = "raid"; thief = null; armed = 0; refreshChrome();
-  RAID.start(row, r, tier, slot);
-}
-/* raid.js 가 판이 끝나면 부른다 */
-function onRaidResult(win, row, r){
-  const ad = !win && ADS.ready();
-  openSheet(`<img class="sh-img" src="assets/raid/${win ? "chichi-cheer" : "chichi-shock"}.png" alt="">
-    <div class="sh-title ${win ? "good" : "bad"}">${win ? T("got", { name: creatureName(rowOf(row).id) }) : T("caught")}</div>
-    ${win ? cimg(row, "sm") + rchip(r) : ""}
-    <div class="sh-btns">${ad ? `<button class="btn ad" data-act="retry">${T("retryAd")}</button>` : ""}<button class="btn primary" data-act="home">${T("back")}</button></div>`);
-}
+/* ---------- 자리 비운 동안 (털러 가기·결과 창은 social.js) ---------- */
 function showAway(v){
   const ad = ADS.ready();
   openSheet(`<img class="sh-img" src="assets/raid/chichi-cheer.png" alt="">
@@ -222,7 +193,7 @@ $("mBook").onclick = () => { if(!sheetOpen()) openBookSheet(); };
 $("mCollect").onclick = () => { if(!sheetOpen()) collectAllNow(); };
 $("mLock").onclick = () => {
   if(sheetOpen()) return;
-  if(lockBase()){ SFX.lock(); pop(W / 2, layout().baseTop + 8, T("lockedMsg"), "#9fe8ff"); track("base_lock", {}); saveState(); refreshChrome(); }
+  if(lockBase()){ SFX.lock(); pop(W / 2, layout().baseTop + 8, T("lockedMsg"), "#9fe8ff"); track("base_lock", {}); saveState(); refreshChrome(); NET.sync(); }
   else { SFX.deny(); }
 };
 
@@ -236,9 +207,14 @@ function refreshTitle(){
   $("titleStats").textContent = state.bought ? T("stats", { n: creatureCount(), d: state.dex.length, t: dexTotal() }) : "";
   for(const [id, k] of [["lbShop", "mShop"], ["lbRebirth", "mRebirth"], ["lbFuse", "mFuse"], ["lbBook", "mBook"], ["lbCollect", "mCollect"]]) $(id).textContent = T(k);
   $("lbLock").textContent = T("mLock");
+  const hw = HW.on();   // 핼러윈 중엔 타이틀도 밤 색 + 이번 이벤트 생물이 나온다
+  $("titleOverlay").classList.toggle("hw", hw); $("titleStats").classList.toggle("hw", hw);
+  if(hw) $("titleStats").textContent = T("hwTitle") + (state.bought ? " · " + $("titleStats").textContent : "");
+  document.querySelector(".title-cast .c1").src = hw ? "assets/creatures/pumpcat.png" : "assets/creatures/bunshark.png";
+  document.querySelector(".title-cast .c3").src = hw ? "assets/creatures/sheetghost.png" : "assets/creatures/toastcat.png";
 }
 $("startBtn").onclick = startGame;
-$("resetBtn").onclick = () => { if(confirm(T("resetAsk"))){ state = newState(); saveState(); refreshTitle(); } };
+$("resetBtn").onclick = () => { if(confirm(T("resetAsk"))){ const id = { pid: state.pid, key: state.key, nick: state.nick }; state = { ...newState(), ...id }; saveState(); refreshTitle(); } };   // 새 게임이어도 «나»(닉네임·열쇠)는 그대로
 $("soundBtn").onclick = () => { state.muted = !state.muted; window.DGL_AUDIO && window.DGL_AUDIO.setOverride(state.muted); saveState(); refreshTitle(); };
 document.addEventListener("visibilitychange", () => {
   if(document.hidden) saveState();

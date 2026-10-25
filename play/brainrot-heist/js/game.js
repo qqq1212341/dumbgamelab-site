@@ -27,9 +27,12 @@ let walkers = [], flyers = [], pops = [], sparks = [];
 let spawnT = 0, beltScroll = 0, cashBump = 0, saveTimer = 0, saveTicks = 0, secT = 0, wid = 0;
 let thief = null, thiefT = 0, thiefNext = CONFIG.thief.first, armed = 0;
 let evSpawnAt = {}, evDebug = (/[?&]ev=(\w+)/.exec(location.search) || [])[1] || "";
-let lastLock = 0;
+let lastLock = 0, netT = 0;
 const shake = {};
 
+/* 호박 상자는 상자 단 6번이지만 눈에 보이는 단은 «으스스»(주황) */
+function visR(row, r){ return row === LUCKY_ROW && r === 6 ? 7 : r; }
+function luckySpr(r){ return r === 6 ? "props/hwbox" : "props/luckybox"; }
 function pop(x, y, text, color){ pops.push({ x, y, text, color, t: now }); }
 function reservedSlots(){ return flyers.map(f => f.slot); }
 function nextWalker(){
@@ -48,7 +51,7 @@ function startGame(){
   resize(); mode = "base"; state.plays++;
   document.getElementById("app").classList.add("playing");
   track("business_start", { plays: state.plays });
-  const away = settleOffline(); saveState();
+  const away = settleOffline(); settleOwed(); SKINS.sync(); saveState(); NET.sync();
   walkers = []; spawnT = CONFIG.spawnEvery - 1.2;
   refreshChrome();
   if(away >= 1) showAway(away);
@@ -61,6 +64,8 @@ cv.addEventListener("pointerdown", e => {
   if(mode === "raid"){ RAID.down(x, y); return; }
   if(mode !== "base" || sheetOpen()) return;
   const L = layout();
+  // 0-a) 핼러윈 사탕 통
+  if(HW.on() && HW.tap(x, y, L)) return;
   // 0) 도둑 — 먼저 맞힌다
   if(thief && !thief.fleeing && thief.state !== "gone" && Math.hypot(x - thief.x, y - (thief.y - L.cellH * 0.3)) < L.cellW * 0.75){ hitThief(L); return; }
   // 1) 컨베이어 위 생물 — 사기
@@ -84,7 +89,11 @@ function buy(w, L){
   if(free < 0){ shake.base = now; SFX.deny(); pop(w.x, L.beltY, T("noSlot"), "#ff6b6b"); return; }
   state.cash -= price; state.bought++;
   walkers = walkers.filter(o => o !== w);
-  if(w.ev) state.evClaim[w.ev] = (eventWindow(DATA.events.find(e => e.id === w.ev)).cur || { start: 1 }).start;
+  if(w.ev){
+    const evd = DATA.events.find(e => e.id === w.ev);
+    if(evd) state.evClaim[w.ev] = (eventWindow(evd).cur || { start: 1 }).start;
+    else if(w.ev === "halloween"){ HW.rollDay(); state.hw.boxes++; }
+  }
   flyers.push({ row: w.row, r: w.r, slot: free, t: now, from: { x: w.x, y: L.beltY + L.beltH * 0.85 } });
   pop(w.x, L.beltY + L.beltH * 0.2, price ? "-" + fmt(price) : T("free"), "#ffd24a");
   SFX.buy();
@@ -99,9 +108,14 @@ function tapPad(i, p){
     return;
   }
   if(sl.row === LUCKY_ROW){
-    if(sl.t > 0){ shake["pad" + i] = now; SFX.deny(); return; }
-    const got = openBox(i);
-    if(got){ SFX.open(); shake["pad" + i] = now; pop(p.x, p.y - p.h * 0.7, T("boxOpened", { name: creatureName(rowOf(got.row).id) }), RARITY_COLORS[got.r].color); announceBook(); saveState(); refreshChrome(); }
+    if(sl.t > 0){ shake["pad" + i] = now; SFX.deny(); if(ADS.ready()) openBoxSkipSheet(i); return; }   // 원작 유료 «바로 열기» 자리 = 광고
+    const hwBox = sl.r === 6, got = openBox(i);
+    if(got){
+      SFX.open(); shake["pad" + i] = now; pop(p.x, p.y - p.h * 0.7, T("boxOpened", { name: creatureName(rowOf(got.row).id) }), RARITY_COLORS[got.r].color); announceBook();
+      if(hwBox){ state.hw.opened++; track("hw_box_open", { r: got.r }); if(got.r === 7) burst(p.x, p.y - p.h * 0.5, "#ff7a1a"); }
+      if(SKINS.sync()) pop(W / 2, layout().beltY + 36, T("skinNew"), "#ffe27a");
+      saveState(); refreshChrome();
+    }
     return;
   }
   if(sl.pend >= 1){
@@ -199,6 +213,7 @@ function updateEvents(){
   }
 }
 function eventLine(){
+  if(HW.on() && Math.floor(now / 5) % 2 === 0) return HW.line();   // 핼러윈 중엔 5초마다 이벤트 줄과 번갈아
   let best = null;
   for(const ev of DATA.events){
     const { cur, next } = eventWindow(ev);
@@ -224,13 +239,14 @@ function update(dt){
     announceBook();
   }
   if(flyers.some(f => f.done)){ flyers = flyers.filter(f => !f.done); saveState(); refreshChrome(); }
-  updateThief(dt, L);
-  secT += dt;
+  updateThief(dt, L); HW.update(dt, L);
+  secT += dt; netT += dt;
   if(secT >= 1){
-    secT = 0; refreshChrome(); updateEvents();
+    secT = 0; refreshChrome(); updateEvents(); settleOwed(); pollInbox();
     const ll = lockLeft(); if(lastLock > 0 && ll <= 0) pop(W / 2, L.beltY + 18, T("unlockedMsg"), "#ffd0d0"); lastLock = ll;
   }
   saveTimer += dt; if(saveTimer > 5){ saveTimer = 0; saveState(); }
+  if(netT >= CONFIG.net.syncEvery){ netT = 0; NET.sync(); }
   sparks = sparks.filter(s => now - s.t < 0.9);
 }
 function burst(x, y, color){ for(let k = 0; k < 14; k++) sparks.push({ x, y, a: Math.random() * 6.28, v: 60 + Math.random() * 120, color, t: now }); }
@@ -252,14 +268,13 @@ function drawFloor(L){
   const x = 8, y = L.baseTop, w = W - 16, h = L.baseBot - L.baseTop, bw = wobble("base", 6);
   ctx.save(); ctx.translate(bw, 0);
   ctx.fillStyle = "rgba(30,50,10,.3)"; rr(x, y + 8, w, h, 22); ctx.fill();
-  const skin = [0, 1, 4, 7, 9, 11].filter(l => state.task >= l).length - 1;
-  const rim = ["#7a4a26", "#3f6f99", "#8a3f6f", "#4f7f2a", "#6a4a99", "#a8842a"][skin];
-  ctx.fillStyle = rim; rr(x, y, w, h, 22); ctx.fill();
+  const sk = SKINS.floor();   // 고른 기지 스킨 = 바닥 그림 + 테두리색 + (있으면) 색 입히기
+  ctx.fillStyle = sk.rim; rr(x, y, w, h, 22); ctx.fill();
   ctx.save(); rr(x + 7, y + 7, w - 14, h - 14, 16); ctx.clip();
-  const fl = spr("floor-wood");
+  const fl = spr(sk.tex);
   if(fl){ const ts = Math.max(160, w / 2.4); for(let py = y; py < y + h; py += ts) for(let px = x; px < x + w; px += ts) ctx.drawImage(fl, px, py, ts, ts); }
   else { ctx.fillStyle = "#d39a5b"; ctx.fillRect(x, y, w, h); }
-  if(skin > 0){ ctx.globalCompositeOperation = "multiply"; ctx.fillStyle = ["#fff", "#9fd2ff", "#ffa6d6", "#c5ff8f", "#cdaaff", "#ffe48f"][skin]; ctx.fillRect(x, y, w, h); ctx.globalCompositeOperation = "source-over"; }
+  if(sk.tint){ ctx.globalCompositeOperation = sk.mode || "multiply"; ctx.fillStyle = sk.tint; ctx.fillRect(x, y, w, h); ctx.globalCompositeOperation = "source-over"; }
   ctx.fillStyle = "rgba(255,255,255,.14)"; ctx.fillRect(x, y + 7, w, 5);
   // 2층 구분선
   if(L.rows > 2){ const ly = L.gy + L.cellH * 2; ctx.fillStyle = "rgba(60,30,10,.35)"; ctx.fillRect(x, ly - 3, w, 6); ctx.fillStyle = "rgba(255,230,160,.25)"; ctx.fillRect(x, ly + 3, w, 2); }
@@ -287,20 +302,20 @@ function drawPads(L){
     const rc = RARITY_COLORS[sl.r];
     const ch = Math.min(p.h * 0.62, p.w * 1.0);
     if(sl.row === LUCKY_ROW){
-      const bx = spr("props/luckybox"), bs = ch * 0.8, hop = sl.t <= 0 ? Math.abs(Math.sin(now * 5)) * 10 : 0;
-      drawAura(sl.r, px, p.y + 4, ch, now);
+      const bx = spr(luckySpr(sl.r)), bs = ch * 0.8, hop = sl.t <= 0 ? Math.abs(Math.sin(now * 5)) * 10 : 0;
+      drawAura(visR(sl.row, sl.r), px, p.y + 4, ch, now);
       if(bx) ctx.drawImage(bx, px - bs / 2, p.y - bs * 0.9 - hop, bs, bs * bx.height / bx.width);
       const lbl = sl.t > 0 ? T("boxWait", { s: Math.ceil(sl.t) }) : T("boxOpen");
       text(lbl, px, p.y + pw * 0.2, 13, sl.t > 0 ? "#fff" : "#ffe27a", { stroke: 4, strokeColor: "#1b1222" });
-      rarityTag(sl.r, px, p.y - ch - 6, 11);
+      rarityTag(visR(sl.row, sl.r), px, p.y - ch - 6, 11);
       return;
     }
     drawAura(sl.r, px, p.y + pw * 0.04, ch, now);
-    drawCreature(rowOf(sl.row).id, px, p.y + pw * 0.04, ch, Math.sin(now * 3 + i) * 0.025);
+    drawCreature(rowOf(sl.row).id, px, p.y + pw * 0.04, ch, Math.sin(now * 3 + i) * 0.025, true);
     text("+" + fmt(incomeOf(sl.row, sl.r)), px, p.y + pw * 0.2, 11, "#fff", { stroke: 3.5, strokeColor: hexA(rc.color === "#1b1b1b" ? "#000000" : rc.outline, 1) });
     if(sl.r >= 1) ctx.fillStyle = rc.color === "#1b1b1b" ? "#ffffff" : rc.color, ctx.fillRect(px - pw * 0.3, p.y + pw * 0.27, pw * 0.6, 3);
     if(sl.pend >= 1){
-      const by = p.y - ch - 8 + Math.sin(now * 4 + i) * 2, s = fmt(sl.pend * state.mult);
+      const by = p.y - ch - 8 - (state.skin.cr ? ch * 0.24 : 0) + Math.sin(now * 4 + i) * 2, s = fmt(sl.pend * state.mult);   // 소품을 쓰면 돈 말풍선이 그 위로 비킨다
       ctx.font = `900 12px "ONE Mobile POP", sans-serif`;
       const bw2 = Math.max(40, ctx.measureText(s).width + 18), full = sl.pend >= CONFIG.slotCap;
       ctx.fillStyle = full ? "#ff8a3a" : "#ffd24a"; rr(px - bw2 / 2, by - 11, bw2, 22, 11); ctx.fill();
@@ -315,12 +330,12 @@ function drawWalkers(L){
     const rc = RARITY_COLORS[w.r], price = priceOf(w.row, w.r), id = rowOf(w.row).id;
     const bob = Math.abs(Math.sin((now - w.born) * 7)) * ch * 0.05;
     shadow(w.x, foot, ch * 0.62);
-    drawAura(w.r, w.x, foot - bob, ch, now);
+    drawAura(visR(w.row, w.r), w.x, foot - bob, ch, now);
     if(w.row === LUCKY_ROW){
-      const bx = spr("props/luckybox"), bs = ch * 0.8; if(bx) ctx.drawImage(bx, w.x - bs / 2, foot - bob - bs * 0.95, bs, bs * bx.height / bx.width);
+      const bx = spr(luckySpr(w.r)), bs = ch * 0.8; if(bx) ctx.drawImage(bx, w.x - bs / 2, foot - bob - bs * 0.95, bs, bs * bx.height / bx.width);
     } else drawCreature(id, w.x, foot - bob, ch, Math.sin((now - w.born) * 14) * 0.02);
-    const nm = creatureName(id);
-    rarityTag(w.r, w.x, L.beltY - L.beltH * 0.2, 11);
+    const nm = w.row === LUCKY_ROW && w.r === 6 ? T("hwBoxName") : creatureName(id);
+    rarityTag(visR(w.row, w.r), w.x, L.beltY - L.beltH * 0.2, 11);
     text(nm, w.x, L.beltY - L.beltH * 0.06, 12, "#fff", { stroke: 4, strokeColor: "#1b1222" });
     text("+" + fmt(incomeOf(w.row, w.r)) + "/s", w.x, L.beltY + L.beltH * 0.08, 11, "#9bffa6", { stroke: 3.5, strokeColor: "#0e3a16" });
     const can = state.cash >= price, pw = 66, py = foot + 7;
@@ -337,7 +352,7 @@ function drawFlyers(L){
     const k = Math.min(1, (now - f.t) / 0.55), e = k * k * (3 - 2 * k), p = L.pads[f.slot];
     const x = f.from.x + (p.x - f.from.x) * e, y = f.from.y + (p.y - f.from.y) * e - Math.sin(k * Math.PI) * L.beltH * 0.9;
     drawAura(f.r, x, y, L.beltH * 0.7, now);
-    drawCreature(rowOf(f.row).id, x, y, L.beltH * 0.7, Math.sin(k * Math.PI) * -0.08);
+    drawCreature(rowOf(f.row).id, x, y, L.beltH * 0.7, Math.sin(k * Math.PI) * -0.08, true);
   }
 }
 function drawThief(L){
@@ -430,7 +445,7 @@ function frame(t){
   if(mode === "base"){
     update(dt);
     const L = layout();
-    drawGrass(); drawBelt(L); drawFloor(L); drawPads(L); drawWalkers(L); drawFlyers(L); drawThief(L); drawLockFence(L); drawHud(L); drawTutorial(L); drawPops();
+    drawGrass(HW.on() ? 0.32 : 0); drawBelt(L); drawFloor(L); HW.drawDeco(L); drawPads(L); drawWalkers(L); HW.drawCandy(L); drawFlyers(L); drawThief(L); drawLockFence(L); HW.drawBats(L); drawHud(L); drawTutorial(L); drawPops();
   } else if(mode === "raid"){ RAID.update(dt); RAID.draw(); }
   requestAnimationFrame(frame);
 }
@@ -450,6 +465,6 @@ window.__bh = {
   get state(){ return state; }, set state(v){ state = v; },
   walkers: () => walkers, layout, started: () => mode !== "title", mode: () => mode,
   canvasPoint(x, y){ const r = cv.getBoundingClientRect(); return { clientX: r.left + x, clientY: r.top + y }; },
-  spawnThief: () => spawnThief(layout()), thief: () => thief, raid: RAID, onRaidResult: (...a) => onRaidResult(...a), ui: { openShopSheet: () => openShopSheet(), openRebirthSheet: () => openRebirthSheet(), openFuseSheet: () => openFuseSheet(), openBookSheet: () => openBookSheet(), openRaidSheet: () => openRaidSheet() },
-  addWalker, refresh: () => { refreshChrome(); }, rows: () => DATA.rows, tickIncome, econ: { doRebirth, rebirthTask, doFuse, addCreature, addItem, shopBuy, restockShop, lockBase },
+  spawnThief: () => spawnThief(layout()), thief: () => thief, raid: RAID, onRaidResult: (...a) => onRaidResult(...a), ui: { openShopSheet: () => openShopSheet(), openRebirthSheet: () => openRebirthSheet(), openFuseSheet: () => openFuseSheet(), openBookSheet: (p) => openBookSheet(p), openRaidSheet: () => openRaidSheet() },
+  NET, HW, SKINS, settleOwed, addWalker, refresh: () => { refreshChrome(); }, rows: () => DATA.rows, tickIncome, econ: { doRebirth, rebirthTask, doFuse, addCreature, addItem, shopBuy, restockShop, lockBase },
 };

@@ -5,11 +5,14 @@ const ASSET_NAMES = [
   "bg-grass", "floor-wood", "belt", "chichi",
   ...DATA.rows.filter(r => r.row !== LUCKY_ROW).map(r => `creatures/${r.id}`),
   ...ITEM_IDS.map(id => `items/${id}`),
-  ...["pedestal", "pedestal-locked", "luckybox", "cashbag", "sign", "siren", "crate"].map(n => `props/${n}`),
+  "floor-cloud", "floor-candy", "floor-space",
+  ...["bow", "shades", "party", "crown", "halo", "witch"].map(n => `skins/${n}`),
+  ...["pumpkin", "web", "bat", "tomb", "candle", "cauldron"].map(n => `deco/${n}`),
+  ...["pedestal", "pedestal-locked", "luckybox", "hwbox", "candypail", "cashbag", "sign", "siren", "crate"].map(n => `props/${n}`),
   ...["ico-shop", "ico-rebirth", "ico-fuse", "ico-book", "ico-lock", "ico-mask", "ico-coins", "ico-cash"].map(n => `ui/${n}`),
   "raid/guard-back", "raid/guard-front", "raid/thief", "raid/chichi-run", "raid/chichi-shock", "raid/chichi-cheer",
 ];
-const JPG = new Set(["bg-grass", "floor-wood", "belt"]);
+const JPG = new Set(["bg-grass", "floor-wood", "floor-cloud", "floor-candy", "floor-space", "belt"]);
 const _imgs = {};
 function loadAssets(done){
   let left = ASSET_NAMES.length;

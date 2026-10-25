@@ -12,11 +12,12 @@ const RARITY_COLORS = [
   { id: "mythic",    color: "#ff3e96", outline: "#5a0a2e" },
   { id: "god",       color: "#1b1b1b", outline: "#ffffff" },
   { id: "celestial", color: "#e5ff00", outline: "#ff00ea" },
+  { id: "spooky",    color: "#ff7a1a", outline: "#2b0a3a" },   // 8단째 «으스스» — 핼러윈 이벤트로만 나온다(원작 7번 희귀도)
 ];
 const ROW_BY_ROW = Object.fromEntries(DATA.rows.map(r => [r.row, r]));
 const ROW_BY_ID = Object.fromEntries(DATA.rows.map(r => [r.id, r]));
 const LUCKY_ROW = 20;
-const LUCKY_TIME = [30, 30, 30, 60, 90, 150];   // 원작: 박스 희귀도별 열리는 데 걸리는 초
+const LUCKY_TIME = [30, 30, 30, 60, 90, 150, 90];   // 6번째 = 핼러윈 호박 상자(원작 Pumpky Block 90초)   // 원작: 박스 희귀도별 열리는 데 걸리는 초
 
 const CONFIG = {
   startCash: 0,                 // 원작: 0 — 첫 손님이 공짜(행 0 · 일반 = 0원)
@@ -49,6 +50,10 @@ const CONFIG = {
   },
   thief: { first: 70, every: [90, 160], walk: 7.5, hp: 4, minCreatures: 2 },
   interstitialGap: 120,
+  /* 핼러윈 이벤트(10/25~11/2 · 기기 시각) — 으스스 생물 수치·호박 상자 표는 원작 37·38줄과 PumpkinLB 표 그대로(core/concepts/roblox-port/RE-steal-a-brainrot.md §11) */
+  hw: { from: [10, 25], to: [11, 2], boxEvery: 75, boxPerDay: 6, candyEvery: 50, candyCoins: 6, candyMult: 0.3, candyMin: 100 },
+  /* 멀티(비동기 훔치기) — 서버 = core/tools/brainrot-api */
+  net: { api: "https://dgl-brainrot-api.iap-validator.workers.dev", syncEvery: 45, timeout: 4500, maxNick: 12 },
 };
 
 /* 아이템 효과(이 판 값) — 원작 기능을 «도둑 쫓기»·«잠입» 두 자리로 옮겼다. 내구도 = 원작 값(data.js items[6]) */

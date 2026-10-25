@@ -23,8 +23,8 @@ const RAID = (() => {
     get active(){ return !!r; },
     get phase(){ return r ? (r.result || r.phase) : null; },
     get stage(){ return r ? r.stage : null; },
-    start(row, r2, tier, slot){
-      r = { row, r2, tier, slot, p: 0, holding: false, result: null, resultT: 0, steps: 0, stage: "go", grab: 0, decoy: 0, ghost: 0, swap: false, flash: "" };
+    start(row, r2, tier, slot, meta){
+      r = { row, r2, tier, slot, meta: meta || null, p: 0, holding: false, result: null, resultT: 0, steps: 0, stage: "go", grab: 0, decoy: 0, ghost: 0, swap: false, flash: "" };
       setPhase("away"); r.phaseLen = Math.max(r.phaseLen, 2.2); // 첫 «무궁화»는 넉넉히 — 규칙을 읽을 시간
       state.raids++; saveState();
       track("raid_start", { row, r: r2, tier });
@@ -73,15 +73,14 @@ const RAID = (() => {
       r.result = win ? "win" : "lose"; r.holding = false; r.resultT = 0;
       if(win){
         SFX.win();
-        addCreature(r.row, r.r2, 0, r.slot);
-        state.raidWins++; window.__bookNew != null && announceBook();
+        if(!r.meta){ addCreature(r.row, r.r2, 0, r.slot); state.raidWins++; window.__bookNew != null && announceBook(); }   // 진짜 기지면 서버가 허락해야 얻는다(onRaidResult)
       } else { SFX.caught(); try{ navigator.vibrate && navigator.vibrate(200); }catch(e){} }
       state.raidReadyAt = Date.now() + CONFIG.raid.cooldown * 1000;
       saveState();
       track(win ? "raid_win" : "raid_fail", { row: r.row, r: r.r2, tier: r.tier });
-      setTimeout(() => onRaidResult(win, r.row, r.r2), 900);
+      const done = r; setTimeout(() => onRaidResult(win, done.row, done.r2, done.meta, done.slot), 900);
     },
-    retry(){ if(r){ const { row, r2, tier, slot } = r; r = null; this.start(row, r2, tier, slot); state.raids--; } },
+    retry(){ if(r){ const { row, r2, tier, slot, meta } = r; r = null; this.start(row, r2, tier, slot, meta); state.raids--; } },
     end(){ r = null; refreshItemBar(); },
     draw(){
       if(!r) return;
@@ -92,6 +91,7 @@ const RAID = (() => {
       if(ped){ const pw = 150, ph = pw * ped.height / ped.width; ctx.drawImage(ped, g.pathX - pw / 2, g.pedY - ph * 0.55, pw, ph); }
       const glow = 0.5 + Math.sin(now * 4) * 0.2;
       ctx.fillStyle = `rgba(255,220,120,${glow * 0.3})`; ctx.beginPath(); ctx.ellipse(g.pathX, g.pedY - 40, 70, 70, 0, 0, Math.PI * 2); ctx.fill();
+      if(r.meta) text(T("raidOwner", { nick: r.meta.nick }), g.pathX, g.pedY + H * 0.075, 14, "#fff", { stroke: 4, strokeColor: "#1b1222" });
       const carrying = r.stage === "back" || r.result === "win";
       const tid = rowOf(r.row).id;
       if(!carrying){ drawAura(r.r2, g.pathX, g.pedY, H * 0.15, now); drawCreature(tid, g.pathX, g.pedY, H * 0.15, Math.sin(now * 3) * 0.02); }

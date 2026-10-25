@@ -32,20 +32,20 @@ function drawSprite(name, cx, footY, h, squash = 0, flip = false){
   ctx.save(); ctx.translate(cx, footY); ctx.scale((1 + squash) * (flip ? -1 : 1), 1 - squash);
   ctx.drawImage(im, -w / 2, -h, w, h); ctx.restore();
 }
-function drawCreature(id, cx, footY, h, squash = 0){ drawSprite("creatures/" + id, cx, footY, h, squash); }
+function drawCreature(id, cx, footY, h, squash = 0, dressed = false){ drawSprite("creatures/" + id, cx, footY, h, squash); if(dressed) SKINS.dress(id, cx, footY, h); }   // dressed = 내 소품(스킨)을 얹는다
 /* 희귀도 «겉옷» — 원작은 희귀도마다 모델을 바꿔 끼운다(Render_<희귀도>). 우리는 그림 하나에 빛무리·반짝이로 입힌다. 일반은 그대로 */
 function drawAura(r, cx, footY, h, t){
   if(r < 1) return;
-  const col = RARITY_COLORS[r].color, a = [0, .16, .22, .3, .36, .45, .5][r];
+  const col = RARITY_COLORS[r].color, a = [0, .16, .22, .3, .36, .45, .5, .55][r];
   const rg = r === 5 ? "#ffffff" : col;
   const g = ctx.createRadialGradient(cx, footY - h * 0.45, h * 0.05, cx, footY - h * 0.45, h * 0.62);
   g.addColorStop(0, hexA(rg, a * 1.6)); g.addColorStop(1, hexA(rg, 0));
   ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(cx, footY - h * 0.45, h * 0.62, h * 0.66, 0, 0, Math.PI * 2); ctx.fill();
   if(r >= 4){
-    const n = r >= 6 ? 6 : 4;
+    const n = r >= 6 ? 6 : 4;   // 천상·으스스는 반짝이 6
     for(let k = 0; k < n; k++){
       const ph = (t * (0.6 + k * 0.13) + k * 1.7) % 1, px = cx + Math.sin(k * 2.4 + t) * h * 0.4, py = footY - h * (0.1 + ph * 0.9);
-      ctx.fillStyle = hexA(r === 5 ? "#ffffff" : r === 6 ? "#ff7cf2" : "#fff3a0", (1 - ph) * 0.9);
+      ctx.fillStyle = hexA(r === 5 ? "#ffffff" : r === 6 ? "#ff7cf2" : r === 7 ? "#ffb347" : "#fff3a0", (1 - ph) * 0.9);
       ctx.beginPath(); ctx.moveTo(px, py - 4); ctx.lineTo(px + 1.6, py); ctx.lineTo(px, py + 4); ctx.lineTo(px - 1.6, py); ctx.fill();
     }
   }
