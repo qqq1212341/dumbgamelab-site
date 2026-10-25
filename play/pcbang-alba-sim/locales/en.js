@@ -2049,5 +2049,6 @@ window.__DGL_STRINGS={
 "지금은 결제할 수 없어요":"Payments aren't available right now",
 "통신판매업":"Mail-order business",
 "프리미엄":"Premium",
-"프리미엄 적용 중":"Premium active"
+"프리미엄 적용 중":"Premium active",
+"트위치·유튜브 채널":"Twitch / YouTube channel"
 };

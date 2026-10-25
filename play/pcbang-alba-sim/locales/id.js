@@ -2049,5 +2049,6 @@ window.__DGL_STRINGS={
 "지금은 결제할 수 없어요":"Saat ini belum bisa membayar",
 "통신판매업":"Usaha penjualan jarak jauh",
 "프리미엄":"Premium",
-"프리미엄 적용 중":"Premium aktif"
+"프리미엄 적용 중":"Premium aktif",
+"트위치·유튜브 채널":"Channel Twitch / YouTube"
 };
