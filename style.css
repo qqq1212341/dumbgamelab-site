@@ -80,3 +80,11 @@ html, body { overflow-x: hidden; }
   .info dd { margin-bottom: 10px; }
   nav ul { gap: 12px; }
 }
+
+/* legal pages */
+.doc table.info { width: 100%; border-collapse: collapse; margin: 16px 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.doc table.info th, .doc table.info td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); }
+.doc table.info th { width: 11em; color: var(--ink); font-weight: 700; }
+.doc .langs, .doc .prio { font-size: 14px; margin-top: 32px; }
+.doc .prio { margin-top: 8px; }
+.doc ol { padding-left: 1.4em; }
