@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ko" data-feedback="menu">
+<head>
+  <meta charset="utf-8" />
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"d430ea25d","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}]};</script>
+<meta name="description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PC방 키우기 · Internet Cafe: Idle Tycoon">
+<meta property="og:description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:url" content="https://dumbgamelab.com/play/pcbang-alba-sim/">
+<meta property="og:image" content="https://dumbgamelab.com/play/pcbang-alba-sim/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://dumbgamelab.com/play/pcbang-alba-sim/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PC방 키우기 · Internet Cafe: Idle Tycoon">
+<meta name="twitter:description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
+<link rel="canonical" href="https://dumbgamelab.com/play/pcbang-alba-sim/">
+<script>"use strict";
+/* 작은 JSON 묶음 읽기 — 웹 빌드에서 slim.mjs 가 `<prefix><폴더>/_bundle.json` 으로 묶은 JSON 들을 `fetch` 가 거기서 꺼내 준다.
+ *
+ * 왜: 포털은 파일 수에 한도가 있다(CrazyGames 1,500 · itch 1,000). PC방은 캐스트 한 명당 clip/audit/art/atlas JSON 이 수십 개라
+ *   JSON 만 650개다. 게임 코드는 `fetch('assets/shared-human/…/clip.json')` 그대로 두고, 여기서 가로채 묶음에서 돌려준다.
+ * 묶음에 없거나(= 안 묶은 파일) 묶음을 못 받으면 **원래 fetch 로 그대로 간다** — 이 쉼이 틀려도 느려질 뿐 깨지진 않는다.
+ * 설정: window.__DGL_WEB.bundle = [{ prefix: 'assets/shared-human/', segments: 1 }]  (build.mjs 가 심는다)
+ */
+(function () {
+  var rules = (window.__DGL_WEB && window.__DGL_WEB.bundle) || [];
+  var origFetch = window.fetch;
+  if (!rules.length || !origFetch) return;
+  var base = new URL("./", document.baseURI).pathname;
+  var cache = {};   // 묶음 경로 → Promise<{상대경로: 본문}|null>
+
+  function relOf(input) {
+    try {
+      var u = new URL(typeof input === "string" ? input : input.url, document.baseURI);
+      if (u.origin !== location.origin || u.pathname.indexOf(base) !== 0) return null;
+      return decodeURIComponent(u.pathname.slice(base.length));
+    } catch (e) { return null; }
+  }
+  function bundleOf(rel) {
+    if (!/\.json$/.test(rel)) return null;
+    for (var i = 0; i < rules.length; i++) {
+      var r = rules[i];
+      if (rel.indexOf(r.prefix) !== 0) continue;
+      var rest = rel.slice(r.prefix.length).split("/");
+      if (rest.length <= r.segments) return null;
+      var head = rest.slice(0, r.segments).join("/");
+      return r.prefix + (r.family ? head.replace(/-(work|seat)$/, "") : head) + "/_bundle.json";
+    }
+    return null;
+  }
+
+  window.fetch = function (input, init) {
+    var self = this, args = arguments;
+    var method = (init && init.method) || (typeof input !== "string" && input && input.method) || "GET";
+    var rel = method === "GET" ? relOf(input) : null;
+    var b = rel && bundleOf(rel);
+    if (!b) return origFetch.apply(self, args);
+    var p = cache[b] || (cache[b] = origFetch.call(window, base + b).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }));
+    return p.then(function (m) {
+      if (m && Object.prototype.hasOwnProperty.call(m, rel)) {
+        return new Response(m[rel], { status: 200, headers: { "content-type": "application/json" } });
+      }
+      return origFetch.apply(self, args);
+    });
+  };
+})();
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>PC방 키우기</title>
+
+  <!-- ═══ 공장 기본값 3종 — 이 순서가 계약이다 ══════════════════════════════════
+       ★ 여기 있는 세 줄은 **새 게임이 base 를 복제하면 딸려오라고** 둔 것이다.
+         예전엔 이게 게임에만 있어서, 복제한 게임이 스플래시·계측·다국어를 통째로
+         빠뜨린 채 출시 직전까지 갔다(PCAlba 스플래시 누락이 그 경로였다).
+         지우지 마라. 필요 없으면 그 게임에서 빼되, 뺐다는 걸 알고 빼라.
+
+       ① 스튜디오 스플래시 — 모든 DGL 게임 공통 필수(CLAUDE.md).
+          <head> 맨 앞이어야 게임이 뜨기 전에 브랜드 인트로가 먼저 나온다. 의존성 0 드롭인.
+          ※ 에셋은 레포 비대를 피하려고 base 에 안 넣었다 — 게임을 만들 때
+            `core/brand/splash/` 에서 `assets/dgl-splash.png` · `assets/audio/dgl-splash.mp3`
+            로 복사한다(BUILD-ORDER §4 '복사해서 쓰는 것'). 없으면 스플래시는 조용히 건너뛴다.
+       ② 계측(GA4) — 플레이어 행동 데이터. splash 다음, 게임 모듈보다 먼저.
+          측정 ID 는 DGL 공용이고 게임 구분은 analytics.js 안의 GAME 슬러그로 한다.
+          ※ 새 게임은 그 슬러그를 **반드시** 바꿔라(안 바꾸면 남의 게임 지표에 섞인다).
+       ③ 다국어 — 게임 모듈보다 **먼저** 실행돼야 한다(i18n-playbook §4).
+          시설표·대사표가 모듈 최상위에서 __t() 를 부르므로 사전이 그 전에 메모리에 있어야
+          하고, 그건 동기 <script> 로만 보장된다. type=module 은 defer 라 항상 이 뒤에 돈다
+          — 순서가 공짜로 맞는다.
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- ★ 소리 환경 판정(로컬 무음·배포 유음) — 소리를 내는 어떤 스크립트보다 먼저 -->
+  <script src="js/audio-env.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/analytics.js"></script>
+  <!-- 나라별 접속 계측(GA 가 막힌 본토용) — 켜는 건 dgl.game.json beacon:true. 설명서 = core/tools/beacon/README.md -->
+  <script src="js/beacon.js" data-game="pcbangalba"></script>
+  <script src="js/i18n.js"></script>
+
+  <!-- 로케일별 폰트(@font-face + html[lang] 스택). **자동 생성** = core/tools/i18n/fonts.js.
+       아래 style 블록보다 **먼저** 와야 게임별 스타일이 이길 수 있다. -->
+  <link rel="stylesheet" href="css/i18n-fonts.css" />
+
+  <style>
+    html, body { margin: 0; padding: 0; background: #0d0e12; height: 100%; overflow: hidden; touch-action: none; }
+    /* 앱이지 웹페이지가 아니다 — 누를 때 파란 번쩍임·길게 누를 때 글자 선택·화면을 끌 때 긁힘·iOS 말풍선을 뿌리에서 끈다.
+       게이트 = core/tools/check-touch-ui.mjs (tap-highlight · text-select · page-select) */
+    *, *::before, *::after { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+    input, textarea, [contenteditable] { -webkit-user-select: text; user-select: text; }
+    /* 폭 제한 없음 — 넓은 화면(PC·태블릿)은 월드를 옆으로 넓히고 고정 UI 는 가운데 칸에 모은다(엔진 render/responsiveViewport) */
+    #game { position: relative; width: 100%; height: calc(100% - var(--dgl-safe-top) - env(safe-area-inset-bottom)); margin: var(--dgl-safe-top) auto 0; background: url('assets/bg-title.webp') center/cover no-repeat; }
+    #game::before { content: ''; position: absolute; z-index: 0; top: 9%; left: 19%; width: 62%; aspect-ratio: 2.7; background: url('assets/ui/logo.png') center/contain no-repeat; }
+    #game canvas { position: relative; z-index: 1; }
+    :root { --dgl-safe-top: env(safe-area-inset-top); }
+    html.dgl-native-android { --dgl-safe-top: max(24px, env(safe-area-inset-top)); }
+    canvas { display: block; }
+  </style>
+  <style>
+    /* ★★ **한국어 게임 폰트** — 2026-07-21 사장님 확정. 시스템 고딕·Pretendard 금지.
+         메인 = ONE Mobile POP(버튼·라벨·HUD·제목) · 보조 = NEXON Lv.1 고딕(숫자·긴 안내문).
+         스택 선언은 `src/data/fonts.ts` 의 FONT_GAME/FONT_TEXT 이고, **여기가 그 짝**이다.
+
+       ★ 이 선언이 빠지면 **아무도 못 잡는다** (2026-08-16 실사고):
+         스택은 멀쩡하고 OTF 도 번들에 들어 있는데 `@font-face` 가 없어서 브라우저가
+         파일을 **요청조차 안 한다** → 전 화면이 조용히 OS 고딕으로 떨어진다.
+         글자는 멀쩡히 읽히므로 스크린샷을 봐도 모른다. PCAlba 재제작본이 그 상태였다.
+         base 에 두는 이유가 그것이다 — 복제해 만드는 다음 게임이 같은 구멍을 물고 가면 안 된다.
+
+       ★ woff2 변환·서브셋 **금지**: 두 폰트 다 '배포된 형태 그대로' 조항이 있어 OTF 원본을
+         그대로 번들한다(라이선스 전문 = assets/fonts/FONT-LICENSES.md — 넥슨이 저작권 안내
+         포함을 요구한다). 새 게임을 만들 때 `core/brand/fonts/` 에서 세 파일 + 라이선스를
+         `public/assets/fonts/` 로 복사할 것. */
+    @font-face {
+      font-family: 'ONE Mobile POP';
+      src: url('assets/fonts/ONEMobilePOP.otf') format('opentype');
+      font-display: block;
+      /* ★★ **POP 의 빈 글리프 넷을 뺀다** — `—`(U+2014) `–`(U+2013) `•`(U+2022) `✖`(U+2716).
+         cmap 에는 **있는데 외곽선이 비어 있다**(bounds=None). 그래서 브라우저는 "이 폰트에
+         있다"고 판단해 **폴백을 안 하고 빈칸을 찍는다** — 없는 것보다 있는 게 더 나쁜 경우다.
+         라이브(prototype/css/style.css)는 2026-07-23 에 이걸 넣었는데 **재제작본에는 안 왔고**,
+         그래서 새 빌드는 문장의 대시가 통째로 사라진 채 돌고 있었다("일이 2건 밀렸어요
+         직원이 필요해요" — 사장님 2026-08-21 스크린샷). 폰트 파일은 손대지 않는다(라이선스). */
+      unicode-range: U+0-2012, U+2015-2021, U+2023-2715, U+2717-10FFFF;
+    }
+    @font-face {
+      font-family: 'NEXON Lv1 Gothic';
+      src: url('assets/fonts/NEXONLv1GothicLow.otf') format('opentype');
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'NEXON Lv1 Gothic';
+      src: url('assets/fonts/NEXONLv1GothicLow-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-display: block;
+    }
+  </style>
+  <script type="module" crossorigin src="./assets/index-CH8Je4Zm.js"></script>
+</head>
+<body>
+  <div id="game"></div>
+<script>"use strict";
+/* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
+ *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
+ *   베타 빌드만 베타 표시(beta/lib.mjs BETA_MARK)가 붙는다(check-beta 가 그 표시로 승격을 막는다 — 버튼 유무가 아니다).
+ *
+ * 왼쪽 가장자리 작은 탭(아래 탭바·위 HUD 를 안 가리는 자리 — 스샷으로 잰 결과) → 한 줄 → GA 이벤트 `feedback` 한 건. 비밀키가 번들에 없고(공개 페이지에서 쓰는 건 측정 ID 뿐),
+ * 공개 입력이 자동 수정 워커로 곧장 들어가는 길도 아니다. 읽는 쪽은 `core/tools/feedback/run.mjs`(1시간마다 → 티켓 + 조종석 카드).
+ * 자동 첨부 = 마지막 JS 오류 한 줄(`msg`) · 화면(`screen`) · 빌드. 기기·OS·앱 버전은 GA 가 붙인다. 오류가 나면 버튼이 진해진다(«오류 뒤 창구 안내» — 리뷰 요청을 거르는 게 아니다).
+ * 로컬(개발) 트래픽은 analytics.js 가 GA 로 보내지 않는다 → 콘솔 로그만(?dglSend=1 로 강제).
+ */
+(function () {
+  var CFG = window.__DGL_WEB || {};
+  var BETA = CFG.target === "beta";
+  if (window.__DGL_FEEDBACK_ON) return; /* 두 번 심어도 버튼은 하나 */
+  window.__DGL_FEEDBACK_ON = 1;
+  var lastErr = "";
+  function noteErr(m) { lastErr = String(m || "").replace(/\s+/g, " ").slice(0, 100); var b = document.getElementById("dgl-feedback-btn"); if (b) b.style.opacity = ".95"; }
+  window.addEventListener("error", function (e) { noteErr((e && (e.message || (e.error && e.error.message))) || "error"); });
+  window.addEventListener("unhandledrejection", function (e) { var r = e && e.reason; noteErr("promise: " + ((r && r.message) || r || "")); });
+  /* 보내는 길 — 앱(Capacitor)이면 Firebase 플러그인으로 곧장(게임의 계측이 앱 안에서 꺼져 있어도 제보는 간다), 아니면 게임의 DGL.track */
+  function send(name, params) {
+    var C = window.Capacitor, FA = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.FirebaseAnalytics;
+    if (CFG.game) params.game = CFG.game;
+    try {
+      if (FA && FA.logEvent) return void FA.logEvent({ name: name, params: params });
+      if (window.DGL && typeof window.DGL.track === "function") window.DGL.track(name, params);
+    } catch (e) { /* 제보가 판을 끊으면 안 된다 */ }
+  }
+  /* Play 사전 출시 로봇(Firebase Test Lab)이 글 칸마다 아무 글자나 치고 보낸다(2026-10-22 «ospuuq» 등 7건 — t-261022-3oj3).
+   * 판별은 기기 설정 — feedback/robot-guard.mjs 가 android/ 에 심은 DglEnv 플러그인. 로봇 글은 where:"robot" 으로 나가 수집기가 뺀다 */
+  var robot = false;
+  try {
+    var EP = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.DglEnv;
+    if (EP && EP.isTestLab) EP.isTestLab().then(function (r) { robot = !!(r && r.value); }, function () {});
+  } catch (e) {}
+  /* 베타 테스터 수 = 하루 한 번 «열었다» 한 건(core/tools/beta/run.mjs 가 사용자 수로 센다) */
+  if (BETA) {
+    try {
+      var day = new Date().toISOString().slice(0, 10);
+      if (localStorage.getItem("dgl.beta.open") !== day) setTimeout(function () { if (robot) return; /* 로봇은 테스터가 아니다 */ localStorage.setItem("dgl.beta.open", day); send("beta_open", { build: CFG.build || "" }); }, 3000);
+    } catch (e) {}
+  }
+  var COPY = {
+    ko: { btn: "의견", ph: "불편한 점이나 바라는 점을 한 줄로", send: "보내기", close: "닫기", thanks: "받았어요. 고맙습니다", empty: "한 줄만 적어 주세요" },
+    en: { btn: "Feedback", ph: "Tell us what bugged you, in one line", send: "Send", close: "Close", thanks: "Got it. Thank you", empty: "Please write one line" },
+  };
+  /* 설정 줄 문구 — 키는 언어 접두(중국어만 간·번체를 나눈다). 없으면 영어 */
+  var MENU_LABEL = { ko: "의견 보내기", en: "Send feedback", ja: "ご意見を送る", "zh-hans": "发送反馈", "zh-hant": "傳送意見", id: "Kirim masukan", th: "ส่งความคิดเห็น", vi: "Gửi góp ý", es: "Enviar comentarios", pt: "Enviar sugestão", tr: "Geri bildirim gönder" };
+  function menuLabel() {
+    var l = String((window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko").toLowerCase().replace("_", "-");
+    if (l.indexOf("zh") === 0) return MENU_LABEL[/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans"];
+    return MENU_LABEL[l.split("-")[0]] || MENU_LABEL.en;
+  }
+  function lang() {
+    var l = (window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko";
+    return String(l).toLowerCase().indexOf("ko") === 0 ? "ko" : "en";
+  }
+  function build() {
+    var C = COPY[lang()];
+    var root = document.createElement("div");
+    root.id = "dgl-feedback";
+    /* 자리 — 게임이 <html data-feedback-top="56%"> 로 옮길 수 있다(화면 글·아이콘을 가리지 않는 높이) */
+    var top = document.documentElement.getAttribute("data-feedback-top") || "42%";
+    /* 메뉴형 — 게임이 <html data-feedback="menu"> 로 선언하면 떠 있는 탭을 안 그리고 window.DGL_FEEDBACK.open() 만 내준다.
+     * 앱은 설정·프로필 화면에 «의견 보내기» 줄을 두고 그걸 부른다(2026-10-23 사장님 «항상 떠 있으면 거슬린다 — 프로필 같은 데 있어야지»). */
+    var MENU = document.documentElement.getAttribute("data-feedback") === "menu";
+    root.setAttribute("style", MENU
+      ? "position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none"
+      : "position:fixed;left:0;top:" + top + ";z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "dgl-feedback-btn";
+    btn.textContent = C.btn;
+    /* 가는 세로 탭 — 화면 가장자리 17px 만 쓰고 누르는 높이는 44 */
+    btn.setAttribute("style", "writing-mode:vertical-rl;min-height:44px;font-size:11px;letter-spacing:1px;padding:6px 3px;border:1px solid rgba(255,255,255,.35);border-left:0;border-radius:0 12px 12px 0;background:rgba(13,14,18,.55);color:#fff;opacity:" + (lastErr ? ".95" : ".55") + ";font:inherit;cursor:pointer");
+    var box = document.createElement("form");
+    box.setAttribute("style", "display:none;gap:6px;align-items:center;padding:8px;border-radius:" + (MENU ? "14px" : "0 12px 12px 0") + ";background:rgba(13,14,18,.92);border:1px solid rgba(255,255,255,.3)");
+    var input = document.createElement("input");
+    input.type = "text"; input.maxLength = 100; input.placeholder = C.ph;
+    input.setAttribute("aria-label", C.ph);
+    input.setAttribute("style", (MENU ? "flex:1;min-width:0;" : "width:min(62vw,260px);") + "padding:7px 8px;border-radius:8px;border:1px solid #888;background:#fff;color:#111;font:14px/1.2 system-ui,sans-serif;-webkit-user-select:text;user-select:text");
+    var sendBtn = document.createElement("button"); /* ★ 이름이 `send` 면 위의 보내는 함수를 덮어써 제보가 한 건도 안 나간다(2026-10-21 실측) */
+    sendBtn.type = "submit"; sendBtn.textContent = C.send;
+    sendBtn.setAttribute("style", "padding:8px 10px;border:0;border-radius:8px;background:#ffcf33;color:#111;font:inherit;cursor:pointer");
+    var close = document.createElement("button");
+    close.type = "button"; close.textContent = C.close;
+    close.setAttribute("style", "padding:8px 6px;border:0;background:none;color:#ccc;font:inherit;cursor:pointer");
+    box.appendChild(input); box.appendChild(sendBtn); box.appendChild(close);
+    root.appendChild(btn); root.appendChild(box);
+    /* 게임이 이 위젯의 터치·키 입력을 가로채지 않게 — Phaser 가 window 에서 듣는다 */
+    ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) {
+      root.addEventListener(t, function (e) { e.stopPropagation(); });
+    });
+    if (MENU) { btn.style.display = "none"; btn.style.writingMode = "horizontal-tb"; btn.style.border = "0"; btn.style.borderRadius = "12px"; btn.style.padding = "12px 16px"; btn.style.margin = "0 auto"; btn.style.opacity = "1"; btn.style.background = "rgba(13,14,18,.92)"; root.style.textAlign = "center"; }
+    function toggle(open) { box.style.display = open ? "flex" : "none"; btn.style.display = open || MENU ? "none" : ""; if (open) input.focus(); }
+    /* 보내기 한 곳 — 떠 있는 탭·메뉴형 페이지·게임이 그린 자기 페이지(DGL_FEEDBACK.send)가 다 이걸 부른다 */
+    function submit(raw) {
+      var text = String(raw || "").replace(/\s+/g, " ").trim();
+      if (!text) return false;
+      var where = {};
+      try { var cx = window.DGL && window.DGL.ctx; where = (typeof cx === "function" ? cx() : cx) || {}; } catch (er) {}
+      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: robot ? "robot" : BETA ? "beta" : CFG.target || "web", screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      return true;
+    }
+    /* 메뉴형은 별도 페이지 — 설정 목록 위에 검은 막대를 띄우면 앱과 따로 논다(2026-10-25 사장님 «드롭다운 혹은 별도 페이지로 빼기»).
+     * 색은 게임이 CSS 변수(--dgl-fb-bg·--dgl-fb-ink·--dgl-fb-card·--dgl-fb-accent·--dgl-fb-accent-ink)로 맞춘다. 앱이 제 화면을 그리면 send() 만 쓴다 */
+    function openPage() {
+      var old = document.getElementById("dgl-feedback-page"); if (old) old.remove();
+      var page = document.createElement("form");
+      page.id = "dgl-feedback-page";
+      page.setAttribute("role", "dialog"); page.setAttribute("aria-label", menuLabel());
+      page.setAttribute("style", "position:fixed;inset:0;z-index:2147483001;display:flex;flex-direction:column;gap:14px;padding:calc(12px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));background:var(--dgl-fb-bg,#faf6f1);color:var(--dgl-fb-ink,#2b2420);font:600 15px/1.4 system-ui,sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent");
+      var head = document.createElement("div");
+      head.setAttribute("style", "display:flex;align-items:center;min-height:44px");
+      var back = document.createElement("button");
+      back.type = "button"; back.textContent = C.close;
+      back.setAttribute("style", "min-width:44px;min-height:44px;padding:0 4px;border:0;background:none;color:inherit;font:inherit;opacity:.7;cursor:pointer");
+      var title = document.createElement("span");
+      title.textContent = menuLabel();
+      title.setAttribute("style", "flex:1;text-align:center;font-size:16px;font-weight:800;padding-right:48px");
+      head.appendChild(back); head.appendChild(title);
+      var area = document.createElement("textarea");
+      area.maxLength = 100; area.rows = 5; area.placeholder = C.ph; area.setAttribute("aria-label", C.ph);
+      area.setAttribute("style", "width:100%;box-sizing:border-box;resize:none;padding:14px 16px;border:0;border-radius:16px;background:var(--dgl-fb-card,#fff);color:inherit;box-shadow:0 2px 10px rgba(0,0,0,.06);font:500 16px/1.5 system-ui,sans-serif;-webkit-user-select:text;user-select:text;outline:none");
+      var go = document.createElement("button");
+      go.type = "submit"; go.textContent = C.send;
+      go.setAttribute("style", "min-height:52px;border:0;border-radius:16px;background:var(--dgl-fb-accent,#ffcf33);color:var(--dgl-fb-accent-ink,#111);font:800 16px/1 system-ui,sans-serif;cursor:pointer");
+      page.appendChild(head); page.appendChild(area); page.appendChild(go);
+      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) { page.addEventListener(t, function (e) { e.stopPropagation(); }); });
+      function shut() { page.remove(); removeEventListener("hashchange", shut); }
+      back.addEventListener("click", shut);
+      addEventListener("hashchange", shut);
+      page.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!submit(area.value)) { area.placeholder = C.empty; area.focus(); return; }
+        area.value = ""; area.disabled = true; go.disabled = true; go.textContent = C.thanks;
+        setTimeout(shut, 1200);
+      });
+      document.body.appendChild(page);
+      area.focus();
+    }
+    /* label() = 설정 줄에 쓰는 «의견 보내기» — 게임마다 번역 8벌을 따로 두지 않게 위젯이 갖는다(2026-10-24 t-261023-daf8) */
+    window.DGL_FEEDBACK = { open: function () { if (MENU) openPage(); else toggle(true); }, send: submit, label: menuLabel };
+    btn.addEventListener("click", function () { toggle(true); });
+    close.addEventListener("click", function () { toggle(false); });
+    box.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!submit(input.value)) { input.placeholder = C.empty; input.focus(); return; }
+      input.value = ""; input.placeholder = C.thanks; toggle(false);
+      btn.textContent = C.thanks;
+      setTimeout(function () { btn.textContent = C.btn; input.placeholder = C.ph; }, 2500);
+    });
+    if (MENU) root.style.display = "none"; /* 메뉴형은 떠 있는 것이 없다 — 페이지만 연다 */
+    document.body.appendChild(root);
+  }
+  if (document.body) build(); else document.addEventListener("DOMContentLoaded", build);
+})();
+</script>
+<!-- dgl-orientation-guard --><script>window.__DGL_ORIENT="portrait";</script><script>(function () {
+  if (document.getElementById('dgl-orientation-block')) return;
+  var want = window.__DGL_ORIENT === 'landscape' ? 'landscape' : 'portrait';
+  var wrong = want === 'portrait' ? 'landscape' : 'portrait';
+  var small = want === 'portrait' ? '(max-height:600px)' : '(max-width:600px)';
+  var tilt = want === 'portrait' ? 90 : 0; // 눕혀 있던 폰이 세로로 서는 그림(가로 게임은 반대로)
+  var css = '#dgl-orientation-block{display:none}' +
+    '@media (orientation:' + wrong + ') and (pointer:coarse) and ' + small + '{' +
+    '#dgl-orientation-block{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;' +
+    'background:rgba(16,19,27,.94);color:#fff;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}}' +
+    '#dgl-orientation-block svg{width:112px;height:112px;overflow:visible}' +
+    '#dgl-orientation-block .ph{transform-origin:48px 44px;animation:dgl-orient-turn 2.4s cubic-bezier(.6,0,.3,1) infinite}' +
+    '@keyframes dgl-orient-turn{0%,20%{transform:rotate(' + tilt + 'deg)}55%,100%{transform:rotate(' + (90 - tilt) + 'deg)}}' +
+    '@media (prefers-reduced-motion:reduce){#dgl-orientation-block .ph{animation:none;transform:rotate(' + (90 - tilt) + 'deg)}}';
+  function mount() {
+    if (document.getElementById('dgl-orientation-block')) return;
+    var st = document.createElement('style');
+    st.textContent = css;
+    var el = document.createElement('div');
+    el.id = 'dgl-orientation-block';
+    el.setAttribute('role', 'img');
+    el.setAttribute('aria-label', want === 'portrait' ? 'Rotate to portrait' : 'Rotate to landscape');
+    el.innerHTML = '<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<g class="ph"><rect x="31" y="15" width="34" height="58" rx="6"/><path d="M44 64h8"/></g>' +
+      '<path d="M18 80a40 40 0 0 0 60 0" opacity=".55"/><path d="m71 74 7 6-8 4" opacity=".55"/></svg>';
+    /* 막힌 동안 밑의 게임이 터치를 받지 않는다 */
+    el.addEventListener('touchstart', function (e) { e.preventDefault(); }, { passive: false });
+    (document.head || document.documentElement).appendChild(st);
+    document.body.appendChild(el);
+  }
+  if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+})();</script></body>
+</html>
