@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "version": "43-95d2d33b22",
+ "version": "44-8d3af9dacd",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -295,7 +295,7 @@
   {
    "id": "spaghetti-tree",
    "day": 25,
-   "hash": "8725eab31de049a2",
+   "hash": "49ff969274411c77",
    "ep": "episodes/spaghetti-tree.json",
    "i18n": {
     "en": "i18n/en/spaghetti-tree.json",
@@ -398,6 +398,18 @@
     "ja": "i18n/ja/eorida-fool.json",
     "id": "i18n/id/eorida-fool.json",
     "zh": "i18n/zh/eorida-fool.json"
+   }
+  },
+  {
+   "id": "zipper-boots",
+   "day": 34,
+   "hash": "9d9c857ebe48becd",
+   "ep": "episodes/zipper-boots.json",
+   "i18n": {
+    "en": "i18n/en/zipper-boots.json",
+    "ja": "i18n/ja/zipper-boots.json",
+    "id": "i18n/id/zipper-boots.json",
+    "zh": "i18n/zh/zipper-boots.json"
    }
   },
   {

@@ -1,0 +1,81 @@
+{
+  "id": "zipper-boots",
+  "contentNotice": null,
+  "day": 34,
+  "status": "approved",
+  "category": "생활",
+  "title": "지퍼는 원래 장화 이름이었다",
+  "hook": "‘지퍼’라는 이름은 1923년 고무장화 상품명에서 왔다",
+  "cover": "zipper-coil",
+  "panels": [
+    {
+      "type": "image",
+      "img": "zipper-coil",
+      "text": [
+        "하루에도 몇 번씩 올렸다 내렸다 하는 지퍼.",
+        "그런데 지퍼는 원래 이 물건의 이름이 아니었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 원래는 뭐라고 불렀는데?"
+    },
+    {
+      "type": "image",
+      "img": "zipper-judson",
+      "text": [
+        "1893년 미국의 휘트컴 저드슨이 특허를 낸 장치.",
+        "이름은 클래스프 로커.",
+        "구두끈 대신 신발을 잠그는 물건이었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "zipper-sundback",
+      "text": [
+        "1913년 기디언 선드백이 더 튼튼하게 고쳐 팔기 시작했다.",
+        "이번 이름은 ‘후크 없는 잠금장치’."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1923년 미국의 B.F. 굿리치 회사가",
+        "이 잠금장치를 고무장화에 달았다.",
+        "손으로 한 번 휙 올리면 잠기는 장화였다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "ZIP",
+      "mean": "휙 하고 지나가는 소리"
+    },
+    {
+      "type": "image",
+      "img": "zipper-galoshes",
+      "text": [
+        "굿리치는 그 장화에 지퍼라는 이름을 붙였다.",
+        "그런데 사람들은 장화가 아니라",
+        "잠금장치를 지퍼라고 부르기 시작했다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "장화 이름을 잠금장치가 가져간 거네"
+    },
+    {
+      "type": "text",
+      "text": [
+        "바지 앞에서 지퍼가 단추를 이긴 건 1937년이다.",
+        "프랑스 디자이너들이 남자 바지에 지퍼를 반기면서였다."
+      ]
+    }
+  ],
+  "summary": "지퍼는 원래 1923년 고무장화의 상품명이었는데, 잠금장치가 그 이름을 가져갔다.",
+  "sources": [
+    {
+      "title": "Wikipedia: Zipper",
+      "url": "https://en.wikipedia.org/wiki/Zipper"
+    }
+  ]
+}
