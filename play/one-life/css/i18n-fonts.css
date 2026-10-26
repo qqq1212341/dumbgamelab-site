@@ -5,12 +5,28 @@
 
 @font-face{font-family:'DGL en display';src:url('../assets/fonts/i18n/en-display.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL en body';src:url('../assets/fonts/i18n/en-body.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL id display';src:url('../assets/fonts/i18n/id-display.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL id body';src:url('../assets/fonts/i18n/id-body.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL vi display';src:url('../assets/fonts/i18n/vi-display.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL vi body';src:url('../assets/fonts/i18n/vi-body.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL ja display';src:url('../assets/fonts/i18n/ja-display.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL ja body';src:url('../assets/fonts/i18n/ja-body.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL zh-Hans display';src:url('../assets/fonts/i18n/zh-Hans-display.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL zh-Hans body';src:url('../assets/fonts/i18n/zh-Hans-body.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL zh-Hant display';src:url('../assets/fonts/i18n/zh-Hant-display.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL zh-Hant body';src:url('../assets/fonts/i18n/zh-Hant-body.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL th display';src:url('../assets/fonts/i18n/th-display.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL th body';src:url('../assets/fonts/i18n/th-body.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL Symbols';src:url('../assets/fonts/i18n/symbols.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL Symbols';src:url('../assets/fonts/i18n/symbols-2.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL Symbols';src:url('../assets/fonts/i18n/symbols-3.woff2') format('woff2');font-display:swap;}
 @font-face{font-family:'DGL Symbols';src:url('../assets/fonts/i18n/symbols-4.woff2') format('woff2');font-display:swap;}
+@font-face{font-family:'DGL Symbols';src:url('../assets/fonts/i18n/symbols-5.woff2') format('woff2');font-display:swap;}
 
 html[lang="en"]{--font-game:'DGL en display','DGL Symbols',sans-serif;--font-body:'DGL en body','DGL en display','DGL Symbols',sans-serif;}
+html[lang="id"]{--font-game:'DGL id display','DGL Symbols',sans-serif;--font-body:'DGL id body','DGL id display','DGL Symbols',sans-serif;}
+html[lang="vi"]{--font-game:'DGL vi display','DGL Symbols',sans-serif;--font-body:'DGL vi body','DGL vi display','DGL Symbols',sans-serif;}
 html[lang="ja"]{--font-game:'DGL ja display','DGL Symbols',sans-serif;--font-body:'DGL ja body','DGL ja display','DGL Symbols',sans-serif;}
+html[lang="zh-Hans"]{--font-game:'DGL zh-Hans display','DGL Symbols',sans-serif;--font-body:'DGL zh-Hans body','DGL zh-Hans display','DGL Symbols',sans-serif;}
+html[lang="zh-Hant"]{--font-game:'DGL zh-Hant display','DGL Symbols',sans-serif;--font-body:'DGL zh-Hant body','DGL zh-Hant display','DGL Symbols',sans-serif;}
+html[lang="th"]{--font-game:'DGL th display','DGL Symbols',sans-serif;--font-body:'DGL th body','DGL th display','DGL Symbols',sans-serif;}
