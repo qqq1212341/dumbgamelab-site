@@ -1327,4 +1327,6 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
+  <url><loc>https://dumbgamelab.com/about/</loc></url>
+  <url><loc>https://dumbgamelab.com/ko/about/</loc></url>
 </urlset>
