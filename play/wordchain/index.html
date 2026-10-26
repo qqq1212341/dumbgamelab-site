@@ -2,48 +2,101 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"wordchain","build":"f7476ffb4","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"wordchain","build":"90d5205b6","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
+ * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
+ * 비정상 종료 — 앞 화면에 있다가 이벤트 없이 사라진 판(메모리 부족으로 웹뷰가 죽음·앱 강제 종료)은 다음 판이 켜질 때 k:"abnormal" 로 알린다.
  * 설정 = window.__DGL_WEB {game, build, target} (feedback/inject.mjs · web/lib/inject.mjs 가 먼저 심는다). */
 (function () {
   if (window.__DGL_CRASH) return;
   var CFG = window.__DGL_WEB || {};
-  if (!CFG.game || /^(localhost|127\.|192\.168\.)/.test(location.hostname) && !(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())) return; /* 로컬 미리보기는 안 보낸다 */
-  var URL_ = "https://e.dumbgamelab.com";
   var C = window.Capacitor;
+  var native = !!(C && C.isNativePlatform && C.isNativePlatform());
+  if (!CFG.game || /^(localhost|127\.|192\.168\.)/.test(location.hostname) && !native) return; /* 로컬 미리보기는 안 보낸다 */
+  var URL_ = "https://e.dumbgamelab.com";
   var plat = C && C.getPlatform ? C.getPlatform() : "web";
   var ver = String(CFG.build || "").replace(/^[a-z]+:/, "") || "?";
   var sid = Math.random().toString(36).slice(2, 10);
-  var seen = {}, sent = 0, t0 = Date.now();
+  var seen = {}, sent = 0, t0 = Date.now(), crumbs = [];
+  var KEY = "dgl.crash.run";
+  function store(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* 저장 못 하면 비정상 종료만 못 본다 */ } }
+  var run = { sid: sid, ver: ver, fg: 1, crumbs: crumbs, at: t0 };
+  function clock() { var d = new Date(); return ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "." + Math.floor(d.getMilliseconds() / 100); }
+  var saveT = 0;
+  function crumb(s) {
+    crumbs.push(clock() + " " + String(s).replace(/\s+/g, " ").slice(0, 110));
+    if (crumbs.length > 30) crumbs.shift();
+    if (!saveT) saveT = setTimeout(function () { saveT = 0; store(run); }, 500);
+  }
   function post(path, o) {
     var body = JSON.stringify(o);
     try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
-    try { fetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
+    try { origFetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
   }
   function where() { try { var x = window.DGL && window.DGL.ctx; return x ? String(x.stage || x.where || "") : ""; } catch (e) { return ""; } }
-  function report(k, msg, stack, src, line, col) {
+  function report(k, msg, stack, src, line, col, extra) {
     msg = String(msg || "").slice(0, 300);
     var key = k + "|" + msg + "|" + src + ":" + line;
     if (seen[key] || sent >= 20) return;
     seen[key] = 1; sent++;
     /* 켜고 8초 안에 난 오류 = «부팅 오류»(게임에 못 들어간다) — 심각도 판정이 이걸로 핫픽스를 가른다 */
     var kind = k === "error" && Date.now() - t0 < 8000 && !window.__DGL_PLAYING ? "boot" : k;
-    post("/e", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", k: kind, m: msg, s: String(stack || "").slice(0, 2000), f: String(src || "").split("/").pop().slice(0, 120), l: line || 0, c: col || 0, w: where(), sid: sid });
+    var o = { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", k: kind, m: msg, s: String(stack || "").slice(0, 4000), f: String(src || "").split("/").pop().slice(0, 120), l: line || 0, c: col || 0, w: where(), sid: sid, b: crumbs.slice() };
+    if (extra) for (var x in extra) o[x] = extra[x];
+    post("/e", o);
   }
+  /* ── 오류 ── */
   window.addEventListener("error", function (e) {
-    if (!e || (!e.message && !e.error)) return; /* 이미지·소리 못 불러옴(리소스 오류)은 여기 안 센다 */
+    if (!e || (!e.message && !e.error)) return; /* 이미지·소리 못 불러옴(리소스 오류)은 브레드크럼으로만 */
     report("error", e.message || (e.error && e.error.message), e.error && e.error.stack, e.filename, e.lineno, e.colno);
-  }, true);
+  });
+  window.addEventListener("error", function (e) { var t = e && e.target; if (t && t !== window && (t.src || t.href)) crumb("못 불러옴 " + String(t.src || t.href).split("/").pop()); }, true);
   window.addEventListener("unhandledrejection", function (e) {
     var r = e && e.reason;
     report("promise", (r && (r.message || r)) || "unhandled rejection", r && r.stack, "", 0, 0);
   });
-  window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); } };
+  /* ── 브레드크럼 ── */
+  function label(el) {
+    if (!el || !el.tagName) return "?";
+    var s = el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (typeof el.className === "string" && el.className ? "." + el.className.split(/\s+/).slice(0, 2).join(".") : "");
+    var tx = (el.innerText || el.getAttribute && el.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim().slice(0, 20);
+    return s + (tx ? " «" + tx + "»" : "");
+  }
+  document.addEventListener("pointerdown", function (e) { crumb("누름 " + (e.target && e.target.tagName === "CANVAS" ? "canvas " + Math.round(e.clientX) + "," + Math.round(e.clientY) : label(e.target))); }, true);
+  ["warn", "error"].forEach(function (lv) {
+    var orig = console[lv];
+    console[lv] = function () { try { crumb("console." + lv + " " + [].slice.call(arguments).map(function (a) { return a && a.message || String(a); }).join(" ")); } catch (e) { /* 그만 */ } return orig.apply(console, arguments); };
+  });
+  var origFetch = window.fetch ? window.fetch.bind(window) : function () { return Promise.reject(new Error("no fetch")); };
+  if (window.fetch) window.fetch = function (u, o) {
+    var url = String(u && u.url || u);
+    return origFetch(u, o).then(function (r) { if (!r.ok && r.type !== "opaque") crumb("요청 " + r.status + " " + url.split("?")[0].slice(-60)); return r; }, function (err) { crumb("요청 실패 " + url.split("?")[0].slice(-60)); throw err; });
+  };
+  var lastWhere = "";
+  var tick = 0;
+  setInterval(function () {
+    var w = where() || location.hash; if (w !== lastWhere) { lastWhere = w; crumb("화면 " + w); }
+    if (++tick % 5 === 0 && run.fg) { run.hb = Date.now(); store(run); } /* 살아 있다는 표시 — 같은 게임을 탭 두 개로 연 걸 비정상 종료로 오인하지 않게 */
+  }, 1000);
+  /* ── 비정상 종료 — 앞 화면이던 판이 뒤로 가거나 닫히는 신호 없이 사라졌다 ── */
+  var prev = null;
+  try { prev = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { prev = null; }
+  function bg(v) { run.fg = v ? 0 : 1; crumb(v ? "뒤로 감" : "앞으로 옴"); store(run); }
+  document.addEventListener("visibilitychange", function () { bg(document.visibilityState === "hidden"); });
+  window.addEventListener("pagehide", function () { run.fg = 0; store(run); });
+  if (C && C.Plugins && C.Plugins.App && C.Plugins.App.addListener) try { C.Plugins.App.addListener("appStateChange", function (s) { bg(!s.isActive); }); } catch (e) { /* 없어도 된다 */ }
+  window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb };
   post("/s", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", sid: sid });
+  if (prev && prev.fg === 1 && prev.sid && !(prev.hb && Date.now() - prev.hb < 12000)) {
+    /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
+    var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
+    post("/e", { g: CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] });
+  }
+  store(run);
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"f7476ffb4"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"90d5205b6"};</script>
 <meta name="description" content="고양이 치치와 같은 말을 동시에 쳐서 먼저 끝내면 이긴다. 꽈배기에서 시작해 닭볶음탕, 간장 공장 공장장까지. 이길수록 치치가 빨라지는 폰 타자 배틀.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 타자 배틀 — 잰말놀이 빨리 치기">
