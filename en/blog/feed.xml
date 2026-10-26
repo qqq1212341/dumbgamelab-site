@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Ketchup Used to Be Fish Sauce</title>
+    <link>https://dumbgamelab.com/en/blog/ketchup-fish/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ketchup-fish/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Ketchup was first a word for pickled fish brine, and tomato ketchup came along in the 1800s.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>10 itch.io games, 327 views and 0 sales in 2 weeks: where I went wrong</title>
     <link>https://dumbgamelab.com/en/blog/why-we-posted-devlogs-after-327-views/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/why-we-posted-devlogs-after-327-views/</guid>
@@ -223,13 +231,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-names-around-the-world/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>Indonesia&#39;s warnet, Vietnam&#39;s quán net, Taiwan&#39;s 網咖, China&#39;s 网吧, Brazil&#39;s lan house, Japan&#39;s ネットカフェ, Thailand&#39;s ร้านเกม. The names differ, but the early 2000s internet cafe looked alike. Here are the games and the memories.</description>
-  </item>
-  <item>
-    <title>What Is a PC Bang? A First-Timer&#39;s Guide to Korea&#39;s PC Cafes</title>
-    <link>https://dumbgamelab.com/en/blog/what-is-a-pc-bang/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/what-is-a-pc-bang/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>A PC bang is a Korean gaming cafe where you rent a high-end PC by the hour, usually around 1,000 to 2,000 won, and order ramen without leaving your seat. Prices, kiosks, food, 24-hour rules and tips for foreigners.</description>
   </item>
 </channel>
 </rss>

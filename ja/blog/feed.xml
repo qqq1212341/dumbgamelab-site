@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ケチャップはもともと魚のソースだった</title>
+    <link>https://dumbgamelab.com/ja/blog/ketchup-fish/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ketchup-fish/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ケチャップはもともと魚を漬けた汁を呼ぶ言葉で、トマトケチャップは1800年代に生まれた。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>itch.ioのゲーム10本が2週間で閲覧327、購入0：私の判断が間違っていたところ</title>
     <link>https://dumbgamelab.com/ja/blog/why-we-posted-devlogs-after-327-views/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/why-we-posted-devlogs-after-327-views/</guid>
@@ -223,13 +231,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-names-around-the-world/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>インドネシアのwarnet、ベトナムのquán net、台湾の網咖、中国の网吧、ブラジルのlan house、日本のネットカフェ、タイのร้านเกม。呼び名は違っても、2000年代のあの店の風景はよく似ています。当時遊んだゲームと思い出の場面をまとめました。</description>
-  </item>
-  <item>
-    <title>韓国のPCバン（PC房）とは？初めてでも迷わない使い方ガイド</title>
-    <link>https://dumbgamelab.com/ja/blog/what-is-a-pc-bang/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-pc-bang/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>韓国のPCバン（PC房）は、ゲーミングPCを1時間1,000〜2,000ウォン台で借りられて、席からラーメンまで注文できる場所です。料金、キオスクでの入り方、食事、24時間営業のルール、外国人向けのコツをまとめました。</description>
   </item>
 </channel>
 </rss>
