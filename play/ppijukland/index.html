@@ -1,7 +1,48 @@
 <!doctype html>
 <html lang="ko">
 <head><meta charset="UTF-8">
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"d430ea25d"};</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"f7476ffb4","target":"site"});</script>
+<script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
+ * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
+ * 설정 = window.__DGL_WEB {game, build, target} (feedback/inject.mjs · web/lib/inject.mjs 가 먼저 심는다). */
+(function () {
+  if (window.__DGL_CRASH) return;
+  var CFG = window.__DGL_WEB || {};
+  if (!CFG.game || /^(localhost|127\.|192\.168\.)/.test(location.hostname) && !(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())) return; /* 로컬 미리보기는 안 보낸다 */
+  var URL_ = "https://e.dumbgamelab.com";
+  var C = window.Capacitor;
+  var plat = C && C.getPlatform ? C.getPlatform() : "web";
+  var ver = String(CFG.build || "").replace(/^[a-z]+:/, "") || "?";
+  var sid = Math.random().toString(36).slice(2, 10);
+  var seen = {}, sent = 0, t0 = Date.now();
+  function post(path, o) {
+    var body = JSON.stringify(o);
+    try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
+    try { fetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
+  }
+  function where() { try { var x = window.DGL && window.DGL.ctx; return x ? String(x.stage || x.where || "") : ""; } catch (e) { return ""; } }
+  function report(k, msg, stack, src, line, col) {
+    msg = String(msg || "").slice(0, 300);
+    var key = k + "|" + msg + "|" + src + ":" + line;
+    if (seen[key] || sent >= 20) return;
+    seen[key] = 1; sent++;
+    /* 켜고 8초 안에 난 오류 = «부팅 오류»(게임에 못 들어간다) — 심각도 판정이 이걸로 핫픽스를 가른다 */
+    var kind = k === "error" && Date.now() - t0 < 8000 && !window.__DGL_PLAYING ? "boot" : k;
+    post("/e", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", k: kind, m: msg, s: String(stack || "").slice(0, 2000), f: String(src || "").split("/").pop().slice(0, 120), l: line || 0, c: col || 0, w: where(), sid: sid });
+  }
+  window.addEventListener("error", function (e) {
+    if (!e || (!e.message && !e.error)) return; /* 이미지·소리 못 불러옴(리소스 오류)은 여기 안 센다 */
+    report("error", e.message || (e.error && e.error.message), e.error && e.error.stack, e.filename, e.lineno, e.colno);
+  }, true);
+  window.addEventListener("unhandledrejection", function (e) {
+    var r = e && e.reason;
+    report("promise", (r && (r.message || r)) || "unhandled rejection", r && r.stack, "", 0, 0);
+  });
+  window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); } };
+  post("/s", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", sid: sid });
+})();
+</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"f7476ffb4"};</script>
 <meta name="description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="삐죽랜드 · Ppijuk Land">
@@ -11,10 +52,10 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="삐죽랜드 · Ppijuk Land">
 <meta name="twitter:description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
-<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>  <script type="module" crossorigin src="./assets/index-BS6yKSEo.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BBZ-o5mT.css">
+<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>  <script type="module" crossorigin src="./assets/index-BxH9BUIM.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DPfCXLrz.css">
 </head>
-<body><div id="app"></div><script>"use strict";
+<body><div id="app"></div><script src="js/audio-env.js"></script><script>"use strict";
 /* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
  *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
  *   베타 빌드만 베타 표시(beta/lib.mjs BETA_MARK)가 붙는다(check-beta 가 그 표시로 승격을 막는다 — 버튼 유무가 아니다).
@@ -94,7 +135,8 @@
     var input = document.createElement("input");
     input.type = "text"; input.maxLength = 100; input.placeholder = C.ph;
     input.setAttribute("aria-label", C.ph);
-    input.setAttribute("style", (MENU ? "flex:1;min-width:0;" : "width:min(62vw,260px);") + "padding:7px 8px;border-radius:8px;border:1px solid #888;background:#fff;color:#111;font:14px/1.2 system-ui,sans-serif;-webkit-user-select:text;user-select:text");
+    /* ★ 입력칸 글자는 16px 이상 — 작으면 아이폰이 누를 때 화면을 확대하고 안 돌려놓는다(2026-10-26 알고있여우 제보) */
+    input.setAttribute("style", (MENU ? "flex:1;min-width:0;" : "width:min(62vw,260px);") + "padding:7px 8px;border-radius:8px;border:1px solid #888;background:#fff;color:#111;font:16px/1.2 system-ui,sans-serif;-webkit-user-select:text;user-select:text");
     var sendBtn = document.createElement("button"); /* ★ 이름이 `send` 면 위의 보내는 함수를 덮어써 제보가 한 건도 안 나간다(2026-10-21 실측) */
     sendBtn.type = "submit"; sendBtn.textContent = C.send;
     sendBtn.setAttribute("style", "padding:8px 10px;border:0;border-radius:8px;background:#ffcf33;color:#111;font:inherit;cursor:pointer");
