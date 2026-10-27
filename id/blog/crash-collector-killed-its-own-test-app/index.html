@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi crash terus? Saya bikin tombol pemaksa crash, tombolnya malah gagal</title>
+<meta name="description" content="Seorang dev indie menambah tombol pemaksa crash untuk menguji pengumpul log crash, tapi di iPhone aplikasinya tidak crash. Ditambah salah menghitung error robot pra-rilis Play sebagai error pengguna, inilah dua penilaian yang meleset di minggu pertama.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Aplikasi crash terus? Saya bikin tombol pemaksa crash, tombolnya malah gagal">
+<meta property="og:description" content="Seorang dev indie menambah tombol pemaksa crash untuk menguji pengumpul log crash, tapi di iPhone aplikasinya tidak crash. Ditambah salah menghitung error robot pra-rilis Play sebagai error pengguna, inilah dua penilaian yang meleset di minggu pertama.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Saya sengaja bikin aplikasi crash untuk menguji pengumpul crash, tapi aplikasinya tidak crash","description":"Seorang dev indie menambah tombol pemaksa crash untuk menguji pengumpul log crash, tapi di iPhone aplikasinya tidak crash. Ditambah salah menghitung error robot pra-rilis Play sebagai error pengguna, inilah dua penilaian yang meleset di minggu pertama.","inLanguage":"id","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"Saya sengaja bikin aplikasi crash untuk menguji pengumpul crash, tapi aplikasinya tidak crash","item":"https://dumbgamelab.com/id/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bagaimana cara sengaja membuat aplikasi iOS crash untuk menguji pengumpul crash?","acceptedAnswer":{"@type":"Answer","text":"Saya memakai tombol yang mengirim sinyal SIGSEGV ke proses aplikasi. Di iPhone 11 Pro asli, aplikasi tidak mati karena penangan sinyal yang dipasang webview menyadapnya; setelah SIGSEGV dikembalikan ke perilaku bawaan sebelum dikirim, aplikasi mati. Cek juga apakah laporan sampai di peluncuran berikutnya."}},{"@type":"Question","name":"Di laporan pra-rilis Play Console ada crash, apakah pengguna juga mengalaminya?","acceptedAnswer":{"@type":"Answer","text":"Pada kasus saya, tidak. Itu error renderer yang hanya muncul di perangkat virtual Firebase Test Lab tepat setelah unggahan, dan saat Wax Tower 1.0.10 dibuka di ponsel asli (Adreno 740) error-nya 0. Periksa dulu daftar perangkat di laporan pra-rilis."}},{"@type":"Question","name":"Apa saja yang dikumpulkan pengumpul crash?","acceptedAnswer":{"@type":"Answer","text":"Pengumpul yang saya pakai menerima error webview, aksi tepat sebelumnya, rasio error terhadap jumlah sesi bermain, dan native crash. Error booting dalam 8 detik pertama yang muncul pada 2 sesi atau lebih dianggap parah dan saya menyiapkan hotfix."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan salah langkah dev indie</p>
+    <h1>Saya sengaja bikin aplikasi crash untuk menguji pengumpul crash, tapi aplikasinya tidak crash</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="Layar pertarungan Chichi Backpack. Di bawah tas yang berisi barang seperti payung dan laptop terlihat kartu skill" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Saya memasang pengumpul error di beberapa game supaya ponsel langsung memberi tahu saat aplikasi crash, dan di minggu pertama saya salah menilai dua kali. Tombol pemaksa crash gagal mematikan aplikasi di iPhone asli, dan 2 error saat booting yang masuk tepat setelah unggahan ke Play ternyata bukan dari pengguna, melainkan dari perangkat virtual uji pra-rilis Google. Dua-duanya salah di sisi pengujinya dulu.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Untuk menguji pengumpul, aplikasinya harus benar-benar crash</a></li><li><a href="#s2">Penilaian salah pertama: mengira kirim sinyal pasti membuat aplikasi mati</a></li><li><a href="#s3">Penilaian salah kedua: mengira error yang masuk tepat setelah unggah adalah milik pengguna</a></li><li><a href="#s4">Jadi, apa yang saya ubah</a></li><li><a href="#s5">Kalau kamu di posisi yang sama, coba urutan ini</a></li></ol></nav>
+    <section id="s1"><h2>Untuk menguji pengumpul, aplikasinya harus benar-benar crash</h2>
+<p>Kalau game saya crash di ponsel, saya ingin tahu lebih dulu sebelum ada ulasan masuk. Karena itu saya membuat pengumpul error kecil dan memasangnya di sekitar sepuluh game. Ia menerima error webview, aksi tepat sebelumnya, sampai native crash yang membuat aplikasi hilang total.</p>
+<p>Masalahnya ada di pengujian. Untuk melihat apakah pengumpul bisa menangkap crash, aplikasinya harus benar-benar mati. Jadi saya menambah tombol pemaksa crash tersendiri: tekan tombol tersembunyi, lalu proses aplikasi dikirimi SIGSEGV (sinyal kesalahan akses memori).</p>
+</section>
+<section id="s2"><h2>Penilaian salah pertama: mengira kirim sinyal pasti membuat aplikasi mati</h2>
+<p>Saya menekan tombol di iPhone 11 Pro asli, tapi aplikasi tidak mati. Layar tetap sama, dan tidak ada apa pun yang sampai ke pengumpul.</p>
+<p>Kesimpulan paling berbahaya saat itu adalah pengumpul tidak bisa menangkap crash. Padahal tombolnya yang gagal mematikan aplikasi; kalau saya menyalahkan pengumpul, saya akan memperbaiki kode yang sudah benar dan membiarkan lubang yang sebenarnya. Setelah dicek, penyebabnya ada di tombol: penangan sinyal yang sudah dipasang webview menyadap sinyal itu lebih dulu.</p>
+<p>Yang saya ubah cuma satu baris: sebelum mengirim sinyal, kembalikan SIGSEGV ke perilaku bawaan. Setelah itu aplikasi mati, dan pada peluncuran berikutnya catatan keluar tidak wajar dari sisi webview serta laporan SIGSEGV yang dikumpulkan iOS sama-sama tiba. Hari itu saya belajar bahwa alat uji bisa salah lebih dulu daripada yang diuji.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="Layar penataan tas Chichi Backpack. Bentuk barang berada di kotak Karyawan Baru dan Asisten Manajer" loading="lazy" decoding="async"><figcaption>Game ini juga memakai pengumpul. Demi memastikan ia bisa mati, kode pembuat matinya saya perbaiki dulu.</figcaption></figure></section>
+<section id="s3"><h2>Penilaian salah kedua: mengira error yang masuk tepat setelah unggah adalah milik pengguna</h2>
+<p>Pengumpul punya ambang tingkat keparahan. Kalau error booting dalam 8 detik pertama muncul pada 2 sesi atau lebih, dianggap parah dan saya langsung menyiapkan hotfix. Di minggu pertama, dua game terkena ambang ini. Wax Tower 1.0.10 dan Chichi Backpack 1.0.0 baru naik di Play, dan keduanya error yang sama: link shader gagal, jumlah uniform 261.</p>
+<p>Saya membacanya sebagai game saya mati saat booting di ponsel pengguna. Ternyata bukan. Saat saya membuka Wax Tower 1.0.10 di ponsel kerja (Adreno 740), error-nya 0, dan angka 261 itu batas milik renderer perangkat lunak (SwiftShader) yang dipakai perangkat virtual Google. Error dari robot uji pra-rilis yang dijalankan Play tepat setelah unggahan ternyata saya hitung sebagai error orang sungguhan.</p>
+<div class="tbl"><table><thead><tr><th></th><th>Cara saya membacanya dulu</th><th>Kenyataannya</th></tr></thead><tbody><tr><td>Isi error</td><td>Link shader gagal saat booting (uniform 261)</td><td>Error yang sama, nilai batas perangkat virtual</td></tr><tr><td>Asalnya dari mana</td><td>Ponsel pengguna</td><td>Perangkat virtual Firebase Test Lab (SwiftShader)</td></tr><tr><td>Versi 1.0.10 di ponsel kerja (Adreno 740)</td><td>Belum dicek</td><td>Error 0</td></tr><tr><td>Penilaian keparahan</td><td>2 kasus yang perlu hotfix</td><td>Tidak perlu hotfix</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="Layar permainan Wax Tower. Anak ayam kuning berdiri di atas tangga hijau seperti jeli" loading="lazy" decoding="async"><figcaption>Wax Tower. Perangkat yang error adalah perangkat virtual yang bahkan tidak bisa menggambar layar ini.</figcaption></figure></section>
+<section id="s4"><h2>Jadi, apa yang saya ubah</h2>
+<p>Sekarang kalau pengumpul berjalan di renderer perangkat lunak atau perangkat firebase.test.lab, ia sama sekali tidak mengirim sesi maupun error. Saya juga mengecek langsung di ponsel kerja: saat penanda dinyalakan dikenali sebagai robot, saat dimatikan dikenali sebagai manusia. Pengaman yang sama juga saya masukkan ke pemeriksaan sinkronisasi supaya tidak ada salinan yang kehilangannya.</p>
+<p>Dua aturan dari minggu pertama. Untuk tombol uji, pastikan dulu tombol itu benar-benar bekerja. Untuk alat pemantau baru, saring dulu derau yang dihasilkannya sendiri.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="Layar lobi Wax Tower. Terlihat lima kartu pilihan menurut tema camilan" loading="lazy" decoding="async"><figcaption>Layar awal salah satu dari dua game yang kena error yang sama.</figcaption></figure></section>
+<section id="s5"><h2>Kalau kamu di posisi yang sama, coba urutan ini</h2>
+<p>Kalau kamu dev indie yang baru memasang pengumpul error, saya sarankan urutan ini.</p>
+<ul><li>Kalau sudah membuat kode pemaksa crash, cek dulu di perangkat asli apakah aplikasinya benar-benar mati.</li><li>Setelah mati, lihat juga apakah laporan sampai di peluncuran berikutnya.</li><li>Error yang masuk tepat setelah unggah ke Play, cocokkan dulu dengan daftar perangkat di laporan pra-rilis.</li><li>Error yang mencurigakan, coba tiru di satu ponsel asli dengan versi yang sama.</li><li>Untuk kriteria notifikasi baru, hitung dulu berapa derau yang dibuatnya sendiri di minggu pertama.</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Bagaimana cara sengaja membuat aplikasi iOS crash untuk menguji pengumpul crash?</summary><p>Saya memakai tombol yang mengirim sinyal SIGSEGV ke proses aplikasi. Di iPhone 11 Pro asli, aplikasi tidak mati karena penangan sinyal yang dipasang webview menyadapnya; setelah SIGSEGV dikembalikan ke perilaku bawaan sebelum dikirim, aplikasi mati. Cek juga apakah laporan sampai di peluncuran berikutnya.</p></details><details><summary>Di laporan pra-rilis Play Console ada crash, apakah pengguna juga mengalaminya?</summary><p>Pada kasus saya, tidak. Itu error renderer yang hanya muncul di perangkat virtual Firebase Test Lab tepat setelah unggahan, dan saat Wax Tower 1.0.10 dibuka di ponsel asli (Adreno 740) error-nya 0. Periksa dulu daftar perangkat di laporan pra-rilis.</p></details><details><summary>Apa saja yang dikumpulkan pengumpul crash?</summary><p>Pengumpul yang saya pakai menerima error webview, aksi tepat sebelumnya, rasio error terhadap jumlah sesi bermain, dan native crash. Error booting dalam 8 detik pertama yang muncul pada 2 sesi atau lebih dianggap parah dan saya menyiapkan hotfix.</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">Isi tas di Chichi Backpack lalu hajar bosnya.</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

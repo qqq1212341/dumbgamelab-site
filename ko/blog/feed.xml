@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>크래시 수집기를 시험하려고 앱을 일부러 죽였는데, 안 죽었다</title>
+    <link>https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>1인 개발자가 크래시 수집기를 시험하려고 앱을 일부러 죽이는 스위치를 넣었는데 iPhone에서 앱이 안 죽었습니다. Play 사전 출시 로봇 오류를 사용자 오류로 센 것까지, 첫 주 틀린 판단 두 개를 적었습니다.</description>
+  </item>
+  <item>
     <title>케첩은 원래 생선 소스였다</title>
     <link>https://dumbgamelab.com/ko/blog/ketchup-fish/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/ketchup-fish/</guid>
@@ -224,13 +231,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/jjimjilbang-guide/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>찜질방은 목욕탕과 찜질 공간, 휴게실, 수면실이 한 건물에 있는 한국식 사우나입니다. 들어가서 나올 때까지 순서, 찜질복과 속옷, 수건 양머리, 구운 계란과 식혜, 가격대, 에티켓, 외국인 팁을 정리했습니다.</description>
-  </item>
-  <item>
-    <title>PC방은 나라마다 이름이 다르다: 2000년대 그 시절 풍경</title>
-    <link>https://dumbgamelab.com/ko/blog/pc-bang-names-around-the-world/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/pc-bang-names-around-the-world/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>인도네시아 warnet, 베트남 quán net, 대만 網咖, 중국 网吧, 브라질 lan house, 일본 ネットカフェ, 태국 ร้านเกม. 나라마다 이름은 달라도 2000년대 PC방 풍경은 닮았습니다. 그때 하던 게임과 기억나는 장면을 모았습니다.</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App 當機怎麼測？我做了故意讓 App 當機的開關，結果它沒當機</title>
+<meta name="description" content="獨立開發者為了測試當機回報，加了一個故意讓 App 當機的開關，結果在 iPhone 上 App 根本沒當機。連 Play 發布前報告的錯誤都被當成使用者錯誤，這是第一週的兩個誤判。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="App 當機怎麼測？我做了故意讓 App 當機的開關，結果它沒當機">
+<meta property="og:description" content="獨立開發者為了測試當機回報，加了一個故意讓 App 當機的開關，結果在 iPhone 上 App 根本沒當機。連 Play 發布前報告的錯誤都被當成使用者錯誤，這是第一週的兩個誤判。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"為了測試當機回報，我故意讓 App 當機，它卻沒當機","description":"獨立開發者為了測試當機回報，加了一個故意讓 App 當機的開關，結果在 iPhone 上 App 根本沒當機。連 Play 發布前報告的錯誤都被當成使用者錯誤，這是第一週的兩個誤判。","inLanguage":"zh-TW","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"為了測試當機回報，我故意讓 App 當機，它卻沒當機","item":"https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"要怎麼故意讓 iOS App 當機，來測試當機收集器？","acceptedAnswer":{"@type":"Answer","text":"我用的是對 App 處理程序送出 SIGSEGV 訊號的開關。在 iPhone 11 Pro 實機上，WebView 掛的訊號處理器攔下了它，App 沒有死；送出訊號之前先把 SIGSEGV 還原成預設行為，App 就死了。當機之後，也請一併確認下次啟動時報告有沒有送達。"}},{"@type":"Question","name":"Play Console 的發布前報告出現當機，使用者也會遇到嗎？","acceptedAnswer":{"@type":"Answer","text":"我的情況不是。那是上架後立刻只在 Firebase Test Lab 虛擬裝置上出現的算圖器錯誤，我把瓦普塔 1.0.10 放到實機（Adreno 740）上跑，錯誤是 0。建議先確認發布前報告裡的裝置清單。"}},{"@type":"Question","name":"當機收集器會蒐集什麼？","acceptedAnswer":{"@type":"Answer","text":"我用的收集器會蒐集 WebView 錯誤、出錯前最後一個操作、錯誤相對於場數的比例，以及原生當機。啟動後 8 秒內的啟動錯誤只要有 2 場以上，就判定為嚴重並準備熱修。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">獨立開發失誤紀錄</p>
+    <h1>為了測試當機回報，我故意讓 App 當機，它卻沒當機</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="奇奇背包的戰鬥畫面。雨傘和筆電等隨身物品依格子塞進背包，下方是技能卡" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">我在好幾款遊戲裡裝了當機收集器，App 一出事手機就會馬上通知我，結果第一週判斷錯了兩次。故意讓 App 當機的開關在 iPhone 實機上沒能讓 App 當機，而 Play 上架後立刻收到的兩筆啟動錯誤，也不是使用者遇到的，而是 Google 發布前測試機器出的。兩次都是測試的那一方出了錯。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">要測試收集器，App 必須真的當機</a></li><li><a href="#s2">誤判一：我以為送出訊號 App 就會死</a></li><li><a href="#s3">誤判二：我以為上架後立刻收到的錯誤是使用者的</a></li><li><a href="#s4">所以我改了什麼</a></li><li><a href="#s5">如果你也一樣，可以先試試這些</a></li></ol></nav>
+    <section id="s1"><h2>要測試收集器，App 必須真的當機</h2>
+<p>遊戲在手機上出問題時，我希望自己比評論更早知道。所以我做了一個蒐集錯誤的小工具，裝進大約十款遊戲。它會接收 WebView 錯誤、出錯前最後一個操作，以及整個 App 直接消失的原生當機。</p>
+<p>難的是測試。要確認收集器抓不抓得到當機，App 就得真的當機。所以我另外加了一個故意讓 App 當機的開關。按下藏起來的按鈕，就會對 App 的處理程序送出 SIGSEGV（記憶體存取錯誤的訊號）。</p>
+</section>
+<section id="s2"><h2>誤判一：我以為送出訊號 App 就會死</h2>
+<p>我在 iPhone 11 Pro 實機上按了開關，App 沒有死。畫面原封不動，收集器也什麼都沒收到。</p>
+<p>這時最危險的結論，是認定收集器抓不到當機。其實是開關沒能讓 App 當機，如果怪到收集器頭上，就會去修好好的程式碼，真正的漏洞反而留著。查下去，原因出在開關。WebView 早就掛好的訊號處理器，搶先攔下了那個訊號。</p>
+<p>修法只有一行：送出訊號之前，先把 SIGSEGV 還原成預設行為。這樣 App 就當機了，下次啟動時，WebView 的異常終止紀錄和 iOS 整理好的 SIGSEGV 報告都送達了。我就在這天學到，測試工具有可能比被測試的對象更早出錯。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="奇奇背包的背包整理畫面。新人和主任的格子裡放著物品的形狀" loading="lazy" decoding="async"><figcaption>這款遊戲也裝了收集器。為了看它會不會當機，我先修好了讓它當機的程式碼。</figcaption></figure></section>
+<section id="s3"><h2>誤判二：我以為上架後立刻收到的錯誤是使用者的</h2>
+<p>收集器有嚴重度標準。啟動後 8 秒內發生的啟動錯誤只要有 2 場以上，就判定為嚴重，立刻準備熱修。第一週有兩款遊戲踩到這條線：瓦普塔 1.0.10 和奇奇背包 1.0.0，都是剛上架 Play 之後，而且是同一個錯誤。著色器連結失敗，uniform 數量是 261。</p>
+<p>我當時以為是我的遊戲在使用者手機上啟動到一半就死了。不是。我把瓦普塔 1.0.10 放到工作用手機（Adreno 740）上跑，錯誤是 0，而 261 這個數字，是 Google 虛擬裝置使用的軟體算圖器（SwiftShader）的上限值。我把 Play 在上架後立刻跑的發布前測試機器人所產生的錯誤，當成了真人的錯誤。</p>
+<div class="tbl"><table><thead><tr><th></th><th>一開始的判讀</th><th>實際情況</th></tr></thead><tbody><tr><td>錯誤內容</td><td>啟動中著色器連結失敗（uniform 261）</td><td>同一個錯誤，虛擬裝置的上限值</td></tr><tr><td>從哪裡來</td><td>使用者的手機</td><td>Firebase Test Lab 虛擬裝置（SwiftShader）</td></tr><tr><td>工作用手機（Adreno 740）上的 1.0.10</td><td>尚未確認</td><td>錯誤 0</td></tr><tr><td>嚴重度判定</td><td>2 件需要熱修</td><td>不需要熱修</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="瓦普塔的遊玩畫面。黃色小雞站在綠色果凍般的階梯上" loading="lazy" decoding="async"><figcaption>瓦普塔。出錯的那台裝置，連這個畫面都畫不出來，它是虛擬裝置。</figcaption></figure></section>
+<section id="s4"><h2>所以我改了什麼</h2>
+<p>只要收集器是在軟體算圖器或 Firebase Test Lab 裝置上跑，就完全不送出 session 和錯誤。我在工作用手機上親自確認過：打開標記就被辨識為機器人，關掉就被辨識為真人。我也把它加進同步檢查，避免出現漏掉這道防護的複本。</p>
+<p>第一週得到的規則有兩條。測試用的開關，先確認那個開關真的有用。新的監控裝置，先把自己製造的雜訊濾掉。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="瓦普塔的大廳畫面。依點心主題挑選的五張卡片" loading="lazy" decoding="async"><figcaption>出現同一個錯誤的兩款遊戲之一的起始畫面。</figcaption></figure></section>
+<section id="s5"><h2>如果你也一樣，可以先試試這些</h2>
+<p>如果你是第一次裝當機收集器的獨立開發者，我建議照這個順序。</p>
+<ul><li>寫了故意讓 App 當機的程式碼，先在實機上確認 App 真的會死。</li><li>當機之後，還要看下次啟動時報告有沒有送達。</li><li>Play 上架後立刻收到的錯誤，先和發布前報告的裝置清單對照。</li><li>可疑的錯誤，用同一個版本在一支真實手機上重現看看。</li><li>新的通知標準，第一週先數自己製造了多少雜訊。</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>要怎麼故意讓 iOS App 當機，來測試當機收集器？</summary><p>我用的是對 App 處理程序送出 SIGSEGV 訊號的開關。在 iPhone 11 Pro 實機上，WebView 掛的訊號處理器攔下了它，App 沒有死；送出訊號之前先把 SIGSEGV 還原成預設行為，App 就死了。當機之後，也請一併確認下次啟動時報告有沒有送達。</p></details><details><summary>Play Console 的發布前報告出現當機，使用者也會遇到嗎？</summary><p>我的情況不是。那是上架後立刻只在 Firebase Test Lab 虛擬裝置上出現的算圖器錯誤，我把瓦普塔 1.0.10 放到實機（Adreno 740）上跑，錯誤是 0。建議先確認發布前報告裡的裝置清單。</p></details><details><summary>當機收集器會蒐集什麼？</summary><p>我用的收集器會蒐集 WebView 錯誤、出錯前最後一個操作、錯誤相對於場數的比例，以及原生當機。啟動後 8 秒內的啟動錯誤只要有 2 場以上，就判定為嚴重並準備熱修。</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">來奇奇背包裝滿背包，去打部長吧。</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/games-like-game-dev-story/"><img src="/blog/img/games-like-game-dev-story/g1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>類似 Game Dev Story 的遊戲，開羅遊戲之外還有這7款</b><span class="pc-desc">玩完 Game Dev Story（遊戲發展國）還想繼續經營？從 Steam、App Store、Google Play 挑出7款，價格、評價、支援語言一張表比完，連我們遊戲的缺點也寫進去。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

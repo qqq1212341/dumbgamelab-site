@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>应用闪退怎么测:我专门做了个让App崩溃的开关,结果它没崩</title>
+<meta name="description" content="独立开发者为了测试崩溃日志收集器,加了个让App强制崩溃的开关,结果在iPhone上App根本没崩。再加上把Play预发布机器人的错误当成用户错误,这是第一周判断错的两件事。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="应用闪退怎么测:我专门做了个让App崩溃的开关,结果它没崩">
+<meta property="og:description" content="独立开发者为了测试崩溃日志收集器,加了个让App强制崩溃的开关,结果在iPhone上App根本没崩。再加上把Play预发布机器人的错误当成用户错误,这是第一周判断错的两件事。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"为了测试崩溃日志收集器,我故意让App崩溃,结果它没崩","description":"独立开发者为了测试崩溃日志收集器,加了个让App强制崩溃的开关,结果在iPhone上App根本没崩。再加上把Play预发布机器人的错误当成用户错误,这是第一周判断错的两件事。","inLanguage":"zh-CN","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"为了测试崩溃日志收集器,我故意让App崩溃,结果它没崩","item":"https://dumbgamelab.com/zh-Hans/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"怎么故意让iOS应用崩溃来测试崩溃日志收集器?","acceptedAnswer":{"@type":"Answer","text":"我用的是向App进程发送SIGSEGV信号的开关。在iPhone 11 Pro真机上,信号被WebView装的信号处理器拦下,App没有崩;发信号前先把SIGSEGV恢复为默认行为,App就崩了。崩溃后也要确认下次启动时报告有没有送达。"}},{"@type":"Question","name":"Play管理中心的预发布报告里出现崩溃,用户也会遇到吗?","acceptedAnswer":{"@type":"Answer","text":"我这次不是。那是上传后只在Firebase Test Lab虚拟设备上出现的渲染器错误,把蜡笔塔1.0.10放到真机(Adreno 740)上运行,错误是0。建议先看预发布报告里的设备列表。"}},{"@type":"Question","name":"崩溃日志收集器会收集什么?","acceptedAnswer":{"@type":"Answer","text":"我用的收集器会收集WebView错误和崩溃前的操作、错误占对局数的比例,以及原生崩溃。启动后8秒内的启动错误出现2次以上,就判定为严重并准备热修复。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">独立开发踩坑记录</p>
+    <h1>为了测试崩溃日志收集器,我故意让App崩溃,结果它没崩</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="奇奇背包战斗画面。装着雨伞和笔记本电脑等物品的背包下方可以看到技能卡" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">我给好几款游戏装了崩溃收集器,App一出问题手机上就能收到通知,第一周却判断错了两次。故意让App崩溃的开关在iPhone真机上没能让App崩掉;刚上传到Play就收到的2条启动错误,也不是用户的,而是谷歌预发布测试的虚拟设备报的。两次都是测试这一方先出了错。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">要测收集器,先得让App崩溃</a></li><li><a href="#s2">判断错误一:以为发了信号App就会崩</a></li><li><a href="#s3">判断错误二:以为刚上传就收到的错误来自用户</a></li><li><a href="#s4">所以改了什么</a></li><li><a href="#s5">如果你也在做同样的事,先这样试</a></li></ol></nav>
+    <section id="s1"><h2>要测收集器,先得让App崩溃</h2>
+<p>游戏在手机上崩溃时,我想赶在差评出现之前就知道。所以我做了个小收集器,装进了十个左右的游戏。它能收WebView错误、崩溃前的操作,还有App整个消失的原生崩溃(native crash)。</p>
+<p>麻烦在测试上。想确认收集器能不能抓到崩溃,App就得真的崩。所以我单独加了个强制崩溃的开关:按下隐藏按钮,就向App进程发送SIGSEGV(内存访问错误信号)。</p>
+</section>
+<section id="s2"><h2>判断错误一:以为发了信号App就会崩</h2>
+<p>在iPhone 11 Pro真机上按了开关,App没有崩。画面一动不动,收集器里也什么都没收到。</p>
+<p>这时最危险的结论是收集器抓不到崩溃。其实是开关没能让App崩,如果怪到收集器头上,就会去改本来没问题的代码,真正的漏洞反而留着。查下来原因出在开关上:WebView早就装好的信号处理器抢先拦截了这个信号。</p>
+<p>只改了一行:发信号之前,先把SIGSEGV恢复成默认行为。这样App崩了,下次启动时WebView的异常退出记录和iOS汇总的SIGSEGV报告都收到了。这天我才明白,测试工具可能比被测对象更早出错。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="奇奇背包整理画面。新人和代理格子里摆着物品的形状" loading="lazy" decoding="async"><figcaption>这款游戏里也装了收集器。为了确认它会崩,我先修了让它崩的那段代码。</figcaption></figure></section>
+<section id="s3"><h2>判断错误二:以为刚上传就收到的错误来自用户</h2>
+<p>收集器有严重程度的标准:启动后8秒内出现的启动错误只要有2次以上,就判定为严重,马上准备热修复。第一周有两款游戏触发了这个标准。Wax Tower(蜡笔塔)1.0.10和奇奇背包1.0.0刚在Play上线,而且是同一个错误:着色器链接失败,uniform数量是261。</p>
+<p>我当时以为是我的游戏在用户手机上启动就崩。其实不是。我在工作手机(Adreno 740)上打开蜡笔塔1.0.10,错误是0,而261这个数字是谷歌虚拟设备使用的软件渲染器(SwiftShader)的上限值。Play在上传后立刻运行的预发布测试机器人报的错误,被我当成了真人的错误来统计。</p>
+<div class="tbl"><table><thead><tr><th></th><th>最初的判断</th><th>实际情况</th></tr></thead><tbody><tr><td>错误内容</td><td>启动时着色器链接失败(uniform 261)</td><td>同一个错误,是虚拟设备的上限值</td></tr><tr><td>在哪里出现</td><td>用户手机</td><td>Firebase Test Lab虚拟设备(SwiftShader)</td></tr><tr><td>工作手机(Adreno 740)上的1.0.10</td><td>还没确认</td><td>错误0</td></tr><tr><td>严重程度判定</td><td>需要热修复的2件</td><td>不需要热修复</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="蜡笔塔游戏画面。黄色小鸡站在绿色果冻般的台阶上" loading="lazy" decoding="async"><figcaption>Wax Tower(蜡笔塔)。报错的设备是连这个画面都画不出来的虚拟设备。</figcaption></figure></section>
+<section id="s4"><h2>所以改了什么</h2>
+<p>现在收集器一旦运行在软件渲染器或firebase.test.lab设备上,就完全不发送会话和错误。我在工作手机上打开标记时被识别为机器人,关掉后被识别为真人,这点也亲自确认过了。为了避免出现缺少同样保护代码的副本,我还把它加进了同步检查。</p>
+<p>第一周得到两条规则。测试用的开关,先确认它本身真的有效。新的监控装置,先把自己产生的噪音筛掉。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="蜡笔塔大厅画面。可以看到按零食主题挑选的五张卡片" loading="lazy" decoding="async"><figcaption>出现同一个错误的两款游戏之一的开始画面。</figcaption></figure></section>
+<section id="s5"><h2>如果你也在做同样的事,先这样试</h2>
+<p>如果你是刚装崩溃收集器的独立开发者,我推荐按这个顺序来。</p>
+<ul><li>做了故意崩溃的代码,先在真机上确认App是不是真的崩了。</li><li>崩溃之后,再确认下次启动时报告有没有送达。</li><li>刚上传到Play就收到的错误,先对照预发布报告里的设备列表。</li><li>可疑的错误,用同一个版本在一台真机上复现一遍。</li><li>新的告警标准,第一周先数一数它自己产生了多少噪音。</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>怎么故意让iOS应用崩溃来测试崩溃日志收集器?</summary><p>我用的是向App进程发送SIGSEGV信号的开关。在iPhone 11 Pro真机上,信号被WebView装的信号处理器拦下,App没有崩;发信号前先把SIGSEGV恢复为默认行为,App就崩了。崩溃后也要确认下次启动时报告有没有送达。</p></details><details><summary>Play管理中心的预发布报告里出现崩溃,用户也会遇到吗?</summary><p>我这次不是。那是上传后只在Firebase Test Lab虚拟设备上出现的渲染器错误,把蜡笔塔1.0.10放到真机(Adreno 740)上运行,错误是0。建议先看预发布报告里的设备列表。</p></details><details><summary>崩溃日志收集器会收集什么?</summary><p>我用的收集器会收集WebView错误和崩溃前的操作、错误占对局数的比例,以及原生崩溃。启动后8秒内的启动错误出现2次以上,就判定为严重并准备热修复。</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">来奇奇背包里装满背包,去打部长吧。</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แอปเด้งออกเอง ทำไงดี: ผมทำปุ่มบังคับให้แอปเด้ง แต่ปุ่มกลับไม่ทำงาน</title>
+<meta name="description" content="นักพัฒนาเกมอินดี้ทำปุ่มบังคับให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash log แต่บน iPhone แอปไม่เด้งเลย และยังนับ error ของหุ่นยนต์ทดสอบก่อนปล่อยบน Play เป็น error ของผู้ใช้ นี่คือสองการประเมินที่พลาดในสัปดาห์แรก">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="แอปเด้งออกเอง ทำไงดี: ผมทำปุ่มบังคับให้แอปเด้ง แต่ปุ่มกลับไม่ทำงาน">
+<meta property="og:description" content="นักพัฒนาเกมอินดี้ทำปุ่มบังคับให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash log แต่บน iPhone แอปไม่เด้งเลย และยังนับ error ของหุ่นยนต์ทดสอบก่อนปล่อยบน Play เป็น error ของผู้ใช้ นี่คือสองการประเมินที่พลาดในสัปดาห์แรก">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ผมตั้งใจทำให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash แต่แอปไม่เด้ง","description":"นักพัฒนาเกมอินดี้ทำปุ่มบังคับให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash log แต่บน iPhone แอปไม่เด้งเลย และยังนับ error ของหุ่นยนต์ทดสอบก่อนปล่อยบน Play เป็น error ของผู้ใช้ นี่คือสองการประเมินที่พลาดในสัปดาห์แรก","inLanguage":"th","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"ผมตั้งใจทำให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash แต่แอปไม่เด้ง","item":"https://dumbgamelab.com/th/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"จะตั้งใจให้แอป iOS เด้งออกเพื่อทดสอบตัวเก็บ crash ได้อย่างไร","acceptedAnswer":{"@type":"Answer","text":"ผมใช้ปุ่มที่ส่งสัญญาณ SIGSEGV ไปยังโพรเซสของแอป บน iPhone 11 Pro เครื่องจริง ตัวจัดการสัญญาณที่ webview ติดตั้งดักไว้ แอปจึงไม่ดับ พอคืนค่า SIGSEGV เป็นพฤติกรรมเริ่มต้นก่อนส่ง แอปก็ดับ อย่าลืมดูด้วยว่ารายงานเข้ามาในการเปิดครั้งถัดไปหรือไม่"}},{"@type":"Question","name":"รายงานก่อนปล่อยของ Play Console มี crash ผู้ใช้จะเจอด้วยไหม","acceptedAnswer":{"@type":"Answer","text":"กรณีของผมไม่ใช่ เป็น error ของตัวเรนเดอร์ที่เกิดเฉพาะบนเครื่องเสมือน Firebase Test Lab ทันทีหลังอัปโหลด และเมื่อเปิด Wax Tower 1.0.10 บนมือถือจริง (Adreno 740) error เป็น 0 ลองดูรายชื่ออุปกรณ์ในรายงานก่อนปล่อยก่อน"}},{"@type":"Question","name":"ตัวเก็บ crash เก็บอะไรบ้าง","acceptedAnswer":{"@type":"Answer","text":"ตัวเก็บที่ผมใช้เก็บ error ของ webview การกระทำก่อนหน้านั้น สัดส่วน error ต่อจำนวนรอบที่เล่น และ native crash ถ้า error ตอนเปิดแอปภายใน 8 วินาทีแรกเกิดตั้งแต่ 2 รอบขึ้นไป ถือว่ารุนแรง และผมจะเตรียมแก้ด่วน"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกความผิดพลาดของนักพัฒนาเกมคนเดียว</p>
+    <h1>ผมตั้งใจทำให้แอปเด้งออกเพื่อทดสอบตัวเก็บ crash แต่แอปไม่เด้ง</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="หน้าจอต่อสู้ของ Chichi Backpack ใต้กระเป๋าที่ใส่ของอย่างร่มและโน้ตบุ๊กมองเห็นการ์ดสกิล" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">ผมติดตัวเก็บ error ไว้ในเกมหลายเกม เพื่อให้มือถือแจ้งทันทีที่แอปพัง และสัปดาห์แรกประเมินพลาดไปสองครั้ง ปุ่มที่ตั้งใจให้แอปเด้งออกไม่สามารถทำให้แอปดับบน iPhone เครื่องจริง ส่วน error ตอนเปิดแอป 2 รายการที่เข้ามาทันทีหลังอัปโหลดขึ้น Play ก็ไม่ใช่ของผู้ใช้ แต่มาจากเครื่องเสมือนทดสอบก่อนปล่อยของ Google ทั้งสองครั้งเป็นฝั่งผู้ทดสอบที่พลาดก่อน</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">จะทดสอบตัวเก็บ ต้องให้แอปพังจริงก่อน</a></li><li><a href="#s2">ประเมินพลาดข้อแรก: เชื่อว่าส่งสัญญาณแล้วแอปต้องดับ</a></li><li><a href="#s3">ประเมินพลาดข้อสอง: เชื่อว่า error ที่เข้ามาหลังอัปโหลดเป็นของผู้ใช้</a></li><li><a href="#s4">แล้วผมเปลี่ยนอะไร</a></li><li><a href="#s5">ถ้าคุณอยู่ในสถานการณ์เดียวกัน ลองตามลำดับนี้</a></li></ol></nav>
+    <section id="s1"><h2>จะทดสอบตัวเก็บ ต้องให้แอปพังจริงก่อน</h2>
+<p>เวลาเกมพังบนมือถือ ผมอยากรู้ก่อนที่รีวิวจะเข้ามา เลยทำตัวเก็บ error เล็ก ๆ แล้วใส่ไว้ในเกมราวสิบเกม มันรับ error ของ webview การกระทำก่อนหน้านั้น และ native crash ที่ทำให้แอปหายไปทั้งตัว</p>
+<p>ปัญหาอยู่ที่การทดสอบ ถ้าอยากรู้ว่าตัวเก็บจับ crash ได้ไหม แอปต้องดับจริง ผมจึงทำปุ่มบังคับให้แอปเด้งออกแยกต่างหาก กดปุ่มที่ซ่อนไว้ แล้วส่ง SIGSEGV (สัญญาณความผิดพลาดในการเข้าถึงหน่วยความจำ) ไปยังโพรเซสของแอป</p>
+</section>
+<section id="s2"><h2>ประเมินพลาดข้อแรก: เชื่อว่าส่งสัญญาณแล้วแอปต้องดับ</h2>
+<p>ผมกดปุ่มบน iPhone 11 Pro เครื่องจริง แต่แอปไม่ดับ หน้าจอเหมือนเดิม และตัวเก็บก็ไม่ได้รับอะไรเลย</p>
+<p>ตอนนั้นข้อสรุปที่อันตรายที่สุดคือตัวเก็บจับ crash ไม่ได้ แต่ความจริงคือปุ่มต่างหากที่ทำให้แอปดับไม่ได้ ถ้าโทษตัวเก็บ ผมจะไปแก้โค้ดที่ปกติดีอยู่ แล้วทิ้งช่องโหว่จริงไว้ พอตรวจดูก็พบว่าต้นเหตุอยู่ที่ปุ่ม ตัวจัดการสัญญาณที่ webview ติดตั้งไว้แล้วดักสัญญาณนั้นไปก่อน</p>
+<p>ที่แก้มีบรรทัดเดียว ก่อนส่งสัญญาณ ให้คืนค่า SIGSEGV กลับเป็นพฤติกรรมเริ่มต้น หลังจากนั้นแอปก็ดับ และในการเปิดครั้งถัดไป ทั้งบันทึกการปิดผิดปกติฝั่ง webview และรายงาน SIGSEGV ที่ iOS รวบรวมไว้ก็เข้ามาครบ วันนั้นผมได้เรียนรู้ว่าเครื่องมือทดสอบพลาดได้ก่อนสิ่งที่ถูกทดสอบ</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="หน้าจอจัดกระเป๋าของ Chichi Backpack รูปร่างของไอเทมวางอยู่ในช่องพนักงานใหม่และผู้ช่วยผู้จัดการ" loading="lazy" decoding="async"><figcaption>เกมนี้ก็มีตัวเก็บเหมือนกัน ผมแก้โค้ดที่ทำให้แอปดับก่อน เพื่อดูว่ามันดับจริงไหม</figcaption></figure></section>
+<section id="s3"><h2>ประเมินพลาดข้อสอง: เชื่อว่า error ที่เข้ามาหลังอัปโหลดเป็นของผู้ใช้</h2>
+<p>ตัวเก็บมีเกณฑ์ระดับความรุนแรง ถ้า error ตอนเปิดแอปภายใน 8 วินาทีแรกเกิดตั้งแต่ 2 รอบขึ้นไป ถือว่ารุนแรง และผมจะเตรียมแก้ด่วน (hotfix) ทันที สัปดาห์แรกมีสองเกมติดเกณฑ์นี้ คือ Wax Tower 1.0.10 และ Chichi Backpack 1.0.0 ที่เพิ่งขึ้น Play และทั้งสองเป็น error เดียวกัน คือการลิงก์ shader ล้มเหลว จำนวน uniform เท่ากับ 261</p>
+<p>ผมอ่านว่าเกมของผมดับตอนเปิดบนมือถือผู้ใช้ แต่ไม่ใช่ ผมเปิด Wax Tower 1.0.10 บนมือถือทำงาน (Adreno 740) แล้ว error เป็น 0 ส่วนเลข 261 เป็นค่าขีดจำกัดของตัวเรนเดอร์ซอฟต์แวร์ (SwiftShader) ที่เครื่องเสมือนของ Google ใช้ error ของหุ่นยนต์ทดสอบก่อนปล่อยที่ Play รันทันทีหลังอัปโหลด ถูกผมนับเป็น error ของคนจริง</p>
+<div class="tbl"><table><thead><tr><th></th><th>ที่ผมอ่านตอนแรก</th><th>ความจริง</th></tr></thead><tbody><tr><td>เนื้อหา error</td><td>ลิงก์ shader ล้มเหลวตอนเปิดแอป (uniform 261)</td><td>error เดียวกัน เป็นค่าขีดจำกัดของเครื่องเสมือน</td></tr><tr><td>เกิดที่ไหน</td><td>มือถือของผู้ใช้</td><td>เครื่องเสมือน Firebase Test Lab (SwiftShader)</td></tr><tr><td>เวอร์ชัน 1.0.10 บนมือถือทำงาน (Adreno 740)</td><td>ยังไม่ได้ตรวจ</td><td>error 0</td></tr><tr><td>การประเมินความรุนแรง</td><td>2 รายการที่ต้องแก้ด่วน</td><td>ไม่ต้องแก้ด่วน</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="หน้าจอเล่น Wax Tower ลูกเจี๊ยบสีเหลืองยืนอยู่บนบันไดสีเขียวคล้ายเยลลี่" loading="lazy" decoding="async"><figcaption>Wax Tower เครื่องที่เกิด error เป็นเครื่องเสมือนที่วาดหน้าจอนี้ไม่ได้ด้วยซ้ำ</figcaption></figure></section>
+<section id="s4"><h2>แล้วผมเปลี่ยนอะไร</h2>
+<p>ตอนนี้ถ้าตัวเก็บรันบนตัวเรนเดอร์ซอฟต์แวร์หรืออุปกรณ์ firebase.test.lab มันจะไม่ส่งทั้งเซสชันและ error เลย ผมลองบนมือถือทำงานด้วยตัวเองแล้ว เปิดตัวบ่งชี้ก็ถูกจำว่าเป็นหุ่นยนต์ ปิดก็ถูกจำว่าเป็นคน และยังใส่ตัวกันนี้ในการตรวจการซิงก์ด้วย เพื่อไม่ให้มีสำเนาที่ขาดตัวกันนี้</p>
+<p>สัปดาห์แรกได้กฎสองข้อ ปุ่มสำหรับทดสอบ ให้เช็กก่อนว่าปุ่มนั้นทำงานจริง ส่วนอุปกรณ์เฝ้าระวังตัวใหม่ ให้กรองสัญญาณรบกวนที่มันสร้างเองก่อน</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="หน้าจอล็อบบี้ของ Wax Tower เห็นการ์ดห้าใบให้เลือกตามธีมขนม" loading="lazy" decoding="async"><figcaption>หน้าจอเริ่มของหนึ่งในสองเกมที่เจอ error เดียวกัน</figcaption></figure></section>
+<section id="s5"><h2>ถ้าคุณอยู่ในสถานการณ์เดียวกัน ลองตามลำดับนี้</h2>
+<p>ถ้าคุณเป็นนักพัฒนาเกมคนเดียวที่เพิ่งติดตัวเก็บ error ผมแนะนำลำดับนี้</p>
+<ul><li>ถ้าเขียนโค้ดที่ตั้งใจให้แอปดับ ให้เช็กบนเครื่องจริงก่อนว่าแอปดับจริงไหม</li><li>หลังแอปดับ ดูต่อว่ารายงานเข้ามาในการเปิดครั้งถัดไปหรือไม่</li><li>error ที่เข้ามาทันทีหลังอัปโหลดขึ้น Play ให้เทียบกับรายชื่ออุปกรณ์ในรายงานก่อนปล่อยก่อน</li><li>error ที่น่าสงสัย ให้ลองทำซ้ำบนมือถือจริงเครื่องเดียวด้วยเวอร์ชันเดียวกัน</li><li>เกณฑ์แจ้งเตือนใหม่ ให้นับก่อนว่าในสัปดาห์แรกมันสร้างสัญญาณรบกวนเองกี่ครั้ง</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>จะตั้งใจให้แอป iOS เด้งออกเพื่อทดสอบตัวเก็บ crash ได้อย่างไร</summary><p>ผมใช้ปุ่มที่ส่งสัญญาณ SIGSEGV ไปยังโพรเซสของแอป บน iPhone 11 Pro เครื่องจริง ตัวจัดการสัญญาณที่ webview ติดตั้งดักไว้ แอปจึงไม่ดับ พอคืนค่า SIGSEGV เป็นพฤติกรรมเริ่มต้นก่อนส่ง แอปก็ดับ อย่าลืมดูด้วยว่ารายงานเข้ามาในการเปิดครั้งถัดไปหรือไม่</p></details><details><summary>รายงานก่อนปล่อยของ Play Console มี crash ผู้ใช้จะเจอด้วยไหม</summary><p>กรณีของผมไม่ใช่ เป็น error ของตัวเรนเดอร์ที่เกิดเฉพาะบนเครื่องเสมือน Firebase Test Lab ทันทีหลังอัปโหลด และเมื่อเปิด Wax Tower 1.0.10 บนมือถือจริง (Adreno 740) error เป็น 0 ลองดูรายชื่ออุปกรณ์ในรายงานก่อนปล่อยก่อน</p></details><details><summary>ตัวเก็บ crash เก็บอะไรบ้าง</summary><p>ตัวเก็บที่ผมใช้เก็บ error ของ webview การกระทำก่อนหน้านั้น สัดส่วน error ต่อจำนวนรอบที่เล่น และ native crash ถ้า error ตอนเปิดแอปภายใน 8 วินาทีแรกเกิดตั้งแต่ 2 รอบขึ้นไป ถือว่ารุนแรง และผมจะเตรียมแก้ด่วน</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">มาเติมกระเป๋าใน Chichi Backpack แล้วไปอัดหัวหน้ากัน</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

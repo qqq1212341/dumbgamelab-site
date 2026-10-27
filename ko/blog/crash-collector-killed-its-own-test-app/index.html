@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>앱을 일부러 죽이는 스위치가 안 죽었다: 크래시 수집기 첫 주 틀린 판단 두 개</title>
+<meta name="description" content="1인 개발자가 크래시 수집기를 시험하려고 앱을 일부러 죽이는 스위치를 넣었는데 iPhone에서 앱이 안 죽었습니다. Play 사전 출시 로봇 오류를 사용자 오류로 센 것까지, 첫 주 틀린 판단 두 개를 적었습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="앱을 일부러 죽이는 스위치가 안 죽었다: 크래시 수집기 첫 주 틀린 판단 두 개">
+<meta property="og:description" content="1인 개발자가 크래시 수집기를 시험하려고 앱을 일부러 죽이는 스위치를 넣었는데 iPhone에서 앱이 안 죽었습니다. Play 사전 출시 로봇 오류를 사용자 오류로 센 것까지, 첫 주 틀린 판단 두 개를 적었습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"크래시 수집기를 시험하려고 앱을 일부러 죽였는데, 안 죽었다","description":"1인 개발자가 크래시 수집기를 시험하려고 앱을 일부러 죽이는 스위치를 넣었는데 iPhone에서 앱이 안 죽었습니다. Play 사전 출시 로봇 오류를 사용자 오류로 센 것까지, 첫 주 틀린 판단 두 개를 적었습니다.","inLanguage":"ko","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"크래시 수집기를 시험하려고 앱을 일부러 죽였는데, 안 죽었다","item":"https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"iOS 앱을 일부러 강제 종료해서 크래시 수집기를 시험하려면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"저는 앱 프로세스에 SIGSEGV 신호를 쏘는 스위치를 썼습니다. iPhone 11 Pro 실기기에서는 웹뷰가 단 신호 처리기가 가로채서 앱이 죽지 않았고, 신호를 쏘기 전에 SIGSEGV를 기본 동작으로 되돌리자 죽었습니다. 죽은 뒤 다음 실행에서 보고가 도착하는지도 같이 확인하세요."}},{"@type":"Question","name":"Play Console 출시 전 보고서에서 크래시가 났는데 사용자도 겪는 건가요?","acceptedAnswer":{"@type":"Answer","text":"제 경우엔 아니었습니다. 올린 직후 Firebase Test Lab 가상 기기에서만 난 렌더러 오류였고, 왁뿌타워 1.0.10을 실제 폰(Adreno 740)에서 켜 보니 오류는 0이었습니다. 출시 전 보고서의 기기 목록을 먼저 확인해 보세요."}},{"@type":"Question","name":"크래시 수집기는 무엇을 모으나요?","acceptedAnswer":{"@type":"Answer","text":"제가 쓰는 수집기는 웹뷰 오류와 직전에 한 행동, 판 수 대비 오류 비율, 네이티브 크래시를 모읍니다. 켜고 8초 안에 나는 부팅 오류가 2판 이상이면 심각하다고 보고 핫픽스를 준비합니다."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">1인 개발 실수 기록</p>
+    <h1>크래시 수집기를 시험하려고 앱을 일부러 죽였는데, 안 죽었다</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="치치 배낭 전투 화면. 우산과 노트북 같은 소지품을 칸에 맞춰 넣은 가방 아래로 스킬 카드가 보인다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">앱이 터지는 걸 폰에서 바로 알려 주는 오류 수집기를 게임 여러 개에 깔고, 첫 주 두 번 틀렸습니다. 앱을 일부러 죽이는 스위치가 iPhone 실기기에서 앱을 못 죽였고, Play에 올린 직후 들어온 부팅 오류 2건은 사용자가 아니라 구글 사전 출시 테스트 기기에서 난 것이었습니다. 둘 다 시험하는 쪽이 틀린 경우입니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">수집기를 시험하려면 앱이 죽어야 한다</a></li><li><a href="#s2">틀린 판단 하나: 신호를 쏘면 죽을 거라고 믿었다</a></li><li><a href="#s3">틀린 판단 둘: 올린 직후 들어온 오류는 사용자 거라고 믿었다</a></li><li><a href="#s4">그래서 바꾼 것</a></li><li><a href="#s5">같은 처지라면 먼저 해 볼 것</a></li></ol></nav>
+    <section id="s1"><h2>수집기를 시험하려면 앱이 죽어야 한다</h2>
+<p>게임이 폰에서 터지면 리뷰가 달리기 전에 제가 먼저 알고 싶었습니다. 그래서 오류를 모아 주는 작은 수집기를 만들어 게임 열 개 안팎에 넣었습니다. 웹뷰 오류, 직전에 한 행동, 앱이 통째로 사라지는 네이티브 크래시까지 받습니다.</p>
+<p>문제는 시험입니다. 수집기가 크래시를 잡는지 보려면 앱이 실제로 죽어야 합니다. 그래서 일부러 앱을 죽이는 스위치를 따로 넣었습니다. 숨겨 둔 버튼을 누르면 앱 프로세스에 SIGSEGV(메모리 접근 오류 신호)를 쏩니다.</p>
+</section>
+<section id="s2"><h2>틀린 판단 하나: 신호를 쏘면 죽을 거라고 믿었다</h2>
+<p>iPhone 11 Pro 실기기에서 스위치를 눌렀는데 앱이 죽지 않았습니다. 화면은 그대로였고, 수집기에는 아무것도 도착하지 않았습니다.</p>
+<p>이때 가장 위험한 결론은 수집기가 크래시를 못 잡는다는 것입니다. 스위치가 죽이지 못한 것인데 수집기 탓으로 읽으면, 멀쩡한 코드를 고치고 진짜 구멍은 그대로 둡니다. 확인해 보니 원인은 스위치였습니다. 웹뷰가 이미 달아 둔 신호 처리기가 그 신호를 먼저 가로채고 있었습니다.</p>
+<p>고친 건 한 줄입니다. 신호를 쏘기 전에 SIGSEGV를 기본 동작으로 되돌립니다. 그러자 앱이 죽었고, 다음 실행에서 웹뷰 쪽 비정상 종료 기록과 iOS가 모아 준 SIGSEGV 보고가 둘 다 도착했습니다. 시험 도구가 시험 대상보다 먼저 틀릴 수 있다는 걸 이날 배웠습니다.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="치치 배낭 가방 정리 화면. 신입과 대리 칸에 소지품 모양이 놓여 있다" loading="lazy" decoding="async"><figcaption>이 게임에도 수집기가 들어 있습니다. 죽는지 보려고 죽이는 코드를 먼저 고쳤습니다.</figcaption></figure></section>
+<section id="s3"><h2>틀린 판단 둘: 올린 직후 들어온 오류는 사용자 거라고 믿었다</h2>
+<p>수집기에는 심각도 기준이 있습니다. 켜고 8초 안에 나는 부팅 오류가 2판 이상이면 심각하다고 보고 바로 핫픽스를 준비합니다. 첫 주 이 기준에 두 게임이 걸렸습니다. 왁뿌타워 1.0.10과 치치 배낭 1.0.0이 Play에 올라간 직후였고, 둘 다 같은 오류였습니다. 셰이더 링크가 실패했고 유니폼 수가 261이었습니다.</p>
+<p>저는 제 게임이 사용자 폰에서 부팅하다 죽는다고 읽었습니다. 아니었습니다. 왁뿌타워 1.0.10을 업무폰(Adreno 740)에서 켜 보니 오류는 0이었고, 261이라는 숫자는 구글의 가상 기기가 쓰는 소프트웨어 렌더러(SwiftShader)의 한도 값이었습니다. Play가 올린 직후 돌리는 사전 출시 테스트 로봇이 낸 오류를 사람 오류로 세고 있었던 것입니다.</p>
+<div class="tbl"><table><thead><tr><th></th><th>처음 읽은 것</th><th>실제</th></tr></thead><tbody><tr><td>오류 내용</td><td>부팅 중 셰이더 링크 실패(유니폼 261)</td><td>같은 오류, 가상 기기 한도 값</td></tr><tr><td>어디서 났나</td><td>사용자 폰</td><td>Firebase Test Lab 가상 기기(SwiftShader)</td></tr><tr><td>업무폰(Adreno 740)의 1.0.10</td><td>확인 전</td><td>오류 0</td></tr><tr><td>심각도 판정</td><td>핫픽스 대상 2건</td><td>핫픽스 필요 없음</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="왁뿌타워 플레이 화면. 노란 병아리가 초록색 젤리 같은 계단 위에 서 있다" loading="lazy" decoding="async"><figcaption>왁뿌타워. 오류가 난 기기는 이 화면을 그리지도 못하는 가상 기기였습니다.</figcaption></figure></section>
+<section id="s4"><h2>그래서 바꾼 것</h2>
+<p>수집기가 소프트웨어 렌더러나 firebase.test.lab 기기에서 돌면 세션도 오류도 아예 보내지 않게 했습니다. 업무폰에서 표지를 켜면 로봇으로 인식하고, 끄면 사람으로 인식하는 것까지 직접 확인했습니다. 같은 가드가 빠진 사본이 생기지 않도록 동기화 점검에도 넣었습니다.</p>
+<p>첫 주 얻은 규칙은 둘입니다. 시험용 스위치는 먼저 그 스위치가 실제로 되는지 확인한다. 새 감시 장치는 자기 잡음부터 거른다.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="왁뿌타워 로비 화면. 간식 테마별로 고르는 카드 다섯 장이 보인다" loading="lazy" decoding="async"><figcaption>같은 오류가 난 두 게임 중 하나의 시작 화면입니다.</figcaption></figure></section>
+<section id="s5"><h2>같은 처지라면 먼저 해 볼 것</h2>
+<p>오류 수집기를 새로 붙이는 1인 개발자라면 이 순서를 추천합니다.</p>
+<ul><li>일부러 죽이는 코드를 만들었으면, 먼저 실기기에서 앱이 정말 죽는지 확인한다.</li><li>죽은 뒤 다음 실행에서 보고가 도착하는지까지 본다.</li><li>Play에 올린 직후 들어온 오류는 사전 출시 보고서의 기기 목록과 먼저 대조한다.</li><li>의심스러운 오류는 실제 폰 하나에서 같은 버전으로 재현해 본다.</li><li>새 알림 기준은 첫 주에 자기가 낸 잡음 건수부터 센다.</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>iOS 앱을 일부러 강제 종료해서 크래시 수집기를 시험하려면 어떻게 하나요?</summary><p>저는 앱 프로세스에 SIGSEGV 신호를 쏘는 스위치를 썼습니다. iPhone 11 Pro 실기기에서는 웹뷰가 단 신호 처리기가 가로채서 앱이 죽지 않았고, 신호를 쏘기 전에 SIGSEGV를 기본 동작으로 되돌리자 죽었습니다. 죽은 뒤 다음 실행에서 보고가 도착하는지도 같이 확인하세요.</p></details><details><summary>Play Console 출시 전 보고서에서 크래시가 났는데 사용자도 겪는 건가요?</summary><p>제 경우엔 아니었습니다. 올린 직후 Firebase Test Lab 가상 기기에서만 난 렌더러 오류였고, 왁뿌타워 1.0.10을 실제 폰(Adreno 740)에서 켜 보니 오류는 0이었습니다. 출시 전 보고서의 기기 목록을 먼저 확인해 보세요.</p></details><details><summary>크래시 수집기는 무엇을 모으나요?</summary><p>제가 쓰는 수집기는 웹뷰 오류와 직전에 한 행동, 판 수 대비 오류 비율, 네이티브 크래시를 모읍니다. 켜고 8초 안에 나는 부팅 오류가 2판 이상이면 심각하다고 보고 핫픽스를 준비합니다.</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">치치 배낭에서 가방을 채워 부장을 때려 보세요.</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a><a class="pcard" href="/ko/blog/games-like-game-dev-story/"><img src="/blog/img/games-like-game-dev-story/g1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>Game Dev Story 같은 게임, 카이로소프트 말고도 할 만한 7종</b><span class="pc-desc">Game Dev Story(게임개발 스토리)를 끝낸 사람이 다음에 할 만한 경영 게임을 Steam, App Store, 구글 플레이에서 골랐습니다. 가격, 평가, 지원 언어를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

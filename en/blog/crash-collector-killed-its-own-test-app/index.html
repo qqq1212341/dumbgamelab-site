@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Crash an iOS App on Purpose to Test Crash Reporting (Mine Wouldn&#39;t Crash)</title>
+<meta name="description" content="A solo dev added a switch to crash an iOS app on purpose and test crash reporting, and the app wouldn&#39;t crash. Then Play pre-launch report errors got counted as user errors. Two wrong calls from week one.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="How to Crash an iOS App on Purpose to Test Crash Reporting (Mine Wouldn&#39;t Crash)">
+<meta property="og:description" content="A solo dev added a switch to crash an iOS app on purpose and test crash reporting, and the app wouldn&#39;t crash. Then Play pre-launch report errors got counted as user errors. Two wrong calls from week one.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"I tried to crash my own app to test crash reporting, and it wouldn't crash","description":"A solo dev added a switch to crash an iOS app on purpose and test crash reporting, and the app wouldn't crash. Then Play pre-launch report errors got counted as user errors. Two wrong calls from week one.","inLanguage":"en","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"I tried to crash my own app to test crash reporting, and it wouldn't crash","item":"https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you crash an iOS app on purpose to test a crash reporter?","acceptedAnswer":{"@type":"Answer","text":"I used a switch that sends SIGSEGV to the app process. On a real iPhone 11 Pro, a signal handler set by the WebView caught it and the app didn't die. Once I reset SIGSEGV to its default action before sending the signal, it died. Also check that the report arrives on the next launch."}},{"@type":"Question","name":"My Play Console pre-launch report shows a crash. Do real users hit it too?","acceptedAnswer":{"@type":"Answer","text":"Not in my case. The renderer error appeared only on Firebase Test Lab virtual devices right after the upload, and Wakppu Tower 1.0.10 had 0 errors on a real phone (Adreno 740). Check the device list in the pre-launch report first."}},{"@type":"Question","name":"What does a crash reporter collect?","acceptedAnswer":{"@type":"Answer","text":"The one I use collects WebView errors, the last action before the error, the error rate per session, and native crashes. If boot errors within 8 seconds of launch show up in 2 or more sessions, it counts as severe and I prepare a hotfix."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Solo dev mistake log</p>
+    <h1>I tried to crash my own app to test crash reporting, and it wouldn&#39;t crash</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="Battle screen of Chichi Backpack. Belongings like an umbrella and a laptop are packed into a bag grid, with skill cards below it" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">I put a crash reporter into several of my games so my phone tells me the moment an app blows up, and I got two things wrong in the first week. The switch that crashes the app on purpose did not crash it on a real iPhone, and the two boot errors that arrived right after a Play upload came from Google&#39;s pre-launch test devices, not from users. In both cases the test was what was wrong.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">To test a crash reporter, the app has to crash</a></li><li><a href="#s2">Wrong call one: I assumed sending the signal would kill the app</a></li><li><a href="#s3">Wrong call two: I assumed errors right after upload were from users</a></li><li><a href="#s4">What I changed</a></li><li><a href="#s5">What to try first if you&#39;re in the same spot</a></li></ol></nav>
+    <section id="s1"><h2>To test a crash reporter, the app has to crash</h2>
+<p>When a game crashes on someone&#39;s phone, I wanted to know before the reviews showed up. So I built a small reporter and put it into about ten games. It receives WebView errors, the last action the player took, and native crashes where the whole app just disappears.</p>
+<p>The hard part is testing it. To see whether the reporter catches a crash, the app has to really crash. So I added a switch that kills the app on purpose. Tap a hidden button and it sends SIGSEGV (a memory access error signal) to the app process.</p>
+</section>
+<section id="s2"><h2>Wrong call one: I assumed sending the signal would kill the app</h2>
+<p>I tapped the switch on a real iPhone 11 Pro and the app did not die. The screen stayed the same and nothing reached the reporter.</p>
+<p>The most dangerous conclusion at that point is that the reporter can&#39;t catch crashes. The switch had failed to kill the app, and if I had blamed the reporter I would have fixed working code and left the real hole alone. When I checked, the switch was the culprit. A signal handler that the WebView had already installed was catching that signal first.</p>
+<p>The fix is one line. Before sending the signal, reset SIGSEGV to its default action. After that the app died, and on the next launch both the WebView crash record and the SIGSEGV report that iOS collects arrived. That day I learned the testing tool can be wrong before the thing it tests.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="Bag organizing screen of Chichi Backpack. Item shapes sit in the Junior and Assistant Manager slots" loading="lazy" decoding="async"><figcaption>This game has the reporter too. I fixed the code that kills the app first, so I could see it die.</figcaption></figure></section>
+<section id="s3"><h2>Wrong call two: I assumed errors right after upload were from users</h2>
+<p>The reporter has a severity rule. If boot errors that happen within 8 seconds of launch show up in 2 or more sessions, it counts as severe and I prepare a hotfix right away. In the first week two games tripped it. Wakppu Tower 1.0.10 and Chichi Backpack 1.0.0 had just gone up on Play, and both showed the same error. A shader link failed, with a uniform count of 261.</p>
+<p>I read it as my game dying while booting on users&#39; phones. It wasn&#39;t. When I ran Wakppu Tower 1.0.10 on my work phone (Adreno 740), there were 0 errors, and the number 261 turned out to be the limit of the software renderer (SwiftShader) used by Google&#39;s virtual devices. I had been counting errors from the pre-launch test robot that Play runs right after an upload as human errors.</p>
+<div class="tbl"><table><thead><tr><th></th><th>What I first read</th><th>What it was</th></tr></thead><tbody><tr><td>The error</td><td>Shader link failure during boot (261 uniforms)</td><td>Same error, a virtual device limit</td></tr><tr><td>Where it came from</td><td>A user&#39;s phone</td><td>A Firebase Test Lab virtual device (SwiftShader)</td></tr><tr><td>1.0.10 on the work phone (Adreno 740)</td><td>Not checked yet</td><td>0 errors</td></tr><tr><td>Severity call</td><td>2 hotfix cases</td><td>No hotfix needed</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="Gameplay of Wakppu Tower. A yellow chick stands on green jelly-like stairs" loading="lazy" decoding="async"><figcaption>Wakppu Tower. The device that threw the error couldn&#39;t even draw this screen.</figcaption></figure></section>
+<section id="s4"><h2>What I changed</h2>
+<p>If the reporter runs on a software renderer or a Firebase Test Lab device, it now sends no sessions and no errors at all. On the work phone I checked it myself: turn the marker on and it is recognized as a robot, turn it off and it is recognized as a person. I also added it to the sync check so no copy ends up without the same guard.</p>
+<p>I came away with two rules from week one. Before you rely on a test switch, check that the switch really works. A new monitor has to filter out its own noise first.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="Wakppu Tower lobby screen. Five cards to pick from, one for each snack theme" loading="lazy" decoding="async"><figcaption>The start screen of one of the two games that threw the same error.</figcaption></figure></section>
+<section id="s5"><h2>What to try first if you&#39;re in the same spot</h2>
+<p>If you&#39;re adding a crash reporter for the first time as a solo dev, I&#39;d go in this order.</p>
+<ul><li>If you wrote code that crashes the app on purpose, first check on a real device that the app really dies.</li><li>Then check that the report arrives on the next launch after the crash.</li><li>For errors that show up right after a Play upload, compare them with the device list in the pre-launch report first.</li><li>Reproduce a suspicious error on one real phone with the same version.</li><li>For a new alert rule, count the noise it produces in the first week before trusting it.</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>How do you crash an iOS app on purpose to test a crash reporter?</summary><p>I used a switch that sends SIGSEGV to the app process. On a real iPhone 11 Pro, a signal handler set by the WebView caught it and the app didn&#39;t die. Once I reset SIGSEGV to its default action before sending the signal, it died. Also check that the report arrives on the next launch.</p></details><details><summary>My Play Console pre-launch report shows a crash. Do real users hit it too?</summary><p>Not in my case. The renderer error appeared only on Firebase Test Lab virtual devices right after the upload, and Wakppu Tower 1.0.10 had 0 errors on a real phone (Adreno 740). Check the device list in the pre-launch report first.</p></details><details><summary>What does a crash reporter collect?</summary><p>The one I use collects WebView errors, the last action before the error, the error rate per session, and native crashes. If boot errors within 8 seconds of launch show up in 2 or more sessions, it counts as severe and I prepare a hotfix.</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">Pack your bag in Chichi Backpack and take on the boss.</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/games-like-game-dev-story/"><img src="/blog/img/games-like-game-dev-story/g1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Games like Game Dev Story: 7 Kairosoft alternatives worth playing next</b><span class="pc-desc">Games like Game Dev Story and Kairosoft alternatives on Steam, iOS and Android, with price, ratings and language support in one table.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

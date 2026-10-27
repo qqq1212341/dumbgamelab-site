@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>為了測試當機回報，我故意讓 App 當機，它卻沒當機</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>獨立開發者為了測試當機回報，加了一個故意讓 App 當機的開關，結果在 iPhone 上 App 根本沒當機。連 Play 發布前報告的錯誤都被當成使用者錯誤，這是第一週的兩個誤判。</description>
+  </item>
+  <item>
     <title>itch.io上架10款遊戲，2週瀏覽327、購買0：我判斷錯在哪裡</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/why-we-posted-devlogs-after-327-views/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/why-we-posted-devlogs-after-327-views/</guid>

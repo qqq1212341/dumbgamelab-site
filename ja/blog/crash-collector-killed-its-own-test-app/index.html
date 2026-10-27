@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アプリのクラッシュ原因を拾う仕組みを試したら、わざと落とすスイッチが落ちなかった話</title>
+<meta name="description" content="個人開発者がクラッシュレポートを試すため、アプリをわざと落とすスイッチを入れたところ、iPhoneで落ちませんでした。Playのプレローンチレポートのエラーをユーザーのクラッシュと数えた失敗まで、最初の1週間の誤判断を2つ書きます。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="アプリのクラッシュ原因を拾う仕組みを試したら、わざと落とすスイッチが落ちなかった話">
+<meta property="og:description" content="個人開発者がクラッシュレポートを試すため、アプリをわざと落とすスイッチを入れたところ、iPhoneで落ちませんでした。Playのプレローンチレポートのエラーをユーザーのクラッシュと数えた失敗まで、最初の1週間の誤判断を2つ書きます。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"クラッシュレポートを試すためにアプリをわざと落とそうとしたら、落ちなかった","description":"個人開発者がクラッシュレポートを試すため、アプリをわざと落とすスイッチを入れたところ、iPhoneで落ちませんでした。Playのプレローンチレポートのエラーをユーザーのクラッシュと数えた失敗まで、最初の1週間の誤判断を2つ書きます。","inLanguage":"ja","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"クラッシュレポートを試すためにアプリをわざと落とそうとしたら、落ちなかった","item":"https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"iOSアプリをわざとクラッシュさせてクラッシュレポートを試すにはどうしますか?","acceptedAnswer":{"@type":"Answer","text":"私はアプリのプロセスにSIGSEGVシグナルを送るスイッチを使いました。iPhone 11 Proの実機では、WebViewが設定したシグナルハンドラが横取りしてアプリが落ちず、送る前にSIGSEGVを既定の動作に戻したら落ちました。落ちた後、次の起動でレポートが届くかも一緒に確認してください。"}},{"@type":"Question","name":"Play Consoleのプレローンチレポートでクラッシュが出ました。ユーザーも同じ目に遭っていますか?","acceptedAnswer":{"@type":"Answer","text":"私の場合は違いました。アップ直後にFirebase Test Labの仮想端末でだけ出たレンダラーのエラーで、ワクプタワー1.0.10を実機(Adreno 740)で動かしたらエラーは0でした。まずレポートの端末一覧を確認してみてください。"}},{"@type":"Question","name":"クラッシュレポートの仕組みは何を集めますか?","acceptedAnswer":{"@type":"Answer","text":"私が使っているものは、WebViewのエラー、直前の操作、セッション数に対するエラーの割合、ネイティブクラッシュを集めます。起動から8秒以内の起動エラーが2セッション以上あれば深刻と見なし、ホットフィックスの準備をします。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">個人開発の失敗ログ</p>
+    <h1>クラッシュレポートを試すためにアプリをわざと落とそうとしたら、落ちなかった</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="チチのバックパックの戦闘画面。傘やノートPCなどの持ち物をマスに合わせて詰めたカバンの下にスキルカードが並んでいる" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">アプリが落ちたらスマホにすぐ知らせるクラッシュ収集の仕組みを複数のゲームに入れて、最初の1週間に2回判断を間違えました。わざとアプリを落とすスイッチは実機のiPhoneでアプリを落とせず、Playにアップした直後に届いた起動エラー2件はユーザーではなくGoogleのプレローンチテスト端末で起きたものでした。どちらも、試す側が間違っていたケースです。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">収集の仕組みを試すには、アプリが本当に落ちる必要がある</a></li><li><a href="#s2">誤判断その1:シグナルを送れば落ちると思い込んだ</a></li><li><a href="#s3">誤判断その2:アップ直後のエラーはユーザーのものだと思い込んだ</a></li><li><a href="#s4">それで変えたこと</a></li><li><a href="#s5">同じ立場の人が最初にやること</a></li></ol></nav>
+    <section id="s1"><h2>収集の仕組みを試すには、アプリが本当に落ちる必要がある</h2>
+<p>ゲームがスマホで落ちたら、レビューが付く前に自分で気づきたいと思っていました。そこでエラーを集める小さな仕組みを作り、10本前後のゲームに入れました。WebViewのエラー、直前の操作、アプリごと消えてしまうネイティブクラッシュまで受け取ります。</p>
+<p>難しいのは試験です。クラッシュを拾えるか確かめるには、アプリが実際に落ちなければなりません。そこで、わざとアプリを落とすスイッチを別に入れました。隠しボタンを押すと、アプリのプロセスにSIGSEGV(メモリアクセス違反を示すシグナル)を送ります。</p>
+</section>
+<section id="s2"><h2>誤判断その1:シグナルを送れば落ちると思い込んだ</h2>
+<p>iPhone 11 Proの実機でスイッチを押しましたが、アプリは落ちませんでした。画面はそのままで、収集の仕組みには何も届きません。</p>
+<p>ここで一番危ない結論は、クラッシュを拾えない仕組みだと決めつけることです。落とせなかったのはスイッチなのに収集側のせいにすると、動いているコードを直して本当の穴は残ります。調べると原因はスイッチでした。WebViewがすでに設定していたシグナルハンドラが、そのシグナルを先に横取りしていたのです。</p>
+<p>直したのは1行です。シグナルを送る前に、SIGSEGVを既定の動作に戻します。するとアプリが落ち、次の起動でWebView側の異常終了の記録と、iOSがまとめてくれるSIGSEGVのレポートが両方届きました。試験の道具が試験の対象より先に間違うことがあると、この日に知りました。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="チチのバックパックのカバン整理画面。新人と主任の枠に持ち物の形が置かれている" loading="lazy" decoding="async"><figcaption>このゲームにも収集の仕組みが入っています。落ちるか見るために、落とすコードを先に直しました。</figcaption></figure></section>
+<section id="s3"><h2>誤判断その2:アップ直後のエラーはユーザーのものだと思い込んだ</h2>
+<p>収集の仕組みには深刻度の基準があります。起動から8秒以内に出る起動エラーが2セッション以上あれば深刻と見なし、すぐホットフィックスの準備に入ります。最初の1週間で、この基準に2本のゲームが引っかかりました。ワクプタワー1.0.10とチチのバックパック1.0.0が、Playに上がった直後です。どちらも同じエラーで、シェーダーのリンクに失敗し、ユニフォーム数は261でした。</p>
+<p>自分のゲームがユーザーのスマホで起動中に落ちているのだと読みました。違いました。ワクプタワー1.0.10を業務用スマホ(Adreno 740)で動かすとエラーは0で、261という数字はGoogleの仮想端末が使うソフトウェアレンダラー(SwiftShader)の上限値でした。Playがアップ直後に走らせるプレローンチテストのロボットが出したエラーを、人のエラーとして数えていたのです。</p>
+<div class="tbl"><table><thead><tr><th></th><th>最初の読み</th><th>実際</th></tr></thead><tbody><tr><td>エラー内容</td><td>起動中のシェーダーリンク失敗(ユニフォーム261)</td><td>同じエラー、仮想端末の上限値</td></tr><tr><td>どこで起きたか</td><td>ユーザーのスマホ</td><td>Firebase Test Labの仮想端末(SwiftShader)</td></tr><tr><td>業務用スマホ(Adreno 740)の1.0.10</td><td>未確認</td><td>エラー0</td></tr><tr><td>深刻度の判定</td><td>ホットフィックス対象2件</td><td>ホットフィックス不要</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="ワクプタワーのプレイ画面。黄色いヒヨコが緑色のゼリーのような階段の上に立っている" loading="lazy" decoding="async"><figcaption>ワクプタワー。エラーが出た端末は、この画面を描くことすらできない仮想端末でした。</figcaption></figure></section>
+<section id="s4"><h2>それで変えたこと</h2>
+<p>収集の仕組みがソフトウェアレンダラーやFirebase Test Labの端末で動いたら、セッションもエラーもそもそも送らないようにしました。業務用スマホで目印をオンにするとロボットと判定され、オフにすると人と判定されるところまで自分で確認しています。同じ対策が抜けたコピーができないよう、同期チェックにも入れました。</p>
+<p>最初の1週間で得たルールは2つです。試験用スイッチは、まずそのスイッチが本当に動くか確認する。新しい監視は、自分が出すノイズから先に取り除く。</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="ワクプタワーのロビー画面。おやつのテーマ別に選ぶカードが5枚並んでいる" loading="lazy" decoding="async"><figcaption>同じエラーが出た2本のうち、1本の開始画面です。</figcaption></figure></section>
+<section id="s5"><h2>同じ立場の人が最初にやること</h2>
+<p>クラッシュ収集を新しく入れる個人開発者なら、この順番をおすすめします。</p>
+<ul><li>わざと落とすコードを作ったら、まず実機でアプリが本当に落ちるか確かめる。</li><li>落ちた後、次の起動でレポートが届くところまで見る。</li><li>Playにアップした直後のエラーは、プレローンチレポートの端末一覧と先に照らし合わせる。</li><li>怪しいエラーは、同じバージョンを実機1台で再現してみる。</li><li>新しい通知の基準は、最初の1週間に自分が出したノイズの件数から数える。</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>iOSアプリをわざとクラッシュさせてクラッシュレポートを試すにはどうしますか?</summary><p>私はアプリのプロセスにSIGSEGVシグナルを送るスイッチを使いました。iPhone 11 Proの実機では、WebViewが設定したシグナルハンドラが横取りしてアプリが落ちず、送る前にSIGSEGVを既定の動作に戻したら落ちました。落ちた後、次の起動でレポートが届くかも一緒に確認してください。</p></details><details><summary>Play Consoleのプレローンチレポートでクラッシュが出ました。ユーザーも同じ目に遭っていますか?</summary><p>私の場合は違いました。アップ直後にFirebase Test Labの仮想端末でだけ出たレンダラーのエラーで、ワクプタワー1.0.10を実機(Adreno 740)で動かしたらエラーは0でした。まずレポートの端末一覧を確認してみてください。</p></details><details><summary>クラッシュレポートの仕組みは何を集めますか?</summary><p>私が使っているものは、WebViewのエラー、直前の操作、セッション数に対するエラーの割合、ネイティブクラッシュを集めます。起動から8秒以内の起動エラーが2セッション以上あれば深刻と見なし、ホットフィックスの準備をします。</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">チチのバックパックでカバンを詰めて、部長を叩いてみてください。</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/games-like-game-dev-story/"><img src="/blog/img/games-like-game-dev-story/g1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>ゲーム発展国（Game Dev Story）に似たゲーム、カイロソフト以外で遊べる7本</b><span class="pc-desc">ゲーム発展国（Game Dev Story）を遊び終えた人が次に選ぶ経営ゲームを、Steam、App Store、Google Playから7本選びました。価格、評価、対応言語を1つの表で比べ、自社ゲームの弱点も書いています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

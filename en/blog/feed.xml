@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>I tried to crash my own app to test crash reporting, and it wouldn&#39;t crash</title>
+    <link>https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>A solo dev added a switch to crash an iOS app on purpose and test crash reporting, and the app wouldn&#39;t crash. Then Play pre-launch report errors got counted as user errors. Two wrong calls from week one.</description>
+  </item>
+  <item>
     <title>Ketchup Used to Be Fish Sauce</title>
     <link>https://dumbgamelab.com/en/blog/ketchup-fish/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ketchup-fish/</guid>
@@ -224,13 +231,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-guide/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>A jjimjilbang is a Korean bathhouse and sauna with sleeping rooms, open late or 24 hours. Step-by-step entry, what to wear, the sheep-head towel, baked eggs and sikhye, 2026 prices, etiquette and tips for foreigners.</description>
-  </item>
-  <item>
-    <title>What a PC bang is called around the world: the 2000s internet cafe</title>
-    <link>https://dumbgamelab.com/en/blog/pc-bang-names-around-the-world/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-names-around-the-world/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Indonesia&#39;s warnet, Vietnam&#39;s quán net, Taiwan&#39;s 網咖, China&#39;s 网吧, Brazil&#39;s lan house, Japan&#39;s ネットカフェ, Thailand&#39;s ร้านเกม. The names differ, but the early 2000s internet cafe looked alike. Here are the games and the memories.</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ứng dụng bị crash: mình làm nút cố ý làm app crash, nhưng nút đó không chạy</title>
+<meta name="description" content="Một người làm game indie thêm nút cố ý làm app crash để thử bộ thu thập crash, nhưng trên iPhone app không hề crash. Cộng thêm việc tính lỗi của robot thử trước khi phát hành trên Play là lỗi người dùng, đó là hai phán đoán sai trong tuần đầu.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/crash-collector-killed-its-own-test-app/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Ứng dụng bị crash: mình làm nút cố ý làm app crash, nhưng nút đó không chạy">
+<meta property="og:description" content="Một người làm game indie thêm nút cố ý làm app crash để thử bộ thu thập crash, nhưng trên iPhone app không hề crash. Cộng thêm việc tính lỗi của robot thử trước khi phát hành trên Play là lỗi người dùng, đó là hai phán đoán sai trong tuần đầu.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/crash-collector-killed-its-own-test-app/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Mình cố ý làm app crash để thử bộ thu thập crash, nhưng app không crash","description":"Một người làm game indie thêm nút cố ý làm app crash để thử bộ thu thập crash, nhưng trên iPhone app không hề crash. Cộng thêm việc tính lỗi của robot thử trước khi phát hành trên Play là lỗi người dùng, đó là hai phán đoán sai trong tuần đầu.","inLanguage":"vi","datePublished":"2026-10-27","dateModified":"2026-10-27","image":"https://dumbgamelab.com/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/crash-collector-killed-its-own-test-app/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"치치의 출근 가방","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Mình cố ý làm app crash để thử bộ thu thập crash, nhưng app không crash","item":"https://dumbgamelab.com/vi/blog/crash-collector-killed-its-own-test-app/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Làm sao cố ý làm app iOS crash để thử bộ thu thập crash?","acceptedAnswer":{"@type":"Answer","text":"Mình dùng nút gửi tín hiệu SIGSEGV vào tiến trình app. Trên iPhone 11 Pro thật, trình xử lý tín hiệu do webview cài đã chặn nên app không chết; sau khi trả SIGSEGV về hành vi mặc định trước khi gửi thì app chết. Nhớ kiểm tra luôn báo cáo có về tới ở lần chạy kế tiếp không."}},{"@type":"Question","name":"Báo cáo trước khi phát hành trên Play Console có crash thì người dùng cũng bị không?","acceptedAnswer":{"@type":"Answer","text":"Trường hợp của mình thì không. Đó là lỗi bộ render chỉ xuất hiện trên máy ảo Firebase Test Lab ngay sau khi đăng, và khi mở Wax Tower 1.0.10 trên điện thoại thật (Adreno 740) thì lỗi là 0. Hãy kiểm tra danh sách thiết bị trong báo cáo trước khi phát hành trước."}},{"@type":"Question","name":"Bộ thu thập crash thu những gì?","acceptedAnswer":{"@type":"Answer","text":"Bộ mình dùng thu lỗi webview, hành động ngay trước đó, tỉ lệ lỗi trên số ván chơi và native crash. Lỗi khởi động trong 8 giây đầu xuất hiện từ 2 lượt trở lên thì coi là nghiêm trọng và mình chuẩn bị hotfix."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Ghi lại sai lầm khi làm game một mình</p>
+    <h1>Mình cố ý làm app crash để thử bộ thu thập crash, nhưng app không crash</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-10-27">2026-10-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-fight.jpg" alt="Màn hình chiến đấu của Chichi Backpack. Bên dưới chiếc ba lô xếp đủ đồ như ô và laptop có các thẻ kỹ năng" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Mình cài bộ thu thập lỗi vào nhiều game để điện thoại báo ngay khi app bị crash, và trong tuần đầu mình đoán sai hai lần. Nút cố ý làm app crash không giết được app trên iPhone thật, còn 2 lỗi khởi động nhận được ngay sau khi đưa lên Play không phải của người dùng mà do máy ảo thử trước khi phát hành của Google. Cả hai lần đều là phía thử nghiệm sai trước.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Muốn thử bộ thu thập thì app phải crash thật</a></li><li><a href="#s2">Phán đoán sai thứ nhất: tin rằng gửi tín hiệu là app sẽ chết</a></li><li><a href="#s3">Phán đoán sai thứ hai: tin rằng lỗi đến ngay sau khi đăng là của người dùng</a></li><li><a href="#s4">Vì vậy mình đã đổi gì</a></li><li><a href="#s5">Nếu bạn cũng đang ở hoàn cảnh này, hãy thử theo thứ tự</a></li></ol></nav>
+    <section id="s1"><h2>Muốn thử bộ thu thập thì app phải crash thật</h2>
+<p>Khi game bị crash trên điện thoại, mình muốn biết trước khi có đánh giá xấu. Vì vậy mình làm một bộ thu thập lỗi nhỏ và cài vào khoảng mười game. Nó nhận lỗi webview, hành động ngay trước đó, và cả native crash khiến app biến mất hoàn toàn.</p>
+<p>Khó ở chỗ phải thử. Muốn biết bộ thu thập có bắt được crash không thì app phải thật sự crash. Nên mình thêm riêng một nút cố ý làm app crash: bấm nút ẩn là gửi SIGSEGV (tín hiệu lỗi truy cập bộ nhớ) vào tiến trình của app.</p>
+</section>
+<section id="s2"><h2>Phán đoán sai thứ nhất: tin rằng gửi tín hiệu là app sẽ chết</h2>
+<p>Mình bấm nút trên iPhone 11 Pro thật nhưng app không chết. Màn hình vẫn y nguyên, bộ thu thập cũng không nhận được gì.</p>
+<p>Kết luận nguy hiểm nhất lúc đó là bộ thu thập không bắt được crash. Nút mới là thứ không giết được app, mà nếu đổ cho bộ thu thập thì mình sẽ sửa đoạn code đang ổn và bỏ sót lỗ hổng thật. Kiểm tra lại thì nguyên nhân nằm ở nút: trình xử lý tín hiệu mà webview cài sẵn đã chặn tín hiệu đó trước.</p>
+<p>Mình chỉ sửa một dòng: trước khi gửi tín hiệu, trả SIGSEGV về hành vi mặc định. Sau đó app chết, và ở lần chạy kế tiếp cả bản ghi thoát bất thường phía webview lẫn báo cáo SIGSEGV do iOS gom đều đã về tới. Hôm đó mình hiểu ra rằng công cụ thử nghiệm có thể sai trước cả thứ được thử.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/pack-boss.jpg" alt="Màn hình sắp xếp ba lô của Chichi Backpack. Hình các món đồ nằm trong ô Nhân viên mới và Trưởng nhóm" loading="lazy" decoding="async"><figcaption>Game này cũng có bộ thu thập. Mình sửa đoạn code làm nó chết trước, để xem nó có chết thật không.</figcaption></figure></section>
+<section id="s3"><h2>Phán đoán sai thứ hai: tin rằng lỗi đến ngay sau khi đăng là của người dùng</h2>
+<p>Bộ thu thập có ngưỡng mức độ nghiêm trọng. Nếu lỗi khởi động trong 8 giây đầu xuất hiện từ 2 lượt trở lên thì coi là nghiêm trọng và mình chuẩn bị hotfix ngay. Trong tuần đầu có hai game dính ngưỡng này. Đó là Wax Tower 1.0.10 và Chichi Backpack 1.0.0, vừa lên Play, và cả hai cùng một lỗi: liên kết shader thất bại, số uniform là 261.</p>
+<p>Mình đã đọc là game của mình chết khi khởi động trên điện thoại người dùng. Không phải vậy. Mình mở Wax Tower 1.0.10 trên điện thoại công việc (Adreno 740) thì lỗi là 0, còn con số 261 là giới hạn của bộ render phần mềm (SwiftShader) mà máy ảo của Google dùng. Lỗi do robot thử trước khi phát hành mà Play chạy ngay sau khi đăng đã bị mình tính thành lỗi của người thật.</p>
+<div class="tbl"><table><thead><tr><th></th><th>Cách mình đọc lúc đầu</th><th>Thực tế</th></tr></thead><tbody><tr><td>Nội dung lỗi</td><td>Liên kết shader thất bại khi khởi động (uniform 261)</td><td>Cùng lỗi đó, là giá trị giới hạn của máy ảo</td></tr><tr><td>Lỗi xuất hiện ở đâu</td><td>Điện thoại người dùng</td><td>Máy ảo Firebase Test Lab (SwiftShader)</td></tr><tr><td>Bản 1.0.10 trên điện thoại công việc (Adreno 740)</td><td>Chưa kiểm tra</td><td>Lỗi 0</td></tr><tr><td>Đánh giá mức độ</td><td>2 trường hợp cần hotfix</td><td>Không cần hotfix</td></tr></tbody></table></div>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-mint.jpg" alt="Màn hình chơi Wax Tower. Chú gà con màu vàng đứng trên bậc thang như thạch màu xanh lá" loading="lazy" decoding="async"><figcaption>Wax Tower. Máy báo lỗi là máy ảo, không vẽ nổi cả màn hình này.</figcaption></figure></section>
+<section id="s4"><h2>Vì vậy mình đã đổi gì</h2>
+<p>Giờ nếu bộ thu thập chạy trên bộ render phần mềm hoặc thiết bị firebase.test.lab thì nó không gửi phiên lẫn lỗi nào cả. Mình cũng tự kiểm tra trên điện thoại công việc: bật cờ thì nó nhận là robot, tắt cờ thì nhận là người. Mình còn đưa đoạn chặn này vào bước kiểm tra đồng bộ để không có bản sao nào thiếu nó.</p>
+<p>Tuần đầu cho mình hai quy tắc. Với nút dùng để thử, kiểm tra trước xem nút đó có chạy thật không. Với thiết bị giám sát mới, lọc nhiễu do chính nó tạo ra trước.</p>
+<figure><img src="/blog/img/crash-collector-killed-its-own-test-app/wax-lobby.jpg" alt="Màn hình sảnh Wax Tower. Có năm thẻ để chọn theo chủ đề đồ ăn vặt" loading="lazy" decoding="async"><figcaption>Màn hình bắt đầu của một trong hai game dính cùng lỗi.</figcaption></figure></section>
+<section id="s5"><h2>Nếu bạn cũng đang ở hoàn cảnh này, hãy thử theo thứ tự</h2>
+<p>Nếu bạn là người làm game indie vừa gắn bộ thu thập lỗi, mình gợi ý thứ tự này.</p>
+<ul><li>Nếu đã viết code cố ý làm app chết, trước hết kiểm tra trên máy thật xem app có chết thật không.</li><li>Sau khi app chết, xem luôn báo cáo có về tới ở lần chạy kế tiếp không.</li><li>Với lỗi đến ngay sau khi đăng lên Play, đối chiếu trước với danh sách thiết bị trong báo cáo trước khi phát hành.</li><li>Lỗi đáng ngờ thì thử tái hiện cùng phiên bản trên một điện thoại thật.</li><li>Với ngưỡng cảnh báo mới, tuần đầu hãy đếm xem nó tự tạo ra bao nhiêu lỗi nhiễu.</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Làm sao cố ý làm app iOS crash để thử bộ thu thập crash?</summary><p>Mình dùng nút gửi tín hiệu SIGSEGV vào tiến trình app. Trên iPhone 11 Pro thật, trình xử lý tín hiệu do webview cài đã chặn nên app không chết; sau khi trả SIGSEGV về hành vi mặc định trước khi gửi thì app chết. Nhớ kiểm tra luôn báo cáo có về tới ở lần chạy kế tiếp không.</p></details><details><summary>Báo cáo trước khi phát hành trên Play Console có crash thì người dùng cũng bị không?</summary><p>Trường hợp của mình thì không. Đó là lỗi bộ render chỉ xuất hiện trên máy ảo Firebase Test Lab ngay sau khi đăng, và khi mở Wax Tower 1.0.10 trên điện thoại thật (Adreno 740) thì lỗi là 0. Hãy kiểm tra danh sách thiết bị trong báo cáo trước khi phát hành trước.</p></details><details><summary>Bộ thu thập crash thu những gì?</summary><p>Bộ mình dùng thu lỗi webview, hành động ngay trước đó, tỉ lệ lỗi trên số ván chơi và native crash. Lỗi khởi động trong 8 giây đầu xuất hiện từ 2 lượt trở lên thì coi là nghiêm trọng và mình chuẩn bị hotfix.</p></details></section>
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">Vào Chichi Backpack, xếp đầy ba lô rồi đập sếp đi.</p>
+  <div class="gb-btns"></div></div>
+</aside>
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/crash-collector-killed-its-own-test-app/" hreflang="en" lang="en">English</a><a href="/ko/blog/crash-collector-killed-its-own-test-app/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/crash-collector-killed-its-own-test-app/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/crash-collector-killed-its-own-test-app/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
