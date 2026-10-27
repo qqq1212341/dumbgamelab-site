@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>QRコードは碁盤から生まれた</title>
+    <link>https://dumbgamelab.com/ja/blog/qr-baduk/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/qr-baduk/</guid>
+    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
+    <description>QRコードは1994年に日本で、碁石の白と黒の模様からヒントを得て作られた。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>クラッシュレポートを試すためにアプリをわざと落とそうとしたら、落ちなかった</title>
     <link>https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/</guid>
@@ -224,13 +232,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-etiquette/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>韓国のチムジルバンで下着は着る？タトゥーは入れる？スマホはどこまで使える？浴場と共用サウナフロアで迷いやすい入り方のルールを、疑問の順にまとめました。施設ごとに違う部分は分けて書いています。</description>
-  </item>
-  <item>
-    <title>チムジルバンの入り方：初めてでも迷わない韓国サウナ完全ガイド</title>
-    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-guide/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-guide/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>チムジルバンは、男女別の浴場と、館内着で過ごす共用のサウナ、休憩室、仮眠室がそろった韓国式サウナです。入り方の順番、下着はどうする？、羊タオルの巻き方、ゆで卵とシッケ、料金、ルール、外国人向けのコツをまとめました。</description>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,14 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>QR코드는 바둑판에서 태어났다</title>
+    <link>https://dumbgamelab.com/ko/blog/qr-baduk/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/qr-baduk/</guid>
+    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
+    <description>QR코드는 1994년 일본에서 바둑돌의 흑백 무늬에서 영감을 받아 만들어졌다.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>크래시 수집기를 시험하려고 앱을 일부러 죽였는데, 안 죽었다</title>
     <link>https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/crash-collector-killed-its-own-test-app/</guid>
@@ -224,13 +232,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/jjimjilbang-etiquette/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>찜질방에서 속옷은 입나, 문신은 되나, 휴대폰은 어디까지 되나. 탕과 찜질 공간에서 헷갈리는 규칙을 질문 순서로 정리했고, 시설마다 다른 부분은 따로 표시했습니다.</description>
-  </item>
-  <item>
-    <title>찜질방 처음 가는 사람을 위한 안내: 들어가서 나올 때까지</title>
-    <link>https://dumbgamelab.com/ko/blog/jjimjilbang-guide/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/jjimjilbang-guide/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>찜질방은 목욕탕과 찜질 공간, 휴게실, 수면실이 한 건물에 있는 한국식 사우나입니다. 들어가서 나올 때까지 순서, 찜질복과 속옷, 수건 양머리, 구운 계란과 식혜, 가격대, 에티켓, 외국인 팁을 정리했습니다.</description>
   </item>
 </channel>
 </rss>
