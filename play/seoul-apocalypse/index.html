@@ -3,119 +3,408 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>서울 아포칼립스 — 1서버 닉네임 선점</title>
-<meta name="description" content="좀비가 휩쓴 서울, 내 아파트 단지부터 지킨다. 1서버 닉네임을 먼저 잡아 두세요.">
+<title>서울 아포칼립스 — 1서버 생존자 등록</title>
+<meta name="description" content="다리는 끊겼다. 남은 건 우리 단지뿐. 좀비가 휩쓴 서울에서 아파트 단지를 지키는 전략 게임, 1서버 생존자 이름을 먼저 등록하세요.">
 <link rel="canonical" href="https://dumbgamelab.com/play/seoul-apocalypse/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="서울 아포칼립스 — 1서버 닉네임 선점">
-<meta property="og:description" content="좀비가 휩쓴 서울, 내 아파트 단지부터 지킨다.">
+<meta property="og:title" content="서울 아포칼립스 — 1서버 생존자 등록">
+<meta property="og:description" content="다리는 끊겼다. 남은 건 우리 단지뿐.">
 <meta property="og:image" content="https://dumbgamelab.com/play/seoul-apocalypse/og.jpg">
 <meta property="og:url" content="https://dumbgamelab.com/play/seoul-apocalypse/">
-<meta name="theme-color" content="#0b0f1a">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07080c">
 <link rel="icon" href="/img/logo.png">
+<link rel="preload" href="fonts/display.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="hero.jpg" as="image">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
 <style>
+@font-face{font-family:"SA Display";src:url(fonts/display.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"NEXON Lv1 Gothic";src:url(fonts/NEXONLv1GothicLow.otf) format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"NEXON Lv1 Gothic";src:url(fonts/NEXONLv1GothicLow-Bold.otf) format("opentype");font-weight:700;font-display:swap}
+:root{--bg:#07080c;--ink:#efe9dc;--dim:#8d8a84;--red:#e8392b;--amber:#ffb321;--line:#22232a;--card:#101117;
+  --disp:"SA Display","Black Han Sans",-apple-system,"Apple SD Gothic Neo",sans-serif;
+  --body:"NEXON Lv1 Gothic",-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:#0b0f1a;color:#f3efe4;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;-webkit-text-size-adjust:100%}
-body{min-height:100vh;display:flex;justify-content:center}
-.wrap{width:100%;max-width:480px;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
-.hero{position:relative;height:min(112vw,520px);background:#141a2b url(hero.jpg) center top/cover no-repeat}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,15,26,.55) 0,rgba(11,15,26,0) 22%,rgba(11,15,26,0) 52%,#0b0f1a 100%)}
-.brand{position:absolute;z-index:2;top:max(14px,env(safe-area-inset-top));left:16px;font-weight:800;font-size:15px;letter-spacing:.02em;color:#ffd77a;text-shadow:0 1px 6px rgba(0,0,0,.7)}
-.hook{position:absolute;z-index:2;left:18px;right:18px;bottom:6px;margin:0;font-size:29px;line-height:1.22;font-weight:900;letter-spacing:-.02em;text-shadow:0 2px 14px rgba(0,0,0,.85)}
-.hook b{color:#ffd77a;font-weight:900}
-.card{margin:6px 16px 0;padding:18px 16px 16px;border-radius:18px;background:linear-gradient(180deg,#1b2440,#131a30);border:1px solid #2c3963;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-.count{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 12px;font-size:14px;color:#aab3d1}
-.count strong{font-size:26px;color:#ffd77a;font-variant-numeric:tabular-nums;font-weight:900}
-label{display:block;font-size:13px;color:#aab3d1;margin:12px 0 6px}
-input[type=text],input[type=email]{width:100%;height:52px;padding:0 14px;border-radius:12px;border:1.5px solid #36446f;background:#0d1326;color:#fff;font-size:17px;font-family:inherit;outline:none;-webkit-user-select:text;user-select:text}
-input:focus{border-color:#ffc94d}
-.hint{min-height:20px;margin:6px 2px 0;font-size:13px;color:#ff8f7a}
-button.cta{width:100%;height:58px;margin-top:10px;border:0;border-radius:14px;background:linear-gradient(180deg,#ffd35c,#f0a21a);color:#2a1a00;font-size:19px;font-weight:900;font-family:inherit;box-shadow:0 4px 0 #a96b05,0 10px 20px rgba(240,162,26,.25);touch-action:manipulation;-webkit-user-select:none;user-select:none}
-button.cta:active{transform:translateY(2px);box-shadow:0 2px 0 #a96b05}
-button.cta[disabled]{opacity:.6}
-.note{margin:12px 2px 0;font-size:12px;line-height:1.5;color:#7f89ab}
-.note a{color:#a9b5dd}
-.done{display:none;text-align:center;padding:6px 0 2px}
-.done .big{font-size:26px;font-weight:900;color:#ffd77a;margin:4px 0 6px;word-break:break-all}
-.done .sub{color:#c9d1ee;font-size:15px;margin:0 0 14px}
-button.ghost{width:100%;height:50px;border-radius:12px;border:1.5px solid #4a5a8f;background:transparent;color:#e7ebff;font-size:16px;font-weight:700;font-family:inherit;touch-action:manipulation}
-.perks{list-style:none;margin:18px 16px 0;padding:0;display:grid;gap:8px}
-.perks li{padding:13px 14px;border-radius:12px;background:#121a2e;border:1px solid #232e50;font-size:15px;font-weight:700;color:#e7ebff;-webkit-user-select:none;user-select:none}
-.perks li span{display:block;margin-top:2px;font-size:13px;font-weight:500;color:#8f9ac0}
-.foot{margin:18px 18px 0;font-size:12px;line-height:1.5;color:#6c7699;-webkit-user-select:none;user-select:none}
+html{scroll-behavior:smooth}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-text-size-adjust:100%}
+body{display:flex;justify-content:center;-webkit-user-select:none;user-select:none;overflow-x:hidden}
+img{display:block;max-width:100%}
+.wrap{position:relative;width:100%;max-width:480px;background:var(--bg);padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+.disp{font-family:var(--disp);font-weight:400;letter-spacing:-.01em}
+
+/* ── 재난문자 인트로 ── */
+.alert{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:calc(18px + env(safe-area-inset-top)) 14px 0;background:rgba(0,0,0,.92);animation:alertOut .5s ease 3.4s forwards}
+.alert.gone{display:none}
+.alert::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 0,rgba(232,57,43,.55),transparent 70%);animation:siren .8s ease-in-out infinite alternate}
+.sms{position:relative;width:100%;max-width:440px;border-radius:20px;background:#f4f2ee;color:#1a1a1a;padding:14px 16px 16px;box-shadow:0 20px 50px rgba(0,0,0,.6);transform:translateY(-140%);animation:smsIn .45s cubic-bezier(.2,1.3,.4,1) .35s forwards}
+.sms .top{display:flex;align-items:center;gap:8px;font-size:13px;color:#5b5b5b;font-weight:700}
+.sms .tag{display:inline-block;padding:3px 7px;border-radius:6px;background:var(--red);color:#fff;font-size:12px}
+.sms .t{margin:10px 0 4px;font-size:17px;font-weight:700;color:#c3121b}
+.sms p{margin:0;font-size:15.5px;line-height:1.5}
+.alert .skip{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;color:#6f6f6f;font-size:13px}
+@keyframes smsIn{to{transform:none}}
+@keyframes siren{from{opacity:.35}to{opacity:1}}
+@keyframes alertOut{to{opacity:0;visibility:hidden}}
+
+/* ── 히어로 ── */
+.hero{position:relative;height:100svh;min-height:600px;max-height:900px;overflow:hidden;isolation:isolate}
+.hero .bg{position:absolute;inset:-4%;background:#0b0c12 url(hero.jpg) center 38%/cover no-repeat;animation:drift 22s ease-in-out infinite alternate;z-index:-3}
+.hero .shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(7,8,12,.85) 0,rgba(7,8,12,.1) 24%,rgba(7,8,12,0) 48%,rgba(7,8,12,.75) 74%,var(--bg) 100%)}
+.hero .pulse{position:absolute;inset:0;z-index:-2;background:radial-gradient(90% 40% at 50% 0,rgba(232,57,43,.45),transparent 70%);animation:siren 1.6s ease-in-out infinite alternate;mix-blend-mode:screen}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.grain{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes drift{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.12) translate3d(-2%,-2%,0)}}
+.live{position:absolute;top:calc(16px + env(safe-area-inset-top));left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;letter-spacing:.06em;color:#d9d3c6}
+.live .rec{display:flex;align-items:center;gap:7px}
+.live .rec i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.hero .copy{position:absolute;left:0;right:0;bottom:calc(24px + env(safe-area-inset-bottom));padding:0 20px}
+.logo{margin:0;line-height:.86;font-size:clamp(64px,19vw,92px);color:#f6efe2;text-shadow:0 0 1px #000,0 6px 0 #3a0905,0 14px 40px rgba(232,57,43,.55)}
+.logo span{display:block;color:var(--red);font-size:.72em;letter-spacing:.02em;text-shadow:0 0 1px #000,0 5px 0 #2a0503,0 0 28px rgba(232,57,43,.8)}
+.logo.glitch{animation:glitch .28s steps(2) 1}
+@keyframes glitch{0%{transform:translate(2px,0);filter:drop-shadow(-3px 0 #00e5ff) drop-shadow(3px 0 var(--red))}50%{transform:translate(-2px,1px)}100%{transform:none;filter:none}}
+.slogan{margin:16px 0 0;font-size:21px;line-height:1.4;font-weight:700;color:#efe9dc;text-shadow:0 2px 10px #000}
+.slogan b{color:var(--amber)}
+.cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:62px;margin-top:20px;border:0;border-radius:14px;background:linear-gradient(180deg,#ff5040,#c8221a);color:#fff;font-family:var(--disp);font-size:24px;letter-spacing:.02em;text-decoration:none;box-shadow:0 5px 0 #6d0d08,0 14px 34px rgba(232,57,43,.45);touch-action:manipulation;cursor:pointer}
+.cta:active{transform:translateY(3px);box-shadow:0 2px 0 #6d0d08}
+.cta[disabled]{opacity:.6}
+.counter{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-size:13px;color:#b9b2a6}
+.counter b{font-family:var(--disp);font-weight:400;font-size:22px;color:var(--amber);font-variant-numeric:tabular-nums}
+
+/* ── 섹션 공통 ── */
+section{padding:56px 20px 0}
+.kicker{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--red)}
+h2{margin:0 0 22px;font-size:34px;line-height:1.12;color:#f6efe2}
+
+/* 연표 */
+.log{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid #2a1512}
+.log li{position:relative;padding:0 0 22px 6px;opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.log li.in{opacity:1;transform:none}
+.log li::before{content:"";position:absolute;left:-25px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--red)}
+.log li:last-child::before{background:var(--red);box-shadow:0 0 14px var(--red)}
+.log .d{font-family:var(--disp);font-size:20px;color:var(--red)}
+.log p{margin:4px 0 0;font-size:16px;line-height:1.5;color:#d8d2c6}
+
+/* 게임 화면 */
+.feat{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:0 20px 8px;scrollbar-width:none}
+.feat::-webkit-scrollbar{display:none}
+.f{flex:0 0 72%;scroll-snap-align:center}
+.f .shot{margin-bottom:16px}
+.swipe{margin:10px 0 0;font-size:12px;color:#55565f;text-align:right}
+.shot{border-radius:18px;overflow:hidden;border:2px solid #2b2c33;box-shadow:0 14px 34px rgba(0,0,0,.6);background:#111}
+.f .n{font-family:var(--disp);font-size:42px;line-height:1;color:#2d2e36}
+.f h3{margin:4px 0 8px;font-family:var(--disp);font-weight:400;font-size:25px;color:#f6efe2}
+.f p{margin:0;font-size:15px;line-height:1.55;color:#a9a39a}
+
+/* 등록 */
+.reg{position:relative;margin:0;padding:24px 18px 20px;border-radius:20px;background:linear-gradient(180deg,#16110f,#0d0d11);border:1px solid #3a1d18;box-shadow:0 0 0 1px rgba(232,57,43,.08),0 24px 60px rgba(0,0,0,.6)}
+.reg .tape{position:absolute;top:-13px;left:16px;right:16px;height:26px;border-radius:3px;background:repeating-linear-gradient(-45deg,#ffb321 0 16px,#141414 16px 32px);opacity:.92;box-shadow:0 4px 10px rgba(0,0,0,.5)}
+.seats{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:6px 0 8px;font-size:13px;line-height:1.35;color:#b9b2a6}
+.seats b{white-space:nowrap}
+.seats b{font-family:var(--disp);font-weight:400;font-size:28px;color:var(--amber);font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:#1f2027;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8221a,#ff6a3d);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+label{display:block;margin:18px 0 7px;font-size:14px;font-weight:700;color:#d8d2c6}
+label small{font-weight:400;color:var(--dim)}
+input[type=text],input[type=email]{width:100%;height:56px;padding:0 16px;border-radius:12px;border:1.5px solid #34353e;background:#08090c;color:#fff;font-size:18px;font-family:var(--body);font-weight:700;outline:none;-webkit-user-select:text;user-select:text}
+input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,57,43,.18)}
+.ok{border-color:#3fae5a!important}
+.hint{min-height:20px;margin:7px 2px 0;font-size:13px;color:#ff8f7a}
+.hint.good{color:#6fd38a}
+.note{margin:14px 2px 0;font-size:12px;line-height:1.55;color:#6d6a65}
+.note a{color:#a8a39b}
+
+/* 등록증 */
+.done{display:none}
+.idcard{position:relative;margin:4px 0 0;border-radius:14px;overflow:hidden;background:#ede6d6;color:#1b1a17;box-shadow:0 18px 40px rgba(0,0,0,.6);transform:rotate(-1.2deg)}
+.idcard .hd{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#1b1a17;color:#ede6d6;font-size:12px;font-weight:700;letter-spacing:.08em}
+.idcard .bd{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:16px 14px 18px}
+.idcard .ph{height:104px;border-radius:6px;background:#c9c0ad url(shots/face.svg) center/cover;border:2px solid #1b1a17}
+.idcard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 10px;font-size:13px}
+.idcard dt{color:#6b6458}
+.idcard dd{margin:0;font-weight:700}
+.idcard .nm{font-family:var(--disp);font-size:26px;line-height:1.05;word-break:break-all}
+.idcard .stamp{position:absolute;right:12px;bottom:12px;padding:4px 10px;border:3px solid #c3121b;border-radius:8px;color:#c3121b;font-family:var(--disp);font-size:22px;transform:rotate(-14deg);opacity:.85}
+.donebtns{display:grid;gap:10px;margin-top:22px}
+.ghost{width:100%;height:54px;border-radius:12px;border:1.5px solid #4a4b55;background:transparent;color:#efe9dc;font-size:16px;font-weight:700;font-family:var(--body);touch-action:manipulation}
+
+/* 보급 단계 */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.steps li{display:grid;grid-template-columns:84px 1fr auto;align-items:center;gap:12px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.steps .need{white-space:nowrap;font-family:var(--disp);font-size:21px;color:#55565f;font-variant-numeric:tabular-nums}
+.steps .what{font-size:15px;font-weight:700;color:#cfc9bd}
+.steps .what small{display:block;margin-top:2px;font-weight:400;font-size:12.5px;color:#7a776f}
+.steps .st{font-size:12px;font-weight:700;color:#55565f}
+.steps li.on{border-color:#5a2a14;background:linear-gradient(90deg,#24140d,#111216)}
+.steps li.on .need{color:var(--amber)}
+.steps li.on .st{color:var(--amber)}
+.steps li.next{border-color:#3a3b44}
+.steps li.next .st{color:#d8d2c6}
+.honest{margin:12px 2px 0;font-size:12px;color:#6d6a65}
+
+/* 데려오기 */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ladder div{padding:14px 8px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-align:center}
+.ladder b{display:block;font-family:var(--disp);font-weight:400;font-size:30px;color:#efe9dc}
+.ladder span{display:block;margin-top:6px;font-size:13px;line-height:1.35;color:#a9a39a}
+.ladder div.on{border-color:var(--amber)}
+.ladder div.on b{color:var(--amber)}
+.mine{margin:12px 2px 0;font-size:14px;color:#b9b2a6}
+
+/* 묻는 말 */
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;padding:18px 2px;font-size:16px;font-weight:700;color:#e6e0d4;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--red);font-family:var(--disp);font-size:20px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
+.foot{margin:40px 20px 0;font-size:12px;line-height:1.6;color:#55565f}
+
+/* 아래 고정 단추 */
+.dock{position:fixed;left:50%;bottom:0;z-index:20;width:100%;max-width:480px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(7,8,12,0),rgba(7,8,12,.94) 34%);transform:translate(-50%,120%);transition:transform .3s}
+.dock.show{transform:translate(-50%,0)}
+.dock .cta{margin:0;height:58px;font-size:22px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.log li{opacity:1;transform:none}.alert{display:none}}
 </style>
 </head>
 <body>
+<div class="alert" id="alert" role="alertdialog" aria-label="긴급재난문자">
+  <div class="sms">
+    <div class="top"><span class="tag">긴급재난문자</span><span>지금</span></div>
+    <p class="t">[재난안전본부] 서울 전역 감염 확산</p>
+    <p>외출을 멈추고 가까운 아파트 단지로 대피하십시오. 한강 다리는 모두 통제됩니다. 문을 열어 주지 마십시오.</p>
+  </div>
+  <div class="skip">화면을 누르면 넘어갑니다</div>
+</div>
+
 <div class="wrap">
-  <header class="hero">
-    <div class="brand">서울 아포칼립스</div>
-    <h1 class="hook">좀비가 휩쓴 서울,<br><b>내 아파트 단지</b>부터 지킨다</h1>
+  <header class="hero" id="top">
+    <div class="bg"></div><div class="pulse"></div><div class="shade"></div><canvas id="embers"></canvas><div class="grain"></div>
+    <div class="live"><span class="rec"><i></i>1서버 생존자 등록 중</span><span>D+30 · 서울</span></div>
+    <div class="copy">
+      <h1 class="logo disp" id="logo">서울<span>아포칼립스</span></h1>
+      <p class="slogan">다리는 끊겼다.<br>남은 건 <b>우리 단지</b>뿐이다.</p>
+      <a class="cta" href="#reg" id="heroCta">생존자 등록</a>
+      <div class="counter"><span>지금까지 등록한 생존자</span><b class="cnt">-</b></div>
+    </div>
   </header>
 
-  <section class="card" id="card">
-    <form id="f" autocomplete="off" novalidate>
-      <p class="count"><span>1서버 닉네임 선점</span><strong id="cnt">-</strong></p>
-      <label for="nick">닉네임</label>
-      <input id="nick" type="text" name="nick" maxlength="10" placeholder="한글·영문·숫자 2~10자" enterkeyhint="next" autocapitalize="off" spellcheck="false">
-      <label for="mail">출시 알림 받을 이메일 (선택)</label>
-      <input id="mail" type="email" name="email" maxlength="120" placeholder="example@email.com" inputmode="email" autocapitalize="off" enterkeyhint="done">
-      <p class="hint" id="hint" role="alert"></p>
-      <button class="cta" id="go" type="submit">1서버 닉 선점</button>
-      <p class="note">이메일은 출시 알림에만 쓰고 출시 30일 뒤 지웁니다. 선점하면 동의한 것으로 봅니다. <a href="/ko/privacy/#prereg">개인정보처리방침</a></p>
-    </form>
-    <div class="done" id="done">
-      <p class="sub">선점 완료</p>
-      <p class="big" id="mine"></p>
-      <p class="sub" id="rank"></p>
-      <button class="ghost" id="share" type="button">친구도 닉 선점하게 링크 보내기</button>
+  <section id="story">
+    <p class="kicker">그날 이후</p>
+    <h2 class="disp">서울이 무너지는 데<br>30일이면 충분했다</h2>
+    <ol class="log">
+      <li><span class="d">D+0</span><p>강남역에서 첫 신고가 들어왔다. 사람이 사람을 물었다고.</p></li>
+      <li><span class="d">D+1</span><p>지하철이 멈췄다. 한강 다리 31곳이 한꺼번에 막혔다.</p></li>
+      <li><span class="d">D+3</span><p>전화가 끊기기 시작했다. 마지막 방송은 «단지 밖으로 나오지 마십시오».</p></li>
+      <li><span class="d">D+7</span><p>살아남은 사람들이 아파트 단지로 모였다. 관리사무소가 본부가 됐다.</p></li>
+      <li><span class="d">D+30</span><p>단지마다 바리케이드가 올라갔다. 이제 좀비만 적이 아니다.</p></li>
+    </ol>
+  </section>
+
+  <section id="game">
+    <p class="kicker">실제 게임 화면</p>
+    <h2 class="disp">단지 하나로<br>서울을 되찾는다</h2>
+    <div class="feat">
+      <div class="f"><img class="shot" src="shots/home.jpg" alt="단지 화면" loading="lazy" width="420" height="908"><div><div class="n">01</div><h3>단지를 다시 세운다</h3><p>관리사무소부터 경비초소, 텃밭, 발전기까지. 한 동씩 올릴 때마다 버틸 날이 늘어난다.</p></div></div>
+      <div class="f"><img class="shot" src="shots/gacha.jpg" alt="생존자 모집 화면" loading="lazy" width="420" height="908"><div><div class="n">02</div><h3>생존자를 모은다</h3><p>의사, 경찰, 배달 기사, 헬스 트레이너. 다들 할 줄 아는 게 하나씩은 있다.</p></div></div>
+      <div class="f"><img class="shot" src="shots/rank.jpg" alt="서버 순위 화면" loading="lazy" width="420" height="908"><div><div class="n">03</div><h3>1서버 꼭대기로</h3><p>옆 단지와 손을 잡거나 밀어낸다. 1서버에서 가장 센 단지가 서울을 쥔다.</p></div></div>
+    </div>
+    <p class="swipe">옆으로 넘겨 보기 →</p>
+  </section>
+
+  <section id="reg">
+    <p class="kicker">1서버 생존자 등록</p>
+    <h2 class="disp">이름을 먼저<br>남겨 두세요</h2>
+    <div class="reg" id="card">
+      <div class="tape"></div>
+      <form id="f" autocomplete="off" novalidate>
+        <div class="seats"><span>1서버 정원 10,000명<br>남은 자리</span><b id="left">-</b></div>
+        <div class="bar"><i id="fill"></i></div>
+        <label for="nick">생존자 이름 <small>출시 때 이 이름으로 시작합니다</small></label>
+        <input id="nick" type="text" name="nick" maxlength="10" placeholder="한글·영문·숫자 2~10자" enterkeyhint="next" autocapitalize="off" spellcheck="false">
+        <p class="hint" id="nhint" role="status"></p>
+        <label for="mail">출시 알림 이메일 <small>(선택)</small></label>
+        <input id="mail" type="email" name="email" maxlength="120" placeholder="example@email.com" inputmode="email" autocapitalize="off" enterkeyhint="done">
+        <p class="hint" id="hint" role="alert"></p>
+        <button class="cta" id="go" type="submit">생존자 등록</button>
+        <p class="note">이메일은 출시 알림에만 쓰고 출시 30일 뒤 지웁니다. 등록하면 동의한 것으로 봅니다. <a href="/ko/privacy/#prereg">개인정보처리방침</a></p>
+      </form>
+      <div class="done" id="done">
+        <div class="idcard" id="idcard">
+          <div class="hd"><span>생존자 등록증</span><span id="idno">No. -</span></div>
+          <div class="bd">
+            <div class="ph"></div>
+            <dl>
+              <dt>이름</dt><dd class="nm" id="idnm"></dd>
+              <dt>배정</dt><dd id="idapt"></dd>
+              <dt>서버</dt><dd>1서버 · 서울</dd>
+              <dt>등록</dt><dd id="iddate"></dd>
+            </dl>
+          </div>
+          <div class="stamp">생존</div>
+        </div>
+        <div class="donebtns">
+          <button class="cta" id="share" type="button">생존자 데려오기</button>
+          <button class="ghost" id="save" type="button">등록증 그림으로 저장</button>
+        </div>
+      </div>
     </div>
   </section>
 
-  <ul class="perks">
-    <li>출시 때 이 닉으로 시작<span>다른 사람은 못 씁니다</span></li>
-    <li>단지 · 연맹 · 서버 전쟁<span>좀비 사태 뒤 서울을 4X 전략으로</span></li>
-  </ul>
-  <p class="foot">개발 중인 게임입니다. 출시가 취소되면 닉네임과 이메일은 모두 지웁니다.<br>덤게임랩</p>
+  <section id="supply">
+    <p class="kicker">모일수록 커지는 보급</p>
+    <h2 class="disp">생존자가 늘면<br>보급 상자가 열린다</h2>
+    <ul class="steps" id="steps">
+      <li data-n="10"><span class="need">10명</span><span class="what">칭호 · 첫 생존자<small>1서버 전원</small></span><span class="st"></span></li>
+      <li data-n="30"><span class="need">30명</span><span class="what">건설 가속 1시간 × 3<small>1서버 전원</small></span><span class="st"></span></li>
+      <li data-n="100"><span class="need">100명</span><span class="what">다이아 300<small>1서버 전원</small></span><span class="st"></span></li>
+      <li data-n="300"><span class="need">300명</span><span class="what">생존자 모집권 10장<small>1서버 전원</small></span><span class="st"></span></li>
+      <li data-n="1000"><span class="need">1,000명</span><span class="what">한정 단지 꾸미기 · 1서버 개척<small>1서버 전원 · 다시 안 나옵니다</small></span><span class="st"></span></li>
+    </ul>
+    <p class="honest" id="honest">숫자는 실제 등록 수 그대로입니다. 보급은 출시 날 게임 안 우편함으로 보냅니다.</p>
+  </section>
+
+  <section id="invite">
+    <p class="kicker">혼자선 못 버틴다</p>
+    <h2 class="disp">내 링크로 들어온<br>생존자만큼 더 받는다</h2>
+    <div class="ladder" id="ladder">
+      <div data-n="1"><b>1명</b><span>건설 가속<br>30분</span></div>
+      <div data-n="3"><b>3명</b><span>모집권<br>3장</span></div>
+      <div data-n="5"><b>5명</b><span>칭호<br>대피 안내원</span></div>
+    </div>
+    <p class="mine" id="mine">등록하면 내 링크가 생깁니다.</p>
+  </section>
+
+  <section id="faq">
+    <p class="kicker">묻는 말</p>
+    <details><summary>언제 나오나요?</summary><p>지금 만들고 있습니다. 출시일이 정해지면 등록한 이메일로 가장 먼저 알려 드립니다.</p></details>
+    <details><summary>이름은 출시 때 그대로 쓰나요?</summary><p>네. 1서버에서 그 이름은 등록한 분만 씁니다. 먼저 등록한 사람이 가져갑니다.</p></details>
+    <details><summary>어떤 게임인가요?</summary><p>아파트 단지를 키우고, 생존자를 모으고, 연맹을 맺어 서버 전쟁을 하는 모바일 전략 게임입니다. 안드로이드가 먼저 나옵니다.</p></details>
+    <details><summary>출시가 안 되면요?</summary><p>등록한 이름과 이메일을 모두 지웁니다.</p></details>
+  </section>
+
+  <p class="foot">서울 아포칼립스는 개발 중인 게임입니다. 화면은 개발 중 화면이라 출시 때 달라질 수 있습니다.<br>덤게임랩 · info@dumbgamelab.com</p>
 </div>
+
+<div class="dock" id="dock"><a class="cta" href="#reg">생존자 등록</a></div>
 
 <script>
 (function(){
-  var API='https://seoulapoc-prereg.iap-validator.workers.dev';
+  var API='https://seoulapoc-prereg.iap-validator.workers.dev', CAP=10000;
   var q=new URLSearchParams(location.search);
   var utm=(q.get('utm_source')||document.referrer.replace(/^https?:\/\/([^\/]+).*/,'$1')||'direct').slice(0,40);
   var ref=(q.get('ref')||'').slice(0,40);
   function ev(n,p){try{gtag('event',n,Object.assign({game:'seoul-apocalypse',utm_source:utm},p||{}));}catch(e){}}
   var $=function(i){return document.getElementById(i)};
-  var started=false,busy=false;
+  var fmt=function(n){return Number(n).toLocaleString('ko-KR')};
+  var started=false,busy=false,total=0;
   ev('prereg_view');
-  try{var mine=localStorage.getItem('seoulapoc.nick'); if(mine) showDone(mine,localStorage.getItem('seoulapoc.rank'));}catch(e){}
 
-  fetch(API+'/count').then(function(r){return r.json()}).then(function(j){$('cnt').textContent=Number(j.total).toLocaleString('ko-KR')+'명'}).catch(function(){$('cnt').textContent=''});
+  /* 재난문자 — 첫 방문 한 번만 · 누르면 넘어간다 */
+  var al=$('alert');
+  try{ if(sessionStorage.getItem('sa.alert')) al.classList.add('gone'); sessionStorage.setItem('sa.alert','1'); }catch(e){}
+  al.addEventListener('click',function(){al.classList.add('gone')});
+  setTimeout(function(){al.classList.add('gone')},4000);
 
-  function start(){ if(!started){started=true;ev('prereg_start');} }
-  $('nick').addEventListener('focus',start); $('nick').addEventListener('input',start);
+  /* 제목 지직거림 */
+  setInterval(function(){var l=$('logo');l.classList.remove('glitch');void l.offsetWidth;l.classList.add('glitch');},4200);
 
-  var MSG={nick_format:'닉네임은 한글·영문·숫자 2~10자예요.',nick_reserved:'쓸 수 없는 닉네임이에요.',taken:'이미 선점된 닉네임이에요.',email_format:'이메일 주소를 확인해 주세요.',limit:'오늘은 더 선점할 수 없어요.',server:'잠시 뒤에 다시 눌러 주세요.',origin:'잠시 뒤에 다시 눌러 주세요.'};
-  function showDone(n,r){
-    $('f').style.display='none'; $('done').style.display='block';
-    $('mine').textContent=n; $('rank').textContent=r?('1서버 '+Number(r).toLocaleString('ko-KR')+'번째 선점'):'1서버 선점';
+  /* 불티 */
+  (function(){
+    var c=$('embers'),x=c.getContext('2d'),ps=[],W,H,dpr=Math.min(2,window.devicePixelRatio||1);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);}
+    size(); addEventListener('resize',size);
+    for(var i=0;i<46;i++) ps.push({x:Math.random()*W,y:H*(.35+Math.random()*.7),v:.25+Math.random()*.8,r:.6+Math.random()*1.8,w:Math.random()*6.28,a:.3+Math.random()*.7});
+    var vis=true; new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(c);
+    (function f(){
+      if(vis){x.clearRect(0,0,W,H);
+        for(var i=0;i<ps.length;i++){var p=ps[i];p.y-=p.v;p.w+=.03;p.x+=Math.sin(p.w)*.4;if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+          var fade=Math.min(1,p.y/(H*.5));x.beginPath();x.fillStyle='rgba(255,'+(110+((i*37)%90))+',40,'+(p.a*fade)+')';x.shadowColor='#ff6a2a';x.shadowBlur=8;x.arc(p.x,p.y,p.r,0,6.283);x.fill();}}
+      requestAnimationFrame(f);
+    })();
+  })();
+
+  /* 연표 등장 */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.4});
+  document.querySelectorAll('.log li').forEach(function(li,i){li.style.transitionDelay=(i%2)*80+'ms';io.observe(li)});
+
+  /* 아래 고정 단추 — 첫 화면 단추와 등록 칸이 안 보일 때만 */
+  var dock=$('dock'),seen={hero:true,reg:false};
+  var dio=new IntersectionObserver(function(es){es.forEach(function(e){seen[e.target.id==='heroCta'?'hero':'reg']=e.isIntersecting});dock.classList.toggle('show',!seen.hero&&!seen.reg)});
+  dio.observe($('heroCta')); dio.observe($('card'));
+
+  function paint(n){
+    total=n;
+    document.querySelectorAll('.cnt').forEach(function(el){el.textContent=fmt(n)+'명'});
+    $('left').textContent=fmt(Math.max(0,CAP-n))+'자리';
+    $('fill').style.width=Math.max(1.5,Math.min(100,n/CAP*100))+'%';
+    var nextSet=false;
+    document.querySelectorAll('#steps li').forEach(function(li){
+      var need=+li.dataset.n,st=li.querySelector('.st');
+      li.classList.toggle('on',n>=need); li.classList.remove('next');
+      if(n>=need) st.textContent='열림';
+      else if(!nextSet){nextSet=true;li.classList.add('next');st.textContent=fmt(need-n)+'명 남음';}
+      else st.textContent='';
+    });
   }
+  function load(){
+    fetch(API+'/count').then(function(r){return r.json()}).then(function(j){
+      paint(j.total);
+      var t=new Date();$('honest').textContent='숫자는 실제 등록 수 그대로입니다('+t.getHours()+':'+String(t.getMinutes()).padStart(2,'0')+' 기준). 보급은 출시 날 게임 안 우편함으로 보냅니다.';
+    }).catch(function(){});
+  }
+  load(); setInterval(load,60000);
+
+  /* 이름 바로 확인 */
+  var MSG={nick_format:'한글·영문·숫자 2~10자로 적어 주세요.',nick_reserved:'쓸 수 없는 이름이에요.',taken:'이미 다른 생존자가 쓰는 이름이에요.',email_format:'이메일 주소를 확인해 주세요.',limit:'오늘은 더 등록할 수 없어요.',server:'잠시 뒤에 다시 눌러 주세요.',origin:'잠시 뒤에 다시 눌러 주세요.'};
+  var chkT,nick=$('nick');
+  function start(){ if(!started){started=true;ev('prereg_start');} }
+  nick.addEventListener('focus',start);
+  nick.addEventListener('input',function(){
+    start(); clearTimeout(chkT); var v=nick.value.trim(); nick.classList.remove('ok'); $('nhint').className='hint'; $('nhint').textContent='';
+    if(!v) return;
+    if(!/^[가-힣A-Za-z0-9]{2,10}$/.test(v)){ if(v.length>=2) $('nhint').textContent=MSG.nick_format; return; }
+    chkT=setTimeout(function(){
+      fetch(API+'/check?nick='+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(j){
+        if(nick.value.trim()!==v) return;
+        if(j.available){nick.classList.add('ok');$('nhint').className='hint good';$('nhint').textContent='쓸 수 있는 이름이에요.';}
+        else $('nhint').textContent=MSG[j.reason]||MSG.taken;
+      }).catch(function(){});
+    },350);
+  });
+
+  function aptOf(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return (101+h%12)+'동 '+(1+(h>>4)%25)+'0'+(1+(h>>9)%4)+'호';}
+  function showDone(n,r,d){
+    $('f').style.display='none'; $('done').style.display='block';
+    $('idnm').textContent=n; $('idno').textContent='No. '+String(r||0).padStart(6,'0');
+    $('idapt').textContent=aptOf(n); $('iddate').textContent=d||new Date().toISOString().slice(0,10).replace(/-/g,'.');
+    loadMine(n);
+  }
+  function loadMine(n){
+    fetch(API+'/ref?nick='+encodeURIComponent(n)).then(function(r){return r.json()}).then(function(j){
+      var k=j.invited||0; $('mine').textContent='내 링크로 들어온 생존자 '+fmt(k)+'명';
+      document.querySelectorAll('#ladder div').forEach(function(d){d.classList.toggle('on',k>=+d.dataset.n)});
+    }).catch(function(){});
+  }
+  try{var mine=localStorage.getItem('seoulapoc.nick'); if(mine) showDone(mine,localStorage.getItem('seoulapoc.rank'),localStorage.getItem('seoulapoc.date'));}catch(e){}
+
   $('f').addEventListener('submit',function(e){
     e.preventDefault(); if(busy) return;
-    var nick=$('nick').value.trim(), mail=$('mail').value.trim();
+    var n=nick.value.trim(), mail=$('mail').value.trim();
     $('hint').textContent='';
-    if(!/^[가-힣A-Za-z0-9]{2,10}$/.test(nick)){$('hint').textContent=MSG.nick_format;return;}
+    if(!/^[가-힣A-Za-z0-9]{2,10}$/.test(n)){$('hint').textContent=MSG.nick_format;nick.focus();return;}
     busy=true; $('go').disabled=true;
-    fetch(API+'/reserve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({nick:nick,email:mail,utm_source:utm,ref:ref})})
+    fetch(API+'/reserve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({nick:n,email:mail,utm_source:utm,ref:ref})})
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
       .then(function(o){
         if(o.j.ok){
           ev('prereg_done',{has_email:mail?1:0,rank:o.j.rank});
-          try{localStorage.setItem('seoulapoc.nick',o.j.nick);localStorage.setItem('seoulapoc.rank',o.j.rank);}catch(e){}
-          $('cnt').textContent=Number(o.j.total).toLocaleString('ko-KR')+'명';
-          showDone(o.j.nick,o.j.rank);
+          var d=new Date().toISOString().slice(0,10).replace(/-/g,'.');
+          try{localStorage.setItem('seoulapoc.nick',o.j.nick);localStorage.setItem('seoulapoc.rank',o.j.rank);localStorage.setItem('seoulapoc.date',d);}catch(e){}
+          paint(o.j.total); showDone(o.j.nick,o.j.rank,d);
+          $('card').scrollIntoView({behavior:'smooth',block:'center'});
         }else{
           ev('prereg_fail',{reason:o.j.error});
           $('hint').textContent=MSG[o.j.error]||MSG.server;
@@ -124,11 +413,43 @@ button.ghost{width:100%;height:50px;border-radius:12px;border:1.5px solid #4a5a8
       .catch(function(){ev('prereg_fail',{reason:'network'});$('hint').textContent=MSG.server;})
       .then(function(){busy=false;$('go').disabled=false;});
   });
+
+  function myLink(){return 'https://dumbgamelab.com/play/seoul-apocalypse/?utm_source=share&ref='+encodeURIComponent((localStorage.getItem('seoulapoc.nick')||'').slice(0,20));}
   $('share').addEventListener('click',function(){
-    var u='https://dumbgamelab.com/play/seoul-apocalypse/?utm_source=share&ref='+encodeURIComponent((localStorage.getItem('seoulapoc.nick')||'').slice(0,20));
-    ev('prereg_share');
-    if(navigator.share){navigator.share({title:'서울 아포칼립스 — 1서버 닉네임 선점',url:u}).catch(function(){});}
-    else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){$('share').textContent='링크를 복사했어요';});}
+    var u=myLink(); ev('prereg_share');
+    var t='좀비가 휩쓴 서울, 우리 단지에 자리 하나 남았다. 1서버 생존자 등록';
+    if(navigator.share){navigator.share({title:'서울 아포칼립스',text:t,url:u}).catch(function(){});}
+    else if(navigator.clipboard){navigator.clipboard.writeText(t+' '+u).then(function(){$('share').textContent='링크를 복사했어요';});}
+  });
+
+  /* 등록증을 그림 한 장으로 */
+  $('save').addEventListener('click',function(){
+    ev('prereg_card');
+    var W=1080,H=1350,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+    var bg=new Image();bg.onload=draw;bg.onerror=draw;bg.src='hero.jpg';
+    function draw(){
+      x.fillStyle='#07080c';x.fillRect(0,0,W,H);
+      if(bg.naturalWidth){var s=Math.max(W/bg.naturalWidth,H/bg.naturalHeight);x.globalAlpha=.55;x.drawImage(bg,(W-bg.naturalWidth*s)/2,(H-bg.naturalHeight*s)/2,bg.naturalWidth*s,bg.naturalHeight*s);x.globalAlpha=1;}
+      var g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(7,8,12,.2)');g.addColorStop(1,'rgba(7,8,12,.95)');x.fillStyle=g;x.fillRect(0,0,W,H);
+      x.textAlign='center';x.fillStyle='#f6efe2';x.font='150px "SA Display"';x.fillText('서울',W/2,250);
+      x.fillStyle='#e8392b';x.font='112px "SA Display"';x.fillText('아포칼립스',W/2,370);
+      x.save();x.translate(W/2,820);x.rotate(-.025);
+      x.fillStyle='#ede6d6';x.fillRect(-420,-300,840,560);x.fillStyle='#1b1a17';x.fillRect(-420,-300,840,90);
+      x.fillStyle='#ede6d6';x.font='bold 36px "NEXON Lv1 Gothic"';x.textAlign='left';x.fillText('생존자 등록증',-385,-242);
+      x.textAlign='right';x.fillText($('idno').textContent,385,-242);
+      x.textAlign='left';x.fillStyle='#6b6458';x.font='34px "NEXON Lv1 Gothic"';
+      x.fillText('이름',-385,-120);x.fillText('배정',-385,0);x.fillText('서버',-385,90);x.fillText('등록',-385,180);
+      x.fillStyle='#1b1a17';x.font='86px "SA Display"';x.fillText($('idnm').textContent,-250,-100);
+      x.font='bold 40px "NEXON Lv1 Gothic"';x.fillText($('idapt').textContent,-250,0);x.fillText('1서버 · 서울',-250,90);x.fillText($('iddate').textContent,-250,180);
+      x.save();x.translate(270,170);x.rotate(-.25);x.strokeStyle='#c3121b';x.lineWidth=8;x.strokeRect(-110,-58,220,100);x.fillStyle='#c3121b';x.font='76px "SA Display"';x.textAlign='center';x.fillText('생존',0,22);x.restore();
+      x.restore();
+      x.textAlign='center';x.fillStyle='#b9b2a6';x.font='bold 36px "NEXON Lv1 Gothic"';x.fillText('dumbgamelab.com/play/seoul-apocalypse',W/2,H-70);
+      c.toBlob(function(b){
+        var f=new File([b],'seoul-apocalypse-survivor.png',{type:'image/png'});
+        if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:'서울 아포칼립스 생존자 등록증'}).catch(function(){});}
+        else{var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=f.name;a.click();}
+      },'image/png');
+    }
   });
 })();
 </script>
