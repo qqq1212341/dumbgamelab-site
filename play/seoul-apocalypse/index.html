@@ -196,7 +196,7 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
     <ol class="log">
       <li><span class="d">D+0</span><p>강남역에서 첫 신고가 들어왔다. 사람이 사람을 물었다고.</p></li>
       <li><span class="d">D+1</span><p>지하철이 멈췄다. 한강 다리 31곳이 한꺼번에 막혔다.</p></li>
-      <li><span class="d">D+3</span><p>전화가 끊기기 시작했다. 마지막 방송은 «단지 밖으로 나오지 마십시오».</p></li>
+      <li><span class="d">D+3</span><p>전화가 끊기기 시작했다. 마지막 방송은 “단지 밖으로 나오지 마십시오”.</p></li>
       <li><span class="d">D+7</span><p>살아남은 사람들이 아파트 단지로 모였다. 관리사무소가 본부가 됐다.</p></li>
       <li><span class="d">D+30</span><p>단지마다 바리케이드가 올라갔다. 이제 좀비만 적이 아니다.</p></li>
     </ol>
@@ -210,7 +210,7 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
       <div class="f"><img class="shot" src="shots/gacha.jpg" alt="생존자 모집 화면" loading="lazy" width="420" height="908"><div><div class="n">02</div><h3>생존자를 모은다</h3><p>의사, 경찰, 배달 기사, 헬스 트레이너. 다들 할 줄 아는 게 하나씩은 있다.</p></div></div>
       <div class="f"><img class="shot" src="shots/rank.jpg" alt="서버 순위 화면" loading="lazy" width="420" height="908"><div><div class="n">03</div><h3>1서버 꼭대기로</h3><p>옆 단지와 손을 잡거나 밀어낸다. 1서버에서 가장 센 단지가 서울을 쥔다.</p></div></div>
     </div>
-    <p class="swipe">옆으로 넘겨 보기 →</p>
+    <p class="swipe">옆으로 넘겨 보기</p>
   </section>
 
   <section id="reg">
@@ -257,7 +257,7 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
     <h2 class="disp">생존자가 늘면<br>보급 상자가 열린다</h2>
     <ul class="steps" id="steps">
       <li data-n="10"><span class="need">10명</span><span class="what">칭호 · 첫 생존자<small>1서버 전원</small></span><span class="st"></span></li>
-      <li data-n="30"><span class="need">30명</span><span class="what">건설 가속 1시간 × 3<small>1서버 전원</small></span><span class="st"></span></li>
+      <li data-n="30"><span class="need">30명</span><span class="what">건설 가속 1시간 3개<small>1서버 전원</small></span><span class="st"></span></li>
       <li data-n="100"><span class="need">100명</span><span class="what">다이아 300<small>1서버 전원</small></span><span class="st"></span></li>
       <li data-n="300"><span class="need">300명</span><span class="what">생존자 모집권 10장<small>1서버 전원</small></span><span class="st"></span></li>
       <li data-n="1000"><span class="need">1,000명</span><span class="what">한정 단지 꾸미기 · 1서버 개척<small>1서버 전원 · 다시 안 나옵니다</small></span><span class="st"></span></li>
@@ -375,7 +375,7 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
     },350);
   });
 
-  function aptOf(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return (101+h%12)+'동 '+(1+(h>>4)%25)+'0'+(1+(h>>9)%4)+'호';}
+  function aptOf(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return (101+h%12)+'동 '+(1+(h>>>4)%25)+'0'+(1+(h>>>9)%4)+'호';}
   function showDone(n,r,d){
     $('f').style.display='none'; $('done').style.display='block';
     $('idnm').textContent=n; $('idno').textContent='No. '+String(r||0).padStart(6,'0');
