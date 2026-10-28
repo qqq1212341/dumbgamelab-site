@@ -4,4 +4,4 @@
   if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && touch > 1)) return 'ios';
   if (/Android/.test(ua)) return 'play';
   return 'web';
-})(ua,navigator.maxTouchPoints||0);var u=L[p]||L.web;var done=false;function go(){if(done||!u)return;done=true;location.replace(u);}gtag('event','go_click',{go_account:"dgl-reddit",go_game:"bakerymerge",go_store:u?p:'none',event_callback:go,event_timeout:700});setTimeout(go,900);</script></body></html>
+})(ua,navigator.maxTouchPoints||0);var u=L[p]||L.web;var q=((location.search||'').match(/[?&]p=([a-z0-9_-]{1,16})/i)||[])[1];if(q&&u){if(p==='play')u+='%26utm_content%3D'+q;else if(p==='ios')u=u.replace(/([?&]ct=)([^&]*)/,function(m,a,b){return a+(b+'_'+q).slice(0,40);});else u+=(u.indexOf('?')<0?'?':'&')+'utm_content='+q;}var done=false;function go(){if(done||!u)return;done=true;location.replace(u);}gtag('event','go_click',{go_account:"dgl-reddit",go_game:"bakerymerge",go_store:u?p:'none',go_post:q||'',event_callback:go,event_timeout:700});setTimeout(go,900);</script></body></html>
