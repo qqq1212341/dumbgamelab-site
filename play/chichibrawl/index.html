@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichibrawl","build":"88a443ae3","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichibrawl","build":"b27945f4d","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -143,9 +143,24 @@
     this.lineTo(x, y + tl); this.arcTo(x, y, x + tl, y, tl); this.closePath();
   }
   ['CanvasRenderingContext2D', 'OffscreenCanvasRenderingContext2D', 'Path2D'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'roundRect', roundRect); });
+  /* Animation.finished(Chrome 84+) — 옛 웹뷰는 el.animate() 는 되는데 .finished 가 undefined 라 «.then of undefined»(0913sample t-261028-wg0m).
+   * ★ 프로토타입의 게터를 읽으면 진짜 브라우저는 Illegal invocation 이라 `in` 으로만 본다. 끝나면 풀고 취소되면 AbortError 로 거른다(표준과 같다). */
+  var A = window.Animation;
+  if (A && A.prototype && !('finished' in A.prototype)) {
+    Object.defineProperty(A.prototype, 'finished', { configurable: true, get: function () {
+      var a = this;
+      if (!a.__dglFinished) a.__dglFinished = new Promise(function (ok, no) {
+        if (a.playState === 'finished') return ok(a);
+        var done = function () { ok(a); }, fail = function () { var e = new Error('Animation was aborted'); e.name = 'AbortError'; no(e); };
+        if (a.addEventListener) { a.addEventListener('finish', done); a.addEventListener('cancel', fail); }
+        else { var f = a.onfinish, c = a.oncancel; a.onfinish = function (e) { if (f) f.call(a, e); done(); }; a.oncancel = function (e) { if (c) c.call(a, e); fail(); }; }
+      });
+      return a.__dglFinished;
+    } });
+  }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"88a443ae3"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"b27945f4d"};</script>
 <meta name="description" content="A 2-minute 3v3 gem grab against bots. Pick a fighter, grab gems, hold ten. · 2분 3v3 보석 모으기 체험판.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chichi Brawl — 3v3 gem grab prototype">
@@ -183,15 +198,15 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
 .banner.blue b { color: #8fd2ff; } .banner.red b { color: #ff9a9a; }
 .respawn { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); font-size: 22px; display: none; } .respawn.on { display: block; } .respawn b { font-size: 40px; color: var(--gold); }
 
-.bar { position: absolute; left: 0; top: 0; width: 76px; text-align: center; will-change: transform; }
-.bar .nm { font-size: 11px; margin-bottom: 2px; white-space: nowrap; }
-.bar .hp { position: relative; height: 13px; border-radius: 6px; background: var(--ink); border: 2px solid var(--ink); overflow: hidden; }
+.bar { position: absolute; left: 0; top: 0; width: 54px; text-align: center; will-change: transform; }
+.bar .nm { font-size: 9px; margin-bottom: 1px; white-space: nowrap; }
+.bar .hp { position: relative; height: 10px; border-radius: 5px; background: var(--ink); border: 2px solid var(--ink); overflow: hidden; }
 .bar .hp .v { height: 100%; border-radius: 4px; background: linear-gradient(#ff8080, #e03a3a); }
 .bar.blue .hp .v { background: linear-gradient(#7ec8ff, #2f8be6); } .bar.me .hp .v { background: linear-gradient(#9cf06a, #4cbf2a); }
-.bar .hp span { position: absolute; inset: 0; font-size: 10px; line-height: 8px; }
-.bar .ammo { display: flex; gap: 2px; margin-top: 2px; height: 7px; } .bar .ammo i { flex: 1; border-radius: 3px; background: linear-gradient(90deg, #ffb52a calc(var(--f, 1) * 100%), #4a3a2a 0); border: 1px solid var(--ink); }
-.bar .gems { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 15px; margin-bottom: 1px; } .bar .gems .gem { width: 11px; height: 11px; }
-.num { position: absolute; z-index: 1; font-size: 26px; color: #fff; transform: translate(-50%, -50%); animation: up 0.8s ease-out forwards; }
+.bar .hp span { position: absolute; inset: 0; font-size: 8px; line-height: 6px; }
+.bar .ammo { display: flex; gap: 2px; margin-top: 1px; height: 5px; } .bar .ammo i { flex: 1; border-radius: 3px; background: linear-gradient(90deg, #ffb52a calc(var(--f, 1) * 100%), #4a3a2a 0); border: 1px solid var(--ink); }
+.bar .gems { display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 11px; margin-bottom: 1px; } .bar .gems .gem { width: 11px; height: 11px; }
+.num { position: absolute; z-index: 1; font-size: 18px; color: #fff; transform: translate(-50%, -50%); animation: up 0.8s ease-out forwards; }
 .num.mine { color: #ff7070; }
 @keyframes up { 0% { transform: translate(-50%, -50%) scale(1.4); } 20% { transform: translate(-50%, -80%) scale(1); } 100% { transform: translate(-50%, -160%); opacity: 0; } }
 
@@ -228,7 +243,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
 .result .row { display: flex; justify-content: center; gap: 14px; } .result .change { background: linear-gradient(#cfc6ff, #9c8de8); }
 .loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-BiopuzDg.js"></script>
+  <script type="module" crossorigin src="./assets/index-StRzmb2d.js"></script>
 </head>
 <body>
 <div id="stage"></div>
