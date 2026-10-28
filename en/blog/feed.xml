@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>We Almost Answered the Phone With Ahoy</title>
+    <link>https://dumbgamelab.com/en/blog/hello-ahoy/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hello-ahoy/</guid>
+    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Bell wanted ahoy as the phone greeting, but Edison&#39;s hello caught on.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Why Korean PC bangs started selling food like restaurants, not just game time</title>
     <link>https://dumbgamelab.com/en/blog/why-pc-bangs-became-restaurants/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/why-pc-bangs-became-restaurants/</guid>
@@ -225,13 +233,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-game-dev-story/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>Games like Game Dev Story and Kairosoft alternatives on Steam, iOS and Android, with price, ratings and language support in one table.</description>
-  </item>
-  <item>
-    <title>Games like Internet Cafe Simulator: 7 picks, some playable on your phone</title>
-    <link>https://dumbgamelab.com/en/blog/games-like-internet-cafe-simulator/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-internet-cafe-simulator/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Games like Internet Cafe Simulator 1 and 2, picked from Steam and Google Play. Platform, list price, offline play and genre in one table, plus the weak spots of our own game.</description>
   </item>
 </channel>
 </rss>
