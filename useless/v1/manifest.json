@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "44-d1b8c32d27",
+ "version": "44-d7eef01f2c",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -222,21 +222,9 @@
    }
   },
   {
-   "id": "gold-medal-silver",
-   "day": 19,
-   "hash": "554ab46beeabdd42",
-   "ep": "episodes/gold-medal-silver.json",
-   "i18n": {
-    "en": "i18n/en/gold-medal-silver.json",
-    "ja": "i18n/ja/gold-medal-silver.json",
-    "id": "i18n/id/gold-medal-silver.json",
-    "zh": "i18n/zh/gold-medal-silver.json"
-   }
-  },
-  {
    "id": "venus-west",
-   "day": 20,
-   "hash": "69652bde0870c6f8",
+   "day": 19,
+   "hash": "52a57e3b0ccc4273",
    "ep": "episodes/venus-west.json",
    "i18n": {
     "en": "i18n/en/venus-west.json",
@@ -247,14 +235,26 @@
   },
   {
    "id": "shortest-flight",
-   "day": 21,
-   "hash": "0635b609b6fbf58d",
+   "day": 20,
+   "hash": "4523dc08e5321e39",
    "ep": "episodes/shortest-flight.json",
    "i18n": {
     "en": "i18n/en/shortest-flight.json",
     "ja": "i18n/ja/shortest-flight.json",
     "id": "i18n/id/shortest-flight.json",
     "zh": "i18n/zh/shortest-flight.json"
+   }
+  },
+  {
+   "id": "gold-medal-silver",
+   "day": 21,
+   "hash": "3427d4799a4397a8",
+   "ep": "episodes/gold-medal-silver.json",
+   "i18n": {
+    "en": "i18n/en/gold-medal-silver.json",
+    "ja": "i18n/ja/gold-medal-silver.json",
+    "id": "i18n/id/gold-medal-silver.json",
+    "zh": "i18n/zh/gold-medal-silver.json"
    }
   },
   {
