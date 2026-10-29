@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>オリンピックの金メダル、じつはほぼ銀</title>
+    <link>https://dumbgamelab.com/ja/blog/gold-medal-silver/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/gold-medal-silver/</guid>
+    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
+    <description>オリンピックの金メダルは、銀に金6gをかぶせたものだ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>チムジルバン育成は、何を買うかよりどこに置くかで稼ぎが決まります</title>
     <link>https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</guid>
@@ -226,13 +234,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/solo-dev-monthly-report-2026-10/</guid>
     <pubDate>Fri, 16 Oct 2026 15:00:00 GMT</pubDate>
     <description>個人ゲーム開発者が2026年10月の帳簿をそのまま公開します。稼いだ額と使った額、1日のAdMob収益、プレスリリース1通で増えたインストール、伸びなかったことまで数字で書きました。</description>
-  </item>
-  <item>
-    <title>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</title>
-    <link>https://dumbgamelab.com/ja/blog/best-idle-tycoon-games-offline/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-idle-tycoon-games-offline/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</description>
   </item>
 </channel>
 </rss>

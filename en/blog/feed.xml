@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Olympic Gold Medals Are Mostly Silver</title>
+    <link>https://dumbgamelab.com/en/blog/gold-medal-silver/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/gold-medal-silver/</guid>
+    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
+    <description>An Olympic gold medal is silver coated with 6 g of gold.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>In a Korean spa tycoon game, where you place things decides your income more than what you buy</title>
     <link>https://dumbgamelab.com/en/blog/jjimjilbang-tycoon-layout-tips/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-tycoon-layout-tips/</guid>
@@ -226,13 +234,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/solo-dev-monthly-report-2026-10/</guid>
     <pubDate>Fri, 16 Oct 2026 15:00:00 GMT</pubDate>
     <description>A solo game developer opens the October 2026 ledger: money earned and spent, one day of AdMob revenue, the installs one press release brought, and what did not take off.</description>
-  </item>
-  <item>
-    <title>Idle tycoon games that work offline: 8 picks sorted by store labels</title>
-    <link>https://dumbgamelab.com/en/blog/best-idle-tycoon-games-offline/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/best-idle-tycoon-games-offline/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</description>
   </item>
 </channel>
 </rss>
