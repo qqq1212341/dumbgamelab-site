@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "44-1455f6997a",
+ "version": "44-d1b8c32d27",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -188,7 +188,7 @@
   {
    "id": "ketchup-fish",
    "day": 16,
-   "hash": "483b7ff636012e7c",
+   "hash": "bc9d13c8b455c6f0",
    "ep": "episodes/ketchup-fish.json",
    "i18n": {
     "en": "i18n/en/ketchup-fish.json",
