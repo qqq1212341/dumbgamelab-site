@@ -1,0 +1,69 @@
+{
+  "id": "tycoon-shogun",
+  "contentNotice": null,
+  "day": 50,
+  "category": "말",
+  "title": "타이쿤은 원래 쇼군을 부르던 말이었다",
+  "hook": "거물 사업가를 뜻하는 영어 tycoon 은 일본어 다이쿤에서 왔고, 처음엔 쇼군의 칭호였다",
+  "summary": "tycoon 은 일본어 다이쿤에서 왔다. 처음엔 쇼군을 부르던 말이었고, 거물 사업가라는 뜻은 1차 세계대전 뒤에 붙었다.",
+  "cover": "tycoon-shogun-perry",
+  "sources": [
+    {
+      "title": "Etymonline: tycoon",
+      "url": "https://www.etymonline.com/word/tycoon"
+    },
+    {
+      "title": "Merriam-Webster: tycoon",
+      "url": "https://www.merriam-webster.com/dictionary/tycoon"
+    },
+    {
+      "title": "日本国大君（日本語版ウィキペディア）",
+      "url": "https://ja.wikipedia.org/wiki/日本国大君"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "tycoon-shogun-perry",
+      "text": [
+        "1854년 3월, 요코하마.",
+        "페리 일행이 일본 쪽 대표를 만나러 상륙하는 장면을 그린 석판화다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "쇼군의 정식 직함은 정이대장군이다. 글자 뜻은 군사 지휘관에 가깝다.",
+        "그래서 외교 문서에는 다이쿤(大君)이라는 칭호를 따로 썼다고 일본어 백과는 설명한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "서양 쪽은 처음에 이걸 황제나 존엄한 군주 같은 말로 옮겼다.",
+        "나중에는 다이쿤의 소리를 그대로 옮긴 말이 자리 잡았다. 영어로 tycoon 이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "tycoon-shogun-embassy",
+      "text": [
+        "영어 사전은 tycoon 의 첫 기록을 1857년, 뜻은 쇼군으로 적는다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "tycoon-shogun-lincoln",
+      "text": [
+        "1861년에는 이 말이 링컨에게 붙었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "중요한 사람이라는 뜻으로 퍼지다가, 부자이고 힘센 사업가를 가리키게 된 건 1차 세계대전 뒤다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

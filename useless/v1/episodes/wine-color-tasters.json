@@ -1,0 +1,71 @@
+{
+  "id": "wine-color-tasters",
+  "contentNotice": null,
+  "day": 47,
+  "category": "심리",
+  "title": "흰 와인에 색소만 탔더니 레드 와인 향이라고 했다",
+  "hook": "향이 없는 붉은 색소를 탄 화이트 와인이 학생 54명의 코를 속였다",
+  "summary": "화이트 와인에 향 없는 붉은 색소만 탔는데, 양조학부 학부생 54명은 그 와인을 레드 와인 향 단어로 묘사했다.",
+  "cover": "wine-color-tasters",
+  "sources": [
+    {
+      "title": "Morrot, Brochet, Dubourdieu (2001). The color of odors. Brain and Language 79(2) (PubMed 초록)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11712849/"
+    },
+    {
+      "title": "The Color of Odors (논문 본문 PDF 사본)",
+      "url": "https://www.daysyn.com/morrot.pdf"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "wine-color-tasters",
+      "text": [
+        "참가자는 보르도 대학 양조학부 학부생 54명이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "첫 주에는 레드와 화이트를 맛보고 향 단어 목록을 골라 적었다.",
+        "일주일 뒤에는 같은 목록을 들고 두 잔을 다시 받았다.",
+        "한 잔은 화이트 와인이고, 다른 한 잔은 그 화이트에 붉은 색소를 탄 것이었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "색소 하나 탄다고 향 평가가 달라진다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "그런데 붉은 화이트를 맡은 학생들은 레드 와인에 썼던 단어를 대체로 다시 썼다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "wine-color-tasters-pour",
+      "text": [
+        "레드 쪽 단어는 카시스, 라즈베리, 체리, 말린 자두 같은 것이었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "코로 맡았는데 눈이 끼어든 거네."
+    },
+    {
+      "type": "text",
+      "text": [
+        "시각 정보 때문에 후각 정보를 무시했다는 해석이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 논문만으로 직업 시음가도 똑같다고 말할 수는 없다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

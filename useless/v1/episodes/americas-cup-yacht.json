@@ -1,0 +1,90 @@
+{
+  "id": "americas-cup-yacht",
+  "contentNotice": null,
+  "day": 48,
+  "category": "스포츠",
+  "title": "아메리카스컵의 아메리카는 나라가 아니라 배 이름이었다",
+  "hook": "우승컵은 바닥이 뚫린 은 주전자였고, 원래 이름은 100소버린 컵이었다",
+  "summary": "아메리카스컵의 아메리카는 1851년에 우승한 요트의 이름이다.",
+  "cover": "americas-cup-yacht",
+  "sources": [
+    {
+      "title": "Royal Yacht Squadron: The Yacht America",
+      "url": "https://www.rys.org.uk/the-rys/history/the-yacht-america"
+    },
+    {
+      "title": "SFO Museum: America's Cup 1851-1937",
+      "url": "https://www.sfomuseum.org/exhibitions/americas-cup-sailing-international-sports-greatest-trophy-1851-1937"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "americas-cup-yacht",
+      "text": [
+        "요트 대회 아메리카스컵.",
+        "이 이름의 아메리카는 나라가 아니다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1851년에 우승한 요트 한 척의 이름이다.",
+        "그 배가 아메리카호였다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "americas-cup-yacht-wight",
+      "text": [
+        "아메리카호는 영국 와이트섬을 도는 경주에서 이겼다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "나라 이름인 줄 알았는데, 배 이름이었어?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "그때 걸린 상은 100소버린 컵이었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "americas-cup-yacht-bard",
+      "text": [
+        "컵은 바닥이 뚫린 은 주전자였다.",
+        "무게 134온스, 높이 27인치."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "당시 컵은 이긴 쪽이 가져가는 상이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "우승한 미국 팀은 컵을 들고 돌아갔다.",
+        "녹여서 기념품을 만들자는 얘기도 나왔다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "americas-cup-yacht-1901",
+      "text": [
+        "1857년 컵은 뉴욕요트클럽에 기증됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 컵을 걸고 처음 경주한 해는 1870년이다.",
+        "그때부터 아메리카 컵으로 불렸다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

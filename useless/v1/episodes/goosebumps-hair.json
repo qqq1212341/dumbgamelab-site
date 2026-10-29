@@ -1,0 +1,72 @@
+{
+  "id": "goosebumps-hair",
+  "contentNotice": "rodents",
+  "day": 49,
+  "category": "몸",
+  "title": "쥐는 추우면 소름 신경이 새 털까지 키웠다",
+  "hook": "소름을 만드는 신경과 근육이 털 줄기세포도 조절한다는 연구가 쥐에서 나왔다",
+  "summary": "쥐 실험에서 소름을 만드는 신경과 근육이 털 줄기세포도 조절했다. 사람에게도 같은지는 이 연구로 알 수 없다.",
+  "cover": "goosebumps-hair-beach",
+  "sources": [
+    {
+      "title": "Harvard Stem Cell Institute: The real reason behind goosebumps (2020)",
+      "url": "https://www.hsci.harvard.edu/goosebumps-hair-follicle-stem-cells"
+    },
+    {
+      "title": "NIH Research Matters: What goosebumps are for (2020)",
+      "url": "https://www.nih.gov/news-events/nih-research-matters/what-goosebumps-are"
+    },
+    {
+      "title": "Shwartz et al., Cell (2020): Cell types promoting goosebumps form a niche to regulate hair follicle stem cells",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32679029/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "goosebumps-hair-beach",
+      "text": [
+        "추우면 팔의 털이 곤두서고 살갗이 오돌토돌해진다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "goosebumps-hair-mouse",
+      "text": [
+        "2020년 하버드 연구팀이 쥐의 피부를 들여다봤다.",
+        "이 이야기는 전부 쥐 실험 결과다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "소름은 교감신경이 털세움근을 오그라뜨려서 생긴다.",
+        "전자현미경으로 보니 그 신경은 털 줄기세포와도 이어져 있었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "털세움근을 없애자 신경과 줄기세포의 연결이 끊겼다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "쥐를 추운 곳에 오래 두면 소름이 돋은 뒤 신경이 더 세게 일했다.",
+        "줄기세포가 깨어났고, 두 주가 지나기 전에 새 털이 나기 시작했다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "다만 사람에게도 똑같은지는 이 연구로 알 수 없다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "쥐한테서 나온 결과니까 거기까지만 믿자!"
+    }
+  ],
+  "status": "approved"
+}

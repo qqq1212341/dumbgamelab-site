@@ -2,7 +2,7 @@
   "category": "Space",
   "title": "On Venus, the Sun Rises in the West",
   "hook": "Venus spins the opposite way from Earth, so the sun rises in the west",
-  "summary": "Venus spins backward, so the sun rises in the west, and one spin takes longer than its whole year.",
+  "summary": "Venus spins backward, so the sun rises in the west, and one spin takes longer than 1 year.",
   "panels": [
     { "text": ["Venus, Earth's next-door planet.", "It's about the same size as Earth, but it spins the exact opposite way."] },
     { "text": ["Most planets spin in place in the same direction.", "Venus spins backward."] },

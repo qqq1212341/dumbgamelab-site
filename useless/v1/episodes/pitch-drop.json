@@ -1,0 +1,80 @@
+{
+  "id": "pitch-drop",
+  "contentNotice": null,
+  "day": 51,
+  "category": "과학",
+  "title": "망치로 깨지는 덩어리가 액체라서, 90년 넘게 한 방울씩 떨어진다",
+  "hook": "퀸즐랜드대의 역청 깔때기는 1927년에 시작해 2014년까지 아홉 방울이 떨어졌다",
+  "summary": "망치로 치면 깨지는 역청이 사실은 아주 느린 액체다. 2014년까지 아홉 방울이 떨어졌고, 관리자 두 명은 그 순간을 보지 못했다.",
+  "cover": "pitch-drop",
+  "sources": [
+    {
+      "title": "The University of Queensland: Pitch Drop experiment",
+      "url": "https://smp.uq.edu.au/content/pitch-drop-experiment"
+    },
+    {
+      "title": "Wikipedia: Pitch drop experiment",
+      "url": "https://en.wikipedia.org/wiki/Pitch_drop_experiment"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "pitch-drop",
+      "text": [
+        "퀸즐랜드대학교에서 90년 넘게 이어지는 실험이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "실온에서 만지면 딱딱하고, 망치로 치면 쉽게 깨진다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "깨지는데 액체라고? 말이 안 되잖아."
+    },
+    {
+      "type": "text",
+      "text": [
+        "그런데 대학 설명으로는 실온에서도 이 물질은 액체다.",
+        "물보다 약 1000억 배 끈적할 뿐이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1927년 물리학과 첫 교수 토머스 파넬이 녹인 역청을 깔때기에 부었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "pitch-drop-2012",
+      "text": [
+        "첫 방울이 떨어지기까지 8년이 걸렸다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "대학 설명으로는 지금까지 떨어진 방울이 아홉 개이고, 마지막은 2014년 4월이었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "pitch-drop-mainstone",
+      "text": [
+        "사진 속 존 메인스톤 교수는 1961년부터 52년 동안 이 실험을 맡았다.",
+        "그런데 방울이 떨어지는 순간은 끝내 보지 못하고 세상을 떠났다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "처음 시작한 파넬 교수도 마찬가지였다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

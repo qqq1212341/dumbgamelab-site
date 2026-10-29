@@ -1,0 +1,44 @@
+{
+  "category": "Makanan",
+  "title": "Nanas Dulu Tidak Dibeli untuk Dimakan",
+  "hook": "Di Inggris abad ke-18, nanas adalah benda yang dipajang dan dipamerkan di pesta",
+  "summary": "Ada perkiraan bahwa menanam satu nanas di Inggris abad ke-18 menghabiskan biaya kira-kira seharga satu kereta kuda baru. Nanas lebih dipakai untuk pamer di pesta daripada dimakan.",
+  "panels": [
+    {
+      "text": [
+        "Seorang sejarawan memperkirakan total biaya menanam satu nanas kira-kira seharga satu kereta kuda baru."
+      ]
+    },
+    {
+      "text": "Satu buah seharga satu kereta kuda? Mending beli saja untuk dimakan."
+    },
+    {
+      "text": [
+        "Nanas yang paling bagus berkeliling ke pesta makan malam di kota selama berminggu-minggu."
+      ]
+    },
+    {
+      "text": [
+        "Dimakannya belakangan. Konon nanas baru dipotong dan dimakan ketika sudah mulai membusuk dan baunya menyebar ke seluruh rumah."
+      ]
+    },
+    {
+      "text": [
+        "Bangunan di Dunmore, Skotlandia ini seluruh bagian puncaknya berupa nanas."
+      ]
+    },
+    {
+      "text": "Katanya nanas itu lambang keramahan? Ternyata bukan."
+    },
+    {
+      "text": [
+        "Kisah kapten kapal yang menaruh nanas di depan pintu untuk menyambut tamu di Amerika masa kolonial tidak muncul dalam catatan pada masa itu.",
+        "Cerita itu menyebar pada 1930-an, ketika museum rumah bersejarah berusaha menghidupkan kembali masa kolonial dalam versi yang diidealkan."
+      ]
+    }
+  ],
+  "sources": [
+    "Fran Beauman, Cabinet 23: The Pineapple",
+    "National Trust for Scotland: The Pineapple"
+  ]
+}

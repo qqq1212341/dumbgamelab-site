@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "44-d7eef01f2c",
+ "version": "51-5621088b3d",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -188,7 +188,7 @@
   {
    "id": "ketchup-fish",
    "day": 16,
-   "hash": "bc9d13c8b455c6f0",
+   "hash": "483b7ff636012e7c",
    "ep": "episodes/ketchup-fish.json",
    "i18n": {
     "en": "i18n/en/ketchup-fish.json",
@@ -222,9 +222,21 @@
    }
   },
   {
-   "id": "venus-west",
+   "id": "gold-medal-silver",
    "day": 19,
-   "hash": "52a57e3b0ccc4273",
+   "hash": "554ab46beeabdd42",
+   "ep": "episodes/gold-medal-silver.json",
+   "i18n": {
+    "en": "i18n/en/gold-medal-silver.json",
+    "ja": "i18n/ja/gold-medal-silver.json",
+    "id": "i18n/id/gold-medal-silver.json",
+    "zh": "i18n/zh/gold-medal-silver.json"
+   }
+  },
+  {
+   "id": "venus-west",
+   "day": 20,
+   "hash": "a9a049a894613a2c",
    "ep": "episodes/venus-west.json",
    "i18n": {
     "en": "i18n/en/venus-west.json",
@@ -235,26 +247,14 @@
   },
   {
    "id": "shortest-flight",
-   "day": 20,
-   "hash": "4523dc08e5321e39",
+   "day": 21,
+   "hash": "0635b609b6fbf58d",
    "ep": "episodes/shortest-flight.json",
    "i18n": {
     "en": "i18n/en/shortest-flight.json",
     "ja": "i18n/ja/shortest-flight.json",
     "id": "i18n/id/shortest-flight.json",
     "zh": "i18n/zh/shortest-flight.json"
-   }
-  },
-  {
-   "id": "gold-medal-silver",
-   "day": 21,
-   "hash": "3427d4799a4397a8",
-   "ep": "episodes/gold-medal-silver.json",
-   "i18n": {
-    "en": "i18n/en/gold-medal-silver.json",
-    "ja": "i18n/ja/gold-medal-silver.json",
-    "id": "i18n/id/gold-medal-silver.json",
-    "zh": "i18n/zh/gold-medal-silver.json"
    }
   },
   {
@@ -531,6 +531,90 @@
     "ja": "i18n/ja/table-galleon-cannon.json",
     "id": "i18n/id/table-galleon-cannon.json",
     "zh": "i18n/zh/table-galleon-cannon.json"
+   }
+  },
+  {
+   "id": "pineapple-status",
+   "day": 45,
+   "hash": "065634f34f5ee2f5",
+   "ep": "episodes/pineapple-status.json",
+   "i18n": {
+    "en": "i18n/en/pineapple-status.json",
+    "ja": "i18n/ja/pineapple-status.json",
+    "id": "i18n/id/pineapple-status.json",
+    "zh": "i18n/zh/pineapple-status.json"
+   }
+  },
+  {
+   "id": "blood-falls",
+   "day": 46,
+   "hash": "101fc4d00081931e",
+   "ep": "episodes/blood-falls.json",
+   "i18n": {
+    "en": "i18n/en/blood-falls.json",
+    "ja": "i18n/ja/blood-falls.json",
+    "id": "i18n/id/blood-falls.json",
+    "zh": "i18n/zh/blood-falls.json"
+   }
+  },
+  {
+   "id": "wine-color-tasters",
+   "day": 47,
+   "hash": "401f601a94512f3e",
+   "ep": "episodes/wine-color-tasters.json",
+   "i18n": {
+    "en": "i18n/en/wine-color-tasters.json",
+    "ja": "i18n/ja/wine-color-tasters.json",
+    "id": "i18n/id/wine-color-tasters.json",
+    "zh": "i18n/zh/wine-color-tasters.json"
+   }
+  },
+  {
+   "id": "americas-cup-yacht",
+   "day": 48,
+   "hash": "79cc2419eba09361",
+   "ep": "episodes/americas-cup-yacht.json",
+   "i18n": {
+    "en": "i18n/en/americas-cup-yacht.json",
+    "ja": "i18n/ja/americas-cup-yacht.json",
+    "id": "i18n/id/americas-cup-yacht.json",
+    "zh": "i18n/zh/americas-cup-yacht.json"
+   }
+  },
+  {
+   "id": "goosebumps-hair",
+   "day": 49,
+   "hash": "935e98e8feab3897",
+   "ep": "episodes/goosebumps-hair.json",
+   "i18n": {
+    "en": "i18n/en/goosebumps-hair.json",
+    "ja": "i18n/ja/goosebumps-hair.json",
+    "id": "i18n/id/goosebumps-hair.json",
+    "zh": "i18n/zh/goosebumps-hair.json"
+   }
+  },
+  {
+   "id": "tycoon-shogun",
+   "day": 50,
+   "hash": "1b4b913b1834c29d",
+   "ep": "episodes/tycoon-shogun.json",
+   "i18n": {
+    "en": "i18n/en/tycoon-shogun.json",
+    "ja": "i18n/ja/tycoon-shogun.json",
+    "id": "i18n/id/tycoon-shogun.json",
+    "zh": "i18n/zh/tycoon-shogun.json"
+   }
+  },
+  {
+   "id": "pitch-drop",
+   "day": 51,
+   "hash": "56f3d0907457dcc2",
+   "ep": "episodes/pitch-drop.json",
+   "i18n": {
+    "en": "i18n/en/pitch-drop.json",
+    "ja": "i18n/ja/pitch-drop.json",
+    "id": "i18n/id/pitch-drop.json",
+    "zh": "i18n/zh/pitch-drop.json"
    }
   }
  ]

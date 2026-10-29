@@ -1,0 +1,49 @@
+{
+  "category": "Tubuh",
+  "title": "Saat Tikus Kedinginan, Saraf Penyebab Merinding Ikut Menumbuhkan Bulu Baru",
+  "hook": "Penelitian pada tikus menunjukkan saraf dan otot penyebab merinding juga mengatur sel punca bulu",
+  "summary": "Pada tikus, saraf dan otot penyebab merinding juga mengatur sel punca bulu. Penelitian ini belum bisa memastikan apakah hal yang sama berlaku pada manusia.",
+  "panels": [
+    {
+      "text": [
+        "Saat dingin, bulu di lengan berdiri dan kulit jadi berbintil-bintil."
+      ]
+    },
+    {
+      "text": [
+        "Pada 2020, tim peneliti Harvard memeriksa kulit tikus.",
+        "Semua cerita ini adalah hasil percobaan pada tikus."
+      ]
+    },
+    {
+      "text": [
+        "Merinding terjadi ketika saraf simpatik membuat otot penegak bulu berkontraksi.",
+        "Lewat mikroskop elektron, saraf itu ternyata juga terhubung ke sel punca bulu."
+      ]
+    },
+    {
+      "text": [
+        "Ketika otot penegak bulu dihilangkan, hubungan antara saraf dan sel punca terputus."
+      ]
+    },
+    {
+      "text": [
+        "Ketika tikus dibiarkan lama di tempat dingin, saraf bekerja lebih keras setelah merinding muncul.",
+        "Sel punca terbangun, dan bulu baru mulai tumbuh sebelum dua minggu berlalu."
+      ]
+    },
+    {
+      "text": [
+        "Tapi dari penelitian ini belum diketahui apakah pada manusia juga sama."
+      ]
+    },
+    {
+      "text": "Hasilnya dari tikus, jadi percaya sampai situ saja!"
+    }
+  ],
+  "sources": [
+    "Harvard Stem Cell Institute: The real reason behind goosebumps (2020)",
+    "NIH Research Matters: What goosebumps are for (2020)",
+    "Shwartz et al., Cell (2020): Cell types promoting goosebumps form a niche to regulate hair follicle stem cells"
+  ]
+}

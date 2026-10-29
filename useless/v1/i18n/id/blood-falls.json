@@ -1,0 +1,48 @@
+{
+  "category": "Sains",
+  "title": "Air Merah Seperti Darah Mengalir dari Es Antartika",
+  "hook": "Saat baru keluar, airnya bening. Warna merahnya muncul setelah bertemu udara",
+  "summary": "Air merah yang mengalir dari gletser Antartika sebenarnya bening saat keluar. Di bawahnya ada mikroba yang diperkirakan sudah bertahan hidup setidaknya 1,5 juta tahun.",
+  "panels": [
+    {
+      "text": [
+        "Gletser Taylor di Antartika. Dari celah dinding es putih, air merah mengalir turun.",
+        "Namanya Blood Falls, atau Air Terjun Darah."
+      ]
+    },
+    {
+      "text": [
+        "Pada 1911, ahli geologi Australia Griffith Taylor menemukannya saat menjelajahi gletser ini."
+      ]
+    },
+    {
+      "text": "Es berdarah? Sebenarnya ada apa sih di Antartika?"
+    },
+    {
+      "text": [
+        "Tapi kalau air yang baru keluar dari celah itu ditampung, ternyata bening.",
+        "Warna merahnya muncul ketika besi yang terlarut di dalam air teroksidasi setelah bertemu udara."
+      ]
+    },
+    {
+      "text": [
+        "Airnya adalah air asin yang naik dari bawah gletser."
+      ]
+    },
+    {
+      "text": [
+        "Di dalam air asin ini ada mikroba yang hidup.",
+        "Mereka hidup di tempat tanpa sinar matahari dan oksigen, dengan energi kimia dari senyawa besi dan belerang."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti menduga mikroba yang mirip mikroba laut ini sudah hidup di bawah gletser setidaknya selama 1,5 juta tahun."
+      ]
+    }
+  ],
+  "sources": [
+    "SICB: Blood, brines and microbiology beneath Antarctic glaciers",
+    "Mikucki & Priscu 2007, Appl Environ Microbiol (PubMed)"
+  ]
+}

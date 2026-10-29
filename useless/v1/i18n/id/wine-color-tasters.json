@@ -1,0 +1,50 @@
+{
+  "category": "Psikologi",
+  "title": "Wine putih cuma diberi pewarna, tapi dibilang beraroma wine merah",
+  "hook": "Wine putih yang dicampur pewarna merah tanpa bau menipu hidung 54 mahasiswa",
+  "summary": "Wine putih yang hanya diberi pewarna merah tanpa aroma digambarkan oleh 54 mahasiswa sarjana enologi dengan kata-kata aroma wine merah.",
+  "panels": [
+    {
+      "text": [
+        "Pesertanya 54 mahasiswa sarjana jurusan enologi (ilmu pembuatan wine) Universitas Bordeaux."
+      ]
+    },
+    {
+      "text": [
+        "Pada minggu pertama, mereka mencicipi wine merah dan putih lalu memilih kata-kata aroma dari sebuah daftar.",
+        "Seminggu kemudian, mereka menerima dua gelas lagi dengan daftar kata yang sama.",
+        "Satu gelas berisi wine putih, gelas lainnya wine putih yang sama dengan tambahan pewarna merah."
+      ]
+    },
+    {
+      "text": "Cuma ditambah pewarna, penilaian aromanya bisa berubah?"
+    },
+    {
+      "text": [
+        "Tapi mahasiswa yang mencium wine putih merah itu umumnya memakai lagi kata-kata yang dulu mereka pakai untuk wine merah."
+      ]
+    },
+    {
+      "text": [
+        "Kata untuk sisi merah antara lain blackcurrant, raspberry, ceri, dan prem kering."
+      ]
+    },
+    {
+      "text": "Padahal pakai hidung, tapi mata ikut campur ya."
+    },
+    {
+      "text": [
+        "Tafsirannya, informasi visual membuat informasi penciuman terabaikan."
+      ]
+    },
+    {
+      "text": [
+        "Dari makalah ini saja, belum bisa dikatakan penyicip profesional juga akan sama."
+      ]
+    }
+  ],
+  "sources": [
+    "Morrot, Brochet, Dubourdieu (2001). The color of odors. Brain and Language 79(2) (abstrak PubMed)",
+    "The Color of Odors (salinan PDF naskah lengkap)"
+  ]
+}

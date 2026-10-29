@@ -1,0 +1,63 @@
+{
+  "id": "pineapple-status",
+  "contentNotice": null,
+  "day": 45,
+  "category": "음식",
+  "title": "파인애플은 먹으려고 사는 게 아니었다",
+  "hook": "18세기 영국에서 파인애플은 파티에 내놓고 자랑하는 물건이었다",
+  "summary": "18세기 영국에서는 파인애플 하나 키우는 데 새 마차값쯤 들었다는 추산이 있다. 먹기보다 파티에서 자랑하는 데 썼다.",
+  "cover": "pineapple-status-dunmore",
+  "sources": [
+    {
+      "title": "Fran Beauman, Cabinet 23: The Pineapple",
+      "url": "https://www.cabinetmagazine.org/issues/23/beauman.php"
+    },
+    {
+      "title": "National Trust for Scotland: The Pineapple",
+      "url": "https://www.nts.org.uk/visit/places/the-pineapple"
+    }
+  ],
+  "panels": [
+    {
+      "type": "text",
+      "text": [
+        "한 역사가는 파인애플 한 개를 키우는 총비용이 새 마차 한 대 값쯤이었다고 추산한다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "과일 하나가 마차값이라고? 사 먹는 게 낫겠다."
+    },
+    {
+      "type": "text",
+      "text": [
+        "가장 번듯한 파인애플은 몇 주씩 도시의 저녁 파티를 돌아다녔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "먹는 건 그 다음이다. 썩기 시작해 집 안에 냄새가 퍼질 때쯤에야 잘라 먹었다고 한다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "pineapple-status-dunmore",
+      "text": [
+        "스코틀랜드 던모어의 이 건물은 꼭대기가 통째로 파인애플이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "파인애플이 환대의 상징이라는 말은? 그건 아니래."
+    },
+    {
+      "type": "text",
+      "text": [
+        "식민지 미국에서 선장이 문 앞에 파인애플을 두어 손님을 반겼다는 이야기는 당시 기록에 나오지 않는다.",
+        "1930년대에 옛 저택 박물관들이 식민지 시절을 이상적으로 되살리려 하면서 퍼졌다."
+      ]
+    }
+  ],
+  "status": "approved"
+}
