@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>아시안컵 E조 스코어 예측 — 한국 세 경기 찍어 보기</title>
+<meta name="description" content="한국의 조별리그 세 경기 스코어를 찍으면 조 순위표와 예측 카드가 나온다. 링크로 친구 예측과 맞춰 보기.">
+<meta property="og:title" content="아시안컵 E조 스코어 예측">
+<meta property="og:description" content="한국 세 경기 스코어를 찍고 친구 예측과 맞춰 보세요.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dumbgamelab.com/play/asiancup-e/">
+<meta name="theme-color" content="#0f1a2e">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07WLGFMQDD"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-07WLGFMQDD',{send_page_view:true});
+var GAME='asiancup-e';
+function track(n,p){try{gtag('event',n,Object.assign({game:GAME,platform:'web'},p||{}))}catch(e){}}
+</script>
+<style>
+:root{--bg:#0f1a2e;--card:#1a2a47;--line:#2c4166;--ink:#f4f7ff;--dim:#8fa3c7;--gold:#ffd24a;--red:#ff5a5f;--green:#3ddc97}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+body{min-height:100vh;display:flex;justify-content:center}
+#app{width:100%;max-width:480px;padding:18px 14px calc(110px + env(safe-area-inset-bottom))}
+h1{margin:6px 0 2px;font-size:26px;line-height:1.2;letter-spacing:-.5px}
+h1 b{color:var(--gold)}
+.sub{color:var(--dim);font-size:14px;margin:0 0 16px}
+.friend{background:#23395f;border:1px solid var(--gold);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:15px}
+.friend b{color:var(--gold)}
+.sec{font-size:13px;color:var(--dim);margin:18px 2px 8px;letter-spacing:.5px}
+.m{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 10px;margin-bottom:10px}
+.m .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--dim);margin:0 4px 8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:4px}
+.team{flex:1;text-align:center;font-weight:700;font-size:16px}
+.chip{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.step{display:flex;flex-direction:column;align-items:center;width:52px}
+.step button{width:52px;height:44px;border:0;border-radius:10px;background:#2b4570;color:var(--ink);font-size:24px;font-weight:700;touch-action:manipulation}
+.step button:active{background:#3b5a8c}
+.step .n{font-size:38px;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums;min-width:40px;text-align:center}
+.colon{font-size:26px;color:var(--dim);font-weight:700;padding:0 2px}
+.m.kor{border-color:#4b6fae}
+.m.kor .meta b{color:var(--gold)}
+.others{display:none}
+.others.on{display:block}
+.tog{width:100%;height:46px;border:1px dashed var(--line);border-radius:12px;background:transparent;color:var(--dim);font-size:14px;font-weight:600;touch-action:manipulation}
+.cta{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 35%);display:flex;justify-content:center}
+.cta button,.btn{width:100%;max-width:452px;height:54px;border:0;border-radius:14px;background:var(--gold);color:#241a00;font-size:18px;font-weight:800;touch-action:manipulation}
+.btn.alt{background:#2b4570;color:var(--ink);font-size:16px;height:48px;margin-top:8px}
+#res{display:none}
+#res.on{display:block}
+#cv{width:100%;border-radius:16px;display:block;border:1px solid var(--line);-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.cmp{display:flex;gap:6px;margin:10px 0 0}
+.cmp div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;font-size:13px;color:var(--dim)}
+.cmp div b{display:block;font-size:20px;color:var(--ink);margin-top:2px}
+.cmp div.hit{border-color:var(--green)}
+.cmp div.hit b{color:var(--green)}
+.foot{margin-top:22px;text-align:center;font-size:12px;color:var(--dim);line-height:1.6}
+.foot a{color:var(--dim)}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#000c;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+</style>
+<!-- build:day-mvssvxxs -->
+</head>
+<body>
+<div id="app">
+  <h1>아시안컵 <b>E조</b><br>스코어 예측</h1>
+  <p class="sub">한국 세 경기를 찍으면 순위표가 나와요</p>
+  <div id="friend" class="friend" style="display:none"></div>
+  <div id="form">
+    <div class="sec">한국 경기</div>
+    <div id="korList"></div>
+    <div class="sec">다른 경기 (안 찍으면 1:1)</div>
+    <button class="tog" id="tog" type="button">다른 세 경기도 찍기</button>
+    <div class="others" id="oth"></div>
+    <div class="foot">일정은 AFC 발표(10/27) 기준이에요. 바뀌면 같이 고칩니다.</div>
+  </div>
+  <div id="res">
+    <div class="sec">내 예측 카드</div>
+    <canvas id="cv" width="1080" height="1400"></canvas>
+    <div class="cmp" id="cmp"></div>
+    <button class="btn" id="share" type="button" style="margin-top:12px">카드 공유하기</button>
+    <button class="btn alt" id="copy" type="button">링크 복사</button>
+    <button class="btn alt" id="again" type="button">다시 찍기</button>
+    <div class="foot"><a href="https://dumbgamelab.com/">Dumb Game Lab</a></div>
+  </div>
+</div>
+<div class="cta" id="cta"><button id="go" type="button">결과 카드 만들기</button></div>
+<div id="toast"></div>
+<script>
+(function(){
+'use strict';
+var TEAMS={KOR:{n:'한국',c:'#e8453c'},YEM:{n:'예멘',c:'#c9a227'},VIE:{n:'베트남',c:'#d7263d'},UAE:{n:'UAE',c:'#2e9e6b'}};
+/* 일정 = AFC 발표(2026-10-27, 경향신문·뉴스1). KST. 한국 경기만 날짜가 확정이다. */
+var MATCHES=[
+  {a:'KOR',b:'YEM',d:'1월 10일 (토) 19:30',k:1},
+  {a:'KOR',b:'VIE',d:'1월 15일 (목) 19:30',k:1},
+  {a:'KOR',b:'UAE',d:'1월 20일 (수) 22:30',k:1},
+  {a:'YEM',b:'VIE',d:'',k:0},
+  {a:'YEM',b:'UAE',d:'',k:0},
+  {a:'VIE',b:'UAE',d:'',k:0}
+];
+/* 실제 결과가 나오면 여기에 [한국쪽,상대쪽] 로 채운다. 채우면 카드에 맞힌 경기 수가 붙는다. */
+var RESULTS=[null,null,null,null,null,null];
+var S=MATCHES.map(function(m){return m.k?[1,0]:[1,1]});
+var started=false,friend=null;
+function $(i){return document.getElementById(i)}
+function toast(t){var e=$('toast');e.textContent=t;e.className='on';clearTimeout(toast.t);toast.t=setTimeout(function(){e.className=''},1600)}
+
+function build(){
+  var kl=$('korList'),ol=$('oth');kl.innerHTML='';ol.innerHTML='';
+  MATCHES.forEach(function(m,i){
+    var el=document.createElement('div');el.className='m'+(m.k?' kor':'');
+    el.innerHTML='<div class="meta"><span>'+(m.k?'<b>'+(i+1)+'차전</b>':'조별리그')+'</span><span>'+m.d+'</span></div>'+
+    '<div class="row"><div class="team"><i class="chip" style="background:'+TEAMS[m.a].c+'"></i>'+TEAMS[m.a].n+'</div>'+
+    stepper(i,0)+'<div class="colon">:</div>'+stepper(i,1)+
+    '<div class="team"><i class="chip" style="background:'+TEAMS[m.b].c+'"></i>'+TEAMS[m.b].n+'</div></div>';
+    (m.k?kl:ol).appendChild(el);
+  });
+}
+function stepper(i,s){return '<div class="step"><button type="button" data-i="'+i+'" data-s="'+s+'" data-d="1" aria-label="올리기">+</button><div class="n" id="n'+i+'_'+s+'">'+S[i][s]+'</div><button type="button" data-i="'+i+'" data-s="'+s+'" data-d="-1" aria-label="내리기">-</button></div>'}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-i]');if(!b)return;
+  var i=+b.dataset.i,s=+b.dataset.s,d=+b.dataset.d;
+  S[i][s]=Math.max(0,Math.min(9,S[i][s]+d));
+  $('n'+i+'_'+s).textContent=S[i][s];
+  if(!started){started=true;track('day_game_start',{from_friend:friend?1:0})}
+});
+
+function table(sc){
+  var t={};Object.keys(TEAMS).forEach(function(k){t[k]={k:k,p:0,w:0,d:0,l:0,gf:0,ga:0}});
+  MATCHES.forEach(function(m,i){
+    var x=sc[i][0],y=sc[i][1],A=t[m.a],B=t[m.b];
+    A.gf+=x;A.ga+=y;B.gf+=y;B.ga+=x;
+    if(x>y){A.p+=3;A.w++;B.l++}else if(x<y){B.p+=3;B.w++;A.l++}else{A.p++;B.p++;A.d++;B.d++}
+  });
+  var r=Object.keys(t).map(function(k){return t[k]});
+  r.sort(function(a,b){return b.p-a.p||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf||(a.k==='KOR'?-1:b.k==='KOR'?1:0)});
+  return r;
+}
+function verdict(rows,sc){
+  var rk=rows.map(function(r){return r.k}).indexOf('KOR')+1,me=rows[rk-1];
+  var kg=sc[0][0]+sc[1][0]+sc[2][0];
+  if(rk===1&&me.w===3)return '전승 조 1위. 여기서 끝낼 팀이 아니에요.';
+  if(rk===1)return '조 1위로 올라갑니다. '+kg+'골이면 충분해요.';
+  if(rk===2)return '2위로 16강. 마음 졸이진 않겠네요.';
+  if(rk===3)return '3위. 다른 조 성적표를 봐야 해요.';
+  return '조 4위 탈락. 이건 너무 아픈 예측이에요.';
+}
+function enc(sc){return sc.map(function(s){return s[0]+'-'+s[1]}).join('_')}
+function dec(h){
+  var m=/[#&]p=([0-9_-]+)/.exec(h||'');if(!m)return null;
+  var p=m[1].split('_');if(p.length!==6)return null;
+  var out=p.map(function(x){var q=x.split('-');return [Math.min(9,+q[0]||0),Math.min(9,+q[1]||0)]});
+  return out;
+}
+function hit(){
+  if(!friend)return null;
+  var n=0;for(var i=0;i<3;i++)if(friend[i][0]===S[i][0]&&friend[i][1]===S[i][1])n++;
+  return n;
+}
+function rr(c,x,y,w,h,r,f){c.fillStyle=f;c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();c.fill()}
+function draw(){
+  var cv=$('cv'),c=cv.getContext('2d'),W=1080,H=1400,F='-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif';
+  c.fillStyle='#0f1a2e';c.fillRect(0,0,W,H);
+  c.fillStyle='#16294a';c.fillRect(0,0,W,260);
+  c.textBaseline='alphabetic';c.fillStyle='#8fa3c7';c.font='600 34px '+F;c.fillText('아시안컵 2027 · E조',60,92);
+  c.fillStyle='#fff';c.font='800 76px '+F;c.fillText('내 스코어 예측',60,180);
+  c.fillStyle='#ffd24a';c.fillRect(60,210,120,8);
+  var y=300;
+  for(var i=0;i<3;i++){
+    var m=MATCHES[i];rr(c,60,y,960,130,24,'#1a2a47');
+    c.fillStyle='#8fa3c7';c.font='600 28px '+F;c.textAlign='left';c.fillText(m.d,92,y+42);
+    c.fillStyle='#fff';c.font='800 44px '+F;
+    c.textAlign='left';c.fillText(TEAMS[m.a].n,92,y+100);
+    c.textAlign='right';c.fillText(TEAMS[m.b].n,988,y+100);
+    c.textAlign='center';c.fillStyle='#ffd24a';c.font='800 64px '+F;c.fillText(S[i][0]+' : '+S[i][1],540,y+98);
+    y+=150;
+  }
+  var rows=table(S);y+=20;
+  c.textAlign='left';c.fillStyle='#8fa3c7';c.font='600 28px '+F;c.fillText('조 순위',60,y);
+  c.textAlign='right';['승점','득실','득점'].forEach(function(t,j){c.fillText(t,[840,925,1000][j],y)});
+  y+=18;
+  rows.forEach(function(r,i){
+    var me=r.k==='KOR';rr(c,60,y,960,88,20,me?'#2a4a80':'#1a2a47');
+    c.fillStyle=TEAMS[r.k].c;c.fillRect(92,y+34,20,20);
+    c.fillStyle='#fff';c.textAlign='left';c.font=(me?'800':'600')+' 40px '+F;c.fillText((i+1)+'  '+TEAMS[r.k].n,128,y+58);
+    c.textAlign='right';c.font='800 40px '+F;c.fillText(String(r.p),840,y+58);
+    c.font='600 36px '+F;c.fillStyle='#c9d6f0';c.fillText((r.gf-r.ga>0?'+':'')+(r.gf-r.ga),925,y+58);c.fillText(String(r.gf),1000,y+58);
+    y+=100;
+  });
+  y+=20;c.textAlign='left';c.fillStyle='#ffd24a';c.font='800 40px '+F;c.fillText(verdict(rows,S),60,y+30);
+  var h=hit();if(h!==null){c.fillStyle='#3ddc97';c.font='700 34px '+F;c.fillText('친구 예측과 한국 경기 '+h+'/3 일치',60,y+86)}
+  c.fillStyle='#8fa3c7';c.font='600 30px '+F;c.textAlign='left';c.fillText('dumbgamelab.com/play/asiancup-e',60,H-56);
+  return rows;
+}
+function link(){return 'https://dumbgamelab.com/play/asiancup-e/#p='+enc(S)}
+function result(){
+  draw();
+  var h=$('cmp');h.innerHTML='';
+  if(friend){
+    for(var i=0;i<3;i++){var ok=friend[i][0]===S[i][0]&&friend[i][1]===S[i][1];
+      var d=document.createElement('div');d.className=ok?'hit':'';
+      d.innerHTML=(i+1)+'차전<b>'+S[i][0]+':'+S[i][1]+'</b>친구 '+friend[i][0]+':'+friend[i][1];h.appendChild(d)}
+  }
+  var real=RESULTS.slice(0,3);
+  if(real.every(Boolean)){var n=0;for(var j=0;j<3;j++)if(real[j][0]===S[j][0]&&real[j][1]===S[j][1])n++;toast('정답 '+n+'/3')}
+  $('form').style.display='none';$('cta').style.display='none';$('res').className='on';
+  window.scrollTo(0,0);
+  track('day_game_result',{from_friend:friend?1:0});
+}
+$('go').addEventListener('click',result);
+$('again').addEventListener('click',function(){$('res').className='';$('form').style.display='';$('cta').style.display='';window.scrollTo(0,0)});
+$('tog').addEventListener('click',function(){$('oth').className='others on';$('tog').style.display='none'});
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText)return navigator.clipboard.writeText(t);
+  return new Promise(function(ok,no){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')?ok():no()}catch(e){no(e)}a.remove()});
+}
+$('copy').addEventListener('click',function(){
+  copyText(link()).then(function(){toast('링크를 복사했어요')},function(){toast(link())});
+  track('day_game_share',{method:'copy'});
+});
+$('share').addEventListener('click',function(){
+  var cv=$('cv');
+  cv.toBlob(function(b){
+    var file=b&&new File([b],'asiancup-e.png',{type:'image/png'});
+    var data={title:'아시안컵 E조 스코어 예측',text:'내 예측은 이거예요. 너는?',url:link()};
+    if(file&&navigator.canShare&&navigator.canShare({files:[file]}))data.files=[file];
+    if(navigator.share){navigator.share(data).then(function(){track('day_game_share',{method:'native'})},function(){})}
+    else{copyText(link()).then(function(){toast('링크를 복사했어요')},function(){toast(link())});track('day_game_share',{method:'copy'})}
+  },'image/png');
+});
+friend=dec(location.hash);
+build();
+if(friend){
+  var f=$('friend'),rows=table(friend),k=rows.map(function(r){return r.k}).indexOf('KOR')+1;
+  f.style.display='block';
+  f.innerHTML='친구의 예측: 한국 <b>'+friend[0][0]+':'+friend[0][1]+'</b> · <b>'+friend[1][0]+':'+friend[1][1]+'</b> · <b>'+friend[2][0]+':'+friend[2][1]+'</b><br>조 '+k+'위. 내 예측과 맞춰 보세요.';
+  track('day_game_view_friend');
+}
+})();
+</script>
+</body>
+</html>
