@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>チムジルバン育成は、何を買うかよりどこに置くかで稼ぎが決まります</title>
+    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</guid>
+    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
+    <description>サウナ経営ゲームで、どこに置くと収入が20%増え、どこに置くと20%減るのか。チムジルバン育成の隣接倍率表とエアコンの範囲、入口の位置を、ゲーム内の実際の値でまとめました。</description>
+  </item>
+  <item>
     <title>電話に出るとき「アホイ」と言うところだった</title>
     <link>https://dumbgamelab.com/ja/blog/hello-ahoy/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/hello-ahoy/</guid>
@@ -226,13 +233,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-idle-tycoon-games-offline/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</description>
-  </item>
-  <item>
-    <title>ゲーム発展国（Game Dev Story）に似たゲーム、カイロソフト以外で遊べる7本</title>
-    <link>https://dumbgamelab.com/ja/blog/games-like-game-dev-story/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/games-like-game-dev-story/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ゲーム発展国（Game Dev Story）を遊び終えた人が次に選ぶ経営ゲームを、Steam、App Store、Google Playから7本選びました。価格、評価、対応言語を1つの表で比べ、自社ゲームの弱点も書いています。</description>
   </item>
 </channel>
 </rss>
