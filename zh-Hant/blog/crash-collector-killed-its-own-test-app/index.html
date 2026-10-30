@@ -74,11 +74,13 @@
 <ul><li>寫了故意讓 App 當機的程式碼，先在實機上確認 App 真的會死。</li><li>當機之後，還要看下次啟動時報告有沒有送達。</li><li>Play 上架後立刻收到的錯誤，先和發布前報告的裝置清單對照。</li><li>可疑的錯誤，用同一個版本在一支真實手機上重現看看。</li><li>新的通知標準，第一週先數自己製造了多少雜訊。</li></ul>
 </section>
     <section class="faq"><h2>FAQ</h2><details><summary>要怎麼故意讓 iOS App 當機，來測試當機收集器？</summary><p>我用的是對 App 處理程序送出 SIGSEGV 訊號的開關。在 iPhone 11 Pro 實機上，WebView 掛的訊號處理器攔下了它，App 沒有死；送出訊號之前先把 SIGSEGV 還原成預設行為，App 就死了。當機之後，也請一併確認下次啟動時報告有沒有送達。</p></details><details><summary>Play Console 的發布前報告出現當機，使用者也會遇到嗎？</summary><p>我的情況不是。那是上架後立刻只在 Firebase Test Lab 虛擬裝置上出現的算圖器錯誤，我把瓦普塔 1.0.10 放到實機（Adreno 740）上跑，錯誤是 0。建議先確認發布前報告裡的裝置清單。</p></details><details><summary>當機收集器會蒐集什麼？</summary><p>我用的收集器會蒐集 WebView 錯誤、出錯前最後一個操作、錯誤相對於場數的比例，以及原生當機。啟動後 8 秒內的啟動錯誤只要有 2 場以上，就判定為嚴重並準備熱修。</p></details></section>
+    
     <aside class="gamebox">
   <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">來奇奇背包裝滿背包，去打部長吧。</p>
   <div class="gb-btns"></div></div>
 </aside>
+    
     <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/games-like-game-dev-story/"><img src="/blog/img/games-like-game-dev-story/g1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>類似 Game Dev Story 的遊戲，開羅遊戲之外還有這7款</b><span class="pc-desc">玩完 Game Dev Story（遊戲發展國）還想繼續經營？從 Steam、App Store、Google Play 挑出7款，價格、評價、支援語言一張表比完，連我們遊戲的缺點也寫進去。</span></a></div></section>
   </article>
 </main>

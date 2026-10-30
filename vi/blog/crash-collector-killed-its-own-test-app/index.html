@@ -70,11 +70,13 @@
 <ul><li>Nếu đã viết code cố ý làm app chết, trước hết kiểm tra trên máy thật xem app có chết thật không.</li><li>Sau khi app chết, xem luôn báo cáo có về tới ở lần chạy kế tiếp không.</li><li>Với lỗi đến ngay sau khi đăng lên Play, đối chiếu trước với danh sách thiết bị trong báo cáo trước khi phát hành.</li><li>Lỗi đáng ngờ thì thử tái hiện cùng phiên bản trên một điện thoại thật.</li><li>Với ngưỡng cảnh báo mới, tuần đầu hãy đếm xem nó tự tạo ra bao nhiêu lỗi nhiễu.</li></ul>
 </section>
     <section class="faq"><h2>FAQ</h2><details><summary>Làm sao cố ý làm app iOS crash để thử bộ thu thập crash?</summary><p>Mình dùng nút gửi tín hiệu SIGSEGV vào tiến trình app. Trên iPhone 11 Pro thật, trình xử lý tín hiệu do webview cài đã chặn nên app không chết; sau khi trả SIGSEGV về hành vi mặc định trước khi gửi thì app chết. Nhớ kiểm tra luôn báo cáo có về tới ở lần chạy kế tiếp không.</p></details><details><summary>Báo cáo trước khi phát hành trên Play Console có crash thì người dùng cũng bị không?</summary><p>Trường hợp của mình thì không. Đó là lỗi bộ render chỉ xuất hiện trên máy ảo Firebase Test Lab ngay sau khi đăng, và khi mở Wax Tower 1.0.10 trên điện thoại thật (Adreno 740) thì lỗi là 0. Hãy kiểm tra danh sách thiết bị trong báo cáo trước khi phát hành trước.</p></details><details><summary>Bộ thu thập crash thu những gì?</summary><p>Bộ mình dùng thu lỗi webview, hành động ngay trước đó, tỉ lệ lỗi trên số ván chơi và native crash. Lỗi khởi động trong 8 giây đầu xuất hiện từ 2 lượt trở lên thì coi là nghiêm trọng và mình chuẩn bị hotfix.</p></details></section>
+    
     <aside class="gamebox">
   <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">Vào Chichi Backpack, xếp đầy ba lô rồi đập sếp đi.</p>
   <div class="gb-btns"></div></div>
 </aside>
+    
     
   </article>
 </main>

@@ -70,11 +70,13 @@
 <ul><li>做了故意崩溃的代码,先在真机上确认App是不是真的崩了。</li><li>崩溃之后,再确认下次启动时报告有没有送达。</li><li>刚上传到Play就收到的错误,先对照预发布报告里的设备列表。</li><li>可疑的错误,用同一个版本在一台真机上复现一遍。</li><li>新的告警标准,第一周先数一数它自己产生了多少噪音。</li></ul>
 </section>
     <section class="faq"><h2>FAQ</h2><details><summary>怎么故意让iOS应用崩溃来测试崩溃日志收集器?</summary><p>我用的是向App进程发送SIGSEGV信号的开关。在iPhone 11 Pro真机上,信号被WebView装的信号处理器拦下,App没有崩;发信号前先把SIGSEGV恢复为默认行为,App就崩了。崩溃后也要确认下次启动时报告有没有送达。</p></details><details><summary>Play管理中心的预发布报告里出现崩溃,用户也会遇到吗?</summary><p>我这次不是。那是上传后只在Firebase Test Lab虚拟设备上出现的渲染器错误,把蜡笔塔1.0.10放到真机(Adreno 740)上运行,错误是0。建议先看预发布报告里的设备列表。</p></details><details><summary>崩溃日志收集器会收集什么?</summary><p>我用的收集器会收集WebView错误和崩溃前的操作、错误占对局数的比例,以及原生崩溃。启动后8秒内的启动错误出现2次以上,就判定为严重并准备热修复。</p></details></section>
+    
     <aside class="gamebox">
   <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">来奇奇背包里装满背包,去打部长吧。</p>
   <div class="gb-btns"></div></div>
 </aside>
+    
     
   </article>
 </main>

@@ -70,11 +70,13 @@
 <ul><li>Kalau sudah membuat kode pemaksa crash, cek dulu di perangkat asli apakah aplikasinya benar-benar mati.</li><li>Setelah mati, lihat juga apakah laporan sampai di peluncuran berikutnya.</li><li>Error yang masuk tepat setelah unggah ke Play, cocokkan dulu dengan daftar perangkat di laporan pra-rilis.</li><li>Error yang mencurigakan, coba tiru di satu ponsel asli dengan versi yang sama.</li><li>Untuk kriteria notifikasi baru, hitung dulu berapa derau yang dibuatnya sendiri di minggu pertama.</li></ul>
 </section>
     <section class="faq"><h2>FAQ</h2><details><summary>Bagaimana cara sengaja membuat aplikasi iOS crash untuk menguji pengumpul crash?</summary><p>Saya memakai tombol yang mengirim sinyal SIGSEGV ke proses aplikasi. Di iPhone 11 Pro asli, aplikasi tidak mati karena penangan sinyal yang dipasang webview menyadapnya; setelah SIGSEGV dikembalikan ke perilaku bawaan sebelum dikirim, aplikasi mati. Cek juga apakah laporan sampai di peluncuran berikutnya.</p></details><details><summary>Di laporan pra-rilis Play Console ada crash, apakah pengguna juga mengalaminya?</summary><p>Pada kasus saya, tidak. Itu error renderer yang hanya muncul di perangkat virtual Firebase Test Lab tepat setelah unggahan, dan saat Wax Tower 1.0.10 dibuka di ponsel asli (Adreno 740) error-nya 0. Periksa dulu daftar perangkat di laporan pra-rilis.</p></details><details><summary>Apa saja yang dikumpulkan pengumpul crash?</summary><p>Pengumpul yang saya pakai menerima error webview, aksi tepat sebelumnya, rasio error terhadap jumlah sesi bermain, dan native crash. Error booting dalam 8 detik pertama yang muncul pada 2 sesi atau lebih dianggap parah dan saya menyiapkan hotfix.</p></details></section>
+    
     <aside class="gamebox">
   <img src="/blog/icons/chichibackpack.png" alt="치치의 출근 가방" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">가방 정리 로그라이크</p><p class="gb-title">치치의 출근 가방</p><p class="gb-hook">Isi tas di Chichi Backpack lalu hajar bosnya.</p>
   <div class="gb-btns"></div></div>
 </aside>
+    
     
   </article>
 </main>
