@@ -202,5 +202,15 @@ window.__DGL_STRINGS = {
 "하트 피버! 수입 2배":"Heart Fever! Income x2",
 "함께 일하는 중":"Working with you",
 "핫도그 가게":"Hot Dog Stand",
-"핫도그 만들기":"Make a Hot Dog"
+"핫도그 만들기":"Make a Hot Dog",
+"꼬불꼬불 미니 코스터":"Twisty Mini Coaster",
+"꾸미기 {0}개 두기":"Place {0} decorations",
+"동글동글 화분":"Round Potted Bush",
+"따뜻한 가로등":"Cozy Street Lamp",
+"미화 {0}점 · 쓰레기 {1}개. 꽃·가로등·분수로 꾸며봐.":"Tidiness {0} · Litter {1}. Decorate with flowers, lamps and fountains.",
+"알록달록 풍선 가판":"Colorful Balloon Cart",
+"출렁출렁 바이킹":"Swinging Pirate Ship",
+"콩콩 범퍼카":"Bumpy Bumper Cars",
+"퐁퐁 분수":"Bubbly Fountain",
+"꾸미기 하나만 더 놔 줘":"Could you put down one more decoration?"
 };
