@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>하루 매출이 30분의 1로: 14일 매출 92%가 기사 한 건이었다</title>
+    <link>https://dumbgamelab.com/ko/blog/revenue-92pct-one-article/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/revenue-92pct-one-article/</guid>
+    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
+    <description>1인 개발자가 모바일 게임 매출을 게임별로 쪼개 보고 알게 된 것. 최근 14일 매출 $260 중 $241이 한 게임, 대부분은 대만 기사 한 건이 만든 유입이었습니다. 어디서 읽기를 틀렸는지 적었습니다.</description>
+  </item>
+  <item>
     <title>올림픽 금메달은 사실 거의 은이다</title>
     <link>https://dumbgamelab.com/ko/blog/gold-medal-silver/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/gold-medal-silver/</guid>
@@ -227,13 +234,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/best-bathhouse-onsen-games/</guid>
     <pubDate>Sun, 18 Oct 2026 15:00:00 GMT</pubDate>
     <description>온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</description>
-  </item>
-  <item>
-    <title>1인 개발 한 달 기록: 번 돈 1만 5천 원, 쓴 돈 34만 5천 원</title>
-    <link>https://dumbgamelab.com/ko/blog/solo-dev-monthly-report-2026-10/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/solo-dev-monthly-report-2026-10/</guid>
-    <pubDate>Fri, 16 Oct 2026 15:00:00 GMT</pubDate>
-    <description>1인 게임 개발자가 2026년 10월 장부를 그대로 공개합니다. 번 돈과 쓴 돈, 하루 애드몹 수익, 보도자료 한 통으로 늘어난 설치, 터지지 않은 것까지 숫자로 적었습니다.</description>
   </item>
 </channel>
 </rss>
