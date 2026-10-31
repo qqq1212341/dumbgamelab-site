@@ -221,5 +221,8 @@ window.__DGL_STRINGS = {
 "다른 게임":"More games",
 "지금은 광고가 없어. 잠시 뒤에 다시 해봐":"No ad right now. Try again in a bit!",
 "친구 덕분에 운영 자금 +{0}":"Thanks to your friend: funds +{0}",
-"친구 초대":"Invite friends"
+"친구 초대":"Invite friends",
+"눌러서 표를 끊어줘":"Tap to sell a ticket",
+"손님이 기다려, 눌러줘":"Guests are waiting. Tap!",
+"첫 표 판매! 입장료 +{0}":"First ticket sold! Admission +{0}"
 };
