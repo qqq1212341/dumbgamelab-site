@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head><meta charset="UTF-8">
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"71e9a4892","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"558f31ea0","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -164,7 +164,7 @@
   }
 })();
 </script>
-<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"ppijukland","build":"71e9a4892","target":"site","links":{"web":"https://dumbgamelab.com/play/ppijukland/"}};</script>
+<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"ppijukland","build":"558f31ea0","target":"site","links":{"web":"https://dumbgamelab.com/play/ppijukland/"}};</script>
 <script>(function(){
 'use strict';
 /* 친구 초대 코어 — 모든 게임이 같은 규칙으로 서버(i.dumbgamelab.com)와 말한다. 설명서 = core/tools/invite/README.md
@@ -647,7 +647,7 @@ window.DGLInvite = {
 })();
 
 })();</script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"71e9a4892","game":"ppijukland"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"558f31ea0","game":"ppijukland"};</script>
 <meta name="description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="삐죽랜드 · Critter Park">
@@ -660,7 +660,7 @@ window.DGLInvite = {
 <link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>
 <link rel="stylesheet" href="css/i18n-fonts.css">
 <!-- 공장 기본값 3종(순서가 계약): 소리 환경 -> 스튜디오 스플래시 -> 계측(GA4) -> 다국어. 게임 모듈(type=module)은 defer 라 항상 이 뒤에 돈다 -->
-<script src="js/audio-env.js"></script><script src="js/splash.js"></script><script src="js/analytics.js"></script><script src="js/i18n.js"></script>  <script type="module" crossorigin src="./assets/index-6d88-vKn.js"></script>
+<script src="js/audio-env.js"></script><script src="js/splash.js"></script><script src="js/analytics.js"></script><script src="js/i18n.js"></script>  <script type="module" crossorigin src="./assets/index-CjF2J8vO.js"></script>
 </head>
 <body><div id="app"></div><script>"use strict";
 /* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
@@ -829,36 +829,5 @@ window.DGLInvite = {
   if (document.body) build(); else document.addEventListener("DOMContentLoaded", build);
 })();
 </script>
-<!-- dgl-orientation-guard --><script>window.__DGL_ORIENT="portrait";</script><script>(function () {
-  if (document.getElementById('dgl-orientation-block')) return;
-  var want = window.__DGL_ORIENT === 'landscape' ? 'landscape' : 'portrait';
-  var wrong = want === 'portrait' ? 'landscape' : 'portrait';
-  var small = want === 'portrait' ? '(max-height:600px)' : '(max-width:600px)';
-  var tilt = want === 'portrait' ? 90 : 0; // 눕혀 있던 폰이 세로로 서는 그림(가로 게임은 반대로)
-  var css = '#dgl-orientation-block{display:none}' +
-    '@media (orientation:' + wrong + ') and (pointer:coarse) and ' + small + '{' +
-    '#dgl-orientation-block{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;' +
-    'background:rgba(16,19,27,.94);color:#fff;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}}' +
-    '#dgl-orientation-block svg{width:112px;height:112px;overflow:visible}' +
-    '#dgl-orientation-block .ph{transform-origin:48px 44px;animation:dgl-orient-turn 2.4s cubic-bezier(.6,0,.3,1) infinite}' +
-    '@keyframes dgl-orient-turn{0%,20%{transform:rotate(' + tilt + 'deg)}55%,100%{transform:rotate(' + (90 - tilt) + 'deg)}}' +
-    '@media (prefers-reduced-motion:reduce){#dgl-orientation-block .ph{animation:none;transform:rotate(' + (90 - tilt) + 'deg)}}';
-  function mount() {
-    if (document.getElementById('dgl-orientation-block')) return;
-    var st = document.createElement('style');
-    st.textContent = css;
-    var el = document.createElement('div');
-    el.id = 'dgl-orientation-block';
-    el.setAttribute('role', 'img');
-    el.setAttribute('aria-label', want === 'portrait' ? 'Rotate to portrait' : 'Rotate to landscape');
-    el.innerHTML = '<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<g class="ph"><rect x="31" y="15" width="34" height="58" rx="6"/><path d="M44 64h8"/></g>' +
-      '<path d="M18 80a40 40 0 0 0 60 0" opacity=".55"/><path d="m71 74 7 6-8 4" opacity=".55"/></svg>';
-    /* 막힌 동안 밑의 게임이 터치를 받지 않는다 */
-    el.addEventListener('touchstart', function (e) { e.preventDefault(); }, { passive: false });
-    (document.head || document.documentElement).appendChild(st);
-    document.body.appendChild(el);
-  }
-  if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
-})();</script></body>
+</body>
 </html>
