@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Why PC Bangs and Jjimjilbangs Work So Well as Cozy Management Games</title>
+    <link>https://dumbgamelab.com/en/blog/korean-daily-places-as-tycoon-games/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-daily-places-as-tycoon-games/</guid>
+    <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Korea had 11,801 PC bangs in 2019 and 6,658 in April 2026. Public bathhouses fell from a peak of about 10,000 to 5,991. Here is why vanishing neighborhood places suit tycoon games, with screens from my own games.</description>
+  </item>
+  <item>
     <title>On Venus, the Sun Rises in the West</title>
     <link>https://dumbgamelab.com/en/blog/venus-west/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/venus-west/</guid>
@@ -227,14 +234,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>The South Pole station runs on New Zealand time, because that&#39;s where its supplies are sent from.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Koala Fingerprints Can Pass for Human Ones</title>
-    <link>https://dumbgamelab.com/en/blog/koala-fingerprint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/koala-fingerprint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Koala fingerprints look so much like human ones that they&#39;re hard to tell apart even under an electron microscope.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
