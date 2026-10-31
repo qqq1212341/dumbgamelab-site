@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head><meta charset="UTF-8">
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"60cc75807","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"9ee254148","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -164,7 +164,490 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"60cc75807","game":"ppijukland"};</script>
+<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"ppijukland","build":"9ee254148","target":"site","links":{}};</script>
+<script>(function(){
+'use strict';
+/* 친구 초대 코어 — 모든 게임이 같은 규칙으로 서버(i.dumbgamelab.com)와 말한다. 설명서 = core/tools/invite/README.md
+ *
+ * 쓰는 곳 — 한 벌이다(게임마다 만들면 규칙이 갈린다):
+ *   · 타이쿤 엔진 `src/core/invite.ts` 가 import 한다(xpromo-core 와 같은 상대 경로).
+ *   · 웹뷰 게임 번들엔 `core/tools/invite/inject.mjs` 가 이 파일을 IIFE 로 감싸 `window.DGLInvite` 로 심는다.
+ *   · 유니티·고돗은 같은 서버 규칙을 자기 말로 옮긴다(`core/tools/invite/native/`).
+ *
+ * 흐름 — 보상은 «설치·가입»이 아니라 «진짜 플레이»에 건다(Apple 5.6.3 · 히트작 선례 = README «근거»):
+ *   주인   myCode() → 서버에 등록 → 친구가 성사될 때마다 sync() 가 friend 보상(1·3·5·10번째는 크게)
+ *   친구   redeem(코드) → 대기 · 게임이 정한 문턱에서 qualify() → 성사 → 그때 welcome 보상
+ *   돈은 모른다 — onReward({kind, index, mult}) 를 부르면 게임이 자기 화폐로 준다.
+ *
+ * ★ 이 파일은 의존성 0 · DOM 0 · ES 문법만(옛 웹뷰도 돈다). `export` 를 지우면 그대로 스크립트가 된다(inject 가 그렇게 쓴다).
+ */
+
+const INVITE_SERVER = 'https://i.dumbgamelab.com';
+const INVITE_CODE_LEN = 6;
+/** 헷갈리는 글자(0/O, 1/I/L)를 뺀 알파벳 — 입으로 불러주고 손으로 받아적는다 */
+const INVITE_ALPHABET = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
+/** 설치하고 이 날수 안에만 친구 코드를 넣을 수 있다 — «새로 온 사람»만 친구다(Pokémon GO 72시간 · 쿠키런 30일) */
+const INVITE_REDEEM_DAYS = 7;
+/** 이 번째 친구는 보상을 몇 배로 — 단계형(1·3·5명) 이 히트작 공통이다 */
+const INVITE_LADDER = { 1: 2, 3: 3, 5: 5, 10: 10 };
+const INVITE_LINK_SOURCE = 'invite';
+
+function inviteMult(index) {
+  return INVITE_LADDER[index] || 1;
+}
+
+function normalizeInviteCode(s) {
+  return String(s == null ? '' : s).toUpperCase().replace(/[^0-9A-Z]/g, '');
+}
+
+function isValidInviteCode(code) {
+  if (typeof code !== 'string' || code.length !== INVITE_CODE_LEN) return false;
+  for (let i = 0; i < code.length; i++) if (INVITE_ALPHABET.indexOf(code[i]) < 0) return false;
+  return true;
+}
+
+function rand(n) {
+  const buf = new Uint32Array(n);
+  try { crypto.getRandomValues(buf); } catch (e) { for (let i = 0; i < n; i++) buf[i] = Math.floor(Math.random() * 0xffffffff); }
+  return buf;
+}
+
+function makeInviteCode(random) {
+  const buf = (random || rand)(INVITE_CODE_LEN);
+  let s = '';
+  for (let i = 0; i < INVITE_CODE_LEN; i++) s += INVITE_ALPHABET[buf[i] % INVITE_ALPHABET.length];
+  return s;
+}
+
+/** 기기 비밀값 — 서버는 해시만 둔다. 광고 ID·기기 ID 를 쓰지 않는다 */
+function makeSecret(random) {
+  const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const buf = (random || rand)(24);
+  let s = '';
+  for (let i = 0; i < 24; i++) s += A[buf[i] % A.length];
+  return s;
+}
+
+/** 주소 쿼리(또는 Play 설치 리퍼러 문자열)에서 친구 코드 — `utm_source=invite&utm_content=<코드>` 가 아니면 '' */
+function parseInviteLink(search) {
+  let q;
+  try { q = new URLSearchParams(String(search == null ? '' : search).replace(/^[?#]/, '')); } catch (e) { return ''; }
+  if (q.get('utm_source') !== INVITE_LINK_SOURCE) return '';
+  const code = normalizeInviteCode(q.get('utm_content') || '');
+  return isValidInviteCode(code) ? code : '';
+}
+
+/**
+ * 초대 한 벌을 만든다.
+ * @param {object} o
+ * @param {string} o.game        서버에 보내는 게임 슬러그(카탈로그 slug)
+ * @param {{get(k:string):string|null,set(k:string,v:string):void}} [o.storage]  기본 localStorage
+ * @param {string} [o.key]       저장 키(기본 `dgl-invite:<game>`) — 세이브와 분리(«처음부터 다시»가 지우지 않는다)
+ * @param {(ev:{kind:'friend'|'welcome',index:number,mult:number})=>void} [o.onReward]
+ * @param {(name:string,p:object)=>void} [o.track]
+ * @param {typeof fetch} [o.fetch] @param {()=>number} [o.now] @param {(n:number)=>Uint32Array} [o.random] @param {string} [o.server]
+ * @param {object|null} [o.legacy] 옛 기록(엔진 1.x·2.0 의 {code, redeemed}) — 처음 한 번 이어받는다
+ */
+function createInvite(o) {
+  const game = o.game;
+  const key = o.key || 'dgl-invite:' + game;
+  const now = o.now || function () { return Date.now(); };
+  const server = o.server || INVITE_SERVER;
+  const doFetch = o.fetch || (typeof fetch === 'function' ? fetch.bind(globalThis) : null);
+  const store = o.storage || {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 못 쓰면 다음에 다시 */ } },
+  };
+  const track = o.track || function () {};
+  let onReward = o.onReward || null;
+  /* 보상 콜백이 아직 없을 때 온 보상 — 게임이 setRewardHandler 를 부르면 그때 준다(웹뷰 게임은 키트가 게임보다 먼저 뜬다) */
+  const queued = [];
+
+  function load() {
+    let r = null;
+    try { r = JSON.parse(store.get(key) || 'null'); } catch (e) { r = null; }
+    if (!r || r.v !== 2) {
+      const L = o.legacy || {};
+      r = {
+        v: 2,
+        code: isValidInviteCode(L.code) ? L.code : '',
+        own: '',
+        at: now(), // 처음 본 시각 = 설치 시각으로 친다
+        reg: 0,
+        redeemed: typeof L.redeemed === 'string' ? L.redeemed : '',
+        /* 옛 판에서 이미 넣은 코드는 서버에 관계가 없다 — 성사·환영 보상을 다시 주지 않는다 */
+        qualified: L.redeemed ? 1 : 0,
+        rewarded: 0,
+        pending: '',
+      };
+    }
+    return r;
+  }
+  function save(r) { store.set(key, JSON.stringify(r)); }
+  function secret(r) {
+    if (!r.own) { r.own = makeSecret(o.random); save(r); }
+    return r.own;
+  }
+
+  function post(path, body) {
+    if (!doFetch) return Promise.resolve({ ok: false, reason: 'network' });
+    return doFetch(server + '/v1/' + path, { method: 'POST', headers: { 'content-type': 'text/plain' }, body: JSON.stringify(Object.assign({ g: game }, body)) })
+      .then(function (res) { return res.json(); })
+      .catch(function () { return { ok: false, reason: 'network' }; });
+  }
+
+  function give(ev) {
+    track('invite_reward', { why: ev.kind, index: ev.index, mult: ev.mult });
+    if (onReward) onReward(ev); else queued.push(ev);
+  }
+
+  const api = {
+    game: game,
+
+    /** 내 코드 — 처음 부르면 만든다. 서버 등록은 뒤에서(실패하면 다음에 또) */
+    myCode: function () {
+      const r = load();
+      if (!r.code) { r.code = makeInviteCode(o.random); save(r); }
+      if (!r.reg) api.register();
+      return r.code;
+    },
+
+    /** 서버에 내 코드를 알린다. 남이 이미 쓰는 코드면(6자 충돌) 새로 뽑아 다시 */
+    register: function () {
+      const r = load();
+      if (!r.code) r.code = makeInviteCode(o.random);
+      const own = secret(r);
+      return post('register', { code: r.code, own: own }).then(function (res) {
+        const cur = load();
+        if (res.ok) { cur.reg = 1; save(cur); return true; }
+        if (res.reason === 'taken') { cur.code = makeInviteCode(o.random); cur.reg = 0; save(cur); return api.register(); }
+        return false;
+      });
+    },
+
+    /** 내가 넣은 친구 코드 — 아직이면 '' */
+    redeemedCode: function () { return load().redeemed; },
+
+    /** 코드를 넣을 수 있나 — 이미 넣었거나 설치 뒤 너무 지났으면 false(화면이 입력칸을 숨긴다) */
+    canRedeem: function () {
+      const r = load();
+      return !r.redeemed && now() - r.at < INVITE_REDEEM_DAYS * 864e5;
+    },
+
+    /** 링크·리퍼럴로 들어온 코드를 맡겨 둔다(입력칸에 미리 채운다 — 누르는 건 사람) */
+    capture: function (search) {
+      const code = parseInviteLink(search);
+      if (!code) return '';
+      const r = load();
+      if (r.redeemed || code === r.code) return '';
+      r.pending = code;
+      save(r);
+      track('invite_link_open', {});
+      return code;
+    },
+
+    pendingCode: function () {
+      const r = load();
+      return !r.redeemed && r.pending && r.pending !== r.code && isValidInviteCode(r.pending) ? r.pending : '';
+    },
+
+    /**
+     * 친구 코드 넣기 → Promise<{ok:true} | {ok:false, reason}>.
+     * reason = format · own · already · late · unknown(없는 코드) · limit · network
+     * ★ 여기선 보상을 안 준다 — 환영 보상은 qualify(진짜 플레이) 뒤다.
+     */
+    redeem: function (raw) {
+      const r = load();
+      const code = normalizeInviteCode(raw);
+      if (r.redeemed) return Promise.resolve({ ok: false, reason: 'already' });
+      if (!isValidInviteCode(code)) return Promise.resolve({ ok: false, reason: 'format' });
+      if (code === r.code) return Promise.resolve({ ok: false, reason: 'own' });
+      if (!api.canRedeem()) return Promise.resolve({ ok: false, reason: 'late' });
+      return post('redeem', { code: code, inv: secret(r) }).then(function (res) {
+        if (!res.ok) return { ok: false, reason: res.reason || 'network' };
+        const cur = load();
+        cur.redeemed = code;
+        cur.pending = '';
+        save(cur);
+        track('invite_entered', {});
+        return { ok: true };
+      });
+    },
+
+    /**
+     * 게임이 «진짜 플레이했다» 문턱에서 부른다(첫 랭크업·스테이지 N·누적 M분 — 게임이 고른다). 여러 번 불러도 된다.
+     * 성사되면 환영 보상 한 번. 서버가 «아직 이르다»면 false — 다음 문턱·다음 실행에 또 부르면 된다.
+     */
+    qualify: function () {
+      const r = load();
+      if (!r.redeemed || r.qualified) return Promise.resolve(false);
+      return post('qualify', { inv: secret(r) }).then(function (res) {
+        if (!res.ok) return false;
+        const cur = load();
+        if (cur.qualified) return false;
+        cur.qualified = 1;
+        save(cur);
+        track('invite_qualified', {});
+        give({ kind: 'welcome', index: 0, mult: 1 });
+        return true;
+      });
+    },
+
+    /** 내 코드의 성사 수를 읽고, 새로 성사된 만큼 friend 보상 → Promise<{confirmed, pending, fresh}> */
+    sync: function () {
+      const r = load();
+      if (!r.code || !r.own) return Promise.resolve({ confirmed: 0, pending: 0, fresh: 0 });
+      return post('status', { code: r.code, own: r.own }).then(function (res) {
+        if (!res.ok) return { confirmed: r.rewarded, pending: 0, fresh: 0 };
+        const cur = load();
+        const from = cur.rewarded;
+        const to = Math.max(from, res.confirmed | 0);
+        cur.rewarded = to;
+        save(cur);
+        for (let i = from + 1; i <= to; i++) give({ kind: 'friend', index: i, mult: inviteMult(i) });
+        return { confirmed: to, pending: res.pending | 0, fresh: to - from };
+      });
+    },
+
+    /** 받은 친구 수(보상 준 수) — 화면이 사다리를 그린다 */
+    friends: function () { return load().rewarded; },
+
+    /** 보상 콜백을 나중에 꽂는다 — 그동안 쌓인 보상을 바로 준다 */
+    setRewardHandler: function (fn) {
+      onReward = fn;
+      while (fn && queued.length) fn(queued.shift());
+    },
+
+    /** 공유 링크에 붙일 쿼리 — `utm_source=invite&utm_content=<코드>` */
+    linkQuery: function () {
+      return 'utm_source=' + INVITE_LINK_SOURCE + '&utm_medium=friend&utm_content=' + api.myCode();
+    },
+  };
+  return api;
+}
+
+/* 친구 초대 웹뷰 키트 — invite-core.js 뒤에 붙는 얇은 층(창 + 공유 + 자동 문턱). inject.mjs 가 한 덩어리 IIFE 로 심는다.
+ * 설명서 = core/tools/invite/README.md. 이 파일엔 `export` 가 없다(코어와 같은 스코프에서 돈다).
+ * 게임이 부르는 것 = window.DGLInvite { open, qualify, sync, setRewardHandler, myCode, friends, canRedeem }
+ * 설정 = window.__DGL_INVITE { game, links:{play,ios,web}, playMs } (inject.mjs 가 <script id="dgl-invite-cfg"> 로 먼저 둔다) */
+var CFG = (typeof window !== 'undefined' && window.__DGL_INVITE) || {};
+var LADDER_STEPS = [1, 3, 5, 10];
+var PLAY_MS = CFG.playMs || 10 * 60 * 1000; /* 누적 전경 플레이 문턱 — 게임이 더 이른 문턱에서 qualify() 를 불러도 된다 */
+var TEXT = {
+  ko: {
+    title: '친구 초대', mine: '내 코드', share: '공유하기', copied: '복사했어요',
+    friends: '성사된 친구', unit: '명', enter: '친구 코드 입력', ph: 'A7K2M9', put: '넣기', close: '닫기',
+    ok: '넣었어요. 조금 플레이하면 보상이 나와요',
+    msg: '같이 해요. 내 코드는 {code} 예요. ',
+    r: { format: '코드는 6자예요', own: '내 코드예요', already: '이미 넣었어요', late: '넣을 수 있는 기간이 지났어요', unknown: '없는 코드예요', limit: '이 코드는 가득 찼어요', network: '연결을 확인해 주세요' },
+  },
+  en: {
+    title: 'Invite friends', mine: 'Your code', share: 'Share', copied: 'Copied',
+    friends: 'Friends joined', unit: '', enter: 'Enter a friend code', ph: 'A7K2M9', put: 'Enter', close: 'Close',
+    ok: 'Done. Play a little and your reward arrives',
+    msg: 'Play with me. My code is {code}. ',
+    r: { format: 'The code has 6 characters', own: 'That is your own code', already: 'You already entered one', late: 'The entry period has passed', unknown: 'No such code', limit: 'This code is full', network: 'Check your connection' },
+  },
+};
+function tr() {
+  var l = '';
+  try { l = String((document.documentElement.getAttribute('lang') || navigator.language || 'ko')).toLowerCase(); } catch (e) { l = 'ko'; }
+  return l.indexOf('ko') === 0 ? TEXT.ko : TEXT.en;
+}
+
+function track(name, p) {
+  try { if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ game: CFG.game }, p)); } catch (e) { /* 계측이 게임을 막지 않는다 */ }
+}
+
+var inv = createInvite({ game: CFG.game, track: track });
+
+/* ── 공유 링크 — 스토어 링크에 출처를 붙인다(xpromo-core tagXpromoLinks 와 같은 모양: Play referrer · iOS ct · 웹 쿼리) ── */
+function platform() {
+  try {
+    var c = window.Capacitor;
+    if (c && typeof c.getPlatform === 'function') { var p = c.getPlatform(); if (p === 'android' || p === 'ios') return p; }
+  } catch (e) { /* 웹 */ }
+  return 'web';
+}
+function join(u) { return u.indexOf('?') >= 0 ? '&' : '?'; }
+function shareLink() {
+  var L = CFG.links || {};
+  var q = inv.linkQuery();
+  var code = inv.myCode();
+  var p = platform();
+  if (p === 'android' && L.play) return L.play + join(L.play) + 'referrer=' + encodeURIComponent(q);
+  if (p === 'ios' && L.ios) return L.ios + join(L.ios) + 'ct=' + encodeURIComponent(('invite_' + code).slice(0, 40)) + '&mt=8';
+  var web = L.web || (CFG.game ? 'https://dumbgamelab.com/play/' + CFG.game + '/' : '');
+  if (web) return web + join(web) + q;
+  var any = L.play || L.ios || '';
+  return any;
+}
+
+function copyText(s) {
+  try { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(s).then(function () { return true; }, function () { return legacyCopy(s); }); } catch (e) { /* 아래 */ }
+  return Promise.resolve(legacyCopy(s));
+}
+function legacyCopy(s) {
+  try {
+    var t = document.createElement('textarea');
+    t.value = s; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.focus(); if (t.select) t.select();
+    var ok = document.execCommand && document.execCommand('copy');
+    document.body.removeChild(t);
+    return !!ok;
+  } catch (e) { return false; }
+}
+
+/** 공유 시트(있으면) → 없으면 복사. 반환 Promise<'shared'|'copied'|'none'> */
+function share() {
+  var t = tr();
+  var text = t.msg.replace('{code}', inv.myCode()) + shareLink();
+  track('invite_share', {});
+  var P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Share && typeof P.Share.share === 'function') {
+    return P.Share.share({ title: t.title, text: text, dialogTitle: t.title }).then(function () { return 'shared'; }, function () { return 'none'; });
+  }
+  if (typeof navigator.share === 'function') {
+    return navigator.share({ title: t.title, text: text }).then(function () { return 'shared'; }, function () { return 'none'; });
+  }
+  return Promise.resolve(copyText(text)).then(function (ok) { return ok ? 'copied' : 'none'; });
+}
+
+/* ── 창 ── */
+var CSS = '#dgl-invite{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;' +
+  '-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}' +
+  '#dgl-invite *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}' +
+  '#dgl-invite .c{width:min(88vw,360px);max-height:90vh;overflow:auto;background:#fff8ec;color:#3b2a1a;border-radius:18px;padding:18px 16px;box-shadow:0 8px 28px rgba(0,0,0,.4)}' +
+  '#dgl-invite h2{margin:0 0 4px;font-size:20px;line-height:1.2;text-align:center}' +
+  '#dgl-invite .k{font-size:12px;opacity:.7;margin:12px 0 4px}' +
+  '#dgl-invite .code{font-size:32px;font-weight:800;letter-spacing:6px;text-align:center;padding:8px 0;background:#fff;border-radius:12px;border:2px solid #e3cfa8}' +
+  '#dgl-invite button{display:block;width:100%;min-height:44px;margin-top:10px;border:0;border-radius:12px;font-size:16px;font-weight:700;color:#fff;background:#e8772e;line-height:1}' +
+  '#dgl-invite button.g{background:#d9c7a3;color:#3b2a1a}' +
+  '#dgl-invite .row{display:flex;gap:6px;margin-top:6px}' +
+  '#dgl-invite .step{flex:1;min-height:44px;border-radius:10px;background:#efe3c8;text-align:center;padding:5px 0;font-size:13px;line-height:1.3;opacity:.7}' +
+  '#dgl-invite .step.on{background:#ffd36b;opacity:1;font-weight:800}' +
+  '#dgl-invite .in{display:flex;gap:8px;margin-top:6px}' +
+  '#dgl-invite input{flex:1;min-width:0;min-height:44px;border:2px solid #e3cfa8;border-radius:12px;padding:0 10px;font-size:18px;letter-spacing:3px;text-transform:uppercase;background:#fff;-webkit-user-select:text;user-select:text}' +
+  '#dgl-invite .in button{width:84px;margin-top:0}' +
+  '#dgl-invite .m{min-height:18px;margin-top:8px;font-size:13px;text-align:center}';
+
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+var root = null;
+function close() {
+  if (root && root.parentNode) root.parentNode.removeChild(root);
+  root = null;
+}
+
+function open() {
+  if (root) return;
+  var t = tr();
+  if (!document.getElementById('dgl-invite-css')) {
+    var st = el('style'); st.id = 'dgl-invite-css'; st.textContent = CSS; (document.head || document.body).appendChild(st);
+  }
+  root = el('div'); root.id = 'dgl-invite';
+  root.addEventListener('click', function (ev) { if (ev.target === root) close(); });
+  var card = el('div', 'c');
+  card.appendChild(el('h2', '', t.title));
+  card.appendChild(el('div', 'k', t.mine));
+  card.appendChild(el('div', 'code', inv.myCode()));
+  var msg = el('div', 'm', '');
+  var shareBtn = el('button', '', t.share);
+  shareBtn.addEventListener('click', function () {
+    share().then(function (r) { msg.textContent = r === 'copied' ? t.copied : ''; });
+  });
+  card.appendChild(shareBtn);
+
+  card.appendChild(el('div', 'k', t.friends));
+  var row = el('div', 'row');
+  var steps = [];
+  LADDER_STEPS.forEach(function (n) {
+    var s = el('div', 'step', n + t.unit + ' x' + inviteMult(n));
+    steps.push([n, s]); row.appendChild(s);
+  });
+  function paint() {
+    var f = inv.friends();
+    steps.forEach(function (p) { p[1].className = 'step' + (f >= p[0] ? ' on' : ''); });
+  }
+  paint();
+  card.appendChild(row);
+
+  if (inv.canRedeem()) {
+    card.appendChild(el('div', 'k', t.enter));
+    var box = el('div', 'in');
+    var input = el('input'); input.setAttribute('maxlength', '8'); input.setAttribute('placeholder', t.ph);
+    input.setAttribute('autocapitalize', 'characters'); input.setAttribute('autocomplete', 'off');
+    input.value = inv.pendingCode();
+    var put = el('button', 'g', t.put);
+    put.addEventListener('click', function () {
+      inv.redeem(input.value).then(function (r) {
+        msg.textContent = r.ok ? t.ok : (t.r[r.reason] || t.r.network);
+        if (r.ok) box.parentNode && box.parentNode.removeChild(box);
+      });
+    });
+    box.appendChild(input); box.appendChild(put);
+    card.appendChild(box);
+  }
+  card.appendChild(msg);
+  var closeBtn = el('button', 'g', t.close);
+  closeBtn.addEventListener('click', close);
+  card.appendChild(closeBtn);
+  root.appendChild(card);
+  document.body.appendChild(root);
+  track('invite_open', {});
+  inv.sync().then(paint, function () {});
+}
+
+/* ── 자동 문턱 — 앞에 보이는 동안 누적 PLAY_MS 가 차면 qualify(). 세이브와 별도 키라 «처음부터 다시»가 안 지운다 ── */
+var PLAY_KEY = 'dgl-invite-play:' + CFG.game;
+function playMs() { try { return Number(localStorage.getItem(PLAY_KEY)) || 0; } catch (e) { return 0; } }
+function startClock() {
+  var last = Date.now();
+  var lastTry = 0;
+  setInterval(function () {
+    var now = Date.now();
+    var d = Math.min(now - last, 10000); /* 잠들었다 깬 큰 간격은 플레이로 안 친다 */
+    last = now;
+    if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+    var ms = playMs() + d;
+    try { localStorage.setItem(PLAY_KEY, String(ms)); } catch (e) { /* 못 쓰면 다음에 */ }
+    if (ms >= PLAY_MS && now - lastTry >= 30000) { lastTry = now; inv.qualify(); } /* 서버가 «이르다»면 30초 뒤 또 */
+  }, 5000);
+}
+
+window.DGLInvite = {
+  open: open,
+  close: close,
+  qualify: function () { return inv.qualify(); },
+  sync: function () { return inv.sync(); },
+  setRewardHandler: function (fn) { inv.setRewardHandler(fn); },
+  myCode: function () { return inv.myCode(); },
+  friends: function () { return inv.friends(); },
+  canRedeem: function () { return inv.canRedeem(); },
+  shareLink: shareLink,
+};
+
+/* 부팅 — 링크로 들어온 코드 맡기기(주소 쿼리 + Play 설치 리퍼러) · 내 코드 서버 등록 · 새로 성사된 친구 확인 */
+(function boot() {
+  try { inv.capture(location.search); } catch (e) { /* 주소를 못 읽으면 건너뜀 */ }
+  try {
+    var plug = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.InstallReferrer;
+    if (plug && typeof plug.getReferrer === 'function' && platform() !== 'ios') {
+      plug.getReferrer().then(function (r) { if (r && typeof r.referrer === 'string') inv.capture(r.referrer); }).catch(function () {});
+    }
+  } catch (e) { /* 리퍼러 없음 */ }
+  inv.myCode();
+  inv.sync().catch(function () {});
+  startClock();
+})();
+
+})();</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"9ee254148","game":"ppijukland"};</script>
 <meta name="description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="삐죽랜드 · Critter Park">
@@ -174,10 +657,11 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="삐죽랜드 · Critter Park">
 <meta name="twitter:description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
-<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>  <script type="module" crossorigin src="./assets/index-C0fOTNaB.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C6Z0ZZMg.css">
+<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>
+<!-- 공장 기본값 3종(순서가 계약): 소리 환경 -> 스튜디오 스플래시 -> 계측(GA4) -> 다국어. 게임 모듈(type=module)은 defer 라 항상 이 뒤에 돈다 -->
+<script src="js/audio-env.js"></script><script src="js/splash.js"></script><script src="js/analytics.js"></script><script src="js/i18n.js"></script>  <script type="module" crossorigin src="./assets/index-wnJGcRZq.js"></script>
 </head>
-<body><div id="app"></div><script src="js/i18n.js"></script><script src="js/audio-env.js"></script><script>"use strict";
+<body><div id="app"></div><script>"use strict";
 /* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
  *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
  *   베타 빌드만 베타 표시(beta/lib.mjs BETA_MARK)가 붙는다(check-beta 가 그 표시로 승격을 막는다 — 버튼 유무가 아니다).

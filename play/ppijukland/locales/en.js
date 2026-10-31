@@ -215,5 +215,11 @@ window.__DGL_STRINGS = {
 "콩콩 범퍼카":"Bumpy Bumper Cars",
 "퐁퐁 분수":"Bubbly Fountain",
 "꾸미기 하나만 더 놔 줘":"Could you put down one more decoration?",
-"의견 보내기":"Send feedback"
+"의견 보내기":"Send feedback",
+"광고 보고 +{0}":"Watch ad +{0}",
+"광고 보고 바로 켜기":"Watch ad to start now",
+"다른 게임":"More games",
+"지금은 광고가 없어. 잠시 뒤에 다시 해봐":"No ad right now. Try again in a bit!",
+"친구 덕분에 운영 자금 +{0}":"Thanks to your friend: funds +{0}",
+"친구 초대":"Invite friends"
 };
