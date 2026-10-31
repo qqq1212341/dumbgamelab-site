@@ -5,6 +5,8 @@ window.__DGL_STRINGS = {
 "{0} 부탁 해결":"{0}'s request done",
 "{0} 손님이랑 더 친해졌어 ({1}단계)":"You're closer to {0} guests now (level {1})",
 "{0} 옮기기":"Move {0}",
+"끌어서 칸을 골라줘":"Drag to pick a tile",
+"여기에 놓기":"Place here",
 "{0} 차례야":"Now: {0}",
 "{0} 최고":"{0} maxed",
 "{0}/{1} 이어 짰어":"Connected {0}/{1}",
