@@ -224,5 +224,10 @@ window.__DGL_STRINGS = {
 "친구 초대":"Invite friends",
 "눌러서 표를 끊어줘":"Tap to sell a ticket",
 "손님이 기다려, 눌러줘":"Guests are waiting. Tap!",
-"첫 표 판매! 입장료 +{0}":"First ticket sold! Admission +{0}"
+"첫 표 판매! 입장료 +{0}":"First ticket sold! Admission +{0}",
+"더 빨라졌어!":"Faster now!",
+"미고용":"Not hired",
+"일당":"Daily pay",
+"최고 단계":"Max level",
+"Lv{0} 올리기 · {1}원":"Upgrade to Lv{0} · ₩{1}"
 };
