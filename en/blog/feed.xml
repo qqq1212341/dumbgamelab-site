@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>On Venus, the Sun Rises in the West</title>
+    <link>https://dumbgamelab.com/en/blog/venus-west/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/venus-west/</guid>
+    <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Venus spins backward, so the sun rises in the west, and one spin takes longer than 1 year.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/venus.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Games Like Kairosoft: 8 Games After Cafeteria Nipponica, Relaunched in Airplane Mode</title>
     <link>https://dumbgamelab.com/en/blog/games-like-cafeteria-nipponica/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-cafeteria-nipponica/</guid>
@@ -227,13 +235,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Koala fingerprints look so much like human ones that they&#39;re hard to tell apart even under an electron microscope.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>One press release email, one article in Taiwan: the email, the article side by side, and 8 days of traffic</title>
-    <link>https://dumbgamelab.com/en/blog/press-release-taiwan-124-installs/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/press-release-taiwan-124-installs/</guid>
-    <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
-    <description>One short press release email to Bahamut GNN in Taiwan became an article 11 and a half hours later. The exact email structure, what the reporter copied, how long the traffic lasted and how many players were left after 7 days.</description>
   </item>
 </channel>
 </rss>

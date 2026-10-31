@@ -936,6 +936,24 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gold-medal-silver/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gold-medal-silver/"/>
   <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/medal-gold.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/venus-west/</loc><lastmod>2026-10-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/venus.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/venus-west/</loc><lastmod>2026-10-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/venus.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/venus-west/</loc><lastmod>2026-10-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/venus-west/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/venus-west/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/venus.jpg</image:loc></image:image></url>
   <url><loc>https://dumbgamelab.com/en/blog/fur-real/</loc><lastmod>2026-10-30</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
@@ -1620,4 +1638,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/"/>
   </url>
+  <url><loc>https://dumbgamelab.com/about/</loc></url>
+  <url><loc>https://dumbgamelab.com/ko/about/</loc></url>
 </urlset>
