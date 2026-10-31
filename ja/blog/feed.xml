@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>世界一短いフライトは1分で終わる</title>
+    <link>https://dumbgamelab.com/ja/blog/shortest-flight/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/shortest-flight/</guid>
+    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
+    <description>オークニー諸島のウェストレー島とパパウェストレー島を結ぶフライトは2.7kmで、1分ちょっとで終わる。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>PC房とチムジルバンは、なぜコージー経営ゲームに向いているのか</title>
     <link>https://dumbgamelab.com/ja/blog/korean-daily-places-as-tycoon-games/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-daily-places-as-tycoon-games/</guid>
@@ -228,13 +236,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/press-release-taiwan-124-installs/</guid>
     <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
     <description>インディーゲームのプレスリリースを台湾のゲームメディア、バハムート GNN にメール1通で送ったところ、11時間半後に記事になりました。メールの組み立て、記者が使った部分、流入が何日続いたか、7日後に何人残ったかを実測の数字で書きます。</description>
-  </item>
-  <item>
-    <title>チムジルバンの卵とシッケ、なぜいつもセットなのか</title>
-    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-egg-and-sikhye/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-egg-and-sikhye/</guid>
-    <pubDate>Wed, 21 Oct 2026 15:00:00 GMT</pubDate>
-    <description>チムジルバンの売店で売る焼き卵とシッケをまとめました。ゆで卵との違い、シッケにお酒は入っているか、値段、缶シッケのカロリー、おでこで割ってはいけない理由まで、出典つきで書いています。</description>
   </item>
 </channel>
 </rss>

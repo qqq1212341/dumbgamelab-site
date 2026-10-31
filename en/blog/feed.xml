@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>The World&#39;s Shortest Flight Is Over in a Minute</title>
+    <link>https://dumbgamelab.com/en/blog/shortest-flight/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/shortest-flight/</guid>
+    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
+    <description>The flight between Westray and Papa Westray in the Orkney Islands covers 2.7 km and takes just over a minute.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Why PC Bangs and Jjimjilbangs Work So Well as Cozy Management Games</title>
     <link>https://dumbgamelab.com/en/blog/korean-daily-places-as-tycoon-games/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-daily-places-as-tycoon-games/</guid>
@@ -226,14 +234,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Do-re-mi comes from the first syllable of each line of an 11th-century Latin chant, and do was originally ut.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>In Antarctica, Even the Time Zone Follows the Delivery Guy</title>
-    <link>https://dumbgamelab.com/en/blog/south-pole-time/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/south-pole-time/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>The South Pole station runs on New Zealand time, because that&#39;s where its supplies are sent from.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
