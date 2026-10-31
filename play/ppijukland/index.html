@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko">
 <head><meta charset="UTF-8">
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"fffc2ffeb","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"ppijukland","build":"064163f46","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -164,7 +164,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"fffc2ffeb"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"064163f46","game":"ppijukland"};</script>
 <meta name="description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="삐죽랜드 · Critter Park">
@@ -174,8 +174,8 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="삐죽랜드 · Critter Park">
 <meta name="twitter:description" content="작고 소란스러운 우리 동네 놀이공원. 표를 끊고, 레버를 당기고, 맛있는 하루를 만들어 봐.">
-<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>  <script type="module" crossorigin src="./assets/index-D9VApNbc.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-C7ijFM5V.css">
+<link rel="canonical" href="https://dumbgamelab.com/play/ppijukland/"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#f4ecd8"><title>삐죽랜드</title>  <script type="module" crossorigin src="./assets/index-wBd5Mb2T.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C6Z0ZZMg.css">
 </head>
 <body><div id="app"></div><script src="js/i18n.js"></script><script src="js/audio-env.js"></script><script>"use strict";
 /* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
@@ -320,7 +320,15 @@
       area.focus();
     }
     /* label() = 설정 줄에 쓰는 «의견 보내기» — 게임마다 번역 8벌을 따로 두지 않게 위젯이 갖는다(2026-10-24 t-261023-daf8) */
-    window.DGL_FEEDBACK = { open: function () { if (MENU) openPage(); else toggle(true); }, send: submit, label: menuLabel };
+    /* 게임이 자리를 준다 — 페이지에 data-dgl-feedback 을 단 요소가 있으면(늦게 생겨도 된다) 떠 있는 탭을 숨기고, 그 요소를 누르면 별도 페이지를 연다 */
+    var SLOT = "[data-dgl-feedback]";
+    function hasSlot() { return !!document.querySelector(SLOT); }
+    function open() { if (MENU || hasSlot()) openPage(); else toggle(true); }
+    function syncSlot() { if (!MENU) root.style.display = hasSlot() ? "none" : ""; }
+    document.addEventListener("click", function (e) { var t = e.target && e.target.closest && e.target.closest(SLOT); if (t) { e.preventDefault(); open(); } }, true);
+    try { new MutationObserver(syncSlot).observe(document.documentElement, { childList: true, subtree: true }); } catch (er) {}
+    syncSlot();
+    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel };
     btn.addEventListener("click", function () { toggle(true); });
     close.addEventListener("click", function () { toggle(false); });
     box.addEventListener("submit", function (e) {

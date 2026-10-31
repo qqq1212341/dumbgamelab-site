@@ -214,5 +214,6 @@ window.__DGL_STRINGS = {
 "출렁출렁 바이킹":"Swinging Pirate Ship",
 "콩콩 범퍼카":"Bumpy Bumper Cars",
 "퐁퐁 분수":"Bubbly Fountain",
-"꾸미기 하나만 더 놔 줘":"Could you put down one more decoration?"
+"꾸미기 하나만 더 놔 줘":"Could you put down one more decoration?",
+"의견 보내기":"Send feedback"
 };
