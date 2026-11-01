@@ -2472,5 +2472,6 @@ window.__DGL_STRINGS = {
 "짐을 싸서 {0}에 건너가 {1} 일부터 시작했다":"Packed up and moved to {0}. Starting out as: {1}",
 "짐을 싸서 {0}에 건너가 {1} 일을 이어 갔다":"Packed up and moved to {0}, still working as: {1}",
 "복사했다":"Copied",
-"오늘 같은 곳에서 태어난 친구와 비교해 봐":"Compare with a friend born in the same place today"
+"오늘 같은 곳에서 태어난 친구와 비교해 봐":"Compare with a friend born in the same place today",
+"친구 초대":"Invite friends"
 };

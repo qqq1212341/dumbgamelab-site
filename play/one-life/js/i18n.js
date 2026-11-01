@@ -51,8 +51,10 @@
       return "zh-Hans";
     }
     var base = low.split("-")[0];
-    /* 포르투갈어는 한 벌(pt-BR)이다 — pt-PT 기기도 여기로 */
-    if (base === "pt") return "pt-BR";
+    /* 포르투갈어는 한 벌(pt-BR)이다 — pt-PT 기기도 여기로. 단 SUPPORTED 에 있을 때만:
+     * ★ 전에는 무조건 "pt-BR" 을 돌려 사전 없는 게임이 404 → 화면 통째로 한국어였다
+     *   (2026-10-28 한 번뿐인 인생 «Quero em português»). 게이트 = core/tools/i18n/device-locale.js */
+    if (base === "pt") low = "pt-br";
     var hit = SUPPORTED.filter(function (s) {
       return s.toLowerCase() === low || s.toLowerCase() === base;
     })[0];

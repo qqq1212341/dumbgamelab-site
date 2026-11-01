@@ -80,7 +80,10 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
     (document.head || document.documentElement).appendChild(s);
     gtag('js', new Date());
-    gtag('config', MEASUREMENT_ID, { debug_mode: DEBUG, send_page_view: true });
+    /* ★ page_location 을 지금(스크립트가 도는 순간) 박아 둔다 — gtag.js 는 비동기라 page_view 가 늦게 만들어지는데,
+       그 사이 main.ts 가 공유 링크의 ?d=·?s=·utm 을 주소에서 지워 버려(history.replaceState) 유입 출처(utm_source=share)가
+       통째로 direct 로 잡혔다(2026-10: 공유 130회, share 유입 0). 주소를 지우기 전 값을 GA 에 직접 넘긴다. */
+    gtag('config', MEASUREMENT_ID, { debug_mode: DEBUG, send_page_view: true, page_location: location.href, page_referrer: document.referrer });
   }
 
   // ★ 앱에선 숫자·참거짓을 글자로 보낸다(2026-10-23). @capacitor-firebase/analytics 안드로이드는 JS 정수를

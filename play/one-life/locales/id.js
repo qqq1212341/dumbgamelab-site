@@ -2149,5 +2149,6 @@ window.__DGL_STRINGS = {
 "흠뻑 젖은 뒤 밤새 코가 막혀 고생했다":"Basah kuyup, semalaman hidungku tersumbat dan aku kesusahan",
 "희귀 출생":"Kelahiran langka",
 "힘든 하루를 마치고 문을 열자 {0}이/가 달려 나와 발치를 맴돌았고, 그제야 어깨에 걸린 하루가 풀렸다":"Setelah hari yang berat, saat kubuka pintu {0} berlari keluar mengitari kakiku, dan barulah beban hari itu di pundakku mencair",
-"힘들다고 말한다":"Bilang kalau sulit"
+"힘들다고 말한다":"Bilang kalau sulit",
+"친구 초대":"Undang teman"
 };

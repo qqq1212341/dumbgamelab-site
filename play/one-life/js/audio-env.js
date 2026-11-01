@@ -150,6 +150,9 @@
     var contexts = [];
     var suspended = [];
     var pausedMedia = [];
+    /* play() 를 부른 미디어 전부 — `new Audio()` 는 문서에 안 붙어서 querySelectorAll 로는 못 찾는다
+       (스플래시 징글이 그렇다 · 방구석뽑기왕 업무폰 2026-10-28). 그래서 재생을 부른 쪽을 직접 기억한다. */
+    var knownMedia = [];
     var inactive = false;
     /* ★ 아이폰은 오디오 장치를 못 잡으면(통화 중 · 다른 앱이 소리를 쥠 · 복귀 직후) `resume()` 이
        «Failed to start the audio device» 로 거절한다. Phaser 는 포커스·복귀 때마다 그 약속을
@@ -183,9 +186,10 @@
         return nativeResume.apply(context, arguments);
       };
     }
-    if (window.HTMLMediaElement && HTMLMediaElement.prototype.play) {
-      var nativePlay = HTMLMediaElement.prototype.play;
-      HTMLMediaElement.prototype.play = function () {
+    if (window.HTMLMediaElement && window.HTMLMediaElement.prototype.play) {
+      var nativePlay = window.HTMLMediaElement.prototype.play;
+      window.HTMLMediaElement.prototype.play = function () {
+        if (knownMedia.indexOf(this) < 0) knownMedia.push(this);
         if (inactive) {
           if (pausedMedia.indexOf(this) < 0) pausedMedia.push(this);
           return Promise.resolve();
@@ -202,6 +206,16 @@
         holdWhileInactive(context);
         contexts.push(context);
         if (inactive && context.suspend) context.suspend().catch(function () {});
+        /* ★ stop() 은 그 순간 'running' 인 것만 재운다. 첫 터치의 resume() 이 아직 진행 중(웹뷰가 오디오 장치를 여는 중)일 때
+           앱을 내리면 그때는 'suspended' 라 건너뛰고, 곧 resume 이 끝나 뒤에서 소리가 났다(방구석뽑기왕 업무폰 2026-10-28 ·
+           bg-audio 첫 실행 2/2 재현). 상태가 어떤 길로 켜지든 쉬는 중이면 바로 다시 재운다 — 돌아오면 resume() 이 켠다. */
+        if (context.addEventListener) {
+          context.addEventListener('statechange', function () {
+            if (!inactive || context.state !== 'running') return;
+            if (suspended.indexOf(context) < 0) suspended.push(context);
+            context.suspend().catch(function () {});
+          });
+        }
         return context;
       }
       TrackedContext.prototype = NativeContext.prototype;
@@ -216,9 +230,14 @@
           context.suspend().catch(function () {});
         }
       });
-      document.querySelectorAll('audio,video').forEach(function (media) {
-        if (!media.paused) { pausedMedia.push(media); media.pause(); }
+      var media = knownMedia.slice();
+      document.querySelectorAll('audio,video').forEach(function (m) { if (media.indexOf(m) < 0) media.push(m); });
+      media.forEach(function (m) {
+        /* 멈출 때 문서에 붙어 있었나를 같이 적는다 — 붙어 있던 게 그새 떨어졌으면 버린 것이라 다시 안 켠다 */
+        if (!m.paused) { m.__dglWasConnected = !!m.isConnected; pausedMedia.push(m); m.pause(); }
       });
+      /* 끝난 것은 잊는다 — 계속 쌓이지 않게 */
+      knownMedia = knownMedia.filter(function (m) { return !m.ended; });
     }
     function resume() {
       if (!inactive || document.hidden) return;
@@ -227,7 +246,7 @@
         if (context.state === 'suspended') context.resume().catch(function () {});
       });
       pausedMedia.splice(0).forEach(function (media) {
-        if (media.isConnected) media.play().catch(function () {});
+        if (media.isConnected || !media.__dglWasConnected) media.play().catch(function () {});
       });
     }
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else resume(); });

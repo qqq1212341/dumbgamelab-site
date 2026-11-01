@@ -2149,5 +2149,6 @@ window.__DGL_STRINGS = {
 "흠뻑 젖은 뒤 밤새 코가 막혀 고생했다":"Ướt sũng rồi suốt đêm nghẹt mũi khổ sở",
 "희귀 출생":"Lượt sinh hiếm",
 "힘든 하루를 마치고 문을 열자 {0}이/가 달려 나와 발치를 맴돌았고, 그제야 어깨에 걸린 하루가 풀렸다":"Sau một ngày vất vả, vừa mở cửa thì {0} chạy ra quanh quẩn dưới chân, lúc đó gánh nặng cả ngày trên vai mới nhẹ đi",
-"힘들다고 말한다":"Nói là quá sức"
+"힘들다고 말한다":"Nói là quá sức",
+"친구 초대":"Mời bạn bè"
 };
