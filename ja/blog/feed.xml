@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</title>
+    <link>https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</guid>
+    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</description>
+  </item>
+  <item>
     <title>世界一短いフライトは1分で終わる</title>
     <link>https://dumbgamelab.com/ja/blog/shortest-flight/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/shortest-flight/</guid>
@@ -229,13 +236,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>コアラの指紋は、電子顕微鏡で見ても人間の指紋と見分けにくいほど似ている。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ゲームのプレスリリース1通で台湾の記事に:送ったメール、記事との照合、流入8日間</title>
-    <link>https://dumbgamelab.com/ja/blog/press-release-taiwan-124-installs/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/press-release-taiwan-124-installs/</guid>
-    <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
-    <description>インディーゲームのプレスリリースを台湾のゲームメディア、バハムート GNN にメール1通で送ったところ、11時間半後に記事になりました。メールの組み立て、記者が使った部分、流入が何日続いたか、7日後に何人残ったかを実測の数字で書きます。</description>
   </item>
 </channel>
 </rss>
