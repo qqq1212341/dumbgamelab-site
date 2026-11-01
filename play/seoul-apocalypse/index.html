@@ -102,6 +102,9 @@ h2{margin:0 0 22px;font-size:34px;line-height:1.12;color:#f6efe2}
 .reg .tape{position:absolute;top:-13px;left:16px;right:16px;height:26px;border-radius:3px;background:repeating-linear-gradient(-45deg,#ffb321 0 16px,#141414 16px 32px);opacity:.92;box-shadow:0 4px 10px rgba(0,0,0,.5)}
 .seats{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:6px 0 8px;font-size:13px;line-height:1.35;color:#b9b2a6}
 .seats b{white-space:nowrap}
+.seats.code{margin:14px 0 4px;padding:12px 14px;border-radius:12px;background:#08090c;border:1px dashed #3a1d18}
+.seats.code small{color:#8d867b}
+.seats.code b{letter-spacing:.12em;-webkit-user-select:all;user-select:all}
 .seats b{font-family:var(--disp);font-weight:400;font-size:28px;color:var(--amber);font-variant-numeric:tabular-nums}
 .bar{height:8px;border-radius:4px;background:#1f2027;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8221a,#ff6a3d);transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
@@ -224,6 +227,9 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
         <label for="nick">생존자 이름 <small>출시 때 이 이름으로 시작합니다</small></label>
         <input id="nick" type="text" name="nick" maxlength="10" placeholder="한글·영문·숫자 2~10자" enterkeyhint="next" autocapitalize="off" spellcheck="false">
         <p class="hint" id="nhint" role="status"></p>
+        <label for="ally">연맹 이름 <small>(선택) 1서버에서 이 연맹 이름은 내 것</small></label>
+        <input id="ally" type="text" name="ally" maxlength="8" placeholder="한글·영문·숫자 2~8자" enterkeyhint="next" autocapitalize="off" spellcheck="false">
+        <p class="hint" id="ahint" role="status"></p>
         <label for="mail">출시 알림 이메일 <small>(선택)</small></label>
         <input id="mail" type="email" name="email" maxlength="120" placeholder="example@email.com" inputmode="email" autocapitalize="off" enterkeyhint="done">
         <p class="hint" id="hint" role="alert"></p>
@@ -239,11 +245,13 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
               <dt>이름</dt><dd class="nm" id="idnm"></dd>
               <dt>배정</dt><dd id="idapt"></dd>
               <dt>서버</dt><dd>1서버 · 서울</dd>
+              <dt>연맹</dt><dd id="idally">-</dd>
               <dt>등록</dt><dd id="iddate"></dd>
             </dl>
           </div>
           <div class="stamp">생존</div>
         </div>
+        <div class="seats code"><span>받기 코드<br><small>게임 «설정 › 사전예약 받기»에 넣으면 이름과 보급이 들어옵니다</small></span><b id="idcode">-</b></div>
         <div class="donebtns">
           <button class="cta" id="share" type="button">생존자 데려오기</button>
           <button class="ghost" id="save" type="button">등록증 그림으로 저장</button>
@@ -256,22 +264,24 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
     <p class="kicker">모일수록 커지는 보급</p>
     <h2 class="disp">생존자가 늘면<br>보급 상자가 열린다</h2>
     <ul class="steps" id="steps">
-      <li data-n="10"><span class="need">10명</span><span class="what">칭호 · 첫 생존자<small>1서버 전원</small></span><span class="st"></span></li>
-      <li data-n="30"><span class="need">30명</span><span class="what">건설 가속 1시간 3개<small>1서버 전원</small></span><span class="st"></span></li>
-      <li data-n="100"><span class="need">100명</span><span class="what">다이아 300<small>1서버 전원</small></span><span class="st"></span></li>
-      <li data-n="300"><span class="need">300명</span><span class="what">생존자 모집권 10장<small>1서버 전원</small></span><span class="st"></span></li>
-      <li data-n="1000"><span class="need">1,000명</span><span class="what">한정 단지 꾸미기 · 1서버 개척<small>1서버 전원 · 다시 안 나옵니다</small></span><span class="st"></span></li>
+      <li data-n="10"><span class="need">10명</span><span class="what">건설 가속 1시간 1개<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="30"><span class="need">30명</span><span class="what">건설 가속 1시간 3개<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="100"><span class="need">100명</span><span class="what">다이아 300<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="300"><span class="need">300명</span><span class="what">생존자 모집권 10장<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="1000"><span class="need">1,000명</span><span class="what">다이아 1,000 · 건설 가속 8시간 2개<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="3000"><span class="need">3,000명</span><span class="what">생존자 모집권 20장<small>등록한 생존자 전원</small></span><span class="st"></span></li>
+      <li data-n="10000"><span class="need">10,000명</span><span class="what">다이아 3,000 · 건설 가속 24시간 3개<small>1서버 정원이 차는 날</small></span><span class="st"></span></li>
     </ul>
-    <p class="honest" id="honest">숫자는 실제 등록 수 그대로입니다. 보급은 출시 날 게임 안 우편함으로 보냅니다.</p>
+    <p class="honest" id="honest">숫자는 실제 등록 수 그대로입니다. 보급은 게임에서 받기 코드를 넣으면 들어옵니다.</p>
   </section>
 
   <section id="invite">
     <p class="kicker">혼자선 못 버틴다</p>
     <h2 class="disp">내 링크로 들어온<br>생존자만큼 더 받는다</h2>
     <div class="ladder" id="ladder">
-      <div data-n="1"><b>1명</b><span>건설 가속<br>30분</span></div>
+      <div data-n="1"><b>1명</b><span>건설 가속<br>1시간</span></div>
       <div data-n="3"><b>3명</b><span>모집권<br>3장</span></div>
-      <div data-n="5"><b>5명</b><span>칭호<br>대피 안내원</span></div>
+      <div data-n="5"><b>5명</b><span>모집권<br>5장 더</span></div>
     </div>
     <p class="mine" id="mine">등록하면 내 링크가 생깁니다.</p>
   </section>
@@ -279,7 +289,8 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
   <section id="faq">
     <p class="kicker">묻는 말</p>
     <details><summary>언제 나오나요?</summary><p>지금 만들고 있습니다. 출시일이 정해지면 등록한 이메일로 가장 먼저 알려 드립니다.</p></details>
-    <details><summary>이름은 출시 때 그대로 쓰나요?</summary><p>네. 1서버에서 그 이름은 등록한 분만 씁니다. 먼저 등록한 사람이 가져갑니다.</p></details>
+    <details><summary>이름은 출시 때 그대로 쓰나요?</summary><p>네. 1서버에서 그 이름은 등록한 분만 씁니다. 먼저 등록한 사람이 가져갑니다. 게임 «설정 › 사전예약 받기»에 이름과 받기 코드를 넣으면 이름이 바뀌고 보급이 들어옵니다.</p></details>
+    <details><summary>연맹 이름은 언제 쓰나요?</summary><p>연맹 만들기가 열리면 등록한 연맹 이름은 등록한 분만 쓸 수 있습니다.</p></details>
     <details><summary>어떤 게임인가요?</summary><p>아파트 단지를 키우고, 생존자를 모으고, 연맹을 맺어 서버 전쟁을 하는 모바일 전략 게임입니다. 안드로이드가 먼저 나옵니다.</p></details>
     <details><summary>출시가 안 되면요?</summary><p>등록한 이름과 이메일을 모두 지웁니다.</p></details>
   </section>
@@ -352,13 +363,13 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
   function load(){
     fetch(API+'/count').then(function(r){return r.json()}).then(function(j){
       paint(j.total);
-      var t=new Date();$('honest').textContent='숫자는 실제 등록 수 그대로입니다('+t.getHours()+':'+String(t.getMinutes()).padStart(2,'0')+' 기준). 보급은 출시 날 게임 안 우편함으로 보냅니다.';
+      var t=new Date();$('honest').textContent='숫자는 실제 등록 수 그대로입니다('+t.getHours()+':'+String(t.getMinutes()).padStart(2,'0')+' 기준). 보급은 게임에서 받기 코드를 넣으면 들어옵니다.';
     }).catch(function(){});
   }
   load(); setInterval(load,60000);
 
   /* 이름 바로 확인 */
-  var MSG={nick_format:'한글·영문·숫자 2~10자로 적어 주세요.',nick_reserved:'쓸 수 없는 이름이에요.',taken:'이미 다른 생존자가 쓰는 이름이에요.',email_format:'이메일 주소를 확인해 주세요.',limit:'오늘은 더 등록할 수 없어요.',server:'잠시 뒤에 다시 눌러 주세요.',origin:'잠시 뒤에 다시 눌러 주세요.'};
+  var MSG={ally_format:'연맹 이름은 한글·영문·숫자 2~8자로 적어 주세요.',ally_reserved:'쓸 수 없는 연맹 이름이에요.',ally_taken:'이미 누가 먼저 맡은 연맹 이름이에요.',nick_format:'한글·영문·숫자 2~10자로 적어 주세요.',nick_reserved:'쓸 수 없는 이름이에요.',taken:'이미 다른 생존자가 쓰는 이름이에요.',email_format:'이메일 주소를 확인해 주세요.',limit:'오늘은 더 등록할 수 없어요.',server:'잠시 뒤에 다시 눌러 주세요.',origin:'잠시 뒤에 다시 눌러 주세요.'};
   var chkT,nick=$('nick');
   function start(){ if(!started){started=true;ev('prereg_start');} }
   nick.addEventListener('focus',start);
@@ -375,10 +386,25 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
     },350);
   });
 
+  var allyT,ally=$('ally');
+  ally.addEventListener('input',function(){
+    start(); clearTimeout(allyT); var v=ally.value.trim(); ally.classList.remove('ok'); $('ahint').className='hint'; $('ahint').textContent='';
+    if(!v) return;
+    if(!/^[가-힣A-Za-z0-9]{2,8}$/.test(v)){ if(v.length>=2) $('ahint').textContent=MSG.ally_format; return; }
+    allyT=setTimeout(function(){
+      fetch(API+'/check?ally='+encodeURIComponent(v)).then(function(r){return r.json()}).then(function(j){
+        if(ally.value.trim()!==v) return;
+        if(j.available){ally.classList.add('ok');$('ahint').className='hint good';$('ahint').textContent='쓸 수 있는 연맹 이름이에요.';}
+        else $('ahint').textContent=MSG[j.reason]||MSG.ally_taken;
+      }).catch(function(){});
+    },350);
+  });
+
   function aptOf(n){var h=0;for(var i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return (101+h%12)+'동 '+(1+(h>>>4)%25)+'0'+(1+(h>>>9)%4)+'호';}
-  function showDone(n,r,d){
+  function showDone(n,r,d,a,code){
     $('f').style.display='none'; $('done').style.display='block';
     $('idnm').textContent=n; $('idno').textContent='No. '+String(r||0).padStart(6,'0');
+    $('idally').textContent=a||'-'; $('idcode').textContent=code||'-';
     $('idapt').textContent=aptOf(n); $('iddate').textContent=d||new Date().toISOString().slice(0,10).replace(/-/g,'.');
     loadMine(n);
   }
@@ -388,22 +414,23 @@ details p{margin:0 2px 18px;font-size:15px;line-height:1.6;color:#a9a39a}
       document.querySelectorAll('#ladder div').forEach(function(d){d.classList.toggle('on',k>=+d.dataset.n)});
     }).catch(function(){});
   }
-  try{var mine=localStorage.getItem('seoulapoc.nick'); if(mine) showDone(mine,localStorage.getItem('seoulapoc.rank'),localStorage.getItem('seoulapoc.date'));}catch(e){}
+  try{var mine=localStorage.getItem('seoulapoc.nick'); if(mine) showDone(mine,localStorage.getItem('seoulapoc.rank'),localStorage.getItem('seoulapoc.date'),localStorage.getItem('seoulapoc.ally'),localStorage.getItem('seoulapoc.code'));}catch(e){}
 
   $('f').addEventListener('submit',function(e){
     e.preventDefault(); if(busy) return;
-    var n=nick.value.trim(), mail=$('mail').value.trim();
+    var n=nick.value.trim(), mail=$('mail').value.trim(), al=ally.value.trim();
     $('hint').textContent='';
     if(!/^[가-힣A-Za-z0-9]{2,10}$/.test(n)){$('hint').textContent=MSG.nick_format;nick.focus();return;}
+    if(al&&!/^[가-힣A-Za-z0-9]{2,8}$/.test(al)){$('hint').textContent=MSG.ally_format;ally.focus();return;}
     busy=true; $('go').disabled=true;
-    fetch(API+'/reserve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({nick:n,email:mail,utm_source:utm,ref:ref})})
+    fetch(API+'/reserve',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({nick:n,ally:al,email:mail,utm_source:utm,ref:ref})})
       .then(function(r){return r.json().then(function(j){return {s:r.status,j:j}})})
       .then(function(o){
         if(o.j.ok){
-          ev('prereg_done',{has_email:mail?1:0,rank:o.j.rank});
+          ev('prereg_done',{has_email:mail?1:0,has_ally:al?1:0,rank:o.j.rank});
           var d=new Date().toISOString().slice(0,10).replace(/-/g,'.');
-          try{localStorage.setItem('seoulapoc.nick',o.j.nick);localStorage.setItem('seoulapoc.rank',o.j.rank);localStorage.setItem('seoulapoc.date',d);}catch(e){}
-          paint(o.j.total); showDone(o.j.nick,o.j.rank,d);
+          try{localStorage.setItem('seoulapoc.nick',o.j.nick);localStorage.setItem('seoulapoc.rank',o.j.rank);localStorage.setItem('seoulapoc.date',d);localStorage.setItem('seoulapoc.ally',o.j.ally||'');localStorage.setItem('seoulapoc.code',o.j.code||'');}catch(e){}
+          paint(o.j.total); showDone(o.j.nick,o.j.rank,d,o.j.ally,o.j.code);
           $('card').scrollIntoView({behavior:'smooth',block:'center'});
         }else{
           ev('prereg_fail',{reason:o.j.error});
