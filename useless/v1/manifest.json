@@ -1,14 +1,14 @@
 {
  "schema": 1,
  "complete": true,
- "version": "51-c975b4486c",
+ "version": "51-3de0c54dcf",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
   {
    "id": "space-words",
    "day": 1,
-   "hash": "054594ec6e55f4cd",
+   "hash": "a7a43bb60fdf5fe2",
    "ep": "episodes/space-words.json",
    "i18n": {
     "en": "i18n/en/space-words.json",
@@ -260,7 +260,7 @@
   {
    "id": "iss-16-sunrises",
    "day": 22,
-   "hash": "c255ef849aa4635c",
+   "hash": "3d69f5f25cbcbc0a",
    "ep": "episodes/iss-16-sunrises.json",
    "i18n": {
     "en": "i18n/en/iss-16-sunrises.json",

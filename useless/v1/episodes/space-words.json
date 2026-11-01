@@ -94,19 +94,6 @@
         "그래서 우주비행사는 universe에 갈 수 없다.",
         "이미 그 안에 있으니까."
       ]
-    },
-    {
-      "type": "say",
-      "text": "한자 우주(宇宙)는 어때?"
-    },
-    {
-      "type": "text",
-      "text": [
-        "옛 중국 책 《회남자》에 이렇게 나온다.",
-        "사방과 위아래를 宇라 하고",
-        "옛날부터 지금까지를 宙라 한다.",
-        "우주는 처음부터 공간과 시간을 합친 말이었다."
-      ]
     }
   ],
   "summary": "우주비행사는 universe에 갈 수 없다. 이미 그 안에 있으니까.",
@@ -126,10 +113,6 @@
     {
       "title": "Online Etymology Dictionary: cosmetic",
       "url": "https://www.etymonline.com/word/cosmetic"
-    },
-    {
-      "title": "淮南子 齊俗訓 (Wikisource)",
-      "url": "https://zh.wikisource.org/wiki/淮南子/齊俗訓"
     }
   ]
 }
