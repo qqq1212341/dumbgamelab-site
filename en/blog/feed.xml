@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>The People Who See 16 Sunrises a Day</title>
+    <link>https://dumbgamelab.com/en/blog/iss-16-sunrises/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/iss-16-sunrises/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>The space station goes around Earth every 93 minutes, so the people on board see 15 to 16 sunrises a day.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</title>
     <link>https://dumbgamelab.com/en/blog/best-pc-cafe-games-2026/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/best-pc-cafe-games-2026/</guid>
@@ -225,14 +233,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>The naked mole-rat lives more than 37 years, and its chance of dying doesn&#39;t go up as it gets older.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Newton Was a Detective Who Caught Counterfeiters</title>
-    <link>https://dumbgamelab.com/en/blog/newton-mint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/newton-mint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Newton spent the last 30 years of his life at the Royal Mint, and even went in disguise to get 28 counterfeiters punished.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

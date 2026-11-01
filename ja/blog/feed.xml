@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>一日に16回、日の出を見る人たち</title>
+    <link>https://dumbgamelab.com/ja/blog/iss-16-sunrises/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/iss-16-sunrises/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>宇宙ステーションは93分で地球を一周するので、一日に日の出を15〜16回見る。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</title>
     <link>https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</guid>
@@ -228,14 +236,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>南極点の基地は、物資を送ってくれるニュージーランドに合わせて、ニュージーランドの時間を使う。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>コアラの指紋は人間とまぎらわしい</title>
-    <link>https://dumbgamelab.com/ja/blog/koala-fingerprint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/koala-fingerprint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>コアラの指紋は、電子顕微鏡で見ても人間の指紋と見分けにくいほど似ている。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

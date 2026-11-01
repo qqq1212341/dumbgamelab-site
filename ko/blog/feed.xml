@@ -7,6 +7,14 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>하루에 해돋이를 16번 보는 사람들</title>
+    <link>https://dumbgamelab.com/ko/blog/iss-16-sunrises/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/iss-16-sunrises/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>우주정거장은 93분마다 지구를 한 바퀴 돌아서, 하루에 해돋이를 15~16번 본다.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>PC방 경영 게임 2026, 아이폰까지 포함한 17종</title>
     <link>https://dumbgamelab.com/ko/blog/best-pc-cafe-games-2026/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/best-pc-cafe-games-2026/</guid>
@@ -225,14 +233,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>벌거숭이두더지쥐는 37년 넘게 살고, 나이를 먹어도 죽을 확률이 올라가지 않는다.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>뉴턴은 위조범 잡는 탐정이었다</title>
-    <link>https://dumbgamelab.com/ko/blog/newton-mint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/newton-mint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>뉴턴은 말년 30년을 조폐국에서 보내며 변장까지 해서 위조범 28명을 처벌받게 했다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
