@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>宇宙では、ろうそくの炎が丸い</title>
+    <link>https://dumbgamelab.com/ja/blog/space-candle/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-candle/</guid>
+    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
+    <description>宇宙では熱い空気が上にのぼらないので、ろうそくの炎は丸く、青く燃える。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/flame-candle.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>韓国のPCバン、外国人の使い方(ソウル編)</title>
     <link>https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</guid>
@@ -227,14 +235,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>ニュートンは晩年の30年を造幣局で過ごし、変装までして偽造犯28人を処罰に追い込んだ。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ドレミは、もともとウトレミだった</title>
-    <link>https://dumbgamelab.com/ja/blog/do-was-ut/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/do-was-ut/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ドレミは11世紀のラテン語の聖歌で、各行の最初の音節から来ている。ドはもともとウト(ut)だった。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

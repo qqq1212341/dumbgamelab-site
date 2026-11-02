@@ -1074,6 +1074,24 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/iss-16-sunrises/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/iss-16-sunrises/"/>
   <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/iss-station.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ko/blog/space-candle/</loc><lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/flame-candle.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/en/blog/space-candle/</loc><lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/flame-candle.jpg</image:loc></image:image></url>
+  <url><loc>https://dumbgamelab.com/ja/blog/space-candle/</loc><lastmod>2026-11-03</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/space-candle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/space-candle/"/>
+  <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/flame-candle.jpg</image:loc></image:image></url>
   <url><loc>https://dumbgamelab.com/en/blog/fur-real/</loc><lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
@@ -1707,6 +1725,76 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/en/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ko/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ja/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/vi/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/id/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/th/games/slimesimulator/</loc><lastmod>2026-11-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
   <url><loc>https://dumbgamelab.com/en/games/</loc><lastmod>2026-11-02</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
