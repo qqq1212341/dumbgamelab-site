@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>PC Bang in Seoul: How Foreigners Can Use One</title>
+    <link>https://dumbgamelab.com/en/blog/pc-bang-seoul-for-foreigners/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-seoul-for-foreigners/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Foreigners can use a Seoul PC bang (Korean internet cafe) as a kiosk &quot;Guest&quot; with no Korean phone number. Hourly prices of 1,000 to 2,000 won, overnight packages, payment, the 22:00 minors rule and Korean-server account problems, with sources.</description>
+  </item>
+  <item>
     <title>The People Who See 16 Sunrises a Day</title>
     <link>https://dumbgamelab.com/en/blog/iss-16-sunrises/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/iss-16-sunrises/</guid>
@@ -225,14 +232,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Repeat the same word again and again and its meaning briefly disappears. This is called semantic satiation.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>There&#39;s a Rat That&#39;s 37 Years Old</title>
-    <link>https://dumbgamelab.com/en/blog/naked-mole-rat/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/naked-mole-rat/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>The naked mole-rat lives more than 37 years, and its chance of dying doesn&#39;t go up as it gets older.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

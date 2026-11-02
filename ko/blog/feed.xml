@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>서울 PC방, 외국인이 가는 법</title>
+    <link>https://dumbgamelab.com/ko/blog/pc-bang-seoul-for-foreigners/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/pc-bang-seoul-for-foreigners/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>외국인도 서울 PC방은 한국 번호 없이 키오스크 «비회원»으로 쓸 수 있습니다. 시간당 1천~2천 원대 요금, 밤샘 정액, 결제, 청소년 22시 제한, 한국 서버 계정 문제를 출처와 함께 적었습니다.</description>
+  </item>
+  <item>
     <title>하루에 해돋이를 16번 보는 사람들</title>
     <link>https://dumbgamelab.com/ko/blog/iss-16-sunrises/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/iss-16-sunrises/</guid>
@@ -225,14 +232,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>같은 말을 계속 되풀이하면 잠깐 뜻이 사라지는 의미 포화가 일어난다.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>37살 먹은 쥐가 있다</title>
-    <link>https://dumbgamelab.com/ko/blog/naked-mole-rat/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/naked-mole-rat/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>벌거숭이두더지쥐는 37년 넘게 살고, 나이를 먹어도 죽을 확률이 올라가지 않는다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

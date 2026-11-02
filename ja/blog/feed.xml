@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>韓国のPCバン、外国人の使い方(ソウル編)</title>
+    <link>https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>外国人でもソウルのPCバン(ネットカフェ)は、韓国の電話番号なしで入口の端末の「非会員」から使えます。1時間1,000〜2,000ウォン台の料金、泊まりの定額、支払い、22時の未成年規制、韓国サーバーのアカウント問題を、出典つきでまとめました。</description>
+  </item>
+  <item>
     <title>一日に16回、日の出を見る人たち</title>
     <link>https://dumbgamelab.com/ja/blog/iss-16-sunrises/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/iss-16-sunrises/</guid>
@@ -228,14 +235,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>ドレミは11世紀のラテン語の聖歌で、各行の最初の音節から来ている。ドはもともとウト(ut)だった。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>南極では、時間も宅配便の送り元で決まる</title>
-    <link>https://dumbgamelab.com/ja/blog/south-pole-time/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/south-pole-time/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>南極点の基地は、物資を送ってくれるニュージーランドに合わせて、ニュージーランドの時間を使う。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
