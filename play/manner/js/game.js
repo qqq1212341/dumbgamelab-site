@@ -20,14 +20,15 @@
   var hints = 3, idx = 0, score = 0, chScore = 0, locked = false, order = [], wrong = [], shareText = '', timer = 0, lastGrade = '';
 
   /* 소리 — 로컬(파일·localhost)은 무음, 배포 주소에서만 낸다(공장 규칙 «로컬 무음·배포 유음»). 도장 «쿵» · 정답 두 음 · 오답 낮은 부저 */
-  var LOUD = /^https:/.test(location.protocol) && !/^(localhost|127\.)/.test(location.hostname), AC = null;
+  /* 소리 — 로컬 무음·배포 유음은 공용 판정(audio-env.js · DGL_AUDIO) 한 곳이 정한다 */
+  var muted = function () { return window.DGL_AUDIO ? window.DGL_AUDIO.muted(false) : true; }, AC = null;
   function tone(f, t0, dur, type, vol) {
     var o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.setValueAtTime(f, AC.currentTime + t0);
     g.gain.setValueAtTime(vol, AC.currentTime + t0); g.gain.exponentialRampToValueAtTime(0.001, AC.currentTime + t0 + dur);
     o.connect(g); g.connect(AC.destination); o.start(AC.currentTime + t0); o.stop(AC.currentTime + t0 + dur);
   }
   function sfx(kind) {
-    if (!LOUD || document.hidden) return;
+    if (muted() || document.hidden) return;
     try {
       AC = AC || new (window.AudioContext || window.webkitAudioContext)();
       tone(90, 0, 0.12, 'sine', 0.5);
