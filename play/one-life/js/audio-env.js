@@ -143,6 +143,84 @@
   }
   if (local) hardMute();
 
+  /* ── ★★ 게임 시간 멈춤 버스 `DGL_PAUSE` (2026-11-02 사장님 «다른 탭으로 가면 전투 멈추고 소리 멈추기 — 내 게임들이 이걸 맨날 실수해») ──
+     소리만 멈추면 반쪽이다 — 앱을 내렸다 돌아오면 그 사이 전투·웨이브·쿨다운이 흘러가 있었다(첫 프레임 dt 가 «밖에 있던 시간» 통째).
+     멈추는 이유는 둘이고 출처는 여기 하나다:
+       · 'app' — 앱 밖으로 나감(홈·다른 앱·알림창·전화·화면 꺼짐). 아래 앱 수명주기가 직접 켜고 끈다. 게임은 안 건드린다.
+       · 그 밖의 이름(보통 'ui') — 게임 안 다른 탭·창. 전투 중 상점·가방·설정·팝업을 여는 셸이 `DGL_PAUSE.set('ui', true/false)`.
+     게임 루프는 한 줄로 붙는다: `dt = DGL_PAUSE.step(rawDt, 최대치)` — 멈춤이면 0, 돌아온 첫 프레임의 큰 dt 는 최대치로 자른다.
+     소리는 `DGL_PAUSE.on(function (paused) { … })` 로 전투 효과음을 멈춘다(BGM 은 장르 관례대로).
+     재는 자(업무폰): `DGL_PAUSE.clock(function () { return 전투시간초 })` 를 걸면 나갈 때·돌아올 때·돌아온 1초 뒤 게임 시간을
+     콘솔(`DGL_CLOCK out|in|after t=…`)에 찍고 `core/tools/phone/bg-audio.mjs --clock` 이 logcat 으로 «밖에 있던 동안 안 흘렀나»를 잰다.
+     게이트 = `core/tools/check-pause-on-blur.mjs` */
+  var pauseBus = (function () {
+    var reasons = {};
+    var subs = [];
+    var clockFn = null;
+    function list() {
+      return Object.keys(reasons);
+    }
+    function paused() {
+      return list().length > 0;
+    }
+    function log(tag) {
+      if (!clockFn) return;
+      try {
+        console.log('DGL_CLOCK ' + tag + ' t=' + Number(clockFn()).toFixed(3));
+      } catch (e) {}
+    }
+    function set(reason, on) {
+      reason = String(reason || 'ui');
+      on = !!on;
+      if (!!reasons[reason] === on) return;
+      var was = paused();
+      if (on) reasons[reason] = true;
+      else delete reasons[reason];
+      if (reason === 'app') {
+        if (on) log('out');
+        else {
+          log('in');
+          setTimeout(function () { log('after'); }, 1000);
+        }
+      }
+      var now = paused();
+      if (was === now) return;
+      subs.slice().forEach(function (fn) {
+        try {
+          fn(now, list());
+        } catch (e) {}
+      });
+    }
+    return {
+      /** 멈춤 이유 켜기/끄기 — 'app' 은 이 파일이 쥔다. 게임 안 탭·창은 'ui'(또는 다른 이름) */
+      set: set,
+      /** 지금 하나라도 멈춤 이유가 있나 */
+      paused: paused,
+      /** 켜진 이유 목록 */
+      reasons: list,
+      /** 멈춤이 바뀔 때 fn(paused, reasons) — 해제 함수를 돌려준다 */
+      on: function (fn) {
+        subs.push(fn);
+        return function () {
+          var i = subs.indexOf(fn);
+          if (i >= 0) subs.splice(i, 1);
+        };
+      },
+      /** 게임 루프의 dt — 멈춤이면 0, 아니면 max 로 자른다(단위는 부르는 쪽 것 그대로) */
+      step: function (dt, max) {
+        if (paused()) return 0;
+        dt = Number(dt) || 0;
+        if (dt < 0) return 0;
+        return max != null && dt > max ? max : dt;
+      },
+      /** 재는 자가 읽을 게임 시간(초) — 전투·판이 흐른 시간을 돌려주는 함수 */
+      clock: function (fn) {
+        clockFn = typeof fn === 'function' ? fn : null;
+      },
+    };
+  })();
+  window.DGL_PAUSE = pauseBus;
+
   /* 앱을 떠나면 모든 웹 게임의 소리를 멈춘다. Phaser/바닐라 게임이 각각 수명주기를
      배선하지 않아도 Web Audio 와 <audio> 양쪽에 적용된다. */
   (function installAppAudioLifecycle() {
@@ -224,6 +302,7 @@
     function stop() {
       if (inactive) return;
       inactive = true;
+      pauseBus.set('app', true);
       contexts.forEach(function (context) {
         if (context.state === 'running') {
           suspended.push(context);
@@ -242,6 +321,7 @@
     function resume() {
       if (!inactive || document.hidden) return;
       inactive = false;
+      pauseBus.set('app', false);
       suspended.splice(0).forEach(function (context) {
         if (context.state === 'suspended') context.resume().catch(function () {});
       });
