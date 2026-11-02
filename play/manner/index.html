@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"manner","build":"9c911dcf4","target":"site"});</script>
+<script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
+ * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
+ * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
+ * 비정상 종료 — 앞 화면에 있다가 이벤트 없이 사라진 판(메모리 부족으로 웹뷰가 죽음·앱 강제 종료)은 다음 판이 켜질 때 k:"abnormal" 로 알린다.
+ * 설정 = window.__DGL_WEB {game, build, target} (feedback/inject.mjs · web/lib/inject.mjs 가 먼저 심는다). */
+(function () {
+  if (window.__DGL_CRASH) return;
+  var CFG = window.__DGL_WEB || {};
+  var C = window.Capacitor;
+  var native = !!(C && C.isNativePlatform && C.isNativePlatform());
+  if (!CFG.game || /^(localhost|127\.|192\.168\.)/.test(location.hostname) && !native) return; /* 로컬 미리보기는 안 보낸다 */
+  var URL_ = "https://e.dumbgamelab.com";
+  var plat = C && C.getPlatform ? C.getPlatform() : "web";
+  var ver = String(CFG.build || "").replace(/^[a-z]+:/, "") || "?";
+  var sid = Math.random().toString(36).slice(2, 10);
+  var seen = {}, sent = 0, t0 = Date.now(), crumbs = [];
+  var KEY = "dgl.crash.run";
+  function store(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* 저장 못 하면 비정상 종료만 못 본다 */ } }
+  /* 뒤에서 켜진 판(아이폰 미리 띄움·백그라운드 실행)은 앞 화면이 아니다 — fg:1 로 시작하면 한 번도 안 보이고 회수된 판을
+   * 다음 판이 «앞 화면에서 꺼짐»(빈 기록)으로 보냈다(찜질방 1.0.8 iOS · t-261027-zke9). 보이게 되면 visibilitychange 가 fg 를 켠다. */
+  var run = { sid: sid, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, crumbs: crumbs, at: t0 };
+  function clock() { var d = new Date(); return ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "." + Math.floor(d.getMilliseconds() / 100); }
+  var saveT = 0, lastCrumb = "", rep = 1;
+  /* 같은 줄이 잇달아 오면 한 칸에 «×N» 으로 센다 — 부팅 때 같은 경고 104줄(치치캠프 THREE toNonIndexed)이 30칸을 전부 밀어내
+   * 비정상 종료 기록에 경고만 남고 누름·화면·앞뒤 전환이 다 사라졌다(t-261029-j9tn). 시험 = crash/abnormal-selftest.mjs */
+  function crumb(s) {
+    s = String(s).replace(/\s+/g, " ").slice(0, 110);
+    if (s === lastCrumb && crumbs.length) crumbs[crumbs.length - 1] = clock() + " " + s + " ×" + (++rep);
+    else { lastCrumb = s; rep = 1; crumbs.push(clock() + " " + s); }
+    if (crumbs.length > 30) crumbs.shift();
+    if (!saveT) saveT = setTimeout(function () { saveT = 0; store(run); }, 500);
+  }
+  function post(path, o) {
+    var body = JSON.stringify(o);
+    try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
+    try { origFetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
+  }
+  function where() { try { var x = window.DGL && window.DGL.ctx; return x ? String(x.stage || x.where || "") : ""; } catch (e) { return ""; } }
+  function report(k, msg, stack, src, line, col, extra) {
+    msg = String(msg || "").slice(0, 300);
+    var key = k + "|" + msg + "|" + src + ":" + line;
+    if (seen[key] || sent >= 20) return;
+    seen[key] = 1; sent++;
+    /* 켜고 8초 안에 난 오류 = «부팅 오류»(게임에 못 들어간다) — 심각도 판정이 이걸로 핫픽스를 가른다 */
+    var kind = k === "error" && Date.now() - t0 < 8000 && !window.__DGL_PLAYING ? "boot" : k;
+    var o = { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", k: kind, m: msg, s: String(stack || "").slice(0, 4000), f: String(src || "").split("/").pop().slice(0, 120), l: line || 0, c: col || 0, w: where(), sid: sid, b: crumbs.slice() };
+    if (extra) for (var x in extra) o[x] = extra[x];
+    post("/e", o);
+  }
+  /* ── 오류 ── */
+  window.addEventListener("error", function (e) {
+    if (!e || (!e.message && !e.error)) return; /* 이미지·소리 못 불러옴(리소스 오류)은 브레드크럼으로만 */
+    report("error", e.message || (e.error && e.error.message), e.error && e.error.stack, e.filename, e.lineno, e.colno);
+  });
+  window.addEventListener("error", function (e) { var t = e && e.target; if (t && t !== window && (t.src || t.href)) crumb("못 불러옴 " + String(t.src || t.href).split("/").pop()); }, true);
+  window.addEventListener("unhandledrejection", function (e) {
+    var r = e && e.reason;
+    report("promise", (r && (r.message || r)) || "unhandled rejection", r && r.stack, "", 0, 0);
+  });
+  /* ── 브레드크럼 ── */
+  function label(el) {
+    if (!el || !el.tagName) return "?";
+    var s = el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (typeof el.className === "string" && el.className ? "." + el.className.split(/\s+/).slice(0, 2).join(".") : "");
+    var tx = (el.innerText || el.getAttribute && el.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim().slice(0, 20);
+    return s + (tx ? " «" + tx + "»" : "");
+  }
+  document.addEventListener("pointerdown", function (e) { crumb("누름 " + (e.target && e.target.tagName === "CANVAS" ? "canvas " + Math.round(e.clientX) + "," + Math.round(e.clientY) : label(e.target))); }, true);
+  ["warn", "error"].forEach(function (lv) {
+    var orig = console[lv];
+    console[lv] = function () { try { crumb("console." + lv + " " + [].slice.call(arguments).map(function (a) { return a && a.message || String(a); }).join(" ")); } catch (e) { /* 그만 */ } return orig.apply(console, arguments); };
+  });
+  var origFetch = window.fetch ? window.fetch.bind(window) : function () { return Promise.reject(new Error("no fetch")); };
+  if (window.fetch) window.fetch = function (u, o) {
+    var url = String(u && u.url || u);
+    return origFetch(u, o).then(function (r) { if (!r.ok && r.type !== "opaque") crumb("요청 " + r.status + " " + url.split("?")[0].slice(-60)); return r; }, function (err) { crumb("요청 실패 " + url.split("?")[0].slice(-60)); throw err; });
+  };
+  var lastWhere = "";
+  var tick = 0;
+  setInterval(function () {
+    var w = where() || location.hash; if (w !== lastWhere) { lastWhere = w; crumb("화면 " + w); }
+    if (++tick % 5 === 0 && run.fg && !leavingNow) { run.hb = Date.now(); store(run); } /* 살아 있다는 표시 — 같은 게임을 탭 두 개로 연 걸 비정상 종료로 오인하지 않게 */
+  }, 1000);
+  /* ── 비정상 종료 — 앞 화면이던 판이 뒤로 가거나 닫히는 신호 없이 사라졌다 ── */
+  var prev = null;
+  try { prev = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { prev = null; }
+  /* 일부러 떠나는 판(새로고침·이동)은 비정상 종료가 아니다. 떠나기로 한 뒤 늦게 온 «앞으로 옴»이 fg 를 1 로 되돌리면 안 된다 —
+   * 아이폰 타이쿤 엔진은 뒤에 8초 넘게 있던 판의 GPU 를 반납하고 돌아오면 새로고침하는데(render/contextRecovery),
+   * 그 사이 Capacitor appStateChange 가 늦게 와 fg:1 을 다시 써서 다음 판이 지난 판을 «앞 화면에서 꺼짐»으로 보냈다(찜질방 1.0.6 S1 · t-261027-zke9). */
+  var leavingNow = false;
+  function leaving() { leavingNow = true; run.fg = 0; crumb("떠남"); store(run); }
+  function bg(v) { if (leavingNow) return; run.fg = v ? 0 : 1; crumb(v ? "뒤로 감" : "앞으로 옴"); store(run); }
+  document.addEventListener("visibilitychange", function () { bg(document.visibilityState === "hidden"); });
+  window.addEventListener("pagehide", leaving);
+  window.addEventListener("beforeunload", function () { if (!leavingNow) { run.fg = 0; store(run); } }); /* 떠나기를 취소할 수도 있으니 잠그지는 않는다 */
+  if (C && C.Plugins && C.Plugins.App && C.Plugins.App.addListener) try { C.Plugins.App.addListener("appStateChange", function (s) { bg(!s.isActive); }); } catch (e) { /* 없어도 된다 */ }
+  /* 안드로이드 앱 — 이 판의 «뒤로 감»(localStorage)은 커밋 전에 프로세스가 죽으면 날아간다(홈 → 밀어서 끄기 = 정상 종료가 비정상으로 잡혔다 · t-261026-u4zq).
+   * 그래서 앞/뒤는 네이티브 가드(DglCrashGuard)가 파일로 적고 페이지가 뜨면 prevEnd(끝, 사유)로 알려 준다 — 그때까지 보내지 않고 기다린다.
+   * bg(뒤로 간 뒤 죽음)·gone(렌더러 죽음 — 가드가 이미 보냈다)은 버린다. 가드 없는 옛 판은 답이 없으니 기다린 뒤 예전처럼 보낸다. */
+  var held = null, heldT = 0;
+  function prevEnd(end, why) {
+    if (!held) return;
+    var o = held; held = null; clearTimeout(heldT);
+    if (end === "bg" || end === "gone") return;
+    /* 끝이 fg·?(가드가 처음 깔린 판이라 파일이 없다)여도 OS 가 «사용자가 끔·멈춤·패키지 바뀜·업데이트(10·11·15·16)»이라 했거나
+     * 죽을 때 이미 캐시 상태(중요도 400↑)였으면 앞 화면에서 죽은 게 아니다 — 크래시로 세지 않는다(Unity CrashReporter.NotCrash 와 같은 판정).
+     * 업데이트 설치 첫 실행(한 번뿐인 인생 1.0.3→1.0.4 · t-261026-u4zq) · 홈 직후 «백그라운드 모두 정리»가 onStop 보다 먼저 와 파일이 fg 로 남음(알고있여우 1.0.4 · t-261030-5zdn) */
+    if (/exit reason (10|11|15|16) /.test(why || "") || /importance ([4-9]\d\d|\d{4,}) /.test(why || "")) return;
+    if (why) o.b = o.b.concat(["네이티브 " + end + " " + String(why).slice(0, 90)]);
+    post("/e", o);
+  }
+  window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb, prevEnd: prevEnd, leaving: leaving };
+  post("/s", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", sid: sid });
+  /* 아이폰 앱이 «다시 읽기»로 뜬 판 = 앱은 살아 있고 웹 콘텐츠 프로세스만 죽어 Capacitor 가 reload 한 판(엔진 새로고침은 leaving 이 fg 를 0 으로 둔다).
+   * 그 죽음은 네이티브 가드가 이미 k:"webview" 로 보냈다 — 또 보내면 한 번 죽은 걸 두 지문이 센다(안드로이드 prevEnd("gone") 과 같은 판정 · t-261027-zke9) */
+  function navType() { try { var n = performance.getEntriesByType("navigation")[0]; if (n) return n.type; return performance.navigation.type === 1 ? "reload" : ""; } catch (e) { return ""; } }
+  var iosGone = native && plat === "ios" && navType() === "reload";
+  if (prev && prev.fg === 1 && prev.sid && !iosGone && !(prev.hb && Date.now() - prev.hb < 12000)) {
+    /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
+    var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
+    var ab = { g: CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
+    if (native && plat === "android") { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
+    else post("/e", ab);
+  }
+  if (!run.fg) crumb("뒤에서 켜짐");
+  store(run);
+})();
+</script>
+<script>/* compat — 옛 안드로이드 웹뷰(Chrome 90 안팎)·옛 iOS 에 없는 함수를 게임 스크립트보다 먼저 채운다. SOT = core/tools/crash/README.md «호환 심»
+ * 오류 수집기와 같은 자리(<head> 맨 앞)에 crash/inject.mjs 가 심는다 → 스토어 앱·사이트 번들 전부.
+ * ★ 왜: 2026-10-26 수집기 첫날에 잡힌 부팅 오류 — roundRect(0913sample)·Array.at·structuredClone(찜질방·PC방).
+ *   게임마다 고치면 다음 게임이 또 밟는다(엔진 shareCard 도 roundRect). 새로 잡히면 여기 한 줄 더한다. */
+(function () {
+  /* globalThis(Chrome 71+) — 옛 웹뷰는 «globalThis is not defined» 로 부팅에서 죽는다(문법을 es2018 로 내린 판이 그다음 밟는 것 · t-261101-gfj0) */
+  if (typeof globalThis === 'undefined') window.globalThis = window;
+  var def = function (o, k, v) { if (o && !o[k]) Object.defineProperty(o, k, { value: v, writable: true, configurable: true }); };
+  function at(n) { n = Math.trunc(n) || 0; if (n < 0) n += this.length; return n < 0 || n >= this.length ? undefined : this[n]; }
+  [Array.prototype, String.prototype].forEach(function (p) { def(p, 'at', at); });
+  if (typeof Int8Array !== 'undefined') def(Object.getPrototypeOf(Int8Array.prototype), 'at', at);
+  def(Array.prototype, 'findLast', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return this[i]; return undefined; });
+  def(Array.prototype, 'findLastIndex', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return i; return -1; });
+  def(Object, 'hasOwn', function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); });
+  if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
+  /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
+  function roundRect(x, y, w, h, r) {
+    var a = Array.isArray(r) ? r : [r == null ? 0 : r];
+    var v = function (q) { return typeof q === 'object' && q ? (q.x || 0) : (q || 0); };
+    var tl = v(a[0]), tr = v(a.length > 1 ? a[1] : a[0]), br = v(a.length > 2 ? a[2] : a[0]), bl = v(a.length > 3 ? a[3] : a.length > 1 ? a[1] : a[0]);
+    var m = Math.min(Math.abs(w), Math.abs(h)) / 2; tl = Math.min(tl, m); tr = Math.min(tr, m); br = Math.min(br, m); bl = Math.min(bl, m);
+    this.moveTo(x + tl, y); this.lineTo(x + w - tr, y); this.arcTo(x + w, y, x + w, y + tr, tr);
+    this.lineTo(x + w, y + h - br); this.arcTo(x + w, y + h, x + w - br, y + h, br);
+    this.lineTo(x + bl, y + h); this.arcTo(x, y + h, x, y + h - bl, bl);
+    this.lineTo(x, y + tl); this.arcTo(x, y, x + tl, y, tl); this.closePath();
+  }
+  ['CanvasRenderingContext2D', 'OffscreenCanvasRenderingContext2D', 'Path2D'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'roundRect', roundRect); });
+  /* Animation.finished(Chrome 84+) — 옛 웹뷰는 el.animate() 는 되는데 .finished 가 undefined 라 «.then of undefined»(0913sample t-261028-wg0m).
+   * ★ 프로토타입의 게터를 읽으면 진짜 브라우저는 Illegal invocation 이라 `in` 으로만 본다. 끝나면 풀고 취소되면 AbortError 로 거른다(표준과 같다). */
+  var A = window.Animation;
+  if (A && A.prototype && !('finished' in A.prototype)) {
+    Object.defineProperty(A.prototype, 'finished', { configurable: true, get: function () {
+      var a = this;
+      if (!a.__dglFinished) a.__dglFinished = new Promise(function (ok, no) {
+        if (a.playState === 'finished') return ok(a);
+        var done = function () { ok(a); }, fail = function () { var e = new Error('Animation was aborted'); e.name = 'AbortError'; no(e); };
+        if (a.addEventListener) { a.addEventListener('finish', done); a.addEventListener('cancel', fail); }
+        else { var f = a.onfinish, c = a.oncancel; a.onfinish = function (e) { if (f) f.call(a, e); done(); }; a.oncancel = function (e) { if (c) c.call(a, e); fail(); }; }
+      });
+      return a.__dglFinished;
+    } });
+  }
+})();
+</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"9c911dcf4","game":"manner"};</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>매너 고사 — 신입 매너 30문제</title>
+<meta name="description" content="엘리베이터 어디 서지? 명함은 어떻게 받지? 엄격한 매너 강사가 30장면을 채점한다. 가입 없이 3분.">
+<meta property="og:title" content="매너 고사 — 신입 매너 30문제">
+<meta property="og:description" content="엄격한 매너 강사가 채점한다. 너는 몇 개 맞을까?">
+<meta property="og:image" content="https://dumbgamelab.com/play/manner/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f6efe4">
+<meta name="dgl-orientation" content="portrait">
+<link rel="icon" href="data:,">
+<script src="js/analytics.js"></script>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+html,body{margin:0;height:100%;background:#f6efe4;color:#2b2f36;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
+body{display:flex;justify-content:center}
+#app{width:100%;max-width:480px;height:100%;padding:max(14px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;position:relative;overflow:hidden}
+.screen{display:none;flex:1;flex-direction:column;min-height:0}
+.screen.on{display:flex}
+.face{width:96px;height:96px}
+.face svg,.tface svg{width:100%;height:100%;display:block}
+h1{font-size:40px;line-height:1.15;margin:8px 0 10px;font-weight:900;letter-spacing:-1px}
+h1 em{font-style:normal;color:#e8463a}
+.sub{font-size:16px;line-height:1.55;color:#5c5448;margin:0;word-break:keep-all}
+.hero{margin:auto 0;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.chips span{font-size:13px;font-weight:800;background:#fff;border:2px solid #e6dccb;border-radius:12px;padding:6px 10px;color:#5c5448}
+.btn{width:100%;min-height:60px;border:0;border-radius:18px;font-size:19px;font-weight:900;color:#fff;background:#e8463a;box-shadow:0 5px 0 #b02e24;padding:14px;font-family:inherit}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #b02e24}
+.btn.sec{background:#fff;color:#2b2f36;box-shadow:0 5px 0 #e0d4c0;border:2px solid #e6dccb}
+.note{text-align:center;color:#8a7f70;font-size:13px;margin:12px 0 0}
+.top{display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:14px;color:#5c5448}
+.tr{display:flex;align-items:center;gap:10px}
+.hint{min-height:44px;min-width:44px;border:2px solid #e6dccb;background:#fff;border-radius:14px;font-size:14px;font-weight:900;color:#2b2f36;padding:4px 12px;font-family:inherit;box-shadow:0 3px 0 #e0d4c0}
+.hint b{display:inline-block;min-width:20px;height:20px;line-height:20px;border-radius:10px;background:#e8463a;color:#fff;font-size:12px;margin-left:4px}
+.hint:disabled{opacity:.4}
+.opt.gone{opacity:.3;text-decoration:line-through}
+.prog{height:8px;border-radius:4px;background:#e6dccb;overflow:hidden;margin:8px 0 10px}
+.prog i{display:block;height:100%;background:#e8463a;transform-origin:left;transition:transform .3s}
+.q{font-size:21px;line-height:1.35;font-weight:900;margin:0 0 10px;word-break:keep-all;min-height:56px}
+.stage{position:relative;width:100%;aspect-ratio:360/280;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 4px 0 #e0d4c0;flex-shrink:0}
+.stage svg{width:100%;height:100%;display:block}
+.pin{cursor:pointer}
+.pin .hit{fill:transparent}
+.pin .ring{fill:#fff;stroke:#2b2f36;stroke-width:3;transform-box:fill-box;transform-origin:center;animation:pulse 1.4s ease-in-out infinite}
+.pin text{font-size:15px;font-weight:900;fill:#2b2f36;pointer-events:none}
+.pin.right .ring{fill:#5bb878;stroke:#2f7a45;animation:none}
+.pin.bad .ring{fill:#e8463a;stroke:#9e2a20;animation:none}
+.pin.dim{opacity:.35}
+.pin.right text,.pin.bad text{fill:#fff}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.opts{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:54px;border:2px solid #e6dccb;border-radius:16px;background:#fff;font-size:17px;font-weight:800;color:#2b2f36;padding:8px 14px;text-align:left;box-shadow:0 4px 0 #e0d4c0;font-family:inherit;word-break:keep-all}
+.opt b{flex:none;width:30px;height:30px;border-radius:15px;border:2.5px solid #2b2f36;display:flex;align-items:center;justify-content:center;font-size:15px}
+.opt:active{transform:translateY(3px);box-shadow:0 1px 0 #e0d4c0}
+.opt.right{background:#e6f5ea;border-color:#5bb878}
+.opt.right b{background:#5bb878;border-color:#2f7a45;color:#fff}
+.opt.bad{background:#fde7e4;border-color:#e8463a}
+.opt.bad b{background:#e8463a;border-color:#9e2a20;color:#fff}
+.opt:disabled{color:#2b2f36;opacity:1}
+.judge{position:absolute;left:0;right:0;bottom:0;padding:16px 16px max(18px,env(safe-area-inset-bottom));background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.14);transform:translateY(110%);transition:transform .22s cubic-bezier(.2,.9,.3,1.2);display:flex;gap:14px;align-items:center}
+.judge.on{transform:none}
+.tface{flex:none;width:72px;height:72px}
+.judge .stamp{display:inline-block;font-size:26px;font-weight:900;padding:2px 12px;border:4px solid currentColor;border-radius:10px;transform:rotate(-6deg) scale(1.6);opacity:0;transition:transform .18s cubic-bezier(.3,1.6,.5,1),opacity .1s}
+.judge.on .stamp{transform:rotate(-6deg) scale(1);opacity:1}
+.judge.ok .stamp{color:#2f9a52}
+.judge.no .stamp{color:#e8463a}
+.judge .say{font-size:16px;line-height:1.45;font-weight:700;margin:8px 0 0;word-break:keep-all}
+.judge .tap{font-size:12px;color:#8a7f70;margin-top:4px}
+.center{margin:auto 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.big{font-size:56px;font-weight:900;color:#e8463a;line-height:1}
+.k{font-size:15px;font-weight:800;color:#8a7f70}
+.card{margin:auto 0;background:#fff;border-radius:26px;padding:22px 20px;border:2px solid #e6dccb;box-shadow:0 6px 0 #e0d4c0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.card .score{font-size:64px;font-weight:900;line-height:1;color:#2b2f36}
+.card .score small{font-size:22px;color:#8a7f70}
+.card .grade{font-size:28px;font-weight:900;color:#e8463a;margin:10px 0 4px;transform:rotate(-3deg);border:4px solid #e8463a;border-radius:12px;padding:2px 14px}
+.card .rsay{font-size:16px;line-height:1.5;margin:10px 0 0;word-break:keep-all}
+.card ul{margin:10px 0 0;padding:0;list-style:none;font-size:14px;color:#5c5448;text-align:left;width:100%}
+.card ul li{padding:6px 0;border-top:1px dashed #e6dccb;word-break:keep-all}
+.wk{font-size:12px;font-weight:800;color:#8a7f70;margin-top:12px;align-self:flex-start}
+.brand{font-size:12px;color:#8a7f70;margin-top:12px}
+.acts{display:flex;flex-direction:column;gap:12px;padding-top:14px}
+@media (max-height:700px){.q{font-size:18px;min-height:48px}.opt{min-height:46px;font-size:16px}.opts{gap:7px}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <section class="screen on" id="s-start">
+    <div class="hero">
+      <div class="face" id="s-face"></div>
+      <h1>매너 <em>고사</em></h1>
+      <p class="sub">엘리베이터에선 어디 서지? 명함은 어떻게 받지?<br>엄격한 매너 강사가 30장면을 채점합니다.</p>
+      <div class="chips"><span>엘리베이터</span><span>명함·악수</span><span>상석</span><span>양식</span><span>회식</span><span>전화</span></div>
+    </div>
+    <button class="btn" id="go" type="button">시험 시작</button>
+    <p class="note">가입 없이 3분 · 결과는 공유할 수 있어요</p>
+  </section>
+
+  <section class="screen" id="s-play">
+    <div class="top"><span id="chap"></span><span class="tr"><button class="hint" id="hint" type="button">귀띔 <b id="hint-n">3</b></button><span id="count"></span></span></div>
+    <div class="prog"><i id="prog"></i></div>
+    <p class="q" id="q"></p>
+    <div class="stage" id="stage"></div>
+    <div class="opts" id="opts"></div>
+    <div class="judge" id="judge">
+      <div class="tface" id="t-face"></div>
+      <div><span class="stamp" id="stamp"></span><p class="say" id="say"></p><div class="tap">눌러서 다음</div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-ch">
+    <div class="center">
+      <div class="face" id="c-face"></div>
+      <div class="k" id="c-name"></div>
+      <div class="big" id="c-score"></div>
+      <p class="sub" id="c-say"></p>
+    </div>
+    <button class="btn" id="c-next" type="button">다음 교시</button>
+  </section>
+
+  <section class="screen" id="s-result">
+    <div class="card">
+      <div class="face" id="r-face"></div>
+      <div class="score"><span id="r-score"></span><small> / 30</small></div>
+      <div class="grade" id="r-grade"></div>
+      <p class="rsay" id="r-say"></p>
+      <div class="wk" id="r-wrong-k">틀린 장면</div>
+      <ul id="r-wrong"></ul>
+      <div class="brand" id="brand">dumbgamelab.com/play/manner</div>
+    </div>
+    <div class="acts">
+      <button class="btn" id="copy" type="button">결과 공유하기</button>
+      <button class="btn sec" id="again" type="button">다시 보기</button>
+    </div>
+  </section>
+</div>
+<script src="js/scenes.js"></script>
+<script src="js/game.js"></script>
+<script>"use strict";
+/* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
+ *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
+ *   베타 빌드만 베타 표시(beta/lib.mjs BETA_MARK)가 붙는다(check-beta 가 그 표시로 승격을 막는다 — 버튼 유무가 아니다).
+ *
+ * 왼쪽 가장자리 작은 탭(아래 탭바·위 HUD 를 안 가리는 자리 — 스샷으로 잰 결과) → 한 줄 → GA 이벤트 `feedback` 한 건. 비밀키가 번들에 없고(공개 페이지에서 쓰는 건 측정 ID 뿐),
+ * 공개 입력이 자동 수정 워커로 곧장 들어가는 길도 아니다. 읽는 쪽은 `core/tools/feedback/run.mjs`(1시간마다 → 티켓 + 조종석 카드).
+ * 자동 첨부 = 마지막 JS 오류 한 줄(`msg`) · 화면(`screen`) · 빌드. 기기·OS·앱 버전은 GA 가 붙인다. 오류가 나면 버튼이 진해진다(«오류 뒤 창구 안내» — 리뷰 요청을 거르는 게 아니다).
+ * 로컬(개발) 트래픽은 analytics.js 가 GA 로 보내지 않는다 → 콘솔 로그만(?dglSend=1 로 강제).
+ */
+(function () {
+  var CFG = window.__DGL_WEB || {};
+  var BETA = CFG.target === "beta";
+  if (window.__DGL_FEEDBACK_ON) return; /* 두 번 심어도 버튼은 하나 */
+  window.__DGL_FEEDBACK_ON = 1;
+  var lastErr = "";
+  function noteErr(m) { lastErr = String(m || "").replace(/\s+/g, " ").slice(0, 100); var b = document.getElementById("dgl-feedback-btn"); if (b) b.style.opacity = ".95"; }
+  window.addEventListener("error", function (e) { noteErr((e && (e.message || (e.error && e.error.message))) || "error"); });
+  window.addEventListener("unhandledrejection", function (e) { var r = e && e.reason; noteErr("promise: " + ((r && r.message) || r || "")); });
+  /* 보내는 길 — 앱(Capacitor)이면 Firebase 플러그인으로 곧장(게임의 계측이 앱 안에서 꺼져 있어도 제보는 간다), 아니면 게임의 DGL.track */
+  function send(name, params) {
+    var C = window.Capacitor, FA = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.FirebaseAnalytics;
+    if (CFG.game) params.game = CFG.game;
+    try {
+      if (FA && FA.logEvent) return void FA.logEvent({ name: name, params: params });
+      if (window.DGL && typeof window.DGL.track === "function") window.DGL.track(name, params);
+    } catch (e) { /* 제보가 판을 끊으면 안 된다 */ }
+  }
+  /* Play 사전 출시 로봇(Firebase Test Lab)이 글 칸마다 아무 글자나 치고 보낸다(2026-10-22 «ospuuq» 등 7건 — t-261022-3oj3).
+   * 판별은 기기 설정 — feedback/robot-guard.mjs 가 android/ 에 심은 DglEnv 플러그인. 로봇 글은 where:"robot" 으로 나가 수집기가 뺀다 */
+  var robot = false;
+  try {
+    var EP = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.DglEnv;
+    if (EP && EP.isTestLab) EP.isTestLab().then(function (r) { robot = !!(r && r.value); }, function () {});
+  } catch (e) {}
+  /* 베타 테스터 수 = 하루 한 번 «열었다» 한 건(core/tools/beta/run.mjs 가 사용자 수로 센다) */
+  if (BETA) {
+    try {
+      var day = new Date().toISOString().slice(0, 10);
+      if (localStorage.getItem("dgl.beta.open") !== day) setTimeout(function () { if (robot) return; /* 로봇은 테스터가 아니다 */ localStorage.setItem("dgl.beta.open", day); send("beta_open", { build: CFG.build || "" }); }, 3000);
+    } catch (e) {}
+  }
+  var COPY = {
+    ko: { btn: "의견", ph: "불편한 점이나 바라는 점을 한 줄로", send: "보내기", close: "닫기", thanks: "받았어요. 고맙습니다", empty: "한 줄만 적어 주세요" },
+    en: { btn: "Feedback", ph: "Tell us what bugged you, in one line", send: "Send", close: "Close", thanks: "Got it. Thank you", empty: "Please write one line" },
+  };
+  /* 설정 줄 문구 — 키는 언어 접두(중국어만 간·번체를 나눈다). 없으면 영어 */
+  var MENU_LABEL = { ko: "의견 보내기", en: "Send feedback", ja: "ご意見を送る", "zh-hans": "发送反馈", "zh-hant": "傳送意見", id: "Kirim masukan", th: "ส่งความคิดเห็น", vi: "Gửi góp ý", es: "Enviar comentarios", pt: "Enviar sugestão", tr: "Geri bildirim gönder" };
+  function menuLabel() {
+    var l = String((window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko").toLowerCase().replace("_", "-");
+    if (l.indexOf("zh") === 0) return MENU_LABEL[/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans"];
+    return MENU_LABEL[l.split("-")[0]] || MENU_LABEL.en;
+  }
+  function lang() {
+    var l = (window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko";
+    return String(l).toLowerCase().indexOf("ko") === 0 ? "ko" : "en";
+  }
+  function build() {
+    var C = COPY[lang()];
+    var root = document.createElement("div");
+    root.id = "dgl-feedback";
+    /* 자리 — 게임이 <html data-feedback-top="56%"> 로 옮길 수 있다(화면 글·아이콘을 가리지 않는 높이) */
+    var top = document.documentElement.getAttribute("data-feedback-top") || "42%";
+    /* 메뉴형 — 게임이 <html data-feedback="menu"> 로 선언하면 떠 있는 탭을 안 그리고 window.DGL_FEEDBACK.open() 만 내준다.
+     * 앱은 설정·프로필 화면에 «의견 보내기» 줄을 두고 그걸 부른다(2026-10-23 사장님 «항상 떠 있으면 거슬린다 — 프로필 같은 데 있어야지»). */
+    var MENU = document.documentElement.getAttribute("data-feedback") === "menu";
+    root.setAttribute("style", MENU
+      ? "position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none"
+      : "position:fixed;left:0;top:" + top + ";z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "dgl-feedback-btn";
+    btn.textContent = C.btn;
+    /* 가는 세로 탭 — 화면 가장자리 17px 만 쓰고 누르는 높이는 44 */
+    btn.setAttribute("style", "writing-mode:vertical-rl;min-height:44px;font-size:11px;letter-spacing:1px;padding:6px 3px;border:1px solid rgba(255,255,255,.35);border-left:0;border-radius:0 12px 12px 0;background:rgba(13,14,18,.55);color:#fff;opacity:" + (lastErr ? ".95" : ".55") + ";font:inherit;cursor:pointer");
+    var box = document.createElement("form");
+    box.setAttribute("style", "display:none;gap:6px;align-items:center;padding:8px;border-radius:" + (MENU ? "14px" : "0 12px 12px 0") + ";background:rgba(13,14,18,.92);border:1px solid rgba(255,255,255,.3)");
+    var input = document.createElement("input");
+    input.type = "text"; input.maxLength = 100; input.placeholder = C.ph;
+    input.setAttribute("aria-label", C.ph);
+    /* ★ 입력칸 글자는 16px 이상 — 작으면 아이폰이 누를 때 화면을 확대하고 안 돌려놓는다(2026-10-26 알고있여우 제보) */
+    input.setAttribute("style", (MENU ? "flex:1;min-width:0;" : "width:min(62vw,260px);") + "padding:7px 8px;border-radius:8px;border:1px solid #888;background:#fff;color:#111;font:16px/1.2 system-ui,sans-serif;-webkit-user-select:text;user-select:text");
+    var sendBtn = document.createElement("button"); /* ★ 이름이 `send` 면 위의 보내는 함수를 덮어써 제보가 한 건도 안 나간다(2026-10-21 실측) */
+    sendBtn.type = "submit"; sendBtn.textContent = C.send;
+    sendBtn.setAttribute("style", "padding:8px 10px;border:0;border-radius:8px;background:#ffcf33;color:#111;font:inherit;cursor:pointer");
+    var close = document.createElement("button");
+    close.type = "button"; close.textContent = C.close;
+    close.setAttribute("style", "padding:8px 6px;border:0;background:none;color:#ccc;font:inherit;cursor:pointer");
+    box.appendChild(input); box.appendChild(sendBtn); box.appendChild(close);
+    root.appendChild(btn); root.appendChild(box);
+    /* 게임이 이 위젯의 터치·키 입력을 가로채지 않게 — Phaser 가 window 에서 듣는다 */
+    ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) {
+      root.addEventListener(t, function (e) { e.stopPropagation(); });
+    });
+    if (MENU) { btn.style.display = "none"; btn.style.writingMode = "horizontal-tb"; btn.style.border = "0"; btn.style.borderRadius = "12px"; btn.style.padding = "12px 16px"; btn.style.margin = "0 auto"; btn.style.opacity = "1"; btn.style.background = "rgba(13,14,18,.92)"; root.style.textAlign = "center"; }
+    function toggle(open) { box.style.display = open ? "flex" : "none"; btn.style.display = open || MENU ? "none" : ""; if (open) input.focus(); }
+    /* 보내기 한 곳 — 떠 있는 탭·메뉴형 페이지·게임이 그린 자기 페이지(DGL_FEEDBACK.send)가 다 이걸 부른다 */
+    function submit(raw) {
+      var text = String(raw || "").replace(/\s+/g, " ").trim();
+      if (!text) return false;
+      var where = {};
+      try { var cx = window.DGL && window.DGL.ctx; where = (typeof cx === "function" ? cx() : cx) || {}; } catch (er) {}
+      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: robot ? "robot" : BETA ? "beta" : CFG.target || "web", screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      return true;
+    }
+    /* 메뉴형은 별도 페이지 — 설정 목록 위에 검은 막대를 띄우면 앱과 따로 논다(2026-10-25 사장님 «드롭다운 혹은 별도 페이지로 빼기»).
+     * 색은 게임이 CSS 변수(--dgl-fb-bg·--dgl-fb-ink·--dgl-fb-card·--dgl-fb-accent·--dgl-fb-accent-ink)로 맞춘다. 앱이 제 화면을 그리면 send() 만 쓴다 */
+    function openPage() {
+      var old = document.getElementById("dgl-feedback-page"); if (old) old.remove();
+      var page = document.createElement("form");
+      page.id = "dgl-feedback-page";
+      page.setAttribute("role", "dialog"); page.setAttribute("aria-label", menuLabel());
+      page.setAttribute("style", "position:fixed;inset:0;z-index:2147483001;display:flex;flex-direction:column;gap:14px;padding:calc(12px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));background:var(--dgl-fb-bg,#faf6f1);color:var(--dgl-fb-ink,#2b2420);font:600 15px/1.4 system-ui,sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent");
+      var head = document.createElement("div");
+      head.setAttribute("style", "display:flex;align-items:center;min-height:44px");
+      var back = document.createElement("button");
+      back.type = "button"; back.textContent = C.close;
+      back.setAttribute("style", "min-width:44px;min-height:44px;padding:0 4px;border:0;background:none;color:inherit;font:inherit;opacity:.7;cursor:pointer");
+      var title = document.createElement("span");
+      title.textContent = menuLabel();
+      title.setAttribute("style", "flex:1;text-align:center;font-size:16px;font-weight:800;padding-right:48px");
+      head.appendChild(back); head.appendChild(title);
+      var area = document.createElement("textarea");
+      area.maxLength = 100; area.rows = 5; area.placeholder = C.ph; area.setAttribute("aria-label", C.ph);
+      area.setAttribute("style", "width:100%;box-sizing:border-box;resize:none;padding:14px 16px;border:0;border-radius:16px;background:var(--dgl-fb-card,#fff);color:inherit;box-shadow:0 2px 10px rgba(0,0,0,.06);font:500 16px/1.5 system-ui,sans-serif;-webkit-user-select:text;user-select:text;outline:none");
+      var go = document.createElement("button");
+      go.type = "submit"; go.textContent = C.send;
+      go.setAttribute("style", "min-height:52px;border:0;border-radius:16px;background:var(--dgl-fb-accent,#ffcf33);color:var(--dgl-fb-accent-ink,#111);font:800 16px/1 system-ui,sans-serif;cursor:pointer");
+      page.appendChild(head); page.appendChild(area); page.appendChild(go);
+      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) { page.addEventListener(t, function (e) { e.stopPropagation(); }); });
+      function shut() { page.remove(); removeEventListener("hashchange", shut); }
+      back.addEventListener("click", shut);
+      addEventListener("hashchange", shut);
+      page.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!submit(area.value)) { area.placeholder = C.empty; area.focus(); return; }
+        area.value = ""; area.disabled = true; go.disabled = true; go.textContent = C.thanks;
+        setTimeout(shut, 1200);
+      });
+      document.body.appendChild(page);
+      area.focus();
+    }
+    /* label() = 설정 줄에 쓰는 «의견 보내기» — 게임마다 번역 8벌을 따로 두지 않게 위젯이 갖는다(2026-10-24 t-261023-daf8) */
+    /* 게임이 자리를 준다 — 페이지에 data-dgl-feedback 을 단 요소가 있으면(늦게 생겨도 된다) 떠 있는 탭을 숨기고, 그 요소를 누르면 별도 페이지를 연다 */
+    var SLOT = "[data-dgl-feedback]";
+    function hasSlot() { return !!document.querySelector(SLOT); }
+    function open() { if (MENU || hasSlot()) openPage(); else toggle(true); }
+    function syncSlot() { if (!MENU) root.style.display = hasSlot() ? "none" : ""; }
+    document.addEventListener("click", function (e) { var t = e.target && e.target.closest && e.target.closest(SLOT); if (t) { e.preventDefault(); open(); } }, true);
+    try { new MutationObserver(syncSlot).observe(document.documentElement, { childList: true, subtree: true }); } catch (er) {}
+    syncSlot();
+    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel };
+    btn.addEventListener("click", function () { toggle(true); });
+    close.addEventListener("click", function () { toggle(false); });
+    box.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!submit(input.value)) { input.placeholder = C.empty; input.focus(); return; }
+      input.value = ""; input.placeholder = C.thanks; toggle(false);
+      btn.textContent = C.thanks;
+      setTimeout(function () { btn.textContent = C.btn; input.placeholder = C.ph; }, 2500);
+    });
+    if (MENU) root.style.display = "none"; /* 메뉴형은 떠 있는 것이 없다 — 페이지만 연다 */
+    document.body.appendChild(root);
+  }
+  if (document.body) build(); else document.addEventListener("DOMContentLoaded", build);
+})();
+</script>
+<!-- dgl-orientation-guard --><script>window.__DGL_ORIENT="portrait";</script><script>(function () {
+  if (document.getElementById('dgl-orientation-block')) return;
+  var want = window.__DGL_ORIENT === 'landscape' ? 'landscape' : 'portrait';
+  var wrong = want === 'portrait' ? 'landscape' : 'portrait';
+  var small = want === 'portrait' ? '(max-height:600px)' : '(max-width:600px)';
+  var tilt = want === 'portrait' ? 90 : 0; // 눕혀 있던 폰이 세로로 서는 그림(가로 게임은 반대로)
+  var css = '#dgl-orientation-block{display:none}' +
+    '@media (orientation:' + wrong + ') and (pointer:coarse) and ' + small + '{' +
+    '#dgl-orientation-block{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;' +
+    'background:rgba(16,19,27,.94);color:#fff;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}}' +
+    '#dgl-orientation-block svg{width:112px;height:112px;overflow:visible}' +
+    '#dgl-orientation-block .ph{transform-origin:48px 44px;animation:dgl-orient-turn 2.4s cubic-bezier(.6,0,.3,1) infinite}' +
+    '@keyframes dgl-orient-turn{0%,20%{transform:rotate(' + tilt + 'deg)}55%,100%{transform:rotate(' + (90 - tilt) + 'deg)}}' +
+    '@media (prefers-reduced-motion:reduce){#dgl-orientation-block .ph{animation:none;transform:rotate(' + (90 - tilt) + 'deg)}}';
+  function mount() {
+    if (document.getElementById('dgl-orientation-block')) return;
+    var st = document.createElement('style');
+    st.textContent = css;
+    var el = document.createElement('div');
+    el.id = 'dgl-orientation-block';
+    el.setAttribute('role', 'img');
+    el.setAttribute('aria-label', want === 'portrait' ? 'Rotate to portrait' : 'Rotate to landscape');
+    el.innerHTML = '<svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<g class="ph"><rect x="31" y="15" width="34" height="58" rx="6"/><path d="M44 64h8"/></g>' +
+      '<path d="M18 80a40 40 0 0 0 60 0" opacity=".55"/><path d="m71 74 7 6-8 4" opacity=".55"/></svg>';
+    /* 막힌 동안 밑의 게임이 터치를 받지 않는다 */
+    el.addEventListener('touchstart', function (e) { e.preventDefault(); }, { passive: false });
+    (document.head || document.documentElement).appendChild(st);
+    document.body.appendChild(el);
+  }
+  if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+})();</script></body>
+</html>
