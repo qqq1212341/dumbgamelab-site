@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "51-3de0c54dcf",
+ "version": "51-e77c9c665e",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -272,7 +272,7 @@
   {
    "id": "space-candle",
    "day": 23,
-   "hash": "29f44204ed4de278",
+   "hash": "af45166d44eae631",
    "ep": "episodes/space-candle.json",
    "i18n": {
     "en": "i18n/en/space-candle.json",
@@ -284,7 +284,7 @@
   {
    "id": "crow-faces",
    "day": 24,
-   "hash": "25f17cc45578cdc2",
+   "hash": "58ee4418754362af",
    "ep": "episodes/crow-faces.json",
    "i18n": {
     "en": "i18n/en/crow-faces.json",
