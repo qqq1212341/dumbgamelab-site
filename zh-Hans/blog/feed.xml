@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Dumb Game Lab 博客</title>
+  <link>https://dumbgamelab.com/zh-Hans/blog/</link>
+  <atom:link href="https://dumbgamelab.com/zh-Hans/blog/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
+  <language>zh-CN</language>
+  <item>
+    <title>在太空里，烛火是圆的</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/space-candle/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/space-candle/</guid>
+    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
+    <description>在太空里，热空气不会往上升，所以烛火会烧得圆圆的、蓝蓝的。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/flame-candle.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>一天能看16次日出的人</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/iss-16-sunrises/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/iss-16-sunrises/</guid>
+    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
+    <description>空间站每93分钟绕地球一圈，所以一天能看到15到16次日出。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>世界上最短的航班，1分钟就飞完了</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/shortest-flight/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/shortest-flight/</guid>
+    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
+    <description>连接奥克尼群岛韦斯特雷岛和帕帕韦斯特雷岛的航班，只飞2.7公里，1分钟出头就到。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>金星上，太阳真的从西边出来</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/venus-west/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/venus-west/</guid>
+    <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
+    <description>金星是倒着转的，太阳从西边升起；它自转一圈，比金星上的一年还长。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/venus.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>奥运金牌，其实几乎是银的</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/gold-medal-silver/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/gold-medal-silver/</guid>
+    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
+    <description>奥运金牌是在银上镀了6克金。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>接电话差点要说“阿嗬伊”</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/hello-ahoy/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/hello-ahoy/</guid>
+    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
+    <description>贝尔想用“阿嗬伊”当电话问候语，结果流行起来的是爱迪生的 Hello。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>二维码是在围棋盘上诞生的</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/qr-baduk/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/qr-baduk/</guid>
+    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
+    <description>二维码1994年诞生于日本，灵感来自围棋棋子的黑白图案。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>番茄酱原本是鱼酱</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/ketchup-fish/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/ketchup-fish/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
+    <description>ketchup 这个词原本指腌鱼的汤汁，番茄酱到19世纪才出现。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>早上的我比晚上的我高</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/morning-height/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/morning-height/</guid>
+    <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
+    <description>人的身高早上最高，到了下午会缩一点。到了太空，还会长高2.5厘米左右。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/height-astronaut.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>哈欠还会传染给狗狗</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/yawn-dog/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/yawn-dog/</guid>
+    <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
+    <description>哈欠不只在人和人之间传染，也可能传给狗这样的其他动物。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/yawn-dog.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>英语里，宇宙有三个词</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/space-words/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/space-words/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>宇航员去不了 universe，因为他们早就在里面了。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>海獭手牵手睡觉</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/sea-otter/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/sea-otter/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>海獭为了不被冲走，会手牵手睡觉，还会把心爱的石头揣在腋下带着走。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>OK 原来是个拼错的玩笑</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/ok/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/ok/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>OK 来自一个把 all correct 写错成 oll korrect 的玩笑，后来借着竞选口号活了下来。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>香蕉是浆果</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/banana-berry/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/banana-berry/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>在植物学上，香蕉和番茄是浆果，草莓和树莓却不是。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>GPS 卫星的时钟是故意调慢的</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/gps-relativity/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/gps-relativity/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>因为相对论，GPS 卫星的时钟每天会快38微秒。所以发射前要故意把它调慢。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>第一次扫条形码，扫的是口香糖</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/barcode-gum/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/barcode-gum/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>条形码来自沙滩上画的摩尔斯电码，第一件被扫的商品是口香糖。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>宝宝生下来没有膝盖骨</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/baby-kneecap/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/baby-kneecap/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>宝宝的膝盖骨是软骨，大约从三岁开始变成骨头。骨头的数量反而会随着长大变少。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>同一个词说太多遍，意思就没了</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/semantic-satiation/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/semantic-satiation/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>同一个词一直重复，意思会暂时消失，这就是语义饱和。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>有只老鼠活到了37岁</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/naked-mole-rat/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/naked-mole-rat/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>裸鼹鼠能活37年以上，而且就算上了年纪，死亡的概率也不会升高。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>牛顿当过抓造假币的侦探</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/newton-mint/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/newton-mint/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>牛顿晚年的30年都在铸币厂度过，甚至乔装打扮，让28个造假币的人受到了惩罚。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>Do Re Mi 原本是 Ut Re Mi</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/do-was-ut/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/do-was-ut/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>Do Re Mi 来自11世纪一首拉丁语圣歌每句的第一个音节，Do 原本是 Ut。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>在南极，连时间都看快递从哪儿来</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/south-pole-time/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/south-pole-time/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>南极点的科考站跟着给它送物资的新西兰，用的是新西兰时间。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
+    <title>考拉的指纹，和人的傻傻分不清</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/koala-fingerprint/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/koala-fingerprint/</guid>
+    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
+    <description>考拉的指纹和人的很像，像到用电子显微镜看都很难分清。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
+  </item>
+</channel>
+</rss>
