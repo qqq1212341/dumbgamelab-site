@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>經營遊戲顧客 AI 怎麼做：尋路、排隊、座位分配的獨立開發日誌</title>
+<meta name="description" content="獨立開發《網咖養成記》的顧客行為邏輯。A* 尋路給「有人站著的格子」加權 12、一格只站一個人、排隊只排在門外一列，還有為什麼要統計沒接到的顧客，附上實測數字。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="經營遊戲顧客 AI 怎麼做：尋路、排隊、座位分配的獨立開發日誌">
+<meta property="og:description" content="獨立開發《網咖養成記》的顧客行為邏輯。A* 尋路給「有人站著的格子」加權 12、一格只站一個人、排隊只排在門外一列，還有為什麼要統計沒接到的顧客，附上實測數字。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"《網咖養成記》的顧客邏輯，我們是這樣做的","description":"獨立開發《網咖養成記》的顧客行為邏輯。A* 尋路給「有人站著的格子」加權 12、一格只站一個人、排隊只排在門外一列，還有為什麼要統計沒接到的顧客，附上實測數字。","inLanguage":"zh-TW","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"網咖養成記","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"《網咖養成記》的顧客邏輯，我們是這樣做的","item":"https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"經營遊戲的顧客 AI 要怎麼做？","acceptedAnswer":{"@type":"Answer","text":"讓每位顧客帶著一份行程，一位位占住目標設施的使用格，路徑用 A* 尋路。有人站著的格子不要封死，而是加上較高的成本（這裡是 12）；沒座位時就讓顧客排在門外一列。"}},{"@type":"Question","name":"經營遊戲裡的 NPC 要怎麼避免互相卡住？","acceptedAnswer":{"@type":"Answer","text":"不要把站著的人當成牆，而是當成權重放進去，並依這個權重不斷重算路徑。只加權重、不重算，幾乎沒有效果。在擁擠擺放跑 40 秒的實測裡，踩到站著的人的影格只從 1,701 降到 1,695。"}},{"@type":"Question","name":"遊戲裡的排隊隊伍排在店內還是店外比較好？","acceptedAnswer":{"@type":"Answer","text":"《網咖養成記》只排在門外一列。排在店裡會堵住通道，讓尋路亂掉。已經進門的顧客不排隊，直接放棄這一步，而放棄會被統計並顯示在畫面上。"}},{"@type":"Question","name":"顧客沒搶到座位就離開，直接刪掉可以嗎？","acceptedAnswer":{"@type":"Answer","text":"不可以刪。要顯示放棄的動作和彈窗，並依種類統計，玩家才能看出瓶頸，判斷「再多放一台吧」。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 幕後</p>
+    <h1>《網咖養成記》的顧客邏輯，我們是這樣做的</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="網咖養成記遊戲畫面。等角視角的網咖裡，每個電腦座位都坐著顧客，店門前的人行道上有好幾位顧客正在走路。右邊座位上方浮著「等待 3」的標籤" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">經營遊戲的顧客行為邏輯（一般叫顧客 AI）只要守住三件事就能跑起來。座位不用數字算，而是一格只站一個人；有人站著的格子不要封死，而是在 A* 尋路裡加上權重 12；排隊只排在門外一列。這篇整理《網咖養成記》選這三招的原因、實測數字，以及還沒解決的問題。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">每位顧客都帶著一份行程</a></li><li><a href="#s2">座位不是數字，是格子</a></li><li><a href="#s3">有人站著的格子不要封死，加上權重</a></li><li><a href="#s4">路不是鋪一次就結束</a></li><li><a href="#s5">排隊只排在門外一列</a></li><li><a href="#s6">排隊的顧客全部看向同一邊</a></li><li><a href="#s7">網咖有八成營收來自坐下之後</a></li><li><a href="#s8">還沒解決的問題</a></li></ol></nav>
+    <section id="s1"><h2>每位顧客都帶著一份行程</h2>
+<p>每位顧客生成時，會抽到一份行程（itinerary）。行程的一格就是「使用某種設施一次」。因為是用種類名稱來寫，同一種設施不管有幾台，顧客都會從中挑一台。</p>
+<p>網咖的行程只有一格。坐下來、用完離開就結束，是行程裡最單純的退化情況。如果遊戲完全沒給行程，系統會自動補上一份一格的行程：「隨便用一個設施就離開」。</p>
+<p>行程有一個保險機制：下一格的設施店裡一個都沒有時，就直接跳過那一格。這樣顧客就不會為了等一個還沒蓋的設施，卡在原地動不了。</p>
+</section>
+<section id="s2"><h2>座位不是數字，是格子</h2>
+<p>一開始，替每個設施設定一個人數上限，看起來最省事。但用數字當上限的話，8 個人可能疊在同一個座標上。數字只知道有幾個人在用，不知道誰站在哪裡。</p>
+<p>所以我們替每個設施指定一個使用格（interactionCell），一格只能進一個人。顧客選好目標設施的瞬間就先占住那一格，其他顧客占不到。不用另外寫人數上限，重疊也不會發生，因為結構上就排除了。</p>
+<p>挑目標時，我們也不是平均抽選。平均抽的話，緊鄰座位的販賣機和房間另一頭的販賣機賣得一模一樣，不管怎麼擺，營收都一樣。要加上權重，擺放位置才會影響營收。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="網咖養成記遊戲畫面。電腦桌前每張椅子都坐著一位顧客，中間可以看到櫃台和盆栽" loading="lazy" decoding="async"><figcaption>一台電腦一格，一格一位顧客。</figcaption></figure></section>
+<section id="s3"><h2>有人站著的格子不要封死，加上權重</h2>
+<p>路徑用的是四方向格子 A*。我們分開詢問：能不能站、能不能穿過、兩格之間能不能通行，最後再問通過這一格的成本。有顧客坐著的格子，這個成本是 12。</p>
+<p>把人當成牆會更簡單。但這款遊戲的擺放檢查有個前提：「設施前面那一格也能通過」，靠這個前提保證房間不會被切斷。人一變成牆，前提就破了，在狹窄的房間裡顧客會整批餓著，當天營收變成 0。</p>
+<p>改成權重之後，有繞路就一定繞過去，真的沒路才會硬擠過去。硬擠過去的畫面看起來很怪，但那是在提醒你沒留出通道，不是引擎的 bug。</p>
+</section>
+<section id="s4"><h2>路不是鋪一次就結束</h2>
+<p>本來以為加上權重 12 就好了，結果幾乎沒改善。原因是路會過期。顧客出發時算好的路，之後有人坐到路上，權重雖然有了，顧客還是照舊路走。</p>
+<p>所以人的分佈圖每個 tick 都整張重填。用增量更新的話，只要某條路徑漏掉一次清除，就會留下幽靈把通道永遠堵住。走路中的顧客每個 tick 都會重新看下一格，被擋住就當場重算路徑。每位顧客每 0.2 秒一次。</p>
+<p>重算後的路如果還是經過那一格，就直接走過去。讓他停下來的話，大家互相等待就會卡死。</p>
+<p>我們在擁擠的擺放下跑了 40 秒，數「踩到站著的人的影格」。沒加權重前是 1,701，只加權重、不重算的狀態是 1,695，幾乎沒變。只加權重而不重算，幾乎什麼都改不了。問題的主因就是路會過期。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="網咖養成記遊戲畫面。四位顧客沿著店前人行道走來，上方店內的電腦座位上坐著顧客" loading="lazy" decoding="async"><figcaption>走路中的顧客每個 tick 都會重新確認下一格。</figcaption></figure></section>
+<section id="s5"><h2>排隊只排在門外一列</h2>
+<p>沒座位的時候，如果讓顧客在店裡排隊，隊伍會堵住通道，尋路就亂掉。所以排隊一律排在門外一列。還沒進門的顧客站在門外的隊伍裡，已經進門的顧客不排隊，直接放棄這一步離開。有沒有座位，是在門前空地那一格詢問。以前是在入口那一格問，結果客滿時顧客會推開門走進來，又轉身走出去。</p>
+<p>隊伍也不是能無限排。隊伍上限是「能站的格數」和遊戲設定上限（預設 4）兩者中比較小的那個。超過上限就不排，直接回頭；如果在走過來的路上就發現隊伍已滿，會在隊尾旁邊的人行道上轉身離開。</p>
+<p>重點是不能默默把沒接到的顧客刪掉。放棄的顧客會做出放棄的動作、跳出彈窗，遊戲也會統計「在哪一種設施、因為什麼原因漏掉了」。瓶頸如果在畫面上看不到，玩家就沒有理由想到「再多放一台吧」。因為連流失發生了這件事都看不到。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="網咖養成記遊戲畫面。電腦座位上坐著顧客，右邊座位上方浮著「等待 3」的標籤。左邊可以看到 +2,135 韓元的營收彈窗" loading="lazy" decoding="async"><figcaption>「等待 3」的標籤讓人一眼就能從畫面上看出瓶頸在哪裡。</figcaption></figure></section>
+<section id="s6"><h2>排隊的顧客全部看向同一邊</h2>
+<p>做好排隊之後，收到了玩家回報（2026 年 9 月 19 日）：「希望排隊的時候大家都面向同一個方向」。我們檢查後發現，朝向只在走路時才會決定。從人行道走上來的顧客面向牆壁，走到隊尾的顧客面向隊尾，被往前拉一格的顧客面向隊首，一列隊伍裡混著三個方向。</p>
+<p>解法很簡單：到達排隊位置時，讓排隊的顧客全部面向隊首。門外的隊伍是沿著牆筆直的一列，所以大家方向一致。這次學到的規則是：每個停下來的位置，都要指定看向哪一邊。</p>
+<p>排隊時我們讓身體不再動。本來用晃動身體來表現焦急，結果收到兩次「像在飄」「一個人在發抖」的反應，現在只留下呼吸的動作。</p>
+</section>
+<section id="s7"><h2>網咖有八成營收來自坐下之後</h2>
+<p>在行程裡網咖只有一格，但營收不會在那裡結束。行程的一格是「只去一次的地方」，不能重複，而坐著的顧客偶爾再點東西，發生在使用中掛鉤，不是行程。這些加點的訂單占了單日營收的八成。</p>
+<p>所以顧客邏輯不只是座位能多快填滿，還跟坐下的顧客坐多久才點餐息息相關。同樣的道理，我們也做了一個選項：點的東西還沒送到時，就算停留時間結束，顧客也不會離開座位。</p>
+</section>
+<section id="s8"><h2>還沒解決的問題</h2>
+<p>走路中的顧客之間短暫重疊的畫面，目前還在。尋路只把「已經就位停下來的人」（使用中的顧客和隊伍內側）當成權重，走路中的人不放進分佈圖。因為讓走路的人互相閃避，在窄通道裡會變成面對面互相繞圈的死結。反正過幾個影格，他們就會離開那一格。</p>
+<p>所以走路中的顧客互相重疊的影格，依規則視為正常。真要好好解決，要設計的不是閃開，而是讓路的順序，但那超出了目前的範圍。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>經營遊戲的顧客 AI 要怎麼做？</summary><p>讓每位顧客帶著一份行程，一位位占住目標設施的使用格，路徑用 A* 尋路。有人站著的格子不要封死，而是加上較高的成本（這裡是 12）；沒座位時就讓顧客排在門外一列。</p></details><details><summary>經營遊戲裡的 NPC 要怎麼避免互相卡住？</summary><p>不要把站著的人當成牆，而是當成權重放進去，並依這個權重不斷重算路徑。只加權重、不重算，幾乎沒有效果。在擁擠擺放跑 40 秒的實測裡，踩到站著的人的影格只從 1,701 降到 1,695。</p></details><details><summary>遊戲裡的排隊隊伍排在店內還是店外比較好？</summary><p>《網咖養成記》只排在門外一列。排在店裡會堵住通道，讓尋路亂掉。已經進門的顧客不排隊，直接放棄這一步，而放棄會被統計並顯示在畫面上。</p></details><details><summary>顧客沒搶到座位就離開，直接刪掉可以嗎？</summary><p>不可以刪。要顯示放棄的動作和彈窗，並依種類統計，玩家才能看出瓶頸，判斷「再多放一台吧」。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="網咖養成記" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置經營</p><p class="gb-title"><a href="/zh-Hant/games/pcbangalba/">網咖養成記</a></p><p class="gb-hook">想親眼看看顧客排隊的樣子，就用手機經營一間巷子裡的網咖吧。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dzh-Hant" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">在瀏覽器玩</a></div></div>
+</aside>
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

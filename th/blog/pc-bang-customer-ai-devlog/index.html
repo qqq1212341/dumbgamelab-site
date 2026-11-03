@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>วิธีทำ AI ลูกค้าในเกมไทคูน: หาเส้นทาง ต่อคิว จัดที่นั่ง (บันทึกอินดี้เดฟ)</title>
+<meta name="description" content="ตรรกะพฤติกรรมลูกค้าในเกมเปิดร้านเน็ต (PC방 키우기) เกมที่ทำคนเดียว A* ที่ให้ช่องที่มีคนยืนมีต้นทุน 12 หนึ่งช่องหนึ่งคน คิวแถวเดียวนอกประตู เหตุผลที่ต้องนับลูกค้าที่รับไม่ได้ พร้อมตัวเลขที่วัดจริง">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="วิธีทำ AI ลูกค้าในเกมไทคูน: หาเส้นทาง ต่อคิว จัดที่นั่ง (บันทึกอินดี้เดฟ)">
+<meta property="og:description" content="ตรรกะพฤติกรรมลูกค้าในเกมเปิดร้านเน็ต (PC방 키우기) เกมที่ทำคนเดียว A* ที่ให้ช่องที่มีคนยืนมีต้นทุน 12 หนึ่งช่องหนึ่งคน คิวแถวเดียวนอกประตู เหตุผลที่ต้องนับลูกค้าที่รับไม่ได้ พร้อมตัวเลขที่วัดจริง">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"เราทำตรรกะลูกค้าในเกมเปิดร้านเน็ตแบบนี้","description":"ตรรกะพฤติกรรมลูกค้าในเกมเปิดร้านเน็ต (PC방 키우기) เกมที่ทำคนเดียว A* ที่ให้ช่องที่มีคนยืนมีต้นทุน 12 หนึ่งช่องหนึ่งคน คิวแถวเดียวนอกประตู เหตุผลที่ต้องนับลูกค้าที่รับไม่ได้ พร้อมตัวเลขที่วัดจริง","inLanguage":"th","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"เปิดร้านเน็ต","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"เราทำตรรกะลูกค้าในเกมเปิดร้านเน็ตแบบนี้","item":"https://dumbgamelab.com/th/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ทำ AI ลูกค้าในเกมไทคูนอย่างไร?","acceptedAnswer":{"@type":"Answer","text":"ให้ลูกค้าแต่ละคนถือแผนการเดินทาง จองช่องใช้งานของเฟอร์นิเจอร์เป้าหมายทีละคน และหาเส้นทางด้วย A* ช่องที่มีคนยืนไม่ปิดกั้นแต่บวกต้นทุนสูง (ในเกมนี้คือ 12) และถ้าไม่มีที่นั่งให้ต่อคิวแถวเดียวนอกประตู"}},{"@type":"Question","name":"จะทำให้ NPC ในเกมไทคูนไม่ขวางกันได้อย่างไร?","acceptedAnswer":{"@type":"Answer","text":"อย่าทำให้คนที่ยืนเป็นกำแพง ให้ใส่เป็นต้นทุน แล้วคำนวณเส้นทางใหม่ตามต้นทุนนั้นต่อเนื่อง ใส่แค่ต้นทุนโดยไม่คำนวณใหม่แทบไม่มีผล จากการวัด 40 วินาทีในการจัดวางแน่น เฟรมที่เหยียบคนที่ยืนอยู่ลดจาก 1,701 เหลือ 1,695 เท่านั้น"}},{"@type":"Question","name":"ควรให้ต่อคิวในร้านหรือนอกร้าน?","acceptedAnswer":{"@type":"Answer","text":"เกมเปิดร้านเน็ตให้ต่อคิวแถวเดียวนอกประตูเท่านั้น ถ้าต่อในร้านคิวจะขวางทางเดินและทำให้การหาเส้นทางพัง คนที่เข้ามาแล้วจะไม่ต่อคิวแต่ตัดขั้นตอนนั้นทิ้ง และการยอมแพ้จะถูกนับแล้วแสดงบนหน้าจอ"}},{"@type":"Question","name":"ถ้าลูกค้าหาที่นั่งไม่ได้แล้วออกไป ลบทิ้งเลยได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ควรลบ ต้องแสดงท่ายอมแพ้และป๊อปอัป แล้วนับแยกตามประเภท ผู้เล่นจึงจะอ่านจุดคอขวดออกและตัดสินใจ «ซื้อเครื่องเพิ่มอีกเครื่อง» ได้"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกการพัฒนา · เบื้องหลัง</p>
+    <h1>เราทำตรรกะลูกค้าในเกมเปิดร้านเน็ตแบบนี้</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="ภาพหน้าจอเกมเปิดร้านเน็ต (PC방 키우기) ในร้านเน็ตแบบไอโซเมทริก ทุกที่นั่ง PC มีลูกค้านั่งอยู่ และบนทางเท้าหน้าร้านมีลูกค้าเดินหลายคน เหนือที่นั่งด้านขวามีป้าย «คิว 3»" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">ตรรกะพฤติกรรมลูกค้าในเกมไทคูน (มักเรียกว่า AI ลูกค้า) ทำงานได้ถ้ายึดสามข้อ ที่นั่งนับเป็นช่อง ไม่ใช่ตัวเลข หนึ่งช่องหนึ่งคน ช่องที่มีคนยืนไม่ต้องปิดกั้น แค่บวกต้นทุน 12 ในการหาเส้นทางแบบ A* และคิวต่อเป็นแถวเดียวนอกประตูเท่านั้น บทความนี้สรุปเหตุผลที่เลือกสามข้อนี้ในเกมเปิดร้านเน็ต (PC방 키우기) ตัวเลขที่วัดจริง และเรื่องที่ยังแก้ไม่ได้</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">ลูกค้าแต่ละคนถือแผนการเดินทางมา</a></li><li><a href="#s2">ที่นั่งคือช่อง ไม่ใช่ตัวเลข</a></li><li><a href="#s3">ช่องที่มีคนยืนให้บวกต้นทุน อย่าปิดกั้น</a></li><li><a href="#s4">เส้นทางไม่ได้วางครั้งเดียวแล้วจบ</a></li><li><a href="#s5">คิวคือแถวเดียวนอกประตู</a></li><li><a href="#s6">ลูกค้าในคิวหันไปทางเดียวกันทุกคน</a></li><li><a href="#s7">ร้านเน็ต: 80% ของรายได้มาหลังจากนั่งแล้ว</a></li><li><a href="#s8">เรื่องที่ยังแก้ไม่ได้</a></li></ol></nav>
+    <section id="s1"><h2>ลูกค้าแต่ละคนถือแผนการเดินทางมา</h2>
+<p>ลูกค้าหนึ่งคนตอนเกิดจะสุ่มแผนการเดินทาง (itinerary) หนึ่งแผน ขั้นหนึ่งของแผนคือ «ใช้เฟอร์นิเจอร์ประเภทหนึ่งหนึ่งครั้ง» เพราะเขียนเป็นชื่อประเภท ต่อให้มีเฟอร์นิเจอร์ประเภทเดียวกันกี่ตัว ลูกค้าก็เลือกมาหนึ่งตัวได้</p>
+<p>ร้านเน็ตมีแผนแค่ขั้นเดียว นั่งแล้วก็กลับ จึงเป็นกรณีที่เรียบง่ายที่สุดของแผนการเดินทาง เกมที่ไม่ได้กำหนดแผนไว้จะได้แผนขั้นเดียวอัตโนมัติว่า «ใช้เฟอร์นิเจอร์อะไรก็ได้หนึ่งอย่างแล้วออกไป»</p>
+<p>แผนมีตัวกันพลาดอยู่หนึ่งอย่าง ถ้าในร้านไม่มีเฟอร์นิเจอร์ของขั้นถัดไปเลย ก็ข้ามขั้นนั้น ลูกค้าจึงไม่ยืนค้างรอเฟอร์นิเจอร์ที่ยังไม่ได้สร้าง</p>
+</section>
+<section id="s2"><h2>ที่นั่งคือช่อง ไม่ใช่ตัวเลข</h2>
+<p>ตอนแรกการกำหนดความจุของเฟอร์นิเจอร์เป็นตัวเลขดูง่ายกว่า แต่ถ้าความจุเป็นตัวเลข จะเกิดเรื่อง 8 คนมายืนซ้อนที่พิกัดเดียวกัน เพราะตัวเลขรู้แค่ว่ามีคนใช้กี่คน ไม่รู้ว่าใครยืนที่ไหน</p>
+<p>เราจึงกำหนดช่องใช้งาน (interactionCell) ให้เฟอร์นิเจอร์แต่ละตัว และให้แต่ละช่องเข้าได้คนเดียว ลูกค้าจองช่องนั้นตอนเลือกเฟอร์นิเจอร์เป้าหมาย คนอื่นจองช่องนั้นไม่ได้ ไม่ต้องเขียนความจุแยกต่างหาก และการซ้อนกันไม่เกิดขึ้นตามโครงสร้าง</p>
+<p>ตอนเลือกเป้าหมาย เราไม่สุ่มตัวเลือกให้เท่ากันด้วย ถ้าสุ่มเท่ากัน ตู้ขายของที่อยู่ข้างที่นั่งกับตู้ที่อยู่อีกฝั่งห้องจะขายได้เท่ากัน วางตรงไหนรายได้ก็เท่ากัน ต้องมีน้ำหนักให้การจัดวางส่งผลกับรายได้</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="ภาพหน้าจอเกมเปิดร้านเน็ต (PC방 키우기) เก้าอี้หน้าโต๊ะ PC ทุกตัวมีลูกค้านั่งตัวละหนึ่งคน ตรงกลางมีเคาน์เตอร์และกระถางต้นไม้" loading="lazy" decoding="async"><figcaption>PC หนึ่งเครื่องหนึ่งช่อง หนึ่งช่องลูกค้าหนึ่งคน</figcaption></figure></section>
+<section id="s3"><h2>ช่องที่มีคนยืนให้บวกต้นทุน อย่าปิดกั้น</h2>
+<p>เส้นทางเป็น A* บนตาราง 4 ทิศ เกมถามแยกกันว่ายืนในช่องนี้ได้ไหม ข้ามผ่านได้ไหม ระหว่างสองช่องผ่านได้ไหม และสุดท้ายคือต้นทุนที่ผ่านช่อง ช่องที่มีลูกค้านั่งอยู่มีต้นทุนนี้เป็น 12</p>
+<p>ทำให้คนเป็นกำแพงจะง่ายกว่า แต่การตรวจการจัดวางของเกมนี้รับประกันว่าห้องไม่ขาดตอนโดยตั้งสมมติฐานว่า «ช่องหน้าเฟอร์นิเจอร์ก็ผ่านได้» พอคนกลายเป็นกำแพง สมมติฐานนั้นพัง และในห้องแคบลูกค้าจะไม่ได้รับบริการเลย รายได้วันนั้นเป็น 0</p>
+<p>ถ้าเป็นต้นทุน เมื่อมีทางอ้อมลูกค้าจะอ้อมเสมอ และเบียดผ่านเฉพาะตอนที่ไม่มีทางจริง ๆ ฉากเบียดผ่านดูแปลก แต่เป็นสัญญาณจากการจัดวางที่ไม่เหลือทางเดิน ไม่ใช่บั๊กของเอนจิน</p>
+</section>
+<section id="s4"><h2>เส้นทางไม่ได้วางครั้งเดียวแล้วจบ</h2>
+<p>ผมคิดว่าใส่ต้นทุน 12 แล้วจะจบ แต่แทบไม่มีอะไรดีขึ้น สาเหตุคือเส้นทางเก่า บนเส้นทางที่คำนวณตอนออกเดินทาง ถ้าหลังจากนั้นมีคนมานั่ง ต่อให้มีต้นทุนอยู่ ลูกค้าก็ยังเดินตามเส้นทางเก่า</p>
+<p>ดังนั้นแผนที่คนจะถูกเติมใหม่ทั้งหมดทุกติ๊ก ถ้าจัดการแบบเพิ่มทีละส่วน แค่ลืมลบในเส้นทางเดียว ผีก็จะปิดทางเดินตลอดไป ลูกค้าที่กำลังเดินจะดูช่องถัดไปใหม่ทุกติ๊ก ถ้าถูกขวางก็คำนวณเส้นทางใหม่ตรงนั้น ลูกค้าหนึ่งคนคำนวณหนึ่งครั้งทุก 0.2 วินาที</p>
+<p>ถ้าเส้นทางที่คำนวณใหม่ยังผ่านช่องนั้นอยู่ ก็เดินต่อไป ถ้าสั่งให้หยุด จะรอกันจนค้างทั้งคู่</p>
+<p>เราจำลองการจัดวางแน่น ๆ 40 วินาทีแล้วนับเฟรมที่ «เหยียบคนที่ยืนอยู่» ก่อนใส่ต้นทุนได้ 1,701 พอใส่แค่ต้นทุนโดยไม่คำนวณเส้นทางใหม่ได้ 1,695 แทบไม่ต่างกัน ใส่แค่ต้นทุนโดยไม่คำนวณใหม่แทบไม่แก้อะไรเลย สาเหตุหลักคือเส้นทางเก่า</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="ภาพหน้าจอเกมเปิดร้านเน็ต (PC방 키우기) ลูกค้าสี่คนเดินมาตามทางเท้าหน้าร้าน ส่วนในร้านด้านบนมีลูกค้านั่งที่ PC" loading="lazy" decoding="async"><figcaption>ลูกค้าที่กำลังเดินจะเช็กช่องถัดไปใหม่ทุกติ๊ก</figcaption></figure></section>
+<section id="s5"><h2>คิวคือแถวเดียวนอกประตู</h2>
+<p>ถ้าที่นั่งเต็มแล้วให้ลูกค้ายืนรอในร้าน คิวจะขวางทางเดินและทำให้การหาเส้นทางพัง เราจึงให้คิวอยู่นอกประตูแถวเดียวเสมอ ลูกค้าที่ยังไม่เข้าร้านยืนในคิวนอกประตู ส่วนคนที่เข้ามาแล้วจะไม่ต่อคิว แต่ยอมตัดขั้นตอนนั้นแล้วออกไป การถามว่ามีที่นั่งไหมถามที่ช่องลานหน้าประตู ก่อนหน้านี้ถามที่ช่องทางเข้า พอเต็มลูกค้าเลยเปิดประตูเข้ามาแล้วเดินกลับออกไป</p>
+<p>คิวก็ยาวไม่จำกัดไม่ได้ ความจุของคิวคือค่าที่น้อยกว่าระหว่างจำนวนช่องที่ยืนได้กับเพดานที่เกมกำหนด (ค่าเริ่มต้น 4) ถ้าเกินความจุลูกค้าจะไม่ยืนแต่กลับไป และถ้าระหว่างเดินมารู้ว่าคิวเต็ม ก็จะหันกลับที่ทางเท้าข้างท้ายคิว</p>
+<p>ที่สำคัญคืออย่าลบลูกค้าที่รับไม่ได้ไปเงียบ ๆ ลูกค้าที่ยอมแพ้จะทำท่ายอมแพ้ ขึ้นป๊อปอัป และเกมจะนับว่า «เสียลูกค้าไปที่ประเภทไหน เพราะอะไร» ถ้าจุดคอขวดไม่ปรากฏบนหน้าจอ ผู้เล่นก็ไม่มีเหตุให้คิดว่า «ซื้อเครื่องเพิ่มอีกเครื่อง» เพราะแม้แต่การที่ลูกค้าหลุดไปก็มองไม่เห็น</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="ภาพหน้าจอเกมเปิดร้านเน็ต (PC방 키우기) ลูกค้านั่งที่ PC และเหนือที่นั่งด้านขวามีป้าย «คิว 3» ทางซ้ายเห็นป๊อปอัปรายได้ +2,135 วอน" loading="lazy" decoding="async"><figcaption>ป้าย «คิว 3» ทำให้อ่านจากหน้าจอได้ทันทีว่าคอขวดอยู่ตรงไหน</figcaption></figure></section>
+<section id="s6"><h2>ลูกค้าในคิวหันไปทางเดียวกันทุกคน</h2>
+<p>หลังจัดคิวเสร็จ เราได้รับรายงานจากผู้เล่น (19 กันยายน 2026) ว่า «ตอนรอคิว อยากให้ทุกคนยืนหันไปทางเดียวกัน» พอตรวจดูพบว่าทิศทางถูกกำหนดเฉพาะตอนเดิน คนที่ขึ้นมาจากทางเท้าหันไปทางกำแพง คนที่เดินไปท้ายคิวหันไปทางท้ายคิว คนที่ขยับขึ้นมาหนึ่งช่องหันไปทางหัวคิว ในคิวเดียวจึงมีสามทิศปนกัน</p>
+<p>วิธีแก้ง่ายมาก เมื่อลูกค้าถึงตำแหน่งในคิว ให้ลูกค้าทุกคนในคิวหันไปทางหัวคิว คิวนอกประตูเป็นแถวตรงตามแนวกำแพง ทุกคนจึงหันทางเดียวกัน กฎที่ได้จากเรื่องนี้คือ ทุกที่ที่ลูกค้าหยุดต้องกำหนดทิศที่หันไว้ด้วย</p>
+<p>ในคิวเรายังให้ตัวนิ่ง เคยลองให้โยกตัวเพื่อแสดงความร้อนใจ แล้วได้ความเห็นสองครั้งว่า «ดูลอยอยู่», «สั่นอยู่คนเดียว» ตอนนี้เลยเหลือแค่ท่าหายใจ</p>
+</section>
+<section id="s7"><h2>ร้านเน็ต: 80% ของรายได้มาหลังจากนั่งแล้ว</h2>
+<p>ในแผนการเดินทาง ร้านเน็ตมีขั้นเดียว แต่รายได้ไม่ได้จบแค่นั้น ขั้นหนึ่งของแผนคือ «ที่แวะครั้งเดียว» จึงทำซ้ำไม่ได้ ส่วนการที่ลูกค้าที่นั่งอยู่สั่งอะไรเพิ่มเป็นครั้งคราวไม่ได้เกิดในแผน แต่เกิดในฮุกตอนกำลังใช้งาน ออเดอร์เพิ่มเหล่านี้คือ 80% ของรายได้ต่อวัน</p>
+<p>ตรรกะลูกค้าจึงไม่ใช่แค่เรื่องเติมที่นั่งให้เต็มเร็วแค่ไหน แต่เกี่ยวกับว่าลูกค้าที่นั่งอยู่นั่งนานแค่ไหนก่อนสั่ง ด้วยเหตุผลเดียวกัน เกมจึงมีตัวเลือกไม่ให้ลูกค้าลุกจากที่นั่งถ้าของที่สั่งยังไม่มา แม้หมดเวลาพักแล้วก็ตาม</p>
+</section>
+<section id="s8"><h2>เรื่องที่ยังแก้ไม่ได้</h2>
+<p>ฉากที่ลูกค้าที่กำลังเดินซ้อนกันชั่วครู่ยังมีอยู่ การหาเส้นทางมองคนเป็นต้นทุนเฉพาะคนที่จับจองที่และหยุดแล้ว (ลูกค้าที่กำลังใช้งานและคนด้านในของคิว) ส่วนคนที่กำลังเดินไม่ถูกใส่ในแผนที่ ถ้าให้คนเดินหลบกันเอง ในทางแคบจะเกิดการติดขัดแบบเดินสวนกันแล้วต่างฝ่ายต่างหลบ อีกไม่กี่เฟรมพวกเขาก็ออกจากช่องนั้นอยู่ดี</p>
+<p>ดังนั้นเฟรมที่ลูกค้าที่กำลังเดินซ้อนกันจึงถือว่าปกติตามกฎ ถ้าจะแก้ให้ถูกต้องต้องออกแบบลำดับการให้ทาง ไม่ใช่การหลบข้าง ซึ่งอยู่นอกขอบเขตตอนนี้</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ทำ AI ลูกค้าในเกมไทคูนอย่างไร?</summary><p>ให้ลูกค้าแต่ละคนถือแผนการเดินทาง จองช่องใช้งานของเฟอร์นิเจอร์เป้าหมายทีละคน และหาเส้นทางด้วย A* ช่องที่มีคนยืนไม่ปิดกั้นแต่บวกต้นทุนสูง (ในเกมนี้คือ 12) และถ้าไม่มีที่นั่งให้ต่อคิวแถวเดียวนอกประตู</p></details><details><summary>จะทำให้ NPC ในเกมไทคูนไม่ขวางกันได้อย่างไร?</summary><p>อย่าทำให้คนที่ยืนเป็นกำแพง ให้ใส่เป็นต้นทุน แล้วคำนวณเส้นทางใหม่ตามต้นทุนนั้นต่อเนื่อง ใส่แค่ต้นทุนโดยไม่คำนวณใหม่แทบไม่มีผล จากการวัด 40 วินาทีในการจัดวางแน่น เฟรมที่เหยียบคนที่ยืนอยู่ลดจาก 1,701 เหลือ 1,695 เท่านั้น</p></details><details><summary>ควรให้ต่อคิวในร้านหรือนอกร้าน?</summary><p>เกมเปิดร้านเน็ตให้ต่อคิวแถวเดียวนอกประตูเท่านั้น ถ้าต่อในร้านคิวจะขวางทางเดินและทำให้การหาเส้นทางพัง คนที่เข้ามาแล้วจะไม่ต่อคิวแต่ตัดขั้นตอนนั้นทิ้ง และการยอมแพ้จะถูกนับแล้วแสดงบนหน้าจอ</p></details><details><summary>ถ้าลูกค้าหาที่นั่งไม่ได้แล้วออกไป ลบทิ้งเลยได้ไหม?</summary><p>ไม่ควรลบ ต้องแสดงท่ายอมแพ้และป๊อปอัป แล้วนับแยกตามประเภท ผู้เล่นจึงจะอ่านจุดคอขวดออกและตัดสินใจ «ซื้อเครื่องเพิ่มอีกเครื่อง» ได้</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="เปิดร้านเน็ต" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">เกมไอเดิล</p><p class="gb-title"><a href="/th/games/pcbangalba/">เปิดร้านเน็ต</a></p><p class="gb-hook">ถ้าอยากเห็นลูกค้าต่อคิวด้วยตาตัวเอง ลองขยายร้านเน็ตในซอยสักร้านบนมือถือดูสิ</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dth" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">เล่นบนเบราว์เซอร์</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

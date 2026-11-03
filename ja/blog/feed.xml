@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ネットカフェ育成のお客AI、こう作りました</title>
+    <link>https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</guid>
+    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
+    <description>個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。</description>
+  </item>
+  <item>
     <title>宇宙では、ろうそくの炎が丸い</title>
     <link>https://dumbgamelab.com/ja/blog/space-candle/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-candle/</guid>
@@ -227,14 +234,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>ハダカデバネズミは37年以上生き、年をとっても死ぬ確率が上がらない。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ニュートンは偽造犯を捕まえる探偵だった</title>
-    <link>https://dumbgamelab.com/ja/blog/newton-mint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/newton-mint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ニュートンは晩年の30年を造幣局で過ごし、変装までして偽造犯28人を処罰に追い込んだ。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

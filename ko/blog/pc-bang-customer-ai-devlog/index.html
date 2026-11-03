@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>타이쿤 게임 손님 AI 만드는 법: 길찾기·줄서기·자리 배정 개발 일지</title>
+<meta name="description" content="1인 개발 PC방 키우기의 손님 행동 로직. A*에 사람이 서 있는 값 12, 한 칸 한 명, 문 밖 한 줄 대기, 못 받은 손님을 세는 이유와 실측 숫자를 적었습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="타이쿤 게임 손님 AI 만드는 법: 길찾기·줄서기·자리 배정 개발 일지">
+<meta property="og:description" content="1인 개발 PC방 키우기의 손님 행동 로직. A*에 사람이 서 있는 값 12, 한 칸 한 명, 문 밖 한 줄 대기, 못 받은 손님을 세는 이유와 실측 숫자를 적었습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"PC방 키우기 손님 로직, 이렇게 만들었습니다","description":"1인 개발 PC방 키우기의 손님 행동 로직. A*에 사람이 서 있는 값 12, 한 칸 한 명, 문 밖 한 줄 대기, 못 받은 손님을 세는 이유와 실측 숫자를 적었습니다.","inLanguage":"ko","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"PC Cafe Tycoon","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"PC방 키우기 손님 로직, 이렇게 만들었습니다","item":"https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"타이쿤 게임 손님 AI는 어떻게 만드나요?","acceptedAnswer":{"@type":"Answer","text":"손님마다 여정을 들게 하고, 목표 기물의 이용 칸을 한 명씩 잡고, 길은 A*로 찾습니다. 사람이 서 있는 칸은 막지 않고 비용을 높게(여기서는 12) 얹으며, 자리가 없으면 문 밖 한 줄에 세우는 구성입니다."}},{"@type":"Question","name":"타이쿤 게임에서 NPC가 서로 막히지 않게 하려면?","acceptedAnswer":{"@type":"Answer","text":"서 있는 사람을 벽으로 만들지 말고 값으로 넣고, 그 값을 반영해 길을 계속 다시 깔아야 합니다. 값만 넣고 재계산을 안 하면 효과가 거의 없었습니다. 빽빽한 배치 40초 실측에서 서 있는 사람을 밟은 프레임이 1,701에서 1,695로 줄어든 게 전부였습니다."}},{"@type":"Question","name":"대기줄은 가게 안과 밖 중 어디에 세우는 게 좋나요?","acceptedAnswer":{"@type":"Answer","text":"PC방 키우기는 문 밖 한 줄로만 세웁니다. 안에 세우면 통로를 막고 길찾기가 꼬입니다. 이미 들어온 손님은 줄을 서지 않고 그 단계를 포기하게 하고, 포기는 집계해서 화면에 보여 줍니다."}},{"@type":"Question","name":"손님이 자리를 못 잡고 나가면 그냥 없애도 되나요?","acceptedAnswer":{"@type":"Answer","text":"없애면 안 됩니다. 포기 모션과 팝업을 보이고 종류별로 집계해야 플레이어가 병목을 읽고 «한 대 더 놓자»고 판단할 수 있습니다."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">개발 일지 · 비하인드</p>
+    <h1>PC방 키우기 손님 로직, 이렇게 만들었습니다</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="PC방 키우기 게임 화면. 아이소메트릭 PC방 안에 PC 자리마다 손님이 앉아 있고, 가게 앞 보도에는 손님 여러 명이 걷고 있다. 오른쪽 자리 위에 «대기 3» 딱지가 떠 있다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">타이쿤의 손님 행동 로직(흔히 손님 AI라 부릅니다)은 세 가지만 지키면 돌아갑니다. 자리는 숫자가 아니라 칸 하나에 한 명으로 잡고, 사람이 서 있는 칸은 막지 말고 비용 12를 얹은 A* 길찾기로 가고, 대기는 문 밖 한 줄로만 세웁니다. PC방 키우기에서 이 셋을 고른 이유와 실측 숫자, 아직 못 푼 것을 정리했습니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">손님은 여정을 들고 옵니다</a></li><li><a href="#s2">자리는 숫자가 아니라 칸입니다</a></li><li><a href="#s3">사람이 서 있는 칸은 막지 말고 값을 얹습니다</a></li><li><a href="#s4">길은 한 번 깔고 끝이 아닙니다</a></li><li><a href="#s5">대기는 문 밖 한 줄입니다</a></li><li><a href="#s6">줄에 선 손님은 전원 같은 쪽을 봅니다</a></li><li><a href="#s7">PC방은 앉은 뒤가 매출의 8할입니다</a></li><li><a href="#s8">아직 못 푼 것</a></li></ol></nav>
+    <section id="s1"><h2>손님은 여정을 들고 옵니다</h2>
+<p>손님 한 명은 스폰될 때 여정(itinerary)을 하나 뽑습니다. 여정의 한 칸은 «어떤 종류의 기물을 한 번 쓴다»입니다. 종류 이름으로 적기 때문에 같은 종류 기물이 몇 대든 손님은 그중 하나를 고릅니다.</p>
+<p>PC방은 여정이 1칸입니다. 자리에 앉았다 나가면 끝이라 여정으로서는 가장 단순한 축퇴 케이스입니다. 여정을 아예 안 준 게임은 «아무 기물이나 하나 쓰고 나간다»는 한 칸짜리 여정이 자동으로 붙습니다.</p>
+<p>여정에는 안전장치가 하나 있습니다. 다음 칸의 기물이 가게에 하나도 없으면 그 칸을 건너뜁니다. 아직 안 지은 기물을 기다리며 손님이 그 자리에서 굳는 일이 없습니다.</p>
+</section>
+<section id="s2"><h2>자리는 숫자가 아니라 칸입니다</h2>
+<p>처음엔 기물마다 정원을 숫자로 두는 쪽이 쉬워 보입니다. 그런데 정원을 숫자로 들면 8명이 같은 좌표에 겹쳐 서는 일이 생깁니다. 숫자는 몇 명이 쓰는지만 알고 누가 어디에 서는지는 모르기 때문입니다.</p>
+<p>그래서 기물마다 이용 칸(interactionCell)을 정하고, 한 칸에는 한 명만 들어가게 했습니다. 손님이 목표 기물을 고르는 순간 그 칸을 잡아 두고, 다른 손님은 그 칸을 못 잡습니다. 정원은 따로 적을 필요가 없어지고 겹침이 구조적으로 안 생깁니다.</p>
+<p>목표를 고를 때 후보를 균등하게 뽑지도 않습니다. 균등하게 뽑으면 자리 바로 옆 자판기와 방 반대편 자판기가 똑같이 팔려서, 어디에 놓든 매출이 같아집니다. 가중치를 줘야 배치가 매출에 영향을 줍니다.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="PC방 키우기 게임 화면. PC 책상 앞 의자마다 손님이 한 명씩 앉아 있고, 가운데 카운터와 화분이 보인다" loading="lazy" decoding="async"><figcaption>PC 한 대에 칸 하나, 칸 하나에 손님 한 명입니다.</figcaption></figure></section>
+<section id="s3"><h2>사람이 서 있는 칸은 막지 말고 값을 얹습니다</h2>
+<p>길은 4방향 격자 A*입니다. 설 수 있는 칸인지, 가로지를 수 있는 칸인지, 두 칸 사이를 지날 수 있는지를 따로 묻고, 마지막으로 칸을 지나는 값을 묻습니다. 앉은 손님이 있는 칸은 이 값이 12입니다.</p>
+<p>사람을 벽으로 만들면 더 간단합니다. 하지만 이 게임의 배치 검사는 «기물 앞칸도 지날 수 있다»는 전제로 방이 끊기지 않는다고 보장합니다. 사람이 벽이 되는 순간 그 전제가 깨져서, 좁은 방에서는 손님이 통째로 굶고 그날 매출이 0이 됩니다.</p>
+<p>값으로 두면 우회로가 있을 때는 무조건 돌아가고, 정말 길이 없을 때만 비집고 지나갑니다. 비집고 지나가는 장면은 이상해 보이지만 통로를 안 남긴 배치가 보내는 신호이고, 엔진 버그는 아닙니다.</p>
+</section>
+<section id="s4"><h2>길은 한 번 깔고 끝이 아닙니다</h2>
+<p>값 12만 넣으면 끝일 줄 알았는데 거의 안 고쳐졌습니다. 길이 낡는 게 원인이었습니다. 출발할 때 계산한 길 위에 그 뒤로 사람이 앉으면, 값은 있어도 손님은 옛 길을 그대로 걷습니다.</p>
+<p>그래서 사람 지도는 매 틱 통째로 다시 채웁니다. 증분으로 관리하면 한 경로에서 지우기를 빠뜨려서 유령이 통로를 영원히 막기 때문입니다. 걷는 손님은 다음 한 칸을 매 틱 다시 보고, 막혔으면 그 자리에서 길을 다시 깝니다. 한 손님당 0.2초에 한 번입니다.</p>
+<p>다시 깐 길이 여전히 그 칸을 지나면 그냥 갑니다. 멈춰 세우면 서로 기다리다 굳기 때문입니다.</p>
+<p>빽빽한 배치에서 40초를 돌려 «서 있는 사람을 밟은 프레임»을 셌습니다. 값을 넣기 전 1,701이던 것이 값만 넣고 재계산을 안 한 상태에서는 1,695로 거의 그대로였습니다. 값만 넣고 재계산을 안 하면 거의 아무것도 안 고쳐집니다. 원인의 본체는 길이 낡는 것이었습니다.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="PC방 키우기 게임 화면. 가게 앞 보도를 손님 네 명이 걸어오고, 위쪽 가게 안에는 PC 자리에 손님이 앉아 있다" loading="lazy" decoding="async"><figcaption>걷는 손님은 다음 한 칸을 매 틱 다시 확인합니다.</figcaption></figure></section>
+<section id="s5"><h2>대기는 문 밖 한 줄입니다</h2>
+<p>자리가 없을 때 손님을 가게 안에 세우면 줄이 통로를 막고 길찾기가 꼬입니다. 그래서 대기는 언제나 문 밖 한 줄입니다. 아직 안 들어온 손님은 문 밖 줄에 서고, 이미 들어온 손님은 줄을 서지 않고 그 단계를 포기하고 나갑니다. 자리가 있는지는 문 앞 마당 칸에서 묻습니다. 예전에는 출입구 칸에서 물어서, 만석이면 손님이 문을 열고 들어섰다가 되돌아 나왔습니다.</p>
+<p>줄도 무한정 서지 못합니다. 줄 정원은 설 수 있는 칸 수와 게임이 정한 상한(기본 4) 중 작은 쪽입니다. 정원을 넘기면 서지 않고 돌아가고, 줄이 꽉 찬 걸 걸어오는 동안 알면 꼬리 옆 보도에서 돌아섭니다.</p>
+<p>중요한 건 못 받은 손님을 조용히 지우지 않는 것입니다. 포기하는 손님은 포기 모션을 하고 팝업을 띄우고, 게임에 «어떤 종류에서, 무슨 이유로 놓쳤나»가 집계됩니다. 병목이 화면에 안 보이면 플레이어가 «한 대 더 놓자»고 생각할 계기가 없습니다. 이탈이 일어났다는 사실부터 안 보이니까요.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="PC방 키우기 게임 화면. PC 자리에 손님이 앉아 있고, 오른쪽 자리 위에 «대기 3» 딱지가 떠 있다. 왼쪽에는 +2,135원 매출 팝업이 보인다" loading="lazy" decoding="async"><figcaption>«대기 3» 딱지는 병목이 어디 있는지 화면에서 바로 읽게 해 줍니다.</figcaption></figure></section>
+<section id="s6"><h2>줄에 선 손님은 전원 같은 쪽을 봅니다</h2>
+<p>줄을 세우고 나니 플레이어 제보가 왔습니다(2026년 9월 19일). «대기할 때 모두 한 방향을 보고 서 있었으면 좋겠다». 확인해 보니 방향이 걸을 때만 정해지고 있었습니다. 보도에서 올라온 손님은 벽을, 꼬리로 걸어간 손님은 꼬리를, 한 칸 당겨진 손님은 줄 머리를 봐서 한 줄에 세 방향이 섞여 있었습니다.</p>
+<p>고친 방법은 단순합니다. 줄 자리에 닿았을 때 줄에 선 손님 전원이 줄 머리 쪽을 보게 했습니다. 밖 줄은 벽을 따라 곧게 뻗은 한 줄이라 모두 같은 방향입니다. 멈춰 선 자리마다 볼 쪽을 정해 줘야 한다는 게 이 일에서 얻은 규칙입니다.</p>
+<p>줄에서는 몸을 움직이지 않게 했습니다. 몸을 흔들어 초조함을 표현해 봤더니 «둥둥 뜬다», «혼자 떨고 있다»는 반응이 두 번 왔고, 지금은 숨쉬기 동작만 깔려 있습니다.</p>
+</section>
+<section id="s7"><h2>PC방은 앉은 뒤가 매출의 8할입니다</h2>
+<p>여정에서 PC방은 한 칸이지만 매출은 거기서 끝나지 않습니다. 여정의 한 칸은 «한 번 들르는 곳»이라 반복할 수 없고, 앉아 있는 손님이 이따금 뭔가 더 시키는 건 여정이 아니라 사용 중 훅에서 일어납니다. 이 주문이 하루 매출의 8할입니다.</p>
+<p>그래서 손님 로직은 자리를 얼마나 빨리 채우느냐만이 아니라, 앉은 손님이 얼마나 오래 앉아 있다가 주문하느냐와 맞물려 있습니다. 시켜 놓은 게 안 나왔으면 체류 시간이 끝나도 자리를 뜨지 않게 하는 옵션도 같은 이유로 있습니다.</p>
+</section>
+<section id="s8"><h2>아직 못 푼 것</h2>
+<p>걷는 손님끼리 잠깐 겹치는 장면은 아직 남아 있습니다. 길찾기가 사람을 값으로 보는 건 자리를 잡고 멈춘 사람(사용 중인 손님과 안쪽 줄)뿐이고, 걷는 사람은 지도에 넣지 않습니다. 걷는 사람끼리 서로 피하게 만들면 좁은 통로에서 마주 보고 도는 교착이 생기기 때문입니다. 어차피 몇 프레임 뒤면 그 칸을 뜹니다.</p>
+<p>그래서 걷는 손님끼리 겹치는 프레임은 규칙상 정상으로 둡니다. 제대로 고치려면 비켜서기가 아니라 양보 순서를 설계해야 하는데, 그건 지금 범위 밖입니다.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>타이쿤 게임 손님 AI는 어떻게 만드나요?</summary><p>손님마다 여정을 들게 하고, 목표 기물의 이용 칸을 한 명씩 잡고, 길은 A*로 찾습니다. 사람이 서 있는 칸은 막지 않고 비용을 높게(여기서는 12) 얹으며, 자리가 없으면 문 밖 한 줄에 세우는 구성입니다.</p></details><details><summary>타이쿤 게임에서 NPC가 서로 막히지 않게 하려면?</summary><p>서 있는 사람을 벽으로 만들지 말고 값으로 넣고, 그 값을 반영해 길을 계속 다시 깔아야 합니다. 값만 넣고 재계산을 안 하면 효과가 거의 없었습니다. 빽빽한 배치 40초 실측에서 서 있는 사람을 밟은 프레임이 1,701에서 1,695로 줄어든 게 전부였습니다.</p></details><details><summary>대기줄은 가게 안과 밖 중 어디에 세우는 게 좋나요?</summary><p>PC방 키우기는 문 밖 한 줄로만 세웁니다. 안에 세우면 통로를 막고 길찾기가 꼬입니다. 이미 들어온 손님은 줄을 서지 않고 그 단계를 포기하게 하고, 포기는 집계해서 화면에 보여 줍니다.</p></details><details><summary>손님이 자리를 못 잡고 나가면 그냥 없애도 되나요?</summary><p>없애면 안 됩니다. 포기 모션과 팝업을 보이고 종류별로 집계해야 플레이어가 병목을 읽고 «한 대 더 놓자»고 판단할 수 있습니다.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="PC방 키우기" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">방치형 타이쿤</p><p class="gb-title"><a href="/ko/games/pcbangalba/">PC방 키우기</a></p><p class="gb-hook">손님이 줄 서는 모습을 직접 보고 싶다면, 골목 PC방 하나를 폰으로 키워 보세요.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dko" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">웹에서 하기</a></div></div>
+</aside>
+    
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>PC방 경영 게임 2026, 아이폰까지 포함한 17종</b><span class="pc-desc">PC방·인터넷 카페 경영 게임을 아이폰, 안드로이드, Steam으로 나눠 17종 골랐습니다. 스토어 페이지에서 직접 읽은 가격, 평점, 오프라인 문구와 우리 게임의 약점까지 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

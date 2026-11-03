@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>How We Built the Customer AI in PC Cafe Tycoon</title>
+    <link>https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</guid>
+    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
+    <description>How the customer AI works in a solo-dev PC bang tycoon game. A* with a cost of 12 for tiles where a person stands, one customer per tile, a single queue outside the door, and why we count the customers we turn away, with measured numbers.</description>
+  </item>
+  <item>
     <title>In Space, Candle Flames Are Round</title>
     <link>https://dumbgamelab.com/en/blog/space-candle/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-candle/</guid>
@@ -224,14 +231,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>The barcode came from Morse code drawn in sand, and the first thing scanned was gum.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Babies Are Born Without Kneecaps</title>
-    <link>https://dumbgamelab.com/en/blog/baby-kneecap/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/baby-kneecap/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>A baby&#39;s kneecaps are cartilage and start turning into bone around age three. The number of bones actually goes down as you grow.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

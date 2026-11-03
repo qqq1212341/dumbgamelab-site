@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>《網咖養成記》的顧客邏輯，我們是這樣做的</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/</guid>
+    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
+    <description>獨立開發《網咖養成記》的顧客行為邏輯。A* 尋路給「有人站著的格子」加權 12、一格只站一個人、排隊只排在門外一列，還有為什麼要統計沒接到的顧客，附上實測數字。</description>
+  </item>
+  <item>
     <title>韓國網咖，外國人怎麼用：首爾 PC bang 教學</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/pc-bang-seoul-for-foreigners/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/pc-bang-seoul-for-foreigners/</guid>

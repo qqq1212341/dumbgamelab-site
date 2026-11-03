@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cách làm AI khách hàng cho game quản lý: tìm đường, xếp hàng, chia chỗ ngồi (nhật ký dev)</title>
+<meta name="description" content="Logic hành vi khách trong Nuôi Quán Net (PC방 키우기), game một người làm. A* tính ô có người đứng là 12, mỗi ô một người, xếp hàng một dòng ngoài cửa, vì sao phải đếm khách không phục vụ được, kèm số đo thực tế.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cách làm AI khách hàng cho game quản lý: tìm đường, xếp hàng, chia chỗ ngồi (nhật ký dev)">
+<meta property="og:description" content="Logic hành vi khách trong Nuôi Quán Net (PC방 키우기), game một người làm. A* tính ô có người đứng là 12, mỗi ô một người, xếp hàng một dòng ngoài cửa, vì sao phải đếm khách không phục vụ được, kèm số đo thực tế.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Chúng tôi làm logic khách hàng trong Nuôi Quán Net như thế nào","description":"Logic hành vi khách trong Nuôi Quán Net (PC방 키우기), game một người làm. A* tính ô có người đứng là 12, mỗi ô một người, xếp hàng một dòng ngoài cửa, vì sao phải đếm khách không phục vụ được, kèm số đo thực tế.","inLanguage":"vi","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Nuôi Quán Net","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Chúng tôi làm logic khách hàng trong Nuôi Quán Net như thế nào","item":"https://dumbgamelab.com/vi/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Làm AI khách hàng cho game quản lý (tycoon) như thế nào?","acceptedAnswer":{"@type":"Answer","text":"Mỗi khách mang theo một hành trình, chốt ô sử dụng của vật dụng đích cho từng người, và tìm đường bằng A*. Ô có người đứng không bị chặn mà cộng thêm chi phí cao (ở đây là 12), và nếu hết chỗ thì xếp khách thành một dòng ngoài cửa."}},{"@type":"Question","name":"Làm sao để NPC trong game quản lý không chặn nhau?","acceptedAnswer":{"@type":"Answer","text":"Đừng biến người đứng thành tường mà đưa vào dưới dạng chi phí, rồi liên tục tính lại đường theo chi phí đó. Chỉ thêm chi phí mà không tính lại thì gần như vô hiệu. Trong lần đo 40 giây trên bố trí chật chội, số khung hình giẫm lên người đang đứng chỉ giảm từ 1.701 xuống 1.695."}},{"@type":"Question","name":"Nên xếp hàng chờ trong hay ngoài quán?","acceptedAnswer":{"@type":"Answer","text":"Nuôi Quán Net chỉ xếp một dòng ngoài cửa. Xếp trong quán thì hàng chặn lối đi và làm rối tìm đường. Khách đã vào rồi thì không xếp hàng mà bỏ bước đó, và việc bỏ cuộc được đếm lại rồi hiện trên màn hình."}},{"@type":"Question","name":"Khách không tìm được chỗ rồi ra về thì có thể xóa luôn không?","acceptedAnswer":{"@type":"Answer","text":"Không nên xóa. Phải cho thấy động tác bỏ cuộc và popup, rồi đếm theo từng loại, thì người chơi mới đọc được điểm nghẽn và quyết định «đặt thêm một máy»."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký dev · hậu trường</p>
+    <h1>Chúng tôi làm logic khách hàng trong Nuôi Quán Net như thế nào</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Trong quán net kiểu isometric, mỗi chỗ PC đều có khách ngồi, vỉa hè trước quán có nhiều khách đang đi bộ. Phía trên chỗ bên phải có nhãn «Chờ 3»" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Logic hành vi khách trong game quản lý (người ta hay gọi là AI khách hàng) chạy ổn nếu giữ ba điều. Chỗ ngồi tính theo ô chứ không theo con số, mỗi ô một người. Ô có người đứng không bị chặn mà chỉ cộng thêm chi phí 12 trong tìm đường A*. Hàng chờ luôn chỉ là một dòng ngoài cửa. Bài này ghi lại lý do chọn ba điều đó trong Nuôi Quán Net (PC방 키우기), các số đo thực tế và những chuyện chưa giải quyết xong.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Khách mang theo một hành trình</a></li><li><a href="#s2">Chỗ ngồi là ô, không phải con số</a></li><li><a href="#s3">Ô có người đứng thì cộng chi phí, đừng chặn</a></li><li><a href="#s4">Đường đi không phải trải một lần là xong</a></li><li><a href="#s5">Hàng chờ là một dòng ngoài cửa</a></li><li><a href="#s6">Khách trong hàng đều nhìn cùng một hướng</a></li><li><a href="#s7">Quán net: 80% doanh thu đến sau khi khách ngồi xuống</a></li><li><a href="#s8">Chưa giải quyết được</a></li></ol></nav>
+    <section id="s1"><h2>Khách mang theo một hành trình</h2>
+<p>Mỗi khách khi xuất hiện sẽ bốc một hành trình (itinerary). Một bước trong hành trình nghĩa là «dùng một lần một loại vật dụng». Vì bước được ghi theo tên loại, nên dù có bao nhiêu vật dụng cùng loại, khách vẫn chọn một cái trong số đó.</p>
+<p>Quán net chỉ có hành trình một bước. Khách ngồi vào chỗ rồi ra về là hết, nên đây là trường hợp đơn giản nhất của một hành trình. Game nào không khai báo hành trình thì tự động nhận hành trình một bước «dùng một vật dụng bất kỳ rồi ra về».</p>
+<p>Hành trình có một lớp an toàn. Nếu quán chưa có vật dụng nào cho bước kế tiếp thì bước đó bị bỏ qua. Nhờ vậy khách không đứng chết một chỗ để chờ món đồ chưa được xây.</p>
+</section>
+<section id="s2"><h2>Chỗ ngồi là ô, không phải con số</h2>
+<p>Lúc đầu, đặt sức chứa của mỗi vật dụng bằng một con số có vẻ dễ hơn. Nhưng nếu sức chứa là con số thì sẽ có chuyện 8 người chồng lên cùng một tọa độ. Con số chỉ biết có bao nhiêu người dùng, không biết ai đứng ở đâu.</p>
+<p>Vì vậy mỗi vật dụng có một ô sử dụng (interactionCell), và mỗi ô chỉ cho một người vào. Khách chốt ô đó ngay lúc chọn vật dụng đích, và khách khác không chốt được ô ấy nữa. Không cần ghi sức chứa riêng, và chuyện chồng lên nhau không thể xảy ra theo cấu trúc.</p>
+<p>Khi chọn đích, chúng tôi cũng không bốc ứng viên đều nhau. Nếu bốc đều thì máy bán hàng sát chỗ ngồi và máy ở đầu kia phòng bán được ngang nhau, nên đặt ở đâu doanh thu cũng như nhau. Phải có trọng số thì cách bố trí mới ảnh hưởng đến doanh thu.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Mỗi ghế trước bàn PC có một khách ngồi, giữa quán có quầy thu ngân và chậu cây" loading="lazy" decoding="async"><figcaption>Một máy PC một ô, một ô một khách.</figcaption></figure></section>
+<section id="s3"><h2>Ô có người đứng thì cộng chi phí, đừng chặn</h2>
+<p>Đường đi là A* trên lưới 4 hướng. Game hỏi riêng từng câu: có đứng được ở ô này không, có đi ngang qua được không, có đi được giữa hai ô không, và cuối cùng là chi phí đi qua ô. Ô có khách đang ngồi có chi phí này là 12.</p>
+<p>Biến người thành tường thì đơn giản hơn. Nhưng bước kiểm tra bố trí của game này đảm bảo phòng không bị cắt đôi với giả định «ô trước vật dụng cũng đi qua được». Người mà thành tường thì giả định đó vỡ, và trong phòng hẹp khách bị bỏ đói hoàn toàn, doanh thu hôm đó về 0.</p>
+<p>Khi để thành chi phí, nếu có đường vòng thì khách luôn đi vòng, chỉ khi thật sự không còn đường mới len qua. Cảnh len qua trông lạ, nhưng đó là tín hiệu của một cách bố trí không chừa lối đi, không phải lỗi của engine.</p>
+</section>
+<section id="s4"><h2>Đường đi không phải trải một lần là xong</h2>
+<p>Tôi tưởng thêm chi phí 12 là xong, nhưng gần như chẳng sửa được gì. Nguyên nhân là đường bị cũ. Trên con đường đã tính lúc xuất phát, nếu sau đó có người ngồi xuống thì dù chi phí có đó, khách vẫn đi theo đường cũ.</p>
+<p>Vì vậy bản đồ người được tô lại toàn bộ ở mỗi tick. Quản lý theo kiểu cộng dồn thì chỉ cần sót một lần xóa trên một đường là một bóng ma chặn lối đi mãi mãi. Khách đang đi sẽ xem lại ô kế tiếp ở mỗi tick, nếu bị chặn thì tính lại đường ngay tại chỗ. Mỗi khách tính lại một lần mỗi 0,2 giây.</p>
+<p>Nếu đường mới tính vẫn đi qua ô đó thì cứ đi tiếp. Bắt khách dừng lại thì họ sẽ chờ nhau đến đứng cứng.</p>
+<p>Chúng tôi chạy 40 giây trên một cách bố trí chật chội và đếm số khung hình «giẫm lên người đang đứng». Trước khi thêm chi phí là 1.701, còn khi chỉ thêm chi phí mà không tính lại đường thì là 1.695, gần như không đổi. Chỉ thêm chi phí mà không tính lại thì gần như không sửa được gì. Phần lớn nguyên nhân là đường bị cũ.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Bốn khách đang đi trên vỉa hè trước quán, còn bên trong quán phía trên có khách ngồi ở các chỗ PC" loading="lazy" decoding="async"><figcaption>Khách đang đi kiểm tra lại ô kế tiếp ở mỗi tick.</figcaption></figure></section>
+<section id="s5"><h2>Hàng chờ là một dòng ngoài cửa</h2>
+<p>Nếu hết chỗ mà cho khách đứng trong quán thì hàng sẽ chặn lối đi và làm rối tìm đường. Vì vậy hàng chờ luôn nằm ngoài cửa, một dòng. Khách chưa vào thì đứng ở hàng ngoài cửa, còn khách đã vào rồi thì không xếp hàng mà bỏ bước đó rồi đi ra. Việc còn chỗ hay không được hỏi ở ô sân trước cửa. Trước đây game hỏi ở ô lối vào, nên khi quán kín chỗ, khách mở cửa bước vào rồi lại quay ra.</p>
+<p>Hàng cũng không dài vô hạn. Sức chứa của hàng là số nhỏ hơn giữa số ô đứng được và mức trần do game đặt (mặc định 4). Vượt sức chứa thì khách không đứng mà quay về, và nếu đang đi mà thấy hàng đã đầy thì họ quay đi ở vỉa hè cạnh đuôi hàng.</p>
+<p>Điều quan trọng là không lặng lẽ xóa khách mà mình không phục vụ được. Khách bỏ cuộc sẽ làm động tác bỏ cuộc, hiện popup, và game đếm lại «mất khách ở loại vật dụng nào, vì lý do gì». Nếu điểm nghẽn không hiện trên màn hình thì người chơi chẳng có lý do nghĩ «đặt thêm một máy». Vì ngay cả việc khách bỏ đi cũng không ai thấy.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Khách ngồi ở các chỗ PC, phía trên chỗ bên phải có nhãn «Chờ 3». Bên trái có popup doanh thu +2.135 won" loading="lazy" decoding="async"><figcaption>Nhãn «Chờ 3» cho thấy ngay trên màn hình điểm nghẽn nằm ở đâu.</figcaption></figure></section>
+<section id="s6"><h2>Khách trong hàng đều nhìn cùng một hướng</h2>
+<p>Sau khi làm hàng chờ, chúng tôi nhận được phản hồi từ người chơi (ngày 19 tháng 9 năm 2026): «Khi chờ, mong mọi người đều đứng nhìn cùng một hướng». Kiểm tra thì thấy hướng chỉ được đặt khi khách đang đi. Khách từ vỉa hè lên nhìn tường, khách đi về đuôi hàng nhìn đuôi hàng, khách được kéo lên một ô nhìn đầu hàng, nên một hàng có ba hướng lẫn lộn.</p>
+<p>Cách sửa rất đơn giản. Khi khách đến vị trí trong hàng, tất cả khách trong hàng đều quay về phía đầu hàng. Hàng bên ngoài là một dòng thẳng dọc theo tường nên ai cũng cùng hướng. Quy tắc rút ra được: mỗi chỗ khách dừng lại đều phải định sẵn hướng nhìn.</p>
+<p>Chúng tôi cũng cho khách đứng yên trong hàng. Thử lắc người để diễn tả sự sốt ruột thì nhận hai phản hồi «trông lơ lửng», «đứng một mình run rẩy», nên bây giờ chỉ còn động tác thở.</p>
+</section>
+<section id="s7"><h2>Quán net: 80% doanh thu đến sau khi khách ngồi xuống</h2>
+<p>Trong hành trình, quán net chỉ là một bước, nhưng doanh thu không dừng ở đó. Một bước trong hành trình là «nơi ghé một lần» nên không lặp lại được, còn chuyện khách đang ngồi thỉnh thoảng gọi thêm thứ gì đó không thuộc hành trình mà xảy ra trong hook đang sử dụng. Những đơn gọi thêm này chiếm 80% doanh thu mỗi ngày.</p>
+<p>Vì vậy logic khách không chỉ là lấp đầy chỗ nhanh đến đâu, mà còn gắn với việc khách đang ngồi ngồi bao lâu rồi mới gọi món. Cũng vì lẽ đó mà có tùy chọn không cho khách rời chỗ khi món đã gọi chưa được mang ra, dù hết thời gian lưu lại.</p>
+</section>
+<section id="s8"><h2>Chưa giải quyết được</h2>
+<p>Cảnh những khách đang đi chồng lên nhau trong chốc lát vẫn còn. Tìm đường chỉ coi người là chi phí với những người đã vào chỗ và dừng lại (khách đang sử dụng và khách ở phần trong của hàng), còn người đang đi thì không đưa vào bản đồ. Nếu bắt người đang đi tránh nhau thì ở lối hẹp sẽ xảy ra tắc nghẽn khi hai bên đối mặt rồi cùng quay đi. Dù sao vài khung hình sau họ cũng rời ô đó.</p>
+<p>Vì vậy theo quy tắc, những khung hình khách đang đi chồng lên nhau được coi là bình thường. Muốn sửa cho đúng thì phải thiết kế thứ tự nhường đường chứ không phải né sang bên, và việc đó hiện nằm ngoài phạm vi.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Làm AI khách hàng cho game quản lý (tycoon) như thế nào?</summary><p>Mỗi khách mang theo một hành trình, chốt ô sử dụng của vật dụng đích cho từng người, và tìm đường bằng A*. Ô có người đứng không bị chặn mà cộng thêm chi phí cao (ở đây là 12), và nếu hết chỗ thì xếp khách thành một dòng ngoài cửa.</p></details><details><summary>Làm sao để NPC trong game quản lý không chặn nhau?</summary><p>Đừng biến người đứng thành tường mà đưa vào dưới dạng chi phí, rồi liên tục tính lại đường theo chi phí đó. Chỉ thêm chi phí mà không tính lại thì gần như vô hiệu. Trong lần đo 40 giây trên bố trí chật chội, số khung hình giẫm lên người đang đứng chỉ giảm từ 1.701 xuống 1.695.</p></details><details><summary>Nên xếp hàng chờ trong hay ngoài quán?</summary><p>Nuôi Quán Net chỉ xếp một dòng ngoài cửa. Xếp trong quán thì hàng chặn lối đi và làm rối tìm đường. Khách đã vào rồi thì không xếp hàng mà bỏ bước đó, và việc bỏ cuộc được đếm lại rồi hiện trên màn hình.</p></details><details><summary>Khách không tìm được chỗ rồi ra về thì có thể xóa luôn không?</summary><p>Không nên xóa. Phải cho thấy động tác bỏ cuộc và popup, rồi đếm theo từng loại, thì người chơi mới đọc được điểm nghẽn và quyết định «đặt thêm một máy».</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Tycoon Nhàn Rỗi</p><p class="gb-title"><a href="/vi/games/pcbangalba/">Nuôi Quán Net</a></p><p class="gb-hook">Muốn tự xem khách xếp hàng thế nào, hãy thử nuôi một quán net trong hẻm ngay trên điện thoại.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dvi" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">Chơi trên trình duyệt</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

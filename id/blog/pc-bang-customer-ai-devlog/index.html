@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara Membuat AI Pelanggan di Game Tycoon: Pathfinding, Antrean, dan Pembagian Kursi (Catatan Indie Dev)</title>
+<meta name="description" content="Logika perilaku pelanggan di Bangun Warnet (PC방 키우기), game buatan satu orang. A* dengan biaya 12 untuk kotak yang ditempati orang, satu kotak satu orang, antrean satu baris di luar pintu, alasan pelanggan yang tidak terlayani dihitung, plus angka hasil ukur.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cara Membuat AI Pelanggan di Game Tycoon: Pathfinding, Antrean, dan Pembagian Kursi (Catatan Indie Dev)">
+<meta property="og:description" content="Logika perilaku pelanggan di Bangun Warnet (PC방 키우기), game buatan satu orang. A* dengan biaya 12 untuk kotak yang ditempati orang, satu kotak satu orang, antrean satu baris di luar pintu, alasan pelanggan yang tidak terlayani dihitung, plus angka hasil ukur.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Begini Kami Membuat Logika Pelanggan di Bangun Warnet","description":"Logika perilaku pelanggan di Bangun Warnet (PC방 키우기), game buatan satu orang. A* dengan biaya 12 untuk kotak yang ditempati orang, satu kotak satu orang, antrean satu baris di luar pintu, alasan pelanggan yang tidak terlayani dihitung, plus angka hasil ukur.","inLanguage":"id","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Bangun Warnet","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"Begini Kami Membuat Logika Pelanggan di Bangun Warnet","item":"https://dumbgamelab.com/id/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bagaimana cara membuat AI pelanggan di game tycoon?","acceptedAnswer":{"@type":"Answer","text":"Beri tiap pelanggan satu rencana kunjungan, kunci satu kotak pemakaian perabot tujuan untuk satu orang, dan cari jalur dengan A*. Kotak yang ditempati orang tidak diblokir melainkan diberi biaya tinggi (di sini 12), dan kalau tidak ada kursi, pelanggan diantrekan satu baris di luar pintu."}},{"@type":"Question","name":"Bagaimana agar NPC di game tycoon tidak saling menghalangi?","acceptedAnswer":{"@type":"Answer","text":"Jangan jadikan orang yang berdiri sebagai dinding, masukkan sebagai biaya, lalu terus hitung ulang jalur dengan biaya itu. Menambah biaya tanpa hitung ulang hampir tidak berefek. Pada pengukuran 40 detik di tata letak padat, frame yang menginjak orang berdiri hanya turun dari 1.701 menjadi 1.695."}},{"@type":"Question","name":"Antrean sebaiknya di dalam atau di luar toko?","acceptedAnswer":{"@type":"Answer","text":"Bangun Warnet hanya membuat satu baris antrean di luar pintu. Kalau di dalam, antrean menutup lorong dan membuat pathfinding kusut. Pelanggan yang sudah masuk tidak ikut antre melainkan melepas langkah itu, dan yang menyerah dihitung lalu ditampilkan di layar."}},{"@type":"Question","name":"Kalau pelanggan pergi karena tidak dapat kursi, boleh langsung dihapus saja?","acceptedAnswer":{"@type":"Answer","text":"Jangan dihapus. Tampilkan gerakan menyerah dan popup, lalu hitung per jenis, supaya pemain bisa membaca hambatan dan memutuskan «tambah satu PC lagi»."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan dev · di balik layar</p>
+    <h1>Begini Kami Membuat Logika Pelanggan di Bangun Warnet</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="Tampilan game Bangun Warnet (PC방 키우기). Di dalam warnet isometrik, setiap kursi PC diduduki pelanggan, dan beberapa pelanggan berjalan di trotoar depan toko. Di atas kursi sebelah kanan ada label «Antre 3»" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Logika perilaku pelanggan di game tycoon (sering disebut AI pelanggan) bisa jalan dengan tiga pegangan. Kursi dihitung per kotak, bukan per angka: satu kotak satu orang. Kotak yang ditempati orang tidak diblokir, cukup diberi tambahan biaya 12 di pathfinding A*. Antrean selalu hanya satu baris di luar pintu. Catatan ini menjelaskan alasan memilih ketiganya di Bangun Warnet (PC방 키우기), angka hasil ukur, dan masalah yang belum selesai.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Pelanggan datang membawa rencana kunjungan</a></li><li><a href="#s2">Kursi itu kotak, bukan angka</a></li><li><a href="#s3">Kotak yang ditempati orang diberi biaya, jangan diblokir</a></li><li><a href="#s4">Jalur tidak cukup dibuat sekali</a></li><li><a href="#s5">Antrean satu baris di luar pintu</a></li><li><a href="#s6">Semua pelanggan di antrean menghadap arah yang sama</a></li><li><a href="#s7">Di warnet, 80% pendapatan datang setelah pelanggan duduk</a></li><li><a href="#s8">Yang belum terpecahkan</a></li></ol></nav>
+    <section id="s1"><h2>Pelanggan datang membawa rencana kunjungan</h2>
+<p>Setiap pelanggan yang muncul mengambil satu rencana kunjungan (itinerary). Satu langkah dalam rencana berarti «memakai satu jenis perabot satu kali». Karena ditulis dengan nama jenis, berapa pun jumlah perabot sejenis, pelanggan tinggal memilih salah satunya.</p>
+<p>Di warnet, rencananya hanya satu langkah. Pelanggan duduk lalu pulang, jadi ini bentuk paling sederhana dari sebuah rencana. Game yang tidak menyediakan rencana otomatis mendapat rencana satu langkah «pakai perabot apa saja lalu pergi».</p>
+<p>Rencana punya satu pengaman. Kalau tidak ada satu pun perabot untuk langkah berikutnya di toko, langkah itu dilewati. Jadi pelanggan tidak membeku di tempat menunggu perabot yang belum dibangun.</p>
+</section>
+<section id="s2"><h2>Kursi itu kotak, bukan angka</h2>
+<p>Awalnya, menetapkan kapasitas tiap perabot dengan angka terlihat lebih mudah. Tetapi kalau kapasitas berupa angka, bisa terjadi 8 orang bertumpuk di koordinat yang sama. Angka hanya tahu berapa orang yang memakai, tidak tahu siapa berdiri di mana.</p>
+<p>Karena itu setiap perabot punya kotak pemakaian (interactionCell), dan satu kotak hanya boleh dimasuki satu orang. Pelanggan mengunci kotak itu saat memilih perabot tujuan, dan pelanggan lain tidak bisa mengambilnya. Kapasitas tidak perlu ditulis terpisah, dan penumpukan tidak mungkin terjadi secara struktural.</p>
+<p>Saat memilih tujuan, kandidat juga tidak diambil secara merata. Kalau merata, mesin penjual tepat di samping kursi dan mesin di ujung ruangan terjual sama banyak, sehingga di mana pun diletakkan pendapatannya sama. Perlu bobot supaya tata letak berpengaruh ke pendapatan.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="Tampilan game Bangun Warnet (PC방 키우기). Setiap kursi di depan meja PC diduduki satu pelanggan, dengan konter dan tanaman pot di tengah" loading="lazy" decoding="async"><figcaption>Satu PC satu kotak, satu kotak satu pelanggan.</figcaption></figure></section>
+<section id="s3"><h2>Kotak yang ditempati orang diberi biaya, jangan diblokir</h2>
+<p>Jalurnya A* pada grid 4 arah. Game menanyakan terpisah: apakah kotak bisa dipijak, apakah bisa dilintasi, apakah dua kotak bisa dilalui, lalu terakhir biaya melewati kotak. Kotak dengan pelanggan yang sedang duduk punya biaya 12.</p>
+<p>Menjadikan orang sebagai dinding memang lebih sederhana. Tetapi pemeriksaan tata letak di game ini menjamin ruangan tidak terputus dengan asumsi «kotak di depan perabot juga bisa dilewati». Begitu orang jadi dinding, asumsi itu pecah, dan di ruangan sempit pelanggan sama sekali tidak terlayani sehingga pendapatan hari itu 0.</p>
+<p>Dengan biaya, kalau ada jalan memutar pelanggan selalu memutar, dan baru menyelip hanya saat benar-benar tidak ada jalan. Adegan menyelip memang terlihat aneh, tetapi itu sinyal dari tata letak yang tidak menyisakan lorong, bukan bug engine.</p>
+</section>
+<section id="s4"><h2>Jalur tidak cukup dibuat sekali</h2>
+<p>Saya kira cukup menambah biaya 12, ternyata hampir tidak ada yang membaik. Penyebabnya jalur yang basi. Di jalur yang dihitung saat berangkat, kalau sesudahnya ada orang yang duduk, biaya memang ada tetapi pelanggan tetap berjalan di jalur lama.</p>
+<p>Karena itu peta orang diisi ulang penuh di setiap tick. Kalau dikelola secara inkremental, satu jalur yang lupa menghapus saja membuat hantu menutup lorong selamanya. Pelanggan yang berjalan mengecek kotak berikutnya di setiap tick, dan kalau terhalang, jalur langsung dihitung ulang di tempat. Satu kali per pelanggan setiap 0,2 detik.</p>
+<p>Kalau jalur yang dihitung ulang tetap melewati kotak itu, pelanggan jalan terus. Menghentikannya akan membuat mereka saling menunggu sampai macet.</p>
+<p>Kami menjalankan tata letak padat selama 40 detik dan menghitung frame «menginjak orang yang sedang berdiri». Sebelum biaya ditambahkan angkanya 1.701, dan setelah biaya ditambahkan tanpa hitung ulang jalur angkanya 1.695, hampir sama. Menambah biaya tanpa menghitung ulang jalur hampir tidak memperbaiki apa pun. Penyebab utamanya adalah jalur yang basi.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="Tampilan game Bangun Warnet (PC방 키우기). Empat pelanggan berjalan di trotoar depan toko, dan di dalam toko bagian atas pelanggan duduk di kursi PC" loading="lazy" decoding="async"><figcaption>Pelanggan yang berjalan mengecek ulang kotak berikutnya di setiap tick.</figcaption></figure></section>
+<section id="s5"><h2>Antrean satu baris di luar pintu</h2>
+<p>Kalau kursi penuh dan pelanggan disuruh berdiri di dalam toko, antrean menutup lorong dan membuat pathfinding kusut. Karena itu antrean selalu satu baris di luar pintu. Pelanggan yang belum masuk berdiri di antrean luar, sedangkan yang sudah masuk tidak ikut antre, melainkan melepas langkah itu dan keluar. Pertanyaan «ada kursi atau tidak» diajukan di kotak halaman depan pintu. Dulu ditanyakan di kotak pintu masuk, jadi saat penuh pelanggan membuka pintu, masuk, lalu berbalik keluar.</p>
+<p>Antrean juga tidak boleh tak terbatas. Kapasitas antrean adalah yang lebih kecil antara jumlah kotak yang bisa dipijak dan batas atas yang ditetapkan game (bawaan 4). Kalau melebihi kapasitas, pelanggan tidak berdiri dan pulang, dan kalau sambil berjalan ia sadar antrean sudah penuh, ia berbalik di trotoar samping ujung antrean.</p>
+<p>Yang penting, pelanggan yang tidak terlayani tidak dihapus diam-diam. Pelanggan yang menyerah melakukan gerakan menyerah, memunculkan popup, dan game mencatat «di jenis perabot mana, karena alasan apa, pelanggan hilang». Kalau hambatan tidak terlihat di layar, pemain tidak punya alasan berpikir «tambah satu PC lagi». Sebab bahwa pelanggan pergi saja sudah tidak terlihat.</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="Tampilan game Bangun Warnet (PC방 키우기). Pelanggan duduk di kursi PC, dan di atas kursi sebelah kanan ada label «Antre 3». Di sebelah kiri terlihat popup pendapatan +2.135 won" loading="lazy" decoding="async"><figcaption>Label «Antre 3» membuat letak hambatan langsung terbaca di layar.</figcaption></figure></section>
+<section id="s6"><h2>Semua pelanggan di antrean menghadap arah yang sama</h2>
+<p>Setelah antrean jadi, masuk laporan dari pemain (19 September 2026): «Saat antre, saya ingin semua orang berdiri menghadap satu arah». Setelah dicek, arah hadap ternyata hanya ditentukan saat berjalan. Pelanggan yang naik dari trotoar menghadap dinding, yang berjalan ke ujung antrean menghadap ujung antrean, yang maju satu kotak menghadap kepala antrean, sehingga satu antrean berisi tiga arah campur aduk.</p>
+<p>Perbaikannya sederhana. Saat pelanggan tiba di posisi antrean, semua pelanggan di antrean dihadapkan ke kepala antrean. Antrean luar adalah satu baris lurus di sepanjang dinding, jadi semuanya searah. Aturan yang kami dapat dari sini: tiap tempat berhenti harus punya arah hadap yang ditentukan.</p>
+<p>Di antrean, badan juga dibuat diam. Kami pernah mencoba menggoyangkan badan untuk menunjukkan rasa tidak sabar, dan muncul dua tanggapan «kelihatan melayang», «gemetar sendirian», jadi sekarang hanya ada gerakan bernapas.</p>
+</section>
+<section id="s7"><h2>Di warnet, 80% pendapatan datang setelah pelanggan duduk</h2>
+<p>Dalam rencana, warnet hanya satu langkah, tetapi pendapatannya tidak berhenti di situ. Satu langkah dalam rencana adalah «tempat singgah sekali» sehingga tidak bisa diulang, sedangkan pelanggan yang sedang duduk sesekali memesan sesuatu lagi terjadi bukan di rencana, melainkan di hook saat sedang dipakai. Pesanan tambahan ini adalah 80% pendapatan harian.</p>
+<p>Karena itu logika pelanggan tidak hanya soal secepat apa kursi terisi, tetapi juga terkait berapa lama pelanggan yang duduk bertahan sebelum memesan. Atas alasan yang sama ada opsi agar pelanggan tidak meninggalkan kursi selama pesanan belum datang, walau waktu tinggalnya sudah habis.</p>
+</section>
+<section id="s8"><h2>Yang belum terpecahkan</h2>
+<p>Adegan pelanggan berjalan yang sesaat bertumpuk masih ada. Pathfinding hanya menganggap orang sebagai biaya untuk mereka yang sudah mengambil tempat dan berhenti (pelanggan yang sedang memakai dan bagian dalam antrean), sedangkan orang yang berjalan tidak dimasukkan ke peta. Kalau orang yang berjalan dibuat saling menghindar, di lorong sempit terjadi kebuntuan saat saling berhadapan lalu sama-sama berputar. Toh beberapa frame kemudian mereka sudah meninggalkan kotak itu.</p>
+<p>Karena itu frame saat pelanggan yang berjalan saling bertumpuk dianggap normal menurut aturan. Memperbaikinya dengan benar berarti merancang urutan mengalah, bukan menyingkir, dan itu di luar cakupan saat ini.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Bagaimana cara membuat AI pelanggan di game tycoon?</summary><p>Beri tiap pelanggan satu rencana kunjungan, kunci satu kotak pemakaian perabot tujuan untuk satu orang, dan cari jalur dengan A*. Kotak yang ditempati orang tidak diblokir melainkan diberi biaya tinggi (di sini 12), dan kalau tidak ada kursi, pelanggan diantrekan satu baris di luar pintu.</p></details><details><summary>Bagaimana agar NPC di game tycoon tidak saling menghalangi?</summary><p>Jangan jadikan orang yang berdiri sebagai dinding, masukkan sebagai biaya, lalu terus hitung ulang jalur dengan biaya itu. Menambah biaya tanpa hitung ulang hampir tidak berefek. Pada pengukuran 40 detik di tata letak padat, frame yang menginjak orang berdiri hanya turun dari 1.701 menjadi 1.695.</p></details><details><summary>Antrean sebaiknya di dalam atau di luar toko?</summary><p>Bangun Warnet hanya membuat satu baris antrean di luar pintu. Kalau di dalam, antrean menutup lorong dan membuat pathfinding kusut. Pelanggan yang sudah masuk tidak ikut antre melainkan melepas langkah itu, dan yang menyerah dihitung lalu ditampilkan di layar.</p></details><details><summary>Kalau pelanggan pergi karena tidak dapat kursi, boleh langsung dihapus saja?</summary><p>Jangan dihapus. Tampilkan gerakan menyerah dan popup, lalu hitung per jenis, supaya pemain bisa membaca hambatan dan memutuskan «tambah satu PC lagi».</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="Bangun Warnet" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Tycoon Idle</p><p class="gb-title"><a href="/id/games/pcbangalba/">Bangun Warnet</a></p><p class="gb-hook">Kalau mau melihat sendiri bagaimana pelanggan mengantre, coba besarkan satu warnet di gang lewat ponselmu.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Did" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">Main di browser</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

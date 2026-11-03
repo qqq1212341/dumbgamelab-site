@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模拟经营游戏顾客 AI 怎么做：寻路、排队、座位分配的独立开发日志</title>
+<meta name="description" content="独立开发《网吧养成记》的顾客行为逻辑。A* 寻路给“有人站着的格子”加权 12、一格只站一个人、排队只排在门外一列，还有为什么要统计没接待到的顾客，附实测数字。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="模拟经营游戏顾客 AI 怎么做：寻路、排队、座位分配的独立开发日志">
+<meta property="og:description" content="独立开发《网吧养成记》的顾客行为逻辑。A* 寻路给“有人站着的格子”加权 12、一格只站一个人、排队只排在门外一列，还有为什么要统计没接待到的顾客，附实测数字。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"《网吧养成记》的顾客逻辑，我们是这样做的","description":"独立开发《网吧养成记》的顾客行为逻辑。A* 寻路给“有人站着的格子”加权 12、一格只站一个人、排队只排在门外一列，还有为什么要统计没接待到的顾客，附实测数字。","inLanguage":"zh-CN","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"网吧养成记","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"《网吧养成记》的顾客逻辑，我们是这样做的","item":"https://dumbgamelab.com/zh-Hans/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"模拟经营游戏的顾客 AI 要怎么做？","acceptedAnswer":{"@type":"Answer","text":"让每位顾客带着一份行程，逐个占住目标设施的使用格，路径用 A* 寻路。有人站着的格子不要封死，而是加上较高的代价（这里是 12）；没座位时就让顾客排在门外一列。"}},{"@type":"Question","name":"模拟经营游戏里的 NPC 怎么避免互相卡住？","acceptedAnswer":{"@type":"Answer","text":"不要把站着的人当成墙，而是当成权重放进去，并按这个权重不断重新寻路。只加权重、不重算，几乎没有效果。在拥挤摆放跑 40 秒的实测里，踩到站着的人的帧只从 1,701 降到 1,695。"}},{"@type":"Question","name":"游戏里的排队队伍排在店内还是店外比较好？","acceptedAnswer":{"@type":"Answer","text":"《网吧养成记》只排在门外一列。排在店里会堵住通道，让寻路乱掉。已经进门的顾客不排队，直接放弃这一步，而放弃会被统计并显示在画面上。"}},{"@type":"Question","name":"顾客没抢到座位就离开，直接删掉可以吗？","acceptedAnswer":{"@type":"Answer","text":"不可以删。要显示放弃的动作和弹窗，并按类别统计，玩家才能看出瓶颈，判断“再放一台吧”。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 幕后</p>
+    <h1>《网吧养成记》的顾客逻辑，我们是这样做的</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="网吧养成记游戏画面。等距视角的网吧里，每个电脑座位上都坐着顾客，店门前的人行道上有好几位顾客在走路。右边座位上方浮着“等待 3”的标签" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">模拟经营游戏的顾客行为逻辑（一般叫顾客 AI）守住三点就能跑起来。座位不用数字算，而是一格只站一个人；有人站着的格子不要封死，而是在 A* 寻路里加权 12；排队只排在门外一列。本文整理了《网吧养成记》选这三招的原因、实测数字，以及还没解决的问题。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">每位顾客都带着一份行程</a></li><li><a href="#s2">座位不是数字，是格子</a></li><li><a href="#s3">有人站着的格子不要封死，加权重</a></li><li><a href="#s4">路不是铺一次就完事</a></li><li><a href="#s5">排队只排在门外一列</a></li><li><a href="#s6">排队的顾客全部朝向同一边</a></li><li><a href="#s7">网吧八成营收来自坐下之后</a></li><li><a href="#s8">还没解决的问题</a></li></ol></nav>
+    <section id="s1"><h2>每位顾客都带着一份行程</h2>
+<p>每位顾客生成时都会抽到一份行程（itinerary）。行程的一格就是“使用某类设施一次”。因为是按类别名称来写的，同一类设施不管有几台，顾客都会从中挑一台。</p>
+<p>网吧的行程只有一格。坐下、用完离开就结束，是行程里最简单的退化情况。如果游戏完全没配置行程，系统会自动补上一份一格的行程：“随便用一个设施就离开”。</p>
+<p>行程有一个保险机制：下一格的设施店里一个都没有时，就直接跳过这一格。这样顾客就不会为了等一个还没建的设施，卡在原地不动。</p>
+</section>
+<section id="s2"><h2>座位不是数字，是格子</h2>
+<p>一开始，给每个设施设一个人数上限，看起来最省事。但用数字当上限的话，8 个人可能叠在同一个坐标上。数字只知道有几个人在用，不知道谁站在哪里。</p>
+<p>所以我们给每个设施指定一个使用格（interactionCell），一格只能进一个人。顾客选好目标设施的瞬间就先占住那一格，其他顾客占不了。不用另外写人数上限，重叠也不会出现，因为结构上就排除了。</p>
+<p>选目标时，我们也不是平均随机。平均随机的话，紧挨座位的自动售货机和房间另一头的售货机卖得一模一样，不管怎么摆，营收都一样。加上权重，摆放位置才会影响营收。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="网吧养成记游戏画面。电脑桌前每把椅子上都坐着一位顾客，中间能看到柜台和盆栽" loading="lazy" decoding="async"><figcaption>一台电脑一格，一格一位顾客。</figcaption></figure></section>
+<section id="s3"><h2>有人站着的格子不要封死，加权重</h2>
+<p>路径用的是四方向网格 A*。我们分开询问：能不能站、能不能穿过、两格之间能不能通行，最后再问经过这一格的代价。有顾客坐着的格子，这个代价是 12。</p>
+<p>把人当成墙会更简单。但这款游戏的摆放检查有个前提：“设施前面那一格也能通过”，靠这个前提保证房间不会被隔断。人一变成墙，前提就破了，在狭窄的房间里顾客会整批饿着，当天营收变成 0。</p>
+<p>改成权重之后，有绕路就一定绕过去，真的没路才会硬挤过去。硬挤过去的画面看着很怪，但那是在提醒你没留通道，不是引擎的 bug。</p>
+</section>
+<section id="s4"><h2>路不是铺一次就完事</h2>
+<p>本来以为加上权重 12 就行了，结果几乎没改善。原因是路会过期。顾客出发时算好的路，之后有人坐到路上，权重虽然有了，顾客还是照旧路走。</p>
+<p>所以人的分布图每个 tick 都整张重填。用增量更新的话，只要某条路径漏掉一次清除，就会留下幽灵把通道永远堵住。走路中的顾客每个 tick 都会重新看下一格，被挡住就当场重新寻路。每位顾客每 0.2 秒一次。</p>
+<p>重算后的路如果还是经过那一格，就直接走过去。让他停下来的话，大家互相等待就会卡死。</p>
+<p>我们在拥挤的摆放下跑了 40 秒，数“踩到站着的人的帧”。没加权重前是 1,701，只加权重、不重算的状态是 1,695，几乎没变。只加权重而不重算，几乎什么都改不了。问题的主因就是路会过期。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="网吧养成记游戏画面。四位顾客沿着店前人行道走来，上方店内的电脑座位上坐着顾客" loading="lazy" decoding="async"><figcaption>走路中的顾客每个 tick 都会重新确认下一格。</figcaption></figure></section>
+<section id="s5"><h2>排队只排在门外一列</h2>
+<p>没座位的时候，如果让顾客在店里排队，队伍会堵住通道，寻路就乱了。所以排队一律排在门外一列。还没进门的顾客站在门外的队伍里，已经进门的顾客不排队，直接放弃这一步离开。有没有座位，是在门前空地那一格询问。以前是在入口那一格问，结果客满时顾客会推门走进来，又转身走出去。</p>
+<p>队伍也不是能无限排。队伍上限是“能站的格数”和游戏设定上限（默认 4）两者中较小的那个。超过上限就不排，直接回头；如果在走过来的路上就发现队伍已满，会在队尾旁边的人行道上转身离开。</p>
+<p>关键是不能悄悄把没接待到的顾客删掉。放弃的顾客会做出放弃的动作、弹出气泡，游戏也会统计“在哪一类设施、因为什么原因漏掉了”。瓶颈如果在画面上看不到，玩家就没有理由想到“再放一台吧”。因为连流失发生了这件事都看不到。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="网吧养成记游戏画面。电脑座位上坐着顾客，右边座位上方浮着“等待 3”的标签。左边能看到 +2,135 韩元的营收弹窗" loading="lazy" decoding="async"><figcaption>“等待 3”的标签让人一眼就能从画面上看出瓶颈在哪里。</figcaption></figure></section>
+<section id="s6"><h2>排队的顾客全部朝向同一边</h2>
+<p>做好排队之后，收到了玩家反馈（2026 年 9 月 19 日）：“希望排队的时候大家都朝同一个方向”。我们检查后发现，朝向只在走路时才会确定。从人行道走上来的顾客朝着墙，走到队尾的顾客朝着队尾，被往前拉一格的顾客朝着队首，一列队伍里混着三个方向。</p>
+<p>解法很简单：到达排队位置时，让排队的顾客全部朝向队首。门外的队伍是沿着墙笔直的一列，所以大家方向一致。这次得到的规则是：每个停下来的位置，都要指定朝向哪一边。</p>
+<p>排队时我们让身体不再动。本来用晃动身体来表现焦急，结果收到两次“像在飘”“一个人在发抖”的反馈，现在只保留呼吸的动作。</p>
+</section>
+<section id="s7"><h2>网吧八成营收来自坐下之后</h2>
+<p>在行程里网吧只有一格，但营收不会在那里结束。行程的一格是“只去一次的地方”，不能重复，而坐着的顾客偶尔再点东西，发生在使用中钩子，不是行程。这些追加的订单占了单日营收的八成。</p>
+<p>所以顾客逻辑不只是座位能多快填满，还跟坐下的顾客坐多久才点单息息相关。出于同样的道理，我们也做了一个选项：点的东西还没送到时，哪怕停留时间结束，顾客也不会离开座位。</p>
+</section>
+<section id="s8"><h2>还没解决的问题</h2>
+<p>走路中的顾客之间短暂重叠的画面，目前还在。寻路只把“已经就位停下来的人”（使用中的顾客和队伍内侧）当成权重，走路中的人不放进分布图。因为让走路的人互相避让，在窄通道里会变成面对面互相绕圈的死锁。反正过几帧，他们就会离开那一格。</p>
+<p>所以走路中的顾客互相重叠的帧，按规则视为正常。真要好好解决，要设计的不是躲开，而是让路的顺序，但那超出了目前的范围。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>模拟经营游戏的顾客 AI 要怎么做？</summary><p>让每位顾客带着一份行程，逐个占住目标设施的使用格，路径用 A* 寻路。有人站着的格子不要封死，而是加上较高的代价（这里是 12）；没座位时就让顾客排在门外一列。</p></details><details><summary>模拟经营游戏里的 NPC 怎么避免互相卡住？</summary><p>不要把站着的人当成墙，而是当成权重放进去，并按这个权重不断重新寻路。只加权重、不重算，几乎没有效果。在拥挤摆放跑 40 秒的实测里，踩到站着的人的帧只从 1,701 降到 1,695。</p></details><details><summary>游戏里的排队队伍排在店内还是店外比较好？</summary><p>《网吧养成记》只排在门外一列。排在店里会堵住通道，让寻路乱掉。已经进门的顾客不排队，直接放弃这一步，而放弃会被统计并显示在画面上。</p></details><details><summary>顾客没抢到座位就离开，直接删掉可以吗？</summary><p>不可以删。要显示放弃的动作和弹窗，并按类别统计，玩家才能看出瓶颈，判断“再放一台吧”。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="网吧养成记" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置经营</p><p class="gb-title"><a href="/zh-Hans/games/pcbangalba/">网吧养成记</a></p><p class="gb-hook">想亲眼看看顾客排队的样子，就用手机经营一间小巷里的网吧吧。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dzh-Hans" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">在浏览器玩</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/pc-bang-customer-ai-devlog/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

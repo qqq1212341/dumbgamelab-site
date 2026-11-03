@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>タイクーンゲームのお客AIの作り方:経路探索・行列・席の割り当て(個人開発の開発日誌)</title>
+<meta name="description" content="個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="タイクーンゲームのお客AIの作り方:経路探索・行列・席の割り当て(個人開発の開発日誌)">
+<meta property="og:description" content="個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ネットカフェ育成のお客AI、こう作りました","description":"個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。","inLanguage":"ja","datePublished":"2026-11-03","dateModified":"2026-11-03","image":"https://dumbgamelab.com/blog/img/pc-bang-customer-ai-devlog/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"ネットカフェ育成","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"ネットカフェ育成のお客AI、こう作りました","item":"https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"タイクーンゲームのお客AIはどう作りますか?","acceptedAnswer":{"@type":"Answer","text":"お客ごとに行程を持たせ、目的の設備の利用マスを1人ずつ押さえ、経路はA*で探します。人が立っているマスは塞がずに高いコスト(ここでは12)を足し、席がなければ入口の外の1列に並ばせる構成です。"}},{"@type":"Question","name":"タイクーンゲームで、NPCがお互いに詰まらないようにするには?","acceptedAnswer":{"@type":"Answer","text":"立っている人を壁にせず、コストとして入れ、そのコストを反映して経路を引き直し続けます。コストだけ入れて引き直しをしないと、ほとんど効果がありませんでした。混み合った配置の40秒の実測で、立っている人を踏んだフレームは1,701から1,695に減っただけです。"}},{"@type":"Question","name":"待ち行列は、店の中と外のどちらに作るのがいいですか?","acceptedAnswer":{"@type":"Answer","text":"ネットカフェ育成では、入口の外の1列だけにしています。中に作ると通路を塞ぎ、経路探索が絡まります。すでに入ったお客は列に並ばずにそのコマをあきらめさせ、あきらめた数は集計して画面に見せます。"}},{"@type":"Question","name":"席が取れずに出ていったお客は、そのまま消してもいいですか?","acceptedAnswer":{"@type":"Answer","text":"消してはいけません。あきらめのモーションとポップアップを見せ、種類ごとに集計することで、プレイヤーがボトルネックを読み、「もう1台置こう」と判断できます。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 · 裏側</p>
+    <h1>ネットカフェ育成のお客AI、こう作りました</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-03">2026-11-03</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="ネットカフェ育成(PC방 키우기)のゲーム画面。アイソメトリックのPCバンの中で、PCの席ごとにお客が座り、店の前の歩道ではお客が何人も歩いている。右の席の上に「待機3」の札が出ている" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">タイクーンゲームのお客の行動ロジック(いわゆるお客AI)は、守ることが3つあれば動きます。席は数ではなく「1マスに1人」で押さえる。人が立っているマスは塞がずに、コスト12を足したA*の経路探索で通す。待ち行列は入口の外に1列だけ作る。ネットカフェ育成(PC방 키우기)でこの3つを選んだ理由と、実測の数字、まだ解けていないことをまとめました。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">お客は行程を持ってやってきます</a></li><li><a href="#s2">席は数ではなく、マスです</a></li><li><a href="#s3">人が立つマスは塞がずに、コストを足します</a></li><li><a href="#s4">経路は1回引いて終わりではありません</a></li><li><a href="#s5">待ち行列は入口の外に1列です</a></li><li><a href="#s6">行列に並ぶお客は、全員同じ向きを見ます</a></li><li><a href="#s7">PCバンは、座ったあとが売上の8割です</a></li><li><a href="#s8">まだ解けていないこと</a></li></ol></nav>
+    <section id="s1"><h2>お客は行程を持ってやってきます</h2>
+<p>お客は出現するとき、行程(itinerary)を1つ引きます。行程の1コマは「ある種類の設備を1回使う」という意味です。種類の名前で書くので、同じ種類の設備が何台あっても、お客はそのうちの1つを選びます。</p>
+<p>PCバンの行程は1コマです。席に座って出ていけば終わりなので、行程としてはいちばん単純な縮退ケースです。行程をまったく渡していないゲームには、「どれか設備を1つ使って出る」という1コマの行程が自動でつきます。</p>
+<p>行程には安全装置が1つあります。次のコマの設備が店に1つもなければ、そのコマは飛ばします。まだ建てていない設備を待って、お客がその場で固まることはありません。</p>
+</section>
+<section id="s2"><h2>席は数ではなく、マスです</h2>
+<p>最初は、設備ごとに定員を数で持たせるほうが楽に見えます。ところが定員を数で持つと、8人が同じ座標に重なって立つことが起きます。数は何人が使うかしか知らず、誰がどこに立つかは知らないからです。</p>
+<p>そこで設備ごとに利用マス(interactionCell)を決め、1マスには1人しか入れないようにしました。お客が目的の設備を選んだ瞬間にそのマスを押さえ、ほかのお客はそのマスを取れません。定員をわざわざ書く必要がなくなり、重なりは構造上起きません。</p>
+<p>目的の設備を選ぶとき、候補を均等に引くこともしません。均等に引くと、席のすぐ隣の自販機と部屋の反対側の自販機が同じだけ売れてしまい、どこに置いても売上が同じになります。重みをつけて初めて、配置が売上に効きます。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/seats.jpg" alt="ネットカフェ育成(PC방 키우기)のゲーム画面。PCの机の前の椅子ごとにお客が1人ずつ座り、真ん中にカウンターと鉢植えが見える" loading="lazy" decoding="async"><figcaption>PC1台にマス1つ、マス1つにお客1人です。</figcaption></figure></section>
+<section id="s3"><h2>人が立つマスは塞がずに、コストを足します</h2>
+<p>経路は4方向グリッドのA*です。立てるマスか、横切れるマスか、2つのマスの間を通れるかを別々に聞き、最後にそのマスを通るコストを聞きます。座っているお客がいるマスは、このコストが12です。</p>
+<p>人を壁にしてしまうほうが簡単です。けれどこのゲームの配置チェックは「設備の前のマスも通れる」という前提で、部屋が分断されないことを保証しています。人が壁になった瞬間にその前提が崩れ、狭い部屋ではお客が丸ごと動けなくなって、その日の売上が0になります。</p>
+<p>コストにしておけば、迂回路があるときは必ず回り、本当に道がないときだけ割り込んで通ります。割り込む場面は不自然に見えますが、通路を残さなかった配置が出しているサインであって、エンジンのバグではありません。</p>
+</section>
+<section id="s4"><h2>経路は1回引いて終わりではありません</h2>
+<p>コスト12を入れれば終わりだと思っていたのに、ほとんど直りませんでした。原因は経路が古くなることでした。出発時に計算した経路の上に、そのあとで人が座ると、コストはあってもお客は古い経路をそのまま歩きます。</p>
+<p>そこで、人のマップは毎ティック丸ごと作り直します。差分で管理すると、どこかの経路で消し忘れが出て、幽霊が通路をずっと塞ぎ続けるからです。歩いているお客は次の1マスを毎ティック見直し、塞がっていればその場で経路を引き直します。お客1人あたり0.2秒に1回です。</p>
+<p>引き直した経路がやはりそのマスを通るなら、そのまま進みます。止めると、お互いに待ち合って固まってしまうからです。</p>
+<p>混み合った配置で40秒回し、「立っている人を踏んだフレーム」を数えました。コストを入れる前は1,701。コストだけ入れて引き直しをしない状態では1,695で、ほぼそのままでした。コストだけ入れて引き直さなければ、ほとんど何も直りません。原因の本体は、経路が古くなることでした。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/street.jpg" alt="ネットカフェ育成(PC방 키우기)のゲーム画面。店の前の歩道を4人のお客が歩いてきて、上の店の中ではPCの席にお客が座っている" loading="lazy" decoding="async"><figcaption>歩くお客は、次の1マスを毎ティック確かめ直します。</figcaption></figure></section>
+<section id="s5"><h2>待ち行列は入口の外に1列です</h2>
+<p>席が空いていないときにお客を店の中に立たせると、行列が通路を塞いで経路探索が絡まります。だから待機はいつも入口の外の1列です。まだ入っていないお客は外の列に並び、すでに入っているお客は列に並ばず、そのコマをあきらめて出ていきます。席が空いているかは、入口の前の庭のマスで聞きます。以前は出入口のマスで聞いていたので、満席だとお客が扉を開けて入ってから引き返していました。</p>
+<p>行列も、いくらでも並べるわけではありません。列の定員は、立てるマスの数とゲームが決めた上限(デフォルトは4)の小さいほうです。定員を超えると並ばずに引き返し、列が満杯なのを歩いている途中で知ったお客は、最後尾の横の歩道で引き返します。</p>
+<p>大事なのは、受け入れられなかったお客を黙って消さないことです。あきらめるお客はあきらめのモーションをして、ポップアップを出し、ゲームには「どの種類で、どんな理由で逃したか」が集計されます。ボトルネックが画面に見えなければ、プレイヤーに「もう1台置こう」と考えるきっかけがありません。お客が離れていること自体が見えないからです。</p>
+<figure><img src="/blog/img/pc-bang-customer-ai-devlog/queue.jpg" alt="ネットカフェ育成(PC방 키우기)のゲーム画面。PCの席にお客が座り、右の席の上に「待機3」の札が出ている。左には売上+2,135ウォンのポップアップが見える" loading="lazy" decoding="async"><figcaption>「待機3」の札で、ボトルネックがどこにあるかが画面からすぐ読めます。</figcaption></figure></section>
+<section id="s6"><h2>行列に並ぶお客は、全員同じ向きを見ます</h2>
+<p>行列を作ってみると、プレイヤーから報告が来ました(2026年9月19日)。「待つとき、みんな同じ方向を向いて立っていてほしい」。確認すると、向きは歩いているときにしか決まっていませんでした。歩道から上がってきたお客は壁を、最後尾まで歩いたお客は最後尾を、1マス詰めたお客は列の先頭を見ていて、1本の列に3つの向きが混ざっていました。</p>
+<p>直し方は単純です。列の位置に着いたとき、列に並んでいるお客全員が先頭のほうを向くようにしました。外の列は壁に沿ってまっすぐ伸びる1本なので、全員が同じ向きになります。止まる場所ごとに、見る向きを決めておく必要があるというのが、この件で得た決まりです。</p>
+<p>列の中では体を動かさないようにもしました。体を揺らして焦りを表現してみたところ、「ふわふわ浮いている」「ひとりで震えている」という反応が2回来たので、いまは呼吸のモーションだけを入れています。</p>
+</section>
+<section id="s7"><h2>PCバンは、座ったあとが売上の8割です</h2>
+<p>行程の中でPCバンは1コマですが、売上はそこで終わりません。行程の1コマは「1回立ち寄る場所」なので繰り返せず、座っているお客がときどき何かを追加で頼むのは、行程ではなく使用中フックで起きます。この注文が1日の売上の8割です。</p>
+<p>だからお客のロジックは、席をどれだけ早く埋めるかだけでなく、座ったお客がどれだけ長く座ってから注文するかとつながっています。頼んだものが届いていなければ、滞在時間が終わっても席を立たせないオプションがあるのも、同じ理由です。</p>
+</section>
+<section id="s8"><h2>まだ解けていないこと</h2>
+<p>歩いているお客同士が一瞬重なる場面は、まだ残っています。経路探索が人をコストとして見るのは、席を取って止まった人(使用中のお客と列の内側)だけで、歩いている人はマップに入れません。歩いている人同士が避け合うようにすると、狭い通路で向かい合ったまま回り続ける膠着が起きるからです。どのみち数フレーム後にはそのマスを離れます。</p>
+<p>なので、歩くお客同士が重なるフレームは、ルール上は正常として扱います。ちゃんと直すには、よけ合いではなく譲る順番を設計する必要がありますが、それはいまの範囲の外です。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>タイクーンゲームのお客AIはどう作りますか?</summary><p>お客ごとに行程を持たせ、目的の設備の利用マスを1人ずつ押さえ、経路はA*で探します。人が立っているマスは塞がずに高いコスト(ここでは12)を足し、席がなければ入口の外の1列に並ばせる構成です。</p></details><details><summary>タイクーンゲームで、NPCがお互いに詰まらないようにするには?</summary><p>立っている人を壁にせず、コストとして入れ、そのコストを反映して経路を引き直し続けます。コストだけ入れて引き直しをしないと、ほとんど効果がありませんでした。混み合った配置の40秒の実測で、立っている人を踏んだフレームは1,701から1,695に減っただけです。</p></details><details><summary>待ち行列は、店の中と外のどちらに作るのがいいですか?</summary><p>ネットカフェ育成では、入口の外の1列だけにしています。中に作ると通路を塞ぎ、経路探索が絡まります。すでに入ったお客は列に並ばずにそのコマをあきらめさせ、あきらめた数は集計して画面に見せます。</p></details><details><summary>席が取れずに出ていったお客は、そのまま消してもいいですか?</summary><p>消してはいけません。あきらめのモーションとポップアップを見せ、種類ごとに集計することで、プレイヤーがボトルネックを読み、「もう1台置こう」と判断できます。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="ネットカフェ育成" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置タイクーン</p><p class="gb-title"><a href="/ja/games/pcbangalba/">ネットカフェ育成</a></p><p class="gb-hook">お客が並ぶ様子を自分の目で見たいなら、路地のPCバンを1軒、スマホで育ててみませんか。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dja" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">ブラウザで遊ぶ</a></div></div>
+</aside>
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/pc-bang-customer-ai-devlog/" hreflang="en" lang="en">English</a><a href="/ko/blog/pc-bang-customer-ai-devlog/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/pc-bang-customer-ai-devlog/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
