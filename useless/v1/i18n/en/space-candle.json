@@ -2,6 +2,7 @@
   "category": "Space",
   "title": "In Space, Candle Flames Are Round",
   "hook": "Light a candle in space, and the flame turns into a ball instead of rising up",
+  "open": {"title":"What happens when you light a candle in space","line":"A candle on the space station burns in a way you will never see on Earth. What shape is that flame?"},
   "summary": "In space, hot air doesn't rise, so a candle flame burns round and blue.",
   "panels": [
     { "text": ["A candle flame always rises up to a point.", "It's so obvious you've probably never wondered why."] },

@@ -2,6 +2,7 @@
   "category": "Food",
   "title": "The BBC Once Said Spaghetti Grows on Trees",
   "hook": "On April Fools' Day 1957, hundreds of Britons called to ask how to grow a spaghetti tree",
+  "open": {"title":"The day the BBC fooled hundreds of viewers","line":"In 1957 a serious news show aired a harvest that had people picking up the phone. What were they all asking?"},
   "summary": "On April Fools' Day 1957 the BBC aired a report of a Swiss family harvesting spaghetti from trees, and hundreds of viewers asked how to grow their own.",
   "panels": [
     {"text": ["Where does spaghetti grow?", "In 1957 Britain, plenty of people had no idea."]},

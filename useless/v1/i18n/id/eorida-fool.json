@@ -2,6 +2,7 @@
   "category": "Kata",
   "title": "\"Eorin Baekseong\" Bukan Berarti Anak-anak",
   "hook": "Dalam kata pengantar Hunminjeongeum, kata \"eorida\" berarti bodoh, bukan muda",
+  "open": {"title": "Kata \"eorin\" di Hunminjeongeum bukan yang kamu kira", "line": "Kalimat pembuka Hunminjeongeum memuat kata \"eorin\". Banyak yang salah paham, soalnya dulu artinya lain. Apa artinya?"},
   "summary": "Pada abad ke-15 kata \"eorida\" berarti bodoh. Makna \"muda\" muncul sejak abad ke-16 dan kini menjadi makna utama.",
   "panels": [
     {"text": ["Buku Hunminjeongeum yang dibuat Raja Sejong.", "Versi yang ditulis dalam Hangul memuat kalimat \"eorin baekseong i nireugojyeo bae isyeodo\"."]},

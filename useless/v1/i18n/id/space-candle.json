@@ -2,6 +2,7 @@
   "category": "Luar Angkasa",
   "title": "Di Luar Angkasa, Api Lilin Berbentuk Bulat",
   "hook": "Kalau lilin dinyalakan di luar angkasa, apinya tidak menjulang ke atas, tapi jadi seperti bola",
+  "open": {"title": "Apa jadinya kalau nyalain lilin di luar angkasa", "line": "Di stasiun luar angkasa, lilin dinyalakan dan apinya nggak kayak yang pernah kamu lihat di Bumi. Bentuknya jadi apa, ya?"},
   "summary": "Di luar angkasa, udara panas tidak naik ke atas, jadi api lilin menyala bulat dan biru.",
   "panels": [
     { "text": ["Api lilin selalu menjulang lancip ke atas.", "Saking biasanya, kamu mungkin tidak pernah memikirkan alasannya."] },

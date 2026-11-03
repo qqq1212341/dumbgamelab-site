@@ -2,16 +2,53 @@
   "category": "Kehidupan Sehari-hari",
   "title": "Bubble Wrap Awalnya Dibuat sebagai Wallpaper",
   "hook": "Bubble wrap bermula dari dua tirai kamar mandi yang direkatkan",
+  "open": {
+    "title": "Bubble wrap ternyata nggak dibuat untuk dipecahin",
+    "line": "Bubble wrap yang sering kamu pencet itu awalnya dibuat untuk hal yang sama sekali lain. Dan percobaan pertamanya gagal total."
+  },
   "summary": "Pada 1957 dua insinyur merekatkan tirai kamar mandi hingga menjebak gelembung udara. Gagal dijual sebagai wallpaper, produk itu akhirnya dipakai sebagai bahan kemasan.",
   "panels": [
-    {"text": ["Bubble wrap di dalam kotak paket.", "Tetapi awalnya ini bukan bahan kemasan."]},
-    {"text": ["Pada 1957 di New Jersey, dua insinyur", "merekatkan dua tirai kamar mandi.", "Gelembung udara terjebak di antaranya."]},
-    {"text": ["Keduanya mencoba menjualnya sebagai wallpaper.", "Tidak laku."]},
-    {"text": "Kalau seluruh dinding kamar bubble wrap, pasti nggak bosan"},
-    {"text": ["Berikutnya mereka menjualnya sebagai isolasi rumah kaca.", "Itu pun tidak meledak."]},
-    {"text": ["Bahan kemasan penuh kantong udara kecil.", "Baru pada 1961 orang menyadari ini melindungi barang."]},
-    {"word": "IBM 1401", "mean": "Komputer pertama yang dikirim dengan dibungkus bubble wrap"},
-    {"text": "Wallpaper yang gagal malah melindungi komputer"}
+    {
+      "text": [
+        "Bubble wrap di dalam kotak paket.",
+        "Awalnya bukan bahan kemasan."
+      ]
+    },
+    {
+      "text": [
+        "Pada 1957, dua insinyur merekatkan dua tirai kamar mandi.",
+        "Udara terjebak di antaranya."
+      ]
+    },
+    {
+      "text": [
+        "Mereka menjualnya sebagai wallpaper.",
+        "Tidak laku."
+      ]
+    },
+    {
+      "text": "Kalau seluruh dinding kamar bubble wrap, pasti nggak bosan"
+    },
+    {
+      "text": [
+        "Lalu dijual sebagai isolasi rumah kaca. Gagal juga."
+      ]
+    },
+    {
+      "text": [
+        "Baru pada 1961 orang sadar",
+        "kantong udara ini melindungi barang."
+      ]
+    },
+    {
+      "word": "IBM 1401",
+      "mean": "Komputer pertama yang dikirim dengan dibungkus bubble wrap"
+    },
+    {
+      "text": "Wallpaper yang gagal malah melindungi komputer"
+    }
   ],
-  "sources": ["Wikipedia: Bubble Wrap"]
+  "sources": [
+    "Wikipedia: Bubble Wrap"
+  ]
 }

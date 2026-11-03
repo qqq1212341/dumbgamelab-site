@@ -2,6 +2,7 @@
   "category": "Geografi",
   "title": "Bandara ini menunggu laut surut sebelum pesawat datang",
   "hook": "Landasannya pantai, jadi jadwal pesawat mengikuti pasang surut",
+  "open": {"title": "Bandara ini jadwalnya ikut aturan laut", "line": "Di bandara satu ini, jadwal pesawat nggak ditentukan jam, tapi oleh sesuatu di luar sana. Dan itu bukan cuaca. Apa itu?"},
   "summary": "Bandara Barra di Skotlandia memakai pantai sebagai landasan. Penerbangan terjadwal mengikuti pasang surut. Setelah bandara tutup dan kantong angin diturunkan, orang boleh berjalan di pantai.",
   "panels": [
     {

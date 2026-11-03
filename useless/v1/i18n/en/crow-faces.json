@@ -2,6 +2,7 @@
   "category": "Animals",
   "title": "Crows Remember Your Face and Spread the Word",
   "hook": "Crows can tell human faces apart, and they seem to pass the word about bad ones",
+  "open": {"title":"Why you should never anger a crow","line":"Crows never forget a face. And scientists say they tell their friends. So what happens next?"},
   "summary": "Crows recognize individual human faces and are known to spread word of dangerous people with their calls.",
   "panels": [
     {"text": ["A crow is staring right at you.", "Those eyes might remember your face."]},

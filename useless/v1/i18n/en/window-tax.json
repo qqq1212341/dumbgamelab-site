@@ -2,6 +2,7 @@
   "category": "History",
   "title": "In England You Paid Tax on Every Window",
   "hook": "Houses still stand with perfectly good windows bricked up to dodge the window tax",
+  "open": {"title":"Why old English houses have windows that go nowhere","line":"Look closely at some old houses and you will spot blank walls where windows should be. Who did that, and why?"},
   "summary": "England introduced a tax based on the number of windows in 1696 and repealed it in 1851. Houses with windows blocked to avoid it still survive.",
   "panels": [
     {"text": ["An old house with windows blocked by stone and brick.", "You can still find houses like this across Britain."]},

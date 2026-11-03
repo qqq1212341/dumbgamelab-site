@@ -2,12 +2,16 @@
   "category": "Kehidupan Sehari-hari",
   "title": "Zipper Awalnya Nama Sepatu Bot",
   "hook": "Nama “zipper” berasal dari merek sepatu bot karet pada 1923",
+  "open": {
+    "title": "Sebelum jadi nama resleting, zipper itu nama apa",
+    "line": "Kata \"zipper\" dipakai di seluruh dunia. Tapi tahun 1923, kata ini awalnya menempel di barang yang bukan resleting. Barang apa?"
+  },
   "summary": "Zipper awalnya nama merek sepatu bot karet pada 1923, lalu nama itu dipakai untuk alat penguncinya.",
   "panels": [
     {
       "text": [
-        "Resleting yang kita tarik naik turun berkali-kali setiap hari.",
-        "Tapi awalnya, “zipper” bukan nama alat ini."
+        "Resleting kita tarik setiap hari.",
+        "Tapi awalnya, “zipper” bukan namanya."
       ]
     },
     {
@@ -15,22 +19,17 @@
     },
     {
       "text": [
-        "Alat ini dipatenkan oleh Whitcomb Judson di Amerika Serikat pada 1893.",
-        "Namanya Clasp Locker.",
-        "Alat ini dipakai untuk menutup sepatu sebagai pengganti tali."
+        "Whitcomb Judson mematenkannya pada 1893 sebagai Clasp Locker, pengganti tali sepatu."
       ]
     },
     {
       "text": [
-        "Pada 1913, Gideon Sundback memperkuat desainnya dan mulai menjualnya.",
-        "Kali ini namanya “pengunci tanpa kait”."
+        "Pada 1913, Gideon Sundback menyempurnakannya sebagai “pengunci tanpa kait”."
       ]
     },
     {
       "text": [
-        "Pada 1923, perusahaan B.F. Goodrich di Amerika Serikat",
-        "memasang alat pengunci ini pada sepatu bot karet.",
-        "Sepatu bot itu bisa ditutup dengan satu tarikan cepat."
+        "Pada 1923, B.F. Goodrich memasangnya pada sepatu bot karet."
       ]
     },
     {
@@ -39,9 +38,7 @@
     },
     {
       "text": [
-        "Goodrich menamai sepatu bot itu Zipper.",
-        "Tapi orang-orang mulai memakai nama itu",
-        "untuk alat penguncinya, bukan sepatu botnya."
+        "Goodrich menamai sepatu bot itu Zipper, tapi orang memakai nama itu untuk alat penguncinya."
       ]
     },
     {
@@ -49,8 +46,7 @@
     },
     {
       "text": [
-        "Pada 1937, resleting mengalahkan kancing di bagian depan celana.",
-        "Saat itu, para desainer Prancis menyambut penggunaan resleting pada celana pria."
+        "Pada 1937, resleting mengalahkan kancing di celana pria."
       ]
     }
   ],

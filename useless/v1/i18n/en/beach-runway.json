@@ -2,6 +2,7 @@
   "category": "Geography",
   "title": "This airport waits for the tide to go out",
   "hook": "Its runway is a beach, so flights work around the tides",
+  "open": {"title":"The airport that checks the tide before every flight","line":"Passengers here watch the sea as much as the sky. Why would a runway depend on the ocean?"},
   "summary": "Barra Airport in Scotland uses a beach as its runway. Scheduled flights follow the tides. Once the airport closes and the windsock is down, people can walk on the beach.",
   "panels": [
     {

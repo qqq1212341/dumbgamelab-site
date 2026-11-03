@@ -2,6 +2,7 @@
   "category": "Animals",
   "title": "Food's over there. This bee rolls a ball.",
   "hook": "Rolling the balls earned no treats, but these bees kept coming back",
+  "open": {"title":"Why do these bees keep rolling tiny balls?","line":"There was no food and no reward. The bees did it anyway, again and again. What were they getting out of it?"},
   "summary": "Bumblebees repeatedly rolled small balls without a food reward. Researchers found that the behavior met criteria for animal play.",
   "panels": [
     {

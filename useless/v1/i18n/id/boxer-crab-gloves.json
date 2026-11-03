@@ -2,6 +2,7 @@
   "category": "Hewan",
   "title": "Kepiting ini mengubah satu sarung tangan jadi sepasang",
   "hook": "Saat satu anemon diambil, kepiting membagi anemon yang tersisa menjadi dua",
+  "open": {"title": "Kepiting ini kehilangan satu sarung tangan, lalu", "line": "Ada kepiting yang membawa anemon di kedua capitnya. Pas satu diambil, kepitingnya melakukan hal yang bikin peneliti melongo. Apa?"},
   "summary": "Dalam percobaan pada satu spesies kepiting petinju, kepiting membagi anemon yang tersisa setelah anemon di capit satunya diambil. Kedua potongan beregenerasi selama beberapa hari.",
   "panels": [
     {

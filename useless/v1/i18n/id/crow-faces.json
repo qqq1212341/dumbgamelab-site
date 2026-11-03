@@ -2,6 +2,7 @@
   "category": "Hewan",
   "title": "Gagak Mengingat Wajahmu dan Menyebarkan Kabar",
   "hook": "Gagak bisa membedakan wajah manusia dan tampaknya mengabarkan soal orang jahat ke gagak lain",
+  "open": {"title": "Kenapa jangan pernah usil sama gagak", "line": "Ada alasan kenapa kamu sebaiknya jangan macam-macam sama gagak. Dan masalahnya bukan cuma satu gagak itu saja."},
   "summary": "Gagak mengenali wajah manusia satu per satu dan diketahui menyebarkan kabar soal orang berbahaya lewat suaranya.",
   "panels": [
     {"text": ["Seekor gagak menatapmu lekat-lekat.", "Mata itu mungkin mengingat wajahmu."]},
