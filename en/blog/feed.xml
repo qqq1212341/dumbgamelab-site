@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Crows Remember Your Face and Spread the Word</title>
+    <link>https://dumbgamelab.com/en/blog/crow-faces/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/crow-faces/</guid>
+    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Crows recognize individual human faces and are known to spread word of dangerous people with their calls.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>How We Built the Customer AI in PC Cafe Tycoon</title>
     <link>https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</guid>
@@ -223,14 +231,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Because of relativity, GPS satellite clocks run 38 microseconds fast each day. So before launch, they&#39;re set to run slow on purpose.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>The First Barcode Scan Was Gum</title>
-    <link>https://dumbgamelab.com/en/blog/barcode-gum/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/barcode-gum/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>The barcode came from Morse code drawn in sand, and the first thing scanned was gum.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

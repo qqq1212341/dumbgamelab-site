@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>カラスは私の顔を覚えていて、噂を広める</title>
+    <link>https://dumbgamelab.com/ja/blog/crow-faces/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crow-faces/</guid>
+    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
+    <description>カラスは人の顔を一人ずつ見分け、危険な人の情報を鳴き声で広めることが知られている。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>ネットカフェ育成のお客AI、こう作りました</title>
     <link>https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</guid>
@@ -226,14 +234,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>同じ言葉をくり返し続けると、一時的に意味が消える意味飽和が起きる。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>37歳のネズミがいる</title>
-    <link>https://dumbgamelab.com/ja/blog/naked-mole-rat/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/naked-mole-rat/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ハダカデバネズミは37年以上生き、年をとっても死ぬ確率が上がらない。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
