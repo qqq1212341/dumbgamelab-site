@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Get the app</title>
+<style>body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:system-ui,sans-serif;background:#fffaf0;color:#2a2350}a{display:flex;align-items:center;justify-content:center;min-height:52px;min-width:220px;border:3px solid #2a2350;border-radius:14px;background:#ffcf33;color:#2a2350;font-size:18px;font-weight:800;text-decoration:none}</style></head>
+<body><a id="ios" href="#">App Store</a><a id="play" href="#">Google Play</a>
+<script>
+var I={"game":"pcbangalba","ios":"https://apps.apple.com/app/id6779939467","play":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba","pt":"128957953"};
+function lk(s){var g=I.game+"_web";if(s==="ios")return I.ios+(I.ios.indexOf("?")<0?"?":"&")+(I.pt?"pt="+encodeURIComponent(I.pt)+"&":"")+"ct="+encodeURIComponent(g+"_qr")+"&mt=8";
+return I.play+(I.play.indexOf("?")<0?"?":"&")+"referrer="+encodeURIComponent("utm_source="+g+"&utm_medium=web_install&utm_campaign=install_qr&utm_content=qr");}
+document.getElementById("ios").href=lk("ios");document.getElementById("play").href=lk("play");
+var ua=navigator.userAgent||"";
+if(/iPad|iPhone|iPod/.test(ua))location.replace(lk("ios"));else if(/Android/i.test(ua))location.replace(lk("play"));
+</script></body></html>
