@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichibrawl","build":"30c7d3205","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichibrawl","build":"433656225","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -23,7 +23,14 @@
   function store(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* 저장 못 하면 비정상 종료만 못 본다 */ } }
   /* 뒤에서 켜진 판(아이폰 미리 띄움·백그라운드 실행)은 앞 화면이 아니다 — fg:1 로 시작하면 한 번도 안 보이고 회수된 판을
    * 다음 판이 «앞 화면에서 꺼짐»(빈 기록)으로 보냈다(찜질방 1.0.8 iOS · t-261027-zke9). 보이게 되면 visibilitychange 가 fg 를 켠다. */
-  var run = { sid: sid, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, crumbs: crumbs, at: t0 };
+  /* 앱 안 브라우저(스레드·인스타·페북·카톡·네이버·라인·틱톡·스냅챗 — 안드로이드 «; wv)» 웹뷰 포함)는 사용자가 X 로 닫을 때 웹뷰를 그냥 버린다 —
+   * pagehide·visibilitychange 가 없으니 «닫음»과 «죽음»을 가를 수 없다. 한 번도 안 누르고 닫은 판이 다음 방문에 «앞 화면에서 꺼짐»(빈 기록)으로 섰다
+   * (한 번뿐인 인생 웹 사이트 0b33986d5 · 삐죽랜드 웹 사이트 — 표본 빵부스러기 0칸 · t-261026-u4zq). 자동 브라우저(webdriver)도 같다. 그런 판은 비정상 종료를 안 센다.
+   * 저장소(localStorage)는 그 앱의 웹뷰 안에서만 이어지므로 지금 판이 앱 안이면 지난 판도 같은 앱 안이다(옛 번들이 ia 를 안 적은 기록까지). */
+  var nav_ = typeof navigator !== "undefined" ? navigator : {};
+  var inApp = !native && (!!nav_.webdriver || /FBAN|FBAV|FB_IAB|Instagram|Barcelona|KAKAOTALK|NAVER\(inapp|DaumApps|Line\/|musical_ly|BytedanceWebview|TikTok|Snapchat|; wv\)/i.test(String(nav_.userAgent || "")));
+  /* 같은 사이트(dumbgamelab.com/play/*)의 게임들은 저장소 칸 하나를 같이 쓴다 — 지난 판의 게임은 그 판이 적은 g 로 보낸다(지금 연 게임 탓으로 세지 않게) */
+  var run = { sid: sid, g: CFG.game, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, ia: inApp ? 1 : 0, crumbs: crumbs, at: t0 };
   function clock() { var d = new Date(); return ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "." + Math.floor(d.getMilliseconds() / 100); }
   var saveT = 0, lastCrumb = "", rep = 1;
   /* 같은 줄이 잇달아 오면 한 칸에 «×N» 으로 센다 — 부팅 때 같은 경고 104줄(치치캠프 THREE toNonIndexed)이 30칸을 전부 밀어내
@@ -119,11 +126,13 @@
    * 그 죽음은 네이티브 가드가 이미 k:"webview" 로 보냈다 — 또 보내면 한 번 죽은 걸 두 지문이 센다(안드로이드 prevEnd("gone") 과 같은 판정 · t-261027-zke9) */
   function navType() { try { var n = performance.getEntriesByType("navigation")[0]; if (n) return n.type; return performance.navigation.type === 1 ? "reload" : ""; } catch (e) { return ""; } }
   var iosGone = native && plat === "ios" && navType() === "reload";
-  if (prev && prev.fg === 1 && prev.sid && !iosGone && !(prev.hb && Date.now() - prev.hb < 12000)) {
+  if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && !(prev.hb && Date.now() - prev.hb < 12000)) {
     /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
     var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
-    var ab = { g: CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
-    if (native && plat === "android") { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
+    var ab = { g: prev.g || CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
+    /* 아이폰 앱도 같다 — 앱 전환기로 올린 뒤(resign active) 밀어서 끈 판은 «뒤로 감» 쓰기가 커밋되기 전에 SIGKILL 을 맞는다.
+     * 가드(DglCrashGuard.swift)가 active/resign 을 파일로 적고 페이지가 뜨면 prevEnd 로 알려 준다(PC방 2.0.24 iOS 1.7% · t-261027-2nr7) */
+    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
     else post("/e", ab);
   }
   if (!run.fg) crumb("뒤에서 켜짐");
@@ -144,6 +153,13 @@
   def(Array.prototype, 'findLast', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return this[i]; return undefined; });
   def(Array.prototype, 'findLastIndex', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return i; return -1; });
   def(Object, 'hasOwn', function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); });
+  /* replaceChildren(Chrome 86·iOS 14) — 옛 웹뷰는 첫 화면 mount 에서 «replaceChildren is not a function»(wordchain t-261028-fecr · 엔진 대화창·여러 게임이 쓴다) */
+  function replaceChildren() {
+    while (this.lastChild) this.removeChild(this.lastChild);
+    var d = this.ownerDocument || this;
+    for (var i = 0; i < arguments.length; i++) { var n = arguments[i]; this.appendChild(typeof n === 'object' && n ? n : d.createTextNode(String(n))); }
+  }
+  ['Element', 'Document', 'DocumentFragment'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'replaceChildren', replaceChildren); });
   if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
   /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
   function roundRect(x, y, w, h, r) {
@@ -174,7 +190,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"30c7d3205","game":"chichibrawl"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"433656225","game":"chichibrawl"};</script>
 <meta name="description" content="A 2-minute 3v3 gem grab against bots. Pick a fighter, grab gems, hold ten. · 2분 3v3 보석 모으기 체험판.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chichi Brawl — 3v3 gem grab prototype">
@@ -206,7 +222,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
 .timer { font-size: 26px; min-width: 76px; text-align: center; }
 .gem { display: inline-block; width: 16px; height: 16px; background: linear-gradient(135deg, #e6b8ff, #a24bf0 55%, #6a20b0); transform: rotate(45deg); border: 2px solid var(--ink); border-radius: 3px; }
 .cup { display: inline-block; width: 20px; height: 18px; background: linear-gradient(#ffe46a, #f0a820); border: 2px solid var(--ink); border-radius: 3px 3px 9px 9px; }
-.league { position: absolute; top: max(14px, env(safe-area-inset-top)); left: max(14px, env(safe-area-inset-left)); font-size: 13px; opacity: 0.9; background: rgba(29,21,48,0.55); padding: 6px 10px; border-radius: 10px; transition: opacity 0.6s; }
+.league { display: none; position: absolute; top: max(14px, env(safe-area-inset-top)); left: max(14px, env(safe-area-inset-left)); font-size: 13px; opacity: 0.9; background: rgba(29,21,48,0.55); padding: 6px 10px; border-radius: 10px; transition: opacity 0.6s; }
 .banner { position: absolute; top: 62px; left: 50%; transform: translateX(-50%) scale(0.8); opacity: 0; transition: all 0.2s; text-align: center; }
 .banner.on { opacity: 1; transform: translateX(-50%) scale(1); }
 .banner small { display: block; font-size: 15px; } .banner b { font-size: 46px; line-height: 1; }
@@ -233,7 +249,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
 .stick .knob { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: radial-gradient(circle at 50% 36%, #9fdcff, #2f8be6 72%); border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
 /* 명령 단추 — 엄지가 닿는 오른쪽 가운데 줄(공격 단추 위) · 터치 44px 이상 */
 .orders { position: absolute; right: max(24px, env(safe-area-inset-right)); bottom: calc(max(20px, env(safe-area-inset-bottom)) + 156px); display: flex; flex-direction: column; gap: 8px; z-index: 3; pointer-events: none; }
-.orders button { pointer-events: auto; touch-action: none; width: 62px; min-height: 46px; padding: 0; font-family: var(--font-game); font-size: 16px; color: #fff; background: rgba(29,21,48,0.62); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); text-shadow: 0 2px 0 var(--ink); }
+.orders button { pointer-events: auto; touch-action: none; width: 62px; min-height: 46px; padding: 0; font-family: var(--font-game); font-size: 16px; color: #fff; background: rgba(29,21,48,0.5); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); text-shadow: 0 2px 0 var(--ink); }
 .orders button.on { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); text-shadow: none; }
 .streak { position: absolute; top: calc(max(14px, env(safe-area-inset-top)) + 36px); left: max(14px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 6px; font-size: 13px; background: rgba(29,21,48,0.55); padding: 6px 10px; border-radius: 10px; }
 .streak b { color: var(--gold); font-size: 18px; } .streak em { font-style: normal; color: #ff8a72; }
@@ -281,17 +297,55 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
 .hlbox { display: flex; flex-direction: column; align-items: center; gap: 10px; max-height: 96vh; } .hlbox video { max-height: 70vh; max-width: 92vw; border: 4px solid var(--ink); border-radius: 14px; background: #000; }
 .hlwhy { font-family: var(--font-game); font-size: 22px; color: #ffd23a; } .hlrow { display: flex; gap: 14px; } .hlview button { font-family: var(--font-game); font-size: 22px; color: var(--ink); border: 4px solid var(--ink); border-radius: 16px; background: linear-gradient(#ffe46a, #f5b51d); box-shadow: 0 5px 0 var(--ink); padding: 10px 30px; } .hlview .hlclose { background: linear-gradient(#cfc6ff, #9c8de8); }
 .result .row { display: flex; justify-content: center; gap: 14px; } .result .change { background: linear-gradient(#cfc6ff, #9c8de8); }
+/* 판 밖 메타(src/lobby.js) — 코인·트로피 길·하루 선물·카드 잠금·판 끝 코인 */
+.coin { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff3a0, #ffc928 55%, #d98a0c); border: 2px solid var(--ink); box-sizing: border-box; }
+.giftbox { display: inline-block; width: 20px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; box-sizing: border-box; background: linear-gradient(90deg, transparent 40%, #ffd23a 40% 60%, transparent 60%), linear-gradient(#ff7ab0, #e0408a); }
+.select .head .coins { display: flex; align-items: center; gap: 6px; font-size: 20px; background: rgba(29,21,48,0.6); padding: 6px 12px; border-radius: 12px; margin-left: auto; margin-right: 8px; }
+.roadbar { position: absolute; top: calc(max(12px, env(safe-area-inset-top)) + 50px); left: max(18px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 4px 10px; font-family: var(--font-game); color: #fff; background: rgba(29,21,48,0.6); border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); }
+.roadbar .g { width: 92px; height: 10px; border-radius: 5px; background: rgba(0,0,0,0.45); overflow: hidden; } .roadbar .g i { display: block; height: 100%; background: linear-gradient(#ffe46a, #f0a820); }
+.roadbar .rw { display: flex; align-items: center; gap: 4px; font-size: 15px; }
+.roadbar .dot { display: none; } .roadbar.ready { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); animation: pulse 1s ease-in-out infinite alternate; }
+.roadbar.ready .dot { display: grid; place-items: center; min-width: 22px; height: 22px; border-radius: 11px; background: var(--red); color: #fff; font-size: 14px; border: 2px solid var(--ink); }
+@keyframes pulse { to { transform: scale(1.06); } }
+.select .gift { position: absolute; left: max(18px, env(safe-area-inset-left)); top: 46%; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 64px; min-height: 60px; padding: 6px 0; font-family: var(--font-game); font-size: 16px; color: #fff; background: linear-gradient(#4b3d6a, #33284b); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink); }
+.select .gift .giftbox { width: 30px; height: 26px; }
+.select.free .coins, .select.free .roadbar, .select.free .gift, .select.free .lock, .select.free .rentleft { display: none !important; }
+.card { position: relative; }
+.card .lock { display: none; position: absolute; inset: 0; border-radius: 11px; background: rgba(20,12,36,0.78); flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.card.locked .lock { display: flex; } .card.locked .st { visibility: hidden; }
+.card .lock .at { display: flex; align-items: center; gap: 5px; font-size: 17px; color: #fff; }
+.card .lock .acts { display: flex; gap: 6px; }
+.card .lock .acts span { display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 60px; min-height: 44px; padding: 0 6px; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); font-size: 16px; color: var(--ink); box-sizing: border-box; }
+.card .lock .buy { background: linear-gradient(#ffe46a, #f5b51d); } .card .lock .buy.poor { background: linear-gradient(#8a7f9e, #635878); } .card .lock .buy.poor b { color: #ffd0d0; }
+.card .lock .rent { flex-direction: column; gap: 0; background: linear-gradient(#a8f07a, #4fbf3a); line-height: 1; } .card .lock .rent small { font-size: 11px; }
+.card .lock .no { animation: shake 0.3s; } @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.card .rentleft { position: absolute; top: -10px; right: 8px; font-size: 12px; padding: 2px 8px; border-radius: 9px; background: #4fbf3a; color: var(--ink); border: 2px solid var(--ink); }
+.select .go.off { filter: saturate(0) brightness(0.7); }
+.road { position: fixed; inset: 0; display: none; background: rgba(20,12,36,0.86); flex-direction: column; align-items: center; justify-content: center; gap: 16px; z-index: 20; }
+.road.on { display: flex; }
+.road .rhead { display: flex; align-items: center; gap: 8px; font-size: 26px; }
+.road .track { display: flex; gap: 10px; max-width: 94vw; overflow-x: auto; padding: 10px 14px 14px; scrollbar-width: none; }
+.road .node { flex: none; width: 96px; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 6px; padding: 10px 6px; border-radius: 14px; border: 3px solid var(--ink); background: linear-gradient(#4b3d6a, #33284b); box-shadow: 0 4px 0 var(--ink); box-sizing: border-box; }
+.road .node .at { display: flex; align-items: center; gap: 4px; font-size: 16px; } .road .node .rw { display: flex; align-items: center; gap: 4px; font-size: 18px; }
+.road .node.done { opacity: 0.4; } .road .node.ready { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); }
+.road .node .take { font-family: var(--font-game); font-size: 16px; min-height: 40px; padding: 0 14px; color: #fff; background: linear-gradient(#5fd04a, #2f9a2a); border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); }
+.road .close { font-family: var(--font-game); font-size: 20px; min-height: 48px; padding: 0 30px; color: var(--ink); background: linear-gradient(#cfc6ff, #9c8de8); border: 4px solid var(--ink); border-radius: 16px; box-shadow: 0 5px 0 var(--ink); }
+.result .mcoins { display: flex; justify-content: center; align-items: center; gap: 14px; margin: -8px 0 16px; }
+.result .mcoins .got { display: flex; align-items: center; gap: 6px; font-size: 26px; } .result .mcoins .got .coin { width: 24px; height: 24px; }
+.result .mcoins .dbl { display: flex; flex-direction: column; align-items: center; line-height: 1; padding: 6px 18px; min-height: 48px; font-size: 22px; background: linear-gradient(#a8f07a, #4fbf3a); } .result .mcoins .dbl small { font-size: 12px; }
+.fake-ad { position: fixed; inset: 0; z-index: 99; display: grid; place-items: center; background: #000; color: #fff; font-size: 40px; }
 .loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 </style>
-  <script type="module" crossorigin src="./assets/index-xiGmDR9n.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/data-r69UShqo.js">
-  <link rel="modulepreload" crossorigin href="./assets/sim-CyHoDcQ0.js">
-  <link rel="modulepreload" crossorigin href="./assets/ai-v3-XK35Si_6.js">
-  <link rel="modulepreload" crossorigin href="./assets/aimacro-D8rNTd34.js">
+  <script type="module" crossorigin src="./assets/index-CXLz-vuM.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/data-BmKDG5tR.js">
+  <link rel="modulepreload" crossorigin href="./assets/sim-D2-sf1X1.js">
+  <link rel="modulepreload" crossorigin href="./assets/ai-v3-BLoGGM_b.js">
+  <link rel="modulepreload" crossorigin href="./assets/aimacro-Omnj5zUI.js">
 </head>
 <body>
 <div id="stage"></div>
 <div class="loading">불러오는 중</div>
+<script src="./js/audio-env.js"></script>
 <script>"use strict";
 /* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
  *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
@@ -301,6 +355,9 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
  * 공개 입력이 자동 수정 워커로 곧장 들어가는 길도 아니다. 읽는 쪽은 `core/tools/feedback/run.mjs`(1시간마다 → 티켓 + 조종석 카드).
  * 자동 첨부 = 마지막 JS 오류 한 줄(`msg`) · 화면(`screen`) · 빌드. 기기·OS·앱 버전은 GA 가 붙인다. 오류가 나면 버튼이 진해진다(«오류 뒤 창구 안내» — 리뷰 요청을 거르는 게 아니다).
  * 로컬(개발) 트래픽은 analytics.js 가 GA 로 보내지 않는다 → 콘솔 로그만(?dglSend=1 로 강제).
+ * «보냈다» 신호(2026-11-03 사장님 «돈 안 쓰고 제보·테스터 늘리기 = 인게임 보상») — 보내고 나면 window 이벤트 `dgl:feedback-sent`
+ *   (detail = {len, reward, where}) 와 `DGL_FEEDBACK.onSent(cb)` 를 낸다. reward = 공백 뺀 8자 이상이고 로봇이 아닐 때만 true.
+ *   보상은 «의견 보내기» 에만 붙는다 — 별점·리뷰와 엮지 않는다(review gating 금지). 얼마를 얼마나 주는지는 게임(엔진)이 정한다.
  */
 (function () {
   var CFG = window.__DGL_WEB || {};
@@ -340,6 +397,14 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
   };
   /* 설정 줄 문구 — 키는 언어 접두(중국어만 간·번체를 나눈다). 없으면 영어 */
   var MENU_LABEL = { ko: "의견 보내기", en: "Send feedback", ja: "ご意見を送る", "zh-hans": "发送反馈", "zh-hant": "傳送意見", id: "Kirim masukan", th: "ส่งความคิดเห็น", vi: "Gửi góp ý", es: "Enviar comentarios", pt: "Enviar sugestão", tr: "Geri bildirim gönder" };
+  var MIN_REWARD_LEN = 8; /* 공백 뺀 글자 수 — 한두 글자 눌러 보상만 받는 걸 거른다 */
+  var sentCbs = [];
+  function noteSent(text, where) {
+    var len = String(text).replace(/\s+/g, "").length;
+    var detail = { len: len, reward: !robot && len >= MIN_REWARD_LEN, where: where };
+    sentCbs.forEach(function (cb) { try { cb(detail); } catch (e) {} });
+    try { window.dispatchEvent(new CustomEvent("dgl:feedback-sent", { detail: detail })); } catch (e) {}
+  }
   function menuLabel() {
     var l = String((window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko").toLowerCase().replace("_", "-");
     if (l.indexOf("zh") === 0) return MENU_LABEL[/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans"];
@@ -394,7 +459,9 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
       if (!text) return false;
       var where = {};
       try { var cx = window.DGL && window.DGL.ctx; where = (typeof cx === "function" ? cx() : cx) || {}; } catch (er) {}
-      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: robot ? "robot" : BETA ? "beta" : CFG.target || "web", screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      var wh = robot ? "robot" : BETA ? "beta" : CFG.target || "web";
+      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: wh, screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      noteSent(text, wh);
       return true;
     }
     /* 메뉴형은 별도 페이지 — 설정 목록 위에 검은 막대를 띄우면 앱과 따로 논다(2026-10-25 사장님 «드롭다운 혹은 별도 페이지로 빼기»).
@@ -443,7 +510,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; fon
     document.addEventListener("click", function (e) { var t = e.target && e.target.closest && e.target.closest(SLOT); if (t) { e.preventDefault(); open(); } }, true);
     try { new MutationObserver(syncSlot).observe(document.documentElement, { childList: true, subtree: true }); } catch (er) {}
     syncSlot();
-    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel };
+    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel, minLen: MIN_REWARD_LEN, onSent: function (cb) { if (typeof cb === "function") sentCbs.push(cb); } };
     btn.addEventListener("click", function () { toggle(true); });
     close.addEventListener("click", function () { toggle(false); });
     box.addEventListener("submit", function (e) {
