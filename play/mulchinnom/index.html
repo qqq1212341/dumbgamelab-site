@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
   <head>
     <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"mulchinnom","build":"5d7552111","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"mulchinnom","build":"498f911c6","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -23,7 +23,14 @@
   function store(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* 저장 못 하면 비정상 종료만 못 본다 */ } }
   /* 뒤에서 켜진 판(아이폰 미리 띄움·백그라운드 실행)은 앞 화면이 아니다 — fg:1 로 시작하면 한 번도 안 보이고 회수된 판을
    * 다음 판이 «앞 화면에서 꺼짐»(빈 기록)으로 보냈다(찜질방 1.0.8 iOS · t-261027-zke9). 보이게 되면 visibilitychange 가 fg 를 켠다. */
-  var run = { sid: sid, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, crumbs: crumbs, at: t0 };
+  /* 앱 안 브라우저(스레드·인스타·페북·카톡·네이버·라인·틱톡·스냅챗 — 안드로이드 «; wv)» 웹뷰 포함)는 사용자가 X 로 닫을 때 웹뷰를 그냥 버린다 —
+   * pagehide·visibilitychange 가 없으니 «닫음»과 «죽음»을 가를 수 없다. 한 번도 안 누르고 닫은 판이 다음 방문에 «앞 화면에서 꺼짐»(빈 기록)으로 섰다
+   * (한 번뿐인 인생 웹 사이트 0b33986d5 · 삐죽랜드 웹 사이트 — 표본 빵부스러기 0칸 · t-261026-u4zq). 자동 브라우저(webdriver)도 같다. 그런 판은 비정상 종료를 안 센다.
+   * 저장소(localStorage)는 그 앱의 웹뷰 안에서만 이어지므로 지금 판이 앱 안이면 지난 판도 같은 앱 안이다(옛 번들이 ia 를 안 적은 기록까지). */
+  var nav_ = typeof navigator !== "undefined" ? navigator : {};
+  var inApp = !native && (!!nav_.webdriver || /FBAN|FBAV|FB_IAB|Instagram|Barcelona|KAKAOTALK|NAVER\(inapp|DaumApps|Line\/|musical_ly|BytedanceWebview|TikTok|Snapchat|; wv\)/i.test(String(nav_.userAgent || "")));
+  /* 같은 사이트(dumbgamelab.com/play/*)의 게임들은 저장소 칸 하나를 같이 쓴다 — 지난 판의 게임은 그 판이 적은 g 로 보낸다(지금 연 게임 탓으로 세지 않게) */
+  var run = { sid: sid, g: CFG.game, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, ia: inApp ? 1 : 0, crumbs: crumbs, at: t0 };
   function clock() { var d = new Date(); return ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "." + Math.floor(d.getMilliseconds() / 100); }
   var saveT = 0, lastCrumb = "", rep = 1;
   /* 같은 줄이 잇달아 오면 한 칸에 «×N» 으로 센다 — 부팅 때 같은 경고 104줄(치치캠프 THREE toNonIndexed)이 30칸을 전부 밀어내
@@ -119,11 +126,13 @@
    * 그 죽음은 네이티브 가드가 이미 k:"webview" 로 보냈다 — 또 보내면 한 번 죽은 걸 두 지문이 센다(안드로이드 prevEnd("gone") 과 같은 판정 · t-261027-zke9) */
   function navType() { try { var n = performance.getEntriesByType("navigation")[0]; if (n) return n.type; return performance.navigation.type === 1 ? "reload" : ""; } catch (e) { return ""; } }
   var iosGone = native && plat === "ios" && navType() === "reload";
-  if (prev && prev.fg === 1 && prev.sid && !iosGone && !(prev.hb && Date.now() - prev.hb < 12000)) {
+  if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && !(prev.hb && Date.now() - prev.hb < 12000)) {
     /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
     var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
-    var ab = { g: CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
-    if (native && plat === "android") { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
+    var ab = { g: prev.g || CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
+    /* 아이폰 앱도 같다 — 앱 전환기로 올린 뒤(resign active) 밀어서 끈 판은 «뒤로 감» 쓰기가 커밋되기 전에 SIGKILL 을 맞는다.
+     * 가드(DglCrashGuard.swift)가 active/resign 을 파일로 적고 페이지가 뜨면 prevEnd 로 알려 준다(PC방 2.0.24 iOS 1.7% · t-261027-2nr7) */
+    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
     else post("/e", ab);
   }
   if (!run.fg) crumb("뒤에서 켜짐");
@@ -144,6 +153,13 @@
   def(Array.prototype, 'findLast', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return this[i]; return undefined; });
   def(Array.prototype, 'findLastIndex', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return i; return -1; });
   def(Object, 'hasOwn', function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); });
+  /* replaceChildren(Chrome 86·iOS 14) — 옛 웹뷰는 첫 화면 mount 에서 «replaceChildren is not a function»(wordchain t-261028-fecr · 엔진 대화창·여러 게임이 쓴다) */
+  function replaceChildren() {
+    while (this.lastChild) this.removeChild(this.lastChild);
+    var d = this.ownerDocument || this;
+    for (var i = 0; i < arguments.length; i++) { var n = arguments[i]; this.appendChild(typeof n === 'object' && n ? n : d.createTextNode(String(n))); }
+  }
+  ['Element', 'Document', 'DocumentFragment'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'replaceChildren', replaceChildren); });
   if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
   /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
   function roundRect(x, y, w, h, r) {
@@ -174,7 +190,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"5d7552111","game":"mulchinnom"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"498f911c6","game":"mulchinnom"};</script>
 <meta name="description" content="물은 다 똑같다. 배송비 포함 1L 가격으로 오늘 제일 싼 생수를 찾아 바로 사세요.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="물친놈 - 생수 최저가 · 1L 가격비교">
@@ -202,8 +218,8 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"물친놈","url":"https://dumbgamelab.com/play/mulchinnom/","applicationCategory":"ShoppingApplication","operatingSystem":"Android, Web","inLanguage":"ko","description":"배송비 포함 1L 가격으로 생수 최저가를 비교하는 앱","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"publisher":{"@type":"Organization","name":"덤게임랩","url":"https://dumbgamelab.com/"}}</script>
     <!-- 계측(GA4) — 앱에서는 Firebase 로 간다. 소리 없는 앱이라 audio-env 없음 -->
     <script src="js/analytics.js"></script>
-    <script type="module" crossorigin src="./assets/index-DXF9EKO-.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CmPvc0FO.css">
+    <script type="module" crossorigin src="./assets/index-CXHe3LpH.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BxTALYg6.css">
   </head>
   <body>
     <div id="app"></div>
@@ -217,6 +233,9 @@
  * 공개 입력이 자동 수정 워커로 곧장 들어가는 길도 아니다. 읽는 쪽은 `core/tools/feedback/run.mjs`(1시간마다 → 티켓 + 조종석 카드).
  * 자동 첨부 = 마지막 JS 오류 한 줄(`msg`) · 화면(`screen`) · 빌드. 기기·OS·앱 버전은 GA 가 붙인다. 오류가 나면 버튼이 진해진다(«오류 뒤 창구 안내» — 리뷰 요청을 거르는 게 아니다).
  * 로컬(개발) 트래픽은 analytics.js 가 GA 로 보내지 않는다 → 콘솔 로그만(?dglSend=1 로 강제).
+ * «보냈다» 신호(2026-11-03 사장님 «돈 안 쓰고 제보·테스터 늘리기 = 인게임 보상») — 보내고 나면 window 이벤트 `dgl:feedback-sent`
+ *   (detail = {len, reward, where}) 와 `DGL_FEEDBACK.onSent(cb)` 를 낸다. reward = 공백 뺀 8자 이상이고 로봇이 아닐 때만 true.
+ *   보상은 «의견 보내기» 에만 붙는다 — 별점·리뷰와 엮지 않는다(review gating 금지). 얼마를 얼마나 주는지는 게임(엔진)이 정한다.
  */
 (function () {
   var CFG = window.__DGL_WEB || {};
@@ -256,6 +275,14 @@
   };
   /* 설정 줄 문구 — 키는 언어 접두(중국어만 간·번체를 나눈다). 없으면 영어 */
   var MENU_LABEL = { ko: "의견 보내기", en: "Send feedback", ja: "ご意見を送る", "zh-hans": "发送反馈", "zh-hant": "傳送意見", id: "Kirim masukan", th: "ส่งความคิดเห็น", vi: "Gửi góp ý", es: "Enviar comentarios", pt: "Enviar sugestão", tr: "Geri bildirim gönder" };
+  var MIN_REWARD_LEN = 8; /* 공백 뺀 글자 수 — 한두 글자 눌러 보상만 받는 걸 거른다 */
+  var sentCbs = [];
+  function noteSent(text, where) {
+    var len = String(text).replace(/\s+/g, "").length;
+    var detail = { len: len, reward: !robot && len >= MIN_REWARD_LEN, where: where };
+    sentCbs.forEach(function (cb) { try { cb(detail); } catch (e) {} });
+    try { window.dispatchEvent(new CustomEvent("dgl:feedback-sent", { detail: detail })); } catch (e) {}
+  }
   function menuLabel() {
     var l = String((window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko").toLowerCase().replace("_", "-");
     if (l.indexOf("zh") === 0) return MENU_LABEL[/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans"];
@@ -310,7 +337,9 @@
       if (!text) return false;
       var where = {};
       try { var cx = window.DGL && window.DGL.ctx; where = (typeof cx === "function" ? cx() : cx) || {}; } catch (er) {}
-      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: robot ? "robot" : BETA ? "beta" : CFG.target || "web", screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      var wh = robot ? "robot" : BETA ? "beta" : CFG.target || "web";
+      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: wh, screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      noteSent(text, wh);
       return true;
     }
     /* 메뉴형은 별도 페이지 — 설정 목록 위에 검은 막대를 띄우면 앱과 따로 논다(2026-10-25 사장님 «드롭다운 혹은 별도 페이지로 빼기»).
@@ -359,7 +388,7 @@
     document.addEventListener("click", function (e) { var t = e.target && e.target.closest && e.target.closest(SLOT); if (t) { e.preventDefault(); open(); } }, true);
     try { new MutationObserver(syncSlot).observe(document.documentElement, { childList: true, subtree: true }); } catch (er) {}
     syncSlot();
-    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel };
+    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel, minLen: MIN_REWARD_LEN, onSent: function (cb) { if (typeof cb === "function") sentCbs.push(cb); } };
     btn.addEventListener("click", function () { toggle(true); });
     close.addEventListener("click", function () { toggle(false); });
     box.addEventListener("submit", function (e) {
