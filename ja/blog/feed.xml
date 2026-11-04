@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>夜12時に着いたら、ソウルのチムジルバンはどこに泊まる？</title>
+    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-seoul-24-hours/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-seoul-24-hours/</guid>
+    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
+    <description>夜12時にソウルや仁川空港へ着いたとき、泊まれる24時間営業のチムジルバンを比べました。夜間料金が始まる時刻は20時が多く、22時の店もあります。追加料金、再入場不可、パスポート、22時以降の未成年ルールまで、2026-11-04時点で書いています。</description>
+  </item>
+  <item>
     <title>カラスは私の顔を覚えていて、噂を広める</title>
     <link>https://dumbgamelab.com/ja/blog/crow-faces/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crow-faces/</guid>
@@ -226,14 +233,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>赤ちゃんのひざのお皿は軟骨で、3歳ごろから骨になりはじめる。骨の数は成長するとむしろ減る。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>同じ言葉をくり返すと意味が消える</title>
-    <link>https://dumbgamelab.com/ja/blog/semantic-satiation/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/semantic-satiation/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>同じ言葉をくり返し続けると、一時的に意味が消える意味飽和が起きる。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

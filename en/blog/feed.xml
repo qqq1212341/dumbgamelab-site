@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Landing at midnight? Where to sleep in a Seoul jjimjilbang</title>
+    <link>https://dumbgamelab.com/en/blog/jjimjilbang-seoul-24-hours/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-seoul-24-hours/</guid>
+    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Landing in Seoul or at Incheon Airport at midnight? We compared the 24-hour jjimjilbang (Korean spa) where you can sleep overnight. Night rates start at 8 p.m. at most places and 10 p.m. at one. Surcharges, no re-entry, passports and the under-19 rule at 10 p.m. are all checked as of 2026-11-04.</description>
+  </item>
+  <item>
     <title>Crows Remember Your Face and Spread the Word</title>
     <link>https://dumbgamelab.com/en/blog/crow-faces/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/crow-faces/</guid>
@@ -223,14 +230,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>In botany, bananas and tomatoes are berries, while strawberries and raspberries are not.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>GPS Satellite Clocks Are Set Slow on Purpose</title>
-    <link>https://dumbgamelab.com/en/blog/gps-relativity/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/gps-relativity/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Because of relativity, GPS satellite clocks run 38 microseconds fast each day. So before launch, they&#39;re set to run slow on purpose.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
