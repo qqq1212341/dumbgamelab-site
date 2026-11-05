@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"61027f51b","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"1c28d5f25","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -47,7 +47,8 @@
     try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
     try { origFetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
   }
-  function where() { try { var x = window.DGL && window.DGL.ctx; return x ? String(x.stage || x.where || "") : ""; } catch (e) { return ""; } }
+  /* DGL.ctx 는 함수다(타이쿤 엔진 setTrackContext · analytics.js 규약) — 객체로만 읽어 타이쿤 판의 «화면» 빵부스러기가 늘 비었다(주유소 1.0.0 «화면 -» 0칸 · t-261103-xdg6) */
+  function where() { try { var x = window.DGL && window.DGL.ctx; if (typeof x === "function") x = x(); if (!x) return ""; var w = String(x.where || ""), st = x.stage; return w ? w + (st != null && st !== "" ? " " + st : "") : String(st == null ? "" : st); } catch (e) { return ""; } }
   function report(k, msg, stack, src, line, col, extra) {
     msg = String(msg || "").slice(0, 300);
     var key = k + "|" + msg + "|" + src + ":" + line;
@@ -109,15 +110,19 @@
    * 그래서 앞/뒤는 네이티브 가드(DglCrashGuard)가 파일로 적고 페이지가 뜨면 prevEnd(끝, 사유)로 알려 준다 — 그때까지 보내지 않고 기다린다.
    * bg(뒤로 간 뒤 죽음)·gone(렌더러 죽음 — 가드가 이미 보냈다)은 버린다. 가드 없는 옛 판은 답이 없으니 기다린 뒤 예전처럼 보낸다. */
   var held = null, heldT = 0;
-  function prevEnd(end, why) {
+  function prevEnd(end, why, dev, timedOut) {
     if (!held) return;
     var o = held; held = null; clearTimeout(heldT);
-    if (end === "bg" || end === "gone") return;
+    /* same = 같은 프로세스에서 액티비티만 다시 만들어진 판 — 앞 페이지는 프로세스와 함께 죽지 않았다(t-261103-xdg6) */
+    if (end === "bg" || end === "gone" || end === "same") return;
     /* 끝이 fg·?(가드가 처음 깔린 판이라 파일이 없다)여도 OS 가 «사용자가 끔·멈춤·패키지 바뀜·업데이트(10·11·15·16)»이라 했거나
      * 죽을 때 이미 캐시 상태(중요도 400↑)였으면 앞 화면에서 죽은 게 아니다 — 크래시로 세지 않는다(Unity CrashReporter.NotCrash 와 같은 판정).
      * 업데이트 설치 첫 실행(한 번뿐인 인생 1.0.3→1.0.4 · t-261026-u4zq) · 홈 직후 «백그라운드 모두 정리»가 onStop 보다 먼저 와 파일이 fg 로 남음(알고있여우 1.0.4 · t-261030-5zdn) */
     if (/exit reason (10|11|15|16) /.test(why || "") || /importance ([4-9]\d\d|\d{4,}) /.test(why || "")) return;
-    if (why) o.b = o.b.concat(["네이티브 " + end + " " + String(why).slice(0, 90)]);
+    /* 사유 줄 없이 보내지 않는다 — 빈 기록 한 장은 메모리 부족·강제 종료·진짜 크래시를 못 가른다(주유소 1.0.0 빵부스러기 0칸 · t-261103-xdg6).
+     * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
+    o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
+    if (dev) o.b.push("기기 " + String(dev).slice(0, 90));
     post("/e", o);
   }
   window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb, prevEnd: prevEnd, leaving: leaving };
@@ -132,7 +137,7 @@
     var ab = { g: prev.g || CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
     /* 아이폰 앱도 같다 — 앱 전환기로 올린 뒤(resign active) 밀어서 끈 판은 «뒤로 감» 쓰기가 커밋되기 전에 SIGKILL 을 맞는다.
      * 가드(DglCrashGuard.swift)가 active/resign 을 파일로 적고 페이지가 뜨면 prevEnd 로 알려 준다(PC방 2.0.24 iOS 1.7% · t-261027-2nr7) */
-    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
+    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", "", "", true); }, 20000); }
     else post("/e", ab);
   }
   if (!run.fg) crumb("뒤에서 켜짐");
@@ -160,6 +165,16 @@
     for (var i = 0; i < arguments.length; i++) { var n = arguments[i]; this.appendChild(typeof n === 'object' && n ? n : d.createTextNode(String(n))); }
   }
   ['Element', 'Document', 'DocumentFragment'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'replaceChildren', replaceChildren); });
+  /* crypto.randomUUID(Chrome 92·iOS 15.4) — 옛 웹뷰는 뽑기 버튼에서 «crypto.randomUUID is not a function»(0913sample social.js begin · t-261103-7rs3).
+   * getRandomValues(Chrome 11) 로 RFC 4122 v4 를 만든다 · 그마저 없으면 Math.random */
+  var cr = window.crypto || window.msCrypto;
+  if (cr) def(cr, 'randomUUID', function () {
+    var b = new Uint8Array(16), i, h = [];
+    if (cr.getRandomValues) cr.getRandomValues(b); else for (i = 0; i < 16; i++) b[i] = Math.random() * 256 | 0;
+    b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+    for (i = 0; i < 16; i++) h.push((b[i] + 256).toString(16).slice(1));
+    return h.slice(0, 4).join('') + '-' + h.slice(4, 6).join('') + '-' + h.slice(6, 8).join('') + '-' + h.slice(8, 10).join('') + '-' + h.slice(10).join('');
+  });
   if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
   /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
   function roundRect(x, y, w, h, r) {
@@ -190,7 +205,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"61027f51b","game":"chichicamp"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"1c28d5f25","game":"chichicamp"};</script>
 <meta name="description" content="숲속 캠핑 게임. 재료를 모아 가구를 만들고, 찾아오는 동물 친구와 캠프를 꾸며요. · A cozy camping game: craft furniture and befriend the animals who visit your forest camp.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 숲속 캠프 · Chichi Camp: Cozy Camping Game">
@@ -205,14 +220,14 @@
   <title>치치의 숲속 캠프</title>
   <script src="./js/i18n.js"></script>
   <link rel="stylesheet" href="./css/i18n-fonts.css" />
-  <script type="module" crossorigin src="./assets/index-BSN1wyqu.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-JS7FB77i.css">
+  <script type="module" crossorigin src="./assets/index-nqUaxwoz.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DnwaCjm8.css">
 </head>
 <body>
 <div id="stage">
   <div id="boot"><div class="bt-art"></div><div class="bt-leaves"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="bt-logo"><img class="bt-word" alt="" /><div class="bt-cat"><img alt="" src="title/chichi-tea.webp" /><span class="bt-steam"><i></i><i></i><i></i></span></div></div><div class="bt-line"></div><div class="bt-bar"><i></i></div><button class="bt-start" type="button"></button></div>
   <script>/* 로고는 언어별(치치 뺀 판) + 치치는 따로 얹어 움직인다 — 자리는 art/logo/logo-<lang>.json(make-logo.cjs 가 잰다). 경로는 상대(하위 경로 서빙) — src/style-boot.css */
-  (function () { var l = window.DGLI18N && DGLI18N.locale === "ko" ? "ko" : "en", c = {"ko": {"left": "58.2%", "top": "-0.1%", "width": "29.9%", "height": "56.8%"}, "en": {"left": "60.0%", "top": "0.0%", "width": "38.3%", "height": "49.5%"}}[l], q = function (s) { return document.querySelector("#boot " + s); };
+  (function () { var l = window.DGLI18N && DGLI18N.locale === "ko" ? "ko" : "en", c = {"ko": {"left": "57.5%", "top": "-0.1%", "width": "27.3%", "height": "50.5%"}, "en": {"left": "58.7%", "top": "0.0%", "width": "34.0%", "height": "46.8%"}}[l], q = function (s) { return document.querySelector("#boot " + s); };
     q(".bt-word").src = "title/logo-" + l + ".webp"; q(".bt-art").style.backgroundImage = "url(title/keyart.webp)";
     var k = q(".bt-cat").style; k.left = c.left; k.top = c.top; k.width = c.width; k.height = c.height; })();</script>
   <div id="sky"></div>
@@ -242,9 +257,11 @@
   </div>
   <div id="cozy" hidden></div>
   <div id="tray" hidden></div>
+  <div id="reform" hidden></div>
   <div id="confirm" hidden>
     <button class="tool" id="btnCancel" aria-label="취소"></button>
     <button class="tool" id="btnStore" aria-label="상자에 넣기" hidden></button>
+    <button class="tool" id="btnReform" aria-label="리폼" hidden></button>
     <button class="tool" id="btnRot" aria-label="돌리기"></button>
     <button class="tool" id="btnOk" aria-label="놓기"></button>
   </div>
