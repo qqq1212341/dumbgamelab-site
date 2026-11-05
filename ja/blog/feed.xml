@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>宇宙では金属どうしがただくっつく</title>
+    <link>https://dumbgamelab.com/ja/blog/space-cold-weld/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-cold-weld/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>真空中できれいな同種の金属面が触れ合うと、熱がなくてもくっつく。宇宙機の設計者が気をつけるべき現象だ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/galileo-orbiter.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>「スマホの比率に合っていません」というレビューが教えてくれたこと</title>
     <link>https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</guid>
@@ -224,14 +232,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>植物学では、バナナとトマトはベリーで、イチゴとラズベリーはベリーではない。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>GPS衛星の時計はわざと遅く合わせる</title>
-    <link>https://dumbgamelab.com/ja/blog/gps-relativity/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/gps-relativity/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>GPS衛星の時計は、相対性理論のせいで1日に38マイクロ秒進む。だから打ち上げ前に、わざと遅く合わせておく。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

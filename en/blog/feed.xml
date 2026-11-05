@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>In Space, Metal Just Sticks to Metal</title>
+    <link>https://dumbgamelab.com/en/blog/space-cold-weld/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-cold-weld/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>In a vacuum, clean surfaces of the same metal can bond on contact without any heat. Spacecraft designers have to watch out for it.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/galileo-orbiter.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>What a &quot;Doesn&#39;t Fit My Phone&quot; Review Told Us About Android 15</title>
     <link>https://dumbgamelab.com/en/blog/review-said-buttons-hidden/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/review-said-buttons-hidden/</guid>
@@ -221,14 +229,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>An astronaut can&#39;t go to the universe. They&#39;re already inside it.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Sea Otters Hold Hands While They Sleep</title>
-    <link>https://dumbgamelab.com/en/blog/sea-otter/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/sea-otter/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Sea otters hold hands in their sleep so they don&#39;t drift apart, and they carry a favorite rock under one arm.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
