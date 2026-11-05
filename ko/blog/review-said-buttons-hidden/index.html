@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>안드로이드 15 하단 버튼 가려짐 해결: 웹뷰 앱이 내비게이션 바에 깔린 이유</title>
+<meta name="description" content="«휴대폰 비율에 안 맞아요» 별점 1 리뷰에서 시작한 수정 기록입니다. 안드로이드 15 edge-to-edge로 하단 탭바가 내비게이션 바 밑에 깔린 원인과 Capacitor adjustMarginsForEdgeToEdge 설정, 24px 땜질을 지운 이유를 적었습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="안드로이드 15 하단 버튼 가려짐 해결: 웹뷰 앱이 내비게이션 바에 깔린 이유">
+<meta property="og:description" content="«휴대폰 비율에 안 맞아요» 별점 1 리뷰에서 시작한 수정 기록입니다. 안드로이드 15 edge-to-edge로 하단 탭바가 내비게이션 바 밑에 깔린 원인과 Capacitor adjustMarginsForEdgeToEdge 설정, 24px 땜질을 지운 이유를 적었습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"«휴대폰 비율에 안 맞아요» 리뷰가 알려 준 것","description":"«휴대폰 비율에 안 맞아요» 별점 1 리뷰에서 시작한 수정 기록입니다. 안드로이드 15 edge-to-edge로 하단 탭바가 내비게이션 바 밑에 깔린 원인과 Capacitor adjustMarginsForEdgeToEdge 설정, 24px 땜질을 지운 이유를 적었습니다.","inLanguage":"ko","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"PC Cafe Tycoon","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"«휴대폰 비율에 안 맞아요» 리뷰가 알려 준 것","item":"https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"안드로이드 15에서 앱 하단 버튼이 내비게이션 바에 가려지는 이유는?","acceptedAnswer":{"@type":"Answer","text":"안드로이드 15부터 targetSdk 35 이상인 앱은 화면이 시스템 바 밑까지 강제로 늘어나는 edge-to-edge가 적용됩니다. 앱이 바 높이만큼 여백을 잡지 않으면 맨 아래 단추가 내비게이션 바 밑에 깔립니다."}},{"@type":"Question","name":"Capacitor 앱에서 adjustMarginsForEdgeToEdge는 어떻게 설정하나요?","acceptedAnswer":{"@type":"Answer","text":"capacitor.config.json의 android 항목에 adjustMarginsForEdgeToEdge를 넣습니다. PC방 키우기는 \"force\"로 켰습니다. \"auto\"는 테마에 edge-to-edge 옵트아웃이 있으면 꺼지는데, 안드로이드 16은 옵트아웃을 무시해서 force 쪽을 골랐습니다."}},{"@type":"Question","name":"하단 여백을 픽셀로 더하면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"기기마다, 내비게이션 방식마다 바 높이가 달라서 숫자 하나로는 맞지 않습니다. 이 앱도 24px을 더하는 땜질이 있었지만 두꺼운 바에서는 계속 가렸고, 이번에 지웠습니다."}},{"@type":"Question","name":"웹뷰를 바 안쪽으로 내렸더니 위아래에 흰 띠가 생겨요.","acceptedAnswer":{"@type":"Answer","text":"바 뒤로 창 배경이 비치는 것입니다. 기본 창 배경이 흰색이라 그렇습니다. 안드로이드 테마의 창 배경과 상태바, 내비게이션 바 색을 앱 바탕색으로 맞추면 사라집니다. Capacitor는 sync 때 android 폴더를 다시 쓰니, 색을 넣는 단계는 sync 뒤에 둬야 합니다."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">개발 일지 · 리뷰 고침</p>
+    <h1>«휴대폰 비율에 안 맞아요» 리뷰가 알려 준 것</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="PC방 키우기 게임 화면. 아이소메트릭 PC방 안에 손님들이 PC 앞에 앉아 있고, 화면 맨 아래에 «상점», 번개 모양 «가속», «전단지 돌리기» 단추가 한 줄로 놓여 있다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">안드로이드 15부터는 targetSdk 35 이상인 앱의 화면이 상태바와 내비게이션 바 밑까지 강제로 깔립니다. 웹뷰로 그리는 Capacitor 앱이라면 capacitor.config.json의 android.adjustMarginsForEdgeToEdge를 &quot;force&quot;로 켜서 웹뷰를 시스템 바 안쪽으로 내리고, 바 뒤로 비치는 창 배경을 앱 바탕색으로 칠하면 하단 버튼이 다시 보입니다. 하단 여백을 픽셀 숫자로 더하는 땜질은 기기마다 바 높이가 달라서 맞지 않았습니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">별 하나와 함께 온 리뷰</a></li><li><a href="#s2">별 하나의 이유는 재미가 아니라 단추였습니다</a></li><li><a href="#s3">안드로이드 15에서 바뀐 것</a></li><li><a href="#s4">하단 여백 24px 땜질이 틀렸던 이유</a></li><li><a href="#s5">고친 방법: 설정 한 줄과 바 색 주입, 그리고 검사</a></li><li><a href="#s6">아직 못 잰 것</a></li><li><a href="#s7">리뷰 35건을 나눠 보니</a></li></ol></nav>
+    <section id="s1"><h2>별 하나와 함께 온 리뷰</h2>
+<p>2026년 11월 2일, 고양이 PC방 키우기 Google Play 페이지에 별점 1짜리 한국어 리뷰가 하나 달렸습니다. 원문은 이렇습니다.</p>
+<p>«게임은 재밌는데, 휴대폰 비율에 안 맞아요. 안 옮겨지는 가구들도 많아요. 게임이 휴대폰 비율만 맞아도 보일 버튼이 많을 것 같아서 아쉽네요. 재밌으나 게임하기 불편해서 수정되면 할게요»</p>
+<p>그날 바로 사과 답글을 달았고, 원인도 같은 날 찾았습니다. 이 글은 그 하루 동안 무엇을 찾았고 무엇을 고쳤는지, 그리고 아직 무엇을 모르는지에 대한 기록입니다.</p>
+</section>
+<section id="s2"><h2>별 하나의 이유는 재미가 아니라 단추였습니다</h2>
+<p>리뷰를 다시 읽으면 «재밌다»가 두 번 나옵니다. 게임이 싫어서 별 하나를 준 게 아니었습니다. 보여야 할 버튼이 안 보이고, 가구가 안 옮겨져서 못 하겠다는 얘기였습니다.</p>
+<p>이런 리뷰는 고치는 쪽에서 보면 고마운 리뷰입니다. 재미가 없다는 말은 어디를 고쳐야 할지 알려 주지 않지만, 버튼이 안 보인다는 말은 화면의 어느 줄을 봐야 하는지 짚어 줍니다. 마지막 문장도 «수정되면 할게요»였습니다. 고치면 돌아올 사람이라는 뜻입니다.</p>
+<p>같은 무렵 «가구가 안 옮겨져요»라는 제보도 따로 와 있었습니다. 따라가 보니 원인이 같아서 두 티켓을 하나로 합쳤습니다. 가구를 고르면 화면 아래에 이동, 회전, 보관, 팔기 단추가 한 줄로 뜨는데, 그 줄이 통째로 가려져 있었습니다.</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="PC방 키우기의 «게임» 탭 화면. 설치된 게임과 잠긴 게임 카드가 격자로 놓여 있고, 화면 맨 아래에 «상점» 단추와 «전단지 돌리기 10/10» 단추가 있다" loading="lazy" decoding="async"><figcaption>맨 아래 «상점»과 «전단지 돌리기»가 있는 이 줄이 내비게이션 바 밑으로 깔렸습니다.</figcaption></figure></section>
+<section id="s3"><h2>안드로이드 15에서 바뀐 것</h2>
+<p>안드로이드 15부터 targetSdk 35 이상으로 빌드한 앱은 edge-to-edge가 강제됩니다. 앱 화면이 위쪽 상태바와 아래쪽 내비게이션 바 밑까지 늘어나고, 그 밑에 깔린 부분을 피하는 건 앱이 알아서 해야 합니다. 이 앱은 targetSdk 36이라 그대로 해당됐습니다.</p>
+<p>네이티브 앱이라면 시스템이 알려 주는 인셋 값을 받아 여백을 잡으면 됩니다. 우리 게임은 Capacitor 7 위에서 웹뷰 안에 그리는 구조인데, 웹뷰 쪽에서 읽는 env(safe-area-inset-bottom) 값이 0으로 들어왔습니다. 웹 코드는 아래에 바가 없다고 믿고 탭바를 화면 맨 끝에 붙였고, 그 위에 내비게이션 바가 덮였습니다.</p>
+<p>바 높이는 내비게이션 방식과 기기마다 다르니, 같은 앱이라도 사람마다 가려지는 정도가 달랐을 것으로 짐작합니다. 직접 재 본 값은 아닙니다.</p>
+</section>
+<section id="s4"><h2>하단 여백 24px 땜질이 틀렸던 이유</h2>
+<p>사실 이 문제의 흔적은 전에도 있었습니다. 코드에 하단 여백 24px을 더하는 줄이 들어가 있었습니다. 아래가 가려 보여서 그만큼 올려 둔 땜질이었습니다.</p>
+<p>숫자 하나로는 안 됩니다. 내비게이션 바 높이는 기기마다, 내비게이션 방식마다 다릅니다. 바가 24px 보다 두꺼우면 여전히 가리고, 바가 없는 환경에서는 쓸데없는 빈칸이 생깁니다. 땜질이 한 기기를 고치는 동안 다른 기기에서는 그대로 깔려 있었던 셈입니다.</p>
+<p>그래서 이번에는 24px 줄을 지웠습니다. 여백을 웹 코드가 짐작하지 않고, 웹뷰가 처음부터 바 안쪽에만 그려지게 바꾸는 쪽을 골랐습니다.</p>
+</section>
+<section id="s5"><h2>고친 방법: 설정 한 줄과 바 색 주입, 그리고 검사</h2>
+<p>수정은 11월 2일, 리뷰가 온 그날 머지했습니다. 타이쿤 앱 6개와 새 게임을 찍어 내는 템플릿에 같은 변경을 넣었습니다.</p>
+<p>첫째는 capacitor.config.json의 android.adjustMarginsForEdgeToEdge를 &quot;force&quot;로 켠 것입니다. 이 값이 웹뷰를 시스템 바 안쪽으로 내립니다. &quot;auto&quot;를 두지 않은 이유는, auto는 테마에 edge-to-edge 옵트아웃 설정이 있으면 꺼지는데 안드로이드 16은 그 옵트아웃을 무시하기 때문입니다. 안드로이드 14 이하에서는 인셋이 0이라 force로 둬도 달라지는 게 없습니다.</p>
+<p>둘째는 바 색입니다. 웹뷰를 안쪽으로 내리면 이번엔 바 뒤로 창 배경이 비치는데, 기본값이 흰색이라 어두운 게임 위아래에 흰 띠가 생깁니다. 그래서 빌드할 때 안드로이드 테마의 창 배경과 상태바, 내비게이션 바 색을 앱 바탕색으로 칠하는 스크립트를 넣었습니다. 바탕이 어두우면 바 아이콘은 밝게 둡니다. android 폴더는 sync 때마다 다시 써지기 때문에, 이 스크립트가 sync 뒤에 꼭 돌도록 순서를 묶었습니다.</p>
+<p>셋째는 재발 방지입니다. 앱마다 이 설정이 켜져 있는지 보는 검사를 만들어 커밋 때마다 돌게 했습니다. 아직 못 켠 다른 장르 앱 7개는 사유를 적어 장부에 올렸고, 이 장부는 줄어드는 쪽으로만 고칠 수 있습니다. 새 앱이 설정 없이 들어오면 검사가 막습니다.</p>
+<ul><li>capacitor.config.json에 android.adjustMarginsForEdgeToEdge: &quot;force&quot;</li><li>창 배경과 시스템 바 색을 앱 바탕색으로 주입(sync 뒤에 실행)</li><li>하단 여백 24px 땜질 삭제</li><li>앱마다 설정 여부를 보는 검사와, 줄어들기만 하는 예외 장부</li></ul>
+</section>
+<section id="s6"><h2>아직 못 잰 것</h2>
+<p>하나는 실기기 확인입니다. 우리가 가진 테스트 폰은 안드로이드 14라서 이 증상이 애초에 나지 않습니다. 고친 빌드의 하단 탭바를 안드로이드 15 기기에서 직접 눈으로 보는 일은 아직 남아 있습니다.</p>
+<p>다른 하나는 결과 숫자입니다. 수정 뒤에 평점이 어떻게 됐는지, 그 리뷰어가 다시 들어왔는지는 아직 못 쟀습니다. 고친 지 사흘밖에 안 됐고, 지금 쓸 수 있는 숫자가 없습니다. 숫자가 나오면 이 글을 고치겠습니다.</p>
+</section>
+<section id="s7"><h2>리뷰 35건을 나눠 보니</h2>
+<p>이번 일을 계기로 PC방 알바 앱에 쌓인 리뷰 35건을 내용별로 나눠 봤습니다.</p>
+<p>가장 많은 건 게임에 아예 못 들어간다는 진입 실패 27건이었습니다. 다만 10월 14일 이후로는 새로 들어온 진입 실패 리뷰가 0건입니다. 지난번에 고친 것이 버티고 있다는 뜻으로 읽고 있습니다.</p>
+<p>광고 얘기 2건 중에는 광고를 막 끝낸 직후에 리뷰를 써 달라는 창이 뜨는 문제가 있었습니다. 광고를 보고 난 바로 그 순간은 리뷰를 부탁하기에 가장 나쁜 때입니다. 11월 3일에 광고 뒤 10분 안에는 리뷰를 묻지 않도록 바꿨습니다.</p>
+<div class="tbl"><table><thead><tr><th>분류</th><th>건수</th></tr></thead><tbody><tr><td>진입 실패</td><td>27</td></tr><tr><td>버벅임</td><td>3</td></tr><tr><td>광고</td><td>2</td></tr><tr><td>저장</td><td>1</td></tr><tr><td>조작</td><td>1</td></tr><tr><td>기타</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>안드로이드 15에서 앱 하단 버튼이 내비게이션 바에 가려지는 이유는?</summary><p>안드로이드 15부터 targetSdk 35 이상인 앱은 화면이 시스템 바 밑까지 강제로 늘어나는 edge-to-edge가 적용됩니다. 앱이 바 높이만큼 여백을 잡지 않으면 맨 아래 단추가 내비게이션 바 밑에 깔립니다.</p></details><details><summary>Capacitor 앱에서 adjustMarginsForEdgeToEdge는 어떻게 설정하나요?</summary><p>capacitor.config.json의 android 항목에 adjustMarginsForEdgeToEdge를 넣습니다. PC방 키우기는 &quot;force&quot;로 켰습니다. &quot;auto&quot;는 테마에 edge-to-edge 옵트아웃이 있으면 꺼지는데, 안드로이드 16은 옵트아웃을 무시해서 force 쪽을 골랐습니다.</p></details><details><summary>하단 여백을 픽셀로 더하면 안 되나요?</summary><p>기기마다, 내비게이션 방식마다 바 높이가 달라서 숫자 하나로는 맞지 않습니다. 이 앱도 24px을 더하는 땜질이 있었지만 두꺼운 바에서는 계속 가렸고, 이번에 지웠습니다.</p></details><details><summary>웹뷰를 바 안쪽으로 내렸더니 위아래에 흰 띠가 생겨요.</summary><p>바 뒤로 창 배경이 비치는 것입니다. 기본 창 배경이 흰색이라 그렇습니다. 안드로이드 테마의 창 배경과 상태바, 내비게이션 바 색을 앱 바탕색으로 맞추면 사라집니다. Capacitor는 sync 때 android 폴더를 다시 쓰니, 색을 넣는 단계는 sync 뒤에 둬야 합니다.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="PC방 키우기" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">방치형 타이쿤</p><p class="gb-title"><a href="/ko/games/pcbangalba/">PC방 키우기</a></p><p class="gb-hook">단추가 제자리로 돌아온 골목 PC방, 폰에서 직접 키워 보세요.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dko" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">웹에서 하기</a></div></div>
+</aside>
+    
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>PC방 경영 게임 2026, 아이폰까지 포함한 17종</b><span class="pc-desc">PC방·인터넷 카페 경영 게임을 아이폰, 안드로이드, Steam으로 나눠 17종 골랐습니다. 스토어 페이지에서 직접 읽은 가격, 평점, 오프라인 문구와 우리 게임의 약점까지 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

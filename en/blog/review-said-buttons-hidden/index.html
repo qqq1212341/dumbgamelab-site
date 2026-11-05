@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 15 Bottom Buttons Hidden by the Navigation Bar: Fixing a Capacitor WebView App</title>
+<meta name="description" content="A dev log that started with a 1-star review saying the game did not fit the phone. Why Android 15 edge-to-edge pushed the bottom tab bar under the navigation bar, the Capacitor adjustMarginsForEdgeToEdge setting we turned on, and why we deleted our 24px patch.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Android 15 Bottom Buttons Hidden by the Navigation Bar: Fixing a Capacitor WebView App">
+<meta property="og:description" content="A dev log that started with a 1-star review saying the game did not fit the phone. Why Android 15 edge-to-edge pushed the bottom tab bar under the navigation bar, the Capacitor adjustMarginsForEdgeToEdge setting we turned on, and why we deleted our 24px patch.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"What a \"Doesn't Fit My Phone\" Review Told Us About Android 15","description":"A dev log that started with a 1-star review saying the game did not fit the phone. Why Android 15 edge-to-edge pushed the bottom tab bar under the navigation bar, the Capacitor adjustMarginsForEdgeToEdge setting we turned on, and why we deleted our 24px patch.","inLanguage":"en","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"PC Cafe Tycoon","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"What a \"Doesn't Fit My Phone\" Review Told Us About Android 15","item":"https://dumbgamelab.com/en/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why are the bottom buttons of my app hidden behind the navigation bar on Android 15?","acceptedAnswer":{"@type":"Answer","text":"From Android 15, apps with targetSdk 35 or higher get edge-to-edge, where the window is forced to stretch under the system bars. If the app does not leave a margin equal to the bar height, the buttons at the very bottom end up under the navigation bar."}},{"@type":"Question","name":"How do I set adjustMarginsForEdgeToEdge in a Capacitor app?","acceptedAnswer":{"@type":"Answer","text":"Add adjustMarginsForEdgeToEdge to the android entry in capacitor.config.json. PC Cafe Tycoon (PC방 키우기) turned it on with \"force\". \"auto\" switches off when the theme has an edge-to-edge opt-out, and Android 16 ignores the opt-out, so we chose force."}},{"@type":"Question","name":"Can't I just add a fixed pixel margin at the bottom?","acceptedAnswer":{"@type":"Answer","text":"Bar height differs between devices and navigation modes, so one number does not fit. This app had a 24px patch too, but thicker bars still covered the buttons, and we deleted it this time."}},{"@type":"Question","name":"After moving the WebView inside the bars, I get white strips at the top and bottom.","acceptedAnswer":{"@type":"Answer","text":"That is the window background showing through behind the bars. The default window background is white. Setting the Android theme's window background, status bar and navigation bar colors to your app's base color makes them disappear. Capacitor rewrites the android folder on sync, so put the step that injects the colors after sync."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Dev log · fixing a review</p>
+    <h1>What a &quot;Doesn&#39;t Fit My Phone&quot; Review Told Us About Android 15</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="A PC Cafe Tycoon (PC방 키우기) game screen. Customers sit at PCs inside an isometric PC bang, and one row at the very bottom of the screen holds a &quot;Shop&quot; button, a lightning-bolt &quot;Boost&quot; button and a &quot;Hand out flyers&quot; button" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">From Android 15, apps built with targetSdk 35 or higher are drawn edge-to-edge, all the way under the status bar and the navigation bar. If your Capacitor app renders in a WebView, set android.adjustMarginsForEdgeToEdge to &quot;force&quot; in capacitor.config.json so the WebView sits inside the system bars, and paint the window background in your app&#39;s base color so nothing shows through behind the bars. The bottom buttons come back. Adding a fixed pixel margin at the bottom did not work for us, because bar height differs from device to device.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">A review that came with one star</a></li><li><a href="#s2">The one star was about buttons, not fun</a></li><li><a href="#s3">What changed in Android 15</a></li><li><a href="#s4">Why the 24px bottom patch was wrong</a></li><li><a href="#s5">The fix: one setting, bar colors, and a check</a></li><li><a href="#s6">What we have not measured yet</a></li><li><a href="#s7">Sorting 35 reviews</a></li></ol></nav>
+    <section id="s1"><h2>A review that came with one star</h2>
+<p>On November 2, 2026, a 1-star review in Korean appeared on the Google Play page for Cat PC Cafe Tycoon (PC방 키우기). The original is in Korean, so this is our translation:</p>
+<p>&quot;The game is fun, but it doesn&#39;t fit my phone&#39;s aspect ratio. Lots of furniture won&#39;t move either. If the game just fit the phone, I think there would be a lot more buttons to see, which is a shame. It&#39;s fun but uncomfortable to play, so I&#39;ll play once it&#39;s fixed.&quot;</p>
+<p>We posted an apology reply that same day, and we found the cause the same day. This post is a record of what we found and fixed in that one day, and of what we still don&#39;t know.</p>
+</section>
+<section id="s2"><h2>The one star was about buttons, not fun</h2>
+<p>Read it again and &quot;fun&quot; appears twice. The reviewer did not give one star because they disliked the game. They could not play, because buttons that should be on screen were not visible and furniture would not move.</p>
+<p>As the person fixing things, I am grateful for reviews like this. &quot;It&#39;s not fun&quot; does not tell you where to look, but &quot;I can&#39;t see the buttons&quot; points at a specific row of the screen. The last sentence was also &quot;I&#39;ll play once it&#39;s fixed&quot;. That is someone who comes back if we fix it.</p>
+<p>Around the same time a separate report had come in saying &quot;furniture won&#39;t move&quot;. When we traced it, the cause was the same, so we merged the two tickets. When you select a piece of furniture, a row with Move, Rotate, Store and Sell buttons appears at the bottom of the screen, and that whole row was hidden.</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="The Games tab of PC Cafe Tycoon. Installed games and locked games sit in a grid, and the bottom of the screen has a &quot;Shop&quot; button and a &quot;Hand out flyers 10/10&quot; button" loading="lazy" decoding="async"><figcaption>The row with &quot;Shop&quot; and &quot;Hand out flyers&quot; at the very bottom was drawn under the navigation bar.</figcaption></figure></section>
+<section id="s3"><h2>What changed in Android 15</h2>
+<p>From Android 15, apps built with targetSdk 35 or higher get edge-to-edge enforced. The app window stretches under the status bar at the top and the navigation bar at the bottom, and it is up to the app to avoid the parts that end up underneath. This app targets SDK 36, so it was affected as is.</p>
+<p>A native app can read the inset values the system reports and set its margins from those. Our game runs on Capacitor 7 and draws inside a WebView, and there the env(safe-area-inset-bottom) value that the web side reads came back as 0. The web code assumed there was no bar below, pinned the tab bar to the very edge of the screen, and the navigation bar was drawn over it.</p>
+<p>Bar height depends on the navigation mode and on the device, so I suspect the same app was covered by a different amount for different people. That is a guess, not a number we measured.</p>
+</section>
+<section id="s4"><h2>Why the 24px bottom patch was wrong</h2>
+<p>There were actually traces of this problem from before. The code had a line that added a 24px bottom margin. The bottom looked covered on some device, so someone had lifted everything by that much as a patch.</p>
+<p>One number cannot work. The height of the navigation bar differs between devices and between navigation modes. If the bar is thicker than 24px, it still covers the buttons, and where there is no bar it leaves a pointless gap. While the patch fixed one device, the app stayed buried on the others.</p>
+<p>So this time we deleted the 24px line. Instead of having the web code guess a margin, we changed the app so the WebView is drawn only inside the bars from the start.</p>
+</section>
+<section id="s5"><h2>The fix: one setting, bar colors, and a check</h2>
+<p>We merged the fix on November 2, the same day the review arrived. The same change went into six tycoon apps and the template we use to stamp out new games.</p>
+<p>First, we set android.adjustMarginsForEdgeToEdge to &quot;force&quot; in capacitor.config.json. That value moves the WebView inside the system bars. We did not leave it on &quot;auto&quot; because auto switches off when the theme has an edge-to-edge opt-out, and Android 16 ignores that opt-out. On Android 14 and below the insets are 0, so force changes nothing there.</p>
+<p>Second, the bar colors. Once the WebView is moved inward, the window background shows through behind the bars, and the default is white, so a dark game gets white strips at the top and bottom. So we added a build script that paints the Android theme&#39;s window background, status bar and navigation bar in the app&#39;s base color. When the base is dark, the bar icons stay light. Capacitor rewrites the android folder on every sync, so we chained the order so that this script always runs after sync.</p>
+<p>Third, to stop it from coming back, we wrote a check that tests whether each app has this setting on, and made it run on every commit. Seven apps in other genres could not turn it on yet, so we put them in a ledger with a reason for each, and the ledger can only be edited in the direction of getting shorter. If a new app arrives without the setting, the check blocks it.</p>
+<ul><li>android.adjustMarginsForEdgeToEdge: &quot;force&quot; in capacitor.config.json</li><li>Inject the window background and system bar colors in the app&#39;s base color (run after sync)</li><li>Delete the 24px bottom margin patch</li><li>A per-app check for the setting, plus an exceptions ledger that can only shrink</li></ul>
+</section>
+<section id="s6"><h2>What we have not measured yet</h2>
+<p>One is a check on a real device. The test phone we have runs Android 14, where this symptom never appears in the first place. Looking at the bottom tab bar of the fixed build with our own eyes on an Android 15 device is still to do.</p>
+<p>The other is the result. We have not yet measured how the rating moved after the fix, or whether that reviewer came back. It has only been three days since the fix, and there is no number we can use right now. When there is one, we will update this post.</p>
+</section>
+<section id="s7"><h2>Sorting 35 reviews</h2>
+<p>This prompted us to sort the 35 reviews that had piled up on the PC bang part-time job app by content.</p>
+<p>The biggest group was 27 reviews about not being able to get into the game at all. Since October 14, though, there have been 0 new reviews of that kind. We read that as the earlier fix holding up.</p>
+<p>Of the 2 reviews about ads, one pointed at a problem where a review prompt popped up right after an ad had just ended. The moment right after someone watches an ad is the worst time to ask for a review. On November 3 we changed it so the game does not ask for a review within 10 minutes after an ad.</p>
+<div class="tbl"><table><thead><tr><th>Category</th><th>Count</th></tr></thead><tbody><tr><td>Can&#39;t get in</td><td>27</td></tr><tr><td>Lag</td><td>3</td></tr><tr><td>Ads</td><td>2</td></tr><tr><td>Saving</td><td>1</td></tr><tr><td>Controls</td><td>1</td></tr><tr><td>Other</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Why are the bottom buttons of my app hidden behind the navigation bar on Android 15?</summary><p>From Android 15, apps with targetSdk 35 or higher get edge-to-edge, where the window is forced to stretch under the system bars. If the app does not leave a margin equal to the bar height, the buttons at the very bottom end up under the navigation bar.</p></details><details><summary>How do I set adjustMarginsForEdgeToEdge in a Capacitor app?</summary><p>Add adjustMarginsForEdgeToEdge to the android entry in capacitor.config.json. PC Cafe Tycoon (PC방 키우기) turned it on with &quot;force&quot;. &quot;auto&quot; switches off when the theme has an edge-to-edge opt-out, and Android 16 ignores the opt-out, so we chose force.</p></details><details><summary>Can&#39;t I just add a fixed pixel margin at the bottom?</summary><p>Bar height differs between devices and navigation modes, so one number does not fit. This app had a 24px patch too, but thicker bars still covered the buttons, and we deleted it this time.</p></details><details><summary>After moving the WebView inside the bars, I get white strips at the top and bottom.</summary><p>That is the window background showing through behind the bars. The default window background is white. Setting the Android theme&#39;s window background, status bar and navigation bar colors to your app&#39;s base color makes them disappear. Capacitor rewrites the android folder on sync, so put the step that injects the colors after sync.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="PC Cafe Tycoon" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Idle Tycoon</p><p class="gb-title"><a href="/en/games/pcbangalba/">PC Cafe Tycoon</a></p><p class="gb-hook">If you want to see the buttons back where they belong, grow an alley PC bang on your phone.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Den" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">Play in browser</a></div></div>
+</aside>
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

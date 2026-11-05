@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>「スマホの比率に合っていません」というレビューが教えてくれたこと</title>
+    <link>https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</guid>
+    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
+    <description>「スマホの比率に合っていません」という星1レビューから始まった修正の記録です。Android 15のedge-to-edgeで下のタブバーがナビゲーションバーの下に潜った原因と、CapacitorのadjustMarginsForEdgeToEdge設定、24pxの応急処置を消した理由を書きました。</description>
+  </item>
+  <item>
     <title>BBCが「スパゲッティは木になる」と放送した</title>
     <link>https://dumbgamelab.com/ja/blog/spaghetti-tree/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/spaghetti-tree/</guid>
@@ -225,14 +232,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>GPS衛星の時計は、相対性理論のせいで1日に38マイクロ秒進む。だから打ち上げ前に、わざと遅く合わせておく。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>最初に読み取られたバーコードはガムだった</title>
-    <link>https://dumbgamelab.com/ja/blog/barcode-gum/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/barcode-gum/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>バーコードは砂に描いたモールス信号から生まれ、最初に読み取られた商品はガムだった。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

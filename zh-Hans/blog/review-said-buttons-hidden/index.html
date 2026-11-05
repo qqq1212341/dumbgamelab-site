@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安卓15底部按钮被导航栏遮挡怎么办：WebView 游戏的 edge-to-edge 适配记录</title>
+<meta name="description" content="一条“不适配手机比例”的一星差评引出的修复记录。安卓15强制 edge-to-edge 后，底部标签栏被压在导航栏下面，这里写了原因、Capacitor 的 adjustMarginsForEdgeToEdge 设置，以及删掉 24px 补丁的理由。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/review-said-buttons-hidden/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="安卓15底部按钮被导航栏遮挡怎么办：WebView 游戏的 edge-to-edge 适配记录">
+<meta property="og:description" content="一条“不适配手机比例”的一星差评引出的修复记录。安卓15强制 edge-to-edge 后，底部标签栏被压在导航栏下面，这里写了原因、Capacitor 的 adjustMarginsForEdgeToEdge 设置，以及删掉 24px 补丁的理由。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"“不适配手机比例”的差评，告诉了我们什么","description":"一条“不适配手机比例”的一星差评引出的修复记录。安卓15强制 edge-to-edge 后，底部标签栏被压在导航栏下面，这里写了原因、Capacitor 的 adjustMarginsForEdgeToEdge 设置，以及删掉 24px 补丁的理由。","inLanguage":"zh-CN","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"网吧养成记","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"“不适配手机比例”的差评，告诉了我们什么","item":"https://dumbgamelab.com/zh-Hans/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"安卓15上应用底部按钮为什么会被导航栏遮住？","acceptedAnswer":{"@type":"Answer","text":"从安卓15开始，targetSdk 35 及以上的应用会强制启用 edge-to-edge，画面被拉伸到系统栏下面。如果应用没有按栏的高度留出边距，最下面的按钮就会被压在导航栏下面。"}},{"@type":"Question","name":"Capacitor 应用里的 adjustMarginsForEdgeToEdge 怎么设置？","acceptedAnswer":{"@type":"Answer","text":"在 capacitor.config.json 的 android 项里加上 adjustMarginsForEdgeToEdge。《网吧养成记》（PC방 키우기）设成了 \"force\"。\"auto\" 在主题里有 edge-to-edge 退出设置时会失效，而安卓16会忽略这个退出设置，所以我们选了 force。"}},{"@type":"Question","name":"底部留白直接加像素值不行吗？","acceptedAnswer":{"@type":"Answer","text":"栏高度因设备和导航方式而异，一个数字对不上。这款应用以前也有加 24px 的补丁，但遇到更厚的栏还是会遮住，这次把它删掉了。"}},{"@type":"Question","name":"把 WebView 退到栏内侧以后，上下出现了白条怎么办？","acceptedAnswer":{"@type":"Answer","text":"那是栏后面透出来的窗口背景，因为默认窗口背景是白色。把安卓主题的窗口背景、状态栏和导航栏颜色调成应用底色就会消失。Capacitor 在 sync 时会重写 android 文件夹，所以写入颜色的步骤要放在 sync 之后。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 差评修复</p>
+    <h1>“不适配手机比例”的差评，告诉了我们什么</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="《网吧养成记》游戏画面。等距视角的网吧里，顾客坐在电脑前，画面最下方一排并列着“商店”、闪电图案的“加速”和“发传单”按钮" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">从安卓15开始，targetSdk 35 及以上的应用画面会被强制铺到状态栏和导航栏下面。用 WebView 绘制的 Capacitor 应用，把 capacitor.config.json 里的 android.adjustMarginsForEdgeToEdge 设为 &quot;force&quot;，让 WebView 退到系统栏内侧，再把透出来的窗口背景涂成应用底色，底部按钮就能重新显示。用像素数字补底部留白的补丁行不通，因为每台设备的栏高度都不一样。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">随一星而来的差评</a></li><li><a href="#s2">一星的原因不是不好玩，而是按钮</a></li><li><a href="#s3">安卓15改了什么</a></li><li><a href="#s4">为什么底部留 24px 的补丁是错的</a></li><li><a href="#s5">修复方法：一行设置、注入栏颜色，再加检查</a></li><li><a href="#s6">还没测到的</a></li><li><a href="#s7">把35条评论分类之后</a></li></ol></nav>
+    <section id="s1"><h2>随一星而来的差评</h2>
+<p>2026年11月2日，猫咪《网吧养成记》（PC방 키우기）的 Google Play 页面上多了一条一星的韩语差评。原文翻译如下（原文为韩语 Google Play 评论，以下为我们的翻译）。</p>
+<p>“游戏很好玩，但是不适配手机比例。好多家具也移动不了。如果游戏能适配手机比例，应该就能看到很多按钮了，有点可惜。虽然好玩，但玩起来不方便，等修好了再玩。”</p>
+<p>当天我们就回复道歉，原因也在同一天找到了。这篇文章记录的是这一天里查到了什么、改了什么，以及还有什么不知道。</p>
+</section>
+<section id="s2"><h2>一星的原因不是不好玩，而是按钮</h2>
+<p>把评论再读一遍，“好玩”出现了两次。玩家不是因为讨厌游戏才给一星。他说的是该看到的按钮看不到，家具又移动不了，所以没法玩。</p>
+<p>从修的人这边看，这种差评反而让人感激。“不好玩”这句话指不出该改哪里，而“按钮看不到”能告诉你该去看画面的哪一排。最后一句也是“修好了再玩”，说明修好之后他还会回来。</p>
+<p>差不多同一时间，另外还收到一条“家具移动不了”的反馈。查下去发现原因相同，于是把两张工单合成了一张。选中家具后，画面下方会出现一排移动、旋转、收纳、出售按钮，而这一整排都被遮住了。</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="《网吧养成记》的“游戏”标签页。已安装和未解锁的游戏卡片排成网格，画面最下方有“商店”按钮和“发传单 10/10”按钮" loading="lazy" decoding="async"><figcaption>最下方有“商店”和“发传单”的这一排，被压到了导航栏下面。</figcaption></figure></section>
+<section id="s3"><h2>安卓15改了什么</h2>
+<p>从安卓15开始，以 targetSdk 35 及以上构建的应用会被强制启用 edge-to-edge。应用画面会一直铺到上方状态栏和下方导航栏的下面，怎么避开被压在下面的部分，要由应用自己处理。这款应用的 targetSdk 是 36，所以完全适用。</p>
+<p>如果是原生应用，拿系统给出的 inset 值来留边距就行。我们的游戏是在 Capacitor 7 上、在 WebView 里绘制的结构，而 WebView 这边读到的 env(safe-area-inset-bottom) 值是 0。网页代码以为下面没有栏，就把标签栏贴在了屏幕最边上，结果导航栏盖了上来。</p>
+<p>栏的高度因导航方式和设备而异，所以同一个应用，每个人被遮住的程度大概也不一样，这是我们的推测，不是实际测出来的值。</p>
+</section>
+<section id="s4"><h2>为什么底部留 24px 的补丁是错的</h2>
+<p>其实这个问题以前就留下过痕迹。代码里有一行给底部加 24px 留白。当时是因为下面看起来被遮住了，就按这个数字抬高了一点，属于补丁。</p>
+<p>靠一个数字不行。导航栏的高度因设备而异，也因导航方式而异。栏比 24px 厚就还是会遮住，在没有栏的环境里又会多出一块没用的空白。补丁修好了一台设备的时候，另一台设备上还是被压着。</p>
+<p>所以这次把 24px 那一行删掉了。我们选的是：不让网页代码去猜留白，而是让 WebView 从一开始就只画在栏的内侧。</p>
+</section>
+<section id="s5"><h2>修复方法：一行设置、注入栏颜色，再加检查</h2>
+<p>修复在11月2日，也就是差评来的当天合并了。同样的改动加进了6个经营类应用和用来生成新游戏的模板里。</p>
+<p>第一是把 capacitor.config.json 的 android.adjustMarginsForEdgeToEdge 设为 &quot;force&quot;。这个值会让 WebView 退到系统栏内侧。没有用 &quot;auto&quot;，因为主题里一旦有 edge-to-edge 的退出设置，auto 就会失效，而安卓16会忽略这个退出设置。在安卓14及以下，inset 本来就是 0，设成 force 也不会有任何变化。</p>
+<p>第二是栏的颜色。WebView 退到内侧以后，栏后面会透出窗口背景，默认值是白色，深色游戏的上下就会出现白条。所以我们在构建时加了一个脚本，把安卓主题的窗口背景、状态栏和导航栏颜色涂成应用底色。底色是深色时，栏上的图标保持浅色。android 文件夹每次 sync 都会被重新写入，所以把顺序绑定好，让这个脚本一定在 sync 之后运行。</p>
+<p>第三是防止再犯。我们写了一个检查，看每个应用有没有开这项设置，每次提交都会运行。另外有7个其他类型的应用暂时没能开启，已写明原因记进台账，这份台账只能往减少的方向改。新应用如果没带这项设置进来，检查会把它拦住。</p>
+<ul><li>在 capacitor.config.json 里加 android.adjustMarginsForEdgeToEdge: &quot;force&quot;</li><li>把窗口背景和系统栏颜色注入为应用底色（在 sync 之后运行）</li><li>删除底部留白 24px 的补丁</li><li>按应用检查是否已设置，并保留只减不增的例外台账</li></ul>
+</section>
+<section id="s6"><h2>还没测到的</h2>
+<p>一是真机确认。我们手上的测试手机是安卓14，这个现象根本不会出现。修复后的构建，底部标签栏在安卓15设备上亲眼看一遍，这件事还没做。</p>
+<p>另一个是结果数字。修复之后评分变成了多少，那位玩家有没有再回来，目前还没测到。修好才三天，现在拿不出能用的数字。有了数字，我会回来改这篇文章。</p>
+</section>
+<section id="s7"><h2>把35条评论分类之后</h2>
+<p>借这次机会，我们把网吧打工应用（PC방 알바）上积累的35条评论按内容分了类。</p>
+<p>最多的是根本进不了游戏的进入失败，共27条。不过10月14日之后，新进来的进入失败评论是0条。我们的理解是，上次的修复撑住了。</p>
+<p>涉及广告的2条里，有一个问题：刚看完广告，马上就弹出请玩家写评价的窗口。刚看完广告的那一刻，是请人写评价最不合适的时候。11月3日我们改成了广告结束后10分钟内不再询问评价。</p>
+<div class="tbl"><table><thead><tr><th>分类</th><th>条数</th></tr></thead><tbody><tr><td>进入失败</td><td>27</td></tr><tr><td>卡顿</td><td>3</td></tr><tr><td>广告</td><td>2</td></tr><tr><td>存档</td><td>1</td></tr><tr><td>操作</td><td>1</td></tr><tr><td>其他</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>安卓15上应用底部按钮为什么会被导航栏遮住？</summary><p>从安卓15开始，targetSdk 35 及以上的应用会强制启用 edge-to-edge，画面被拉伸到系统栏下面。如果应用没有按栏的高度留出边距，最下面的按钮就会被压在导航栏下面。</p></details><details><summary>Capacitor 应用里的 adjustMarginsForEdgeToEdge 怎么设置？</summary><p>在 capacitor.config.json 的 android 项里加上 adjustMarginsForEdgeToEdge。《网吧养成记》（PC방 키우기）设成了 &quot;force&quot;。&quot;auto&quot; 在主题里有 edge-to-edge 退出设置时会失效，而安卓16会忽略这个退出设置，所以我们选了 force。</p></details><details><summary>底部留白直接加像素值不行吗？</summary><p>栏高度因设备和导航方式而异，一个数字对不上。这款应用以前也有加 24px 的补丁，但遇到更厚的栏还是会遮住，这次把它删掉了。</p></details><details><summary>把 WebView 退到栏内侧以后，上下出现了白条怎么办？</summary><p>那是栏后面透出来的窗口背景，因为默认窗口背景是白色。把安卓主题的窗口背景、状态栏和导航栏颜色调成应用底色就会消失。Capacitor 在 sync 时会重写 android 文件夹，所以写入颜色的步骤要放在 sync 之后。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="网吧养成记" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置经营</p><p class="gb-title"><a href="/zh-Hans/games/pcbangalba/">网吧养成记</a></p><p class="gb-hook">按钮回到原位的小巷网吧，用手机亲手经营一下吧。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dzh-Hans" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">在浏览器玩</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 15で画面下のボタンが隠れる問題の直し方:WebViewアプリがナビゲーションバーの下に潜る理由</title>
+<meta name="description" content="「スマホの比率に合っていません」という星1レビューから始まった修正の記録です。Android 15のedge-to-edgeで下のタブバーがナビゲーションバーの下に潜った原因と、CapacitorのadjustMarginsForEdgeToEdge設定、24pxの応急処置を消した理由を書きました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Android 15で画面下のボタンが隠れる問題の直し方:WebViewアプリがナビゲーションバーの下に潜る理由">
+<meta property="og:description" content="「スマホの比率に合っていません」という星1レビューから始まった修正の記録です。Android 15のedge-to-edgeで下のタブバーがナビゲーションバーの下に潜った原因と、CapacitorのadjustMarginsForEdgeToEdge設定、24pxの応急処置を消した理由を書きました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"「スマホの比率に合っていません」というレビューが教えてくれたこと","description":"「スマホの比率に合っていません」という星1レビューから始まった修正の記録です。Android 15のedge-to-edgeで下のタブバーがナビゲーションバーの下に潜った原因と、CapacitorのadjustMarginsForEdgeToEdge設定、24pxの応急処置を消した理由を書きました。","inLanguage":"ja","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"ネットカフェ育成","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"「スマホの比率に合っていません」というレビューが教えてくれたこと","item":"https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Android 15でアプリの下のボタンがナビゲーションバーに隠れるのはなぜですか?","acceptedAnswer":{"@type":"Answer","text":"Android 15から、targetSdkが35以上のアプリには、画面がシステムバーの下まで強制的に広がるedge-to-edgeが適用されます。アプリがバーの高さ分の余白を取らないと、いちばん下のボタンがナビゲーションバーの下に潜ります。"}},{"@type":"Question","name":"CapacitorアプリでadjustMarginsForEdgeToEdgeはどう設定しますか?","acceptedAnswer":{"@type":"Answer","text":"capacitor.config.jsonのandroidの項目にadjustMarginsForEdgeToEdgeを入れます。ネットカフェ育成では\"force\"にしました。\"auto\"はテーマにedge-to-edgeのオプトアウトがあると無効になりますが、Android 16はオプトアウトを無視するので、force側を選びました。"}},{"@type":"Question","name":"下の余白をピクセルで足してはだめですか?","acceptedAnswer":{"@type":"Answer","text":"端末ごと、ナビゲーション方式ごとにバーの高さが違うので、数字1つでは合いません。このアプリにも24pxを足す応急処置がありましたが、厚いバーではやはり隠れたままだったので、今回消しました。"}},{"@type":"Question","name":"WebViewをバーの内側に下げたら、上下に白い帯ができました。","acceptedAnswer":{"@type":"Answer","text":"バーの裏にウィンドウ背景が透けているのです。既定のウィンドウ背景が白だからです。Androidテーマのウィンドウ背景とステータスバー、ナビゲーションバーの色をアプリの地色に合わせると消えます。Capacitorはsyncのときにandroidフォルダを書き直すので、色を入れる手順はsyncの後に置く必要があります。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 · レビュー対応</p>
+    <h1>「スマホの比率に合っていません」というレビューが教えてくれたこと</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="ネットカフェ育成(PC방 키우기)のゲーム画面。アイソメトリックのPCバンの中でお客がPCの前に座っていて、画面のいちばん下に「ショップ」、稲妻の形の「加速」、「チラシ配り」のボタンが1列に並んでいる" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Android 15からは、targetSdkが35以上のアプリの画面が、ステータスバーとナビゲーションバーの下まで強制的に広がります。WebViewで描くCapacitorアプリなら、capacitor.config.jsonのandroid.adjustMarginsForEdgeToEdgeを&quot;force&quot;にしてWebViewをシステムバーの内側に下げ、バーの裏に透けるウィンドウ背景をアプリの地色で塗ると、下のボタンがまた見えるようになります。下の余白をピクセルの数字で足す応急処置は、端末ごとにバーの高さが違うので合いませんでした。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">星1つと一緒に届いたレビュー</a></li><li><a href="#s2">星1つの理由は面白さではなく、ボタンでした</a></li><li><a href="#s3">Android 15で変わったこと</a></li><li><a href="#s4">下の余白24pxの応急処置がだめだった理由</a></li><li><a href="#s5">直し方:設定1行とバーの色の注入、そして検査</a></li><li><a href="#s6">まだ測れていないこと</a></li><li><a href="#s7">レビュー35件を分けてみると</a></li></ol></nav>
+    <section id="s1"><h2>星1つと一緒に届いたレビュー</h2>
+<p>2026年11月2日、猫のネットカフェ育成のGoogle Playページに、星1つの韓国語レビューが1件つきました。原文は韓国語で、日本語に訳すとこうです。</p>
+<p>「ゲームは面白いけど、スマホの比率に合っていません。動かせない家具も多いです。ゲームがスマホの比率に合うだけで、見えるボタンが増えそうなので残念です。面白いけど遊びにくいので、直ったらやります」</p>
+<p>その日のうちにお詫びの返信を書き、原因も同じ日に見つけました。この記事は、その1日で何を見つけ、何を直したか、そしてまだ何がわかっていないかの記録です。</p>
+</section>
+<section id="s2"><h2>星1つの理由は面白さではなく、ボタンでした</h2>
+<p>レビューを読み返すと、「面白い」が2回出てきます。ゲームが嫌いで星1つをつけたのではありませんでした。見えるはずのボタンが見えず、家具が動かせなくて遊べない、という話でした。</p>
+<p>直す側から見ると、こういうレビューはありがたいものです。面白くないという言葉はどこを直せばいいか教えてくれませんが、ボタンが見えないという言葉は、画面のどの行を見ればいいかを指してくれます。最後の一文も「直ったらやります」でした。直せば戻ってきてくれる人、ということです。</p>
+<p>同じころ、「家具が動かせません」という報告も別に届いていました。たどってみると原因が同じだったので、2つのチケットを1つにまとめました。家具を選ぶと画面の下に移動、回転、しまう、売るのボタンが1列で出ますが、その列がまるごと隠れていました。</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="ネットカフェ育成のゲームタブの画面。インストール済みのゲームとロック中のゲームのカードが格子状に並び、画面のいちばん下に「ショップ」ボタンと「チラシ配り 10/10」ボタンがある" loading="lazy" decoding="async"><figcaption>いちばん下の「ショップ」と「チラシ配り」があるこの行が、ナビゲーションバーの下に潜っていました。</figcaption></figure></section>
+<section id="s3"><h2>Android 15で変わったこと</h2>
+<p>Android 15から、targetSdk 35以上でビルドしたアプリはedge-to-edgeが強制されます。アプリの画面が上のステータスバーと下のナビゲーションバーの下まで広がり、その下に潜る部分をよけるのはアプリ側の仕事です。このアプリはtargetSdkが36なので、そのまま対象でした。</p>
+<p>ネイティブアプリなら、システムが渡すインセットの値を受け取って余白を決めれば済みます。うちのゲームはCapacitor 7の上でWebViewの中に描く作りで、WebView側で読むenv(safe-area-inset-bottom)の値が0で入ってきました。Webのコードは下にバーがないと信じてタブバーを画面の端にくっつけ、その上にナビゲーションバーが重なりました。</p>
+<p>バーの高さはナビゲーションの方式や端末ごとに違うので、同じアプリでも人によって隠れ方が違ったはずだと推測しています。実際に測った値ではありません。</p>
+</section>
+<section id="s4"><h2>下の余白24pxの応急処置がだめだった理由</h2>
+<p>実は、この問題の跡は前からありました。コードに、下の余白を24px足す行が入っていたのです。下が隠れて見えたので、その分だけ持ち上げた応急処置でした。</p>
+<p>数字1つでは足りません。ナビゲーションバーの高さは、端末ごと、ナビゲーション方式ごとに違います。バーが24pxより厚ければやはり隠れますし、バーがない環境では余計な空白ができます。応急処置は1台を直している間に、ほかの端末では潜ったままだったことになります。</p>
+<p>そこで今回は24pxの行を消しました。余白をWebのコードが推測するのをやめて、WebViewが最初からバーの内側にだけ描かれるように変える方を選びました。</p>
+</section>
+<section id="s5"><h2>直し方:設定1行とバーの色の注入、そして検査</h2>
+<p>修正は11月2日、レビューが届いたその日にマージしました。タイクーンアプリ6本と、新しいゲームを作るテンプレートに同じ変更を入れています。</p>
+<p>1つ目は、capacitor.config.jsonのandroid.adjustMarginsForEdgeToEdgeを&quot;force&quot;にしたことです。この値がWebViewをシステムバーの内側に下げます。&quot;auto&quot;にしなかったのは、autoはテーマにedge-to-edgeのオプトアウト設定があると無効になるのに、Android 16はそのオプトアウトを無視するからです。Android 14以下ではインセットが0なので、forceにしても何も変わりません。</p>
+<p>2つ目はバーの色です。WebViewを内側に下げると、今度はバーの裏にウィンドウ背景が透けますが、既定値が白なので、暗いゲームの上下に白い帯ができます。そこで、ビルドのときにAndroidテーマのウィンドウ背景とステータスバー、ナビゲーションバーの色をアプリの地色で塗るスクリプトを入れました。地色が暗ければ、バーのアイコンは明るくします。androidフォルダはsyncのたびに書き直されるので、このスクリプトが必ずsyncの後に走るよう順番をつなぎました。</p>
+<p>3つ目は再発防止です。アプリごとにこの設定が入っているかを見る検査を作り、コミットのたびに走らせるようにしました。まだ設定を入れられていないほかのジャンルのアプリ7本は、理由を書いて台帳に載せてあり、この台帳は減る方向にしか直せません。新しいアプリが設定なしで入ってきたら、検査が止めます。</p>
+<ul><li>capacitor.config.jsonにandroid.adjustMarginsForEdgeToEdge: &quot;force&quot;</li><li>ウィンドウ背景とシステムバーの色をアプリの地色で注入(syncの後に実行)</li><li>下の余白24pxの応急処置を削除</li><li>アプリごとに設定の有無を見る検査と、減るだけの例外台帳</li></ul>
+</section>
+<section id="s6"><h2>まだ測れていないこと</h2>
+<p>1つは実機での確認です。うちにあるテスト用のスマホはAndroid 14なので、この症状がそもそも出ません。直したビルドの下のタブバーを、Android 15の端末で自分の目で確かめる作業は、まだ残っています。</p>
+<p>もう1つは結果の数字です。修正のあとで評価がどうなったか、あのレビューの方がまた来てくれたかは、まだ測れていません。直してから3日しか経っておらず、いま使える数字がありません。数字が出たら、この記事を直します。</p>
+</section>
+<section id="s7"><h2>レビュー35件を分けてみると</h2>
+<p>今回のことをきっかけに、PCバンのアルバイトアプリにたまっていたレビュー35件を、内容ごとに分けてみました。</p>
+<p>いちばん多かったのは、ゲームにそもそも入れないという起動失敗の27件でした。ただし10月14日以降は、新しく入った起動失敗のレビューは0件です。前回直したものが効いている、という意味に読んでいます。</p>
+<p>広告の話2件の中には、広告を見終わった直後にレビューをお願いするウィンドウが出る問題がありました。広告を見たばかりの瞬間は、レビューをお願いするのにいちばん悪いタイミングです。11月3日に、広告の後10分以内はレビューを聞かないように変えました。</p>
+<div class="tbl"><table><thead><tr><th>分類</th><th>件数</th></tr></thead><tbody><tr><td>起動失敗</td><td>27</td></tr><tr><td>動作の重さ</td><td>3</td></tr><tr><td>広告</td><td>2</td></tr><tr><td>セーブ</td><td>1</td></tr><tr><td>操作</td><td>1</td></tr><tr><td>その他</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Android 15でアプリの下のボタンがナビゲーションバーに隠れるのはなぜですか?</summary><p>Android 15から、targetSdkが35以上のアプリには、画面がシステムバーの下まで強制的に広がるedge-to-edgeが適用されます。アプリがバーの高さ分の余白を取らないと、いちばん下のボタンがナビゲーションバーの下に潜ります。</p></details><details><summary>CapacitorアプリでadjustMarginsForEdgeToEdgeはどう設定しますか?</summary><p>capacitor.config.jsonのandroidの項目にadjustMarginsForEdgeToEdgeを入れます。ネットカフェ育成では&quot;force&quot;にしました。&quot;auto&quot;はテーマにedge-to-edgeのオプトアウトがあると無効になりますが、Android 16はオプトアウトを無視するので、force側を選びました。</p></details><details><summary>下の余白をピクセルで足してはだめですか?</summary><p>端末ごと、ナビゲーション方式ごとにバーの高さが違うので、数字1つでは合いません。このアプリにも24pxを足す応急処置がありましたが、厚いバーではやはり隠れたままだったので、今回消しました。</p></details><details><summary>WebViewをバーの内側に下げたら、上下に白い帯ができました。</summary><p>バーの裏にウィンドウ背景が透けているのです。既定のウィンドウ背景が白だからです。Androidテーマのウィンドウ背景とステータスバー、ナビゲーションバーの色をアプリの地色に合わせると消えます。Capacitorはsyncのときにandroidフォルダを書き直すので、色を入れる手順はsyncの後に置く必要があります。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="ネットカフェ育成" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置タイクーン</p><p class="gb-title"><a href="/ja/games/pcbangalba/">ネットカフェ育成</a></p><p class="gb-hook">ボタンが元の場所に戻った路地のPCバンを、スマホで自分の手で育ててみませんか。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dja" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">ブラウザで遊ぶ</a></div></div>
+</aside>
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

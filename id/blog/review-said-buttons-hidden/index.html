@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tombol Bawah Tertutup di Android 15: Kenapa Aplikasi WebView Tertimpa Navigation Bar</title>
+<meta name="description" content="Catatan perbaikan yang berawal dari ulasan bintang 1 «tidak pas dengan rasio ponsel». Isinya penyebab tab bar bawah Bangun Warnet (PC방 키우기) tertimpa navigation bar karena edge-to-edge Android 15, pengaturan Capacitor adjustMarginsForEdgeToEdge, dan alasan tambalan 24px dihapus.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/review-said-buttons-hidden/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/id/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Tombol Bawah Tertutup di Android 15: Kenapa Aplikasi WebView Tertimpa Navigation Bar">
+<meta property="og:description" content="Catatan perbaikan yang berawal dari ulasan bintang 1 «tidak pas dengan rasio ponsel». Isinya penyebab tab bar bawah Bangun Warnet (PC방 키우기) tertimpa navigation bar karena edge-to-edge Android 15, pengaturan Capacitor adjustMarginsForEdgeToEdge, dan alasan tambalan 24px dihapus.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Yang Ditunjukkan Ulasan «Tidak Pas dengan Rasio Ponsel»","description":"Catatan perbaikan yang berawal dari ulasan bintang 1 «tidak pas dengan rasio ponsel». Isinya penyebab tab bar bawah Bangun Warnet (PC방 키우기) tertimpa navigation bar karena edge-to-edge Android 15, pengaturan Capacitor adjustMarginsForEdgeToEdge, dan alasan tambalan 24px dihapus.","inLanguage":"id","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Bangun Warnet","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"Yang Ditunjukkan Ulasan «Tidak Pas dengan Rasio Ponsel»","item":"https://dumbgamelab.com/id/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kenapa tombol bawah aplikasi tertutup navigation bar di Android 15?","acceptedAnswer":{"@type":"Answer","text":"Mulai Android 15, aplikasi dengan targetSdk 35 ke atas terkena edge-to-edge, yaitu layar dipaksa membentang sampai ke bawah bar sistem. Kalau aplikasi tidak menyisakan margin setinggi bar, tombol paling bawah tertimpa navigation bar."}},{"@type":"Question","name":"Bagaimana mengatur adjustMarginsForEdgeToEdge di aplikasi Capacitor?","acceptedAnswer":{"@type":"Answer","text":"Tambahkan adjustMarginsForEdgeToEdge pada bagian android di capacitor.config.json. Bangun Warnet (PC방 키우기) memakai \"force\". \"auto\" mati kalau tema punya opt-out edge-to-edge, sedangkan Android 16 mengabaikan opt-out, jadi kami memilih force."}},{"@type":"Question","name":"Boleh tidak menambah margin bawah dengan angka piksel?","acceptedAnswer":{"@type":"Answer","text":"Tinggi bar berbeda di tiap perangkat dan tiap cara navigasi, jadi satu angka tidak akan pas. Aplikasi ini juga pernah punya tambalan 24px, tetapi pada bar yang lebih tebal tombol tetap tertutup, dan kali ini tambalan itu dihapus."}},{"@type":"Question","name":"Setelah WebView diturunkan ke dalam bar, muncul pita putih di atas dan bawah.","acceptedAnswer":{"@type":"Answer","text":"Itu latar jendela yang tembus di balik bar, dan latar jendela bawaannya putih. Samakan latar jendela tema Android, status bar, dan navigation bar dengan warna latar aplikasi, maka pita itu hilang. Capacitor menulis ulang folder android saat sync, jadi langkah memasukkan warna harus diletakkan sesudah sync."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan dev · perbaikan dari ulasan</p>
+    <h1>Yang Ditunjukkan Ulasan «Tidak Pas dengan Rasio Ponsel»</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="Tampilan game Bangun Warnet (PC방 키우기). Di dalam warnet isometrik, pelanggan duduk di depan PC, dan di baris paling bawah layar ada tombol «Toko», «Percepat» berbentuk petir, dan «Bagi Brosur» dalam satu baris" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Mulai Android 15, layar aplikasi dengan targetSdk 35 ke atas dipaksa membentang sampai ke bawah status bar dan navigation bar. Kalau aplikasimu Capacitor yang menggambar lewat WebView, nyalakan android.adjustMarginsForEdgeToEdge di capacitor.config.json dengan nilai &quot;force&quot; supaya WebView turun ke dalam bar sistem, lalu cat latar jendela yang tembus di balik bar dengan warna latar aplikasi. Tombol bawah akan terlihat lagi. Menambah margin bawah dengan angka piksel (tambalan) tidak cocok, karena tinggi bar berbeda di tiap perangkat.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Ulasan yang datang bersama satu bintang</a></li><li><a href="#s2">Satu bintang itu bukan karena kurang seru, tapi karena tombol</a></li><li><a href="#s3">Yang berubah di Android 15</a></li><li><a href="#s4">Kenapa tambalan margin bawah 24px itu salah</a></li><li><a href="#s5">Cara memperbaikinya: satu baris pengaturan, warna bar, dan pemeriksaan</a></li><li><a href="#s6">Yang belum kami ukur</a></li><li><a href="#s7">Setelah 35 ulasan dikelompokkan</a></li></ol></nav>
+    <section id="s1"><h2>Ulasan yang datang bersama satu bintang</h2>
+<p>Pada 2 November 2026, halaman Google Play Bangun Warnet (PC방 키우기) mendapat satu ulasan bintang 1 berbahasa Korea. Berikut terjemahan isinya (ulasan aslinya berbahasa Korea).</p>
+<p>«Gamenya seru, tapi tidak pas dengan rasio ponsel. Banyak juga perabot yang tidak bisa dipindah. Sayang sekali, kalau saja game ini pas dengan rasio ponsel, kelihatannya banyak tombol yang akan terlihat. Seru, tapi tidak nyaman dimainkan, jadi kalau sudah diperbaiki saya akan main»</p>
+<p>Hari itu juga kami membalas dengan permintaan maaf, dan penyebabnya ketemu di hari yang sama. Tulisan ini mencatat apa yang kami temukan dan perbaiki dalam satu hari itu, serta apa yang masih belum kami ketahui.</p>
+</section>
+<section id="s2"><h2>Satu bintang itu bukan karena kurang seru, tapi karena tombol</h2>
+<p>Kalau dibaca ulang, kata «seru» muncul dua kali. Dia tidak memberi bintang 1 karena tidak suka gamenya. Maksudnya, tombol yang seharusnya terlihat tidak terlihat dan perabot tidak bisa dipindah, jadi dia tidak bisa main.</p>
+<p>Bagi yang memperbaiki, ulasan seperti ini justru berharga. Kata «tidak seru» tidak memberi tahu bagian mana yang harus diperbaiki, sedangkan «tombol tidak terlihat» menunjuk baris mana di layar yang harus dilihat. Kalimat terakhirnya juga «kalau sudah diperbaiki saya akan main». Artinya dia orang yang akan kembali kalau masalahnya beres.</p>
+<p>Sekitar waktu yang sama ada laporan terpisah, «perabot tidak bisa dipindah». Setelah ditelusuri penyebabnya sama, jadi dua tiket kami gabung jadi satu. Saat perabot dipilih, satu baris tombol pindah, putar, simpan, dan jual muncul di bawah layar, dan seluruh baris itu tertutup.</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="Tampilan tab «Game» di Bangun Warnet (PC방 키우기). Kartu game terpasang dan game terkunci tersusun dalam grid, dan di bagian paling bawah layar ada tombol «Toko» dan tombol «Bagi Brosur 10/10»" loading="lazy" decoding="async"><figcaption>Baris paling bawah berisi «Toko» dan «Bagi Brosur» inilah yang tertimpa navigation bar.</figcaption></figure></section>
+<section id="s3"><h2>Yang berubah di Android 15</h2>
+<p>Mulai Android 15, aplikasi yang dibuild dengan targetSdk 35 ke atas dipaksa memakai edge-to-edge. Layar aplikasi membentang sampai ke bawah status bar di atas dan navigation bar di bawah, dan aplikasilah yang harus menghindari bagian yang tertimpa itu. Aplikasi ini memakai targetSdk 36, jadi aturan ini berlaku apa adanya.</p>
+<p>Pada aplikasi native, cukup ambil nilai inset dari sistem lalu atur margin. Game kami berjalan di atas Capacitor 7 dan menggambar di dalam WebView, dan nilai env(safe-area-inset-bottom) yang dibaca sisi web ternyata 0. Kode web mengira tidak ada bar di bawah, lalu menempelkan tab bar di ujung layar, dan navigation bar menutupinya.</p>
+<p>Tinggi bar berbeda menurut cara navigasi dan perangkat, jadi saya menduga tingkat tertutupnya berbeda dari orang ke orang walau aplikasinya sama. Ini bukan angka yang kami ukur sendiri.</p>
+</section>
+<section id="s4"><h2>Kenapa tambalan margin bawah 24px itu salah</h2>
+<p>Sebenarnya jejak masalah ini sudah ada sebelumnya. Di kode ada baris yang menambah margin bawah 24px. Itu tambalan yang dibuat karena bagian bawah terlihat tertutup, lalu dinaikkan sebesar itu.</p>
+<p>Satu angka tidak cukup. Tinggi navigation bar berbeda di tiap perangkat dan tiap cara navigasi. Kalau bar lebih tebal dari 24px, tombol tetap tertutup, dan di lingkungan tanpa bar malah muncul ruang kosong yang tidak perlu. Jadi saat tambalan memperbaiki satu perangkat, perangkat lain tetap tertimpa.</p>
+<p>Karena itu kali ini baris 24px dihapus. Kami memilih membuat WebView sejak awal hanya menggambar di dalam bar, bukan membiarkan kode web menebak margin.</p>
+</section>
+<section id="s5"><h2>Cara memperbaikinya: satu baris pengaturan, warna bar, dan pemeriksaan</h2>
+<p>Perbaikannya kami merge pada 2 November, hari ulasan itu datang. Perubahan yang sama dimasukkan ke 6 aplikasi tycoon dan ke template untuk mencetak game baru.</p>
+<p>Pertama, android.adjustMarginsForEdgeToEdge di capacitor.config.json kami nyalakan dengan nilai &quot;force&quot;. Nilai ini menurunkan WebView ke dalam bar sistem. Kami tidak memakai &quot;auto&quot; karena auto mati kalau tema punya pengaturan opt-out edge-to-edge, sedangkan Android 16 mengabaikan opt-out itu. Di Android 14 ke bawah inset-nya 0, jadi dengan force pun tidak ada yang berubah.</p>
+<p>Kedua, warna bar. Begitu WebView diturunkan ke dalam, giliran latar jendela yang tembus di balik bar, dan karena nilai bawaannya putih, muncul pita putih di atas dan bawah game yang gelap. Maka kami menambahkan skrip saat build yang mengecat latar jendela tema Android, status bar, dan navigation bar dengan warna latar aplikasi. Kalau latarnya gelap, ikon bar dibuat terang. Folder android ditulis ulang setiap sync, jadi urutannya kami ikat supaya skrip ini selalu jalan sesudah sync.</p>
+<p>Ketiga, pencegah kambuh. Kami membuat pemeriksaan yang melihat apakah pengaturan ini menyala di tiap aplikasi dan menjalankannya di setiap commit. 7 aplikasi genre lain yang belum bisa menyalakannya dicatat beserta alasannya di sebuah daftar, dan daftar ini hanya boleh diubah ke arah mengecil. Kalau ada aplikasi baru masuk tanpa pengaturan ini, pemeriksaan akan menolaknya.</p>
+<ul><li>android.adjustMarginsForEdgeToEdge: &quot;force&quot; di capacitor.config.json</li><li>Suntik warna latar jendela dan bar sistem dengan warna latar aplikasi (dijalankan setelah sync)</li><li>Hapus tambalan margin bawah 24px</li><li>Pemeriksaan pengaturan per aplikasi, dan daftar pengecualian yang hanya boleh mengecil</li></ul>
+</section>
+<section id="s6"><h2>Yang belum kami ukur</h2>
+<p>Pertama, pengecekan di perangkat asli. Ponsel uji yang kami punya berjalan di Android 14, jadi gejala ini memang tidak muncul di sana. Melihat langsung tab bar bawah pada build yang sudah diperbaiki di perangkat Android 15 masih belum dilakukan.</p>
+<p>Kedua, angka hasilnya. Bagaimana rating setelah perbaikan dan apakah pemberi ulasan itu kembali main, belum kami ukur. Baru tiga hari sejak perbaikan, dan belum ada angka yang bisa dipakai. Kalau angkanya sudah ada, tulisan ini akan kami perbarui.</p>
+</section>
+<section id="s7"><h2>Setelah 35 ulasan dikelompokkan</h2>
+<p>Dari kejadian ini, kami mengelompokkan 35 ulasan yang menumpuk di aplikasi PC방 알바 menurut isinya.</p>
+<p>Yang terbanyak adalah gagal masuk game, 27 ulasan. Tetapi sejak 14 Oktober, ulasan gagal masuk yang baru datang 0. Kami membacanya sebagai tanda bahwa perbaikan sebelumnya bertahan.</p>
+<p>Dari 2 ulasan soal iklan, ada masalah jendela permintaan ulasan yang muncul tepat setelah iklan selesai. Saat baru selesai menonton iklan adalah waktu terburuk untuk meminta ulasan. Pada 3 November kami mengubahnya supaya ulasan tidak ditanyakan dalam 10 menit setelah iklan.</p>
+<div class="tbl"><table><thead><tr><th>Kategori</th><th>Jumlah</th></tr></thead><tbody><tr><td>Gagal masuk</td><td>27</td></tr><tr><td>Lag</td><td>3</td></tr><tr><td>Iklan</td><td>2</td></tr><tr><td>Simpan</td><td>1</td></tr><tr><td>Kontrol</td><td>1</td></tr><tr><td>Lainnya</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Kenapa tombol bawah aplikasi tertutup navigation bar di Android 15?</summary><p>Mulai Android 15, aplikasi dengan targetSdk 35 ke atas terkena edge-to-edge, yaitu layar dipaksa membentang sampai ke bawah bar sistem. Kalau aplikasi tidak menyisakan margin setinggi bar, tombol paling bawah tertimpa navigation bar.</p></details><details><summary>Bagaimana mengatur adjustMarginsForEdgeToEdge di aplikasi Capacitor?</summary><p>Tambahkan adjustMarginsForEdgeToEdge pada bagian android di capacitor.config.json. Bangun Warnet (PC방 키우기) memakai &quot;force&quot;. &quot;auto&quot; mati kalau tema punya opt-out edge-to-edge, sedangkan Android 16 mengabaikan opt-out, jadi kami memilih force.</p></details><details><summary>Boleh tidak menambah margin bawah dengan angka piksel?</summary><p>Tinggi bar berbeda di tiap perangkat dan tiap cara navigasi, jadi satu angka tidak akan pas. Aplikasi ini juga pernah punya tambalan 24px, tetapi pada bar yang lebih tebal tombol tetap tertutup, dan kali ini tambalan itu dihapus.</p></details><details><summary>Setelah WebView diturunkan ke dalam bar, muncul pita putih di atas dan bawah.</summary><p>Itu latar jendela yang tembus di balik bar, dan latar jendela bawaannya putih. Samakan latar jendela tema Android, status bar, dan navigation bar dengan warna latar aplikasi, maka pita itu hilang. Capacitor menulis ulang folder android saat sync, jadi langkah memasukkan warna harus diletakkan sesudah sync.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="Bangun Warnet" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Tycoon Idle</p><p class="gb-title"><a href="/id/games/pcbangalba/">Bangun Warnet</a></p><p class="gb-hook">Tombolnya sudah kembali ke tempatnya. Coba besarkan warnet di gang itu langsung dari ponselmu.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Did" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">Main di browser</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>What a &quot;Doesn&#39;t Fit My Phone&quot; Review Told Us About Android 15</title>
+    <link>https://dumbgamelab.com/en/blog/review-said-buttons-hidden/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/review-said-buttons-hidden/</guid>
+    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
+    <description>A dev log that started with a 1-star review saying the game did not fit the phone. Why Android 15 edge-to-edge pushed the bottom tab bar under the navigation bar, the Capacitor adjustMarginsForEdgeToEdge setting we turned on, and why we deleted our 24px patch.</description>
+  </item>
+  <item>
     <title>The BBC Once Said Spaghetti Grows on Trees</title>
     <link>https://dumbgamelab.com/en/blog/spaghetti-tree/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/spaghetti-tree/</guid>
@@ -222,14 +229,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Sea otters hold hands in their sleep so they don&#39;t drift apart, and they carry a favorite rock under one arm.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>OK Started as a Joke About Bad Spelling</title>
-    <link>https://dumbgamelab.com/en/blog/ok/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ok/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>OK is a joke misspelling of all correct as oll korrect that survived by riding an election slogan.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

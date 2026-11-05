@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>«휴대폰 비율에 안 맞아요» 리뷰가 알려 준 것</title>
+    <link>https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/</guid>
+    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
+    <description>«휴대폰 비율에 안 맞아요» 별점 1 리뷰에서 시작한 수정 기록입니다. 안드로이드 15 edge-to-edge로 하단 탭바가 내비게이션 바 밑에 깔린 원인과 Capacitor adjustMarginsForEdgeToEdge 설정, 24px 땜질을 지운 이유를 적었습니다.</description>
+  </item>
+  <item>
     <title>BBC가 스파게티는 나무에서 딴다고 방송했다</title>
     <link>https://dumbgamelab.com/ko/blog/spaghetti-tree/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/spaghetti-tree/</guid>
@@ -222,14 +229,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>해달은 떠내려가지 않으려고 손을 잡고 자고, 겨드랑이에 아끼는 돌을 넣고 다닌다.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>OK는 맞춤법이 틀린 농담이었다</title>
-    <link>https://dumbgamelab.com/ko/blog/ok/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/ok/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>OK는 all correct를 oll korrect로 틀리게 쓴 농담이 선거 구호를 타고 살아남은 말이다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

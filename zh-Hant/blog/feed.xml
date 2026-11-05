@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>「不符合手機比例」這則評論告訴我們的事</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/</guid>
+    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
+    <description>從一則「不符合手機比例」的一星評論開始的修正紀錄。說明 Android 15 的 edge-to-edge 為什麼讓底部分頁列被壓到導覽列下面、Capacitor 的 adjustMarginsForEdgeToEdge 怎麼設，以及為什麼把 24px 的暫時補丁拿掉。</description>
+  </item>
+  <item>
     <title>半夜12點才到首爾，汗蒸幕過夜要去哪一間？</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-seoul-24-hours/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-seoul-24-hours/</guid>

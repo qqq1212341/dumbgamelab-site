@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 15 che nút dưới cùng: vì sao app WebView bị thanh điều hướng đè lên (cách sửa edge-to-edge)</title>
+<meta name="description" content="Ghi chép sửa lỗi bắt đầu từ một đánh giá 1 sao «không vừa tỷ lệ điện thoại». Vì sao thanh tab dưới bị thanh điều hướng Android 15 edge-to-edge đè lên, cách bật adjustMarginsForEdgeToEdge của Capacitor, và lý do chúng tôi xóa đoạn vá 24px.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/review-said-buttons-hidden/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Android 15 che nút dưới cùng: vì sao app WebView bị thanh điều hướng đè lên (cách sửa edge-to-edge)">
+<meta property="og:description" content="Ghi chép sửa lỗi bắt đầu từ một đánh giá 1 sao «không vừa tỷ lệ điện thoại». Vì sao thanh tab dưới bị thanh điều hướng Android 15 edge-to-edge đè lên, cách bật adjustMarginsForEdgeToEdge của Capacitor, và lý do chúng tôi xóa đoạn vá 24px.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Đánh giá «không vừa tỷ lệ điện thoại» đã chỉ ra điều gì","description":"Ghi chép sửa lỗi bắt đầu từ một đánh giá 1 sao «không vừa tỷ lệ điện thoại». Vì sao thanh tab dưới bị thanh điều hướng Android 15 edge-to-edge đè lên, cách bật adjustMarginsForEdgeToEdge của Capacitor, và lý do chúng tôi xóa đoạn vá 24px.","inLanguage":"vi","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Nuôi Quán Net","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Đánh giá «không vừa tỷ lệ điện thoại» đã chỉ ra điều gì","item":"https://dumbgamelab.com/vi/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vì sao nút dưới cùng của app bị thanh điều hướng che trên Android 15?","acceptedAnswer":{"@type":"Answer","text":"Từ Android 15, app có targetSdk 35 trở lên bị áp dụng edge-to-edge, tức màn hình bị kéo giãn xuống dưới thanh hệ thống. Nếu app không tự đặt lề bằng chiều cao thanh thì nút dưới cùng nằm lọt xuống dưới thanh điều hướng."}},{"@type":"Question","name":"Cài adjustMarginsForEdgeToEdge trong app Capacitor như thế nào?","acceptedAnswer":{"@type":"Answer","text":"Thêm adjustMarginsForEdgeToEdge vào mục android của capacitor.config.json. Nuôi Quán Net (PC방 키우기) bật giá trị \"force\". \"auto\" sẽ tắt nếu theme có opt-out edge-to-edge, mà Android 16 bỏ qua opt-out nên chúng tôi chọn force."}},{"@type":"Question","name":"Cộng thêm lề đáy bằng pixel có được không?","acceptedAnswer":{"@type":"Answer","text":"Không đủ, vì chiều cao thanh khác nhau theo máy và theo kiểu điều hướng nên một con số không khớp hết. App này cũng từng có đoạn vá cộng 24px nhưng thanh dày hơn vẫn che, và lần này chúng tôi đã xóa."}},{"@type":"Question","name":"Sau khi đẩy WebView vào trong thanh, trên và dưới xuất hiện dải trắng thì sao?","acceptedAnswer":{"@type":"Answer","text":"Đó là nền cửa sổ lộ ra sau thanh, vì nền cửa sổ mặc định màu trắng. Chỉnh nền cửa sổ, màu thanh trạng thái và thanh điều hướng của theme Android về màu nền của app là hết. Capacitor ghi lại thư mục android mỗi lần sync, nên bước đặt màu phải nằm sau sync."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký dev · sửa theo đánh giá</p>
+    <h1>Đánh giá «không vừa tỷ lệ điện thoại» đã chỉ ra điều gì</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Trong quán net kiểu isometric, khách ngồi trước các máy tính, và dưới cùng màn hình có một hàng gồm ba nút: «Cửa hàng», «Tăng tốc» hình tia chớp và «Phát tờ rơi»" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Từ Android 15, màn hình của app có targetSdk 35 trở lên bị kéo xuống dưới cả thanh trạng thái lẫn thanh điều hướng. Nếu app Capacitor vẽ bằng WebView, hãy bật android.adjustMarginsForEdgeToEdge thành &quot;force&quot; trong capacitor.config.json để đẩy WebView vào trong thanh hệ thống, rồi sơn nền cửa sổ lộ ra sau thanh bằng màu nền của app thì các nút dưới cùng sẽ hiện lại. Cách vá bằng cách cộng thêm vài pixel ở đáy không hiệu quả, vì chiều cao thanh khác nhau theo từng máy.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Đánh giá đi kèm một ngôi sao</a></li><li><a href="#s2">Một sao không phải vì độ vui mà vì cái nút</a></li><li><a href="#s3">Android 15 đã đổi điều gì</a></li><li><a href="#s4">Vì sao đoạn vá lề đáy 24px là sai</a></li><li><a href="#s5">Cách sửa: một dòng cấu hình, sơn màu thanh và một bước kiểm tra</a></li><li><a href="#s6">Những điều chưa đo được</a></li><li><a href="#s7">Chia 35 đánh giá ra từng nhóm</a></li></ol></nav>
+    <section id="s1"><h2>Đánh giá đi kèm một ngôi sao</h2>
+<p>Ngày 2 tháng 11 năm 2026, trang Google Play của Nuôi Quán Net (PC방 키우기) nhận một đánh giá 1 sao bằng tiếng Hàn. Dưới đây là bản dịch của chúng tôi (nguyên văn là tiếng Hàn).</p>
+<p>«Game vui, nhưng không vừa tỷ lệ điện thoại. Nhiều món đồ cũng không di chuyển được. Chỉ cần game vừa tỷ lệ điện thoại là sẽ có nhiều nút hiện ra, tiếc thật. Vui đấy nhưng chơi bất tiện, khi nào sửa thì tôi sẽ chơi»</p>
+<p>Hôm đó chúng tôi trả lời xin lỗi ngay, và cũng tìm ra nguyên nhân trong cùng ngày. Bài này ghi lại một ngày đó: đã tìm ra gì, đã sửa gì, và còn chưa biết gì.</p>
+</section>
+<section id="s2"><h2>Một sao không phải vì độ vui mà vì cái nút</h2>
+<p>Đọc lại đánh giá, chữ «vui» xuất hiện hai lần. Người này không cho một sao vì ghét game. Ý họ là nút lẽ ra phải thấy lại không thấy, món đồ không di chuyển được nên không chơi nổi.</p>
+<p>Với người đi sửa, đây là kiểu đánh giá đáng biết ơn. Câu «không vui» không cho biết nên sửa chỗ nào, còn câu «không thấy nút» chỉ đúng dòng nào trên màn hình cần nhìn. Câu cuối cũng là «khi nào sửa thì tôi sẽ chơi». Nghĩa là sửa xong thì người này sẽ quay lại.</p>
+<p>Cùng lúc đó còn có một báo lỗi riêng kiểu «đồ đạc không di chuyển được». Lần theo thì nguyên nhân giống nhau nên chúng tôi gộp hai phiếu làm một. Khi chọn một món đồ, ở đáy màn hình hiện một hàng nút gồm di chuyển, xoay, cất và bán, và cả hàng đó bị che mất.</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="Tab «Game» của Nuôi Quán Net (PC방 키우기). Các thẻ game đã cài và game còn khóa xếp thành lưới, dưới cùng màn hình có nút «Cửa hàng» và nút «Phát tờ rơi 10/10»" loading="lazy" decoding="async"><figcaption>Hàng có «Cửa hàng» và «Phát tờ rơi» ở dưới cùng đã bị đè xuống dưới thanh điều hướng.</figcaption></figure></section>
+<section id="s3"><h2>Android 15 đã đổi điều gì</h2>
+<p>Từ Android 15, app build với targetSdk 35 trở lên bị buộc dùng edge-to-edge. Màn hình app được kéo giãn xuống dưới thanh trạng thái phía trên và thanh điều hướng phía dưới, và việc tránh phần bị đè là việc của app. App này có targetSdk 36 nên đúng là thuộc diện đó.</p>
+<p>Với app native, chỉ cần nhận giá trị inset mà hệ thống báo rồi đặt lề là xong. Game của chúng tôi chạy trên Capacitor 7 và vẽ bên trong WebView, và giá trị env(safe-area-inset-bottom) đọc ở phía WebView trả về 0. Code web tin rằng bên dưới không có thanh nào nên dán thanh tab sát mép dưới cùng, và thanh điều hướng đè lên đó.</p>
+<p>Chiều cao thanh khác nhau theo kiểu điều hướng và theo từng máy, nên chúng tôi đoán mức bị che khác nhau tùy người dùng. Đây là suy đoán, không phải con số chúng tôi đã tự đo.</p>
+</section>
+<section id="s4"><h2>Vì sao đoạn vá lề đáy 24px là sai</h2>
+<p>Thật ra dấu vết của vấn đề này đã có từ trước. Trong code có một dòng cộng thêm 24px lề đáy. Đó là đoạn vá được thêm vì thấy phía dưới bị che, nên nâng lên chừng đó.</p>
+<p>Một con số là không đủ. Chiều cao thanh điều hướng khác nhau theo máy và theo kiểu điều hướng. Thanh dày hơn 24px thì vẫn che, còn môi trường không có thanh thì lại thừa một khoảng trống vô ích. Nói cách khác, đoạn vá sửa được một máy trong khi máy khác vẫn bị đè như cũ.</p>
+<p>Vì vậy lần này chúng tôi xóa dòng 24px. Chúng tôi chọn cách không để code web đoán lề nữa, mà đổi để WebView ngay từ đầu chỉ vẽ bên trong thanh hệ thống.</p>
+</section>
+<section id="s5"><h2>Cách sửa: một dòng cấu hình, sơn màu thanh và một bước kiểm tra</h2>
+<p>Bản sửa được merge ngày 2 tháng 11, ngay hôm đánh giá đến. Chúng tôi áp dụng cùng thay đổi cho 6 app tycoon và cả template dùng để tạo game mới.</p>
+<p>Thứ nhất là bật android.adjustMarginsForEdgeToEdge thành &quot;force&quot; trong capacitor.config.json. Giá trị này đẩy WebView vào trong thanh hệ thống. Chúng tôi không để &quot;auto&quot; vì auto sẽ tắt nếu theme có thiết lập opt-out edge-to-edge, mà Android 16 lại bỏ qua opt-out đó. Trên Android 14 trở xuống inset bằng 0 nên để force cũng không có gì thay đổi.</p>
+<p>Thứ hai là màu thanh. Khi đẩy WebView vào trong thì lần này nền cửa sổ lộ ra sau thanh, mà mặc định là màu trắng nên trên và dưới game tối xuất hiện hai dải trắng. Vì vậy chúng tôi thêm một script lúc build, sơn nền cửa sổ, thanh trạng thái và thanh điều hướng của theme Android bằng màu nền của app. Nếu nền tối thì giữ biểu tượng trên thanh màu sáng. Thư mục android bị ghi lại sau mỗi lần sync, nên chúng tôi ràng thứ tự để script này luôn chạy sau sync.</p>
+<p>Thứ ba là chống tái phát. Chúng tôi viết một bước kiểm tra xem từng app đã bật thiết lập này chưa và cho chạy mỗi lần commit. 7 app thuộc thể loại khác chưa bật được đã được ghi vào sổ kèm lý do, và sổ này chỉ được sửa theo hướng ngắn lại. Nếu app mới vào mà thiếu thiết lập thì bước kiểm tra sẽ chặn.</p>
+<ul><li>android.adjustMarginsForEdgeToEdge: &quot;force&quot; trong capacitor.config.json</li><li>Sơn nền cửa sổ và màu thanh hệ thống bằng màu nền của app (chạy sau sync)</li><li>Xóa đoạn vá lề đáy 24px</li><li>Bước kiểm tra thiết lập cho từng app, và sổ ngoại lệ chỉ được ngắn lại</li></ul>
+</section>
+<section id="s6"><h2>Những điều chưa đo được</h2>
+<p>Một là chưa kiểm tra trên máy thật. Điện thoại test mà chúng tôi có chạy Android 14, nên triệu chứng này vốn không xảy ra. Việc tận mắt xem thanh tab dưới của bản đã sửa trên một máy Android 15 vẫn còn đó.</p>
+<p>Hai là con số kết quả. Sau khi sửa, điểm đánh giá ra sao và người viết đánh giá có quay lại không thì chúng tôi chưa đo được. Mới sửa được ba ngày, hiện chưa có con số nào để dùng. Khi có số, chúng tôi sẽ sửa lại bài này.</p>
+</section>
+<section id="s7"><h2>Chia 35 đánh giá ra từng nhóm</h2>
+<p>Nhân dịp này chúng tôi chia 35 đánh giá đã tích lũy của app Quán Net theo nội dung.</p>
+<p>Nhiều nhất là lỗi không vào được game, 27 đánh giá. Có điều từ ngày 14 tháng 10 đến nay không có thêm đánh giá lỗi vào game nào mới. Chúng tôi đọc đó là bản sửa lần trước đang trụ vững.</p>
+<p>Trong 2 đánh giá về quảng cáo có một vấn đề: cửa sổ xin đánh giá hiện ra ngay sau khi vừa xem quảng cáo xong. Khoảnh khắc vừa xem xong quảng cáo là lúc tệ nhất để xin đánh giá. Ngày 3 tháng 11 chúng tôi đã đổi để không hỏi đánh giá trong 10 phút sau quảng cáo.</p>
+<div class="tbl"><table><thead><tr><th>Nhóm</th><th>Số lượng</th></tr></thead><tbody><tr><td>Không vào được game</td><td>27</td></tr><tr><td>Giật lag</td><td>3</td></tr><tr><td>Quảng cáo</td><td>2</td></tr><tr><td>Lưu dữ liệu</td><td>1</td></tr><tr><td>Điều khiển</td><td>1</td></tr><tr><td>Khác</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Vì sao nút dưới cùng của app bị thanh điều hướng che trên Android 15?</summary><p>Từ Android 15, app có targetSdk 35 trở lên bị áp dụng edge-to-edge, tức màn hình bị kéo giãn xuống dưới thanh hệ thống. Nếu app không tự đặt lề bằng chiều cao thanh thì nút dưới cùng nằm lọt xuống dưới thanh điều hướng.</p></details><details><summary>Cài adjustMarginsForEdgeToEdge trong app Capacitor như thế nào?</summary><p>Thêm adjustMarginsForEdgeToEdge vào mục android của capacitor.config.json. Nuôi Quán Net (PC방 키우기) bật giá trị &quot;force&quot;. &quot;auto&quot; sẽ tắt nếu theme có opt-out edge-to-edge, mà Android 16 bỏ qua opt-out nên chúng tôi chọn force.</p></details><details><summary>Cộng thêm lề đáy bằng pixel có được không?</summary><p>Không đủ, vì chiều cao thanh khác nhau theo máy và theo kiểu điều hướng nên một con số không khớp hết. App này cũng từng có đoạn vá cộng 24px nhưng thanh dày hơn vẫn che, và lần này chúng tôi đã xóa.</p></details><details><summary>Sau khi đẩy WebView vào trong thanh, trên và dưới xuất hiện dải trắng thì sao?</summary><p>Đó là nền cửa sổ lộ ra sau thanh, vì nền cửa sổ mặc định màu trắng. Chỉnh nền cửa sổ, màu thanh trạng thái và thanh điều hướng của theme Android về màu nền của app là hết. Capacitor ghi lại thư mục android mỗi lần sync, nên bước đặt màu phải nằm sau sync.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Tycoon Nhàn Rỗi</p><p class="gb-title"><a href="/vi/games/pcbangalba/">Nuôi Quán Net</a></p><p class="gb-hook">Muốn xem các nút đã về đúng chỗ trong quán net trong hẻm, hãy thử nuôi một quán ngay trên điện thoại.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dvi" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">Chơi trên trình duyệt</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/review-said-buttons-hidden/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

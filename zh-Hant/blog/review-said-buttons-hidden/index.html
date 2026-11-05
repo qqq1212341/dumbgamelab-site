@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 15 底部按鈕被導覽列擋住的解法：WebView 遊戲為什麼會被壓在下面</title>
+<meta name="description" content="從一則「不符合手機比例」的一星評論開始的修正紀錄。說明 Android 15 的 edge-to-edge 為什麼讓底部分頁列被壓到導覽列下面、Capacitor 的 adjustMarginsForEdgeToEdge 怎麼設，以及為什麼把 24px 的暫時補丁拿掉。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/review-said-buttons-hidden/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Android 15 底部按鈕被導覽列擋住的解法：WebView 遊戲為什麼會被壓在下面">
+<meta property="og:description" content="從一則「不符合手機比例」的一星評論開始的修正紀錄。說明 Android 15 的 edge-to-edge 為什麼讓底部分頁列被壓到導覽列下面、Capacitor 的 adjustMarginsForEdgeToEdge 怎麼設，以及為什麼把 24px 的暫時補丁拿掉。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"「不符合手機比例」這則評論告訴我們的事","description":"從一則「不符合手機比例」的一星評論開始的修正紀錄。說明 Android 15 的 edge-to-edge 為什麼讓底部分頁列被壓到導覽列下面、Capacitor 的 adjustMarginsForEdgeToEdge 怎麼設，以及為什麼把 24px 的暫時補丁拿掉。","inLanguage":"zh-TW","datePublished":"2026-11-05","dateModified":"2026-11-05","image":"https://dumbgamelab.com/blog/img/review-said-buttons-hidden/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"網咖養成記","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"「不符合手機比例」這則評論告訴我們的事","item":"https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Android 15 為什麼 App 底部按鈕會被導覽列擋住？","acceptedAnswer":{"@type":"Answer","text":"從 Android 15 開始，targetSdk 35 以上的 App 會被強制套用 edge-to-edge，畫面一路延伸到系統列底下。App 如果沒有照系統列的高度留邊距，最下面的按鈕就會被壓在導覽列底下。"}},{"@type":"Question","name":"Capacitor App 的 adjustMarginsForEdgeToEdge 要怎麼設定？","acceptedAnswer":{"@type":"Answer","text":"在 capacitor.config.json 的 android 項目裡加上 adjustMarginsForEdgeToEdge。《網咖養成記》(PC방 키우기) 設成 \"force\"。\"auto\" 在主題有 edge-to-edge 退出設定時會失效，而 Android 16 會無視退出設定，所以選了 force。"}},{"@type":"Question","name":"底部邊距直接用像素加上去不行嗎？","acceptedAnswer":{"@type":"Answer","text":"系統列的高度會因機型和導覽方式而不同，只靠一個數字對不上。這款 App 以前也有加 24px 的暫時補丁，但碰到比較厚的系統列還是會擋住，這次已經刪掉了。"}},{"@type":"Question","name":"把 WebView 退到系統列內側之後，上下出現白色的帶子怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"那是系統列後面透出的視窗背景，預設的視窗背景是白色。把 Android 主題的視窗背景、狀態列和導覽列顏色調成 App 的底色就會消失。Capacitor 在 sync 時會重寫 android 資料夾，所以上色的步驟要放在 sync 之後。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 評論修正</p>
+    <h1>「不符合手機比例」這則評論告訴我們的事</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-05">2026-11-05</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="網咖養成記遊戲畫面。等角視角的網咖裡，顧客們坐在電腦前，畫面最下方並排著「商店」、閃電形狀的「加速」和「發傳單」按鈕" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">從 Android 15 開始，targetSdk 35 以上的 App，畫面會被強制延伸到狀態列和導覽列底下。用 WebView 繪製畫面的 Capacitor App，只要在 capacitor.config.json 把 android.adjustMarginsForEdgeToEdge 設成 &quot;force&quot;，讓 WebView 退到系統列內側，再把系統列後面透出的視窗背景塗成 App 的底色，底部按鈕就會重新出現。用像素數字補底部邊距的暫時做法，因為每台手機的系統列高度不同，並不管用。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">一顆星的評論</a></li><li><a href="#s2">一顆星的理由不是不好玩，是按鈕</a></li><li><a href="#s3">Android 15 改了什麼</a></li><li><a href="#s4">底部邊距 24px 的補丁為什麼不對</a></li><li><a href="#s5">修正方法：一行設定、系統列上色，再加一道檢查</a></li><li><a href="#s6">還沒量到的事</a></li><li><a href="#s7">把 35 則評論分類之後</a></li></ol></nav>
+    <section id="s1"><h2>一顆星的評論</h2>
+<p>2026 年 11 月 2 日，貓咪《網咖養成記》(PC방 키우기) 的 Google Play 頁面收到一則一星的韓文評論。下面是我們自己翻成中文的內容，原文是韓文。</p>
+<p>「遊戲很好玩，但是不符合手機比例。很多家具也移不動。如果遊戲能符合手機比例，應該會看到很多按鈕，覺得很可惜。很好玩，但玩起來不方便，修好了我再玩」</p>
+<p>我們當天就回覆道歉，原因也在同一天找到了。這篇是記錄這一天找到了什麼、修了什麼，以及還有什麼不知道。</p>
+</section>
+<section id="s2"><h2>一顆星的理由不是不好玩，是按鈕</h2>
+<p>重新讀這則評論，「很好玩」出現了兩次。他不是因為討厭遊戲才給一星，而是該看到的按鈕看不到、家具又移不動，所以沒辦法玩。</p>
+<p>對要修的人來說，這種評論反而很感激。說「不好玩」並不會告訴我們該改哪裡，但說「按鈕看不到」，就等於指出該看畫面的哪一排。最後一句也是「修好了我再玩」，代表修好之後他會回來。</p>
+<p>差不多同一時間，另外也收到「家具移不動」的回報。追下去發現原因相同，所以把兩張工單合併了。選到家具時，畫面下方會跳出移動、旋轉、收起、賣出四個按鈕排成一排，而那一整排都被擋住了。</p>
+<figure><img src="/blog/img/review-said-buttons-hidden/tab-game.jpg" alt="網咖養成記的「遊戲」分頁畫面。已安裝和尚未解鎖的遊戲卡片排成格狀，畫面最下方有「商店」按鈕和「發傳單 10/10」按鈕" loading="lazy" decoding="async"><figcaption>最下面有「商店」和「發傳單」的這一排，被壓到導覽列底下了。</figcaption></figure></section>
+<section id="s3"><h2>Android 15 改了什麼</h2>
+<p>從 Android 15 開始，以 targetSdk 35 以上建置的 App 會被強制套用 edge-to-edge。App 畫面會一路延伸到上方狀態列和下方導覽列的底下，要怎麼避開被壓在底下的部分，由 App 自己負責。這款 App 的 targetSdk 是 36，所以完全適用。</p>
+<p>原生 App 只要接收系統提供的 inset 數值來設定邊距就好。我們的遊戲是在 Capacitor 7 的 WebView 裡繪製，結果在 WebView 端讀到的 env(safe-area-inset-bottom) 是 0。網頁程式碼以為下面沒有系統列，就把分頁列貼到畫面最底端，導覽列便蓋在它上面。</p>
+<p>系統列的高度會因導覽方式和機型而不同，所以我推測同一個 App，每個人被擋住的程度也不一樣。這不是我們實際量過的數值。</p>
+</section>
+<section id="s4"><h2>底部邊距 24px 的補丁為什麼不對</h2>
+<p>其實這個問題以前就有跡象。程式碼裡有一行加了底部邊距 24px，是因為看起來下面被擋住，所以就先把畫面往上抬一點的暫時補丁。</p>
+<p>只靠一個數字是不行的。導覽列的高度因機型、因導覽方式而不同。系統列比 24px 厚就還是會擋住，沒有系統列的環境則會多出一塊沒用的空白。補丁修好了某一台手機，其他手機卻照樣被壓在下面。</p>
+<p>所以這次把 24px 那一行刪掉了。我們選的不是讓網頁程式碼去猜邊距，而是改成讓 WebView 一開始就只畫在系統列內側。</p>
+</section>
+<section id="s5"><h2>修正方法：一行設定、系統列上色，再加一道檢查</h2>
+<p>修正在 11 月 2 日，也就是評論進來的同一天合併。經營遊戲 App 6 個，以及用來產生新遊戲的範本，都套用了同樣的變更。</p>
+<p>第一是在 capacitor.config.json 把 android.adjustMarginsForEdgeToEdge 設成 &quot;force&quot;。這個值會把 WebView 往下推到系統列內側。不選 &quot;auto&quot; 的原因是，auto 在主題裡有 edge-to-edge 退出設定時會失效，而 Android 16 會無視那個退出設定。Android 14 以下的 inset 是 0，所以設成 force 也沒有任何差別。</p>
+<p>第二是系統列的顏色。WebView 往內縮之後，這次換成系統列後面會透出視窗背景，預設值是白色，所以深色遊戲的上下就多出白色的帶子。因此我們在建置時加了一支腳本，把 Android 主題的視窗背景、狀態列和導覽列顏色塗成 App 的底色。底色偏暗時，系統列的圖示就保持亮色。android 資料夾每次 sync 都會被重寫，所以把順序綁好，讓這支腳本一定在 sync 之後執行。</p>
+<p>第三是防止再發生。我們做了一道檢查，確認每個 App 都有開這個設定，每次 commit 都會跑。還沒開的其他類型 App 有 7 個，把原因寫好後列進了清單，這份清單只能往減少的方向修改。新 App 如果沒帶這個設定進來，檢查就會擋下。</p>
+<ul><li>capacitor.config.json 加上 android.adjustMarginsForEdgeToEdge: &quot;force&quot;</li><li>把視窗背景和系統列顏色塗成 App 底色（在 sync 之後執行）</li><li>刪除底部邊距 24px 的暫時補丁</li><li>逐一確認各 App 有沒有開設定的檢查，以及只能減少的例外清單</li></ul>
+</section>
+<section id="s6"><h2>還沒量到的事</h2>
+<p>第一是實機確認。我們手上的測試手機是 Android 14，這個症狀本來就不會出現。修正後的建置，在 Android 15 裝置上用眼睛直接看底部分頁列，這件事還沒做。</p>
+<p>第二是結果的數字。修正之後評分變得怎麼樣、那位留言的人有沒有回來，目前都還沒量到。修好才三天，現在拿不出可以用的數字。數字出來之後，我會回來修改這篇文章。</p>
+</section>
+<section id="s7"><h2>把 35 則評論分類之後</h2>
+<p>藉這次機會，我們把網咖打工 App 累積的 35 則評論依內容分類。</p>
+<p>最多的是完全進不了遊戲的進入失敗，共 27 則。不過 10 月 14 日之後，新進來的進入失敗評論是 0 則。我們把這解讀為上次的修正撐住了。</p>
+<p>提到廣告的 2 則裡，有一個問題是剛看完廣告就跳出要求評論的視窗。剛看完廣告的那一刻，是請人給評論最糟的時機。11 月 3 日我們改成廣告結束後 10 分鐘內不詢問評論。</p>
+<div class="tbl"><table><thead><tr><th>分類</th><th>則數</th></tr></thead><tbody><tr><td>進入失敗</td><td>27</td></tr><tr><td>卡頓</td><td>3</td></tr><tr><td>廣告</td><td>2</td></tr><tr><td>存檔</td><td>1</td></tr><tr><td>操作</td><td>1</td></tr><tr><td>其他</td><td>1</td></tr></tbody></table></div>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Android 15 為什麼 App 底部按鈕會被導覽列擋住？</summary><p>從 Android 15 開始，targetSdk 35 以上的 App 會被強制套用 edge-to-edge，畫面一路延伸到系統列底下。App 如果沒有照系統列的高度留邊距，最下面的按鈕就會被壓在導覽列底下。</p></details><details><summary>Capacitor App 的 adjustMarginsForEdgeToEdge 要怎麼設定？</summary><p>在 capacitor.config.json 的 android 項目裡加上 adjustMarginsForEdgeToEdge。《網咖養成記》(PC방 키우기) 設成 &quot;force&quot;。&quot;auto&quot; 在主題有 edge-to-edge 退出設定時會失效，而 Android 16 會無視退出設定，所以選了 force。</p></details><details><summary>底部邊距直接用像素加上去不行嗎？</summary><p>系統列的高度會因機型和導覽方式而不同，只靠一個數字對不上。這款 App 以前也有加 24px 的暫時補丁，但碰到比較厚的系統列還是會擋住，這次已經刪掉了。</p></details><details><summary>把 WebView 退到系統列內側之後，上下出現白色的帶子怎麼辦？</summary><p>那是系統列後面透出的視窗背景，預設的視窗背景是白色。把 Android 主題的視窗背景、狀態列和導覽列顏色調成 App 的底色就會消失。Capacitor 在 sync 時會重寫 android 資料夾，所以上色的步驟要放在 sync 之後。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="網咖養成記" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置經營</p><p class="gb-title"><a href="/zh-Hant/games/pcbangalba/">網咖養成記</a></p><p class="gb-hook">按鈕回到原位的巷子網咖，用手機親手經營看看吧。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dzh-Hant" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://qqq1212341.github.io/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">在瀏覽器玩</a></div></div>
+</aside>
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/review-said-buttons-hidden/" hreflang="en" lang="en">English</a><a href="/ko/blog/review-said-buttons-hidden/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/review-said-buttons-hidden/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
