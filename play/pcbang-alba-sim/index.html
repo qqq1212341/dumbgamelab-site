@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"pcbangalba","build":"5ab92caf9","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"pcbangalba","build":"2248e9ad0","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -47,7 +47,8 @@
     try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
     try { origFetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
   }
-  function where() { try { var x = window.DGL && window.DGL.ctx; return x ? String(x.stage || x.where || "") : ""; } catch (e) { return ""; } }
+  /* DGL.ctx 는 함수다(타이쿤 엔진 setTrackContext · analytics.js 규약) — 객체로만 읽어 타이쿤 판의 «화면» 빵부스러기가 늘 비었다(주유소 1.0.0 «화면 -» 0칸 · t-261103-xdg6) */
+  function where() { try { var x = window.DGL && window.DGL.ctx; if (typeof x === "function") x = x(); if (!x) return ""; var w = String(x.where || ""), st = x.stage; return w ? w + (st != null && st !== "" ? " " + st : "") : String(st == null ? "" : st); } catch (e) { return ""; } }
   function report(k, msg, stack, src, line, col, extra) {
     msg = String(msg || "").slice(0, 300);
     var key = k + "|" + msg + "|" + src + ":" + line;
@@ -109,15 +110,26 @@
    * 그래서 앞/뒤는 네이티브 가드(DglCrashGuard)가 파일로 적고 페이지가 뜨면 prevEnd(끝, 사유)로 알려 준다 — 그때까지 보내지 않고 기다린다.
    * bg(뒤로 간 뒤 죽음)·gone(렌더러 죽음 — 가드가 이미 보냈다)은 버린다. 가드 없는 옛 판은 답이 없으니 기다린 뒤 예전처럼 보낸다. */
   var held = null, heldT = 0;
-  function prevEnd(end, why) {
+  function prevEnd(end, why, dev, st, timedOut) {
     if (!held) return;
     var o = held; held = null; clearTimeout(heldT);
-    if (end === "bg" || end === "gone") return;
+    /* same = 같은 프로세스에서 액티비티만 다시 만들어진 판 — 앞 페이지는 프로세스와 함께 죽지 않았다(t-261103-xdg6) */
+    /* off = 가드가 꺼진 판(Play 사전 출시 로봇·디버그) — 로봇이 강제로 끈 판을 «앞 화면 꺼짐»으로 세지 않는다(주유소 1.0.1 업로드 당일 · t-261103-xdg6) */
+    if (end === "bg" || end === "gone" || end === "same" || end === "off") return;
     /* 끝이 fg·?(가드가 처음 깔린 판이라 파일이 없다)여도 OS 가 «사용자가 끔·멈춤·패키지 바뀜·업데이트(10·11·15·16)»이라 했거나
      * 죽을 때 이미 캐시 상태(중요도 400↑)였으면 앞 화면에서 죽은 게 아니다 — 크래시로 세지 않는다(Unity CrashReporter.NotCrash 와 같은 판정).
      * 업데이트 설치 첫 실행(한 번뿐인 인생 1.0.3→1.0.4 · t-261026-u4zq) · 홈 직후 «백그라운드 모두 정리»가 onStop 보다 먼저 와 파일이 fg 로 남음(알고있여우 1.0.4 · t-261030-5zdn) */
     if (/exit reason (10|11|15|16) /.test(why || "") || /importance ([4-9]\d\d|\d{4,}) /.test(why || "")) return;
-    if (why) o.b = o.b.concat(["네이티브 " + end + " " + String(why).slice(0, 90)]);
+    /* 사유 줄 없이 보내지 않는다 — 빈 기록 한 장은 메모리 부족·강제 종료·진짜 크래시를 못 가른다(주유소 1.0.0 빵부스러기 0칸 · t-261103-xdg6).
+     * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
+    o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
+    if (dev) o.b.push("기기 " + String(dev).slice(0, 90));
+    /* ANR(사유 6) = 앞 화면에서 메인 스레드가 5초 넘게 막혀 OS 가 «앱 응답 없음»으로 끈 판 — 메모리 부족·웹뷰 죽음과 다른 병이다.
+     * 가드가 OS ANR 기록에서 읽은 main 스레드 스택을 주면 그 스택으로 따로 묶는다(맨 위 우리·SDK 프레임이 지문 · 한 번뿐인 인생 1.0.6 · t-261026-u4zq) */
+    if (/exit reason 6 /.test(why || "")) {
+      o.m = "ANR — 앞 화면에서 앱이 응답 없음(메인 스레드 5초 넘게 막힘)";
+      if (st) { o.s = String(st).slice(0, 4000); o.f = String(st).split("\n")[0].replace(/^at /, "").slice(0, 120); }
+    }
     post("/e", o);
   }
   window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb, prevEnd: prevEnd, leaving: leaving };
@@ -132,7 +144,14 @@
     var ab = { g: prev.g || CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
     /* 아이폰 앱도 같다 — 앱 전환기로 올린 뒤(resign active) 밀어서 끈 판은 «뒤로 감» 쓰기가 커밋되기 전에 SIGKILL 을 맞는다.
      * 가드(DglCrashGuard.swift)가 active/resign 을 파일로 적고 페이지가 뜨면 prevEnd 로 알려 준다(PC방 2.0.24 iOS 1.7% · t-261027-2nr7) */
-    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", ""); }, 20000); }
+    /* 가드는 페이지가 다 떠야(onPageFinished) 답한다 — 20초는 load 뒤부터 잰다. 머리 스크립트부터 재면 로드가 20초 넘는 폰에선 답보다 먼저 터져
+     * 사유(사용자가 끔 10·11 포함)를 못 받고 «앞 화면에서 꺼짐»으로 샜다(주유소 1.0.1 «답 없음» · t-261103-xdg6). load 가 안 오는 판은 90초 상한 */
+    if (native && (plat === "android" || plat === "ios")) {
+      held = ab;
+      var noAnswer = function () { prevEnd("?", "", "", "", true); };
+      heldT = setTimeout(noAnswer, 90000);
+      window.addEventListener("load", function () { if (held) { clearTimeout(heldT); heldT = setTimeout(noAnswer, 20000); } });
+    }
     else post("/e", ab);
   }
   if (!run.fg) crumb("뒤에서 켜짐");
@@ -160,6 +179,16 @@
     for (var i = 0; i < arguments.length; i++) { var n = arguments[i]; this.appendChild(typeof n === 'object' && n ? n : d.createTextNode(String(n))); }
   }
   ['Element', 'Document', 'DocumentFragment'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'replaceChildren', replaceChildren); });
+  /* crypto.randomUUID(Chrome 92·iOS 15.4) — 옛 웹뷰는 뽑기 버튼에서 «crypto.randomUUID is not a function»(0913sample social.js begin · t-261103-7rs3).
+   * getRandomValues(Chrome 11) 로 RFC 4122 v4 를 만든다 · 그마저 없으면 Math.random */
+  var cr = window.crypto || window.msCrypto;
+  if (cr) def(cr, 'randomUUID', function () {
+    var b = new Uint8Array(16), i, h = [];
+    if (cr.getRandomValues) cr.getRandomValues(b); else for (i = 0; i < 16; i++) b[i] = Math.random() * 256 | 0;
+    b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+    for (i = 0; i < 16; i++) h.push((b[i] + 256).toString(16).slice(1));
+    return h.slice(0, 4).join('') + '-' + h.slice(4, 6).join('') + '-' + h.slice(6, 8).join('') + '-' + h.slice(8, 10).join('') + '-' + h.slice(10).join('');
+  });
   if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
   /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
   function roundRect(x, y, w, h, r) {
@@ -190,7 +219,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"5ab92caf9","game":"pcbangalba","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}],"install":{"game":"pcbangalba","ios":"https://apps.apple.com/app/id6779939467","play":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba","pt":"128957953","qr":"install-qr.svg","qrFile":"marketing/web/install-qr.svg"}};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"2248e9ad0","game":"pcbangalba","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}],"install":{"game":"pcbangalba","ios":"https://apps.apple.com/app/id6779939467","play":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba","pt":"128957953","qr":"install-qr.svg","qrFile":"marketing/web/install-qr.svg"}};</script>
 <meta name="description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PC방 키우기 · Internet Cafe: Idle Tycoon">
@@ -349,7 +378,7 @@
       font-display: block;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BGwfwHHK.js"></script>
+  <script type="module" crossorigin src="./assets/index-DLcK-TLF.js"></script>
 </head>
 <body>
   <div id="game"></div>
@@ -611,12 +640,13 @@
 };
   T.ko = { t: "폰에서 이어 하기", n: "밤사이 영업", b: "알림", c: "계정 저장", ios: "App Store", play: "Google Play", later: "닫기", qr: "폰 카메라로 찍기" };
   for (var L in T) { T[L].ios = "App Store"; T[L].play = "Google Play"; }
+  /* 사전 키는 BCP-47 대소문자 그대로(zh-Hant) — 비교만 소문자로 하고 돌려줄 땐 실제 키를 준다(소문자 키로 찾다 undefined.n 으로 죽었다) */
+  function key(l) { for (var k in T) if (k.toLowerCase() === l) return k; return ""; }
   function lang() {
     var l = "";
     try { l = String(localStorage.getItem("dgl.lang") || navigator.language || "en").toLowerCase(); } catch (e) { l = "en"; }
-    if (l.indexOf("zh") === 0) return /hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans";
-    l = l.slice(0, 2);
-    return T[l] ? l : "en";
+    if (l.indexOf("zh") === 0) return key(/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans") || "en";
+    return key(l.slice(0, 2)) || "en";
   }
   function device() {
     var ua = navigator.userAgent || "";
@@ -645,7 +675,7 @@
   function open() {
     if (seen() || document.getElementById("dgl-install-card")) return;
     mark();
-    var s = T[lang()], dev = device();
+    var s = T[lang()] || T.en || T.ko, dev = device();
     var st = document.createElement("style");
     st.textContent =
       "#dgl-install-card{position:fixed;inset:0;z-index:2147483000;background:rgba(10,10,25,.62);display:flex;align-items:center;justify-content:center;padding:16px;font-family:system-ui,-apple-system,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}" +
