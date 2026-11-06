@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "51-3590704290",
+ "version": "51-6c257c3992",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -308,7 +308,7 @@
   {
    "id": "space-cold-weld",
    "day": 26,
-   "hash": "3e823c442677689d",
+   "hash": "924639e48a88d528",
    "ep": "episodes/space-cold-weld.json",
    "i18n": {
     "en": "i18n/en/space-cold-weld.json",
@@ -320,7 +320,7 @@
   {
    "id": "space-taller",
    "day": 27,
-   "hash": "6db3ea4cff5cb755",
+   "hash": "06d74cb4441bb6d4",
    "ep": "episodes/space-taller.json",
    "i18n": {
     "en": "i18n/en/space-taller.json",
@@ -332,7 +332,7 @@
   {
    "id": "olympic-art",
    "day": 28,
-   "hash": "c3995ed907084300",
+   "hash": "6635c5b92673cf41",
    "ep": "episodes/olympic-art.json",
    "i18n": {
     "en": "i18n/en/olympic-art.json",
@@ -344,7 +344,7 @@
   {
    "id": "diomede-islands",
    "day": 29,
-   "hash": "cbe7a29e9b1288ef",
+   "hash": "6f2cf550fa520dfa",
    "ep": "episodes/diomede-islands.json",
    "i18n": {
     "en": "i18n/en/diomede-islands.json",
@@ -356,7 +356,7 @@
   {
    "id": "catgut-strings",
    "day": 30,
-   "hash": "914f7572db35b7a0",
+   "hash": "efe2b7067b7ff565",
    "ep": "episodes/catgut-strings.json",
    "i18n": {
     "en": "i18n/en/catgut-strings.json",
@@ -368,7 +368,7 @@
   {
    "id": "window-tax",
    "day": 31,
-   "hash": "0aa4753284c5b36d",
+   "hash": "fc0d42d7c8f65d70",
    "ep": "episodes/window-tax.json",
    "i18n": {
     "en": "i18n/en/window-tax.json",
@@ -380,7 +380,7 @@
   {
    "id": "bubble-wrap",
    "day": 32,
-   "hash": "c94b89e055843707",
+   "hash": "4053c0dc9910be7c",
    "ep": "episodes/bubble-wrap.json",
    "i18n": {
     "en": "i18n/en/bubble-wrap.json",
@@ -392,7 +392,7 @@
   {
    "id": "eorida-fool",
    "day": 33,
-   "hash": "44a745a0836b0a40",
+   "hash": "80350c9a65ff5c8d",
    "ep": "episodes/eorida-fool.json",
    "i18n": {
     "en": "i18n/en/eorida-fool.json",
@@ -404,7 +404,7 @@
   {
    "id": "zipper-boots",
    "day": 34,
-   "hash": "e997527e331d7a4b",
+   "hash": "afface8de0196a5f",
    "ep": "episodes/zipper-boots.json",
    "i18n": {
     "en": "i18n/en/zipper-boots.json",
@@ -416,7 +416,7 @@
   {
    "id": "bee-ball-play",
    "day": 35,
-   "hash": "d35de1162e9a9b8b",
+   "hash": "6330ffb4767ddaaf",
    "ep": "episodes/bee-ball-play.json",
    "i18n": {
     "en": "i18n/en/bee-ball-play.json",
@@ -428,7 +428,7 @@
   {
    "id": "mailboat-jumpers",
    "day": 36,
-   "hash": "c11ec0c71246cf0d",
+   "hash": "e3754a59e15df801",
    "ep": "episodes/mailboat-jumpers.json",
    "i18n": {
     "en": "i18n/en/mailboat-jumpers.json",
@@ -440,7 +440,7 @@
   {
    "id": "hidden-book-painting",
    "day": 37,
-   "hash": "8d3777837f9d5aaa",
+   "hash": "1521b8972a9ae69d",
    "ep": "episodes/hidden-book-painting.json",
    "i18n": {
     "en": "i18n/en/hidden-book-painting.json",
@@ -452,7 +452,7 @@
   {
    "id": "boxer-crab-gloves",
    "day": 38,
-   "hash": "d251927e3838e357",
+   "hash": "54e82e01641af4d4",
    "ep": "episodes/boxer-crab-gloves.json",
    "i18n": {
     "en": "i18n/en/boxer-crab-gloves.json",
@@ -464,7 +464,7 @@
   {
    "id": "ice-cream-disguise",
    "day": 39,
-   "hash": "f81dfbf84ddb837b",
+   "hash": "244c63fe6864a8dd",
    "ep": "episodes/ice-cream-disguise.json",
    "i18n": {
     "en": "i18n/en/ice-cream-disguise.json",
@@ -476,7 +476,7 @@
   {
    "id": "beach-runway",
    "day": 40,
-   "hash": "c7f8f7246fc073c6",
+   "hash": "c568fa9f9be5608d",
    "ep": "episodes/beach-runway.json",
    "i18n": {
     "en": "i18n/en/beach-runway.json",
@@ -488,7 +488,7 @@
   {
    "id": "caterpillar-frass",
    "day": 41,
-   "hash": "c06b7669e50f956e",
+   "hash": "12f0973c5988214d",
    "ep": "episodes/caterpillar-frass.json",
    "i18n": {
     "en": "i18n/en/caterpillar-frass.json",
@@ -500,7 +500,7 @@
   {
    "id": "curling-pebbles",
    "day": 42,
-   "hash": "dc1b9ce85e790339",
+   "hash": "3617dbc757bda0be",
    "ep": "episodes/curling-pebbles.json",
    "i18n": {
     "en": "i18n/en/curling-pebbles.json",
@@ -512,7 +512,7 @@
   {
    "id": "float-glass-tin",
    "day": 43,
-   "hash": "c52d9b938d3bc34a",
+   "hash": "c782197db5c7b7c3",
    "ep": "episodes/float-glass-tin.json",
    "i18n": {
     "en": "i18n/en/float-glass-tin.json",
@@ -524,7 +524,7 @@
   {
    "id": "table-galleon-cannon",
    "day": 44,
-   "hash": "fceaec8b2ca4dd7e",
+   "hash": "2778879dfe66607f",
    "ep": "episodes/table-galleon-cannon.json",
    "i18n": {
     "en": "i18n/en/table-galleon-cannon.json",
@@ -536,7 +536,7 @@
   {
    "id": "pineapple-status",
    "day": 45,
-   "hash": "32134d2bf241cec5",
+   "hash": "a6b32deff0f8e3a7",
    "ep": "episodes/pineapple-status.json",
    "i18n": {
     "en": "i18n/en/pineapple-status.json",
@@ -548,7 +548,7 @@
   {
    "id": "blood-falls",
    "day": 46,
-   "hash": "5c64195b79566045",
+   "hash": "6b8c689dd151cdfb",
    "ep": "episodes/blood-falls.json",
    "i18n": {
     "en": "i18n/en/blood-falls.json",
@@ -560,7 +560,7 @@
   {
    "id": "wine-color-tasters",
    "day": 47,
-   "hash": "2ccf0c3cedaea8de",
+   "hash": "a77d488455655f60",
    "ep": "episodes/wine-color-tasters.json",
    "i18n": {
     "en": "i18n/en/wine-color-tasters.json",
@@ -572,7 +572,7 @@
   {
    "id": "americas-cup-yacht",
    "day": 48,
-   "hash": "acb33a4536b4cbc1",
+   "hash": "2809f565d182f407",
    "ep": "episodes/americas-cup-yacht.json",
    "i18n": {
     "en": "i18n/en/americas-cup-yacht.json",
@@ -584,7 +584,7 @@
   {
    "id": "goosebumps-hair",
    "day": 49,
-   "hash": "996a90924c247b75",
+   "hash": "90059595ad8d0c7b",
    "ep": "episodes/goosebumps-hair.json",
    "i18n": {
     "en": "i18n/en/goosebumps-hair.json",
@@ -596,7 +596,7 @@
   {
    "id": "tycoon-shogun",
    "day": 50,
-   "hash": "e5a8fc5860470d58",
+   "hash": "f24d5106cf086129",
    "ep": "episodes/tycoon-shogun.json",
    "i18n": {
     "en": "i18n/en/tycoon-shogun.json",
@@ -608,7 +608,7 @@
   {
    "id": "pitch-drop",
    "day": 51,
-   "hash": "887aaed4855544b5",
+   "hash": "2a8cb3af8ea0995b",
    "ep": "episodes/pitch-drop.json",
    "i18n": {
     "en": "i18n/en/pitch-drop.json",

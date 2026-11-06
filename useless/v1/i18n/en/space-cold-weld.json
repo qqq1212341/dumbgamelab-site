@@ -2,7 +2,7 @@
   "category": "Space",
   "title": "In Space, Metal Just Sticks to Metal",
   "hook": "Two clean pieces of metal that touch in a vacuum can bond as if welded",
-  "open": {"title": "What happens when metal touches metal in space", "line": "On Earth this never happens. But in space, two plain pieces of metal can do something engineers dread. What?"},
+  "open": {"title": "The space accident caused by two metals touching", "line": "On Earth this never happens. But in space, two plain pieces of metal can do something engineers dread. What?"},
   "summary": "In a vacuum, clean surfaces of the same metal can bond on contact without any heat. Spacecraft designers have to watch out for it.",
   "panels": [
     {"text": ["Galileo, the probe sent to Jupiter.", "Its big antenna never fully opened."]},

@@ -2,7 +2,7 @@
   "category": "Sejarah",
   "title": "Buku ini menyembunyikan lukisan di sisinya",
   "hook": "Miringkan sedikit susunan halamannya, dan lukisan pemandangan muncul dari tepi emasnya",
-  "open": {"title": "Buku ini biasa saja sampai halamannya dimiringkan", "line": "Dari luar, tepi buku ini cuma lapisan emas biasa. Tapi coba miringkan halamannya sedikit, lalu lihat yang muncul di sana."},
+  "open": {"title": "Lukisan yang tersembunyi di sisi buku", "line": "Dari luar, tepi buku ini cuma lapisan emas biasa. Tapi coba miringkan halamannya sedikit, lalu lihat yang muncul di sana."},
   "summary": "Lukisan tersembunyi di tepi halaman muncul saat halaman direntangkan miring. Ada pula buku yang menampilkan lukisan berbeda jika dibuka ke arah sebaliknya.",
   "panels": [
     {

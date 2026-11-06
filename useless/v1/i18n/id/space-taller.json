@@ -3,14 +3,14 @@
   "title": "Sebulan di Luar Angkasa, Tinggimu Bertambah 2,5 cm",
   "hook": "Tanpa gravitasi tulang belakang memanjang dan astronaut bertambah tinggi",
   "open": {
-    "title": "Sebulan di luar angkasa, badanmu berubah apa",
-    "line": "Astronaut pulang dari luar angkasa, lalu diukur ulang. Ada satu angka di tubuh mereka yang ternyata berubah. Angka apa, ya?"
+    "title": "Kenapa astronaut pulang jadi lebih tinggi",
+    "line": "Sebulan di luar angkasa, tubuh astronaut berubah. Di Bumi, ini tidak terjadi. Apa yang berubah?"
   },
-  "summary": "Setelah sekitar sebulan tanpa bobot, tinggi bertambah sekitar 2,5 cm, dan air mata tidak mengalir melainkan menggumpal seperti bola.",
+  "summary": "Sebulan tanpa gravitasi, tinggi bertambah 2,5 cm. Air mata pun menggumpal seperti bola.",
   "panels": [
     {
       "text": [
-        "Seorang astronaut menatap minumannya melayang."
+        "Di luar angkasa, tubuh pun berubah dengan aneh."
       ]
     },
     {
