@@ -39,12 +39,12 @@ html,body{margin:0;height:100%;background:#05060c;color:var(--txt);
 .title-cast .c1,.title-cast .c3{animation:hop 1.6s ease-in-out infinite}
 .title-cast .c3{animation-delay:.5s}
 @keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.title-wrap{text-align:center;padding:calc(40px + env(safe-area-inset-top)) 16px 0}
+.title-wrap{text-align:center;padding:calc(40px + var(--dgl-safe-top)) 16px 0}
 .title-main{font-size:clamp(34px,11vw,56px);font-weight:900;margin:0;color:#ffe04a;line-height:1.1;
   -webkit-text-stroke:3px #4a2a07;paint-order:stroke fill;text-shadow:0 5px 0 #4a2a07;letter-spacing:.5px}
 .title-sub{color:#fff;font-weight:700;letter-spacing:3px;margin-top:8px;font-size:13px;text-shadow:0 2px 0 rgba(0,0,0,.4)}
 .title-dock{display:flex;flex-direction:column;align-items:center;gap:10px;
-  padding:24px 24px calc(24px + env(safe-area-inset-bottom))}
+  padding:24px 24px calc(24px + var(--dgl-safe-bottom))}
 .title-stats{font-size:13px;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.45)}
 .btn{min-width:240px;min-height:48px;padding:0 16px;border-radius:12px;border:1px solid var(--line);
   background:var(--panel2);color:var(--txt);font-size:16px;font-weight:700;cursor:pointer}
@@ -97,7 +97,7 @@ html,body{margin:0;height:100%;background:#05060c;color:var(--txt);
 .title-row .btn{min-width:116px}
 
 /* ── v2: 하단 메뉴 · 아이템 줄 · 큰 창 · 상점·환생·합성·도감 ── */
-.dock{position:absolute;left:0;right:0;bottom:0;z-index:12;display:flex;gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+.dock{position:absolute;left:0;right:0;bottom:0;z-index:12;display:flex;gap:6px;padding:8px 8px calc(8px + var(--dgl-safe-bottom));
   background:linear-gradient(180deg,rgba(20,26,44,0),rgba(20,26,44,.78) 28%)}
 .dk{position:relative;flex:1;min-width:0;min-height:60px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;padding:4px 2px 6px;
   border-radius:16px;border:3px solid #4a2a12;background:linear-gradient(180deg,#fff2c9,#ffd98a);box-shadow:0 4px 0 #4a2a12;color:#4a2a12;font-family:var(--font-game);font-size:11px;line-height:1.05}
@@ -107,7 +107,7 @@ html,body{margin:0;height:100%;background:#05060c;color:var(--txt);
 .dk.on{background:linear-gradient(180deg,#d6f3ff,#8fd4ff)}
 .dk.gold{background:linear-gradient(180deg,#9df59a,#3fbf55);color:#0e3a16}
 .dot{position:absolute;top:-6px;right:-3px;width:16px;height:16px;border-radius:50%;background:#ff3b3b;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4)}
-.item-bar{position:absolute;left:0;right:0;bottom:calc(76px + env(safe-area-inset-bottom));z-index:12;display:flex;gap:6px;justify-content:center;padding:0 8px;flex-wrap:wrap}
+.item-bar{position:absolute;left:0;right:0;bottom:calc(76px + var(--dgl-safe-bottom));z-index:12;display:flex;gap:6px;justify-content:center;padding:0 8px;flex-wrap:wrap}
 .ib{position:relative;width:52px;height:52px;border-radius:14px;border:3px solid #4a2a12;background:rgba(255,246,226,.92);box-shadow:0 3px 0 #4a2a12;padding:4px}
 .ib img{width:100%;height:100%;object-fit:contain}
 .ib.on{background:#ffe27a;border-color:#c62828;transform:translateY(-4px)}
