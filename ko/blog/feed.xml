@@ -7,6 +7,14 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>우주에 한 달 있으면 키가 2.5cm 큰다</title>
+    <link>https://dumbgamelab.com/ko/blog/space-taller/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/space-taller/</guid>
+    <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
+    <description>무중력에서는 한 달쯤 지나면 키가 약 2.5cm 커지고, 울어도 눈물은 흐르지 않고 공처럼 뭉친다.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>고쳐서 확인하는 데 40분, 5초짜리 길은 처음부터 있었습니다</title>
     <link>https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
     <description>하품은 사람끼리만이 아니라 개 같은 다른 동물에게도 옮을 수 있다.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/yawn-dog.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>PC방 키우기 첫 30분: 몇 분에 무엇을 사야 돈이 붙나</title>
-    <link>https://dumbgamelab.com/ko/blog/pc-bang-first-30-minutes-guide/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/pc-bang-first-30-minutes-guide/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>PC방 키우기를 새로 시작해 게임 안 15일(실제 30분)을 직접 돌려 쟀습니다. 첫 PC를 사는 시점, 2단계 문턱 13만 원, 3단계 49만 원, 돈을 모으기만 하면 하루 매출이 39% 줄어드는 것까지 숫자로 적었습니다.</description>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>A Month in Space Makes You 2.5 cm Taller</title>
+    <link>https://dumbgamelab.com/en/blog/space-taller/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-taller/</guid>
+    <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
+    <description>After about a month in weightlessness, height increases by roughly 2.5 cm, and tears cannot flow but ball up instead.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>40 Minutes to Check One Fix, and the 5 Second Path Was There All Along</title>
     <link>https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
     <description>Yawns don&#39;t just spread between people. They can spread to other animals too, like dogs.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/yawn-dog.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Internet Cafe Tycoon, first 30 minutes: what to buy and when the money starts to stack</title>
-    <link>https://dumbgamelab.com/en/blog/pc-bang-first-30-minutes-guide/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-first-30-minutes-guide/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>A beginner guide to Internet Cafe Tycoon, built from a fresh save played through 15 in-game days (30 real minutes). When the first PC pays off, the ₩130,000 stage 2 mark, the ₩490,000 stage 3 mark, and why hoarding cash cut daily sales by 39%.</description>
   </item>
 </channel>
 </rss>
