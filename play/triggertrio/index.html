@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichibrawl","build":"8930b182e","target":"site"});</script>
+<script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
+ * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
+ * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
+ * 비정상 종료 — 앞 화면에 있다가 이벤트 없이 사라진 판(메모리 부족으로 웹뷰가 죽음·앱 강제 종료)은 다음 판이 켜질 때 k:"abnormal" 로 알린다.
+ * 설정 = window.__DGL_WEB {game, build, target} (feedback/inject.mjs · web/lib/inject.mjs 가 먼저 심는다). */
+(function () {
+  if (window.__DGL_CRASH) return;
+  var CFG = window.__DGL_WEB || {};
+  var C = window.Capacitor;
+  var native = !!(C && C.isNativePlatform && C.isNativePlatform());
+  if (!CFG.game || /^(localhost|127\.|192\.168\.)/.test(location.hostname) && !native) return; /* 로컬 미리보기는 안 보낸다 */
+  var URL_ = "https://e.dumbgamelab.com";
+  var plat = C && C.getPlatform ? C.getPlatform() : "web";
+  var ver = String(CFG.build || "").replace(/^[a-z]+:/, "") || "?";
+  var sid = Math.random().toString(36).slice(2, 10);
+  var seen = {}, sent = 0, t0 = Date.now(), crumbs = [];
+  var KEY = "dgl.crash.run";
+  function store(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) { /* 저장 못 하면 비정상 종료만 못 본다 */ } }
+  /* 뒤에서 켜진 판(아이폰 미리 띄움·백그라운드 실행)은 앞 화면이 아니다 — fg:1 로 시작하면 한 번도 안 보이고 회수된 판을
+   * 다음 판이 «앞 화면에서 꺼짐»(빈 기록)으로 보냈다(찜질방 1.0.8 iOS · t-261027-zke9). 보이게 되면 visibilitychange 가 fg 를 켠다. */
+  /* 앱 안 브라우저(스레드·인스타·페북·카톡·네이버·라인·틱톡·스냅챗 — 안드로이드 «; wv)» 웹뷰 포함)는 사용자가 X 로 닫을 때 웹뷰를 그냥 버린다 —
+   * pagehide·visibilitychange 가 없으니 «닫음»과 «죽음»을 가를 수 없다. 한 번도 안 누르고 닫은 판이 다음 방문에 «앞 화면에서 꺼짐»(빈 기록)으로 섰다
+   * (한 번뿐인 인생 웹 사이트 0b33986d5 · 삐죽랜드 웹 사이트 — 표본 빵부스러기 0칸 · t-261026-u4zq). 자동 브라우저(webdriver)도 같다. 그런 판은 비정상 종료를 안 센다.
+   * 저장소(localStorage)는 그 앱의 웹뷰 안에서만 이어지므로 지금 판이 앱 안이면 지난 판도 같은 앱 안이다(옛 번들이 ia 를 안 적은 기록까지). */
+  var nav_ = typeof navigator !== "undefined" ? navigator : {};
+  var inApp = !native && (!!nav_.webdriver || /FBAN|FBAV|FB_IAB|Instagram|Barcelona|KAKAOTALK|NAVER\(inapp|DaumApps|Line\/|musical_ly|BytedanceWebview|TikTok|Snapchat|; wv\)/i.test(String(nav_.userAgent || "")));
+  /* 같은 사이트(dumbgamelab.com/play/*)의 게임들은 저장소 칸 하나를 같이 쓴다 — 지난 판의 게임은 그 판이 적은 g 로 보낸다(지금 연 게임 탓으로 세지 않게) */
+  var run = { sid: sid, g: CFG.game, ver: ver, fg: document.visibilityState === "hidden" ? 0 : 1, ia: inApp ? 1 : 0, crumbs: crumbs, at: t0 };
+  function clock() { var d = new Date(); return ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2) + "." + Math.floor(d.getMilliseconds() / 100); }
+  var saveT = 0, lastCrumb = "", rep = 1;
+  /* 같은 줄이 잇달아 오면 한 칸에 «×N» 으로 센다 — 부팅 때 같은 경고 104줄(치치캠프 THREE toNonIndexed)이 30칸을 전부 밀어내
+   * 비정상 종료 기록에 경고만 남고 누름·화면·앞뒤 전환이 다 사라졌다(t-261029-j9tn). 시험 = crash/abnormal-selftest.mjs */
+  function crumb(s) {
+    s = String(s).replace(/\s+/g, " ").slice(0, 110);
+    if (s === lastCrumb && crumbs.length) crumbs[crumbs.length - 1] = clock() + " " + s + " ×" + (++rep);
+    else { lastCrumb = s; rep = 1; crumbs.push(clock() + " " + s); }
+    if (crumbs.length > 30) crumbs.shift();
+    if (!saveT) saveT = setTimeout(function () { saveT = 0; store(run); }, 500);
+  }
+  function post(path, o) {
+    var body = JSON.stringify(o);
+    try { if (navigator.sendBeacon && navigator.sendBeacon(URL_ + path, body)) return; } catch (e) { /* 아래로 */ }
+    try { origFetch(URL_ + path, { method: "POST", body: body, mode: "no-cors", keepalive: true }); } catch (e) { /* 못 보내면 그만 — 게임을 막지 않는다 */ }
+  }
+  /* DGL.ctx 는 함수다(타이쿤 엔진 setTrackContext · analytics.js 규약) — 객체로만 읽어 타이쿤 판의 «화면» 빵부스러기가 늘 비었다(주유소 1.0.0 «화면 -» 0칸 · t-261103-xdg6) */
+  function where() { try { var x = window.DGL && window.DGL.ctx; if (typeof x === "function") x = x(); if (!x) return ""; var w = String(x.where || ""), st = x.stage; return w ? w + (st != null && st !== "" ? " " + st : "") : String(st == null ? "" : st); } catch (e) { return ""; } }
+  function report(k, msg, stack, src, line, col, extra) {
+    msg = String(msg || "").slice(0, 300);
+    var key = k + "|" + msg + "|" + src + ":" + line;
+    if (seen[key] || sent >= 20) return;
+    seen[key] = 1; sent++;
+    /* 켜고 8초 안에 난 오류 = «부팅 오류»(게임에 못 들어간다) — 심각도 판정이 이걸로 핫픽스를 가른다 */
+    var kind = k === "error" && Date.now() - t0 < 8000 && !window.__DGL_PLAYING ? "boot" : k;
+    var o = { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", k: kind, m: msg, s: String(stack || "").slice(0, 4000), f: String(src || "").split("/").pop().slice(0, 120), l: line || 0, c: col || 0, w: where(), sid: sid, b: crumbs.slice() };
+    if (extra) for (var x in extra) o[x] = extra[x];
+    post("/e", o);
+  }
+  /* ── 오류 ── */
+  window.addEventListener("error", function (e) {
+    if (!e || (!e.message && !e.error)) return; /* 이미지·소리 못 불러옴(리소스 오류)은 브레드크럼으로만 */
+    report("error", e.message || (e.error && e.error.message), e.error && e.error.stack, e.filename, e.lineno, e.colno);
+  });
+  window.addEventListener("error", function (e) { var t = e && e.target; if (t && t !== window && (t.src || t.href)) crumb("못 불러옴 " + String(t.src || t.href).split("/").pop()); }, true);
+  window.addEventListener("unhandledrejection", function (e) {
+    var r = e && e.reason;
+    report("promise", (r && (r.message || r)) || "unhandled rejection", r && r.stack, "", 0, 0);
+  });
+  /* ── 브레드크럼 ── */
+  function label(el) {
+    if (!el || !el.tagName) return "?";
+    var s = el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (typeof el.className === "string" && el.className ? "." + el.className.split(/\s+/).slice(0, 2).join(".") : "");
+    var tx = (el.innerText || el.getAttribute && el.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim().slice(0, 20);
+    return s + (tx ? " «" + tx + "»" : "");
+  }
+  document.addEventListener("pointerdown", function (e) { crumb("누름 " + (e.target && e.target.tagName === "CANVAS" ? "canvas " + Math.round(e.clientX) + "," + Math.round(e.clientY) : label(e.target))); }, true);
+  ["warn", "error"].forEach(function (lv) {
+    var orig = console[lv];
+    console[lv] = function () { try { crumb("console." + lv + " " + [].slice.call(arguments).map(function (a) { return a && a.message || String(a); }).join(" ")); } catch (e) { /* 그만 */ } return orig.apply(console, arguments); };
+  });
+  var origFetch = window.fetch ? window.fetch.bind(window) : function () { return Promise.reject(new Error("no fetch")); };
+  if (window.fetch) window.fetch = function (u, o) {
+    var url = String(u && u.url || u);
+    return origFetch(u, o).then(function (r) { if (!r.ok && r.type !== "opaque") crumb("요청 " + r.status + " " + url.split("?")[0].slice(-60)); return r; }, function (err) { crumb("요청 실패 " + url.split("?")[0].slice(-60)); throw err; });
+  };
+  var lastWhere = "";
+  var tick = 0;
+  setInterval(function () {
+    var w = where() || location.hash; if (w !== lastWhere) { lastWhere = w; crumb("화면 " + w); }
+    if (++tick % 5 === 0 && run.fg && !leavingNow) { run.hb = Date.now(); store(run); } /* 살아 있다는 표시 — 같은 게임을 탭 두 개로 연 걸 비정상 종료로 오인하지 않게 */
+  }, 1000);
+  /* ── 비정상 종료 — 앞 화면이던 판이 뒤로 가거나 닫히는 신호 없이 사라졌다 ── */
+  var prev = null;
+  try { prev = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { prev = null; }
+  /* 일부러 떠나는 판(새로고침·이동)은 비정상 종료가 아니다. 떠나기로 한 뒤 늦게 온 «앞으로 옴»이 fg 를 1 로 되돌리면 안 된다 —
+   * 아이폰 타이쿤 엔진은 뒤에 8초 넘게 있던 판의 GPU 를 반납하고 돌아오면 새로고침하는데(render/contextRecovery),
+   * 그 사이 Capacitor appStateChange 가 늦게 와 fg:1 을 다시 써서 다음 판이 지난 판을 «앞 화면에서 꺼짐»으로 보냈다(찜질방 1.0.6 S1 · t-261027-zke9). */
+  var leavingNow = false;
+  function leaving() { leavingNow = true; run.fg = 0; crumb("떠남"); store(run); }
+  function bg(v) { if (leavingNow) return; run.fg = v ? 0 : 1; crumb(v ? "뒤로 감" : "앞으로 옴"); store(run); }
+  document.addEventListener("visibilitychange", function () { bg(document.visibilityState === "hidden"); });
+  window.addEventListener("pagehide", leaving);
+  window.addEventListener("beforeunload", function () { if (!leavingNow) { run.fg = 0; store(run); } }); /* 떠나기를 취소할 수도 있으니 잠그지는 않는다 */
+  if (C && C.Plugins && C.Plugins.App && C.Plugins.App.addListener) try { C.Plugins.App.addListener("appStateChange", function (s) { bg(!s.isActive); }); } catch (e) { /* 없어도 된다 */ }
+  /* 안드로이드 앱 — 이 판의 «뒤로 감»(localStorage)은 커밋 전에 프로세스가 죽으면 날아간다(홈 → 밀어서 끄기 = 정상 종료가 비정상으로 잡혔다 · t-261026-u4zq).
+   * 그래서 앞/뒤는 네이티브 가드(DglCrashGuard)가 파일로 적고 페이지가 뜨면 prevEnd(끝, 사유)로 알려 준다 — 그때까지 보내지 않고 기다린다.
+   * bg(뒤로 간 뒤 죽음)·gone(렌더러 죽음 — 가드가 이미 보냈다)은 버린다. 가드 없는 옛 판은 답이 없으니 기다린 뒤 예전처럼 보낸다. */
+  var held = null, heldT = 0;
+  function prevEnd(end, why, dev, st, timedOut) {
+    if (!held) return;
+    var o = held; held = null; clearTimeout(heldT);
+    /* same = 같은 프로세스에서 액티비티만 다시 만들어진 판 — 앞 페이지는 프로세스와 함께 죽지 않았다(t-261103-xdg6) */
+    if (end === "bg" || end === "gone" || end === "same") return;
+    /* 끝이 fg·?(가드가 처음 깔린 판이라 파일이 없다)여도 OS 가 «사용자가 끔·멈춤·패키지 바뀜·업데이트(10·11·15·16)»이라 했거나
+     * 죽을 때 이미 캐시 상태(중요도 400↑)였으면 앞 화면에서 죽은 게 아니다 — 크래시로 세지 않는다(Unity CrashReporter.NotCrash 와 같은 판정).
+     * 업데이트 설치 첫 실행(한 번뿐인 인생 1.0.3→1.0.4 · t-261026-u4zq) · 홈 직후 «백그라운드 모두 정리»가 onStop 보다 먼저 와 파일이 fg 로 남음(알고있여우 1.0.4 · t-261030-5zdn) */
+    if (/exit reason (10|11|15|16) /.test(why || "") || /importance ([4-9]\d\d|\d{4,}) /.test(why || "")) return;
+    /* 사유 줄 없이 보내지 않는다 — 빈 기록 한 장은 메모리 부족·강제 종료·진짜 크래시를 못 가른다(주유소 1.0.0 빵부스러기 0칸 · t-261103-xdg6).
+     * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
+    o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
+    if (dev) o.b.push("기기 " + String(dev).slice(0, 90));
+    /* ANR(사유 6) = 앞 화면에서 메인 스레드가 5초 넘게 막혀 OS 가 «앱 응답 없음»으로 끈 판 — 메모리 부족·웹뷰 죽음과 다른 병이다.
+     * 가드가 OS ANR 기록에서 읽은 main 스레드 스택을 주면 그 스택으로 따로 묶는다(맨 위 우리·SDK 프레임이 지문 · 한 번뿐인 인생 1.0.6 · t-261026-u4zq) */
+    if (/exit reason 6 /.test(why || "")) {
+      o.m = "ANR — 앞 화면에서 앱이 응답 없음(메인 스레드 5초 넘게 막힘)";
+      if (st) { o.s = String(st).slice(0, 4000); o.f = String(st).split("\n")[0].replace(/^at /, "").slice(0, 120); }
+    }
+    post("/e", o);
+  }
+  window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb, prevEnd: prevEnd, leaving: leaving };
+  post("/s", { g: CFG.game, v: ver, p: plat, t: CFG.target || "store", sid: sid });
+  /* 아이폰 앱이 «다시 읽기»로 뜬 판 = 앱은 살아 있고 웹 콘텐츠 프로세스만 죽어 Capacitor 가 reload 한 판(엔진 새로고침은 leaving 이 fg 를 0 으로 둔다).
+   * 그 죽음은 네이티브 가드가 이미 k:"webview" 로 보냈다 — 또 보내면 한 번 죽은 걸 두 지문이 센다(안드로이드 prevEnd("gone") 과 같은 판정 · t-261027-zke9) */
+  function navType() { try { var n = performance.getEntriesByType("navigation")[0]; if (n) return n.type; return performance.navigation.type === 1 ? "reload" : ""; } catch (e) { return ""; } }
+  var iosGone = native && plat === "ios" && navType() === "reload";
+  if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && !(prev.hb && Date.now() - prev.hb < 12000)) {
+    /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
+    var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
+    var ab = { g: prev.g || CFG.game, v: prev.ver || ver, p: plat, t: CFG.target || "store", k: "abnormal", m: "비정상 종료 — 앞 화면에서 신호 없이 꺼짐(메모리 부족·웹뷰 죽음·강제 종료)", s: "", f: last.replace(/^.*화면 /, "").slice(0, 60), l: 0, c: 0, w: last.replace(/^.*화면 /, "").slice(0, 60), sid: prev.sid, b: prev.crumbs || [] };
+    /* 아이폰 앱도 같다 — 앱 전환기로 올린 뒤(resign active) 밀어서 끈 판은 «뒤로 감» 쓰기가 커밋되기 전에 SIGKILL 을 맞는다.
+     * 가드(DglCrashGuard.swift)가 active/resign 을 파일로 적고 페이지가 뜨면 prevEnd 로 알려 준다(PC방 2.0.24 iOS 1.7% · t-261027-2nr7) */
+    if (native && (plat === "android" || plat === "ios")) { held = ab; heldT = setTimeout(function () { prevEnd("?", "", "", "", true); }, 20000); }
+    else post("/e", ab);
+  }
+  if (!run.fg) crumb("뒤에서 켜짐");
+  store(run);
+})();
+</script>
+<script>/* compat — 옛 안드로이드 웹뷰(Chrome 90 안팎)·옛 iOS 에 없는 함수를 게임 스크립트보다 먼저 채운다. SOT = core/tools/crash/README.md «호환 심»
+ * 오류 수집기와 같은 자리(<head> 맨 앞)에 crash/inject.mjs 가 심는다 → 스토어 앱·사이트 번들 전부.
+ * ★ 왜: 2026-10-26 수집기 첫날에 잡힌 부팅 오류 — roundRect(0913sample)·Array.at·structuredClone(찜질방·PC방).
+ *   게임마다 고치면 다음 게임이 또 밟는다(엔진 shareCard 도 roundRect). 새로 잡히면 여기 한 줄 더한다. */
+(function () {
+  /* globalThis(Chrome 71+) — 옛 웹뷰는 «globalThis is not defined» 로 부팅에서 죽는다(문법을 es2018 로 내린 판이 그다음 밟는 것 · t-261101-gfj0) */
+  if (typeof globalThis === 'undefined') window.globalThis = window;
+  var def = function (o, k, v) { if (o && !o[k]) Object.defineProperty(o, k, { value: v, writable: true, configurable: true }); };
+  function at(n) { n = Math.trunc(n) || 0; if (n < 0) n += this.length; return n < 0 || n >= this.length ? undefined : this[n]; }
+  [Array.prototype, String.prototype].forEach(function (p) { def(p, 'at', at); });
+  if (typeof Int8Array !== 'undefined') def(Object.getPrototypeOf(Int8Array.prototype), 'at', at);
+  def(Array.prototype, 'findLast', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return this[i]; return undefined; });
+  def(Array.prototype, 'findLastIndex', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return i; return -1; });
+  def(Object, 'hasOwn', function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); });
+  /* replaceChildren(Chrome 86·iOS 14) — 옛 웹뷰는 첫 화면 mount 에서 «replaceChildren is not a function»(wordchain t-261028-fecr · 엔진 대화창·여러 게임이 쓴다) */
+  function replaceChildren() {
+    while (this.lastChild) this.removeChild(this.lastChild);
+    var d = this.ownerDocument || this;
+    for (var i = 0; i < arguments.length; i++) { var n = arguments[i]; this.appendChild(typeof n === 'object' && n ? n : d.createTextNode(String(n))); }
+  }
+  ['Element', 'Document', 'DocumentFragment'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'replaceChildren', replaceChildren); });
+  /* crypto.randomUUID(Chrome 92·iOS 15.4) — 옛 웹뷰는 뽑기 버튼에서 «crypto.randomUUID is not a function»(0913sample social.js begin · t-261103-7rs3).
+   * getRandomValues(Chrome 11) 로 RFC 4122 v4 를 만든다 · 그마저 없으면 Math.random */
+  var cr = window.crypto || window.msCrypto;
+  if (cr) def(cr, 'randomUUID', function () {
+    var b = new Uint8Array(16), i, h = [];
+    if (cr.getRandomValues) cr.getRandomValues(b); else for (i = 0; i < 16; i++) b[i] = Math.random() * 256 | 0;
+    b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
+    for (i = 0; i < 16; i++) h.push((b[i] + 256).toString(16).slice(1));
+    return h.slice(0, 4).join('') + '-' + h.slice(4, 6).join('') + '-' + h.slice(6, 8).join('') + '-' + h.slice(8, 10).join('') + '-' + h.slice(10).join('');
+  });
+  if (typeof structuredClone === 'undefined') window.structuredClone = function (v) { return v === undefined ? v : JSON.parse(JSON.stringify(v)); };
+  /* roundRect(x, y, w, h, radii) — radii 는 숫자 하나 또는 배열(1~4개) */
+  function roundRect(x, y, w, h, r) {
+    var a = Array.isArray(r) ? r : [r == null ? 0 : r];
+    var v = function (q) { return typeof q === 'object' && q ? (q.x || 0) : (q || 0); };
+    var tl = v(a[0]), tr = v(a.length > 1 ? a[1] : a[0]), br = v(a.length > 2 ? a[2] : a[0]), bl = v(a.length > 3 ? a[3] : a.length > 1 ? a[1] : a[0]);
+    var m = Math.min(Math.abs(w), Math.abs(h)) / 2; tl = Math.min(tl, m); tr = Math.min(tr, m); br = Math.min(br, m); bl = Math.min(bl, m);
+    this.moveTo(x + tl, y); this.lineTo(x + w - tr, y); this.arcTo(x + w, y, x + w, y + tr, tr);
+    this.lineTo(x + w, y + h - br); this.arcTo(x + w, y + h, x + w - br, y + h, br);
+    this.lineTo(x + bl, y + h); this.arcTo(x, y + h, x, y + h - bl, bl);
+    this.lineTo(x, y + tl); this.arcTo(x, y, x + tl, y, tl); this.closePath();
+  }
+  ['CanvasRenderingContext2D', 'OffscreenCanvasRenderingContext2D', 'Path2D'].forEach(function (n) { if (window[n]) def(window[n].prototype, 'roundRect', roundRect); });
+  /* Animation.finished(Chrome 84+) — 옛 웹뷰는 el.animate() 는 되는데 .finished 가 undefined 라 «.then of undefined»(0913sample t-261028-wg0m).
+   * ★ 프로토타입의 게터를 읽으면 진짜 브라우저는 Illegal invocation 이라 `in` 으로만 본다. 끝나면 풀고 취소되면 AbortError 로 거른다(표준과 같다). */
+  var A = window.Animation;
+  if (A && A.prototype && !('finished' in A.prototype)) {
+    Object.defineProperty(A.prototype, 'finished', { configurable: true, get: function () {
+      var a = this;
+      if (!a.__dglFinished) a.__dglFinished = new Promise(function (ok, no) {
+        if (a.playState === 'finished') return ok(a);
+        var done = function () { ok(a); }, fail = function () { var e = new Error('Animation was aborted'); e.name = 'AbortError'; no(e); };
+        if (a.addEventListener) { a.addEventListener('finish', done); a.addEventListener('cancel', fail); }
+        else { var f = a.onfinish, c = a.oncancel; a.onfinish = function (e) { if (f) f.call(a, e); done(); }; a.oncancel = function (e) { if (c) c.call(a, e); fail(); }; }
+      });
+      return a.__dglFinished;
+    } });
+  }
+})();
+</script>
+<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"chichibrawl","build":"8930b182e","target":"site","links":{}};</script>
+<script>(function(){
+'use strict';
+/* 친구 초대 코어 — 모든 게임이 같은 규칙으로 서버(i.dumbgamelab.com)와 말한다. 설명서 = core/tools/invite/README.md
+ *
+ * 쓰는 곳 — 한 벌이다(게임마다 만들면 규칙이 갈린다):
+ *   · 타이쿤 엔진 `src/core/invite.ts` 가 import 한다(xpromo-core 와 같은 상대 경로).
+ *   · 웹뷰 게임 번들엔 `core/tools/invite/inject.mjs` 가 이 파일을 IIFE 로 감싸 `window.DGLInvite` 로 심는다.
+ *   · 유니티·고돗은 같은 서버 규칙을 자기 말로 옮긴다(`core/tools/invite/native/`).
+ *
+ * 흐름 — 보상은 «설치·가입»이 아니라 «진짜 플레이»에 건다(Apple 5.6.3 · 히트작 선례 = README «근거»):
+ *   주인   myCode() → 서버에 등록 → 친구가 성사될 때마다 sync() 가 friend 보상(1·3·5·10번째는 크게)
+ *   친구   redeem(코드) → 대기 · 게임이 정한 문턱에서 qualify() → 성사 → 그때 welcome 보상
+ *   돈은 모른다 — onReward({kind, index, mult}) 를 부르면 게임이 자기 화폐로 준다.
+ *
+ * ★ 이 파일은 의존성 0 · DOM 0 · ES 문법만(옛 웹뷰도 돈다). `export` 를 지우면 그대로 스크립트가 된다(inject 가 그렇게 쓴다).
+ */
+
+const INVITE_SERVER = 'https://i.dumbgamelab.com';
+const INVITE_CODE_LEN = 6;
+/** 헷갈리는 글자(0/O, 1/I/L)를 뺀 알파벳 — 입으로 불러주고 손으로 받아적는다 */
+const INVITE_ALPHABET = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
+/** 설치하고 이 날수 안에만 친구 코드를 넣을 수 있다 — «새로 온 사람»만 친구다(Pokémon GO 72시간 · 쿠키런 30일) */
+const INVITE_REDEEM_DAYS = 7;
+/** 이 번째 친구는 보상을 몇 배로 — 단계형(1·3·5명) 이 히트작 공통이다 */
+const INVITE_LADDER = { 1: 2, 3: 3, 5: 5, 10: 10 };
+const INVITE_LINK_SOURCE = 'invite';
+
+function inviteMult(index) {
+  return INVITE_LADDER[index] || 1;
+}
+
+function normalizeInviteCode(s) {
+  return String(s == null ? '' : s).toUpperCase().replace(/[^0-9A-Z]/g, '');
+}
+
+function isValidInviteCode(code) {
+  if (typeof code !== 'string' || code.length !== INVITE_CODE_LEN) return false;
+  for (let i = 0; i < code.length; i++) if (INVITE_ALPHABET.indexOf(code[i]) < 0) return false;
+  return true;
+}
+
+function rand(n) {
+  const buf = new Uint32Array(n);
+  try { crypto.getRandomValues(buf); } catch (e) { for (let i = 0; i < n; i++) buf[i] = Math.floor(Math.random() * 0xffffffff); }
+  return buf;
+}
+
+function makeInviteCode(random) {
+  const buf = (random || rand)(INVITE_CODE_LEN);
+  let s = '';
+  for (let i = 0; i < INVITE_CODE_LEN; i++) s += INVITE_ALPHABET[buf[i] % INVITE_ALPHABET.length];
+  return s;
+}
+
+/** 기기 비밀값 — 서버는 해시만 둔다. 광고 ID·기기 ID 를 쓰지 않는다 */
+function makeSecret(random) {
+  const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const buf = (random || rand)(24);
+  let s = '';
+  for (let i = 0; i < 24; i++) s += A[buf[i] % A.length];
+  return s;
+}
+
+/** 주소 쿼리(또는 Play 설치 리퍼러 문자열)에서 친구 코드 — `utm_source=invite&utm_content=<코드>` 가 아니면 '' */
+function parseInviteLink(search) {
+  let q;
+  try { q = new URLSearchParams(String(search == null ? '' : search).replace(/^[?#]/, '')); } catch (e) { return ''; }
+  if (q.get('utm_source') !== INVITE_LINK_SOURCE) return '';
+  const code = normalizeInviteCode(q.get('utm_content') || '');
+  return isValidInviteCode(code) ? code : '';
+}
+
+/**
+ * 초대 한 벌을 만든다.
+ * @param {object} o
+ * @param {string} o.game        서버에 보내는 게임 슬러그(카탈로그 slug)
+ * @param {{get(k:string):string|null,set(k:string,v:string):void}} [o.storage]  기본 localStorage
+ * @param {string} [o.key]       저장 키(기본 `dgl-invite:<game>`) — 세이브와 분리(«처음부터 다시»가 지우지 않는다)
+ * @param {(ev:{kind:'friend'|'welcome',index:number,mult:number})=>void} [o.onReward]
+ * @param {(name:string,p:object)=>void} [o.track]
+ * @param {typeof fetch} [o.fetch] @param {()=>number} [o.now] @param {(n:number)=>Uint32Array} [o.random] @param {string} [o.server]
+ * @param {object|null} [o.legacy] 옛 기록(엔진 1.x·2.0 의 {code, redeemed}) — 처음 한 번 이어받는다
+ */
+function createInvite(o) {
+  const game = o.game;
+  const key = o.key || 'dgl-invite:' + game;
+  const now = o.now || function () { return Date.now(); };
+  const server = o.server || INVITE_SERVER;
+  const doFetch = o.fetch || (typeof fetch === 'function' ? fetch.bind(globalThis) : null);
+  const store = o.storage || {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 못 쓰면 다음에 다시 */ } },
+  };
+  const track = o.track || function () {};
+  let onReward = o.onReward || null;
+  /* 보상 콜백이 아직 없을 때 온 보상 — 게임이 setRewardHandler 를 부르면 그때 준다(웹뷰 게임은 키트가 게임보다 먼저 뜬다) */
+  const queued = [];
+
+  function load() {
+    let r = null;
+    try { r = JSON.parse(store.get(key) || 'null'); } catch (e) { r = null; }
+    if (!r || r.v !== 2) {
+      const L = o.legacy || {};
+      r = {
+        v: 2,
+        code: isValidInviteCode(L.code) ? L.code : '',
+        own: '',
+        at: now(), // 처음 본 시각 = 설치 시각으로 친다
+        reg: 0,
+        redeemed: typeof L.redeemed === 'string' ? L.redeemed : '',
+        /* 옛 판에서 이미 넣은 코드는 서버에 관계가 없다 — 성사·환영 보상을 다시 주지 않는다 */
+        qualified: L.redeemed ? 1 : 0,
+        rewarded: 0,
+        pending: '',
+      };
+    }
+    return r;
+  }
+  function save(r) { store.set(key, JSON.stringify(r)); }
+  function secret(r) {
+    if (!r.own) { r.own = makeSecret(o.random); save(r); }
+    return r.own;
+  }
+
+  function post(path, body) {
+    if (!doFetch) return Promise.resolve({ ok: false, reason: 'network' });
+    return doFetch(server + '/v1/' + path, { method: 'POST', headers: { 'content-type': 'text/plain' }, body: JSON.stringify(Object.assign({ g: game }, body)) })
+      .then(function (res) { return res.json(); })
+      .catch(function () { return { ok: false, reason: 'network' }; });
+  }
+
+  function give(ev) {
+    track('invite_reward', { why: ev.kind, index: ev.index, mult: ev.mult });
+    if (onReward) onReward(ev); else queued.push(ev);
+  }
+
+  const api = {
+    game: game,
+
+    /** 내 코드 — 처음 부르면 만든다. 서버 등록은 뒤에서(실패하면 다음에 또) */
+    myCode: function () {
+      const r = load();
+      if (!r.code) { r.code = makeInviteCode(o.random); save(r); }
+      if (!r.reg) api.register();
+      return r.code;
+    },
+
+    /** 서버에 내 코드를 알린다. 남이 이미 쓰는 코드면(6자 충돌) 새로 뽑아 다시 */
+    register: function () {
+      const r = load();
+      if (!r.code) r.code = makeInviteCode(o.random);
+      const own = secret(r);
+      return post('register', { code: r.code, own: own }).then(function (res) {
+        const cur = load();
+        if (res.ok) { cur.reg = 1; save(cur); return true; }
+        if (res.reason === 'taken') { cur.code = makeInviteCode(o.random); cur.reg = 0; save(cur); return api.register(); }
+        return false;
+      });
+    },
+
+    /** 내가 넣은 친구 코드 — 아직이면 '' */
+    redeemedCode: function () { return load().redeemed; },
+
+    /** 코드를 넣을 수 있나 — 이미 넣었거나 설치 뒤 너무 지났으면 false(화면이 입력칸을 숨긴다) */
+    canRedeem: function () {
+      const r = load();
+      return !r.redeemed && now() - r.at < INVITE_REDEEM_DAYS * 864e5;
+    },
+
+    /** 링크·리퍼럴로 들어온 코드를 맡겨 둔다(입력칸에 미리 채운다 — 누르는 건 사람) */
+    capture: function (search) {
+      const code = parseInviteLink(search);
+      if (!code) return '';
+      const r = load();
+      if (r.redeemed || code === r.code) return '';
+      r.pending = code;
+      save(r);
+      track('invite_link_open', {});
+      return code;
+    },
+
+    pendingCode: function () {
+      const r = load();
+      return !r.redeemed && r.pending && r.pending !== r.code && isValidInviteCode(r.pending) ? r.pending : '';
+    },
+
+    /**
+     * 친구 코드 넣기 → Promise<{ok:true} | {ok:false, reason}>.
+     * reason = format · own · already · late · unknown(없는 코드) · limit · network
+     * ★ 여기선 보상을 안 준다 — 환영 보상은 qualify(진짜 플레이) 뒤다.
+     */
+    redeem: function (raw) {
+      const r = load();
+      const code = normalizeInviteCode(raw);
+      if (r.redeemed) return Promise.resolve({ ok: false, reason: 'already' });
+      if (!isValidInviteCode(code)) return Promise.resolve({ ok: false, reason: 'format' });
+      if (code === r.code) return Promise.resolve({ ok: false, reason: 'own' });
+      if (!api.canRedeem()) return Promise.resolve({ ok: false, reason: 'late' });
+      return post('redeem', { code: code, inv: secret(r) }).then(function (res) {
+        if (!res.ok) return { ok: false, reason: res.reason || 'network' };
+        const cur = load();
+        cur.redeemed = code;
+        cur.pending = '';
+        save(cur);
+        track('invite_entered', {});
+        return { ok: true };
+      });
+    },
+
+    /**
+     * 게임이 «진짜 플레이했다» 문턱에서 부른다(첫 랭크업·스테이지 N·누적 M분 — 게임이 고른다). 여러 번 불러도 된다.
+     * 성사되면 환영 보상 한 번. 서버가 «아직 이르다»면 false — 다음 문턱·다음 실행에 또 부르면 된다.
+     */
+    qualify: function () {
+      const r = load();
+      if (!r.redeemed || r.qualified) return Promise.resolve(false);
+      return post('qualify', { inv: secret(r) }).then(function (res) {
+        if (!res.ok) return false;
+        const cur = load();
+        if (cur.qualified) return false;
+        cur.qualified = 1;
+        save(cur);
+        track('invite_qualified', {});
+        give({ kind: 'welcome', index: 0, mult: 1 });
+        return true;
+      });
+    },
+
+    /** 내 코드의 성사 수를 읽고, 새로 성사된 만큼 friend 보상 → Promise<{confirmed, pending, fresh}> */
+    sync: function () {
+      const r = load();
+      if (!r.code || !r.own) return Promise.resolve({ confirmed: 0, pending: 0, fresh: 0 });
+      return post('status', { code: r.code, own: r.own }).then(function (res) {
+        if (!res.ok) return { confirmed: r.rewarded, pending: 0, fresh: 0 };
+        const cur = load();
+        const from = cur.rewarded;
+        const to = Math.max(from, res.confirmed | 0);
+        cur.rewarded = to;
+        save(cur);
+        for (let i = from + 1; i <= to; i++) give({ kind: 'friend', index: i, mult: inviteMult(i) });
+        return { confirmed: to, pending: res.pending | 0, fresh: to - from };
+      });
+    },
+
+    /** 받은 친구 수(보상 준 수) — 화면이 사다리를 그린다 */
+    friends: function () { return load().rewarded; },
+
+    /** 보상 콜백을 나중에 꽂는다 — 그동안 쌓인 보상을 바로 준다 */
+    setRewardHandler: function (fn) {
+      onReward = fn;
+      while (fn && queued.length) fn(queued.shift());
+    },
+
+    /** 공유 링크에 붙일 쿼리 — `utm_source=invite&utm_content=<코드>` */
+    linkQuery: function () {
+      return 'utm_source=' + INVITE_LINK_SOURCE + '&utm_medium=friend&utm_content=' + api.myCode();
+    },
+  };
+  return api;
+}
+
+/* 친구 초대 웹뷰 키트 — invite-core.js 뒤에 붙는 얇은 층(창 + 공유 + 자동 문턱). inject.mjs 가 한 덩어리 IIFE 로 심는다.
+ * 설명서 = core/tools/invite/README.md. 이 파일엔 `export` 가 없다(코어와 같은 스코프에서 돈다).
+ * 게임이 부르는 것 = window.DGLInvite { open, qualify, sync, setRewardHandler, myCode, friends, canRedeem }
+ * 설정 = window.__DGL_INVITE { game, links:{play,ios,web}, playMs } (inject.mjs 가 <script id="dgl-invite-cfg"> 로 먼저 둔다) */
+var CFG = (typeof window !== 'undefined' && window.__DGL_INVITE) || {};
+var LADDER_STEPS = [1, 3, 5, 10];
+var PLAY_MS = CFG.playMs || 10 * 60 * 1000; /* 누적 전경 플레이 문턱 — 게임이 더 이른 문턱에서 qualify() 를 불러도 된다 */
+var TEXT = {
+  ko: {
+    title: '친구 초대', mine: '내 코드', share: '공유하기', copied: '복사했어요',
+    friends: '성사된 친구', unit: '명', enter: '친구 코드 입력', ph: 'A7K2M9', put: '넣기', close: '닫기',
+    ok: '넣었어요. 조금 플레이하면 보상이 나와요',
+    msg: '같이 해요. 내 코드는 {code} 예요. ',
+    r: { format: '코드는 6자예요', own: '내 코드예요', already: '이미 넣었어요', late: '넣을 수 있는 기간이 지났어요', unknown: '없는 코드예요', limit: '이 코드는 가득 찼어요', network: '연결을 확인해 주세요' },
+  },
+  en: {
+    title: 'Invite friends', mine: 'Your code', share: 'Share', copied: 'Copied',
+    friends: 'Friends joined', unit: '', enter: 'Enter a friend code', ph: 'A7K2M9', put: 'Enter', close: 'Close',
+    ok: 'Done. Play a little and your reward arrives',
+    msg: 'Play with me. My code is {code}. ',
+    r: { format: 'The code has 6 characters', own: 'That is your own code', already: 'You already entered one', late: 'The entry period has passed', unknown: 'No such code', limit: 'This code is full', network: 'Check your connection' },
+  },
+};
+function tr() {
+  var l = '';
+  try { l = String((document.documentElement.getAttribute('lang') || navigator.language || 'ko')).toLowerCase(); } catch (e) { l = 'ko'; }
+  return l.indexOf('ko') === 0 ? TEXT.ko : TEXT.en;
+}
+
+function track(name, p) {
+  try { if (typeof window.gtag === 'function') window.gtag('event', name, Object.assign({ game: CFG.game }, p)); } catch (e) { /* 계측이 게임을 막지 않는다 */ }
+}
+
+var inv = createInvite({ game: CFG.game, track: track });
+
+/* ── 공유 링크 — 스토어 링크에 출처를 붙인다(xpromo-core tagXpromoLinks 와 같은 모양: Play referrer · iOS ct · 웹 쿼리) ── */
+function platform() {
+  try {
+    var c = window.Capacitor;
+    if (c && typeof c.getPlatform === 'function') { var p = c.getPlatform(); if (p === 'android' || p === 'ios') return p; }
+  } catch (e) { /* 웹 */ }
+  return 'web';
+}
+function join(u) { return u.indexOf('?') >= 0 ? '&' : '?'; }
+function shareLink() {
+  var L = CFG.links || {};
+  var q = inv.linkQuery();
+  var code = inv.myCode();
+  var p = platform();
+  if (p === 'android' && L.play) return L.play + join(L.play) + 'referrer=' + encodeURIComponent(q);
+  if (p === 'ios' && L.ios) return L.ios + join(L.ios) + 'ct=' + encodeURIComponent(('invite_' + code).slice(0, 40)) + '&mt=8';
+  var web = L.web || (CFG.game ? 'https://dumbgamelab.com/play/' + CFG.game + '/' : '');
+  if (web) return web + join(web) + q;
+  var any = L.play || L.ios || '';
+  return any;
+}
+
+function copyText(s) {
+  try { if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(s).then(function () { return true; }, function () { return legacyCopy(s); }); } catch (e) { /* 아래 */ }
+  return Promise.resolve(legacyCopy(s));
+}
+function legacyCopy(s) {
+  try {
+    var t = document.createElement('textarea');
+    t.value = s; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.focus(); if (t.select) t.select();
+    var ok = document.execCommand && document.execCommand('copy');
+    document.body.removeChild(t);
+    return !!ok;
+  } catch (e) { return false; }
+}
+
+/** 공유 시트(있으면) → 없으면 복사. 반환 Promise<'shared'|'copied'|'none'> */
+function share() {
+  var t = tr();
+  var text = t.msg.replace('{code}', inv.myCode()) + shareLink();
+  track('invite_share', {});
+  var P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Share && typeof P.Share.share === 'function') {
+    return P.Share.share({ title: t.title, text: text, dialogTitle: t.title }).then(function () { return 'shared'; }, function () { return 'none'; });
+  }
+  if (typeof navigator.share === 'function') {
+    return navigator.share({ title: t.title, text: text }).then(function () { return 'shared'; }, function () { return 'none'; });
+  }
+  return Promise.resolve(copyText(text)).then(function (ok) { return ok ? 'copied' : 'none'; });
+}
+
+/* ── 창 ── */
+var CSS = '#dgl-invite{position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483000;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;' +
+  '-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}' +
+  '#dgl-invite *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}' +
+  '#dgl-invite .c{width:min(88vw,360px);max-height:90vh;overflow:auto;background:#fff8ec;color:#3b2a1a;border-radius:18px;padding:18px 16px;box-shadow:0 8px 28px rgba(0,0,0,.4)}' +
+  '#dgl-invite h2{margin:0 0 4px;font-size:20px;line-height:1.2;text-align:center}' +
+  '#dgl-invite .k{font-size:12px;opacity:.7;margin:12px 0 4px}' +
+  '#dgl-invite .code{font-size:32px;font-weight:800;letter-spacing:6px;text-align:center;padding:8px 0;background:#fff;border-radius:12px;border:2px solid #e3cfa8}' +
+  '#dgl-invite button{display:block;width:100%;min-height:44px;margin-top:10px;border:0;border-radius:12px;font-size:16px;font-weight:700;color:#fff;background:#e8772e;line-height:1}' +
+  '#dgl-invite button.g{background:#d9c7a3;color:#3b2a1a}' +
+  '#dgl-invite .row{display:flex;gap:6px;margin-top:6px}' +
+  '#dgl-invite .step{flex:1;min-height:44px;border-radius:10px;background:#efe3c8;text-align:center;padding:5px 0;font-size:13px;line-height:1.3;opacity:.7}' +
+  '#dgl-invite .step.on{background:#ffd36b;opacity:1;font-weight:800}' +
+  '#dgl-invite .in{display:flex;gap:8px;margin-top:6px}' +
+  '#dgl-invite input{flex:1;min-width:0;min-height:44px;border:2px solid #e3cfa8;border-radius:12px;padding:0 10px;font-size:18px;letter-spacing:3px;text-transform:uppercase;background:#fff;-webkit-user-select:text;user-select:text}' +
+  '#dgl-invite .in button{width:84px;margin-top:0}' +
+  '#dgl-invite .m{min-height:18px;margin-top:8px;font-size:13px;text-align:center}';
+
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+var root = null;
+function close() {
+  if (root && root.parentNode) root.parentNode.removeChild(root);
+  root = null;
+}
+
+function open() {
+  if (root) return;
+  var t = tr();
+  if (!document.getElementById('dgl-invite-css')) {
+    var st = el('style'); st.id = 'dgl-invite-css'; st.textContent = CSS; (document.head || document.body).appendChild(st);
+  }
+  root = el('div'); root.id = 'dgl-invite';
+  root.addEventListener('click', function (ev) { if (ev.target === root) close(); });
+  var card = el('div', 'c');
+  card.appendChild(el('h2', '', t.title));
+  card.appendChild(el('div', 'k', t.mine));
+  card.appendChild(el('div', 'code', inv.myCode()));
+  var msg = el('div', 'm', '');
+  var shareBtn = el('button', '', t.share);
+  shareBtn.addEventListener('click', function () {
+    share().then(function (r) { msg.textContent = r === 'copied' ? t.copied : ''; });
+  });
+  card.appendChild(shareBtn);
+
+  card.appendChild(el('div', 'k', t.friends));
+  var row = el('div', 'row');
+  var steps = [];
+  LADDER_STEPS.forEach(function (n) {
+    var s = el('div', 'step', n + t.unit + ' x' + inviteMult(n));
+    steps.push([n, s]); row.appendChild(s);
+  });
+  function paint() {
+    var f = inv.friends();
+    steps.forEach(function (p) { p[1].className = 'step' + (f >= p[0] ? ' on' : ''); });
+  }
+  paint();
+  card.appendChild(row);
+
+  if (inv.canRedeem()) {
+    card.appendChild(el('div', 'k', t.enter));
+    var box = el('div', 'in');
+    var input = el('input'); input.setAttribute('maxlength', '8'); input.setAttribute('placeholder', t.ph);
+    input.setAttribute('autocapitalize', 'characters'); input.setAttribute('autocomplete', 'off');
+    input.value = inv.pendingCode();
+    var put = el('button', 'g', t.put);
+    put.addEventListener('click', function () {
+      inv.redeem(input.value).then(function (r) {
+        msg.textContent = r.ok ? t.ok : (t.r[r.reason] || t.r.network);
+        if (r.ok) box.parentNode && box.parentNode.removeChild(box);
+      });
+    });
+    box.appendChild(input); box.appendChild(put);
+    card.appendChild(box);
+  }
+  card.appendChild(msg);
+  var closeBtn = el('button', 'g', t.close);
+  closeBtn.addEventListener('click', close);
+  card.appendChild(closeBtn);
+  root.appendChild(card);
+  document.body.appendChild(root);
+  track('invite_open', {});
+  inv.sync().then(paint, function () {});
+}
+
+/* ── 자동 문턱 — 앞에 보이는 동안 누적 PLAY_MS 가 차면 qualify(). 세이브와 별도 키라 «처음부터 다시»가 안 지운다 ── */
+var PLAY_KEY = 'dgl-invite-play:' + CFG.game;
+function playMs() { try { return Number(localStorage.getItem(PLAY_KEY)) || 0; } catch (e) { return 0; } }
+function startClock() {
+  var last = Date.now();
+  var lastTry = 0;
+  setInterval(function () {
+    var now = Date.now();
+    var d = Math.min(now - last, 10000); /* 잠들었다 깬 큰 간격은 플레이로 안 친다 */
+    last = now;
+    if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+    var ms = playMs() + d;
+    try { localStorage.setItem(PLAY_KEY, String(ms)); } catch (e) { /* 못 쓰면 다음에 */ }
+    if (ms >= PLAY_MS && now - lastTry >= 30000) { lastTry = now; inv.qualify(); } /* 서버가 «이르다»면 30초 뒤 또 */
+  }, 5000);
+}
+
+window.DGLInvite = {
+  open: open,
+  close: close,
+  qualify: function () { return inv.qualify(); },
+  sync: function () { return inv.sync(); },
+  setRewardHandler: function (fn) { inv.setRewardHandler(fn); },
+  myCode: function () { return inv.myCode(); },
+  friends: function () { return inv.friends(); },
+  canRedeem: function () { return inv.canRedeem(); },
+  shareLink: shareLink,
+};
+
+/* 부팅 — 링크로 들어온 코드 맡기기(주소 쿼리 + Play 설치 리퍼러) · 내 코드 서버 등록 · 새로 성사된 친구 확인 */
+(function boot() {
+  try { inv.capture(location.search); } catch (e) { /* 주소를 못 읽으면 건너뜀 */ }
+  try {
+    var plug = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.InstallReferrer;
+    if (plug && typeof plug.getReferrer === 'function' && platform() !== 'ios') {
+      plug.getReferrer().then(function (r) { if (r && typeof r.referrer === 'string') inv.capture(r.referrer); }).catch(function () {});
+    }
+  } catch (e) { /* 리퍼러 없음 */ }
+  inv.myCode();
+  inv.sync().catch(function () {});
+  startClock();
+})();
+
+})();</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"8930b182e","game":"chichibrawl"};</script>
+<meta name="description" content="A 2-minute 3v3 gem grab against bots. Pick a fighter, grab gems, hold ten. · 2분 3v3 보석 모으기 체험판.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trigger Trio — 3v3 gem grab prototype">
+<meta property="og:description" content="A 2-minute 3v3 gem grab against bots. Pick a fighter, grab gems, hold ten. · 2분 3v3 보석 모으기 체험판.">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:url" content="https://dumbgamelab.com/play/triggertrio/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Trigger Trio — 3v3 gem grab prototype">
+<meta name="twitter:description" content="A 2-minute 3v3 gem grab against bots. Pick a fighter, grab gems, hold ten. · 2분 3v3 보석 모으기 체험판.">
+<link rel="canonical" href="https://dumbgamelab.com/play/triggertrio/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>트리거 트리오</title>
+<style>
+@font-face { font-family: 'ONE Mobile POP'; src: url('./fonts/ONEMobilePOP.otf') format('opentype'); font-display: block; unicode-range: U+0-2012, U+2015-2021, U+2023-2715, U+2717-10FFFF; }
+:root { --font-game: 'ONE Mobile POP', -apple-system, "Apple SD Gothic Neo", sans-serif; --blue: #38a3ff; --red: #ff4a4a; --gold: #ffd23a; --ink: #1d1530; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #2b2140; font-family: var(--font-game); color: #fff; touch-action: none; }
+#stage, #stage canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.out { -webkit-text-stroke: 0; text-shadow: 0 2px 0 var(--ink), 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 -2px 0 var(--ink), 2px 2px 0 var(--ink), -2px 2px 0 var(--ink); }
+
+.hud { position: fixed; inset: 0; pointer-events: none; display: none; }
+.top, .league, .banner { z-index: 2; }
+.hud.on { display: block; }
+.top { position: absolute; top: max(8px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; }
+.score { display: flex; align-items: center; gap: 6px; min-width: 74px; height: 40px; padding: 0 12px; border-radius: 12px; border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); font-size: 24px; justify-content: center; }
+.score.blue { background: linear-gradient(#5ab8ff, #2a86e0); } .score.red { background: linear-gradient(#ff6d6d, #d93434); }
+.bar .nm { -webkit-text-stroke: 3px #14101e; paint-order: stroke fill; text-shadow: none; }
+.score b, .timer, .banner, .num, .respawn, .bar .hp span, .bar .gems b { text-shadow: 0 2px 0 var(--ink), 2px 0 0 var(--ink), -2px 0 0 var(--ink), 0 -2px 0 var(--ink); }
+.timer { font-size: 26px; min-width: 76px; text-align: center; }
+.gem { display: inline-block; width: 16px; height: 16px; background: linear-gradient(135deg, #e6b8ff, #a24bf0 55%, #6a20b0); transform: rotate(45deg); border: 2px solid var(--ink); border-radius: 3px; }
+.cup { display: inline-block; width: 20px; height: 18px; background: linear-gradient(#ffe46a, #f0a820); border: 2px solid var(--ink); border-radius: 3px 3px 9px 9px; }
+.league { display: none; position: absolute; top: max(14px, env(safe-area-inset-top)); left: max(14px, env(safe-area-inset-left)); font-size: 13px; opacity: 0.9; background: rgba(29,21,48,0.55); padding: 6px 10px; border-radius: 10px; transition: opacity 0.6s; }
+.banner { position: absolute; top: 62px; left: 50%; transform: translateX(-50%) scale(0.8); opacity: 0; transition: all 0.2s; text-align: center; }
+.banner.on { opacity: 1; transform: translateX(-50%) scale(1); }
+.banner small { display: block; font-size: 15px; } .banner b { font-size: 46px; line-height: 1; }
+.banner.blue b { color: #8fd2ff; } .banner.red b { color: #ff9a9a; }
+.respawn { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); font-size: 22px; display: none; } .respawn.on { display: block; } .respawn b { font-size: 40px; color: var(--gold); }
+.hud.ko .respawn { top: calc(max(8px, env(safe-area-inset-top)) + 80px); transform: translateX(-50%); font-size: 13px; line-height: 1; padding: 4px 12px; border-radius: 10px; background: rgba(29,21,48,0.6); white-space: nowrap; pointer-events: none; } .hud.ko .respawn b { font-size: 13px; color: #fff; }   /* 녹아웃에서 쓰러지면 정답 앱처럼 작은 «관전 중» 띠 한 줄 — 판을 덮는 큰 글씨 금지 */
+
+.bar { position: absolute; left: 0; top: 0; width: 54px; text-align: center; will-change: transform; }
+.bar .nm { font-size: 10px; margin: 0 -24px 1px; white-space: nowrap; color: #ff5a5a; } .bar.blue .nm { color: #5cc2ff; } .bar.me .nm { color: #5cff6a; }   /* r25 — 이름 = 팀색(나 초록·우리 편 파랑·적 빨강) */
+.bar .hp { position: relative; height: 11px; border-radius: 6px; background: var(--ink); border: 2px solid var(--ink); overflow: hidden; }
+.bar .hp .v { height: 100%; border-radius: 4px; transition: width 0.25s ease-out; background: linear-gradient(#ff8080, #e03a3a); }
+.bar.blue .hp .v { background: linear-gradient(#7ec8ff, #2f8be6); } .bar.me .hp .v { background: linear-gradient(#9cf06a, #4cbf2a); }
+.bar .hp span { position: absolute; inset: 0; font-size: 8px; line-height: 6px; }
+.bar .ammo { display: flex; gap: 2px; margin-top: 1px; height: 5px; } .bar .ammo i { flex: 1; border-radius: 3px; background: linear-gradient(90deg, #ffb52a calc(var(--f, 1) * 100%), #4a3a2a 0); border: 1px solid var(--ink); }
+.bar .gen { font-size: 8px; line-height: 1; margin-bottom: 1px; white-space: nowrap; color: #ffe680; -webkit-text-stroke: 2px #14101e; paint-order: stroke fill; }   /* 학습 세대(ailadder) — 컨셉 «사람보다 센 AI» 의 첫 3초 */
+.bar .gems { display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 11px; margin-bottom: 1px; } .bar .gems .gem { width: 11px; height: 11px; }
+.num { position: absolute; z-index: 1; font-size: 18px; color: #fff; transform: translate(-50%, -50%); animation: up 0.8s ease-out forwards; }
+.num.hurt { color: #ff7070; }
+.num.heal { color: #6dff5a; font-size: 17px; }
+.num.crit { color: #ffd23a; font-size: 26px; }
+@keyframes up { 0% { transform: translate(-50%, -50%) scale(1.4); } 20% { transform: translate(-50%, -80%) scale(1); } 100% { transform: translate(-50%, -160%); opacity: 0; } }
+
+/* 조작 — 정답 앱 문법: 왼쪽 아래 이동 스틱(쉴 땐 제자리에 흐리게 · 누르면 그 자리로) · 오른쪽 아래 큰 빨강 조준 스틱(과녁) · 그 왼쪽 위 궁(해골 · 차면 노랑) */
+.stick { position: absolute; left: calc(max(24px, env(safe-area-inset-left)) + 74px); top: calc(100% - max(24px, env(safe-area-inset-bottom)) - 74px); width: 132px; height: 132px; margin: -66px 0 0 -66px; border-radius: 50%; background: rgba(20,40,80,0.28); border: 3px solid rgba(140,200,255,0.45); opacity: 0.45; transition: opacity 0.15s; }
+.stick.on { opacity: 1; transition: none; }
+.stick .knob { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: radial-gradient(circle at 50% 36%, #9fdcff, #2f8be6 72%); border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+/* 명령 단추 — 엄지가 닿는 오른쪽 가운데 줄(공격 단추 위) · 터치 44px 이상 */
+.orders { position: absolute; right: max(24px, env(safe-area-inset-right)); bottom: calc(max(20px, env(safe-area-inset-bottom)) + 156px); display: flex; flex-direction: column; gap: 8px; z-index: 3; pointer-events: none; }
+.orders button { pointer-events: auto; touch-action: none; width: 62px; min-height: 46px; padding: 0; font-family: var(--font-game); font-size: 16px; color: #fff; background: rgba(29,21,48,0.5); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 3px 0 var(--ink); text-shadow: 0 2px 0 var(--ink); }
+.orders button.on { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); text-shadow: none; }
+.streak { position: absolute; top: calc(max(14px, env(safe-area-inset-top)) + 36px); left: max(14px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 6px; font-size: 13px; background: rgba(29,21,48,0.55); padding: 6px 10px; border-radius: 10px; }
+.streak b { color: var(--gold); font-size: 18px; } .streak em { font-style: normal; color: #ff8a72; }
+.btn { position: absolute; border-radius: 50%; background: rgba(0,0,0,0.2); border: 3px solid rgba(255,255,255,0.28); }
+.btn .knob { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 3px solid var(--ink); box-shadow: 0 4px 0 var(--ink); display: grid; place-items: center; }
+.btn .knob svg { width: 58%; height: 58%; display: block; }
+.btn.held { background: rgba(0,0,0,0.32); border-color: rgba(255,255,255,0.55); }
+.btn.atk { width: 140px; height: 140px; right: max(24px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); }
+.btn.atk .knob { width: 80px; height: 80px; margin: -40px 0 0 -40px; background: radial-gradient(circle at 50% 34%, #ff8a72, #e5332a 70%); }
+.btn.sup { width: 104px; height: 104px; right: calc(max(24px, env(safe-area-inset-right)) + 150px); bottom: calc(max(20px, env(safe-area-inset-bottom)) + 62px); }
+.btn.sup .fill { position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(var(--gold) var(--p, 0%), rgba(255,255,255,0.08) 0); -webkit-mask: radial-gradient(circle, transparent 60%, #000 61%); mask: radial-gradient(circle, transparent 60%, #000 61%); }
+.btn.sup .knob { width: 62px; height: 62px; margin: -31px 0 0 -31px; background: radial-gradient(circle at 50% 36%, #6c6488, #3e3756 72%); }
+.btn.sup .knob svg { opacity: 0.45; }
+.btn.sup.ready .knob { background: radial-gradient(circle at 50% 34%, #fff2a0, #ffc21a 70%); }
+.btn.sup.ready .knob svg { opacity: 1; }
+.btn.sup.ready { animation: glow 0.6s ease-in-out infinite alternate; }
+@keyframes glow { from { box-shadow: 0 0 0 0 rgba(255,210,58,0.6); } to { box-shadow: 0 0 18px 8px rgba(255,210,58,0.75); } }
+
+.select, .result { position: fixed; inset: 0; display: none; }
+.select.on, .result.on { display: block; }
+.select .tro, .result .tro { display: flex; align-items: center; gap: 8px; font-size: 22px; background: rgba(29,21,48,0.6); padding: 6px 14px; border-radius: 12px; }
+.card { width: 150px; padding: 10px 12px; border-radius: 14px; border: 3px solid var(--ink); background: linear-gradient(#4b3d6a, #33284b); color: #fff; font-family: var(--font-game); text-align: left; box-shadow: 0 4px 0 var(--ink); }
+.card.on { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); transform: translateY(-6px); }
+.card .nm { font-size: 20px; } .card .role { font-size: 12px; opacity: 0.85; margin-bottom: 6px; }
+.card .st { display: flex; align-items: center; gap: 6px; font-size: 11px; margin-top: 3px; } .card .st span { width: 36px; }
+.card .g { flex: 1; height: 7px; border-radius: 4px; background: rgba(0,0,0,0.35); overflow: hidden; } .card .g i { display: block; height: 100%; background: #8fe06a; }
+.result button { font-family: var(--font-game); font-size: 24px; color: var(--ink); border: 4px solid var(--ink); border-radius: 16px; background: linear-gradient(#ffe46a, #f5b51d); box-shadow: 0 5px 0 var(--ink); padding: 12px 34px; }
+.seg { display: flex; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 0 var(--ink); background: linear-gradient(#4b3d6a, #33284b); }
+.seg button { font-family: var(--font-game); font-size: 17px; color: #fff; background: none; border: 0; padding: 8px 16px; min-height: 44px; }
+.seg button + button { border-left: 2px solid var(--ink); }
+.seg button.on { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); }
+.seg.tiers button { font-size: 14px; padding: 6px 12px; }
+.seg.tiers { display: none; } .select.duel .seg.tiers { display: flex; }
+.result .big { font-size: 64px; text-shadow: 0 4px 0 var(--ink), 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 -3px 0 var(--ink); }
+.result.win .big { color: #ffd23a; } .result.lose .big { color: #ff7a7a; } .result.draw .big { color: #d8d0ff; }
+.result .tro { display: inline-flex; }
+.result .stats { display: flex; }
+.hlview { position: fixed; inset: 0; display: none; background: rgba(20,12,36,0.85); z-index: 30; align-items: center; justify-content: center; } .hlview.on { display: flex; }
+.hlbox { display: flex; flex-direction: column; align-items: center; gap: 10px; max-height: 96vh; } .hlbox video { max-height: 70vh; max-width: 92vw; border: 4px solid var(--ink); border-radius: 14px; background: #000; }
+.hlwhy { font-family: var(--font-game); font-size: 22px; color: #ffd23a; } .hlrow { display: flex; gap: 14px; } .hlview button { font-family: var(--font-game); font-size: 22px; color: var(--ink); border: 4px solid var(--ink); border-radius: 16px; background: linear-gradient(#ffe46a, #f5b51d); box-shadow: 0 5px 0 var(--ink); padding: 10px 30px; } .hlview .hlclose { background: linear-gradient(#cfc6ff, #9c8de8); }
+.result .row { display: flex; justify-content: center; gap: 14px; } .result .change { background: linear-gradient(#cfc6ff, #9c8de8); }
+/* 판 밖 메타(src/lobby.js) — 코인·트로피 길·하루 선물·카드 잠금·판 끝 코인 */
+.coin { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff3a0, #ffc928 55%, #d98a0c); border: 2px solid var(--ink); box-sizing: border-box; }
+.giftbox { display: inline-block; width: 20px; height: 18px; border: 2px solid var(--ink); border-radius: 4px; box-sizing: border-box; background: linear-gradient(90deg, transparent 40%, #ffd23a 40% 60%, transparent 60%), linear-gradient(#ff7ab0, #e0408a); }
+.roadbar .g { width: 92px; height: 10px; border-radius: 5px; background: rgba(0,0,0,0.45); overflow: hidden; } .roadbar .g i { display: block; height: 100%; background: linear-gradient(#ffe46a, #f0a820); }
+.roadbar .rw { display: flex; align-items: center; gap: 4px; font-size: 15px; }
+.roadbar .dot { display: none; } .roadbar.ready { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); animation: pulse 1s ease-in-out infinite alternate; }
+.roadbar.ready .dot { display: grid; place-items: center; min-width: 22px; height: 22px; border-radius: 11px; background: var(--red); color: #fff; font-size: 14px; border: 2px solid var(--ink); }
+@keyframes pulse { to { transform: scale(1.06); } }
+.select .gift .giftbox { width: 30px; height: 26px; }
+.select.free .coins, .select.free .roadbar, .select.free .gift, .select.free .lock, .select.free .rentleft { display: none !important; }
+.card { position: relative; }
+.card .lock { display: none; position: absolute; inset: 0; border-radius: 11px; background: rgba(20,12,36,0.78); flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.card.locked .lock { display: flex; } .card.locked .st { visibility: hidden; }
+.card .lock .at { display: flex; align-items: center; gap: 5px; font-size: 17px; color: #fff; }
+.card .lock .acts { display: flex; gap: 6px; }
+.card .lock .acts span { display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 60px; min-height: 44px; padding: 0 6px; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); font-size: 16px; color: var(--ink); box-sizing: border-box; }
+.card .lock .buy { background: linear-gradient(#ffe46a, #f5b51d); } .card .lock .buy.poor { background: linear-gradient(#8a7f9e, #635878); } .card .lock .buy.poor b { color: #ffd0d0; }
+.card .lock .rent { flex-direction: column; gap: 0; background: linear-gradient(#a8f07a, #4fbf3a); line-height: 1; } .card .lock .rent small { font-size: 11px; }
+.card .lock .no { animation: shake 0.3s; } @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+.card .rentleft { position: absolute; top: -10px; right: 8px; font-size: 12px; padding: 2px 8px; border-radius: 9px; background: #4fbf3a; color: var(--ink); border: 2px solid var(--ink); }
+.select .go.off { filter: saturate(0) brightness(0.7); }
+/* 로비 — 영웅 하나 + 무대(3D) · 위 띠(트로피·트로피 길·코인·설정) · 왼쪽 입구(영웅·선물) · 오른쪽 아래 큰 «플레이» + 모드 칸. 영웅 화면(.heroes) = 셋 + 카드 */
+.select .head { position: absolute; top: max(10px, env(safe-area-inset-top)); left: max(14px, env(safe-area-inset-left)); right: max(14px, env(safe-area-inset-right)); display: flex; align-items: center; gap: 8px; }
+.select .head .tro { padding: 4px 12px 4px 10px; font-size: 22px; min-height: 44px; border: 3px solid var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.select .head .lg { display: none; }
+.select .head .roadbar { position: static; margin-right: auto; }
+.select .head .coins { display: flex; align-items: center; gap: 6px; font-size: 20px; min-height: 44px; background: rgba(29,21,48,0.6); padding: 4px 14px 4px 10px; border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); }
+.select .gear { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; background: rgba(29,21,48,0.6); border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); } .select .gear svg { width: 26px; height: 26px; }
+.roadbar { position: absolute; display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 4px 10px; font-family: var(--font-game); color: #fff; background: rgba(29,21,48,0.6); border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); }
+.select .heroes, .select .gift { position: absolute; left: max(14px, env(safe-area-inset-left)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; width: 70px; min-height: 66px; padding: 6px 0; font-family: var(--font-game); font-size: 16px; color: #fff; background: linear-gradient(#4b3d6a, #33284b); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink); }
+.select .heroes { top: 74px; } .select .gift { top: 152px; }
+.select .heroes .hic { display: flex; gap: 2px; align-items: flex-end; height: 26px; } .select .heroes .hic i { width: 11px; border-radius: 5px 5px 2px 2px; background: #ffd23a; border: 2px solid var(--ink); box-sizing: border-box; height: 18px; } .select .heroes .hic i:nth-child(2) { height: 25px; background: #ff8a72; } .select .heroes .hic i:nth-child(3) { background: #8fd2ff; }
+.select .plate { position: absolute; left: max(18px, env(safe-area-inset-left)); bottom: max(16px, env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 8px; }
+.select .plate .pn { font-size: 34px; text-shadow: 0 3px 0 var(--ink), 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 -3px 0 var(--ink); font-style: italic; }
+.select .plate .pr { font-size: 15px; padding: 3px 10px; border-radius: 10px; background: rgba(29,21,48,0.7); border: 2px solid var(--ink); }
+.select .go { position: absolute; right: max(22px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 206px; min-height: 76px; font-family: var(--font-game); color: var(--ink); border: 4px solid var(--ink); border-radius: 18px; background: linear-gradient(#ffe46a, #f5b51d 70%, #f09a1a); box-shadow: 0 6px 0 var(--ink); padding: 0; transition: transform 0.08s, box-shadow 0.08s; }
+.select .go b { font-size: 36px; font-style: italic; letter-spacing: 1px; text-shadow: 0 2px 0 rgba(255,255,255,0.5); }
+.select .go:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+.select .modechip { position: absolute; right: max(22px, env(safe-area-inset-right)); bottom: calc(max(16px, env(safe-area-inset-bottom)) + 92px); width: 206px; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.05; font-family: var(--font-game); color: #fff; background: linear-gradient(#6b5a96, #4b3d6a); border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink); }
+.select .modechip small { font-size: 11px; opacity: 0.8; } .select .modechip b { font-size: 21px; } .select .modechip.resume small { color: #ffe46a; opacity: 1; }
+.select.heroes .go, .select.heroes .modechip, .select.heroes .plate, .select.heroes .gift, .select.heroes .heroes, .select.heroes .roadbar { display: none; }
+.select .herobar, .select .modepick, .select .setpop { display: none; }
+.select.heroes .herobar { display: block; }
+.select .herobar .cards { position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; gap: 12px; }
+.select .heroback { position: absolute; right: max(22px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); width: 112px; min-height: 60px; font-family: var(--font-game); font-size: 24px; color: var(--ink); border: 4px solid var(--ink); border-radius: 16px; background: linear-gradient(#ffe46a, #f5b51d); box-shadow: 0 5px 0 var(--ink); }
+.select .herobar .cards { bottom: max(14px, env(safe-area-inset-bottom)); left: max(14px, env(safe-area-inset-left)); transform: none; gap: 10px; }
+.select.modeopen .modepick, .select.setopen .setpop { display: flex; }
+.select .modepick { position: absolute; inset: 0; align-items: center; justify-content: center; background: rgba(20,12,36,0.62); z-index: 6; }
+.select .mp { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 30px; }
+.select .modes { display: flex; gap: 10px; border: 0; background: none; box-shadow: none; overflow: visible; }
+.select .modes button { width: 124px; min-height: 116px; padding: 10px 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 20px; color: #fff; background: linear-gradient(#4b3d6a, #33284b); border: 3px solid var(--ink); border-radius: 16px; box-shadow: 0 5px 0 var(--ink); }
+.select .modes button + button { border-left: 3px solid var(--ink); }
+.select .modes button.on { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); transform: translateY(-6px); }
+.select .modes button small { font-size: 12px; padding: 1px 8px; border-radius: 8px; background: var(--ink); color: #ffd23a; }
+.select .mi { width: 42px; height: 42px; display: block; background-color: #fff; border: 0; } .select .modes button.on .mi.m-run, .select .modes button.on .mi.m-quick { background-color: var(--ink); } .mi.m-3v3, .mi.m-1v1, .mi.m-friend { background-color: transparent !important; }
+.mi.m-run { clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.mi.m-3v3 { background: radial-gradient(circle at 10% 22%, #8fd2ff 0 9%, transparent 10%), radial-gradient(circle at 10% 78%, #8fd2ff 0 9%, transparent 10%), radial-gradient(circle at 26% 50%, #8fd2ff 0 9%, transparent 10%), radial-gradient(circle at 90% 22%, #ff9a9a 0 9%, transparent 10%), radial-gradient(circle at 90% 78%, #ff9a9a 0 9%, transparent 10%), radial-gradient(circle at 74% 50%, #ff9a9a 0 9%, transparent 10%); width: 56px; }
+.mi.m-1v1 { background: radial-gradient(circle at 20% 50%, #8fd2ff 0 17%, transparent 18%), radial-gradient(circle at 80% 50%, #ff9a9a 0 17%, transparent 18%); width: 56px; }
+.mi.m-quick { clip-path: polygon(55% 0,15% 55%,45% 55%,30% 100%,85% 40%,55% 40%); }
+.mi.m-friend { clip-path: circle(50%); background: radial-gradient(circle at 30% 50%, #8fd2ff 0 38%, transparent 40%), radial-gradient(circle at 70% 50%, #ffd23a 0 38%, transparent 40%); }
+.select .modes button.on .mi.m-3v3, .select .modes button.on .mi.m-1v1, .select .modes button.on .mi.m-friend { filter: brightness(0.75); }
+.select .tiers { display: none; } .select.duel .tiers { display: flex; } .select .mpclose, .select .spclose { min-height: 48px; padding: 0 28px; font-family: var(--font-game); font-size: 20px; color: var(--ink); background: linear-gradient(#cfc6ff, #9c8de8); border: 4px solid var(--ink); border-radius: 16px; box-shadow: 0 5px 0 var(--ink); }
+.select .setpop { position: absolute; top: calc(max(10px, env(safe-area-inset-top)) + 52px); right: max(14px, env(safe-area-inset-right)); flex-direction: column; gap: 8px; padding: 10px; background: rgba(29,21,48,0.92); border: 3px solid var(--ink); border-radius: 14px; z-index: 7; }
+.select .setpop .snd { min-height: 48px; padding: 0 20px; font-family: var(--font-game); font-size: 20px; color: var(--ink); background: linear-gradient(#a8f07a, #4fbf3a); border: 3px solid var(--ink); border-radius: 12px; } .select .setpop .snd.off { background: linear-gradient(#8a7f9e, #635878); color: #fff; }
+.select .setpop .spclose { min-height: 44px; font-size: 17px; }
+/* VS · 난투 시작 */
+.vs { position: fixed; inset: 0; display: none; pointer-events: none; z-index: 9; font-family: var(--font-game); }
+.vs.on { display: block; }
+.vs .band { position: absolute; top: 0; bottom: 0; width: 50%; display: flex; flex-direction: column; justify-content: flex-start; padding: 12px 24px; }
+.vs .band b { font-size: 30px; font-style: italic; text-shadow: 0 3px 0 var(--ink), 3px 0 0 var(--ink), -3px 0 0 var(--ink), 0 -3px 0 var(--ink); } .vs .band small { font-size: 18px; color: #ffe680; text-shadow: 0 2px 0 var(--ink), 2px 0 0 var(--ink), -2px 0 0 var(--ink); margin-top: 2px; }
+.vs .band.blue { left: 0; background: linear-gradient(rgba(36,120,230,0.9) 0 64px, rgba(36,120,230,0.16) 150px, rgba(36,120,230,0.1)); animation: vsl 0.42s cubic-bezier(.2,1.2,.3,1) both; }
+.vs .band.red { right: 0; align-items: flex-end; text-align: right; background: linear-gradient(rgba(220,52,52,0.9) 0 64px, rgba(220,52,52,0.16) 150px, rgba(220,52,52,0.1)); animation: vsr 0.42s cubic-bezier(.2,1.2,.3,1) both; }
+@keyframes vsl { from { transform: translateX(-100%); } } @keyframes vsr { from { transform: translateX(100%); } }
+.vs .vsm { position: absolute; left: 50%; top: 30%; transform: translate(-50%, -50%) rotate(-8deg); animation: vsin 0.45s 0.28s cubic-bezier(.2,1.6,.4,1) both; }
+.vs .vsm b { font-size: 112px; font-style: italic; color: #ffd23a; line-height: 1; text-shadow: 0 6px 0 var(--ink), 5px 0 0 var(--ink), -5px 0 0 var(--ink), 0 -5px 0 var(--ink), 4px 4px 0 var(--ink), -4px 4px 0 var(--ink), 0 0 26px rgba(255,210,58,0.8); }
+@keyframes vsin { from { transform: translate(-50%, -50%) rotate(-8deg) scale(3.2); opacity: 0; } to { transform: translate(-50%, -50%) rotate(-8deg) scale(1); opacity: 1; } }
+.vs .mode { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); font-size: 20px; padding: 4px 16px; border-radius: 12px; background: rgba(29,21,48,0.78); border: 2px solid var(--ink); animation: vsfade 0.4s 0.5s both; }
+@keyframes vsfade { from { opacity: 0; } }
+.vs .tags { position: absolute; inset: 0; } .vs .tag { position: absolute; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; line-height: 1.05; padding: 3px 12px; border-radius: 10px; background: rgba(29,21,48,0.78); border: 2px solid var(--ink); white-space: nowrap; } .vs .tag b { font-size: 18px; } .vs .tag small { font-size: 11px; opacity: 0.85; }
+.vs .tags.blue .tag { border-color: #5cc2ff; } .vs .tags.red .tag { border-color: #ff7a7a; } .vs .tag.me { background: #2a8f3a; border-color: #9cf06a; }
+.gobanner { position: fixed; left: 0; right: 0; top: 0; bottom: 0; display: none; align-items: center; justify-content: center; pointer-events: none; z-index: 8; font-family: var(--font-game); }
+.gobanner.on { display: flex; animation: gobg 1s both; }
+.gobanner b { font-size: 92px; font-style: italic; color: #ffd23a; transform: skewX(-8deg); text-shadow: 0 6px 0 var(--ink), 5px 0 0 var(--ink), -5px 0 0 var(--ink), 0 -5px 0 var(--ink), 4px 4px 0 var(--ink), -4px 4px 0 var(--ink), 0 0 30px rgba(255,170,40,0.9); animation: gopop 1s both; }
+@keyframes gopop { 0% { transform: skewX(-8deg) scale(3); opacity: 0; } 22% { transform: skewX(-8deg) scale(0.9); opacity: 1; } 34% { transform: skewX(-8deg) scale(1.06); } 44% { transform: skewX(-8deg) scale(1); } 80% { opacity: 1; } 100% { transform: skewX(-8deg) scale(1.15); opacity: 0; } }
+@keyframes gobg { 0% { background: rgba(255,255,255,0.7); } 18% { background: rgba(20,12,36,0.0); } }
+.road { position: fixed; inset: 0; display: none; background: rgba(20,12,36,0.86); flex-direction: column; align-items: center; justify-content: center; gap: 16px; z-index: 20; }
+.road.on { display: flex; }
+.road .rhead { display: flex; align-items: center; gap: 8px; font-size: 26px; }
+.road .track { display: flex; gap: 10px; max-width: 94vw; overflow-x: auto; padding: 10px 14px 14px; scrollbar-width: none; }
+.road .node { flex: none; width: 96px; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 6px; padding: 10px 6px; border-radius: 14px; border: 3px solid var(--ink); background: linear-gradient(#4b3d6a, #33284b); box-shadow: 0 4px 0 var(--ink); box-sizing: border-box; }
+.road .node .at { display: flex; align-items: center; gap: 4px; font-size: 16px; } .road .node .rw { display: flex; align-items: center; gap: 4px; font-size: 18px; }
+.road .node.done { opacity: 0.4; } .road .node.ready { background: linear-gradient(#ffcf4a, #f09a1a); color: var(--ink); }
+.road .node .take { font-family: var(--font-game); font-size: 16px; min-height: 40px; padding: 0 14px; color: #fff; background: linear-gradient(#5fd04a, #2f9a2a); border: 3px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); }
+.road .close { font-family: var(--font-game); font-size: 20px; min-height: 48px; padding: 0 30px; color: var(--ink); background: linear-gradient(#cfc6ff, #9c8de8); border: 4px solid var(--ink); border-radius: 16px; box-shadow: 0 5px 0 var(--ink); }
+.result .mcoins { display: flex; justify-content: center; align-items: center; gap: 14px; margin: -8px 0 16px; }
+.result .mcoins .got { display: flex; align-items: center; gap: 6px; font-size: 26px; } .result .mcoins .got .coin { width: 24px; height: 24px; }
+.result .mcoins .dbl { display: flex; flex-direction: column; align-items: center; line-height: 1; padding: 6px 18px; min-height: 48px; font-size: 22px; background: linear-gradient(#a8f07a, #4fbf3a); } .result .mcoins .dbl small { font-size: 12px; }
+.fake-ad { position: fixed; inset: 0; z-index: 99; display: grid; place-items: center; background: #000; color: #fff; font-size: 40px; }
+.loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+</style>
+  <script type="module" crossorigin src="./assets/index-BWO6cvLf.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/preload-helper-CmsKOCeN.js">
+</head>
+<body>
+<div id="stage"></div>
+<div class="loading">불러오는 중</div>
+<script src="./js/audio-env.js"></script>
+<script>"use strict";
+/* 피드백 버튼 — 모든 게임의 모든 빌드에 심는다(2026-10-20 사장님 «1점 리뷰 전에 파악»). SOT = core/tools/feedback/README.md
+ *   웹 빌드 = build.mjs(`--target site`) · 스토어 앱 번들 = core/tools/feedback/inject.mjs(build.sh 가 sync 직후) · 베타 = beta/inject.mjs.
+ *   베타 빌드만 베타 표시(beta/lib.mjs BETA_MARK)가 붙는다(check-beta 가 그 표시로 승격을 막는다 — 버튼 유무가 아니다).
+ *
+ * 왼쪽 가장자리 작은 탭(아래 탭바·위 HUD 를 안 가리는 자리 — 스샷으로 잰 결과) → 한 줄 → GA 이벤트 `feedback` 한 건. 비밀키가 번들에 없고(공개 페이지에서 쓰는 건 측정 ID 뿐),
+ * 공개 입력이 자동 수정 워커로 곧장 들어가는 길도 아니다. 읽는 쪽은 `core/tools/feedback/run.mjs`(1시간마다 → 티켓 + 조종석 카드).
+ * 자동 첨부 = 마지막 JS 오류 한 줄(`msg`) · 화면(`screen`) · 빌드. 기기·OS·앱 버전은 GA 가 붙인다. 오류가 나면 버튼이 진해진다(«오류 뒤 창구 안내» — 리뷰 요청을 거르는 게 아니다).
+ * 로컬(개발) 트래픽은 analytics.js 가 GA 로 보내지 않는다 → 콘솔 로그만(?dglSend=1 로 강제).
+ * «보냈다» 신호(2026-11-03 사장님 «돈 안 쓰고 제보·테스터 늘리기 = 인게임 보상») — 보내고 나면 window 이벤트 `dgl:feedback-sent`
+ *   (detail = {len, reward, where}) 와 `DGL_FEEDBACK.onSent(cb)` 를 낸다. reward = 공백 뺀 8자 이상이고 로봇이 아닐 때만 true.
+ *   보상은 «의견 보내기» 에만 붙는다 — 별점·리뷰와 엮지 않는다(review gating 금지). 얼마를 얼마나 주는지는 게임(엔진)이 정한다.
+ */
+(function () {
+  var CFG = window.__DGL_WEB || {};
+  var BETA = CFG.target === "beta";
+  if (window.__DGL_FEEDBACK_ON) return; /* 두 번 심어도 버튼은 하나 */
+  window.__DGL_FEEDBACK_ON = 1;
+  var lastErr = "";
+  function noteErr(m) { lastErr = String(m || "").replace(/\s+/g, " ").slice(0, 100); var b = document.getElementById("dgl-feedback-btn"); if (b) b.style.opacity = ".95"; }
+  window.addEventListener("error", function (e) { noteErr((e && (e.message || (e.error && e.error.message))) || "error"); });
+  window.addEventListener("unhandledrejection", function (e) { var r = e && e.reason; noteErr("promise: " + ((r && r.message) || r || "")); });
+  /* 보내는 길 — 앱(Capacitor)이면 Firebase 플러그인으로 곧장(게임의 계측이 앱 안에서 꺼져 있어도 제보는 간다), 아니면 게임의 DGL.track */
+  function send(name, params) {
+    var C = window.Capacitor, FA = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.FirebaseAnalytics;
+    if (CFG.game) params.game = CFG.game;
+    try {
+      if (FA && FA.logEvent) return void FA.logEvent({ name: name, params: params });
+      if (window.DGL && typeof window.DGL.track === "function") window.DGL.track(name, params);
+    } catch (e) { /* 제보가 판을 끊으면 안 된다 */ }
+  }
+  /* Play 사전 출시 로봇(Firebase Test Lab)이 글 칸마다 아무 글자나 치고 보낸다(2026-10-22 «ospuuq» 등 7건 — t-261022-3oj3).
+   * 판별은 기기 설정 — feedback/robot-guard.mjs 가 android/ 에 심은 DglEnv 플러그인. 로봇 글은 where:"robot" 으로 나가 수집기가 뺀다 */
+  var robot = false;
+  try {
+    var EP = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.DglEnv;
+    if (EP && EP.isTestLab) EP.isTestLab().then(function (r) { robot = !!(r && r.value); }, function () {});
+  } catch (e) {}
+  /* 베타 테스터 수 = 하루 한 번 «열었다» 한 건(core/tools/beta/run.mjs 가 사용자 수로 센다) */
+  if (BETA) {
+    try {
+      var day = new Date().toISOString().slice(0, 10);
+      if (localStorage.getItem("dgl.beta.open") !== day) setTimeout(function () { if (robot) return; /* 로봇은 테스터가 아니다 */ localStorage.setItem("dgl.beta.open", day); send("beta_open", { build: CFG.build || "" }); }, 3000);
+    } catch (e) {}
+  }
+  var COPY = {
+    ko: { btn: "의견", ph: "불편한 점이나 바라는 점을 한 줄로", send: "보내기", close: "닫기", thanks: "받았어요. 고맙습니다", empty: "한 줄만 적어 주세요" },
+    en: { btn: "Feedback", ph: "Tell us what bugged you, in one line", send: "Send", close: "Close", thanks: "Got it. Thank you", empty: "Please write one line" },
+  };
+  /* 설정 줄 문구 — 키는 언어 접두(중국어만 간·번체를 나눈다). 없으면 영어 */
+  var MENU_LABEL = { ko: "의견 보내기", en: "Send feedback", ja: "ご意見を送る", "zh-hans": "发送反馈", "zh-hant": "傳送意見", id: "Kirim masukan", th: "ส่งความคิดเห็น", vi: "Gửi góp ý", es: "Enviar comentarios", pt: "Enviar sugestão", tr: "Geri bildirim gönder" };
+  var MIN_REWARD_LEN = 8; /* 공백 뺀 글자 수 — 한두 글자 눌러 보상만 받는 걸 거른다 */
+  var sentCbs = [];
+  function noteSent(text, where) {
+    var len = String(text).replace(/\s+/g, "").length;
+    var detail = { len: len, reward: !robot && len >= MIN_REWARD_LEN, where: where };
+    sentCbs.forEach(function (cb) { try { cb(detail); } catch (e) {} });
+    try { window.dispatchEvent(new CustomEvent("dgl:feedback-sent", { detail: detail })); } catch (e) {}
+  }
+  function menuLabel() {
+    var l = String((window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko").toLowerCase().replace("_", "-");
+    if (l.indexOf("zh") === 0) return MENU_LABEL[/hant|tw|hk|mo/.test(l) ? "zh-hant" : "zh-hans"];
+    return MENU_LABEL[l.split("-")[0]] || MENU_LABEL.en;
+  }
+  function lang() {
+    var l = (window.DGL_I18N && window.DGL_I18N.locale) || document.documentElement.lang || "ko";
+    return String(l).toLowerCase().indexOf("ko") === 0 ? "ko" : "en";
+  }
+  function build() {
+    var C = COPY[lang()];
+    var root = document.createElement("div");
+    root.id = "dgl-feedback";
+    /* 자리 — 게임이 <html data-feedback-top="56%"> 로 옮길 수 있다(화면 글·아이콘을 가리지 않는 높이) */
+    var top = document.documentElement.getAttribute("data-feedback-top") || "42%";
+    /* 메뉴형 — 게임이 <html data-feedback="menu"> 로 선언하면 떠 있는 탭을 안 그리고 window.DGL_FEEDBACK.open() 만 내준다.
+     * 앱은 설정·프로필 화면에 «의견 보내기» 줄을 두고 그걸 부른다(2026-10-23 사장님 «항상 떠 있으면 거슬린다 — 프로필 같은 데 있어야지»). */
+    var MENU = document.documentElement.getAttribute("data-feedback") === "menu";
+    root.setAttribute("style", MENU
+      ? "position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none"
+      : "position:fixed;left:0;top:" + top + ";z-index:2147483000;font:600 12px/1 system-ui,sans-serif;-webkit-user-select:none;user-select:none");
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "dgl-feedback-btn";
+    btn.textContent = C.btn;
+    /* 가는 세로 탭 — 화면 가장자리 17px 만 쓰고 누르는 높이는 44 */
+    btn.setAttribute("style", "writing-mode:vertical-rl;min-height:44px;font-size:11px;letter-spacing:1px;padding:6px 3px;border:1px solid rgba(255,255,255,.35);border-left:0;border-radius:0 12px 12px 0;background:rgba(13,14,18,.55);color:#fff;opacity:" + (lastErr ? ".95" : ".55") + ";font:inherit;cursor:pointer");
+    var box = document.createElement("form");
+    box.setAttribute("style", "display:none;gap:6px;align-items:center;padding:8px;border-radius:" + (MENU ? "14px" : "0 12px 12px 0") + ";background:rgba(13,14,18,.92);border:1px solid rgba(255,255,255,.3)");
+    var input = document.createElement("input");
+    input.type = "text"; input.maxLength = 100; input.placeholder = C.ph;
+    input.setAttribute("aria-label", C.ph);
+    /* ★ 입력칸 글자는 16px 이상 — 작으면 아이폰이 누를 때 화면을 확대하고 안 돌려놓는다(2026-10-26 알고있여우 제보) */
+    input.setAttribute("style", (MENU ? "flex:1;min-width:0;" : "width:min(62vw,260px);") + "padding:7px 8px;border-radius:8px;border:1px solid #888;background:#fff;color:#111;font:16px/1.2 system-ui,sans-serif;-webkit-user-select:text;user-select:text");
+    var sendBtn = document.createElement("button"); /* ★ 이름이 `send` 면 위의 보내는 함수를 덮어써 제보가 한 건도 안 나간다(2026-10-21 실측) */
+    sendBtn.type = "submit"; sendBtn.textContent = C.send;
+    sendBtn.setAttribute("style", "padding:8px 10px;border:0;border-radius:8px;background:#ffcf33;color:#111;font:inherit;cursor:pointer");
+    var close = document.createElement("button");
+    close.type = "button"; close.textContent = C.close;
+    close.setAttribute("style", "padding:8px 6px;border:0;background:none;color:#ccc;font:inherit;cursor:pointer");
+    box.appendChild(input); box.appendChild(sendBtn); box.appendChild(close);
+    root.appendChild(btn); root.appendChild(box);
+    /* 게임이 이 위젯의 터치·키 입력을 가로채지 않게 — Phaser 가 window 에서 듣는다 */
+    ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) {
+      root.addEventListener(t, function (e) { e.stopPropagation(); });
+    });
+    if (MENU) { btn.style.display = "none"; btn.style.writingMode = "horizontal-tb"; btn.style.border = "0"; btn.style.borderRadius = "12px"; btn.style.padding = "12px 16px"; btn.style.margin = "0 auto"; btn.style.opacity = "1"; btn.style.background = "rgba(13,14,18,.92)"; root.style.textAlign = "center"; }
+    function toggle(open) { box.style.display = open ? "flex" : "none"; btn.style.display = open || MENU ? "none" : ""; if (open) input.focus(); }
+    /* 보내기 한 곳 — 떠 있는 탭·메뉴형 페이지·게임이 그린 자기 페이지(DGL_FEEDBACK.send)가 다 이걸 부른다 */
+    function submit(raw) {
+      var text = String(raw || "").replace(/\s+/g, " ").trim();
+      if (!text) return false;
+      var where = {};
+      try { var cx = window.DGL && window.DGL.ctx; where = (typeof cx === "function" ? cx() : cx) || {}; } catch (er) {}
+      var wh = robot ? "robot" : BETA ? "beta" : CFG.target || "web";
+      send("feedback", { feedback_text: text.slice(0, 100), len: text.length, lang: lang(), build: CFG.build || "", where: wh, screen: String(where.where || ""), day: where.day || 0, msg: lastErr });
+      noteSent(text, wh);
+      return true;
+    }
+    /* 메뉴형은 별도 페이지 — 설정 목록 위에 검은 막대를 띄우면 앱과 따로 논다(2026-10-25 사장님 «드롭다운 혹은 별도 페이지로 빼기»).
+     * 색은 게임이 CSS 변수(--dgl-fb-bg·--dgl-fb-ink·--dgl-fb-card·--dgl-fb-accent·--dgl-fb-accent-ink)로 맞춘다. 앱이 제 화면을 그리면 send() 만 쓴다 */
+    function openPage() {
+      var old = document.getElementById("dgl-feedback-page"); if (old) old.remove();
+      var page = document.createElement("form");
+      page.id = "dgl-feedback-page";
+      page.setAttribute("role", "dialog"); page.setAttribute("aria-label", menuLabel());
+      page.setAttribute("style", "position:fixed;inset:0;z-index:2147483001;display:flex;flex-direction:column;gap:14px;padding:calc(12px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));background:var(--dgl-fb-bg,#faf6f1);color:var(--dgl-fb-ink,#2b2420);font:600 15px/1.4 system-ui,sans-serif;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent");
+      var head = document.createElement("div");
+      head.setAttribute("style", "display:flex;align-items:center;min-height:44px");
+      var back = document.createElement("button");
+      back.type = "button"; back.textContent = C.close;
+      back.setAttribute("style", "min-width:44px;min-height:44px;padding:0 4px;border:0;background:none;color:inherit;font:inherit;opacity:.7;cursor:pointer");
+      var title = document.createElement("span");
+      title.textContent = menuLabel();
+      title.setAttribute("style", "flex:1;text-align:center;font-size:16px;font-weight:800;padding-right:48px");
+      head.appendChild(back); head.appendChild(title);
+      var area = document.createElement("textarea");
+      area.maxLength = 100; area.rows = 5; area.placeholder = C.ph; area.setAttribute("aria-label", C.ph);
+      area.setAttribute("style", "width:100%;box-sizing:border-box;resize:none;padding:14px 16px;border:0;border-radius:16px;background:var(--dgl-fb-card,#fff);color:inherit;box-shadow:0 2px 10px rgba(0,0,0,.06);font:500 16px/1.5 system-ui,sans-serif;-webkit-user-select:text;user-select:text;outline:none");
+      var go = document.createElement("button");
+      go.type = "submit"; go.textContent = C.send;
+      go.setAttribute("style", "min-height:52px;border:0;border-radius:16px;background:var(--dgl-fb-accent,#ffcf33);color:var(--dgl-fb-accent-ink,#111);font:800 16px/1 system-ui,sans-serif;cursor:pointer");
+      page.appendChild(head); page.appendChild(area); page.appendChild(go);
+      ["pointerdown", "pointerup", "mousedown", "mouseup", "touchstart", "touchend", "keydown", "keyup", "click"].forEach(function (t) { page.addEventListener(t, function (e) { e.stopPropagation(); }); });
+      function shut() { page.remove(); removeEventListener("hashchange", shut); }
+      back.addEventListener("click", shut);
+      addEventListener("hashchange", shut);
+      page.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!submit(area.value)) { area.placeholder = C.empty; area.focus(); return; }
+        area.value = ""; area.disabled = true; go.disabled = true; go.textContent = C.thanks;
+        setTimeout(shut, 1200);
+      });
+      document.body.appendChild(page);
+      area.focus();
+    }
+    /* label() = 설정 줄에 쓰는 «의견 보내기» — 게임마다 번역 8벌을 따로 두지 않게 위젯이 갖는다(2026-10-24 t-261023-daf8) */
+    /* 게임이 자리를 준다 — 페이지에 data-dgl-feedback 을 단 요소가 있으면(늦게 생겨도 된다) 떠 있는 탭을 숨기고, 그 요소를 누르면 별도 페이지를 연다 */
+    var SLOT = "[data-dgl-feedback]";
+    function hasSlot() { return !!document.querySelector(SLOT); }
+    function open() { if (MENU || hasSlot()) openPage(); else toggle(true); }
+    function syncSlot() { if (!MENU) root.style.display = hasSlot() ? "none" : ""; }
+    document.addEventListener("click", function (e) { var t = e.target && e.target.closest && e.target.closest(SLOT); if (t) { e.preventDefault(); open(); } }, true);
+    try { new MutationObserver(syncSlot).observe(document.documentElement, { childList: true, subtree: true }); } catch (er) {}
+    syncSlot();
+    window.DGL_FEEDBACK = { open: open, send: submit, label: menuLabel, minLen: MIN_REWARD_LEN, onSent: function (cb) { if (typeof cb === "function") sentCbs.push(cb); } };
+    btn.addEventListener("click", function () { toggle(true); });
+    close.addEventListener("click", function () { toggle(false); });
+    box.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!submit(input.value)) { input.placeholder = C.empty; input.focus(); return; }
+      input.value = ""; input.placeholder = C.thanks; toggle(false);
+      btn.textContent = C.thanks;
+      setTimeout(function () { btn.textContent = C.btn; input.placeholder = C.ph; }, 2500);
+    });
+    if (MENU) root.style.display = "none"; /* 메뉴형은 떠 있는 것이 없다 — 페이지만 연다 */
+    document.body.appendChild(root);
+  }
+  if (document.body) build(); else document.addEventListener("DOMContentLoaded", build);
+})();
+</script>
+</body>
+</html>
