@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>直して確かめるのに40分、5秒で済む道は最初からありました</title>
+    <link>https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。</description>
+  </item>
+  <item>
     <title>宇宙では金属どうしがただくっつく</title>
     <link>https://dumbgamelab.com/ja/blog/space-cold-weld/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-cold-weld/</guid>
@@ -224,14 +231,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>OKは、all correctをoll korrectとわざと間違えて書いた冗談が、選挙のスローガンに乗って生き残った言葉だ。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>バナナはベリーだ</title>
-    <link>https://dumbgamelab.com/ja/blog/banana-berry/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/banana-berry/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>植物学では、バナナとトマトはベリーで、イチゴとラズベリーはベリーではない。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

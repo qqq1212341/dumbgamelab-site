@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>고쳐서 확인하는 데 40분, 5초짜리 길은 처음부터 있었습니다</title>
+    <link>https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>버그 하나 고치고 확인하는 데 전체 빌드로 40분이 걸렸는데, 코드만 바뀐 판은 스크립트 DLL만 컴파일해서 5초에 끝났습니다. 시험 고리를 빠른 판부터 까는 순서와 개발 모드 스위치를 적었습니다.</description>
+  </item>
+  <item>
     <title>우주에서는 금속끼리 그냥 달라붙는다</title>
     <link>https://dumbgamelab.com/ko/blog/space-cold-weld/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/space-cold-weld/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/pc-bang-first-30-minutes-guide/</guid>
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>PC방 키우기를 새로 시작해 게임 안 15일(실제 30분)을 직접 돌려 쟀습니다. 첫 PC를 사는 시점, 2단계 문턱 13만 원, 3단계 49만 원, 돈을 모으기만 하면 하루 매출이 39% 줄어드는 것까지 숫자로 적었습니다.</description>
-  </item>
-  <item>
-    <title>우주는 세 단어다</title>
-    <link>https://dumbgamelab.com/ko/blog/space-words/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/space-words/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>우주비행사는 universe에 갈 수 없다. 이미 그 안에 있으니까.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

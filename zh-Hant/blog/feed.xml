@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>修完要驗證卻等了 40 分鐘，5 秒的路一開始就在那裡</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>修一個 bug、驗證一次，完整建置要 40 分鐘，但只改程式碼的版本只編譯腳本 DLL，5 秒就結束了。這篇記錄測試迴圈先從快速版做起的順序，以及開發模式開關。</description>
+  </item>
+  <item>
     <title>「不符合手機比例」這則評論告訴我們的事</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/review-said-buttons-hidden/</guid>

@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>40 Minutes to Check One Fix, and the 5 Second Path Was There All Along</title>
+    <link>https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Checking one bug fix took a 40 minute full build, but a scripts-only build that just compiles the script DLL finished in 5 seconds. Here is why we now set up the fast path first, and the dev mode switch that goes with it.</description>
+  </item>
+  <item>
     <title>In Space, Metal Just Sticks to Metal</title>
     <link>https://dumbgamelab.com/en/blog/space-cold-weld/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-cold-weld/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-first-30-minutes-guide/</guid>
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>A beginner guide to Internet Cafe Tycoon, built from a fresh save played through 15 in-game days (30 real minutes). When the first PC pays off, the ₩130,000 stage 2 mark, the ₩490,000 stage 3 mark, and why hoarding cash cut daily sales by 39%.</description>
-  </item>
-  <item>
-    <title>Space Comes in Three Words</title>
-    <link>https://dumbgamelab.com/en/blog/space-words/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-words/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>An astronaut can&#39;t go to the universe. They&#39;re already inside it.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

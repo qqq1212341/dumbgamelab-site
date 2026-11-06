@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unity Build Takes Too Long? Our Scripts-Only Build Took 5 Seconds Instead of 40 Minutes</title>
+<meta name="description" content="Checking one bug fix took a 40 minute full build, but a scripts-only build that just compiles the script DLL finished in 5 seconds. Here is why we now set up the fast path first, and the dev mode switch that goes with it.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Unity Build Takes Too Long? Our Scripts-Only Build Took 5 Seconds Instead of 40 Minutes">
+<meta property="og:description" content="Checking one bug fix took a 40 minute full build, but a scripts-only build that just compiles the script DLL finished in 5 seconds. Here is why we now set up the fast path first, and the dev mode switch that goes with it.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"40 Minutes to Check One Fix, and the 5 Second Path Was There All Along","description":"Checking one bug fix took a 40 minute full build, but a scripts-only build that just compiles the script DLL finished in 5 seconds. Here is why we now set up the fast path first, and the dev mode switch that goes with it.","inLanguage":"en","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"40 Minutes to Check One Fix, and the 5 Second Path Was There All Along","item":"https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I cut down a game build that takes too long?","acceptedAnswer":{"@type":"Answer","text":"Split the full build into what it actually does. If only code changed, you do not need to bake maps or process assets again. Make a separate fast build that compiles only the changed scripts, and run the full build only right before release. One check can drop from 40 minutes to 5 seconds."}},{"@type":"Question","name":"Is there a way to rebuild only the scripts?","acceptedAnswer":{"@type":"Answer","text":"In Unity, a development build has an option to rebuild only the scripts, and it needs a player you built earlier. In the editor, a Play Mode option can also skip the domain reload. Names differ by engine, so search your engine's docs for \"incremental build\" or \"scripts only build.\""}},{"@type":"Question","name":"Can I just use the fast build all the time?","acceptedAnswer":{"@type":"Answer","text":"No. The fast build is for checking code, so it does not cover maps, assets, or running the real player. Right before release, and on days the maps changed, it is safer to run the full build once and compare the two."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Dev log · a detour</p>
+    <h1>40 Minutes to Check One Fix, and the 5 Second Path Was There All Along</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="Before and after comparison shots of a camera return fix in a slime making game. Six frames of the same screen sit side by side, with a dev build marker in the bottom right corner" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">If your only test build is a full build that bakes the maps and runs a launch check, verifying one bug fix takes 40 minutes. When only code had changed, a fast build that recompiles just the script DLL finished the same check in 5 seconds. Build the fast path for your test loop first, and run the full build once, at the end.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">October 27: I Said the Same Thing Twice</a></li><li><a href="#s2">What Sat Between 40 Minutes and 5 Seconds</a></li><li><a href="#s3">How Many Fixes Fit in a Day?</a></li><li><a href="#s4">The Cause Was the Order</a></li><li><a href="#s5">The Order I Set Up for Every New Test Target</a></li><li><a href="#s6">What I Have Not Fixed Yet</a></li></ol></nav>
+    <section id="s1"><h2>October 27: I Said the Same Thing Twice</h2>
+<p>It was the day I fixed a disqualification bug on the test PC. To check the fix I ran a build, but it was a full build that bakes 5 maps and then runs a launch check, so one run took 40 minutes.</p>
+<p>At 4:51 PM I said, &quot;Why does this take so long? Can&#39;t I just use dev mode instead of a build?&quot; At 6:07 PM I said, &quot;This really takes forever, please make it fast.&quot; Both times I was right.</p>
+<p>After that I ran the fast build script, which compiles only the script DLL when only code has changed, and it finished in 5 seconds. That path had been there from the start, and I just wasn&#39;t using it.</p>
+</section>
+<section id="s2"><h2>What Sat Between 40 Minutes and 5 Seconds</h2>
+<p>Broken down, the full build does three things: bake the maps, build the player, and run it to check that it launches. Right before release you need all of it.</p>
+<p>But all that changed this time was a few lines of disqualification logic. The maps were the same, and I still baked all 5 again. The only thing I wanted to know was &quot;does the fixed code run correctly,&quot; and I waited 40 minutes for everything else to get there.</p>
+<p>The fast build skips that. It compiles only the changed scripts into a DLL and reuses the results that were already baked. The same check took 5 seconds.</p>
+<div class="tbl"><table><thead><tr><th></th><th>Full build</th><th>Fast build</th></tr></thead><tbody><tr><td>What it does</td><td>Bake 5 maps + build the player + launch check</td><td>Compile the changed script DLL</td></tr><tr><td>Time taken</td><td>About 40 min</td><td>About 5 sec</td></tr><tr><td>Use it when</td><td>Right before release, or when maps changed</td><td>Only code changed</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>How Many Fixes Fit in a Day?</h2>
+<p>Let me do the math. Even if you spend all 8 hours of the day on nothing but builds, a 40 minute build gets you 12 runs and a bit. That means the check, fix, check again cycle cannot happen more than 12 times a day. With a 5 second build, one cycle takes under a minute.</p>
+<p>Bugs do not get caught in one try. You fix it, it is wrong, you fix it again, and it is wrong again. The number of cycles is the number of bugs you can catch in a day. What I lost that day was not 40 minutes. It was most of the cycles I could have run.</p>
+<p>This number comes from the 40 minutes and 5 seconds written in my diary, plus an assumed 8 hour day. I did not keep a count of how many times I actually ran it in a day.</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="Four screenshots of the first order screen in a slime making game. Under the same hint text, a star shaped dough stretches and shrinks" loading="lazy" decoding="async"><figcaption>I pull several of these check shots at a time to see a fix with my own eyes. With a 40 minute cycle, even this one shot costs 40 minutes.</figcaption></figure></section>
+<section id="s4"><h2>The Cause Was the Order</h2>
+<p>When I first built the test loop, I did not set it up as &quot;fast build first, full build later.&quot; There was only the full build. The fast build only appeared, along with the dev mode switch, after I got angry.</p>
+<p>This is not about blame. It is about structure. When the test loop is slow, people check less. When they check less, they move on to the next task without knowing whether the fix worked. A slow loop does not stop at being slow. It makes you stop checking at all.</p>
+</section>
+<section id="s5"><h2>The Order I Set Up for Every New Test Target</h2>
+<p>Since that day, this is the order I set up the loop in for any new test target.</p>
+<p>Every engine names it differently, but a similar path exists. In Unity, a development build has an option to rebuild only the scripts, and the editor has a Play Mode option that skips the domain reload. Either way the point is the same: build the path that redoes only what changed on day one.</p>
+<ul><li>Day one: build the path that runs a code only change in a few seconds (a fast build, or running straight in the editor)</li><li>Second: a dev mode switch that turns off things unrelated to the check, like map baking, long cutscenes, and ads</li><li>Last: run the full build only right before release and on days the maps changed</li><li>For each test loop, time it once and write down how many seconds the check takes</li></ul>
+</section>
+<section id="s6"><h2>What I Have Not Fixed Yet</h2>
+<p>The fast build script and the dev mode switch exist now, but there is no rule or check that forces a new test target to get the fast build on day one. Right now it is a promise written on a single ticket. I will find out whether it really gets set up on day one when the next test target comes.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>How do I cut down a game build that takes too long?</summary><p>Split the full build into what it actually does. If only code changed, you do not need to bake maps or process assets again. Make a separate fast build that compiles only the changed scripts, and run the full build only right before release. One check can drop from 40 minutes to 5 seconds.</p></details><details><summary>Is there a way to rebuild only the scripts?</summary><p>In Unity, a development build has an option to rebuild only the scripts, and it needs a player you built earlier. In the editor, a Play Mode option can also skip the domain reload. Names differ by engine, so search your engine&#39;s docs for &quot;incremental build&quot; or &quot;scripts only build.&quot;</p></details><details><summary>Can I just use the fast build all the time?</summary><p>No. The fast build is for checking code, so it does not cover maps, assets, or running the real player. Right before release, and on days the maps changed, it is safer to run the full build once and compare the two.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unity 打包太慢怎么办：只编译脚本的快速版 5 秒，完整打包要 40 分钟</title>
+<meta name="description" content="修一个 bug 再验证，完整打包要 40 分钟，而只改了代码的时候，只编译脚本 DLL 的快速版 5 秒就跑完了。这里写了先搭快速版测试流程的顺序，以及开发模式开关。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Unity 打包太慢怎么办：只编译脚本的快速版 5 秒，完整打包要 40 分钟">
+<meta property="og:description" content="修一个 bug 再验证，完整打包要 40 分钟，而只改了代码的时候，只编译脚本 DLL 的快速版 5 秒就跑完了。这里写了先搭快速版测试流程的顺序，以及开发模式开关。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"改完验证要 40 分钟，5 秒的路其实一开始就有","description":"修一个 bug 再验证，完整打包要 40 分钟，而只改了代码的时候，只编译脚本 DLL 的快速版 5 秒就跑完了。这里写了先搭快速版测试流程的顺序，以及开发模式开关。","inLanguage":"zh-CN","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"改完验证要 40 分钟，5 秒的路其实一开始就有","item":"https://dumbgamelab.com/zh-Hans/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"游戏打包太慢，怎么缩短？","acceptedAnswer":{"@type":"Answer","text":"先把完整打包做的事拆开看。只改了代码的话，烘焙地图和处理资源都不用重做。单独做一个只编译改动脚本的快速版，完整打包只在临近发布时跑，一次验证就能从 40 分钟缩到 5 秒。"}},{"@type":"Question","name":"有只重新构建脚本的办法吗？","acceptedAnswer":{"@type":"Answer","text":"Unity 在开发版打包里有只重新构建脚本的选项，需要之前已经生成过播放器才能用。在编辑器里，也可以通过 Play Mode 选项跳过 Domain Reload。各个引擎叫法不同，可以在所用引擎的文档里搜“增量构建”或“只构建脚本”。"}},{"@type":"Question","name":"只用快速版不行吗？","acceptedAnswer":{"@type":"Answer","text":"不行。快速版只用来验证代码，看不到地图、资源和真实播放器的运行情况。临近发布和地图有改动的那天，最好跑一次完整打包，把两边对一对。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 一波三折</p>
+    <h1>改完验证要 40 分钟，5 秒的路其实一开始就有</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="史莱姆制作游戏的镜头复位修复前后对比图。同一个画面并排摆了六张，右下角能看到开发版标记" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">如果测试用的打包只有一条，要烘焙地图、还要确认能运行的完整打包，验证一个 bug 就得等 40 分钟。只改了代码的话，用只重新编译脚本 DLL 的快速版，同样的验证 5 秒就结束了。测试流程应该先搭快速版，完整打包留到最后只跑一次。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">10月27日，同一句话说了两遍</a></li><li><a href="#s2">40 分钟和 5 秒之间差了什么</a></li><li><a href="#s3">一天能改几次</a></li><li><a href="#s4">原因是顺序</a></li><li><a href="#s5">新的测试对象，一开始就按这个顺序搭</a></li><li><a href="#s6">还没解决的</a></li></ol></nav>
+    <section id="s1"><h2>10月27日，同一句话说了两遍</h2>
+<p>那天在测试用的 PC 上修好了一个判负的 bug。为了确认修好的版本，我跑了打包，但这是要烘焙 5 张地图、还要确认能运行的完整打包，一次就要 40 分钟。</p>
+<p>下午 4 点 51 分，我说了一句“怎么这么久，不能不打包、直接用开发模式吗”。下午 6 点 7 分又说了一句“真的好久，拜托快一点”。两次说得都对。</p>
+<p>之后我试着跑了只改代码时只编译脚本 DLL 的快速版脚本，5 秒就结束了。这条路一开始就有，只是我一直没用。</p>
+</section>
+<section id="s2"><h2>40 分钟和 5 秒之间差了什么</h2>
+<p>把完整打包做的事拆开看，是烘焙地图、生成播放器、运行并确认能启动。临近发布时这些全都需要。</p>
+<p>但这次改的只是判负逻辑的几行代码。地图没变，却还是把 5 张重新烘焙了一遍。我想确认的只有一件事：改过的代码运行得对不对。为了看这一点，我把其余的全部等了 40 分钟。</p>
+<p>快速版把这些过程去掉了。只把改动的脚本编译成 DLL，已经烘焙好的产物原样使用。同样的验证只要 5 秒。</p>
+<div class="tbl"><table><thead><tr><th></th><th>完整打包</th><th>快速版</th></tr></thead><tbody><tr><td>做的事</td><td>烘焙 5 张地图 + 生成播放器 + 运行确认</td><td>编译改动的脚本 DLL</td></tr><tr><td>耗时</td><td>约 40 分钟</td><td>约 5 秒</td></tr><tr><td>什么时候用</td><td>临近发布、地图有改动时</td><td>只改了代码时</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>一天能改几次</h2>
+<p>我自己算了一下。假设一天 8 小时全部拿来打包，40 分钟一次也只能跑 12 次出头。验证、修改、再验证的循环，一天超不过 12 轮。如果是 5 秒，一轮连 1 分钟都用不了。</p>
+<p>bug 不会一次就抓到。改了，不对，再改，又不对。循环的次数，就是一天能抓到的 bug 数。那天我损失的不是 40 分钟，而是一天里本来能跑的大部分循环。</p>
+<p>这个数字是用日记里记的 40 分钟、5 秒，加上 8 小时这个假设算出来的。实际一天跑了多少次，我没有数过。</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="史莱姆制作游戏的第一份订单画面，共四张。同一句提示文字下面，星形面团在拉长和收缩" loading="lazy" decoding="async"><figcaption>确认改动的截图每次要截好几张。循环是 40 分钟的话，这一张也是 40 分钟。</figcaption></figure></section>
+<section id="s4"><h2>原因是顺序</h2>
+<p>一开始搭测试流程的时候，并不是按“先做快速版，完整打包放后面”的顺序来的。只有完整打包这一条。快速版是我火大以后，才和开发模式开关一起做出来的。</p>
+<p>不是要怪谁，说的是结构。测试流程一慢，人就会少验证。验证少了，改得对不对都不知道就去做下一件事。慢的流程不会只停留在慢，它会让人干脆不再验证。</p>
+</section>
+<section id="s5"><h2>新的测试对象，一开始就按这个顺序搭</h2>
+<p>从那天起，新的测试对象我都按这个顺序搭流程。</p>
+<p>各个引擎叫法不同，但都有类似的路。Unity 的话，开发版打包里有只重新构建脚本的选项，编辑器的 Play Mode 选项里也能跳过 Domain Reload。不管走哪条，要点是一样的：第一天就把只重做改动部分的路搭好。</p>
+<ul><li>第一天：先做出只改了代码时几秒内就能跑起来的路（快速版，直接在编辑器里运行）</li><li>第二：开发模式开关。把烘焙地图、长演出、广告这些和验证无关的东西关掉</li><li>最后：完整打包只在临近发布和地图有改动的那天跑</li><li>每个测试流程都量一次“这次验证要几秒”</li></ul>
+</section>
+<section id="s6"><h2>还没解决的</h2>
+<p>快速版脚本和开发模式开关已经有了，但让新的测试对象第一天就先搭快速版的规则或检查，现在还没有。眼下只是记在一张工单里的决心。下一个测试对象是不是真的第一天就搭上了，到时候再确认。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>游戏打包太慢，怎么缩短？</summary><p>先把完整打包做的事拆开看。只改了代码的话，烘焙地图和处理资源都不用重做。单独做一个只编译改动脚本的快速版，完整打包只在临近发布时跑，一次验证就能从 40 分钟缩到 5 秒。</p></details><details><summary>有只重新构建脚本的办法吗？</summary><p>Unity 在开发版打包里有只重新构建脚本的选项，需要之前已经生成过播放器才能用。在编辑器里，也可以通过 Play Mode 选项跳过 Domain Reload。各个引擎叫法不同，可以在所用引擎的文档里搜“增量构建”或“只构建脚本”。</p></details><details><summary>只用快速版不行吗？</summary><p>不行。快速版只用来验证代码，看不到地图、资源和真实播放器的运行情况。临近发布和地图有改动的那天，最好跑一次完整打包，把两边对一对。</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

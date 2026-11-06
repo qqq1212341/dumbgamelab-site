@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게임 빌드 40분 줄이기: 스크립트만 컴파일하는 빠른 판은 5초였다</title>
+<meta name="description" content="버그 하나 고치고 확인하는 데 전체 빌드로 40분이 걸렸는데, 코드만 바뀐 판은 스크립트 DLL만 컴파일해서 5초에 끝났습니다. 시험 고리를 빠른 판부터 까는 순서와 개발 모드 스위치를 적었습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="게임 빌드 40분 줄이기: 스크립트만 컴파일하는 빠른 판은 5초였다">
+<meta property="og:description" content="버그 하나 고치고 확인하는 데 전체 빌드로 40분이 걸렸는데, 코드만 바뀐 판은 스크립트 DLL만 컴파일해서 5초에 끝났습니다. 시험 고리를 빠른 판부터 까는 순서와 개발 모드 스위치를 적었습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"고쳐서 확인하는 데 40분, 5초짜리 길은 처음부터 있었습니다","description":"버그 하나 고치고 확인하는 데 전체 빌드로 40분이 걸렸는데, 코드만 바뀐 판은 스크립트 DLL만 컴파일해서 5초에 끝났습니다. 시험 고리를 빠른 판부터 까는 순서와 개발 모드 스위치를 적었습니다.","inLanguage":"ko","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"고쳐서 확인하는 데 40분, 5초짜리 길은 처음부터 있었습니다","item":"https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"게임 빌드가 너무 오래 걸리면 어떻게 줄이나요?","acceptedAnswer":{"@type":"Answer","text":"전체 빌드가 하는 일을 나눠 보세요. 코드만 바뀌었다면 맵 굽기나 에셋 처리는 다시 할 필요가 없습니다. 바뀐 스크립트만 컴파일하는 빠른 판을 따로 만들고 전체 빌드는 출시 직전에만 돌리면, 확인 한 번이 40분에서 5초로 줄 수 있습니다."}},{"@type":"Question","name":"스크립트만 다시 빌드하는 방법이 있나요?","acceptedAnswer":{"@type":"Answer","text":"유니티는 개발용 빌드에서 스크립트만 다시 빌드하는 옵션이 있고, 이전에 만든 플레이어가 있어야 쓸 수 있습니다. 에디터에서는 플레이 모드 옵션으로 도메인 리로드를 건너뛸 수도 있습니다. 엔진마다 이름이 다르니 쓰는 엔진 문서에서 «증분 빌드»나 «스크립트만 빌드»를 찾아보세요."}},{"@type":"Question","name":"빠른 판만 쓰면 안 되나요?","acceptedAnswer":{"@type":"Answer","text":"안 됩니다. 빠른 판은 코드 확인용이라 맵, 에셋, 실제 플레이어 실행은 보지 못합니다. 출시 직전과 맵이 바뀐 날에는 전체 빌드를 한 번 돌려 둘을 맞춰 보는 게 안전합니다."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">개발 일지 · 우여곡절</p>
+    <h1>고쳐서 확인하는 데 40분, 5초짜리 길은 처음부터 있었습니다</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="슬라임 만들기 게임의 카메라 복귀 수정 전후 비교 컷. 같은 화면이 여섯 장 나란히 놓여 있고 오른쪽 아래 구석에 개발용 빌드 표시가 보인다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">시험용 빌드가 맵 굽기와 실행 확인까지 전부 도는 전체 빌드 하나뿐이면, 버그 하나 확인하는 데 40분이 걸립니다. 코드만 바뀌었다면 스크립트 DLL만 다시 컴파일하는 빠른 판으로 같은 확인이 5초에 끝났습니다. 시험 고리는 빠른 판부터 만들고, 전체 빌드는 마지막에 한 번만 돌리는 순서가 맞습니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">10월 27일, 같은 말이 두 번 나왔습니다</a></li><li><a href="#s2">40분과 5초 사이에 들어 있던 것</a></li><li><a href="#s3">하루에 몇 번 고칠 수 있나</a></li><li><a href="#s4">원인은 순서였습니다</a></li><li><a href="#s5">새 시험 대상에 처음부터 까는 순서</a></li><li><a href="#s6">아직 못 고친 것</a></li></ol></nav>
+    <section id="s1"><h2>10월 27일, 같은 말이 두 번 나왔습니다</h2>
+<p>시험용 PC에서 실격 버그를 고친 날이었습니다. 고친 판을 확인하려고 빌드를 돌렸는데, 맵 5개를 굽고 실행 확인까지 하는 전체 빌드라 한 번에 40분이 걸렸습니다.</p>
+<p>오후 4시 51분에 «왜 이렇게 오래 걸려, 빌드 말고 개발 모드로 하면 안 되나» 소리가 나왔습니다. 오후 6시 7분에는 «진짜 오래 걸리네, 제발 빠르게 해 주세요»가 나왔습니다. 두 번 다 맞는 말이었습니다.</p>
+<p>그 뒤에 코드만 바뀌었을 때 스크립트 DLL만 컴파일하는 빠른 판 스크립트를 돌려 봤더니 5초에 끝났습니다. 그 길은 처음부터 있었는데 저는 쓰지 않았습니다.</p>
+</section>
+<section id="s2"><h2>40분과 5초 사이에 들어 있던 것</h2>
+<p>전체 빌드가 하는 일을 나눠 보면 맵 굽기, 플레이어 만들기, 실행해서 뜨는지 확인하기입니다. 출시 직전에는 전부 필요한 일입니다.</p>
+<p>그런데 이번에 바뀐 건 실격 판정 코드 몇 줄이었습니다. 맵은 그대로인데도 5개를 다시 구웠습니다. 확인하려던 건 «고친 코드가 맞게 도는가» 하나였고, 그걸 보려고 나머지 전부를 40분 동안 기다렸습니다.</p>
+<p>빠른 판은 이 과정을 뺐습니다. 바뀐 스크립트만 DLL로 컴파일하고, 이미 구워 둔 결과물은 그대로 씁니다. 같은 확인이 5초였습니다.</p>
+<div class="tbl"><table><thead><tr><th></th><th>전체 빌드</th><th>빠른 판</th></tr></thead><tbody><tr><td>하는 일</td><td>맵 5개 굽기 + 플레이어 만들기 + 실행 확인</td><td>바뀐 스크립트 DLL 컴파일</td></tr><tr><td>걸린 시간</td><td>약 40분</td><td>약 5초</td></tr><tr><td>쓸 때</td><td>출시 직전·맵이 바뀔 때</td><td>코드만 바뀌었을 때</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>하루에 몇 번 고칠 수 있나</h2>
+<p>직접 계산해 보겠습니다. 하루 8시간을 전부 빌드에만 쓴다고 가정해도 40분짜리는 12번 남짓입니다. 확인하고 고치고 다시 확인하는 사이클이 하루 12번을 못 넘는다는 얘기입니다. 5초짜리라면 사이클 한 번에 1분도 안 걸립니다.</p>
+<p>버그는 한 번에 안 잡힙니다. 고치고, 틀렸고, 다시 고치고, 또 틀립니다. 사이클 수가 곧 하루에 잡을 수 있는 버그 수입니다. 이날 제가 잃은 건 40분이 아니라 하루에 돌릴 수 있었던 사이클 대부분이었습니다.</p>
+<p>이 숫자는 일기에 적힌 40분과 5초, 8시간이라는 가정으로 낸 계산입니다. 실제로 하루에 몇 번 돌렸는지는 세어 두지 않았습니다.</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="슬라임 만들기 게임의 첫 주문 화면 네 장. 같은 안내 문구 아래 별 모양 반죽이 늘어나고 줄어드는 장면이다" loading="lazy" decoding="async"><figcaption>고친 걸 눈으로 확인하는 컷은 한 번에 몇 장씩 뽑습니다. 사이클이 40분이면 이 한 장도 40분입니다.</figcaption></figure></section>
+<section id="s4"><h2>원인은 순서였습니다</h2>
+<p>시험 고리를 처음 만들 때 «빠른 판 먼저, 전체 빌드는 나중» 순서로 짠 게 아니었습니다. 전체 빌드 하나만 있었습니다. 빠른 판은 화가 난 뒤에야 개발 모드 스위치와 함께 생겼습니다.</p>
+<p>누구 탓을 하자는 게 아니라 구조 얘기입니다. 시험 고리가 느리면 사람은 확인을 줄입니다. 확인이 줄면 고친 게 맞는지 모른 채 다음 일로 넘어갑니다. 느린 고리는 그냥 느린 데서 끝나지 않고 확인 자체를 안 하게 만듭니다.</p>
+</section>
+<section id="s5"><h2>새 시험 대상에 처음부터 까는 순서</h2>
+<p>이날 이후로 새 시험 대상에는 이 순서로 고리를 깝니다.</p>
+<p>엔진마다 이름은 다르지만 비슷한 길이 있습니다. 유니티라면 개발용 빌드에서 스크립트만 다시 빌드하는 옵션이 있고, 에디터의 플레이 모드 옵션으로 도메인 리로드를 건너뛰는 길도 있습니다. 어느 쪽이든 요점은 같습니다. 바뀐 것만 다시 하는 길을 첫날 만들어 둡니다.</p>
+<ul><li>첫날: 코드만 바뀐 판을 몇 초 안에 돌려 보는 길(빠른 판, 에디터에서 바로 실행)부터 만든다</li><li>둘째: 개발 모드 스위치. 맵 굽기, 긴 연출, 광고처럼 확인과 상관없는 것을 끈다</li><li>마지막: 전체 빌드는 출시 직전과 맵이 바뀐 날에만 돌린다</li><li>시험 고리마다 «이 확인에 몇 초 걸리나»를 한 번 재 둔다</li></ul>
+</section>
+<section id="s6"><h2>아직 못 고친 것</h2>
+<p>빠른 판 스크립트와 개발 모드 스위치는 생겼지만, 새 시험 대상이 첫날 빠른 판부터 깔게 하는 규칙이나 검사는 아직 없습니다. 지금은 티켓 한 장에 적어 둔 다짐일 뿐입니다. 다음 시험 대상에서 정말 첫날 깔리는지는 그때 확인하겠습니다.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>게임 빌드가 너무 오래 걸리면 어떻게 줄이나요?</summary><p>전체 빌드가 하는 일을 나눠 보세요. 코드만 바뀌었다면 맵 굽기나 에셋 처리는 다시 할 필요가 없습니다. 바뀐 스크립트만 컴파일하는 빠른 판을 따로 만들고 전체 빌드는 출시 직전에만 돌리면, 확인 한 번이 40분에서 5초로 줄 수 있습니다.</p></details><details><summary>스크립트만 다시 빌드하는 방법이 있나요?</summary><p>유니티는 개발용 빌드에서 스크립트만 다시 빌드하는 옵션이 있고, 이전에 만든 플레이어가 있어야 쓸 수 있습니다. 에디터에서는 플레이 모드 옵션으로 도메인 리로드를 건너뛸 수도 있습니다. 엔진마다 이름이 다르니 쓰는 엔진 문서에서 «증분 빌드»나 «스크립트만 빌드»를 찾아보세요.</p></details><details><summary>빠른 판만 쓰면 안 되나요?</summary><p>안 됩니다. 빠른 판은 코드 확인용이라 맵, 에셋, 실제 플레이어 실행은 보지 못합니다. 출시 직전과 맵이 바뀐 날에는 전체 빌드를 한 번 돌려 둘을 맞춰 보는 게 안전합니다.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>PC방 경영 게임 2026, 아이폰까지 포함한 17종</b><span class="pc-desc">PC방·인터넷 카페 경영 게임을 아이폰, 안드로이드, Steam으로 나눠 17종 골랐습니다. 스토어 페이지에서 직접 읽은 가격, 평점, 오프라인 문구와 우리 게임의 약점까지 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

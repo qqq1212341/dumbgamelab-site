@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unity build time quá lâu: build đầy đủ 40 phút, bản chỉ biên dịch script chỉ 5 giây</title>
+<meta name="description" content="Sửa một lỗi rồi kiểm tra mà build đầy đủ mất 40 phút, trong khi bản chỉ biên dịch DLL script khi chỉ có code thay đổi xong trong 5 giây. Ghi lại thứ tự dựng vòng kiểm tra bắt đầu từ bản nhanh và công tắc chế độ phát triển.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Unity build time quá lâu: build đầy đủ 40 phút, bản chỉ biên dịch script chỉ 5 giây">
+<meta property="og:description" content="Sửa một lỗi rồi kiểm tra mà build đầy đủ mất 40 phút, trong khi bản chỉ biên dịch DLL script khi chỉ có code thay đổi xong trong 5 giây. Ghi lại thứ tự dựng vòng kiểm tra bắt đầu từ bản nhanh và công tắc chế độ phát triển.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sửa xong chờ kiểm tra mất 40 phút, trong khi đường 5 giây có sẵn từ đầu","description":"Sửa một lỗi rồi kiểm tra mà build đầy đủ mất 40 phút, trong khi bản chỉ biên dịch DLL script khi chỉ có code thay đổi xong trong 5 giây. Ghi lại thứ tự dựng vòng kiểm tra bắt đầu từ bản nhanh và công tắc chế độ phát triển.","inLanguage":"vi","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Sửa xong chờ kiểm tra mất 40 phút, trong khi đường 5 giây có sẵn từ đầu","item":"https://dumbgamelab.com/vi/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Build game quá lâu thì giảm thế nào?","acceptedAnswer":{"@type":"Answer","text":"Hãy chia nhỏ việc build đầy đủ ra. Nếu chỉ có code thay đổi thì không cần nung map hay xử lý asset lại. Làm riêng một bản nhanh chỉ biên dịch script đã thay đổi, rồi chỉ chạy build đầy đủ sát lúc phát hành, thì một lần kiểm tra có thể giảm từ 40 phút xuống 5 giây."}},{"@type":"Question","name":"Có cách nào chỉ build lại script không?","acceptedAnswer":{"@type":"Answer","text":"Unity có tùy chọn chỉ build lại script trong development build, và cần có sẵn player đã tạo trước đó. Trong editor còn có thể bỏ qua domain reload bằng tùy chọn Play Mode. Tên gọi khác nhau theo engine, nên hãy tìm «incremental build» hoặc «scripts only build» trong tài liệu của engine bạn dùng."}},{"@type":"Question","name":"Chỉ dùng bản nhanh có được không?","acceptedAnswer":{"@type":"Answer","text":"Không. Bản nhanh chỉ dùng để kiểm tra code nên không thấy được map, asset và việc chạy player thật. Sát lúc phát hành và vào ngày map thay đổi, chạy build đầy đủ một lần để đối chiếu hai bên thì an toàn hơn."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký dev · chuyện dở khóc dở cười</p>
+    <h1>Sửa xong chờ kiểm tra mất 40 phút, trong khi đường 5 giây có sẵn từ đầu</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="Ảnh so sánh trước và sau khi sửa lỗi camera quay về trong game làm slime. Sáu khung hình cùng một màn hình xếp cạnh nhau, góc dưới bên phải có dấu hiệu bản build dành cho phát triển" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Nếu bản build để kiểm tra chỉ có một bản đầy đủ gồm nung map và chạy thử, thì kiểm tra một lỗi mất 40 phút. Khi chỉ có code thay đổi, bản nhanh chỉ biên dịch lại DLL script đã làm cùng việc kiểm tra đó trong 5 giây. Nên dựng vòng kiểm tra bằng bản nhanh trước, còn build đầy đủ chỉ chạy một lần ở cuối.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Ngày 27 tháng 10, cùng một câu nói hai lần</a></li><li><a href="#s2">Thứ nằm giữa 40 phút và 5 giây</a></li><li><a href="#s3">Một ngày sửa được mấy lần</a></li><li><a href="#s4">Nguyên nhân là thứ tự</a></li><li><a href="#s5">Thứ tự dựng từ đầu cho đối tượng kiểm tra mới</a></li><li><a href="#s6">Thứ chưa sửa được</a></li></ol></nav>
+    <section id="s1"><h2>Ngày 27 tháng 10, cùng một câu nói hai lần</h2>
+<p>Hôm đó là ngày tôi sửa lỗi bị loại trên máy test. Để kiểm tra bản đã sửa, tôi chạy build, nhưng đó là bản build đầy đủ: nung 5 map rồi chạy thử, mỗi lần mất 40 phút.</p>
+<p>Lúc 4 giờ 51 chiều, tôi buột miệng «sao lâu thế, không dùng chế độ phát triển thay vì build được à». Lúc 6 giờ 7 chiều lại là «lâu thật, làm ơn nhanh lên». Cả hai lần đều đúng.</p>
+<p>Sau đó tôi thử chạy script bản nhanh, chỉ biên dịch DLL script khi chỉ có code thay đổi, và nó xong trong 5 giây. Đường đó có từ đầu, chỉ là tôi không dùng.</p>
+</section>
+<section id="s2"><h2>Thứ nằm giữa 40 phút và 5 giây</h2>
+<p>Chia nhỏ việc của build đầy đủ ra thì gồm nung map, tạo player và chạy thử xem có lên không. Trước lúc phát hành thì việc nào cũng cần.</p>
+<p>Nhưng lần này chỉ thay đổi vài dòng code xử lý loại người chơi. Map vẫn y nguyên mà 5 map vẫn bị nung lại. Điều tôi muốn kiểm tra chỉ là «code đã sửa có chạy đúng không», và để xem nó tôi đã ngồi chờ toàn bộ phần còn lại suốt 40 phút.</p>
+<p>Bản nhanh bỏ qua quá trình đó. Nó chỉ biên dịch script đã thay đổi thành DLL và dùng nguyên kết quả đã nung sẵn. Cùng một lần kiểm tra mất 5 giây.</p>
+<div class="tbl"><table><thead><tr><th></th><th>Build đầy đủ</th><th>Bản nhanh</th></tr></thead><tbody><tr><td>Việc làm</td><td>Nung 5 map + tạo player + chạy thử</td><td>Biên dịch DLL script đã thay đổi</td></tr><tr><td>Thời gian</td><td>Khoảng 40 phút</td><td>Khoảng 5 giây</td></tr><tr><td>Dùng khi</td><td>Sát lúc phát hành, khi map thay đổi</td><td>Khi chỉ có code thay đổi</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>Một ngày sửa được mấy lần</h2>
+<p>Thử tính thẳng ra. Giả sử cả 8 tiếng một ngày chỉ dùng để build, thì bản 40 phút chạy được hơn 12 lần một chút. Nghĩa là vòng kiểm tra, sửa, kiểm tra lại không vượt quá 12 lần mỗi ngày. Với bản 5 giây, một vòng chưa tới 1 phút.</p>
+<p>Lỗi không bao giờ bắt được trong một lần. Sửa, sai, sửa lại, lại sai. Số vòng chính là số lỗi bắt được trong một ngày. Hôm đó tôi mất không phải 40 phút mà là phần lớn số vòng có thể chạy trong ngày.</p>
+<p>Con số này tính từ 40 phút và 5 giây ghi trong nhật ký, cộng giả định 8 tiếng. Thực tế một ngày tôi chạy bao nhiêu lần thì không đếm lại.</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="Bốn màn hình đơn hàng đầu tiên của game làm slime. Dưới cùng một dòng hướng dẫn, khối bột hình ngôi sao co giãn" loading="lazy" decoding="async"><figcaption>Ảnh để xem bằng mắt thứ đã sửa được chụp nhiều tấm mỗi lần. Nếu một vòng mất 40 phút thì chỉ một tấm này cũng mất 40 phút.</figcaption></figure></section>
+<section id="s4"><h2>Nguyên nhân là thứ tự</h2>
+<p>Lúc đầu dựng vòng kiểm tra, tôi không làm theo thứ tự «bản nhanh trước, build đầy đủ sau». Chỉ có đúng một bản build đầy đủ. Bản nhanh chỉ ra đời sau khi tôi bực, cùng với công tắc chế độ phát triển.</p>
+<p>Không phải đổ lỗi cho ai, đây là chuyện cấu trúc. Vòng kiểm tra chậm thì người ta sẽ kiểm tra ít đi. Kiểm tra ít đi thì sửa xong không biết đúng hay sai mà đã chuyển sang việc khác. Vòng chậm không chỉ dừng ở chậm, nó khiến người ta thôi không kiểm tra nữa.</p>
+</section>
+<section id="s5"><h2>Thứ tự dựng từ đầu cho đối tượng kiểm tra mới</h2>
+<p>Từ hôm đó, với đối tượng kiểm tra mới tôi dựng vòng theo thứ tự này.</p>
+<p>Mỗi engine gọi một tên khác nhưng đều có đường tương tự. Với Unity, development build có tùy chọn chỉ build lại script, và trong Play Mode của editor có tùy chọn bỏ qua domain reload. Dù là đường nào thì ý chính vẫn như nhau: ngay ngày đầu tiên, làm sẵn đường chỉ làm lại phần đã thay đổi.</p>
+<ul><li>Ngày đầu: làm trước đường chạy thử bản chỉ có code thay đổi trong vài giây (bản nhanh, chạy ngay trong editor)</li><li>Thứ hai: công tắc chế độ phát triển. Tắt những thứ không liên quan đến việc kiểm tra như nung map, cảnh dài, quảng cáo</li><li>Cuối cùng: build đầy đủ chỉ chạy sát lúc phát hành và vào ngày map thay đổi</li><li>Với mỗi vòng kiểm tra, đo một lần xem việc kiểm tra này mất bao nhiêu giây</li></ul>
+</section>
+<section id="s6"><h2>Thứ chưa sửa được</h2>
+<p>Script bản nhanh và công tắc chế độ phát triển đã có, nhưng quy tắc hay bước kiểm tra để đối tượng kiểm tra mới phải dựng bản nhanh từ ngày đầu thì chưa có. Hiện giờ chỉ là lời tự hứa ghi trong một phiếu. Đến đối tượng kiểm tra tiếp theo, bản nhanh có thực sự được dựng từ ngày đầu hay không thì lúc đó tôi sẽ xem.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Build game quá lâu thì giảm thế nào?</summary><p>Hãy chia nhỏ việc build đầy đủ ra. Nếu chỉ có code thay đổi thì không cần nung map hay xử lý asset lại. Làm riêng một bản nhanh chỉ biên dịch script đã thay đổi, rồi chỉ chạy build đầy đủ sát lúc phát hành, thì một lần kiểm tra có thể giảm từ 40 phút xuống 5 giây.</p></details><details><summary>Có cách nào chỉ build lại script không?</summary><p>Unity có tùy chọn chỉ build lại script trong development build, và cần có sẵn player đã tạo trước đó. Trong editor còn có thể bỏ qua domain reload bằng tùy chọn Play Mode. Tên gọi khác nhau theo engine, nên hãy tìm «incremental build» hoặc «scripts only build» trong tài liệu của engine bạn dùng.</p></details><details><summary>Chỉ dùng bản nhanh có được không?</summary><p>Không. Bản nhanh chỉ dùng để kiểm tra code nên không thấy được map, asset và việc chạy player thật. Sát lúc phát hành và vào ngày map thay đổi, chạy build đầy đủ một lần để đối chiếu hai bên thì an toàn hơn.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

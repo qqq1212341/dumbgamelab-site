@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unityのビルドが遅い問題:スクリプトだけ再ビルドして40分が5秒になった話</title>
+<meta name="description" content="バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Unityのビルドが遅い問題:スクリプトだけ再ビルドして40分が5秒になった話">
+<meta property="og:description" content="バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"直して確かめるのに40分、5秒で済む道は最初からありました","description":"バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。","inLanguage":"ja","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"直して確かめるのに40分、5秒で済む道は最初からありました","item":"https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ゲームのビルドが遅すぎるとき、どう縮めればいいですか?","acceptedAnswer":{"@type":"Answer","text":"フルビルドがやっていることを分けてみてください。コードしか変わっていないなら、マップのベイクやアセットの処理をやり直す必要はありません。変わったスクリプトだけコンパイルする高速版を別に作り、フルビルドはリリース直前だけ回せば、確認1回が40分から5秒に縮むことがあります。"}},{"@type":"Question","name":"スクリプトだけ再ビルドする方法はありますか?","acceptedAnswer":{"@type":"Answer","text":"Unityには、開発用ビルドでスクリプトだけ再ビルドするオプションがあり、以前に作ったプレイヤーが必要です。エディタでは、プレイモードのオプションでドメインリロードを飛ばすこともできます。エンジンごとに名前が違うので、使っているエンジンのドキュメントで「インクリメンタルビルド」や「スクリプトのみビルド」を探してみてください。"}},{"@type":"Question","name":"高速版だけ使えばいいのではないですか?","acceptedAnswer":{"@type":"Answer","text":"だめです。高速版はコードの確認用なので、マップやアセット、実際のプレイヤーの起動までは見られません。リリース直前とマップが変わった日には、フルビルドを1回回して両方を突き合わせるのが安全です。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 · 失敗談</p>
+    <h1>直して確かめるのに40分、5秒で済む道は最初からありました</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="スライム作りゲームのカメラ復帰の修正前後を比べたカット。同じ画面が6枚並んでいて、右下の隅に開発用ビルドの表示が見える" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">確認用のビルドが、マップのベイクと起動チェックまで全部走るフルビルド1本だけだと、バグ1つの確認に40分かかります。コードしか変わっていないなら、スクリプトのDLLだけ再コンパイルする高速版で、同じ確認が5秒で終わりました。確認の流れは高速版から作り、フルビルドは最後に1回だけ回す順番が正解でした。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">10月27日、同じ言葉が2回出ました</a></li><li><a href="#s2">40分と5秒のあいだに入っていたもの</a></li><li><a href="#s3">1日に何回直せるか</a></li><li><a href="#s4">原因は順番でした</a></li><li><a href="#s5">新しいテスト対象に最初から敷く順番</a></li><li><a href="#s6">まだ直せていないこと</a></li></ol></nav>
+    <section id="s1"><h2>10月27日、同じ言葉が2回出ました</h2>
+<p>テスト用PCで失格バグを直した日でした。直した版を確かめようとビルドを回しましたが、マップ5つのベイクと起動チェックまでやるフルビルドで、1回に40分かかりました。</p>
+<p>午後4時51分に「なんでこんなに遅いの、ビルドじゃなくて開発モードでやればいいのでは」という声が出ました。午後6時7分には「本当に遅い、頼むから速くして」と出ました。2回とも正しい指摘でした。</p>
+<p>そのあと、コードしか変わっていないときにスクリプトのDLLだけコンパイルする高速版のスクリプトを回してみたら、5秒で終わりました。その道は最初からあったのに、私は使っていませんでした。</p>
+</section>
+<section id="s2"><h2>40分と5秒のあいだに入っていたもの</h2>
+<p>フルビルドの中身を分けると、マップのベイク、プレイヤーの生成、起動して立ち上がるかの確認です。リリース直前にはどれも必要な作業です。</p>
+<p>ただ、今回変わったのは失格判定のコード数行でした。マップは同じなのに、5つとも焼き直しました。確かめたかったのは「直したコードが正しく動くか」ただ1つで、それを見るために残りをすべて40分待っていました。</p>
+<p>高速版はこの工程を省きます。変わったスクリプトだけをDLLにコンパイルして、焼いてある成果物はそのまま使います。同じ確認が5秒でした。</p>
+<div class="tbl"><table><thead><tr><th></th><th>フルビルド</th><th>高速版</th></tr></thead><tbody><tr><td>やること</td><td>マップ5つのベイク + プレイヤー生成 + 起動チェック</td><td>変わったスクリプトのDLLをコンパイル</td></tr><tr><td>かかった時間</td><td>約40分</td><td>約5秒</td></tr><tr><td>使う場面</td><td>リリース直前・マップが変わったとき</td><td>コードだけが変わったとき</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>1日に何回直せるか</h2>
+<p>自分で計算してみます。1日8時間をすべてビルドに使うと仮定しても、40分では12回ちょっとです。確認して、直して、また確認するサイクルが、1日12回を超えられないということです。5秒なら、サイクル1回が1分もかかりません。</p>
+<p>バグは1回では取れません。直して、外れて、また直して、また外れます。サイクルの数が、そのまま1日に潰せるバグの数です。この日に失ったのは40分ではなく、1日に回せたはずのサイクルの大部分でした。</p>
+<p>この数字は、日記に書いてあった40分と5秒、それに8時間という仮定から出した計算です。実際に1日に何回回したかは、数えていません。</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="スライム作りゲームの最初の注文画面が4枚。同じ案内文の下で、星形の生地が伸びたり縮んだりする場面" loading="lazy" decoding="async"><figcaption>直した結果を目で確かめるカットは、1回に何枚かまとめて撮ります。サイクルが40分なら、この1枚も40分です。</figcaption></figure></section>
+<section id="s4"><h2>原因は順番でした</h2>
+<p>確認の流れを最初に作ったとき、「高速版が先、フルビルドは後」という順には組んでいませんでした。フルビルドが1本あるだけでした。高速版は、腹が立ってからやっと、開発モードのスイッチと一緒にできました。</p>
+<p>誰かのせいにしたいわけではなく、構造の話です。確認の流れが遅いと、人は確認を減らします。確認が減ると、直したものが合っているかわからないまま次の作業に進みます。遅い流れは、ただ遅いだけでは終わらず、確認そのものをしなくさせます。</p>
+</section>
+<section id="s5"><h2>新しいテスト対象に最初から敷く順番</h2>
+<p>この日以降、新しいテスト対象にはこの順番で流れを敷いています。</p>
+<p>エンジンごとに名前は違いますが、似た道があります。Unityなら、開発用ビルドでスクリプトだけ再ビルドするオプションがあり、エディタのプレイモードのオプションでドメインリロードを飛ばす道もあります。どちらでも要点は同じです。変わったものだけをやり直す道を、初日に作っておきます。</p>
+<ul><li>初日:コードだけが変わった版を数秒で回せる道(高速版、エディタですぐ実行)から作る</li><li>2番目:開発モードのスイッチ。マップのベイク、長い演出、広告など、確認に関係ないものを切る</li><li>最後:フルビルドは、リリース直前とマップが変わった日だけ回す</li><li>確認の流れごとに「この確認に何秒かかるか」を一度測っておく</li></ul>
+</section>
+<section id="s6"><h2>まだ直せていないこと</h2>
+<p>高速版のスクリプトと開発モードのスイッチはできましたが、新しいテスト対象で初日に高速版から敷かせる決まりや検査は、まだありません。いまはチケット1枚に書いた心がけにすぎません。次のテスト対象で本当に初日に敷かれるかは、そのときに確かめます。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ゲームのビルドが遅すぎるとき、どう縮めればいいですか?</summary><p>フルビルドがやっていることを分けてみてください。コードしか変わっていないなら、マップのベイクやアセットの処理をやり直す必要はありません。変わったスクリプトだけコンパイルする高速版を別に作り、フルビルドはリリース直前だけ回せば、確認1回が40分から5秒に縮むことがあります。</p></details><details><summary>スクリプトだけ再ビルドする方法はありますか?</summary><p>Unityには、開発用ビルドでスクリプトだけ再ビルドするオプションがあり、以前に作ったプレイヤーが必要です。エディタでは、プレイモードのオプションでドメインリロードを飛ばすこともできます。エンジンごとに名前が違うので、使っているエンジンのドキュメントで「インクリメンタルビルド」や「スクリプトのみビルド」を探してみてください。</p></details><details><summary>高速版だけ使えばいいのではないですか?</summary><p>だめです。高速版はコードの確認用なので、マップやアセット、実際のプレイヤーの起動までは見られません。リリース直前とマップが変わった日には、フルビルドを1回回して両方を突き合わせるのが安全です。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

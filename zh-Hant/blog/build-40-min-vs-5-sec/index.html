@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>遊戲建置時間太久怎麼辦：只編譯腳本的快速版只要 5 秒</title>
+<meta name="description" content="修一個 bug、驗證一次，完整建置要 40 分鐘，但只改程式碼的版本只編譯腳本 DLL，5 秒就結束了。這篇記錄測試迴圈先從快速版做起的順序，以及開發模式開關。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="遊戲建置時間太久怎麼辦：只編譯腳本的快速版只要 5 秒">
+<meta property="og:description" content="修一個 bug、驗證一次，完整建置要 40 分鐘，但只改程式碼的版本只編譯腳本 DLL，5 秒就結束了。這篇記錄測試迴圈先從快速版做起的順序，以及開發模式開關。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"修完要驗證卻等了 40 分鐘，5 秒的路一開始就在那裡","description":"修一個 bug、驗證一次，完整建置要 40 分鐘，但只改程式碼的版本只編譯腳本 DLL，5 秒就結束了。這篇記錄測試迴圈先從快速版做起的順序，以及開發模式開關。","inLanguage":"zh-TW","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"修完要驗證卻等了 40 分鐘，5 秒的路一開始就在那裡","item":"https://dumbgamelab.com/zh-Hant/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"遊戲建置時間太久，要怎麼縮短？","acceptedAnswer":{"@type":"Answer","text":"先把完整建置做的事拆開來看。如果只改了程式碼，烘焙地圖和處理資源就不需要重做。另外做一個只編譯改過腳本的快速版，完整建置只在接近出貨時才跑，一次驗證就能從 40 分鐘縮到 5 秒。"}},{"@type":"Question","name":"有只重新建置腳本的方法嗎？","acceptedAnswer":{"@type":"Answer","text":"Unity 的開發用建置有只重新建置腳本的選項，前提是之前已經做過播放器。在編輯器裡，也可以用 Play Mode 選項跳過 Domain Reload。每套引擎的名稱不一樣，請到你用的引擎文件裡找「增量建置」或「只建置腳本」。"}},{"@type":"Question","name":"只用快速版不行嗎？","acceptedAnswer":{"@type":"Answer","text":"不行。快速版是用來確認程式碼的，看不到地圖、資源和實際的播放器執行。接近出貨和地圖有改的那天，還是跑一次完整建置，把兩邊對一對比較安全。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 波折</p>
+    <h1>修完要驗證卻等了 40 分鐘，5 秒的路一開始就在那裡</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="史萊姆製作遊戲的鏡頭復位修正前後對比圖。同一個畫面並排六張，右下角看得到開發用建置的標示" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">如果測試用的建置只有一個，從烘焙地圖到執行確認全部跑完的完整建置，驗證一個 bug 就要 40 分鐘。只改了程式碼的話，改走只重新編譯腳本 DLL 的快速版，同樣的驗證 5 秒就結束了。測試迴圈該先做快速版，完整建置留到最後只跑一次。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">10 月 27 日，同一句話說了兩次</a></li><li><a href="#s2">夾在 40 分鐘和 5 秒之間的東西</a></li><li><a href="#s3">一天能修幾次</a></li><li><a href="#s4">原因出在順序</a></li><li><a href="#s5">新的測試對象一開始就先做的順序</a></li><li><a href="#s6">還沒修好的部分</a></li></ol></nav>
+    <section id="s1"><h2>10 月 27 日，同一句話說了兩次</h2>
+<p>那天我修好了測試用 PC 的失格 bug。為了驗證修好的版本去跑建置，結果是要烘焙 5 張地圖、還要做執行確認的完整建置，一次就要 40 分鐘。</p>
+<p>下午 4 點 51 分，我說出「怎麼這麼久，不能不要建置，直接開發模式嗎」。下午 6 點 7 分又說「真的好久，拜託快一點」。兩次說的都沒錯。</p>
+<p>後來我試著跑只改程式碼時只編譯腳本 DLL 的快速版腳本，5 秒就結束了。那條路一開始就有，是我沒有用。</p>
+</section>
+<section id="s2"><h2>夾在 40 分鐘和 5 秒之間的東西</h2>
+<p>把完整建置做的事拆開來看，是烘焙地圖、製作播放器，還有執行看看有沒有正常啟動。接近出貨的時候，這些全都需要。</p>
+<p>但這次改的只是失格判定的幾行程式碼。地圖明明沒變，卻還是重烘了 5 張。我想確認的只有「改過的程式碼有沒有正確運作」這一件事，為了看這個，其他全部都陪著等了 40 分鐘。</p>
+<p>快速版把這些過程拿掉了。只把改過的腳本編譯成 DLL，先前烘好的成果直接沿用。同樣的驗證只花了 5 秒。</p>
+<div class="tbl"><table><thead><tr><th></th><th>完整建置</th><th>快速版</th></tr></thead><tbody><tr><td>做的事</td><td>烘焙 5 張地圖 + 製作播放器 + 執行確認</td><td>編譯改過的腳本 DLL</td></tr><tr><td>花的時間</td><td>約 40 分鐘</td><td>約 5 秒</td></tr><tr><td>使用時機</td><td>接近出貨、地圖有改的時候</td><td>只改了程式碼的時候</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>一天能修幾次</h2>
+<p>我自己算算看。就算假設一天 8 小時全部拿來跑建置，40 分鐘的版本也只能跑 12 次出頭。也就是說，驗證、修改、再驗證的循環，一天超不過 12 次。換成 5 秒的版本，一個循環連 1 分鐘都不用。</p>
+<p>bug 不會一次就抓到。修了，錯了，再修，又錯。循環的次數就是一天能抓到的 bug 數。那天我損失的不是 40 分鐘，而是一天裡大部分能跑的循環。</p>
+<p>這個數字是用日記上寫的 40 分鐘、5 秒，加上 8 小時的假設算出來的。實際上一天跑了幾次，我並沒有數過。</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="史萊姆製作遊戲的第一張訂單畫面，共四張。同一段提示文字下，星形麵團伸展又縮回" loading="lazy" decoding="async"><figcaption>確認修改結果的截圖，一次會擷取好幾張。循環要 40 分鐘的話，光這一張也是 40 分鐘。</figcaption></figure></section>
+<section id="s4"><h2>原因出在順序</h2>
+<p>一開始建立測試迴圈的時候，我並不是照「快速版先做，完整建置後做」的順序來設計的。只有一個完整建置。快速版是我火大之後，才跟著開發模式開關一起出現的。</p>
+<p>我不是要怪誰，講的是結構。測試迴圈一慢，人就會少做驗證。驗證變少，就在不知道修得對不對的情況下去做下一件事。慢的迴圈不只是慢而已，最後會讓人乾脆不驗證。</p>
+</section>
+<section id="s5"><h2>新的測試對象一開始就先做的順序</h2>
+<p>從這天起，新的測試對象我都照這個順序來建迴圈。</p>
+<p>每套引擎的名稱不同，但都有類似的路。Unity 的話，開發用建置裡有只重新建置腳本的選項，編輯器的 Play Mode 選項也可以跳過 Domain Reload。不管走哪一邊，重點都一樣：第一天就把「只重做有改的部分」的路準備好。</p>
+<ul><li>第一天：先做出只改程式碼的版本能在幾秒內跑起來的路（快速版，在編輯器直接執行）</li><li>第二：開發模式開關。把烘焙地圖、長動畫、廣告這些跟驗證無關的東西關掉</li><li>最後：完整建置只在接近出貨和地圖有改的那天才跑</li><li>每個測試迴圈都先量一次「這個驗證要幾秒」</li></ul>
+</section>
+<section id="s6"><h2>還沒修好的部分</h2>
+<p>快速版腳本和開發模式開關是做出來了，但要求新的測試對象第一天就先鋪快速版的規則或檢查，目前還沒有。現在只是寫在一張工單上的決心而已。下一個測試對象第一天會不會真的鋪好，到時候再確認。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>遊戲建置時間太久，要怎麼縮短？</summary><p>先把完整建置做的事拆開來看。如果只改了程式碼，烘焙地圖和處理資源就不需要重做。另外做一個只編譯改過腳本的快速版，完整建置只在接近出貨時才跑，一次驗證就能從 40 分鐘縮到 5 秒。</p></details><details><summary>有只重新建置腳本的方法嗎？</summary><p>Unity 的開發用建置有只重新建置腳本的選項，前提是之前已經做過播放器。在編輯器裡，也可以用 Play Mode 選項跳過 Domain Reload。每套引擎的名稱不一樣，請到你用的引擎文件裡找「增量建置」或「只建置腳本」。</p></details><details><summary>只用快速版不行嗎？</summary><p>不行。快速版是用來確認程式碼的，看不到地圖、資源和實際的播放器執行。接近出貨和地圖有改的那天，還是跑一次完整建置，把兩邊對一對比較安全。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บิลด์เกม 40 นาที ลดเหลือ 5 วินาที: Scripts Only Build คอมไพล์แค่สคริปต์</title>
+<meta name="description" content="แก้บั๊กตัวเดียวแล้วต้องรอบิลด์เต็ม 40 นาที ทั้งที่แก้แค่โค้ด พอใช้บิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ DLL ก็เสร็จใน 5 วินาที บันทึกนี้เล่าลำดับการวางวงจรทดสอบโดยเริ่มจากบิลด์เร็ว และสวิตช์โหมดพัฒนา">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/build-40-min-vs-5-sec/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="บิลด์เกม 40 นาที ลดเหลือ 5 วินาที: Scripts Only Build คอมไพล์แค่สคริปต์">
+<meta property="og:description" content="แก้บั๊กตัวเดียวแล้วต้องรอบิลด์เต็ม 40 นาที ทั้งที่แก้แค่โค้ด พอใช้บิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ DLL ก็เสร็จใน 5 วินาที บันทึกนี้เล่าลำดับการวางวงจรทดสอบโดยเริ่มจากบิลด์เร็ว และสวิตช์โหมดพัฒนา">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/build-40-min-vs-5-sec/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"แก้แล้วรอเช็ก 40 นาที ทั้งที่ทางลัด 5 วินาทีมีมาตั้งแต่แรก","description":"แก้บั๊กตัวเดียวแล้วต้องรอบิลด์เต็ม 40 นาที ทั้งที่แก้แค่โค้ด พอใช้บิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ DLL ก็เสร็จใน 5 วินาที บันทึกนี้เล่าลำดับการวางวงจรทดสอบโดยเริ่มจากบิลด์เร็ว และสวิตช์โหมดพัฒนา","inLanguage":"th","datePublished":"2026-11-06","dateModified":"2026-11-06","image":"https://dumbgamelab.com/blog/img/build-40-min-vs-5-sec/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/build-40-min-vs-5-sec/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"แก้แล้วรอเช็ก 40 นาที ทั้งที่ทางลัด 5 วินาทีมีมาตั้งแต่แรก","item":"https://dumbgamelab.com/th/blog/build-40-min-vs-5-sec/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"บิลด์เกมนานเกินไป ลดเวลาอย่างไรดี?","acceptedAnswer":{"@type":"Answer","text":"ลองแยกงานของบิลด์เต็มออกมาดู ถ้าแก้แค่โค้ด ไม่จำเป็นต้องอบแมพหรือประมวลผลแอสเซ็ตใหม่ ทำบิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ที่เปลี่ยนแยกไว้ แล้วรันบิลด์เต็มเฉพาะก่อนปล่อยจริง การเช็กหนึ่งครั้งก็ลดจาก 40 นาทีเหลือ 5 วินาทีได้"}},{"@type":"Question","name":"มีวิธีบิลด์เฉพาะสคริปต์ไหม?","acceptedAnswer":{"@type":"Answer","text":"Unity มีตัวเลือกบิลด์เฉพาะสคริปต์ใน development build โดยต้องมีตัวเล่นที่เคยสร้างไว้แล้ว ในเอดิเตอร์ก็ใช้ตัวเลือก Play Mode ข้ามการรีโหลดโดเมนได้ ชื่อฟีเจอร์ต่างกันไปตามเอนจิน ลองค้นคำว่า incremental build หรือ scripts only build ในเอกสารของเอนจินที่ใช้"}},{"@type":"Question","name":"ใช้แค่บิลด์เร็วอย่างเดียวได้ไหม?","acceptedAnswer":{"@type":"Answer","text":"ไม่ได้ บิลด์เร็วไว้เช็กโค้ด จึงไม่เห็นแมพ แอสเซ็ต และการรันตัวเล่นจริง ก่อนปล่อยจริงและวันที่แมพเปลี่ยน ควรรันบิลด์เต็มสักครั้งเพื่อเทียบสองทางให้ตรงกัน"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกการพัฒนา · เรื่องวุ่น ๆ</p>
+    <h1>แก้แล้วรอเช็ก 40 นาที ทั้งที่ทางลัด 5 วินาทีมีมาตั้งแต่แรก</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-06">2026-11-06</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="ภาพเปรียบเทียบก่อนและหลังแก้กล้องกลับตำแหน่งในเกมปั้นสไลม์ ภาพหน้าจอเดียวกันวางเรียงกันหกภาพ และมุมขวาล่างมีป้ายบอกว่าเป็นบิลด์สำหรับพัฒนา" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">ถ้าบิลด์สำหรับทดสอบมีแค่บิลด์เต็มที่อบแมพและรันเช็กให้ครบทุกอย่าง การเช็กบั๊กหนึ่งตัวก็ใช้ 40 นาที แต่ถ้าแก้แค่โค้ด บิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ DLL ทำการเช็กเดียวกันได้ใน 5 วินาที ควรวางวงจรทดสอบโดยเริ่มจากบิลด์เร็วก่อน แล้วรันบิลด์เต็มแค่ครั้งสุดท้ายครั้งเดียว</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">27 ตุลาคม ประโยคเดิมโผล่มาสองรอบ</a></li><li><a href="#s2">สิ่งที่อยู่ระหว่าง 40 นาทีกับ 5 วินาที</a></li><li><a href="#s3">ใน 1 วันแก้ได้กี่รอบ</a></li><li><a href="#s4">สาเหตุคือลำดับ</a></li><li><a href="#s5">ลำดับที่วางตั้งแต่วันแรกกับเป้าหมายทดสอบใหม่</a></li><li><a href="#s6">สิ่งที่ยังแก้ไม่ได้</a></li></ol></nav>
+    <section id="s1"><h2>27 ตุลาคม ประโยคเดิมโผล่มาสองรอบ</h2>
+<p>วันนั้นเป็นวันที่ผมแก้บั๊กตัวเครื่องทดสอบโดนตัดสิทธิ์ พอแก้เสร็จก็สั่งบิลด์เพื่อเช็ก แต่เป็นบิลด์เต็มที่อบแมพ 5 แมพแล้วรันเช็กต่อ ใช้เวลารอบละ 40 นาที</p>
+<p>ตอน 16:51 มีเสียงบ่นออกมาว่า «ทำไมนานขนาดนี้ ใช้โหมดพัฒนาแทนบิลด์ไม่ได้เหรอ» ตอน 18:07 ก็มีอีกรอบว่า «นานจริง ๆ ช่วยทำให้เร็วหน่อย» สองรอบนี้พูดถูกทั้งคู่</p>
+<p>หลังจากนั้นผมลองรันสคริปต์บิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ DLL เมื่อมีแค่โค้ดเปลี่ยน มันเสร็จใน 5 วินาที ทางนี้มีมาตั้งแต่แรก แต่ผมไม่เคยใช้</p>
+</section>
+<section id="s2"><h2>สิ่งที่อยู่ระหว่าง 40 นาทีกับ 5 วินาที</h2>
+<p>ถ้าแยกงานของบิลด์เต็มออกมา จะได้ อบแมพ สร้างตัวเล่น และรันดูว่าเกมขึ้นไหม ก่อนปล่อยจริงต้องใช้ครบทุกอย่าง</p>
+<p>แต่ครั้งนี้สิ่งที่เปลี่ยนคือโค้ดตัดสินสิทธิ์ไม่กี่บรรทัด แมพไม่ได้เปลี่ยนเลย แต่ก็อบใหม่ทั้ง 5 แมพ สิ่งที่ผมอยากเช็กมีข้อเดียวคือ «โค้ดที่แก้ทำงานถูกไหม» และผมรอทุกอย่างที่เหลืออีก 40 นาทีเพื่อดูแค่นั้น</p>
+<p>บิลด์เร็วตัดขั้นตอนพวกนั้นออก คอมไพล์เฉพาะสคริปต์ที่เปลี่ยนเป็น DLL และใช้ผลที่อบไว้แล้วต่อ การเช็กแบบเดียวกันใช้ 5 วินาที</p>
+<div class="tbl"><table><thead><tr><th></th><th>บิลด์เต็ม</th><th>บิลด์เร็ว</th></tr></thead><tbody><tr><td>งานที่ทำ</td><td>อบแมพ 5 แมพ + สร้างตัวเล่น + รันเช็ก</td><td>คอมไพล์ DLL ของสคริปต์ที่เปลี่ยน</td></tr><tr><td>เวลาที่ใช้</td><td>ประมาณ 40 นาที</td><td>ประมาณ 5 วินาที</td></tr><tr><td>ใช้เมื่อ</td><td>ก่อนปล่อยจริง · แมพเปลี่ยน</td><td>เมื่อเปลี่ยนแค่โค้ด</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>ใน 1 วันแก้ได้กี่รอบ</h2>
+<p>ลองคำนวณเอง สมมติใช้เวลา 8 ชั่วโมงเต็มไปกับการบิลด์อย่างเดียว บิลด์ 40 นาทีก็ได้แค่ 12 รอบกว่า ๆ นั่นคือวงจรเช็ก แก้ แล้วเช็กใหม่ ทำได้ไม่เกิน 12 รอบต่อวัน ส่วนบิลด์ 5 วินาที หนึ่งรอบใช้ไม่ถึง 1 นาที</p>
+<p>บั๊กไม่ค่อยหายในครั้งเดียว แก้แล้วผิด แก้ใหม่ ผิดอีก จำนวนรอบก็คือจำนวนบั๊กที่จัดการได้ในหนึ่งวัน สิ่งที่ผมเสียไปวันนั้นไม่ใช่แค่ 40 นาที แต่เป็นรอบส่วนใหญ่ที่ควรทำได้ทั้งวัน</p>
+<p>ตัวเลขนี้คำนวณจาก 40 นาที 5 วินาที และสมมติฐาน 8 ชั่วโมงที่เขียนไว้ในไดอารี่ ส่วนที่ว่าจริง ๆ วันนั้นรันไปกี่รอบ ผมไม่ได้นับเก็บไว้</p>
+<figure><img src="/blog/img/build-40-min-vs-5-sec/verify.jpg" alt="ภาพหน้าจอออเดอร์แรกของเกมปั้นสไลม์สี่ภาพ ใต้ข้อความแนะนำเดียวกัน แป้งรูปดาวยืดและหดตัว" loading="lazy" decoding="async"><figcaption>ภาพที่ใช้ดูว่าแก้แล้วได้ผลจะถ่ายทีละหลายภาพ ถ้าวงจรใช้ 40 นาที ภาพเดียวนี้ก็ 40 นาที</figcaption></figure></section>
+<section id="s4"><h2>สาเหตุคือลำดับ</h2>
+<p>ตอนวางวงจรทดสอบครั้งแรก ผมไม่ได้วางลำดับแบบ «บิลด์เร็วก่อน บิลด์เต็มทีหลัง» มีแค่บิลด์เต็มอย่างเดียว บิลด์เร็วเพิ่งมาเกิดหลังหงุดหงิดแล้ว พร้อมสวิตช์โหมดพัฒนา</p>
+<p>ไม่ได้จะโทษใคร นี่เป็นเรื่องโครงสร้าง วงจรทดสอบที่ช้าทำให้คนเช็กน้อยลง พอเช็กน้อยลงก็ไม่รู้ว่าที่แก้ถูกไหมแต่ก็ไปทำงานอื่นต่อ วงจรที่ช้าไม่ได้จบแค่ความช้า แต่ทำให้เราเลิกเช็กไปเลย</p>
+</section>
+<section id="s5"><h2>ลำดับที่วางตั้งแต่วันแรกกับเป้าหมายทดสอบใหม่</h2>
+<p>ตั้งแต่วันนั้น เป้าหมายทดสอบใหม่ทุกตัวผมวางวงจรตามลำดับนี้</p>
+<p>ชื่อฟีเจอร์ต่างกันไปตามเอนจิน แต่มีทางลัดคล้ายกัน ใน Unity มีตัวเลือกบิลด์เฉพาะสคริปต์ใน development build และมีตัวเลือก Play Mode ในเอดิเตอร์ที่ข้ามการรีโหลดโดเมนได้ ไม่ว่าทางไหน หลักการเดียวกันคือ สร้างทางที่ทำใหม่เฉพาะส่วนที่เปลี่ยนตั้งแต่วันแรก</p>
+<ul><li>วันแรก: ทำทางที่รันเวอร์ชันที่เปลี่ยนแค่โค้ดได้ภายในไม่กี่วินาทีก่อน (บิลด์เร็ว หรือรันในเอดิเตอร์ทันที)</li><li>ลำดับสอง: สวิตช์โหมดพัฒนา ปิดสิ่งที่ไม่เกี่ยวกับการเช็ก เช่น การอบแมพ ฉากยาว และโฆษณา</li><li>ลำดับสุดท้าย: รันบิลด์เต็มเฉพาะก่อนปล่อยจริงและวันที่แมพเปลี่ยน</li><li>วัดไว้หนึ่งครั้งว่าการเช็กแต่ละวงจรใช้กี่วินาที</li></ul>
+</section>
+<section id="s6"><h2>สิ่งที่ยังแก้ไม่ได้</h2>
+<p>สคริปต์บิลด์เร็วกับสวิตช์โหมดพัฒนามีแล้ว แต่กฎหรือตัวตรวจที่บังคับให้เป้าหมายทดสอบใหม่วางบิลด์เร็วตั้งแต่วันแรกยังไม่มี ตอนนี้เป็นแค่คำสัญญาที่จดไว้ในทิกเก็ตใบเดียว ว่าเป้าหมายทดสอบถัดไปจะวางตั้งแต่วันแรกจริงไหม ผมจะเช็กตอนนั้น</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>บิลด์เกมนานเกินไป ลดเวลาอย่างไรดี?</summary><p>ลองแยกงานของบิลด์เต็มออกมาดู ถ้าแก้แค่โค้ด ไม่จำเป็นต้องอบแมพหรือประมวลผลแอสเซ็ตใหม่ ทำบิลด์เร็วที่คอมไพล์เฉพาะสคริปต์ที่เปลี่ยนแยกไว้ แล้วรันบิลด์เต็มเฉพาะก่อนปล่อยจริง การเช็กหนึ่งครั้งก็ลดจาก 40 นาทีเหลือ 5 วินาทีได้</p></details><details><summary>มีวิธีบิลด์เฉพาะสคริปต์ไหม?</summary><p>Unity มีตัวเลือกบิลด์เฉพาะสคริปต์ใน development build โดยต้องมีตัวเล่นที่เคยสร้างไว้แล้ว ในเอดิเตอร์ก็ใช้ตัวเลือก Play Mode ข้ามการรีโหลดโดเมนได้ ชื่อฟีเจอร์ต่างกันไปตามเอนจิน ลองค้นคำว่า incremental build หรือ scripts only build ในเอกสารของเอนจินที่ใช้</p></details><details><summary>ใช้แค่บิลด์เร็วอย่างเดียวได้ไหม?</summary><p>ไม่ได้ บิลด์เร็วไว้เช็กโค้ด จึงไม่เห็นแมพ แอสเซ็ต และการรันตัวเล่นจริง ก่อนปล่อยจริงและวันที่แมพเปลี่ยน ควรรันบิลด์เต็มสักครั้งเพื่อเทียบสองทางให้ตรงกัน</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/build-40-min-vs-5-sec/" hreflang="en" lang="en">English</a><a href="/ko/blog/build-40-min-vs-5-sec/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/build-40-min-vs-5-sec/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/build-40-min-vs-5-sec/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
