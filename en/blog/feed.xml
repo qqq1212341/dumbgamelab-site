@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>The Olympics Once Gave Gold Medals for Poems and Paintings</title>
+    <link>https://dumbgamelab.com/en/blog/olympic-art/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/olympic-art/</guid>
+    <pubDate>Sat, 07 Nov 2026 15:00:00 GMT</pubDate>
+    <description>From 1912 to 1948 the Olympics held art competitions, and Coubertin won the 1912 literature gold with a poem entered under pseudonyms.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/coubertin.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>What is a tycoon game? You are not collecting money, you are growing a shop</title>
     <link>https://dumbgamelab.com/en/blog/what-is-a-tycoon-game/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/what-is-a-tycoon-game/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
     <description>People are tallest in the morning and a little shorter by the afternoon. In space, they get about 2.5 cm taller.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/height-astronaut.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Finished Kairosoft? 14 games to play next, sorted by what you loved</title>
-    <link>https://dumbgamelab.com/en/blog/best-kairosoft-alternatives/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/best-kairosoft-alternatives/</guid>
-    <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
-    <description>If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</description>
   </item>
 </channel>
 </rss>
