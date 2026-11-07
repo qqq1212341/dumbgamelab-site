@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>タイクーンとは？お金持ちを育てるゲームではなく、お店を育てるゲーム</title>
+    <link>https://dumbgamelab.com/ja/blog/what-is-a-tycoon-game/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-tycoon-game/</guid>
+    <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
+    <description>タイクーンゲームとは、お店や事業を自分で育ててお金を稼ぐ経営シミュレーションのこと。タイクーンが日本語の大君から来た言葉であること、1990年のレールロード・タイクーン、ロブロックスのタイクーンとの違いまで、ゲーム画面で解説します。</description>
+  </item>
+  <item>
     <title>宇宙に1か月いると身長が2.5cm伸びる</title>
     <link>https://dumbgamelab.com/ja/blog/space-taller/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-taller/</guid>
@@ -223,14 +230,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>宇宙飛行士はuniverseには行けない。もうその中にいるからだ。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ラッコは手をつないで眠る</title>
-    <link>https://dumbgamelab.com/ja/blog/sea-otter/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/sea-otter/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ラッコは流されないように手をつないで眠り、わきの下にお気に入りの石を入れて持ち歩く。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
