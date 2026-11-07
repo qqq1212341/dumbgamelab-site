@@ -23,7 +23,7 @@
 .a-press { background: var(--navy); color: var(--white); padding: 110px 0; }
 .press-wall { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
 .pw { display: flex; flex-direction: column; gap: 10px; text-decoration: none; background: linear-gradient(160deg, var(--navy3), var(--navy2)); border: 1px solid rgba(255,255,255,.1); border-radius: var(--r); padding: 36px 34px; transition: transform .2s, border-color .2s; }
-.pw:hover { transform: translateY(-4px); border-color: var(--y); }
+@media (hover: hover) { .pw:hover { transform: translateY(-4px); border-color: var(--y); } }
 .pw-outlet { font-family: var(--display); font-size: clamp(32px, 4vw, 44px); color: var(--y); line-height: 1; }
 .pw-local { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.55); letter-spacing: .04em; }
 .pw q { font-size: 21px; line-height: 1.45; font-weight: 700; color: var(--white); margin: 8px 0 6px; }
@@ -41,7 +41,7 @@
 .gc p { margin: 0 0 18px; color: var(--ink-soft); font-size: 15px; }
 .gc .stores { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { display: inline-block; text-decoration: none; font-size: 13px; font-weight: 800; padding: 8px 14px; border-radius: 999px; background: var(--navy); color: var(--white); }
-.pill:hover { background: var(--purple); }
+@media (hover: hover) { .pill:hover { background: var(--purple); } }
 .where { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 40px; }
 .where span { font-weight: 800; color: var(--ink-soft); margin-right: 6px; }
 .where b { font-size: 15px; padding: 10px 18px; border-radius: 14px; background: var(--white); border: 1px solid var(--line); }

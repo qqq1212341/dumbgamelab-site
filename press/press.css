@@ -15,7 +15,7 @@
 .facts .sub { color: var(--ink-soft); font-size: 14px; }
 .cov { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .cov-card { display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: 20px; background: var(--white); border: 2px solid var(--line); text-decoration: none; transition: transform .15s, border-color .15s; }
-.cov-card:hover { transform: translateY(-3px); border-color: var(--y); }
+@media (hover: hover) { .cov-card:hover { transform: translateY(-3px); border-color: var(--y); } }
 .cov-outlet { font-family: var(--display); font-size: 24px; } .cov-outlet em { font-style: normal; font-family: var(--body); font-weight: 800; font-size: 16px; color: var(--ink-soft); }
 .cov-title { font-weight: 700; } .cov-meta { color: var(--ink-soft); font-size: 14px; }
 .f-head { display: flex; gap: 24px; align-items: center; margin-bottom: 32px; }
@@ -23,7 +23,7 @@
 .f-icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 8px 0 rgba(0,0,0,.08); }
 .stores { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { display: inline-block; padding: 7px 14px; border-radius: 999px; background: var(--navy); color: var(--white); text-decoration: none; font-weight: 800; font-size: 14px; }
-.pill:hover { background: var(--purple); }
+@media (hover: hover) { .pill:hover { background: var(--purple); } }
 .feat { padding-left: 20px; } .feat li { margin-bottom: 6px; }
 .shots { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 36px; }
 .shots img { width: 100%; border-radius: 16px; display: block; box-shadow: 0 10px 24px rgba(13,21,48,.15); }
