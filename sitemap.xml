@@ -2828,4 +2828,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/"/>
   </url>
+  <url><loc>https://dumbgamelab.com/about/</loc></url>
+  <url><loc>https://dumbgamelab.com/ko/about/</loc></url>
 </urlset>
