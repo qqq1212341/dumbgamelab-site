@@ -1,0 +1,27 @@
+/* /games/<id>/ — home.css 위에 얹는다(색·글꼴·nav·버튼·footer 는 home.css). games.mjs 가 사이트로 복사한다. */
+.gp { background: var(--cream); }
+.gp h1, .gp h2, .gp p, .gp li { word-break: keep-all; overflow-wrap: break-word; }
+.gp-in { max-width: 1080px; margin: 0 auto; padding: 120px 24px 80px; }
+.gp-hero { display: flex; gap: 32px; align-items: flex-start; }
+.gp-icon { flex: none; border-radius: 28px; box-shadow: 0 8px 24px rgba(13,21,48,.18); }
+.gp-hero h1 { font-size: clamp(36px, 6vw, 64px); margin: 6px 0 16px; color: var(--ink); }
+.gp-hero .lead { color: var(--ink-soft); font-size: 18px; line-height: 1.6; margin-bottom: 24px; }
+.gp .kicker { color: var(--purple); }
+.gp-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.pill { display: inline-block; text-decoration: none; font-size: 14px; font-weight: 800; padding: 10px 16px; border-radius: 999px; background: var(--navy); color: var(--white); }
+@media (hover: hover) { .pill:hover { background: var(--purple); } }
+.gp-legal { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 20px; font-size: 14px; font-weight: 700; }
+.gp-legal a { color: var(--ink-soft); }
+.gp-shots { display: flex; gap: 14px; overflow-x: auto; margin: 56px 0 0; padding-bottom: 8px; }
+.gp-shots img { flex: none; height: 420px; border-radius: 18px; box-shadow: 0 8px 22px rgba(13,21,48,.12); }
+.gp-feat, .gp-help { margin-top: 56px; }
+.gp-feat h2, .gp-help h2 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 16px; color: var(--ink); }
+.gp-feat ul { padding-left: 20px; line-height: 1.8; color: var(--ink); font-size: 17px; }
+.gp-help p { color: var(--ink); font-size: 17px; line-height: 1.7; }
+.gp-help a { color: var(--purple); font-weight: 700; }
+.gp .note { font-size: 13px; color: var(--ink-soft); margin-top: 12px; }
+@media (max-width: 640px) {
+  .gp-hero { flex-direction: column; gap: 18px; }
+  .gp-icon { width: 96px; height: 96px; }
+  .gp-shots img { height: 340px; }
+}
