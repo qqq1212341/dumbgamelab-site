@@ -143,6 +143,94 @@
   }
   if (local) hardMute();
 
+  /* ── ★★ 게임 시간 멈춤 버스 `DGL_PAUSE` (2026-11-02 사장님 «다른 탭으로 가면 전투 멈추고 소리 멈추기 — 내 게임들이 이걸 맨날 실수해») ──
+     소리만 멈추면 반쪽이다 — 앱을 내렸다 돌아오면 그 사이 전투·웨이브·쿨다운이 흘러가 있었다(첫 프레임 dt 가 «밖에 있던 시간» 통째).
+     멈추는 이유는 둘이고 출처는 여기 하나다:
+       · 'app' — 앱 밖으로 나감(홈·다른 앱·알림창·전화·화면 꺼짐). 아래 앱 수명주기가 직접 켜고 끈다. 게임은 안 건드린다.
+       · 그 밖의 이름(보통 'ui') — 게임 안 다른 탭·창. 전투 중 상점·가방·설정·팝업을 여는 셸이 `DGL_PAUSE.set('ui', true/false)`.
+     게임 루프는 한 줄로 붙는다: `dt = DGL_PAUSE.step(rawDt, 최대치)` — 멈춤이면 0, 돌아온 첫 프레임의 큰 dt 는 최대치로 자른다.
+     소리는 `DGL_PAUSE.on(function (paused) { … })` 로 전투 효과음을 멈춘다(BGM 은 장르 관례대로).
+     재는 자(업무폰): `DGL_PAUSE.clock(function () { return 전투시간초 })` 를 걸면 나갈 때·돌아올 때·돌아온 1초 뒤 게임 시간을
+     콘솔(`DGL_CLOCK out|in|after t=…`)에 찍고 `core/tools/phone/bg-audio.mjs --clock` 이 logcat 으로 «밖에 있던 동안 안 흘렀나»를 잰다.
+     게이트 = `core/tools/check-pause-on-blur.mjs` */
+  var pauseBus = (function () {
+    var reasons = {};
+    var subs = [];
+    var clockFn = null;
+    var reasonSubs = [];   // 이유 하나가 켜지고 꺼질 때마다(멈춤 여부가 그대로여도) — 소리 재우기('ad')가 듣는다
+    function list() {
+      return Object.keys(reasons);
+    }
+    function paused() {
+      return list().length > 0;
+    }
+    function log(tag) {
+      if (!clockFn) return;
+      try {
+        console.log('DGL_CLOCK ' + tag + ' t=' + Number(clockFn()).toFixed(3));
+      } catch (e) {}
+    }
+    function set(reason, on) {
+      reason = String(reason || 'ui');
+      on = !!on;
+      if (!!reasons[reason] === on) return;
+      var was = paused();
+      if (on) reasons[reason] = true;
+      else delete reasons[reason];
+      if (reason === 'app') {
+        if (on) log('out');
+        else {
+          log('in');
+          setTimeout(function () { log('after'); }, 1000);
+        }
+      }
+      reasonSubs.forEach(function (fn) {
+        try {
+          fn(reason, on);
+        } catch (e) {}
+      });
+      var now = paused();
+      if (was === now) return;
+      subs.slice().forEach(function (fn) {
+        try {
+          fn(now, list());
+        } catch (e) {}
+      });
+    }
+    return {
+      /** 멈춤 이유 켜기/끄기 — 'app' 은 이 파일이 쥔다. 게임 안 탭·창은 'ui'(또는 다른 이름) */
+      set: set,
+      /** 지금 하나라도 멈춤 이유가 있나 */
+      paused: paused,
+      /** 켜진 이유 목록 */
+      reasons: list,
+      /** 멈춤이 바뀔 때 fn(paused, reasons) — 해제 함수를 돌려준다 */
+      on: function (fn) {
+        subs.push(fn);
+        return function () {
+          var i = subs.indexOf(fn);
+          if (i >= 0) subs.splice(i, 1);
+        };
+      },
+      /** 이유 하나가 바뀔 때마다 fn(reason, on) — 멈춤 여부가 그대로여도 부른다 */
+      onReason: function (fn) {
+        reasonSubs.push(fn);
+      },
+      /** 게임 루프의 dt — 멈춤이면 0, 아니면 max 로 자른다(단위는 부르는 쪽 것 그대로) */
+      step: function (dt, max) {
+        if (paused()) return 0;
+        dt = Number(dt) || 0;
+        if (dt < 0) return 0;
+        return max != null && dt > max ? max : dt;
+      },
+      /** 재는 자가 읽을 게임 시간(초) — 전투·판이 흐른 시간을 돌려주는 함수 */
+      clock: function (fn) {
+        clockFn = typeof fn === 'function' ? fn : null;
+      },
+    };
+  })();
+  window.DGL_PAUSE = pauseBus;
+
   /* 앱을 떠나면 모든 웹 게임의 소리를 멈춘다. Phaser/바닐라 게임이 각각 수명주기를
      배선하지 않아도 Web Audio 와 <audio> 양쪽에 적용된다. */
   (function installAppAudioLifecycle() {
@@ -150,6 +238,9 @@
     var contexts = [];
     var suspended = [];
     var pausedMedia = [];
+    /* play() 를 부른 미디어 전부 — `new Audio()` 는 문서에 안 붙어서 querySelectorAll 로는 못 찾는다
+       (스플래시 징글이 그렇다 · 방구석뽑기왕 업무폰 2026-10-28). 그래서 재생을 부른 쪽을 직접 기억한다. */
+    var knownMedia = [];
     var inactive = false;
     /* ★ 아이폰은 오디오 장치를 못 잡으면(통화 중 · 다른 앱이 소리를 쥠 · 복귀 직후) `resume()` 이
        «Failed to start the audio device» 로 거절한다. Phaser 는 포커스·복귀 때마다 그 약속을
@@ -183,9 +274,10 @@
         return nativeResume.apply(context, arguments);
       };
     }
-    if (window.HTMLMediaElement && HTMLMediaElement.prototype.play) {
-      var nativePlay = HTMLMediaElement.prototype.play;
-      HTMLMediaElement.prototype.play = function () {
+    if (window.HTMLMediaElement && window.HTMLMediaElement.prototype.play) {
+      var nativePlay = window.HTMLMediaElement.prototype.play;
+      window.HTMLMediaElement.prototype.play = function () {
+        if (knownMedia.indexOf(this) < 0) knownMedia.push(this);
         if (inactive) {
           if (pausedMedia.indexOf(this) < 0) pausedMedia.push(this);
           return Promise.resolve();
@@ -202,13 +294,38 @@
         holdWhileInactive(context);
         contexts.push(context);
         if (inactive && context.suspend) context.suspend().catch(function () {});
+        /* ★ stop() 은 그 순간 'running' 인 것만 재운다. 첫 터치의 resume() 이 아직 진행 중(웹뷰가 오디오 장치를 여는 중)일 때
+           앱을 내리면 그때는 'suspended' 라 건너뛰고, 곧 resume 이 끝나 뒤에서 소리가 났다(방구석뽑기왕 업무폰 2026-10-28 ·
+           bg-audio 첫 실행 2/2 재현). 상태가 어떤 길로 켜지든 쉬는 중이면 바로 다시 재운다 — 돌아오면 resume() 이 켠다. */
+        if (context.addEventListener) {
+          context.addEventListener('statechange', function () {
+            if (!inactive || context.state !== 'running') return;
+            if (suspended.indexOf(context) < 0) suspended.push(context);
+            context.suspend().catch(function () {});
+          });
+        }
         return context;
       }
       TrackedContext.prototype = NativeContext.prototype;
       window[name] = TrackedContext;
     });
-    function stop() {
-      if (inactive) return;
+    /* ★ 소리를 재우는 이유는 둘이다 — 'app'(앱 밖) · 'ad'(광고 도중). 포털 쉼이 광고 앞뒤로 `DGL_PAUSE.set('ad', …)` 를 켜고 끈다.
+       Phaser 매니저만 끄던 때는 DOM 게임의 `new Audio()` BGM 이 광고 위로 계속 났다(한 번뿐인 인생 GamePix 반려 2026-11-05).
+       둘 중 하나라도 켜져 있으면 잠들고, 둘 다 풀려야 깬다 — 광고 중 앱을 내렸다 와도 광고가 끝나기 전엔 안 켜진다. */
+    var holds = {};
+    function hold(reason, on) {
+      if (!!holds[reason] === on) return;
+      if (on) holds[reason] = true;
+      else delete holds[reason];
+      if (reason === 'app') pauseBus.set('app', on);
+      var want = Object.keys(holds).length > 0;
+      if (want && !inactive) silence();
+      else if (!want && inactive) wake();
+    }
+    pauseBus.onReason(function (reason, on) { if (reason === 'ad') hold('ad', on); });
+    function stop() { hold('app', true); }
+    function resume() { if (!document.hidden) hold('app', false); }
+    function silence() {
       inactive = true;
       contexts.forEach(function (context) {
         if (context.state === 'running') {
@@ -216,18 +333,22 @@
           context.suspend().catch(function () {});
         }
       });
-      document.querySelectorAll('audio,video').forEach(function (media) {
-        if (!media.paused) { pausedMedia.push(media); media.pause(); }
+      var media = knownMedia.slice();
+      document.querySelectorAll('audio,video').forEach(function (m) { if (media.indexOf(m) < 0) media.push(m); });
+      media.forEach(function (m) {
+        /* 멈출 때 문서에 붙어 있었나를 같이 적는다 — 붙어 있던 게 그새 떨어졌으면 버린 것이라 다시 안 켠다 */
+        if (!m.paused) { m.__dglWasConnected = !!m.isConnected; pausedMedia.push(m); m.pause(); }
       });
+      /* 끝난 것은 잊는다 — 계속 쌓이지 않게 */
+      knownMedia = knownMedia.filter(function (m) { return !m.ended; });
     }
-    function resume() {
-      if (!inactive || document.hidden) return;
+    function wake() {
       inactive = false;
       suspended.splice(0).forEach(function (context) {
         if (context.state === 'suspended') context.resume().catch(function () {});
       });
       pausedMedia.splice(0).forEach(function (media) {
-        if (media.isConnected) media.play().catch(function () {});
+        if (media.isConnected || !media.__dglWasConnected) media.play().catch(function () {});
       });
     }
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else resume(); });
