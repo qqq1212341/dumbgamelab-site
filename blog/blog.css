@@ -62,8 +62,8 @@ th { background: var(--navy); color: #fff; font-weight: 700; }
 .gb-title { font-size: 24px; font-weight: 900; margin: 2px 0 4px !important; }
 .gb-hook { color: rgba(255,255,255,.8) !important; font-size: 16px; }
 .gb-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-.store { display: inline-flex; padding: 11px 20px; border-radius: 999px; background: var(--y); color: var(--navy); font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 4px 0 #b88d00; }
-.store:active { transform: translateY(2px); box-shadow: 0 2px 0 #b88d00; }
+.store { display: inline-flex; padding: 11px 20px; border-radius: 999px; background: var(--y); color: var(--navy); font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 2px 0 #b88d00; }
+.store:active { transform: translateY(2px); box-shadow: 0 0 0 #b88d00; }
 .store.ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.35); box-shadow: none; }
 
 .cards { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
