@@ -157,6 +157,7 @@
     var reasons = {};
     var subs = [];
     var clockFn = null;
+    var reasonSubs = [];   // 이유 하나가 켜지고 꺼질 때마다(멈춤 여부가 그대로여도) — 소리 재우기('ad')가 듣는다
     function list() {
       return Object.keys(reasons);
     }
@@ -183,6 +184,11 @@
           setTimeout(function () { log('after'); }, 1000);
         }
       }
+      reasonSubs.forEach(function (fn) {
+        try {
+          fn(reason, on);
+        } catch (e) {}
+      });
       var now = paused();
       if (was === now) return;
       subs.slice().forEach(function (fn) {
@@ -205,6 +211,10 @@
           var i = subs.indexOf(fn);
           if (i >= 0) subs.splice(i, 1);
         };
+      },
+      /** 이유 하나가 바뀔 때마다 fn(reason, on) — 멈춤 여부가 그대로여도 부른다 */
+      onReason: function (fn) {
+        reasonSubs.push(fn);
       },
       /** 게임 루프의 dt — 멈춤이면 0, 아니면 max 로 자른다(단위는 부르는 쪽 것 그대로) */
       step: function (dt, max) {
@@ -299,10 +309,24 @@
       TrackedContext.prototype = NativeContext.prototype;
       window[name] = TrackedContext;
     });
-    function stop() {
-      if (inactive) return;
+    /* ★ 소리를 재우는 이유는 둘이다 — 'app'(앱 밖) · 'ad'(광고 도중). 포털 쉼이 광고 앞뒤로 `DGL_PAUSE.set('ad', …)` 를 켜고 끈다.
+       Phaser 매니저만 끄던 때는 DOM 게임의 `new Audio()` BGM 이 광고 위로 계속 났다(한 번뿐인 인생 GamePix 반려 2026-11-05).
+       둘 중 하나라도 켜져 있으면 잠들고, 둘 다 풀려야 깬다 — 광고 중 앱을 내렸다 와도 광고가 끝나기 전엔 안 켜진다. */
+    var holds = {};
+    function hold(reason, on) {
+      if (!!holds[reason] === on) return;
+      if (on) holds[reason] = true;
+      else delete holds[reason];
+      if (reason === 'app') pauseBus.set('app', on);
+      var want = Object.keys(holds).length > 0;
+      if (want && !inactive) silence();
+      else if (!want && inactive) wake();
+    }
+    pauseBus.onReason(function (reason, on) { if (reason === 'ad') hold('ad', on); });
+    function stop() { hold('app', true); }
+    function resume() { if (!document.hidden) hold('app', false); }
+    function silence() {
       inactive = true;
-      pauseBus.set('app', true);
       contexts.forEach(function (context) {
         if (context.state === 'running') {
           suspended.push(context);
@@ -318,10 +342,8 @@
       /* 끝난 것은 잊는다 — 계속 쌓이지 않게 */
       knownMedia = knownMedia.filter(function (m) { return !m.ended; });
     }
-    function resume() {
-      if (!inactive || document.hidden) return;
+    function wake() {
       inactive = false;
-      pauseBus.set('app', false);
       suspended.splice(0).forEach(function (context) {
         if (context.state === 'suspended') context.resume().catch(function () {});
       });
