@@ -1,0 +1,49 @@
+{
+  "category": "Body",
+  "title": "You Can't Tickle Yourself, but a Robot Delayed by 0.2 Seconds Can",
+  "hook": "Your brain predicts a self-made tickle in advance and cuts it down",
+  "open": {
+    "title": "Tickling yourself does nothing, but a robot in the middle changed that",
+    "line": "No matter what you try, you can't tickle yourself. But when scientists put a robot in between, the result changed. What did they change?"
+  },
+  "summary": "A touch you make yourself is predicted by the brain, so it feels weaker. Add a robot and a 0.2 second delay, and it felt just like someone else's tickle.",
+  "panels": [
+    {
+      "text": [
+        "It's hard to stand when someone else tickles you with a feather.",
+        "But doing the same thing yourself is far less ticklish."
+      ]
+    },
+    {
+      "text": "Totally true. It doesn't tickle at all when I do it."
+    },
+    {
+      "text": [
+        "The research team tested this with robots.",
+        "When the participant moved one robot with the left hand, another robot brushed a soft piece of foam across the right palm."
+      ]
+    },
+    {
+      "text": [
+        "A touch they made themselves felt less ticklish and less intense than one someone else gave."
+      ]
+    },
+    {
+      "text": [
+        "The brain, especially the cerebellum, seems to predict the feeling your own movement will cause and cut it down."
+      ]
+    },
+    {
+      "text": [
+        "In fact, the prediction only had to be thrown off a little.",
+        "When the robot moved 0.2 seconds late, the touch could not be told apart from someone else's tickling."
+      ]
+    },
+    {
+      "text": [
+        "Turning the stroke direction by 90 degrees did the same.",
+        "14 of the 16 participants said they did not notice the delay."
+      ]
+    }
+  ]
+}

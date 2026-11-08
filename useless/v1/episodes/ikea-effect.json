@@ -1,0 +1,83 @@
+{
+  "id": "ikea-effect",
+  "contentNotice": null,
+  "day": 57,
+  "category": "심리",
+  "title": "내가 조립한 상자에는 돈을 더 낸다",
+  "hook": "직접 조립한 사람은 똑같은 상자에 더 많은 돈을 불렀다",
+  "open": {
+    "title": "똑같은 상자인데, 직접 조립한 사람만 더 비싸게 샀다",
+    "line": "똑같은 수납 상자가 있다. 한쪽은 직접 조립했고 한쪽은 다 만든 걸 받았다. 값을 매기게 했더니 차이가 났다. 왜일까?"
+  },
+  "summary": "직접 조립한 이케아 상자에 사람들은 더 많은 돈을 냈다. 그런데 다 만들었다가 부수거나 끝내지 못하면 이 효과는 사라졌다.",
+  "cover": "ikea-effect",
+  "sources": [
+    {
+      "title": "Norton, Mochon, Ariely (2011) The IKEA Effect: When Labor Leads to Love, HBS Working Paper 11-091",
+      "url": "https://www.hbs.edu/ris/Publication%20Files/11-091.pdf"
+    },
+    {
+      "title": "Journal of Consumer Psychology 22(3), 2012",
+      "url": "https://doi.org/10.1016/j.jcps.2011.08.002"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "ikea-effect",
+      "text": [
+        "납작한 상자 속 가구를 끙끙대며 조립해 본 적 있을 거다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구팀이 대학생들에게 이케아 수납 상자를 줬다.",
+        "한쪽은 직접 조립했고 다른 쪽은 조립된 상자를 받았다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그 상자를 얼마에 사겠냐고 물었다.",
+        "직접 조립한 쪽은 평균 0.78달러, 받기만 한 쪽은 0.48달러를 불렀다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "내가 고생했으니까 더 귀한 거지."
+    },
+    {
+      "type": "image",
+      "img": "ikea-effect-cranes",
+      "text": [
+        "종이접기로도 해 봤다.",
+        "자기가 접은 작품에는 23센트, 남이 서툴게 접은 작품에는 5센트를 매겼다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "전문가가 접은 작품은 27센트였다.",
+        "내 서툰 작품을 전문가 작품과 거의 같게 쳐 준 셈이다.",
+        "연구팀은 이걸 이케아 효과라고 불렀다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "ikea-effect-lego",
+      "text": [
+        "사실은 고생만 한다고 되는 게 아니었다.",
+        "레고를 조립했다가 다시 분해하게 하자 이 효과가 사라졌다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "상자 조립을 마지막 두 단계 전에 멈추게 해도 그랬다.",
+        "끝까지 완성한 쪽은 1.46달러, 멈춘 쪽은 0.59달러를 불렀다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

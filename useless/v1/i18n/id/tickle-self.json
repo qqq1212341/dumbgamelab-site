@@ -1,0 +1,53 @@
+{
+  "category": "Tubuh",
+  "title": "Tangan Sendiri Tidak Bisa Menggelitik, tapi Kalau Robot Terlambat 0,2 Detik Jadi Geli",
+  "hook": "Rasa geli yang kita buat sendiri sudah diprediksi otak lalu dikurangi",
+  "open": {
+    "title": "Digelitik tangan sendiri tidak terasa apa-apa, tapi setelah robot disisipkan, hasilnya berubah",
+    "line": "Sekeras apa pun mencoba, kita tidak bisa menggelitik diri sendiri. Lalu para ilmuwan menyisipkan satu robot di tengahnya, dan hasilnya berubah. Apa yang mereka ubah?"
+  },
+  "summary": "Rasa geli yang dibuat sendiri diprediksi otak sehingga terasa lebih lemah. Saat robot menunda gerakan 0,2 detik, rasanya tidak bisa dibedakan dari digelitik orang lain.",
+  "panels": [
+    {
+      "text": [
+        "Kalau orang lain yang menggelitik, rasanya sulit ditahan.",
+        "Tapi kalau kita melakukan hal yang sama dengan tangan sendiri, rasanya jauh lebih tidak geli."
+      ]
+    },
+    {
+      "text": "Benar juga. Kalau aku yang lakukan, sama sekali nggak geli."
+    },
+    {
+      "text": [
+        "Tim peneliti menguji ini dengan robot.",
+        "Saat tangan kiri menggerakkan satu robot, robot lain menyapu telapak tangan kanan dengan potongan busa lembut."
+      ]
+    },
+    {
+      "text": [
+        "Rangsangan yang dibuat sendiri terasa kurang geli dan kurang kuat daripada yang diberikan orang lain."
+      ]
+    },
+    {
+      "text": [
+        "Tampaknya otak, terutama otak kecil, memprediksi sensasi dari gerakan kita lalu mengurangi sensasi itu."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata prediksi itu cukup dibuat meleset sedikit.",
+        "Saat robot bergerak terlambat 0,2 detik, rasanya tidak bisa dibedakan dari digelitik orang lain."
+      ]
+    },
+    {
+      "text": [
+        "Arah sentuhan diputar 90 derajat pun hasilnya sama.",
+        "Dari 16 peserta, 14 orang menjawab tidak merasakan adanya keterlambatan."
+      ]
+    }
+  ],
+  "sources": [
+    "Blakemore, Wolpert, Frith (1998) Central cancellation of self-produced tickle sensation, Nature Neuroscience",
+    "Blakemore, Frith, Wolpert (1999) Spatio-temporal prediction modulates the perception of self-produced stimuli, J Cogn Neurosci"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "category": "Animals",
+  "title": "Most Frogs Pull Their Eyeballs Into Their Mouths When They Swallow",
+  "hook": "When the northern leopard frog swallows prey, it shuts its eyes and pulls them down into its mouth",
+  "open": {
+    "title": "Frogs shut their eyes when they swallow, and those eyes have another job",
+    "line": "A frog shuts its eyes again and again while it swallows something. But they do more than close. Where do the eyes go?"
+  },
+  "summary": "Most frogs close their eyes when they swallow and pull them down into the mouth. The eyes seem to help push the food toward the throat.",
+  "panels": [
+    {
+      "text": [
+        "Most frogs close their eyes again and again while swallowing food."
+      ]
+    },
+    {
+      "text": "Maybe it's savoring the taste?"
+    },
+    {
+      "text": [
+        "In 2004, a research team filmed northern leopard frogs swallowing prey with X-ray video."
+      ]
+    },
+    {
+      "text": [
+        "It turned out the eyes don't just close.",
+        "The eyeballs and eye muscles seemed to sink deep into the mouth and touch the food."
+      ]
+    },
+    {
+      "text": [
+        "The team concluded that the eyes help push the food toward the throat."
+      ]
+    },
+    {
+      "text": [
+        "Even when the nerves to the muscles that pull both eyes in were cut, the frog could still swallow prey."
+      ]
+    },
+    {
+      "text": "So the eyes aren't needed, right?"
+    },
+    {
+      "text": [
+        "Instead, the swallows needed to get one prey down rose from 2.3 on average to 4.",
+        "That's 74% more gulping."
+      ]
+    }
+  ]
+}

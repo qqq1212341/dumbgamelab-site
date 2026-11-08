@@ -1,0 +1,61 @@
+{
+  "category": "Psikologi",
+  "title": "Orang Membayar Lebih untuk Kotak yang Mereka Rakit Sendiri",
+  "hook": "Yang merakit sendiri menawar lebih tinggi untuk kotak yang sama persis",
+  "open": {
+    "title": "Kotaknya sama persis, tapi yang merakit sendiri mau membayar lebih mahal",
+    "line": "Ada kotak penyimpanan yang sama persis. Satu kelompok merakitnya sendiri, kelompok lain menerima yang sudah jadi. Saat diminta menawar harga, hasilnya berbeda. Kenapa?"
+  },
+  "summary": "Orang membayar lebih untuk kotak IKEA rakitan sendiri. Tapi efeknya hilang kalau dibongkar lagi atau tidak selesai dirakit.",
+  "panels": [
+    {
+      "text": [
+        "Pasti pernah merakit furnitur dari kotak pipih sambil bersusah payah."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti memberi mahasiswa kotak penyimpanan IKEA.",
+        "Satu kelompok merakitnya sendiri, kelompok lain menerima kotak yang sudah dirakit."
+      ]
+    },
+    {
+      "text": [
+        "Mereka ditanya mau bayar berapa untuk kotaknya.",
+        "Yang merakit sendiri menawar rata-rata 0,78 dolar, yang hanya menerima 0,48 dolar."
+      ]
+    },
+    {
+      "text": "Sudah capek merakit, jadi lebih berharga dong."
+    },
+    {
+      "text": [
+        "Juga diuji dengan origami.",
+        "Lipatan sendiri dihargai 23 sen, lipatan kikuk orang lain 5 sen."
+      ]
+    },
+    {
+      "text": [
+        "Karya yang dilipat ahli dihargai 27 sen.",
+        "Artinya karya kikuk sendiri dihargai hampir sama dengan karya ahli.",
+        "Tim peneliti menamai ini efek IKEA."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata kerja keras saja tidak cukup.",
+        "Saat LEGO yang dirakit dibongkar lagi, efek ini hilang."
+      ]
+    },
+    {
+      "text": [
+        "Sama kalau perakitan kotak dihentikan dua langkah sebelum selesai.",
+        "Yang menyelesaikan menawar 1,46 dolar, yang berhenti 0,59 dolar."
+      ]
+    }
+  ],
+  "sources": [
+    "Norton, Mochon, Ariely (2011) The IKEA Effect: When Labor Leads to Love, HBS Working Paper 11-091",
+    "Journal of Consumer Psychology 22(3), 2012"
+  ]
+}

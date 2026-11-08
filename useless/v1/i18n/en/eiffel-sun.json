@@ -1,0 +1,54 @@
+{
+  "category": "Science",
+  "title": "The Top of the Eiffel Tower Draws a Small Circle Each Day to Dodge the Sun",
+  "hook": "On a clear day, the top of the Eiffel Tower moves in a circle about 15 cm across",
+  "open": {
+    "title": "The Eiffel Tower leans a little every sunny day, and the wind has nothing to do with it",
+    "line": "A 330 meter iron tower moves a little on clear days. It isn't the wind. So what is pushing it?"
+  },
+  "summary": "Only the side of the Eiffel Tower facing the sun expands, so the top leans away from the sun. On a clear day the top traces a circle about 15 cm across.",
+  "panels": [
+    {
+      "text": [
+        "On a clear day, the top of the Eiffel Tower doesn't stay still."
+      ]
+    },
+    {
+      "text": [
+        "The Eiffel Tower's ironwork weighs 7300 tons.",
+        "Iron expands when it's hot."
+      ]
+    },
+    {
+      "text": "So it grows taller in the heat?"
+    },
+    {
+      "text": [
+        "According to the official explanation, it does get taller.",
+        "By just a few millimeters."
+      ]
+    },
+    {
+      "text": [
+        "The bigger movement actually happens sideways.",
+        "The sun hits only one of the tower's four sides at a time."
+      ]
+    },
+    {
+      "text": [
+        "Only the sunny side expands, so the top leans away from the sun."
+      ]
+    },
+    {
+      "text": [
+        "As the sun crosses the sky, the top moves around with it.",
+        "On a clear day it traces a circle about 15 cm across."
+      ]
+    },
+    {
+      "text": [
+        "There is even a record that in the 1976 heat wave, the sway at the top reached 18 cm."
+      ]
+    }
+  ]
+}

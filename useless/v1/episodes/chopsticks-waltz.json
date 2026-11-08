@@ -1,0 +1,85 @@
+{
+  "id": "chopsticks-waltz",
+  "contentNotice": null,
+  "day": 52,
+  "category": "음악",
+  "title": "젓가락 행진곡을 쓴 사람은 16살 소녀였다",
+  "hook": "1877년 영국의 16살 유페미아 앨런이 남자 이름을 빌려 낸 곡이다",
+  "open": {
+    "title": "누구나 치는 이 곡, 악보 속 작곡가 이름은 가짜였다",
+    "line": "피아노를 못 쳐도 이 곡은 친다. 그런데 악보에 찍힌 작곡가는 세상에 없는 사람이었다. 진짜 주인은 누구였을까?"
+  },
+  "summary": "젓가락 행진곡은 1877년 16살 유페미아 앨런이 가명으로 낸 곡이다. 원래 제목은 찹 왈츠였고, 그녀가 출판한 곡은 이것 하나뿐이다.",
+  "cover": "chopsticks-waltz",
+  "sources": [
+    {
+      "title": "Wikipedia: Chopsticks (waltz)",
+      "url": "https://en.wikipedia.org/wiki/Chopsticks_(waltz)"
+    },
+    {
+      "title": "IMSLP: The Celebrated Chop Waltz (Allan, Euphemia)",
+      "url": "https://imslp.org/wiki/The_Celebrated_Chop_Waltz_(Allan,_Euphemia)"
+    },
+    {
+      "title": "Classic FM: The history of Chopsticks",
+      "url": "https://www.classicfm.com/discover-music/instruments/piano/history-of-chopsticks-music-euphemia-allen/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "chopsticks-waltz",
+      "text": [
+        "피아노 못 치는 사람도 손가락 두 개로 치는 곡이 있다.",
+        "우리가 젓가락 행진곡이라 부르는 그 곡이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "chopsticks-waltz-score",
+      "text": [
+        "1877년 악보에 찍힌 작곡가 이름은 아서 드 룰리였다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "어디 유명한 외국 작곡가인가 봐."
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 영국의 16살 소녀 유페미아 앨런이 쓴 가짜 이름이었다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "Chop",
+      "mean": "원래 제목 ‘찹 왈츠’의 찹. 내리찍는다는 뜻이다"
+    },
+    {
+      "type": "text",
+      "text": [
+        "악보에는 두 손을 옆으로 세우고 새끼손가락을 아래로 두고 치라고 적혀 있었다.",
+        "건반을 내리찍는 그 손 동작이 곡 이름이 됐다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "젓가락이 아니라 손날로 내리찍는 곡이었네."
+    },
+    {
+      "type": "text",
+      "text": [
+        "그녀가 세상에 출판한 곡은 이것 하나뿐이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그리고 이 악보를 펴낸 출판업자는 그녀의 오빠였다.",
+        "오빠 이름은 진짜로 모차르트였다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

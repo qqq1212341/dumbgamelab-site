@@ -1,0 +1,59 @@
+{
+  "category": "Sains",
+  "title": "Puncak Menara Eiffel Menjauhi Sinar Matahari dan Menggambar Lingkaran Kecil Setiap Hari",
+  "hook": "Pada hari cerah, puncak Menara Eiffel bergerak membentuk lingkaran berdiameter sekitar 15 cm",
+  "open": {
+    "title": "Menara Eiffel diam-diam memutar kepalanya setiap hari cerah",
+    "line": "Menara besi setinggi 330 m ini bergerak sedikit demi sedikit pada hari cerah. Bukan karena angin. Apa yang mendorong menara itu?"
+  },
+  "summary": "Hanya sisi menara Eiffel yang terkena matahari yang memuai, sehingga puncaknya condong menjauhi matahari. Pada hari cerah, puncaknya membentuk lingkaran berdiameter sekitar 15 cm.",
+  "panels": [
+    {
+      "text": [
+        "Pada hari cerah, puncak Menara Eiffel tidak diam."
+      ]
+    },
+    {
+      "text": [
+        "Rangka besi Menara Eiffel beratnya 7300 ton.",
+        "Besi memuai kalau panas."
+      ]
+    },
+    {
+      "text": "Jadi kalau panas, menaranya jadi lebih tinggi?"
+    },
+    {
+      "text": [
+        "Menurut penjelasan resmi, memang jadi lebih tinggi.",
+        "Tapi hanya beberapa mm."
+      ]
+    },
+    {
+      "text": [
+        "Perubahan yang lebih besar justru ke samping.",
+        "Matahari hanya menyinari satu dari empat sisi menara pada satu waktu."
+      ]
+    },
+    {
+      "text": [
+        "Hanya sisi yang terkena matahari yang memuai, jadi puncaknya condong menjauhi matahari."
+      ]
+    },
+    {
+      "text": [
+        "Saat matahari melintasi langit, puncak menara ikut berputar.",
+        "Pada hari cerah, puncaknya membentuk lingkaran berdiameter sekitar 15 cm dalam sehari."
+      ]
+    },
+    {
+      "text": [
+        "Ada juga catatan bahwa saat gelombang panas 1976, amplitudo puncaknya mencapai 18 cm."
+      ]
+    }
+  ],
+  "sources": [
+    "Tour Eiffel: Why does the Eiffel Tower change size?",
+    "Tour Eiffel: Key figures",
+    "Wikipédia: Tour Eiffel"
+  ]
+}

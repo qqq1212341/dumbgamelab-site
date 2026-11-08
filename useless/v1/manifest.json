@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "51-6c257c3992",
+ "version": "58-04c04dbb91",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -615,6 +615,90 @@
     "ja": "i18n/ja/pitch-drop.json",
     "id": "i18n/id/pitch-drop.json",
     "zh": "i18n/zh/pitch-drop.json"
+   }
+  },
+  {
+   "id": "chopsticks-waltz",
+   "day": 52,
+   "hash": "17e6ea142ba2d32d",
+   "ep": "episodes/chopsticks-waltz.json",
+   "i18n": {
+    "en": "i18n/en/chopsticks-waltz.json",
+    "ja": "i18n/ja/chopsticks-waltz.json",
+    "id": "i18n/id/chopsticks-waltz.json",
+    "zh": "i18n/zh/chopsticks-waltz.json"
+   }
+  },
+  {
+   "id": "frog-eyes",
+   "day": 53,
+   "hash": "ea40580f9fa45056",
+   "ep": "episodes/frog-eyes.json",
+   "i18n": {
+    "en": "i18n/en/frog-eyes.json",
+    "ja": "i18n/ja/frog-eyes.json",
+    "id": "i18n/id/frog-eyes.json",
+    "zh": "i18n/zh/frog-eyes.json"
+   }
+  },
+  {
+   "id": "narwhal-throne",
+   "day": 54,
+   "hash": "87b63fb6568895af",
+   "ep": "episodes/narwhal-throne.json",
+   "i18n": {
+    "en": "i18n/en/narwhal-throne.json",
+    "ja": "i18n/ja/narwhal-throne.json",
+    "id": "i18n/id/narwhal-throne.json",
+    "zh": "i18n/zh/narwhal-throne.json"
+   }
+  },
+  {
+   "id": "tickle-self",
+   "day": 55,
+   "hash": "cbb01838c792857b",
+   "ep": "episodes/tickle-self.json",
+   "i18n": {
+    "en": "i18n/en/tickle-self.json",
+    "ja": "i18n/ja/tickle-self.json",
+    "id": "i18n/id/tickle-self.json",
+    "zh": "i18n/zh/tickle-self.json"
+   }
+  },
+  {
+   "id": "moon-golf",
+   "day": 56,
+   "hash": "552297e95e15c3fc",
+   "ep": "episodes/moon-golf.json",
+   "i18n": {
+    "en": "i18n/en/moon-golf.json",
+    "ja": "i18n/ja/moon-golf.json",
+    "id": "i18n/id/moon-golf.json",
+    "zh": "i18n/zh/moon-golf.json"
+   }
+  },
+  {
+   "id": "ikea-effect",
+   "day": 57,
+   "hash": "515d796443ff335b",
+   "ep": "episodes/ikea-effect.json",
+   "i18n": {
+    "en": "i18n/en/ikea-effect.json",
+    "ja": "i18n/ja/ikea-effect.json",
+    "id": "i18n/id/ikea-effect.json",
+    "zh": "i18n/zh/ikea-effect.json"
+   }
+  },
+  {
+   "id": "eiffel-sun",
+   "day": 58,
+   "hash": "e19ec79e9e4b0b3c",
+   "ep": "episodes/eiffel-sun.json",
+   "i18n": {
+    "en": "i18n/en/eiffel-sun.json",
+    "ja": "i18n/ja/eiffel-sun.json",
+    "id": "i18n/id/eiffel-sun.json",
+    "zh": "i18n/zh/eiffel-sun.json"
    }
   }
  ]

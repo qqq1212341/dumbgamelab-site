@@ -1,0 +1,54 @@
+{
+  "category": "Hewan",
+  "title": "Kebanyakan Katak Menarik Bola Matanya ke Dalam Mulut Saat Menelan",
+  "hook": "Katak northern leopard menutup mata dan menariknya ke dalam mulut saat menelan mangsa",
+  "open": {
+    "title": "Katak yang memejamkan mata saat menelan, ternyata mata itu punya tugas lain",
+    "line": "Saat menelan sesuatu, katak memejamkan mata berkali-kali. Tapi matanya bukan cuma menutup. Ke mana mata itu pergi?"
+  },
+  "summary": "Kebanyakan katak menutup mata dan menariknya ke dalam mulut saat menelan. Mata itu tampaknya membantu mendorong mangsa ke arah kerongkongan.",
+  "panels": [
+    {
+      "text": [
+        "Saat menelan mangsa, kebanyakan katak memejamkan mata berkali-kali."
+      ]
+    },
+    {
+      "text": "Dia lagi menikmati rasanya, kan?"
+    },
+    {
+      "text": [
+        "Pada 2004, satu tim peneliti merekam katak northern leopard yang sedang menelan mangsa dengan video sinar X."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata matanya bukan cuma menutup.",
+        "Bola mata dan otot matanya tampak turun jauh ke dalam mulut dan menyentuh mangsa."
+      ]
+    },
+    {
+      "text": [
+        "Tim peneliti menilai mata ini membantu mendorong mangsa ke arah kerongkongan."
+      ]
+    },
+    {
+      "text": [
+        "Meski saraf otot penarik kedua matanya diputus, katak tetap bisa menelan mangsa."
+      ]
+    },
+    {
+      "text": "Berarti matanya tidak perlu, ya?"
+    },
+    {
+      "text": [
+        "Tapi untuk menelan satu mangsa, jumlah telan naik dari rata-rata 2,3 kali jadi 4 kali.",
+        "Katak harus menelan 74% lebih sering."
+      ]
+    }
+  ],
+  "sources": [
+    "Levine, Monroy, Brainerd (2004) Journal of Experimental Biology 207: 1361",
+    "PubMed 15010487"
+  ]
+}

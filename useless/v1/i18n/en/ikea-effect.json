@@ -1,0 +1,57 @@
+{
+  "category": "Psychology",
+  "title": "People Pay More for a Box They Assembled Themselves",
+  "hook": "People who built a box named a higher price for the same box",
+  "open": {
+    "title": "Same storage box, different price, and the only difference was who put it together",
+    "line": "Two storage boxes are identical. One group built theirs and the other got theirs already assembled. Asked to set a price, the groups disagreed. Why?"
+  },
+  "summary": "People paid more for IKEA boxes they built. The effect vanished if they took the build apart or never finished.",
+  "panels": [
+    {
+      "text": [
+        "You've probably wrestled with flat-pack furniture."
+      ]
+    },
+    {
+      "text": [
+        "Researchers gave university students IKEA storage boxes.",
+        "One group assembled theirs, and the other got boxes already assembled."
+      ]
+    },
+    {
+      "text": [
+        "They asked what they'd pay for the box.",
+        "Those who built it offered $0.78 on average, and those who only received it offered $0.48."
+      ]
+    },
+    {
+      "text": "I worked hard on it, so it's worth more."
+    },
+    {
+      "text": [
+        "They tried origami too.",
+        "People valued their own creation at 23 cents and a stranger's clumsy one at 5 cents."
+      ]
+    },
+    {
+      "text": [
+        "An expert's origami was valued at 27 cents.",
+        "So they rated their own clumsy work almost the same as an expert's.",
+        "The researchers called this the IKEA effect."
+      ]
+    },
+    {
+      "text": [
+        "Actually, hard work alone wasn't enough.",
+        "When people built LEGO and then had to take it apart, the effect disappeared."
+      ]
+    },
+    {
+      "text": [
+        "The same happened when people were stopped two steps before finishing a box.",
+        "Those who finished offered $1.46, and those who stopped offered $0.59."
+      ]
+    }
+  ]
+}

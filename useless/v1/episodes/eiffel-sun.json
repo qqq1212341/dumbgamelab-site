@@ -1,0 +1,84 @@
+{
+  "id": "eiffel-sun",
+  "contentNotice": null,
+  "day": 58,
+  "category": "과학",
+  "title": "에펠탑 꼭대기는 햇볕을 피해 하루에 작은 원을 그린다",
+  "hook": "맑은 날 에펠탑 꼭대기는 지름 약 15cm 원을 그리며 움직인다",
+  "open": {
+    "title": "에펠탑은 맑은 날마다 몰래 고개를 돌린다",
+    "line": "330m 철탑이 맑은 날이면 조금씩 움직인다. 바람 때문이 아니다. 무엇이 탑을 미는 걸까?"
+  },
+  "summary": "에펠탑은 햇볕 받는 면만 늘어나 꼭대기가 해 반대쪽으로 기운다. 맑은 날엔 꼭대기가 지름 약 15cm 원을 그린다.",
+  "cover": "eiffel-sun",
+  "sources": [
+    {
+      "title": "Tour Eiffel: Why does the Eiffel Tower change size?",
+      "url": "https://www.toureiffel.paris/en/news/history-and-culture/why-does-eiffel-tower-change-size"
+    },
+    {
+      "title": "Tour Eiffel: Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures"
+    },
+    {
+      "title": "Wikipédia: Tour Eiffel",
+      "url": "https://fr.wikipedia.org/wiki/Tour_Eiffel"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "eiffel-sun",
+      "text": [
+        "맑은 날, 에펠탑 꼭대기는 가만히 있지 않는다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "에펠탑 철골은 무게가 7300톤이다.",
+        "철은 더우면 늘어난다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "더우면 키가 크는 거야?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "공식 설명으로는 키가 크긴 한다.",
+        "겨우 몇 mm다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "eiffel-sun-below",
+      "text": [
+        "사실 더 큰 움직임은 옆으로 일어난다.",
+        "해는 한 번에 탑의 네 면 중 한 면만 비춘다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "햇볕 받은 쪽만 늘어나니 꼭대기가 해 반대쪽으로 기운다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "eiffel-sun-1888",
+      "text": [
+        "해가 하늘을 지나가는 동안 꼭대기도 따라 돈다.",
+        "맑은 날 하루에 지름 약 15cm 원을 그린다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1976년 폭염 때는 꼭대기 진폭이 18cm에 이르렀다는 기록도 있다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

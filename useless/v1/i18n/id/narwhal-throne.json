@@ -1,0 +1,53 @@
+{
+  "category": "Sejarah",
+  "title": "Takhta Tanduk Unicorn Sebenarnya Dibuat dari Taring Narwhal",
+  "hook": "Kursi yang dipakai raja Denmark pada upacara penobatan dibuat dari taring narwhal yang dulu disebut tanduk unicorn",
+  "open": {
+    "title": "Kursi raja yang disebut tanduk unicorn, bahan aslinya ternyata lain",
+    "line": "Di sebuah istana di Denmark ada kursi raja yang katanya dibuat dari tanduk unicorn. Padahal unicorn tidak ada. Bahan asli tanduk putih ini apa?"
+  },
+  "summary": "Raja Denmark Frederik ke-3 membuat kursi dari taring narwhal yang dulu disebut tanduk unicorn. Taring itu gigi yang tumbuh panjang dari rahang atas, dan sang raja juga tahu hal itu.",
+  "panels": [
+    {
+      "text": [
+        "Di Istana Rosenborg, Denmark, ada kursi raja yang dibuat dari tanduk putih."
+      ]
+    },
+    {
+      "text": [
+        "Frederik ke-3 memerintahkan pembuatannya pada 1662, dan kursi itu pertama kali dipakai pada upacara raja berikutnya pada 1671.",
+        "Alih-alih gading, dia memilih bahan yang lebih berharga: tanduk unicorn."
+      ]
+    },
+    {
+      "text": [
+        "Pada zaman itu orang Eropa percaya tanduk unicorn bisa menangkal racun."
+      ]
+    },
+    {
+      "text": "Jadi unicorn itu benar-benar ada?"
+    },
+    {
+      "text": [
+        "Ternyata tanduk itu taring paus narwhal yang hidup di laut utara."
+      ]
+    },
+    {
+      "text": [
+        "Taring itu juga bukan tanduk. Itu gigi taring yang tumbuh panjang dari sisi kiri rahang atas.",
+        "Panjangnya 1,5 m sampai 3 m."
+      ]
+    },
+    {
+      "text": [
+        "Menurut penjelasan koleksi kerajaan, sang raja tahu betul ini taring narwhal.",
+        "Tapi kursi ini tetap diwariskan dengan cerita bahwa dibuat dari tanduk unicorn."
+      ]
+    }
+  ],
+  "sources": [
+    "The Royal Danish Collection: The Narwhal Throne",
+    "The Danish Royal House: The history behind the anointing throne",
+    "Wikipedia: Narwhal"
+  ]
+}

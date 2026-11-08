@@ -1,0 +1,55 @@
+{
+  "category": "Music",
+  "title": "The Person Who Wrote Chopsticks Was a 16-Year-Old Girl",
+  "hook": "In 1877, 16-year-old Euphemia Allan of Britain published this tune under a man's name",
+  "open": {
+    "title": "The sheet music for this famous tune credits a composer who never existed",
+    "line": "You can play it without knowing how to play piano. But the composer printed on the score was nobody real. Who really wrote it?"
+  },
+  "summary": "Chopsticks was published in 1877 by 16-year-old Euphemia Allan under a pen name. Its original title was The Celebrated Chop Waltz, and it is the only piece she ever had published.",
+  "panels": [
+    {
+      "text": [
+        "Even people who can't play piano can play a tune with just two fingers.",
+        "It's the one known as Chopsticks."
+      ]
+    },
+    {
+      "text": [
+        "The composer's name printed on the 1877 score was Arthur de Lulli."
+      ]
+    },
+    {
+      "text": "Must be some famous composer from abroad."
+    },
+    {
+      "text": [
+        "In fact, it was a fake name used by Euphemia Allan, a 16-year-old girl from Britain."
+      ]
+    },
+    {
+      "word": "Chop",
+      "mean": "The chop in the original title, Chop Waltz. It means to strike downward."
+    },
+    {
+      "text": [
+        "The score told players to turn both hands on their sides, little fingers down, and play.",
+        "That hand motion, chopping down on the keys, became the name of the piece."
+      ]
+    },
+    {
+      "text": "So it's not about chopsticks, it's a tune you chop out with the side of your hand."
+    },
+    {
+      "text": [
+        "It's the only piece she ever had published."
+      ]
+    },
+    {
+      "text": [
+        "The publisher who put out the score was her brother.",
+        "His name really was Mozart."
+      ]
+    }
+  ]
+}

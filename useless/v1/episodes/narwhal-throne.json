@@ -1,0 +1,78 @@
+{
+  "id": "narwhal-throne",
+  "contentNotice": null,
+  "day": 54,
+  "category": "역사",
+  "title": "유니콘 뿔 왕좌는 사실 일각고래 엄니로 만들었다",
+  "hook": "덴마크 왕이 즉위 의식에 쓰던 의자는 유니콘 뿔이라 불리던 일각고래 엄니로 만들었다",
+  "open": {
+    "title": "유니콘 뿔이라 부른 왕의 의자, 진짜 재료는 따로 있었다",
+    "line": "덴마크 성에는 유니콘 뿔로 만들었다는 왕의 의자가 있다. 그런데 유니콘은 없다. 이 하얀 뿔의 진짜 재료는 뭘까?"
+  },
+  "summary": "덴마크 왕 프레데리크 3세는 유니콘 뿔이라 불리던 일각고래 엄니로 의자를 만들게 했다. 그 엄니는 위턱에서 길게 자란 이빨이고, 왕도 그걸 알고 있었다.",
+  "cover": "narwhal-throne",
+  "sources": [
+    {
+      "title": "The Royal Danish Collection: The Narwhal Throne",
+      "url": "https://denkongeligesamling.dk/en/the-collection/objects/the-narwhal-throne/"
+    },
+    {
+      "title": "The Danish Royal House: The history behind the anointing throne",
+      "url": "https://www.kongehuset.dk/en/menu/news/the-history-behind-the-anointing-throne"
+    },
+    {
+      "title": "Wikipedia: Narwhal",
+      "url": "https://en.wikipedia.org/wiki/Narwhal"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "narwhal-throne",
+      "text": [
+        "덴마크 로센보르 성에는 하얀 뿔로 만든 왕의 의자가 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "프레데리크 3세가 1662년에 만들게 했고, 1671년 다음 왕의 의식에서 처음 쓰였다.",
+        "상아 대신 더 귀한 재료를 골랐다. 유니콘 뿔이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "narwhal-throne-tapestry",
+      "text": [
+        "그 시절 유럽에서는 유니콘 뿔이 독을 막아 준다고 믿었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "유니콘이 진짜 있었다고?"
+    },
+    {
+      "type": "image",
+      "img": "narwhal-throne-pod",
+      "text": [
+        "사실 그 뿔은 북쪽 바다에 사는 일각고래의 엄니였다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "narwhal-throne-tusk",
+      "text": [
+        "엄니는 뿔도 아니다. 위턱 왼쪽에서 길게 자란 송곳니다.",
+        "길이는 1.5m에서 3m나 된다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "왕실 컬렉션 설명으로는 왕도 이게 일각고래 엄니라는 걸 잘 알고 있었다.",
+        "그래도 이 의자는 유니콘 뿔로 만들었다는 말과 함께 전해졌다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

@@ -1,0 +1,55 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Bola Golf yang Dipukul di Bulan Terbang 40 Yard, Bukan Bermil-mil",
+  "hook": "Pada 1971 Alan Shepard memukul dua bola golf di Bulan",
+  "open": {
+    "title": "Astronaut yang main golf di Bulan, 50 tahun kemudian ada hal yang ketahuan",
+    "line": "Pada 1971 seorang astronaut memukul bola golf di Bulan. Dia bilang bolanya terbang sangat jauh. 50 tahun kemudian ada yang memeriksa ulang filmnya. Apa yang ditemukan?"
+  },
+  "summary": "Shepard dari Apollo 14 memukul dua bola golf di Bulan lalu bilang bolanya terbang bermil-mil. Menurut analisis 2021, jaraknya sekitar 24 yard dan 40 yard.",
+  "panels": [
+    {
+      "text": [
+        "Pada 6 Februari 1971, Alan Shepard, komandan Apollo 14, mengayunkan tongkat golf di atas Bulan."
+      ]
+    },
+    {
+      "text": [
+        "Tongkat golf itu kepala besi nomor 6 yang dipasang pada gagang alat penyendok batuan Bulan.",
+        "Kepala besinya dia selundupkan di dalam kaus kaki."
+      ]
+    },
+    {
+      "text": [
+        "Karena baju antariksa kaku, dia memukul dengan satu tangan.",
+        "Bola pertama meleset dan masuk ke kawah di dekatnya."
+      ]
+    },
+    {
+      "text": [
+        "Setelah memukul bola kedua, dia berseru.",
+        "Bermil-mil, bermil-mil jauhnya!"
+      ]
+    },
+    {
+      "text": "Gravitasinya kecil, jadi pasti terbang jauh banget, ya?"
+    },
+    {
+      "text": [
+        "Ternyata tidak.",
+        "Pada 2021, analis citra Andy Saunders mencocokkan film lama dengan foto dari pengorbit Bulan, lalu menemukan tempat bola jatuh."
+      ]
+    },
+    {
+      "text": [
+        "Bola pertama terbang sekitar 24 yard, bola kedua sekitar 40 yard.",
+        "40 yard itu sekitar 37 m."
+      ]
+    }
+  ],
+  "sources": [
+    "USGA: Shepard moon club 50th anniversary",
+    "BBC Sport: Alan Shepard golf shots on the Moon",
+    "NASA Roundup, February 2016"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "frog-eyes",
+  "contentNotice": null,
+  "day": 53,
+  "category": "동물",
+  "title": "대부분의 개구리는 삼킬 때 눈알을 입속으로 집어넣는다",
+  "hook": "북방표범개구리는 먹이를 삼킬 때 눈을 감고 입 안쪽으로 당겨 넣는다",
+  "open": {
+    "title": "삼킬 때 눈을 감는 개구리, 그 눈이 하는 일이 따로 있었다",
+    "line": "개구리는 뭘 삼키는 동안 눈을 몇 번이고 감는다. 그런데 감기만 하는 게 아니다. 그 눈은 어디로 가는 걸까?"
+  },
+  "summary": "대부분의 개구리는 삼킬 때 눈을 감고 입 안쪽으로 당겨 넣는다. 그 눈이 먹이를 목구멍 쪽으로 미는 걸 돕는 것으로 보인다.",
+  "cover": "frog-eyes",
+  "sources": [
+    {
+      "title": "Levine, Monroy, Brainerd (2004) Journal of Experimental Biology 207: 1361",
+      "url": "https://journals.biologists.com/jeb/article/207/8/1361/15071"
+    },
+    {
+      "title": "PubMed 15010487",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15010487/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "frog-eyes",
+      "text": [
+        "대부분의 개구리는 먹이를 삼키는 동안 눈을 몇 번이고 감는다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "맛있어서 음미하는 거 아냐?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "2004년 한 연구팀이 북방표범개구리가 먹이를 삼키는 모습을 X선 영상으로 찍었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "frog-eyes-skull",
+      "text": [
+        "사실은 감기만 하는 게 아니었다.",
+        "눈알과 눈 근육이 입 안쪽 깊숙이 내려가 먹이에 닿는 것으로 보였다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구팀은 이 눈이 먹이를 목구멍 쪽으로 미는 걸 돕는 것으로 봤다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "frog-eyes-2",
+      "text": [
+        "양쪽 눈을 당기는 근육의 신경을 끊어도 개구리는 먹이를 삼킬 수 있었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 눈은 없어도 되는 거 아냐?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "대신 먹이 하나를 넘기는 데 삼키는 횟수가 평균 2.3번에서 4번으로 늘었다.",
+        "74%나 더 꿀꺽해야 했다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

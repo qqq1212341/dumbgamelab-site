@@ -1,0 +1,50 @@
+{
+  "category": "Space",
+  "title": "A Golf Ball Hit on the Moon Flew 40 Yards, Not Miles",
+  "hook": "In 1971, Alan Shepard hit two golf balls on the Moon",
+  "open": {
+    "title": "An astronaut swore his moon golf shot went for miles, until his film was checked 50 years later",
+    "line": "In 1971 an astronaut hit golf balls on the Moon. He said one flew miles and miles. 50 years later, someone went back over the film. What did it show?"
+  },
+  "summary": "Apollo 14's Shepard hit two golf balls on the Moon and said they flew for miles. A 2021 analysis put them at about 24 yards and 40 yards.",
+  "panels": [
+    {
+      "text": [
+        "On February 6, 1971, Apollo 14 commander Alan Shepard swung a golf club on the Moon."
+      ]
+    },
+    {
+      "text": [
+        "The club was a 6-iron head attached to the handle of a tool for scooping up moon rocks.",
+        "He had smuggled the head aboard in a sock."
+      ]
+    },
+    {
+      "text": [
+        "His spacesuit was stiff, so he swung with one hand.",
+        "The first ball was a mishit and landed in a nearby crater."
+      ]
+    },
+    {
+      "text": [
+        "After hitting the second ball, he shouted,",
+        "Miles and miles and miles!"
+      ]
+    },
+    {
+      "text": "With weak gravity, it must have gone really far, right?"
+    },
+    {
+      "text": [
+        "Not really.",
+        "In 2021, imaging specialist Andy Saunders matched the old film with photos from a lunar orbiter and found where the balls landed."
+      ]
+    },
+    {
+      "text": [
+        "The first ball flew about 24 yards, and the second about 40 yards.",
+        "40 yards is about 37 meters."
+      ]
+    }
+  ]
+}

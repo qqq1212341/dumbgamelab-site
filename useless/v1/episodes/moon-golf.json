@@ -1,0 +1,79 @@
+{
+  "id": "moon-golf",
+  "contentNotice": null,
+  "day": 56,
+  "category": "우주",
+  "title": "달에서 친 골프공은 몇 마일이 아니라 40야드 날아갔다",
+  "hook": "1971년 앨런 셰퍼드는 달에서 골프공 두 개를 쳤다",
+  "open": {
+    "title": "달에서 골프를 친 우주비행사, 50년 만에 들킨 게 있다",
+    "line": "1971년 한 우주비행사가 달에서 골프공을 쳤다. 그는 공이 아주 멀리 날아갔다고 했다. 50년 뒤 누군가 그 필름을 다시 들여다봤다. 뭐가 나왔을까?"
+  },
+  "summary": "아폴로 14호 셰퍼드는 달에서 골프공 두 개를 치고 몇 마일이나 날아간다고 했다. 2021년 분석으로는 약 24야드와 40야드였다.",
+  "cover": "moon-golf-lm",
+  "sources": [
+    {
+      "title": "USGA: Shepard moon club 50th anniversary",
+      "url": "https://www.usga.org/content/usga/home-page/articles/2021/02/shepard-moon-club-50th-anniversary-usga-museum.html"
+    },
+    {
+      "title": "BBC Sport: Alan Shepard golf shots on the Moon",
+      "url": "https://www.bbc.com/sport/golf/55927727"
+    },
+    {
+      "title": "NASA Roundup, February 2016",
+      "url": "https://www.nasa.gov/wp-content/uploads/2015/05/feb2016.pdf"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "moon-golf",
+      "text": [
+        "1971년 2월 6일, 아폴로 14호 선장 앨런 셰퍼드가 달 위에서 골프채를 휘둘렀다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "골프채는 월석을 퍼 담는 도구 손잡이에 6번 아이언 머리를 끼운 것이었다.",
+        "그 머리는 양말에 넣어 몰래 실어 갔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "우주복이 뻣뻣해서 한 손으로 쳤다.",
+        "첫 공은 빗맞아 근처 크레이터로 들어갔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "두 번째 공을 치고 그는 외쳤다.",
+        "몇 마일, 몇 마일이나 날아간다!"
+      ]
+    },
+    {
+      "type": "say",
+      "text": "중력이 약하니까 진짜 멀리 갔겠지?"
+    },
+    {
+      "type": "image",
+      "img": "moon-golf-lm",
+      "text": [
+        "사실은 아니었다.",
+        "2021년 이미지 전문가 앤디 손더스가 옛 필름과 달 궤도선 사진을 맞춰 공이 떨어진 자리를 찾았다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "moon-golf-balls",
+      "text": [
+        "첫 공은 약 24야드, 두 번째 공은 약 40야드 날아갔다.",
+        "40야드는 약 37m다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

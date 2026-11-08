@@ -1,0 +1,73 @@
+{
+  "id": "tickle-self",
+  "contentNotice": null,
+  "day": 55,
+  "category": "몸",
+  "title": "내 손으론 간지럼을 못 태우는데, 로봇이 0.2초 늦으면 간지럽다",
+  "hook": "스스로 만든 간지럼은 뇌가 미리 알고 깎아 낸다",
+  "open": {
+    "title": "나를 간지럽혀도 멀쩡한데, 로봇을 끼우자 달라졌다",
+    "line": "아무리 해도 내 손으로는 나를 간지럽힐 수 없다. 그런데 과학자들이 로봇 하나를 사이에 끼웠더니 결과가 달라졌다. 뭘 바꿨을까?"
+  },
+  "summary": "스스로 만든 간지럼은 뇌가 미리 예측해 덜 느낀다. 로봇을 사이에 두고 0.2초만 늦추자 남이 간질인 것과 구별이 안 됐다.",
+  "cover": "tickle-self",
+  "sources": [
+    {
+      "title": "Blakemore, Wolpert, Frith (1998) Central cancellation of self-produced tickle sensation, Nature Neuroscience",
+      "url": "https://www.nature.com/articles/nn1198_635"
+    },
+    {
+      "title": "Blakemore, Frith, Wolpert (1999) Spatio-temporal prediction modulates the perception of self-produced stimuli, J Cogn Neurosci",
+      "url": "https://wolpertlab.neuroscience.columbia.edu/sites/default/files/content/papers/BlaFriWol99.pdf"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "tickle-self",
+      "text": [
+        "남이 간질이면 참기 힘들다.",
+        "그런데 내 손으로 똑같이 하면 훨씬 덜 간지럽다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "진짜네. 내가 하면 하나도 안 간지러워."
+    },
+    {
+      "type": "text",
+      "text": [
+        "연구팀이 이걸 로봇으로 실험했다.",
+        "왼손으로 로봇을 움직이면 다른 로봇이 오른손 손바닥을 부드러운 폼 조각으로 쓸었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "내가 직접 만든 자극은 남이 줄 때보다 덜 간지럽고 덜 세게 느껴졌다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "tickle-self-brain",
+      "text": [
+        "뇌, 그중에서도 소뇌가 내 움직임이 만들 느낌을 미리 예측해 깎아 내는 것으로 보인다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 그 예측을 살짝만 어긋나게 해도 됐다.",
+        "로봇이 0.2초 늦게 움직이자 남이 간질인 것과 구별이 안 됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "손길의 방향을 90도 틀어도 마찬가지였다.",
+        "참가자 16명 중 14명은 늦어진 걸 못 느꼈다고 답했다."
+      ]
+    }
+  ],
+  "status": "approved"
+}
