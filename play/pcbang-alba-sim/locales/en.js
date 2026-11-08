@@ -2209,5 +2209,20 @@ window.__DGL_STRINGS={
 "밤사이 {0} 모였어요":"{0} piled up overnight",
 "설정 열기":"Open Settings",
 "설정에서 켜면 밤사이 번 돈을 알려 드려요":"Turn them on in Settings and we'll tell you what the shop earned overnight",
-"알림이 꺼져 있어요":"Notifications are off"
+"알림이 꺼져 있어요":"Notifications are off",
+"(가끔 봉투를 물고 들어오긴 한다.)":"(It does come in with a bag in its mouth sometimes.)",
+"(고양이 밑에서 알바를 하게 됐다.)":"(So now I work part-time for a cat.)",
+"(사람이 늘었다. 사장님은 오늘도 잔다. 일손이 더 있어야겠다.)":"(More people now. The boss is asleep again. I need another pair of hands.)",
+"(사장님 자리라고 생각하시는 것 같다.)":"(Pretty sure the boss thinks that seat belongs to the boss.)",
+"(치치? …카운터에서 자는 저 고양이?)":"(Chichi? …The cat asleep on the counter?)",
+"(하품.)":"(Yawn.)",
+"나 (알바)":"Me (part-timer)",
+"난 시골 간다. 가게는 치치 앞으로 해 뒀다.":"I'm off to the countryside. I put the shop in Chichi's name.",
+"넌 알바다. 시급은 사장한테 받아라.":"You're the part-timer. Get your wages from the boss.",
+"사장님이 화면에 한 번 지나가면 채팅이 터져요. 오늘도 나와 주시려나.":"Whenever the boss walks past on camera, chat explodes. Hope the boss shows up today too.",
+"삼촌이 고양이한테 넘긴 골목 피방, 나는 알바":"Uncle left his alley PC bang to a cat. I'm the part-timer.",
+"손님 다 떠날 때도 저놈은 안 떠났어. 사장 할 자격 있지.":"When every customer left, that one stayed. Earned the right to be boss.",
+"어제는 사장님이 제 자리에서 자고 있던데요. 키보드 위에서요.":"The boss was sleeping in my seat yesterday. Right on the keyboard.",
+"전국구라며. …내가 못 한 걸 너랑 치치가 했다.":"Heard you went nationwide. …You and Chichi did what I couldn't.",
+"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"I'll draw the boss sleeping on the counter too. Readers will love that most."
 };

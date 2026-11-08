@@ -2209,5 +2209,20 @@ window.__DGL_STRINGS={
 "밤사이 {0} 모였어요":"Semalam terkumpul {0}",
 "설정 열기":"Buka Pengaturan",
 "설정에서 켜면 밤사이 번 돈을 알려 드려요":"Aktifkan di Pengaturan, lalu kami kabari pendapatan toko semalam",
-"알림이 꺼져 있어요":"Notifikasi mati"
+"알림이 꺼져 있어요":"Notifikasi mati",
+"(가끔 봉투를 물고 들어오긴 한다.)":"(Kadang dia memang pulang sambil menggigit kantong.)",
+"(고양이 밑에서 알바를 하게 됐다.)":"(Jadi sekarang aku kerja paruh waktu buat seekor kucing.)",
+"(사람이 늘었다. 사장님은 오늘도 잔다. 일손이 더 있어야겠다.)":"(Pengunjung makin banyak. Bos hari ini tidur lagi. Butuh tenaga tambahan.)",
+"(사장님 자리라고 생각하시는 것 같다.)":"(Kayaknya Bos mengira itu kursinya.)",
+"(치치? …카운터에서 자는 저 고양이?)":"(Chichi? …Kucing yang tidur di meja kasir itu?)",
+"(하품.)":"(Menguap.)",
+"나 (알바)":"Aku (paruh waktu)",
+"난 시골 간다. 가게는 치치 앞으로 해 뒀다.":"Aku pulang kampung. Warnetnya sudah kuatasnamakan Chichi.",
+"넌 알바다. 시급은 사장한테 받아라.":"Kamu pegawai paruh waktu. Gaji minta sama bos.",
+"사장님이 화면에 한 번 지나가면 채팅이 터져요. 오늘도 나와 주시려나.":"Tiap kali Bos lewat di layar, chat langsung meledak. Semoga hari ini muncul lagi.",
+"삼촌이 고양이한테 넘긴 골목 피방, 나는 알바":"PC Bang gang yang paman wariskan ke kucing, aku pegawainya",
+"손님 다 떠날 때도 저놈은 안 떠났어. 사장 할 자격 있지.":"Waktu semua pelanggan pergi, cuma dia yang bertahan. Pantas jadi bos.",
+"어제는 사장님이 제 자리에서 자고 있던데요. 키보드 위에서요.":"Kemarin Bos tidur di kursiku. Persis di atas keyboard.",
+"전국구라며. …내가 못 한 걸 너랑 치치가 했다.":"Katanya sudah terkenal se-nasional. …Yang tak bisa kulakukan, kamu dan Chichi berhasil.",
+"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Aku gambar juga Bos yang tidur di meja kasir. Pembaca pasti paling suka."
 };

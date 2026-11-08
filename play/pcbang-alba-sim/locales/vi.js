@@ -2208,5 +2208,20 @@ window.__DGL_STRINGS={
 "밤사이 {0} 모였어요":"Qua đêm đã tích được {0}",
 "설정 열기":"Mở Cài đặt",
 "설정에서 켜면 밤사이 번 돈을 알려 드려요":"Bật trong Cài đặt để nhận báo tiền quán kiếm được qua đêm",
-"알림이 꺼져 있어요":"Thông báo đang tắt"
+"알림이 꺼져 있어요":"Thông báo đang tắt",
+"(가끔 봉투를 물고 들어오긴 한다.)":"(Thỉnh thoảng nó cũng ngậm túi về thật.)",
+"(고양이 밑에서 알바를 하게 됐다.)":"(Thế là tôi đi làm thêm cho một con mèo.)",
+"(사람이 늘었다. 사장님은 오늘도 잔다. 일손이 더 있어야겠다.)":"(Khách đông lên rồi. Sếp hôm nay vẫn ngủ. Phải thêm người phụ thôi.)",
+"(사장님 자리라고 생각하시는 것 같다.)":"(Hình như sếp nghĩ đó là chỗ của sếp.)",
+"(치치? …카운터에서 자는 저 고양이?)":"(Chichi? …Con mèo đang ngủ trên quầy kia á?)",
+"(하품.)":"(Ngáp.)",
+"나 (알바)":"Tôi (làm thêm)",
+"난 시골 간다. 가게는 치치 앞으로 해 뒀다.":"Chú về quê đây. Quán chú đứng tên Chichi rồi.",
+"넌 알바다. 시급은 사장한테 받아라.":"Còn mày là nhân viên làm thêm. Lương thì đòi sếp.",
+"사장님이 화면에 한 번 지나가면 채팅이 터져요. 오늘도 나와 주시려나.":"Sếp chỉ cần đi ngang màn hình một lần là chat nổ tung. Không biết hôm nay sếp có ghé không.",
+"삼촌이 고양이한테 넘긴 골목 피방, 나는 알바":"Quán net ngõ nhỏ chú giao cho mèo, còn tôi làm thêm",
+"손님 다 떠날 때도 저놈은 안 떠났어. 사장 할 자격 있지.":"Khách bỏ đi hết mà nó vẫn ở lại. Đủ tư cách làm chủ rồi.",
+"어제는 사장님이 제 자리에서 자고 있던데요. 키보드 위에서요.":"Hôm qua sếp ngủ ở chỗ tôi đấy. Nằm ngay trên bàn phím.",
+"전국구라며. …내가 못 한 걸 너랑 치치가 했다.":"Nghe nói nổi tiếng cả nước rồi. …Việc chú không làm được, mày với Chichi làm được rồi.",
+"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Tôi sẽ vẽ cả sếp đang ngủ trên quầy. Chắc độc giả thích nhất đoạn đó."
 };
