@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>同じ指摘を20回言われました。ルールを2回書いても効きませんでした</title>
+    <link>https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/</guid>
+    <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ゲーム画面を見せるたびに「雑」と言われ、その数が20回になりました。ルールを2回書いても減らなかったので、見せる前にお手本の画面と並べて採点する順番に変えた記録です。</description>
+  </item>
+  <item>
     <title>昨日の島と明日の島は4kmも離れていない</title>
     <link>https://dumbgamelab.com/ja/blog/diomede-islands/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/diomede-islands/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
     <description>人の身長は朝がいちばん高く、午後には少し縮む。宇宙では2.5cmほど伸びる。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/height-astronaut.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</title>
-    <link>https://dumbgamelab.com/ja/blog/best-kairosoft-alternatives/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-kairosoft-alternatives/</guid>
-    <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
-    <description>カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</description>
   </item>
 </channel>
 </rss>

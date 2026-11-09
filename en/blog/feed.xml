@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>I Got the Same Feedback 20 Times. Writing Rules Twice Changed Nothing</title>
+    <link>https://dumbgamelab.com/en/blog/told-ai-not-to-be-sloppy-20-times/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/told-ai-not-to-be-sloppy-20-times/</guid>
+    <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Every time I showed a game screen, the feedback was &quot;this looks rushed.&quot; Writing rules twice didn&#39;t help, so I changed the order: score it side by side with the reference screen before anyone sees it. Here is the log.</description>
+  </item>
+  <item>
     <title>Yesterday Island and Tomorrow Island Are Under 4 km Apart</title>
     <link>https://dumbgamelab.com/en/blog/diomede-islands/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/diomede-islands/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/crash-collector-killed-its-own-test-app/</guid>
     <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
     <description>A solo dev added a switch to crash an iOS app on purpose and test crash reporting, and the app wouldn&#39;t crash. Then Play pre-launch report errors got counted as user errors. Two wrong calls from week one.</description>
-  </item>
-  <item>
-    <title>Ketchup Used to Be Fish Sauce</title>
-    <link>https://dumbgamelab.com/en/blog/ketchup-fish/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ketchup-fish/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Ketchup was first a word for pickled fish brine, and tomato ketchup came along in the 1800s.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>被说了20次「做得太糙」,我没加规则,改了出货顺序</title>
+<meta name="description" content="每次给人看游戏画面,都会听到「做得太糙」,前后一共20次。把规则写了两遍也没用,于是改成:给人看之前,先和标杆画面并排放在一起打分。这是一份1人开发的复盘。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/told-ai-not-to-be-sloppy-20-times/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="被说了20次「做得太糙」,我没加规则,改了出货顺序">
+<meta property="og:description" content="每次给人看游戏画面,都会听到「做得太糙」,前后一共20次。把规则写了两遍也没用,于是改成:给人看之前,先和标杆画面并排放在一起打分。这是一份1人开发的复盘。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/told-ai-not-to-be-sloppy-20-times/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"同样的意见听了20次,规则写两遍也没用","description":"每次给人看游戏画面,都会听到「做得太糙」,前后一共20次。把规则写了两遍也没用,于是改成:给人看之前,先和标杆画面并排放在一起打分。这是一份1人开发的复盘。","inLanguage":"zh-CN","datePublished":"2026-11-09","dateModified":"2026-11-09","image":"https://dumbgamelab.com/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/told-ai-not-to-be-sloppy-20-times/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"同样的意见听了20次,规则写两遍也没用","item":"https://dumbgamelab.com/zh-Hans/blog/told-ai-not-to-be-sloppy-20-times/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"游戏上线前该怎么检查完成度?","acceptedAnswer":{"@type":"Answer","text":"在做的人说「好了」之前,先和卖得好的游戏的真实画面并排放在一起,按10分制打分。评分人最好是不知道哪边是标杆的人。同时要事先定好条件:平均分达不到标准(这里是8分)就不放出去。"}},{"@type":"Question","name":"同样的意见一直反复出现怎么办?","acceptedAnswer":{"@type":"Answer","text":"先别加规则,先看意见是在什么时间点冒出来的。如果意见只在「交出去之后」才出现,说明遵守规则的时间点握在做的人手里。把这个时间点挪到出货环节,比继续增加规则有效得多。"}},{"@type":"Question","name":"独立游戏为什么会被说做得粗糙?","acceptedAnswer":{"@type":"Answer","text":"我们的情况是:用图形凑数的道具、用符号字符做的图标、只有一根条的演出。和标杆画面按同样大小摆在一起,材质、接地和演出密度上的差距一眼就能看出来。"}},{"@type":"Question","name":"评分到了7分多就涨不动了怎么办?","acceptedAnswer":{"@type":"Answer","text":"评分误差大约是±0.4,所以在7分多以上,分数已经很难区分好坏。分数打平时,把两版并排放着,靠人眼来选更合适。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 踩坑记录</p>
+    <h1>同样的意见听了20次,规则写两遍也没用</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-09">2026-11-09</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg" alt="奇奇乱斗第26轮的游戏画面。纯色斜面墙、圆锥形灌木和深色地面上,戴头盔的角色正和两名对手交战" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">每次把做好的画面给人看,得到的都是「做得太糙」,三天里账本上的数字从13涨到了20。问题不在能力,而在顺序:我是先自己说一句「好了」,之后才拿去和标杆画面对照。所以我没再加规则,而是在出货前加了一道关:给人看之前,先和标杆画面并排放在一起,由不知道哪边是标杆的人来打分。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">10月30日,同一句话出现了五次</a></li><li><a href="#s2">规则其实已经写过两遍了</a></li><li><a href="#s3">我只改了一件事:顺序</a></li><li><a href="#s4">分数是这样变化的</a></li><li><a href="#s5">还没有完全解决</a></li></ol></nav>
+    <section id="s1"><h2>10月30日,同一句话出现了五次</h2>
+<p>中午12点31分收到「感觉是随便拿小游戏代码拼出来的」。下午5点20分收到「感觉太糙了」,6点34分收到「当初为什么随便塞进去?」。这一天账本上多了五行「糙」。</p>
+<p>在那之前交出去的东西是这样的:网吧泡面小游戏只有一根棕色的条,乱斗游戏的道具是用代码画的图形,顶部图标是符号字符。被指出来之后回头看,没有一句说错。</p>
+</section>
+<section id="s2"><h2>规则其实已经写过两遍了</h2>
+<p>这句话那天并不是第一次出现。10月26日我写了「必须有对照表」这条规则,28日又加了「像游戏公司那样做」的原则文档和动作检查。可是27日变成第13次,30日还是变成了第20次。</p>
+<p>这些规则全都要靠做的人自己去遵守。做的人一觉得「差不多了」,就没有理由再想起规则。不是规则太弱,而是什么时候套用规则,一直由做的人自己决定。</p>
+<div class="tbl"><table><thead><tr><th></th><th>写两遍规则</th><th>改顺序</th></tr></thead><tbody><tr><td>谁来决定</td><td>做的人想起来的时候</td><td>出货环节自动执行</td></tr><tr><td>标准</td><td>「会动」「看得见」</td><td>和标杆画面并排,按10分制打分</td></tr><tr><td>过不了怎么办</td><td>我自己说一句「还行」就放过</td><td>平均分低于8就不给人看</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>我只改了一件事:顺序</h2>
+<p>我在出货前加了三步。第一,找到卖得好的游戏的真实画面,和我们的画面并排放在同一张图里。第二,由不知道哪边是标杆的评分人,按材质、大小、接地、演出四项打10分制。第三,平均分低于8分,就不拿给工作室老板看,直接重做。</p>
+<p>关键是把评分人分开。做的人自己打分,分数会偏高。把出处藏起来,「这是我们自己做的」这层滤镜就没了。</p>
+<figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/before.jpg" alt="奇奇乱斗第1轮画面。泛黄的草地上稀稀落落放着箱子和灌木" loading="lazy" decoding="async"><figcaption>第1轮。画面能跑起来,但地面偏亮,灌木也稀稀拉拉。</figcaption></figure></section>
+<section id="s4"><h2>分数是这样变化的</h2>
+<p>这是乱斗游戏画面按这个方法跑下来的记录。第6轮打了4分,第8轮4.5分。每次的理由都写得很具体,比如身体按写实比例,从上往下看认不出来,地面和灌木都是同一种绿,混在一起。到第25轮出现了7分多。</p>
+<p>同一时期,逐项对照标杆画面元素的账本,从9项涨到了41项里有32项持平。25轮之后分数一直在7.1上下,没再动,这一段的评分误差大约是±0.4。到了7分多这个区间,如果两版分数打平,我就把两版并排拿给工作室老板看。</p>
+<figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/mid.jpg" alt="奇奇乱斗第25轮画面。能看到斜面墙、圆润的灌木、蓝色水洼和紫色召唤阵" loading="lazy" decoding="async"><figcaption>第25轮。隐藏出处的评分是7分多。</figcaption></figure></section>
+<section id="s5"><h2>还没有完全解决</h2>
+<p>账本上的数字在11月7日变成了第23次。卡着这一关的工单到11月初都还开着,另有一条短视频也因为同一个原因被指出:「没和真实直播画面并排放过就报告说好了」。</p>
+<p>顺序改了,还是有漏掉的缝隙。那就是只比较改过的部分,没有把整个画面拿去对。现在一旦收到「照原样拿过来」这类指示,我会先把标杆视频用0.25倍速并排放好,再开始做。效果还要继续观察。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>游戏上线前该怎么检查完成度?</summary><p>在做的人说「好了」之前,先和卖得好的游戏的真实画面并排放在一起,按10分制打分。评分人最好是不知道哪边是标杆的人。同时要事先定好条件:平均分达不到标准(这里是8分)就不放出去。</p></details><details><summary>同样的意见一直反复出现怎么办?</summary><p>先别加规则,先看意见是在什么时间点冒出来的。如果意见只在「交出去之后」才出现,说明遵守规则的时间点握在做的人手里。把这个时间点挪到出货环节,比继续增加规则有效得多。</p></details><details><summary>独立游戏为什么会被说做得粗糙?</summary><p>我们的情况是:用图形凑数的道具、用符号字符做的图标、只有一根条的演出。和标杆画面按同样大小摆在一起,材质、接地和演出密度上的差距一眼就能看出来。</p></details><details><summary>评分到了7分多就涨不动了怎么办?</summary><p>评分误差大约是±0.4,所以在7分多以上,分数已经很难区分好坏。分数打平时,把两版并排放着,靠人眼来选更合适。</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="en" lang="en">English</a><a href="/ko/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

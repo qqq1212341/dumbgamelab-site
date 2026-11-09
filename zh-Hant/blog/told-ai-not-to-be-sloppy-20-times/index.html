@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>被說「做得好敷衍」20次,我改的不是規則,而是出貨順序</title>
+<meta name="description" content="每次給人看遊戲畫面,都會聽到「好敷衍」,累計二十次。把規則寫了兩遍也沒減少,於是改成:給人看之前,先和標準答案畫面並排放在一起打分。這是這次遊戲開發品質檢驗流程調整的紀錄。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/told-ai-not-to-be-sloppy-20-times/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/told-ai-not-to-be-sloppy-20-times/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/told-ai-not-to-be-sloppy-20-times/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="被說「做得好敷衍」20次,我改的不是規則,而是出貨順序">
+<meta property="og:description" content="每次給人看遊戲畫面,都會聽到「好敷衍」,累計二十次。把規則寫了兩遍也沒減少,於是改成:給人看之前,先和標準答案畫面並排放在一起打分。這是這次遊戲開發品質檢驗流程調整的紀錄。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"同一個批評聽了二十次,規則寫兩遍也沒用","description":"每次給人看遊戲畫面,都會聽到「好敷衍」,累計二十次。把規則寫了兩遍也沒減少,於是改成:給人看之前,先和標準答案畫面並排放在一起打分。這是這次遊戲開發品質檢驗流程調整的紀錄。","inLanguage":"zh-TW","datePublished":"2026-11-09","dateModified":"2026-11-09","image":"https://dumbgamelab.com/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"同一個批評聽了二十次,規則寫兩遍也沒用","item":"https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"遊戲上架前要怎麼檢驗完成度?","acceptedAnswer":{"@type":"Answer","text":"在做的人說「做好了」之前,先和熱銷遊戲的實際畫面並排放在一起,用 10 分制打分。評分者最好是不知道哪邊是標準答案的人。同時也要事先訂好條件:平均沒達到標準(這裡是 8 分)就不出貨。"}},{"@type":"Question","name":"同樣的回饋一直重複出現,該怎麼辦?","acceptedAnswer":{"@type":"Answer","text":"在加規則之前,先看批評是在什麼時間點出現的。如果批評只在「交出去之後」才出現,就代表遵守規則的時機掌握在做的人手上。把時機移到出貨步驟,比增加規則更有效。"}},{"@type":"Question","name":"為什麼獨立遊戲會看起來很敷衍?","acceptedAnswer":{"@type":"Answer","text":"我們的情況是用圖形頂替的物件、用符號文字做成的圖示,以及只有一根長條的演出。和標準答案畫面用相同大小並排來看,在材質、接地和演出密度上立刻就看得出差距。"}},{"@type":"Question","name":"如果評分停在 7 分多就不再上升呢?","acceptedAnswer":{"@type":"Answer","text":"分數誤差約為 ±0.4,所以在 7 分多以上,分數的鑑別力很弱。分數持平時,把兩個版本並排放在一起,由人眼來挑,結果比較準。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 一波三折</p>
+    <h1>同一個批評聽了二十次,規則寫兩遍也沒用</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-09">2026-11-09</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/hero.jpg" alt="《奇奇亂鬥》第 26 輪遊戲畫面。單色斜面牆壁、圓錐形灌木與暗色地面上,戴頭盔的角色正和兩名對手交戰" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">每次把做好的畫面拿給人看,得到的都是「好敷衍」,三天之內帳本上的數字從 13 變成 20。原因不是實力,而是順序。我是在自己覺得「做好了」之後,才去和標準答案畫面對照。所以我不再加規則,而是在出貨前加了一個步驟:給人看之前,先把畫面和標準答案並排放在一起,由不知道出處的評分者打分。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">10 月 30 日,同一句話出現了五次</a></li><li><a href="#s2">規則已經寫過兩遍了</a></li><li><a href="#s3">我只改了一個順序</a></li><li><a href="#s4">數字是這樣變動的</a></li><li><a href="#s5">還沒有完全解決</a></li></ol></nav>
+    <section id="s1"><h2>10 月 30 日,同一句話出現了五次</h2>
+<p>中午 12 點 31 分,對方說「小遊戲感覺是隨便用程式碼做出來的」。下午 5 點 20 分是「感覺真的好敷衍」,6 點 34 分是「當初為什麼要這樣隨便放進去?」。那一天帳本上「敷衍」多了五行。</p>
+<p>在那之前交出去的東西是這樣的:網咖泡麵小遊戲只是一根褐色長條,亂鬥遊戲的物件是用程式碼畫的圖形,上方圖示是符號文字。被指出來之後回頭看,沒有一句說錯。</p>
+</section>
+<section id="s2"><h2>規則已經寫過兩遍了</h2>
+<p>這句話那天並不是第一次出現。10 月 26 日我寫了「對照表必備」的規則,28 日又加了「像遊戲公司那樣做」的原則文件和動作檢查。但 27 日還是變成第 13 次,30 日變成第 20 次。</p>
+<p>這些規則全都是由做東西的人自己遵守的規則。做的人一旦覺得「差不多了」,就沒有理由再想起規則。問題不在規則太弱,而在於什麼時候套用規則,是由做的人自己挑。</p>
+<div class="tbl"><table><thead><tr><th></th><th>規則寫兩遍</th><th>改變順序</th></tr></thead><tbody><tr><td>誰來決定</td><td>做的人想起來的時候</td><td>出貨步驟自動執行</td></tr><tr><td>標準</td><td>「會動」、「看得到」</td><td>和標準答案畫面並排,以 10 分制打分</td></tr><tr><td>過不了的話</td><td>我自己說「還可以」就放行</td><td>平均低於 8 分就不給人看</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>我只改了一個順序</h2>
+<p>出貨前加了三個步驟。第一,找來熱銷遊戲的實際畫面,和我們的畫面並排放在同一張圖上。第二,由不知道哪邊是標準答案的評分者,針對材質、尺寸、接地、演出各以 10 分制評分。第三,平均低於 8 分,就不給這間工作室的老闆看,直接重做。</p>
+<p>關鍵是把評分者分開。做的人自己打分,分數會偏寬。把出處藏起來,「這是我們做的」這種眼光就消失了。</p>
+<figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/before.jpg" alt="《奇奇亂鬥》第 1 輪畫面。泛黃的草地上零散放著箱子和灌木" loading="lazy" decoding="async"><figcaption>第 1 輪。畫面能跑,但地面偏亮,灌木也稀稀落落。</figcaption></figure></section>
+<section id="s4"><h2>數字是這樣變動的</h2>
+<p>這是亂鬥遊戲畫面用這個方式跑出來的紀錄。第 6 輪評分是 4 分,第 8 輪是 4.5 分。每次的理由都寫得很具體,例如身體比例太寫實,從上方看不清楚,地面和灌木是同一種綠色所以融在一起。到第 25 輪出現了 7 分多。</p>
+<p>同一時期,逐項對照標準答案畫面元素的帳本,從 9 提高到 41 項中 32 項相當。分數在第 25 輪之後停在 7.1 上下,不再變動,這個區間的分數誤差約為 ±0.4。到了 7 分多,如果分數持平,我會把兩個版本並排拿給這間工作室的老闆看。</p>
+<figure><img src="/blog/img/told-ai-not-to-be-sloppy-20-times/mid.jpg" alt="《奇奇亂鬥》第 25 輪畫面。可見斜面牆壁、圓形灌木、藍色水窪和紫色召喚陣" loading="lazy" decoding="async"><figcaption>第 25 輪。隱藏出處後的評分為 7 分多。</figcaption></figure></section>
+<section id="s5"><h2>還沒有完全解決</h2>
+<p>帳本數字在 11 月 7 日變成第 23 次。掛著這個步驟的工單到 11 月初都還開著,另外有一支短片也因為同樣的原因被指出:「在和實際播出畫面並排放在一起之前,就回報說做好了」。</p>
+<p>順序改了,還是有沒補上的縫隙。就是只比對修改過的部分,沒有把整個畫面拿來對照的情況。現在只要收到「照樣搬過來」這類指示,我就先把標準答案影片以 0.25 倍速並排放好再開始。效果還需要再觀察。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>遊戲上架前要怎麼檢驗完成度?</summary><p>在做的人說「做好了」之前,先和熱銷遊戲的實際畫面並排放在一起,用 10 分制打分。評分者最好是不知道哪邊是標準答案的人。同時也要事先訂好條件:平均沒達到標準(這裡是 8 分)就不出貨。</p></details><details><summary>同樣的回饋一直重複出現,該怎麼辦?</summary><p>在加規則之前,先看批評是在什麼時間點出現的。如果批評只在「交出去之後」才出現,就代表遵守規則的時機掌握在做的人手上。把時機移到出貨步驟,比增加規則更有效。</p></details><details><summary>為什麼獨立遊戲會看起來很敷衍?</summary><p>我們的情況是用圖形頂替的物件、用符號文字做成的圖示,以及只有一根長條的演出。和標準答案畫面用相同大小並排來看,在材質、接地和演出密度上立刻就看得出差距。</p></details><details><summary>如果評分停在 7 分多就不再上升呢?</summary><p>分數誤差約為 ±0.4,所以在 7 分多以上,分數的鑑別力很弱。分數持平時,把兩個版本並排放在一起,由人眼來挑,結果比較準。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="en" lang="en">English</a><a href="/ko/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/told-ai-not-to-be-sloppy-20-times/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
