@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "58-04c04dbb91",
+ "version": "58-6cb0484468",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -344,7 +344,7 @@
   {
    "id": "diomede-islands",
    "day": 29,
-   "hash": "6f2cf550fa520dfa",
+   "hash": "7027d428a2db1079",
    "ep": "episodes/diomede-islands.json",
    "i18n": {
     "en": "i18n/en/diomede-islands.json",
@@ -380,7 +380,7 @@
   {
    "id": "bubble-wrap",
    "day": 32,
-   "hash": "4053c0dc9910be7c",
+   "hash": "37839bea03bddb7b",
    "ep": "episodes/bubble-wrap.json",
    "i18n": {
     "en": "i18n/en/bubble-wrap.json",
