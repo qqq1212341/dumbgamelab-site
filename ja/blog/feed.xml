@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>「猫の腸」の弦に、猫はいない</title>
+    <link>https://dumbgamelab.com/ja/blog/catgut-strings/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/catgut-strings/</guid>
+    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
+    <description>キャットガットは名前と違い、猫の腸で作られた記録はない。主に羊やヤギの腸で作られ、今も使う奏者がいる。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/violin-strings.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>同じ指摘を20回言われました。ルールを2回書いても効きませんでした</title>
     <link>https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/</guid>
@@ -222,14 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/why-we-posted-devlogs-after-327-views/</guid>
     <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
     <description>個人開発者がitch.ioにブラウザゲームを10本公開して2週間、結果は閲覧327、購入0でした。どこで判断を間違えたのか、同じ日に開発日誌を書いた理由と、次の判定日をまとめました。</description>
-  </item>
-  <item>
-    <title>朝の自分は夕方の自分より背が高い</title>
-    <link>https://dumbgamelab.com/ja/blog/morning-height/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/morning-height/</guid>
-    <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
-    <description>人の身長は朝がいちばん高く、午後には少し縮む。宇宙では2.5cmほど伸びる。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/height-astronaut.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
