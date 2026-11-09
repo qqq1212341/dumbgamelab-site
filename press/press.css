@@ -20,7 +20,7 @@
 .cov-title { font-weight: 700; } .cov-meta { color: var(--ink-soft); font-size: 14px; }
 .f-head { display: flex; gap: 24px; align-items: center; margin-bottom: 32px; }
 .f-head h2 { margin-bottom: 12px; }
-.f-icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 8px 0 rgba(0,0,0,.08); }
+.f-icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 2px 0 rgba(0,0,0,.08); }
 .stores { display: flex; flex-wrap: wrap; gap: 8px; }
 .pill { display: inline-block; padding: 7px 14px; border-radius: 999px; background: var(--navy); color: var(--white); text-decoration: none; font-weight: 800; font-size: 14px; }
 @media (hover: hover) { .pill:hover { background: var(--purple); } }
