@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>In England You Paid Tax on Every Window</title>
+    <link>https://dumbgamelab.com/en/blog/window-tax/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/window-tax/</guid>
+    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
+    <description>England introduced a tax based on the number of windows in 1696 and repealed it in 1851. Houses with windows blocked to avoid it still survive.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/window-tax.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101</title>
     <link>https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>Bell wanted ahoy as the phone greeting, but Edison&#39;s hello caught on.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Why Korean PC bangs started selling food like restaurants, not just game time</title>
-    <link>https://dumbgamelab.com/en/blog/why-pc-bangs-became-restaurants/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/why-pc-bangs-became-restaurants/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Why do Korean PC bangs sell ramen, fried rice and chicken? The 2013 smoking ban, the 2010 food-snitch crackdown, and food sales going from about 10% to 40%, with sources.</description>
   </item>
 </channel>
 </rss>

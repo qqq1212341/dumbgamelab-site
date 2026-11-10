@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>イギリスでは窓の数だけ税金を払った</title>
+    <link>https://dumbgamelab.com/ja/blog/window-tax/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/window-tax/</guid>
+    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
+    <description>1696年、イギリスに窓の数で課税する税が生まれ、1851年に廃止された。税を逃れるため窓をふさいだ家が今も残る。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/window-tax.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>アラーム1つが1日の読み取り上限500万行を使い切った:Durable Objects 1101の追跡記録</title>
     <link>https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/</guid>
@@ -222,14 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/</guid>
     <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
     <description>個人開発者がクラッシュレポートを試すため、アプリをわざと落とすスイッチを入れたところ、iPhoneで落ちませんでした。Playのプレローンチレポートのエラーをユーザーのクラッシュと数えた失敗まで、最初の1週間の誤判断を2つ書きます。</description>
-  </item>
-  <item>
-    <title>ケチャップはもともと魚のソースだった</title>
-    <link>https://dumbgamelab.com/ja/blog/ketchup-fish/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ketchup-fish/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ケチャップはもともと魚を漬けた汁を呼ぶ言葉で、トマトケチャップは1800年代に生まれた。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

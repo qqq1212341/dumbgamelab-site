@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>在英国，窗户越多税越重</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/window-tax/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/window-tax/</guid>
+    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
+    <description>1696年英国开始按窗户数量征税，1851年废除。为避税而封上窗户的房子至今还留着。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/window-tax.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>“猫肠弦”里并没有猫</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/catgut-strings/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/catgut-strings/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>南极点的科考站跟着给它送物资的新西兰，用的是新西兰时间。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>考拉的指纹，和人的傻傻分不清</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/koala-fingerprint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/koala-fingerprint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>考拉的指纹和人的很像，像到用电子显微镜看都很难分清。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/koala.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
