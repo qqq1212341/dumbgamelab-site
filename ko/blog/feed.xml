@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>알람 하나가 읽기 한도 500만 행을 혼자 썼다: Durable Objects 1101 추적기</title>
+    <link>https://dumbgamelab.com/ko/blog/do-alarm-5m-rows/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/do-alarm-5m-rows/</guid>
+    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Cloudflare 무료 Durable Objects 한도(하루 읽기 500만 행)를 게임 서버 알람 하나가 498만 행 써서 오류 수집 서버까지 1101로 멈춘 날. 원인 추적과 인덱스·캐시·감시로 고친 과정을 적었습니다.</description>
+  </item>
+  <item>
     <title>‘고양이 창자’ 줄에는 고양이가 없다</title>
     <link>https://dumbgamelab.com/ko/blog/catgut-strings/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/catgut-strings/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/why-pc-bangs-became-restaurants/</guid>
     <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
     <description>한국 PC방은 왜 라면·볶음밥·치킨을 파는 식당이 됐을까요? 2013년 금연, 2010년 식파라치 신고, 먹거리 매출 10%에서 40%로 바뀐 흐름을 출처와 함께 정리했습니다.</description>
-  </item>
-  <item>
-    <title>QR코드는 바둑판에서 태어났다</title>
-    <link>https://dumbgamelab.com/ko/blog/qr-baduk/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/qr-baduk/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>QR코드는 1994년 일본에서 바둑돌의 흑백 무늬에서 영감을 받아 만들어졌다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

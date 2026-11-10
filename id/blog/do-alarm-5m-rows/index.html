@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare Durable Objects limits: Alarm 5 Detik Menghabiskan 5 Juta Baris, Error 1101</title>
+<meta name="description" content="Batas gratis Cloudflare Durable Objects adalah 5 juta baris dibaca per hari. Satu alarm di server game saya membaca 4.98 juta baris dan membuat server pengumpul error ikut mati dengan error 1101. Artikel ini menceritakan cara melacaknya, lalu memperbaikinya dengan index, cache, dan pemantauan.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/do-alarm-5m-rows/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/id/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare Durable Objects limits: Alarm 5 Detik Menghabiskan 5 Juta Baris, Error 1101">
+<meta property="og:description" content="Batas gratis Cloudflare Durable Objects adalah 5 juta baris dibaca per hari. Satu alarm di server game saya membaca 4.98 juta baris dan membuat server pengumpul error ikut mati dengan error 1101. Artikel ini menceritakan cara melacaknya, lalu memperbaikinya dengan index, cache, dan pemantauan.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Satu alarm menghabiskan batas baca 5 juta baris per hari: melacak error 1101 Durable Objects","description":"Batas gratis Cloudflare Durable Objects adalah 5 juta baris dibaca per hari. Satu alarm di server game saya membaca 4.98 juta baris dan membuat server pengumpul error ikut mati dengan error 1101. Artikel ini menceritakan cara melacaknya, lalu memperbaikinya dengan index, cache, dan pemantauan.","inLanguage":"id","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"Satu alarm menghabiskan batas baca 5 juta baris per hari: melacak error 1101 Durable Objects","item":"https://dumbgamelab.com/id/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apa arti error Cloudflare Durable Objects 1101?","acceptedAnswer":{"@type":"Answer","text":"Bisa berarti batas gratis terlampaui. Pada kasus saya, isi responsnya juga memuat «Exceeded allowed rows read», artinya batas baris yang dibaca per hari (5 juta baris untuk seluruh akun) sudah habis."}},{"@type":"Question","name":"Apakah batas baca Durable Objects berlaku per server atau per akun?","acceptedAnswer":{"@type":"Answer","text":"Di akun saya, seluruh akun berbagi 5 juta baris per hari. Karena itu ketika satu server memakai hampir semuanya, dua server lain ikut berhenti."}},{"@type":"Question","name":"Kalau batas sudah habis, apakah server langsung hidup setelah diperbaiki?","acceptedAnswer":{"@type":"Answer","text":"Tidak langsung. Walau sudah diperbaiki dan di-deploy, batas hari itu tetap sama, jadi saya harus menunggu reset 00:00 UTC (pukul 9 pagi waktu Korea)."}},{"@type":"Question","name":"Bagaimana cara tahu alarm memindai seluruh tabel?","acceptedAnswer":{"@type":"Answer","text":"Kumpulkan query yang dijalankan di dalam alarm lalu jalankan EXPLAIN QUERY PLAN. Kalau rencananya memuat SCAN nama_tabel tanpa index, berarti seluruh tabel dibaca."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan kesalahan solo developer</p>
+    <h1>Satu alarm menghabiskan batas baca 5 juta baris per hari: melacak error 1101 Durable Objects</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="Layar berburu otomatis 도트혈맹. Karakter pixel art bertarung melawan monster di dungeon, dan angka koin emas serta permata terlihat di atasnya" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Pada 7 November server pengumpul error mulai mengembalikan error 500 dengan kode 1101 dan pesan «Exceeded allowed rows read». Pelakunya alarm yang berjalan setiap 5 detik di server game (도트혈맹) pada akun yang sama. Alarm ini memindai tabel users dan feed tanpa index, dan sendirian membaca 4.98 juta dari batas 5 juta baris per hari. Batas itu dipakai bersama oleh seluruh akun, jadi server undangan teman dan server pengumpul error ikut mati. Saya memperbaikinya dengan 2 index dan cache 10 menit. Sekarang setiap jam saya mengukur baris yang dibaca tiap server, dan kalau lewat 60% muncul notifikasi lengkap dengan nama pelakunya.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Angka dulu</a></li><li><a href="#s2">Awalnya saya curiga ke server yang salah</a></li><li><a href="#s3">Pelakunya alarm 5 detik</a></li><li><a href="#s4">Yang saya perbaiki</a></li><li><a href="#s5">Supaya tidak terulang</a></li><li><a href="#s6">Yang saya salah</a></li></ol></nav>
+    <section id="s1"><h2>Angka dulu</h2>
+<p>Setelah tahu server pengumpul error mati, hal pertama yang saya lakukan adalah mengumpulkan angka: berapa batasnya dan siapa membaca berapa.</p>
+<div class="tbl"><table><thead><tr><th>Item</th><th>Angka</th><th>Catatan</th></tr></thead><tbody><tr><td>Batas baca per hari (gratis)</td><td>5 juta baris</td><td>Dipakai bersama oleh semua server di akun. Reset pada 00:00 UTC (09:00 waktu Korea)</td></tr><tr><td>Satu alarm 도트혈맹</td><td>4.98 juta baris</td><td>Total sehari pada 7 November</td></tr><tr><td>Jumlah alarm berjalan</td><td>17,280 kali per hari</td><td>Setiap 5 detik. 86,400 detik dibagi 5</td></tr><tr><td>Baris yang dibaca sekali jalan</td><td>sekitar 290 baris</td><td>Nilai hasil hitung: 4.98 juta dibagi 17,280</td></tr><tr><td>Request ke pengumpul error</td><td>2-3 ribu per hari</td><td>Baris yang dibaca 1.4 juta sampai 5.14 juta per hari</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="Grafik batang yang menyandingkan batas 5 juta baris per hari dengan 4.98 juta baris yang dibaca satu alarm 도트혈맹" loading="lazy" decoding="async"><figcaption>Satu alarm membaca 99.6% dari batas.</figcaption></figure></section>
+<section id="s2"><h2>Awalnya saya curiga ke server yang salah</h2>
+<p>Gejalanya muncul lebih dulu di server pengumpul error. Memanggil daftar sesi dan daftar issue sama-sama menghasilkan 500, dan isi responsnya hanya error code: 1101. Pada waktu yang sama server undangan teman juga mati dengan kode yang sama.</p>
+<p>Bilah peringatan darurat menulis server undangan teman sebagai pelaku. Artinya server yang mati langsung ditulis sebagai pelaku. Padahal server undangan hanya menerima beberapa ribu request per hari, tidak mungkin menghasilkan pembacaan sebanyak itu.</p>
+<p>Server pengumpul error juga begitu. Request hanya 2-3 ribu per hari, tetapi baris yang dibaca 1.4 juta sampai 5.14 juta. Kalau jumlah request dan baris yang dibaca tidak cocok sejauh itu, berarti bukan request yang membaca, tetapi ada pihak lain.</p>
+</section>
+<section id="s3"><h2>Pelakunya alarm 5 detik</h2>
+<p>Batasnya dipakai bersama seluruh akun, jadi saya harus melihat pemakaian per server. Saya ambil baris yang dibaca tiap server (worker) lewat Cloudflare API, dan hampir semuanya ada di satu tempat: server game 도트혈맹.</p>
+<p>Server ini punya alarm yang berjalan setiap 5 detik. Di dalam alarm ada query yang menghitung jumlah orang yang sedang online dan membaca daftar bot. Tabel users dan feed tidak punya index, jadi setiap kali query memindai tabel dari awal sampai akhir.</p>
+<p>290 baris sekali jalan terlihat kecil. Tetapi alarm berjalan 17,280 kali sehari, dan hasil kalinya 4.98 juta.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="Layar penguatan 도트혈맹. Di latar pandai besi, senjata naik dari +7 ke +8 dengan peluang berhasil dan hancur yang terlihat" loading="lazy" decoding="async"><figcaption>Pelakunya alarm di sisi server game ini.</figcaption></figure></section>
+<section id="s4"><h2>Yang saya perbaiki</h2>
+<p>Saya memperbaiki server 도트혈맹 dan server pengumpul error masing-masing. Penyebab keduanya sama: query rentang tanpa index.</p>
+<ul><li>Setelah perbaikan di-deploy, batas hari itu sudah telanjur habis sehingga server tidak langsung hidup. Server pengumpul error baru pulih pada reset berikutnya (00:00 UTC).</li><li>Dengan index, baris yang dibaca sekali jalan turun dari ukuran seluruh tabel menjadi sebanyak baris yang memang dibutuhkan.</li></ul>
+<div class="tbl"><table><thead><tr><th>Server</th><th>Yang diubah</th></tr></thead><tbody><tr><td>도트혈맹</td><td>2 index: users(bot, seen) dan feed(bot, ts)</td></tr><tr><td>도트혈맹</td><td>Daftar bot di-cache di memori selama 10 menit</td></tr><tr><td>Pengumpul error</td><td>Index issues(last_at) dan hits(day)</td></tr><tr><td>Pengumpul error</td><td>Hapus hits dan sessions yang lebih dari 90 hari, sekali sehari</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>Supaya tidak terulang</h2>
+<p>Memperbaiki saja tidak cukup. Kali ini saya baru tahu setelah batas habis, dan baru lama kemudian tahu siapa yang menghabiskannya. Jadi saya menambahkan dua hal.</p>
+<p>Pertama, tes. Alarm dijalankan 400 kali, query yang dieksekusi dikumpulkan, lalu rencananya dilihat dengan EXPLAIN QUERY PLAN. Kalau ada satu saja query yang memindai users atau feed tanpa index, tes gagal. Query yang memakai LIMIT dan berhenti lebih awal dikecualikan.</p>
+<p>Kedua, pemantauan. Setiap jam pada menit ke-7, baris yang dibaca semua server dijumlahkan, dan kalau lewat 60% dari batas, notifikasi dikirim lengkap dengan nama server pelaku dan jumlah barisnya. Saya juga menembak langsung server undangan dan server pengumpul error, kalau keluar 1101 itu juga dilaporkan, dan dicabut kalau sudah pulih.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="Layar obrolan klan 도트혈맹. Jendela obrolan tempat anggota klan berbincang" loading="lazy" decoding="async"><figcaption>Layar 도트혈맹 dengan obrolan klan.</figcaption></figure></section>
+<section id="s6"><h2>Yang saya salah</h2>
+<p>Yang salah bukan satu query. Beberapa server berbagi satu batas gratis, tetapi tidak ada tempat yang mengukur berapa yang dibaca tiap server. Kalau satu server menghabiskan batas, server yang tidak bersalah mati menggantikannya, dan kita hanya melihat yang mati.</p>
+<p>Karena itu di 도트혈맹 saya menambahkan tes yang memeriksa apakah query di jalur alarm memakai index. Dari kejadian ini saya belajar bahwa kalau batasnya dipakai bersama satu akun, tabel pemakaian per server harus ada lebih dulu.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Apa arti error Cloudflare Durable Objects 1101?</summary><p>Bisa berarti batas gratis terlampaui. Pada kasus saya, isi responsnya juga memuat «Exceeded allowed rows read», artinya batas baris yang dibaca per hari (5 juta baris untuk seluruh akun) sudah habis.</p></details><details><summary>Apakah batas baca Durable Objects berlaku per server atau per akun?</summary><p>Di akun saya, seluruh akun berbagi 5 juta baris per hari. Karena itu ketika satu server memakai hampir semuanya, dua server lain ikut berhenti.</p></details><details><summary>Kalau batas sudah habis, apakah server langsung hidup setelah diperbaiki?</summary><p>Tidak langsung. Walau sudah diperbaiki dan di-deploy, batas hari itu tetap sama, jadi saya harus menunggu reset 00:00 UTC (pukul 9 pagi waktu Korea).</p></details><details><summary>Bagaimana cara tahu alarm memindai seluruh tabel?</summary><p>Kumpulkan query yang dijalankan di dalam alarm lalu jalankan EXPLAIN QUERY PLAN. Kalau rencananya memuat SCAN nama_tabel tanpa index, berarti seluruh tabel dibaca.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

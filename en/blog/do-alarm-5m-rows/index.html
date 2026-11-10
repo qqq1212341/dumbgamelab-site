@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare Error 1101: Exceeded Allowed Rows Read in Durable Objects, Caused by One 5-Second Alarm</title>
+<meta name="description" content="One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare Error 1101: Exceeded Allowed Rows Read in Durable Objects, Caused by One 5-Second Alarm">
+<meta property="og:description" content="One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101","description":"One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.","inLanguage":"en","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101","item":"https://dumbgamelab.com/en/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Cloudflare Durable Objects error 1101 mean?","acceptedAnswer":{"@type":"Answer","text":"It can mean you went over a free limit. In my case the body also said \"Exceeded allowed rows read\", and I had used up the daily rows read limit (5 million rows for the whole account)."}},{"@type":"Question","name":"Is the Durable Objects rows read limit per server or per account?","acceptedAnswer":{"@type":"Answer","text":"On my account, the whole account shared 5 million rows a day. When one server used almost all of it, two other servers stopped as well."}},{"@type":"Question","name":"If I fix the server after the limit is gone, does it come back right away?","acceptedAnswer":{"@type":"Answer","text":"Not right away. Deploying the fix did not change that day's limit, so I had to wait for the reset at 00:00 UTC (9 AM in Korea)."}},{"@type":"Question","name":"How do I check whether an alarm scans a whole table?","acceptedAnswer":{"@type":"Answer","text":"Collect the queries that run inside the alarm and run EXPLAIN QUERY PLAN on them. If the plan shows SCAN followed by a table name with no index, it is reading the whole table."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Solo dev mistake log</p>
+    <h1>One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="Auto hunt screen of Dot Clan. A character fights monsters in a pixel art dungeon, with gold and gem counters at the top" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">On November 7 my error collector started returning 500s, and the error code was 1101 with the message &quot;Exceeded allowed rows read&quot;. The culprit was an alarm that runs every 5 seconds in a game server (Dot Clan) on the same account. That alarm scanned the users and feed tables without an index and used 4.98 million of the 5 million daily rows read by itself. The limit is shared across the whole account, so the invite server and the error collector went down with it. Two indexes and a 10 minute cache fixed it, and now an hourly check measures rows read per server and raises an alert with the culprit&#39;s name once usage passes 60%.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">The Numbers First</a></li><li><a href="#s2">I Suspected the Wrong Server First</a></li><li><a href="#s3">The Culprit Was a 5-Second Alarm</a></li><li><a href="#s4">What I Fixed</a></li><li><a href="#s5">So It Does Not Happen Again</a></li><li><a href="#s6">What I Got Wrong</a></li></ol></nav>
+    <section id="s1"><h2>The Numbers First</h2>
+<p>When I realized the error collector was down, the first thing I did was gather numbers. I wanted to see what the limit was and who had read how much.</p>
+<div class="tbl"><table><thead><tr><th>Item</th><th>Number</th><th>Note</th></tr></thead><tbody><tr><td>Daily rows read limit (free)</td><td>5 million rows</td><td>Every server on the account shares it. Resets at 00:00 UTC (09:00 in Korea)</td></tr><tr><td>One Dot Clan alarm</td><td>4.98 million rows</td><td>Total for November 7</td></tr><tr><td>Times the alarm runs</td><td>17,280 per day</td><td>Every 5 seconds. 86,400 seconds divided by 5</td></tr><tr><td>Rows read per run</td><td>About 290 rows</td><td>Calculated value: 4.98 million divided by 17,280</td></tr><tr><td>Error collector requests</td><td>2,000 to 3,000 per day</td><td>Rows read were 1.4 million to 5.14 million per day</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="Bar chart placing the 5 million row daily limit next to the 4.98 million rows read by a single Dot Clan alarm" loading="lazy" decoding="async"><figcaption>One alarm read 99.6% of the limit.</figcaption></figure></section>
+<section id="s2"><h2>I Suspected the Wrong Server First</h2>
+<p>The symptom showed up in the error collector first. Calling the session list and the issue list returned a 500, and the body said only error code: 1101. At the same moment the friend invite server was down with the same code.</p>
+<p>The urgent alert banner named the invite server as the culprit. I had simply blamed whichever server had stopped. But the invite server gets only a few thousand requests a day, so it could not produce that many reads.</p>
+<p>The error collector was the same story. It got 2,000 to 3,000 requests a day, yet it read between 1.4 million and 5.14 million rows. When requests and rows read are that far apart, someone else is doing the reading.</p>
+</section>
+<section id="s3"><h2>The Culprit Was a 5-Second Alarm</h2>
+<p>The limit is shared by the whole account, so I had to look at usage per server. I pulled rows read per server (Worker) from the Cloudflare API, and one of them accounted for almost all of it. It was the Dot Clan game server.</p>
+<p>That server runs an alarm every 5 seconds. Inside the alarm, the queries that count the players online and read the bot list had no index on the users and feed tables, so each one scanned the table from the first row to the last.</p>
+<p>About 290 rows per run looks small. But the alarm runs 17,280 times a day, and multiplied out that is 4.98 million.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="Dot Clan upgrade screen. In a blacksmith setting, the success and destruction odds for a weapon going from +7 to +8 are shown" loading="lazy" decoding="async"><figcaption>The culprit was an alarm on the server side of this game.</figcaption></figure></section>
+<section id="s4"><h2>What I Fixed</h2>
+<p>I fixed the Dot Clan server and the error collector separately. The cause was the same in both: queries that read a range without an index.</p>
+<ul><li>Deploying the fix did not bring things back right away, because that day&#39;s limit was already used up. The error collector comes back at the next reset (00:00 UTC).</li><li>With an index, the rows read per query drop from the size of the whole table to the number of rows actually needed.</li></ul>
+<div class="tbl"><table><thead><tr><th>Server</th><th>What changed</th></tr></thead><tbody><tr><td>Dot Clan</td><td>Two indexes: users(bot, seen) and feed(bot, ts)</td></tr><tr><td>Dot Clan</td><td>Cache the bot list in memory for 10 minutes</td></tr><tr><td>Error collector</td><td>Indexes on issues(last_at) and hits(day)</td></tr><tr><td>Error collector</td><td>Delete hits and sessions older than 90 days once a day</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>So It Does Not Happen Again</h2>
+<p>Fixing it was not enough. This time I only found out after the limit was gone, and it took a long time to learn who was eating it. So I added two more things.</p>
+<p>The first is a test. It collects the queries that run while the alarm fires 400 times, looks at their plans with EXPLAIN QUERY PLAN, and fails if even one query scans users or feed without an index. Queries with a LIMIT that stop early are excluded.</p>
+<p>The second is monitoring. At minute 7 of every hour it adds up rows read per server, and if the total passes 60% of the limit it raises an alert with the culprit server&#39;s name and row count. It also pokes the invite server and the error collector directly, raises an alert if they return 1101, and clears it when they recover.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="Dot Clan clan chat screen. A chat window where clan members are talking" loading="lazy" decoding="async"><figcaption>The Dot Clan screen with clan chat.</figcaption></figure></section>
+<section id="s6"><h2>What I Got Wrong</h2>
+<p>The mistake was not one query. Several servers share one free limit, and nothing measured how much each server reads. When one server uses up the limit, a healthy server dies in its place, and you only see the one that died.</p>
+<p>So I added a test to Dot Clan that checks whether the alarm path queries use an index. If the limit is shared by the account, a per-server usage table has to exist first, and that is what I learned this time.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>What does Cloudflare Durable Objects error 1101 mean?</summary><p>It can mean you went over a free limit. In my case the body also said &quot;Exceeded allowed rows read&quot;, and I had used up the daily rows read limit (5 million rows for the whole account).</p></details><details><summary>Is the Durable Objects rows read limit per server or per account?</summary><p>On my account, the whole account shared 5 million rows a day. When one server used almost all of it, two other servers stopped as well.</p></details><details><summary>If I fix the server after the limit is gone, does it come back right away?</summary><p>Not right away. Deploying the fix did not change that day&#39;s limit, so I had to wait for the reset at 00:00 UTC (9 AM in Korea).</p></details><details><summary>How do I check whether an alarm scans a whole table?</summary><p>Collect the queries that run inside the alarm and run EXPLAIN QUERY PLAN on them. If the plan shows SCAN followed by a table name with no index, it is reading the whole table.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

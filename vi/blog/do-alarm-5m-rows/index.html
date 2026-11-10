@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare Durable Objects limits: alarm 5 giây đọc 5 triệu hàng, lỗi 1101</title>
+<meta name="description" content="Giới hạn miễn phí của Cloudflare Durable Objects là 5 triệu hàng đọc mỗi ngày. Một alarm của server game đã đọc 4.98 triệu hàng và kéo cả server thu lỗi vào lỗi 1101. Bài kể cách truy ra nguyên nhân rồi sửa bằng index, cache và giám sát.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/do-alarm-5m-rows/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare Durable Objects limits: alarm 5 giây đọc 5 triệu hàng, lỗi 1101">
+<meta property="og:description" content="Giới hạn miễn phí của Cloudflare Durable Objects là 5 triệu hàng đọc mỗi ngày. Một alarm của server game đã đọc 4.98 triệu hàng và kéo cả server thu lỗi vào lỗi 1101. Bài kể cách truy ra nguyên nhân rồi sửa bằng index, cache và giám sát.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Một alarm đọc hết 5 triệu hàng giới hạn mỗi ngày: truy lỗi 1101 của Durable Objects","description":"Giới hạn miễn phí của Cloudflare Durable Objects là 5 triệu hàng đọc mỗi ngày. Một alarm của server game đã đọc 4.98 triệu hàng và kéo cả server thu lỗi vào lỗi 1101. Bài kể cách truy ra nguyên nhân rồi sửa bằng index, cache và giám sát.","inLanguage":"vi","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Một alarm đọc hết 5 triệu hàng giới hạn mỗi ngày: truy lỗi 1101 của Durable Objects","item":"https://dumbgamelab.com/vi/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Lỗi Cloudflare Durable Objects 1101 nghĩa là gì?","acceptedAnswer":{"@type":"Answer","text":"Có thể là bạn đã vượt giới hạn miễn phí. Trong trường hợp của tôi, body còn có dòng «Exceeded allowed rows read», tức là đã dùng hết giới hạn hàng đọc mỗi ngày (5 triệu hàng cho cả tài khoản)."}},{"@type":"Question","name":"Giới hạn đọc của Durable Objects tính theo từng server hay cả tài khoản?","acceptedAnswer":{"@type":"Answer","text":"Ở tài khoản của tôi là cả tài khoản dùng chung 5 triệu hàng mỗi ngày. Vì vậy khi một server dùng gần hết, hai server khác cũng dừng theo."}},{"@type":"Question","name":"Khi giới hạn đã cạn thì sửa server có sống lại ngay không?","acceptedAnswer":{"@type":"Answer","text":"Không ngay. Sửa và deploy xong thì giới hạn của ngày đó vẫn như cũ, tôi phải đợi đến lần reset 00:00 UTC (9:00 sáng giờ Hàn Quốc)."}},{"@type":"Question","name":"Làm sao biết alarm có quét cả bảng hay không?","acceptedAnswer":{"@type":"Answer","text":"Gom các câu truy vấn chạy trong alarm rồi chạy EXPLAIN QUERY PLAN. Nếu kế hoạch có SCAN tên_bảng mà không có index thì câu đó đang đọc cả bảng."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký lỗi của một dev indie</p>
+    <h1>Một alarm đọc hết 5 triệu hàng giới hạn mỗi ngày: truy lỗi 1101 của Durable Objects</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="Màn hình tự săn của 도트혈맹. Nhân vật pixel art đánh quái trong hầm ngục, phía trên hiện số vàng và số đá quý" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Ngày 7/11, server thu lỗi bắt đầu trả lỗi 500, mã lỗi là 1101 kèm dòng «Exceeded allowed rows read». Thủ phạm là một alarm chạy mỗi 5 giây của server game (도트혈맹) trong cùng tài khoản. Alarm này quét bảng users và feed mà không có index, một mình đọc 4.98 triệu trong tổng giới hạn 5 triệu hàng mỗi ngày. Giới hạn này cả tài khoản dùng chung nên server mời bạn bè và server thu lỗi cùng chết theo. Tôi sửa bằng 2 index và cache 10 phút. Giờ mỗi giờ tôi đo số hàng đọc của từng server, vượt 60% là có thông báo kèm tên thủ phạm.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Số liệu trước</a></li><li><a href="#s2">Lúc đầu tôi nghi nhầm server</a></li><li><a href="#s3">Thủ phạm là alarm 5 giây</a></li><li><a href="#s4">Những gì tôi đã sửa</a></li><li><a href="#s5">Để chuyện này không lặp lại</a></li><li><a href="#s6">Chỗ tôi đã sai</a></li></ol></nav>
+    <section id="s1"><h2>Số liệu trước</h2>
+<p>Sau khi biết server thu lỗi đã chết, việc đầu tiên tôi làm là gom số liệu: giới hạn là bao nhiêu, ai đọc bao nhiêu.</p>
+<div class="tbl"><table><thead><tr><th>Mục</th><th>Số liệu</th><th>Ghi chú</th></tr></thead><tbody><tr><td>Giới hạn đọc mỗi ngày (miễn phí)</td><td>5 triệu hàng</td><td>Mọi server trong tài khoản dùng chung. Reset lúc 00:00 UTC (9:00 sáng giờ Hàn Quốc)</td></tr><tr><td>Một alarm của 도트혈맹</td><td>4.98 triệu hàng</td><td>Tổng cả ngày 7/11</td></tr><tr><td>Số lần alarm chạy</td><td>17,280 lần mỗi ngày</td><td>Cứ 5 giây một lần. Lấy 86,400 giây chia cho 5</td></tr><tr><td>Số hàng đọc mỗi lần</td><td>khoảng 290 hàng</td><td>Giá trị tính ra: 4.98 triệu chia cho 17,280</td></tr><tr><td>Request vào server thu lỗi</td><td>2-3 nghìn mỗi ngày</td><td>Số hàng đọc từ 1.4 triệu đến 5.14 triệu mỗi ngày</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="Biểu đồ cột đặt cạnh nhau giới hạn 5 triệu hàng mỗi ngày và 4.98 triệu hàng mà một alarm của 도트혈맹 đã đọc" loading="lazy" decoding="async"><figcaption>Một alarm đọc hết 99.6% giới hạn.</figcaption></figure></section>
+<section id="s2"><h2>Lúc đầu tôi nghi nhầm server</h2>
+<p>Triệu chứng hiện ra ở server thu lỗi trước. Gọi danh sách session và danh sách issue đều trả 500, phần body chỉ có đúng dòng error code: 1101. Cùng lúc đó server mời bạn bè cũng chết với cùng mã lỗi.</p>
+<p>Thanh cảnh báo khẩn ghi server mời bạn bè là thủ phạm. Tức là hệ thống cứ server nào chết thì ghi là thủ phạm. Nhưng server mời bạn bè chỉ nhận vài nghìn request mỗi ngày, không thể tạo ra lượng đọc đó.</p>
+<p>Server thu lỗi cũng vậy. Request chỉ 2-3 nghìn mỗi ngày mà số hàng đọc lên tới 1.4 triệu đến 5.14 triệu. Số request và số hàng đọc lệch nhau đến thế nghĩa là không phải request đang đọc, mà có ai khác đang đọc.</p>
+</section>
+<section id="s3"><h2>Thủ phạm là alarm 5 giây</h2>
+<p>Giới hạn cả tài khoản dùng chung nên tôi phải xem mức dùng theo từng server. Tôi lấy số hàng đọc của từng server (worker) qua Cloudflare API thì gần như toàn bộ nằm ở một chỗ: server game 도트혈맹.</p>
+<p>Server này có một alarm chạy mỗi 5 giây. Trong alarm có câu truy vấn đếm số người đang online và đọc danh sách bot. Bảng users và feed không có index nên lần nào câu truy vấn cũng quét bảng từ đầu đến cuối.</p>
+<p>290 hàng mỗi lần nghe thì nhỏ. Nhưng alarm chạy 17,280 lần một ngày, nhân lên là 4.98 triệu.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="Màn hình cường hóa của 도트혈맹. Trong lò rèn, vũ khí từ +7 lên +8 với tỉ lệ thành công và vỡ hiện trên màn hình" loading="lazy" decoding="async"><figcaption>Thủ phạm là alarm phía server của game này.</figcaption></figure></section>
+<section id="s4"><h2>Những gì tôi đã sửa</h2>
+<p>Tôi sửa server 도트혈맹 và server thu lỗi, mỗi bên một lần. Nguyên nhân của cả hai giống nhau: truy vấn theo khoảng mà không có index.</p>
+<ul><li>Deploy bản sửa xong thì giới hạn của ngày hôm đó vẫn đã cạn nên server không sống lại ngay. Server thu lỗi chỉ hồi lại ở lần reset kế tiếp (00:00 UTC).</li><li>Có index rồi thì mỗi lần đọc chỉ còn đúng số hàng cần, không còn bằng kích thước cả bảng.</li></ul>
+<div class="tbl"><table><thead><tr><th>Server</th><th>Thay đổi</th></tr></thead><tbody><tr><td>도트혈맹</td><td>2 index: users(bot, seen) và feed(bot, ts)</td></tr><tr><td>도트혈맹</td><td>Cache danh sách bot trong bộ nhớ 10 phút</td></tr><tr><td>Server thu lỗi</td><td>Index issues(last_at) và hits(day)</td></tr><tr><td>Server thu lỗi</td><td>Mỗi ngày xóa một lần hits và sessions quá 90 ngày</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>Để chuyện này không lặp lại</h2>
+<p>Chỉ sửa thôi thì chưa đủ. Lần này tôi chỉ biết sau khi giới hạn đã cạn, và rất lâu sau mới biết ai là người ngốn nó. Vì vậy tôi thêm hai thứ.</p>
+<p>Thứ nhất là bài test. Test cho alarm chạy 400 lần, gom các câu truy vấn đã thực thi, xem kế hoạch bằng EXPLAIN QUERY PLAN. Chỉ cần một câu quét users hoặc feed mà không có index là test fail. Câu có LIMIT và dừng sớm thì loại ra.</p>
+<p>Thứ hai là giám sát. Mỗi giờ vào phút thứ 7, hệ thống cộng số hàng đọc của từng server, nếu vượt 60% giới hạn thì gửi thông báo kèm tên server thủ phạm và số hàng. Tôi cũng gọi thẳng vào server mời bạn bè và server thu lỗi, nếu gặp 1101 thì báo, hết lỗi thì tắt báo.</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="Màn hình chat liên minh của 도트혈맹. Cửa sổ chat nơi các thành viên liên minh trò chuyện" loading="lazy" decoding="async"><figcaption>Màn hình 도트혈맹 có chat liên minh.</figcaption></figure></section>
+<section id="s6"><h2>Chỗ tôi đã sai</h2>
+<p>Cái sai không phải một câu truy vấn. Nhiều server dùng chung một giới hạn miễn phí mà không có chỗ nào đo xem mỗi server đọc bao nhiêu. Một server ăn hết giới hạn thì server vô tội chết thay, và mình chỉ thấy bên chết.</p>
+<p>Vì vậy với 도트혈맹 tôi thêm test kiểm tra câu truy vấn trên đường đi của alarm có dùng index hay không. Lần này tôi học được rằng khi giới hạn dùng chung cả tài khoản thì phải có bảng mức dùng theo từng server trước.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Lỗi Cloudflare Durable Objects 1101 nghĩa là gì?</summary><p>Có thể là bạn đã vượt giới hạn miễn phí. Trong trường hợp của tôi, body còn có dòng «Exceeded allowed rows read», tức là đã dùng hết giới hạn hàng đọc mỗi ngày (5 triệu hàng cho cả tài khoản).</p></details><details><summary>Giới hạn đọc của Durable Objects tính theo từng server hay cả tài khoản?</summary><p>Ở tài khoản của tôi là cả tài khoản dùng chung 5 triệu hàng mỗi ngày. Vì vậy khi một server dùng gần hết, hai server khác cũng dừng theo.</p></details><details><summary>Khi giới hạn đã cạn thì sửa server có sống lại ngay không?</summary><p>Không ngay. Sửa và deploy xong thì giới hạn của ngày đó vẫn như cũ, tôi phải đợi đến lần reset 00:00 UTC (9:00 sáng giờ Hàn Quốc).</p></details><details><summary>Làm sao biết alarm có quét cả bảng hay không?</summary><p>Gom các câu truy vấn chạy trong alarm rồi chạy EXPLAIN QUERY PLAN. Nếu kế hoạch có SCAN tên_bảng mà không có index thì câu đó đang đọc cả bảng.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

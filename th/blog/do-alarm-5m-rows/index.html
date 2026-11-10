@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare Durable Objects limits: Alarm 5 วินาทีอ่านไป 5 ล้านแถว เจอ error 1101</title>
+<meta name="description" content="โควตาฟรีของ Cloudflare Durable Objects คืออ่านได้ 5 ล้านแถวต่อวัน แต่ alarm ตัวเดียวของเซิร์ฟเวอร์เกมอ่านไป 4.98 ล้านแถว จนเซิร์ฟเวอร์เก็บ error ล่มด้วย error 1101 ตามไปด้วย บันทึกนี้เล่าวิธีไล่หาสาเหตุ และแก้ด้วย index แคช และระบบเฝ้าดู">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/do-alarm-5m-rows/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare Durable Objects limits: Alarm 5 วินาทีอ่านไป 5 ล้านแถว เจอ error 1101">
+<meta property="og:description" content="โควตาฟรีของ Cloudflare Durable Objects คืออ่านได้ 5 ล้านแถวต่อวัน แต่ alarm ตัวเดียวของเซิร์ฟเวอร์เกมอ่านไป 4.98 ล้านแถว จนเซิร์ฟเวอร์เก็บ error ล่มด้วย error 1101 ตามไปด้วย บันทึกนี้เล่าวิธีไล่หาสาเหตุ และแก้ด้วย index แคช และระบบเฝ้าดู">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"alarm ตัวเดียวใช้โควตาอ่าน 5 ล้านแถวต่อวันหมด: ไล่หา error 1101 ของ Durable Objects","description":"โควตาฟรีของ Cloudflare Durable Objects คืออ่านได้ 5 ล้านแถวต่อวัน แต่ alarm ตัวเดียวของเซิร์ฟเวอร์เกมอ่านไป 4.98 ล้านแถว จนเซิร์ฟเวอร์เก็บ error ล่มด้วย error 1101 ตามไปด้วย บันทึกนี้เล่าวิธีไล่หาสาเหตุ และแก้ด้วย index แคช และระบบเฝ้าดู","inLanguage":"th","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"alarm ตัวเดียวใช้โควตาอ่าน 5 ล้านแถวต่อวันหมด: ไล่หา error 1101 ของ Durable Objects","item":"https://dumbgamelab.com/th/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"error 1101 ของ Cloudflare Durable Objects หมายถึงอะไร","acceptedAnswer":{"@type":"Answer","text":"อาจหมายถึงใช้เกินโควตาฟรี ในกรณีของผม เนื้อหามีข้อความ «Exceeded allowed rows read» ด้วย แปลว่าใช้โควตาแถวที่อ่านต่อวันหมดแล้ว (5 ล้านแถวทั้งบัญชี)"}},{"@type":"Question","name":"โควตาอ่านของ Durable Objects นับแยกตามเซิร์ฟเวอร์หรือทั้งบัญชี","acceptedAnswer":{"@type":"Answer","text":"ในบัญชีของผม ทั้งบัญชีใช้ร่วมกัน 5 ล้านแถวต่อวัน พอเซิร์ฟเวอร์หนึ่งใช้เกือบหมด อีกสองตัวก็หยุดตามไปด้วย"}},{"@type":"Question","name":"ถ้าโควตาหมดแล้ว แก้เซิร์ฟเวอร์แล้วจะกลับมาทันทีไหม","acceptedAnswer":{"@type":"Answer","text":"ไม่ทันที แม้แก้และ deploy แล้ว โควตาของวันนั้นก็ยังเท่าเดิม ผมต้องรอรีเซ็ตตอน 00:00 UTC (9 โมงเช้าเวลาเกาหลี)"}},{"@type":"Question","name":"จะรู้ได้อย่างไรว่า alarm สแกนทั้งตาราง","acceptedAnswer":{"@type":"Answer","text":"เก็บ query ที่รันใน alarm แล้วลองรัน EXPLAIN QUERY PLAN ถ้าแผนมี SCAN ชื่อตาราง โดยไม่มี index แปลว่าอ่านทั้งตาราง"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกความผิดพลาดของนักพัฒนาเดี่ยว</p>
+    <h1>alarm ตัวเดียวใช้โควตาอ่าน 5 ล้านแถวต่อวันหมด: ไล่หา error 1101 ของ Durable Objects</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="หน้าจอล่าอัตโนมัติของ 도트혈맹 ตัวละครพิกเซลอาร์ตสู้กับมอนสเตอร์ในดันเจียน และมีตัวเลขเหรียญทองกับอัญมณีอยู่ด้านบน" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">วันที่ 7 พฤศจิกายน เซิร์ฟเวอร์เก็บ error เริ่มตอบ 500 โดยรหัส error คือ 1101 พร้อมข้อความ «Exceeded allowed rows read» ตัวการคือ alarm ที่ทำงานทุก 5 วินาทีของเซิร์ฟเวอร์เกม (도트혈맹) ในบัญชีเดียวกัน alarm นี้สแกนตาราง users กับ feed โดยไม่มี index และอ่านไปคนเดียว 4.98 ล้านแถว จากโควตา 5 ล้านแถวต่อวัน โควตานี้ทั้งบัญชีใช้ร่วมกัน เซิร์ฟเวอร์ชวนเพื่อนกับเซิร์ฟเวอร์เก็บ error จึงล่มตามไปด้วย ผมแก้ด้วย index 2 ตัวกับแคช 10 นาที ตอนนี้ทุกชั่วโมงผมวัดจำนวนแถวที่แต่ละเซิร์ฟเวอร์อ่าน ถ้าเกิน 60% จะมีแจ้งเตือนพร้อมชื่อตัวการ</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">ดูตัวเลขก่อน</a></li><li><a href="#s2">แรก ๆ ผมสงสัยผิดเซิร์ฟเวอร์</a></li><li><a href="#s3">ตัวการคือ alarm 5 วินาที</a></li><li><a href="#s4">สิ่งที่แก้</a></li><li><a href="#s5">กันไม่ให้เกิดซ้ำ</a></li><li><a href="#s6">สิ่งที่ผมพลาด</a></li></ol></nav>
+    <section id="s1"><h2>ดูตัวเลขก่อน</h2>
+<p>พอรู้ว่าเซิร์ฟเวอร์เก็บ error ล่ม สิ่งแรกที่ผมทำคือรวบรวมตัวเลข โควตาอยู่ที่เท่าไร และใครอ่านไปเท่าไร</p>
+<div class="tbl"><table><thead><tr><th>รายการ</th><th>ตัวเลข</th><th>หมายเหตุ</th></tr></thead><tbody><tr><td>โควตาอ่านต่อวัน (ฟรี)</td><td>5 ล้านแถว</td><td>ทุกเซิร์ฟเวอร์ในบัญชีใช้ร่วมกัน รีเซ็ตตอน 00:00 UTC (9 โมงเช้าเวลาเกาหลี)</td></tr><tr><td>alarm ตัวเดียวของ 도트혈맹</td><td>4.98 ล้านแถว</td><td>ยอดรวมทั้งวันของวันที่ 7 พฤศจิกายน</td></tr><tr><td>จำนวนครั้งที่ alarm ทำงาน</td><td>วันละ 17,280 ครั้ง</td><td>ทุก 5 วินาที เอา 86,400 วินาทีหารด้วย 5</td></tr><tr><td>แถวที่อ่านต่อครั้ง</td><td>ประมาณ 290 แถว</td><td>ค่าที่คำนวณได้: 4.98 ล้านหารด้วย 17,280</td></tr><tr><td>request ที่เข้าเซิร์ฟเวอร์เก็บ error</td><td>วันละ 2-3 พัน</td><td>แถวที่อ่านอยู่ที่ 1.4 ล้านถึง 5.14 ล้านต่อวัน</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="กราฟแท่งวางเทียบโควตา 5 ล้านแถวต่อวันกับ 4.98 ล้านแถวที่ alarm ตัวเดียวของ 도트혈맹 อ่านไป" loading="lazy" decoding="async"><figcaption>alarm ตัวเดียวอ่านไป 99.6% ของโควตา</figcaption></figure></section>
+<section id="s2"><h2>แรก ๆ ผมสงสัยผิดเซิร์ฟเวอร์</h2>
+<p>อาการโผล่ที่เซิร์ฟเวอร์เก็บ error ก่อน พอเรียกรายการ session กับรายการ issue จะตอบ 500 และเนื้อหามีแค่ error code: 1101 ในเวลาเดียวกันเซิร์ฟเวอร์ชวนเพื่อนก็ล่มด้วยรหัสเดียวกัน</p>
+<p>แถบแจ้งเตือนด่วนระบุว่าเซิร์ฟเวอร์ชวนเพื่อนคือตัวการ คือระบบเขียนชื่อเซิร์ฟเวอร์ที่ล่มเป็นตัวการเลย แต่เซิร์ฟเวอร์ชวนเพื่อนมี request ต่อวันแค่ไม่กี่พัน สร้างการอ่านขนาดนั้นไม่ได้</p>
+<p>เซิร์ฟเวอร์เก็บ error ก็เหมือนกัน request แค่ 2-3 พันต่อวัน แต่แถวที่อ่านอยู่ที่ 1.4 ล้านถึง 5.14 ล้าน ถ้าจำนวน request กับแถวที่อ่านไม่ตรงกันขนาดนี้ แปลว่าไม่ใช่ request ที่อ่าน แต่มีตัวอื่นกำลังอ่านอยู่</p>
+</section>
+<section id="s3"><h2>ตัวการคือ alarm 5 วินาที</h2>
+<p>โควตานี้ทั้งบัญชีใช้ร่วมกัน ผมเลยต้องดูการใช้แยกตามเซิร์ฟเวอร์ ผมดึงแถวที่อ่านของแต่ละเซิร์ฟเวอร์ (worker) ผ่าน Cloudflare API ปรากฏว่าเกือบทั้งหมดอยู่ที่เดียว คือเซิร์ฟเวอร์เกม 도트혈맹</p>
+<p>เซิร์ฟเวอร์นี้มี alarm ทำงานทุก 5 วินาที ใน alarm มี query นับจำนวนคนที่ออนไลน์และอ่านรายชื่อบอต ตาราง users กับ feed ไม่มี index ทุกครั้งที่ query ทำงานจึงสแกนตารางตั้งแต่ต้นจนจบ</p>
+<p>290 แถวต่อครั้งดูน้อย แต่ alarm ทำงานวันละ 17,280 ครั้ง คูณกันแล้วได้ 4.98 ล้าน</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="หน้าจอตีบวกของ 도트혈맹 ในฉากโรงตีเหล็ก อาวุธจาก +7 เป็น +8 พร้อมโอกาสสำเร็จและโอกาสแตกที่แสดงบนจอ" loading="lazy" decoding="async"><figcaption>ตัวการคือ alarm ฝั่งเซิร์ฟเวอร์ของเกมนี้</figcaption></figure></section>
+<section id="s4"><h2>สิ่งที่แก้</h2>
+<p>ผมแก้ทั้งเซิร์ฟเวอร์ 도트혈맹 และเซิร์ฟเวอร์เก็บ error สาเหตุของทั้งสองที่เหมือนกันคือ query แบบช่วงที่ไม่มี index</p>
+<ul><li>แม้ deploy ตัวที่แก้แล้ว โควตาของวันนั้นก็หมดไปแล้ว เซิร์ฟเวอร์เลยไม่กลับมาทันที เซิร์ฟเวอร์เก็บ error จะกลับมาตอนรีเซ็ตรอบถัดไป (00:00 UTC)</li><li>พอมี index จำนวนแถวที่อ่านต่อครั้งจะลดจากขนาดทั้งตารางเหลือเท่าที่ต้องใช้จริง</li></ul>
+<div class="tbl"><table><thead><tr><th>เซิร์ฟเวอร์</th><th>สิ่งที่เปลี่ยน</th></tr></thead><tbody><tr><td>도트혈맹</td><td>index 2 ตัว: users(bot, seen) และ feed(bot, ts)</td></tr><tr><td>도트혈맹</td><td>แคชรายชื่อบอตในหน่วยความจำ 10 นาที</td></tr><tr><td>เซิร์ฟเวอร์เก็บ error</td><td>index issues(last_at) และ hits(day)</td></tr><tr><td>เซิร์ฟเวอร์เก็บ error</td><td>ลบ hits และ sessions ที่เก่ากว่า 90 วัน วันละครั้ง</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>กันไม่ให้เกิดซ้ำ</h2>
+<p>แก้อย่างเดียวไม่พอ รอบนี้ผมรู้ตอนที่โควตาหมดไปแล้ว และกว่าจะรู้ว่าใครใช้ก็ผ่านไปนาน ผมเลยเพิ่มอีกสองอย่าง</p>
+<p>อย่างแรกคือเทสต์ ให้ alarm ทำงาน 400 รอบ แล้วเก็บ query ที่รันไปดูแผนด้วย EXPLAIN QUERY PLAN ถ้ามี query แม้แต่ตัวเดียวที่สแกน users หรือ feed โดยไม่มี index เทสต์จะล้มเหลว query ที่มี LIMIT และหยุดตั้งแต่ต้นไม่นับ</p>
+<p>อย่างที่สองคือการเฝ้าดู ทุกชั่วโมงที่นาทีที่ 7 ระบบรวมแถวที่อ่านของแต่ละเซิร์ฟเวอร์ ถ้าเกิน 60% ของโควตาจะส่งแจ้งเตือนพร้อมชื่อเซิร์ฟเวอร์ตัวการและจำนวนแถว ผมยังยิงตรงไปที่เซิร์ฟเวอร์ชวนเพื่อนกับเซิร์ฟเวอร์เก็บ error ถ้าเจอ 1101 ก็แจ้ง และเลิกแจ้งเมื่อกลับมาปกติ</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="หน้าจอแชตของแคลนใน 도트혈맹 หน้าต่างแชตที่สมาชิกแคลนคุยกัน" loading="lazy" decoding="async"><figcaption>หน้าจอ 도트혈맹 ที่มีแชตแคลน</figcaption></figure></section>
+<section id="s6"><h2>สิ่งที่ผมพลาด</h2>
+<p>สิ่งที่พลาดไม่ใช่ query ตัวเดียว เซิร์ฟเวอร์หลายตัวใช้โควตาฟรีก้อนเดียวร่วมกัน แต่ไม่มีที่ไหนวัดว่าแต่ละตัวอ่านเท่าไร พอเซิร์ฟเวอร์หนึ่งใช้โควตาหมด เซิร์ฟเวอร์ที่ไม่ผิดก็ล่มแทน และเรามองเห็นแต่ตัวที่ล่ม</p>
+<p>ผมเลยใส่เทสต์ใน 도트혈맹 เพื่อตรวจว่า query บนเส้นทางของ alarm ใช้ index หรือไม่ รอบนี้ผมได้เรียนรู้ว่าถ้าโควตาใช้ร่วมทั้งบัญชี ต้องมีตารางการใช้แยกตามเซิร์ฟเวอร์ก่อน</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>error 1101 ของ Cloudflare Durable Objects หมายถึงอะไร</summary><p>อาจหมายถึงใช้เกินโควตาฟรี ในกรณีของผม เนื้อหามีข้อความ «Exceeded allowed rows read» ด้วย แปลว่าใช้โควตาแถวที่อ่านต่อวันหมดแล้ว (5 ล้านแถวทั้งบัญชี)</p></details><details><summary>โควตาอ่านของ Durable Objects นับแยกตามเซิร์ฟเวอร์หรือทั้งบัญชี</summary><p>ในบัญชีของผม ทั้งบัญชีใช้ร่วมกัน 5 ล้านแถวต่อวัน พอเซิร์ฟเวอร์หนึ่งใช้เกือบหมด อีกสองตัวก็หยุดตามไปด้วย</p></details><details><summary>ถ้าโควตาหมดแล้ว แก้เซิร์ฟเวอร์แล้วจะกลับมาทันทีไหม</summary><p>ไม่ทันที แม้แก้และ deploy แล้ว โควตาของวันนั้นก็ยังเท่าเดิม ผมต้องรอรีเซ็ตตอน 00:00 UTC (9 โมงเช้าเวลาเกาหลี)</p></details><details><summary>จะรู้ได้อย่างไรว่า alarm สแกนทั้งตาราง</summary><p>เก็บ query ที่รันใน alarm แล้วลองรัน EXPLAIN QUERY PLAN ถ้าแผนมี SCAN ชื่อตาราง โดยไม่มี index แปลว่าอ่านทั้งตาราง</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

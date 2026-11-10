@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare 1101 错误：Durable Objects 读取额度用光，一个 5 秒闹钟读了 500 万行</title>
+<meta name="description" content="Cloudflare 免费版 Durable Objects 每天 500 万行的读取额度，被游戏服务器里的一个闹钟用掉 498 万行，连错误收集服务也跟着报 1101。这篇记录排查原因，以及用索引、缓存和监控修好的过程。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/do-alarm-5m-rows/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare 1101 错误：Durable Objects 读取额度用光，一个 5 秒闹钟读了 500 万行">
+<meta property="og:description" content="Cloudflare 免费版 Durable Objects 每天 500 万行的读取额度，被游戏服务器里的一个闹钟用掉 498 万行，连错误收集服务也跟着报 1101。这篇记录排查原因，以及用索引、缓存和监控修好的过程。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一个闹钟独吞每天 500 万行读取额度：Durable Objects 1101 排查记录","description":"Cloudflare 免费版 Durable Objects 每天 500 万行的读取额度，被游戏服务器里的一个闹钟用掉 498 万行，连错误收集服务也跟着报 1101。这篇记录排查原因，以及用索引、缓存和监控修好的过程。","inLanguage":"zh-CN","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"一个闹钟独吞每天 500 万行读取额度：Durable Objects 1101 排查记录","item":"https://dumbgamelab.com/zh-Hans/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cloudflare Durable Objects 报 1101 错误是什么意思？","acceptedAnswer":{"@type":"Answer","text":"有可能是超过了免费额度。我这次的响应内容里同时出现了“Exceeded allowed rows read”，是每日读取行数额度（整个账号 500 万行）被用完了。"}},{"@type":"Question","name":"Durable Objects 的读取额度是按服务算，还是整个账号共用？","acceptedAnswer":{"@type":"Answer","text":"在我的账号上是整个账号一天共用 500 万行。所以一个服务几乎用光之后，另外两个服务也一起停了。"}},{"@type":"Question","name":"额度用完的那天，把服务修好会马上恢复吗？","acceptedAnswer":{"@type":"Answer","text":"不会马上。修好部署之后，当天的额度还是用完的状态，要等 00:00 UTC（韩国时间上午 9 点）重置才行。"}},{"@type":"Question","name":"怎么确认闹钟有没有全表扫描？","acceptedAnswer":{"@type":"Answer","text":"把闹钟里执行的查询收集起来，跑一遍 EXPLAIN QUERY PLAN。如果执行计划里出现没走索引的 SCAN 表名，就说明读了整张表。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">独立开发 踩坑记录</p>
+    <h1>一个闹钟独吞每天 500 万行读取额度：Durable Objects 1101 排查记录</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="도트혈맹 自动挂机战斗画面。像素风地牢里角色正在和怪物战斗，上方能看到金币和宝石的数字" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11 月 7 日，我的错误收集服务开始返回 500，错误码是 1101，提示为“Exceeded allowed rows read”。罪魁祸首是同一账号下的游戏服务器（도트혈맹）每 5 秒跑一次的闹钟。这个闹钟查 users、feed 两张表时没有索引，每次都全表扫描，一天 500 万行的读取额度，它一个就用掉 498 万行。额度是整个账号共用的，所以邀请服务和错误收集服务一起挂了。我加了 2 个索引和 10 分钟缓存来修，现在每小时统计各服务的读取行数，超过 60% 就带上罪魁祸首的名字提醒我。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">先看数字</a></li><li><a href="#s2">一开始怀疑错了服务器</a></li><li><a href="#s3">罪魁祸首是 5 秒闹钟</a></li><li><a href="#s4">修了什么</a></li><li><a href="#s5">别让同样的事再发生</a></li><li><a href="#s6">我错在哪</a></li></ol></nav>
+    <section id="s1"><h2>先看数字</h2>
+<p>发现错误收集服务挂了之后，我先做的事是把数字凑齐：额度到底是多少，每个服务各读了多少。</p>
+<div class="tbl"><table><thead><tr><th>项目</th><th>数字</th><th>备注</th></tr></thead><tbody><tr><td>每日读取额度（免费）</td><td>500 万行</td><td>账号下所有服务共用。每天 00:00 UTC（韩国时间 09:00）重置</td></tr><tr><td>도트혈맹 的一个闹钟</td><td>498 万行</td><td>11 月 7 日一天的合计</td></tr><tr><td>闹钟运行次数</td><td>每天 17,280 次</td><td>每 5 秒一次。86,400 秒除以 5</td></tr><tr><td>每次读取的行数</td><td>约 290 行</td><td>498 万除以 17,280 得出的计算值</td></tr><tr><td>错误收集服务的请求</td><td>每天 2000 到 3000 个</td><td>读取行数为每天 140 万到 514 万</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="柱状图，并排显示每日额度 500 万行和 도트혈맹 的一个闹钟读取的 498 万行" loading="lazy" decoding="async"><figcaption>一个闹钟就读掉了额度的 99.6%。</figcaption></figure></section>
+<section id="s2"><h2>一开始怀疑错了服务器</h2>
+<p>症状最先出现在错误收集服务上。请求会话列表和问题列表都返回 500，响应内容只有一行 error code: 1101。同一时间，好友邀请服务也用同一个错误码挂了。</p>
+<p>紧急通知横幅把邀请服务写成了罪魁祸首，等于把挂掉的服务直接当成了凶手。可邀请服务一天只有几千个请求，不可能产生那么多读取。</p>
+<p>错误收集服务也一样。请求一天 2000 到 3000 个，读取行数却有 140 万到 514 万。请求数和读取行数差这么多，说明读数据的不是这些请求，而是别的东西。</p>
+</section>
+<section id="s3"><h2>罪魁祸首是 5 秒闹钟</h2>
+<p>额度是整个账号共用的，所以得单独看每个服务的用量。我用 Cloudflare API 拉出每个服务（Worker）的读取行数，几乎都集中在同一个上面，就是 도트혈맹 的游戏服务器。</p>
+<p>这个服务器每 5 秒跑一次闹钟。闹钟里要统计当前在线人数、读取机器人名单，这些查询落在 users、feed 两张表上，而这两张表没有索引，每次都从头到尾把整张表扫一遍。</p>
+<p>一次 290 行看起来不多。可闹钟一天跑 17,280 次，乘起来就是 498 万。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="도트혈맹 强化界面。铁匠铺背景下，武器从 +7 升到 +8 的成功与损毁概率显示在画面上" loading="lazy" decoding="async"><figcaption>罪魁祸首是这款游戏服务器端的闹钟。</figcaption></figure></section>
+<section id="s4"><h2>修了什么</h2>
+<p>도트혈맹 服务器和错误收集服务我各修了一遍。两边原因相同：没有索引就去查范围的查询。</p>
+<ul><li>修好的服务部署上去之后，当天的额度已经见底，没法立刻恢复。错误收集服务要等下一次重置（00:00 UTC）才会放开。</li><li>加上索引之后，每次读取的行数会从整张表的大小降到真正需要的行数。</li></ul>
+<div class="tbl"><table><thead><tr><th>服务</th><th>改动</th></tr></thead><tbody><tr><td>도트혈맹</td><td>users(bot, seen)、feed(bot, ts) 两个索引</td></tr><tr><td>도트혈맹</td><td>机器人名单在内存里缓存 10 分钟</td></tr><tr><td>错误收集服务</td><td>issues(last_at)、hits(day) 索引</td></tr><tr><td>错误收集服务</td><td>每天一次删除超过 90 天的 hits、sessions</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>别让同样的事再发生</h2>
+<p>光修好还不够。这次是额度见底之后我才发现，而且过了很久才知道是谁在吃。所以我又加了两样东西。</p>
+<p>第一是测试。让闹钟跑 400 次，把这期间执行过的查询收集起来，用 EXPLAIN QUERY PLAN 看执行计划，只要有一个查询不走索引就扫 users、feed，测试就会失败。带 LIMIT、在前面就停下的查询不算。</p>
+<p>第二是监控。每小时第 7 分钟把各服务的读取行数加起来，超过额度的 60% 就附上罪魁祸首的服务名和行数发出提醒。我还会直接去请求邀请服务和错误收集服务，出现 1101 就发提醒，恢复了就撤掉。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="도트혈맹 血盟聊天界面。可以看到血盟成员在聊天窗口里对话" loading="lazy" decoding="async"><figcaption>这是带血盟聊天的 도트혈맹 界面。</figcaption></figure></section>
+<section id="s6"><h2>我错在哪</h2>
+<p>错的不只是一条查询。好几个服务共用一份免费额度，却没有任何地方在统计每个服务各读了多少。一个服务把额度用光，好好的服务就会替它倒下，而我只会看到倒下的那一边。</p>
+<p>所以我在 도트혈맹 里加了一个测试，检查闹钟路径上的查询有没有走索引。这次学到的是：额度只要是账号共用，就得先有一张每个服务的用量表。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Cloudflare Durable Objects 报 1101 错误是什么意思？</summary><p>有可能是超过了免费额度。我这次的响应内容里同时出现了“Exceeded allowed rows read”，是每日读取行数额度（整个账号 500 万行）被用完了。</p></details><details><summary>Durable Objects 的读取额度是按服务算，还是整个账号共用？</summary><p>在我的账号上是整个账号一天共用 500 万行。所以一个服务几乎用光之后，另外两个服务也一起停了。</p></details><details><summary>额度用完的那天，把服务修好会马上恢复吗？</summary><p>不会马上。修好部署之后，当天的额度还是用完的状态，要等 00:00 UTC（韩国时间上午 9 点）重置才行。</p></details><details><summary>怎么确认闹钟有没有全表扫描？</summary><p>把闹钟里执行的查询收集起来，跑一遍 EXPLAIN QUERY PLAN。如果执行计划里出现没走索引的 SCAN 表名，就说明读了整张表。</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

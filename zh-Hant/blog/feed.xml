@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>一個鬧鐘獨吞每日 500 萬列讀取額度：Durable Objects 1101 追查紀錄</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/</guid>
+    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Cloudflare 免費版 Durable Objects 每天讀取 500 萬列的額度，被遊戲伺服器的一個鬧鐘用掉 498 萬列，連錯誤收集伺服器也跟著出現 1101。這篇記錄追查原因，以及用索引、快取和監控修好的過程。</description>
+  </item>
+  <item>
     <title>同一個批評聽了二十次,規則寫兩遍也沒用</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/told-ai-not-to-be-sloppy-20-times/</guid>

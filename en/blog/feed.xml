@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101</title>
+    <link>https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</guid>
+    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
+    <description>One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.</description>
+  </item>
+  <item>
     <title>There&#39;s No Cat in Catgut</title>
     <link>https://dumbgamelab.com/en/blog/catgut-strings/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/catgut-strings/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/why-pc-bangs-became-restaurants/</guid>
     <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
     <description>Why do Korean PC bangs sell ramen, fried rice and chicken? The 2013 smoking ban, the 2010 food-snitch crackdown, and food sales going from about 10% to 40%, with sources.</description>
-  </item>
-  <item>
-    <title>QR Codes Were Born on a Go Board</title>
-    <link>https://dumbgamelab.com/en/blog/qr-baduk/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/qr-baduk/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>QR codes were made in Japan in 1994, inspired by the black and white pattern of Go stones.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

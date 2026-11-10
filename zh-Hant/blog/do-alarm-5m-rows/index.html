@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloudflare error 1101：Durable Objects 讀取額度用完，一個 5 秒鬧鐘讀了 500 萬列</title>
+<meta name="description" content="Cloudflare 免費版 Durable Objects 每天讀取 500 萬列的額度，被遊戲伺服器的一個鬧鐘用掉 498 萬列，連錯誤收集伺服器也跟著出現 1101。這篇記錄追查原因，以及用索引、快取和監控修好的過程。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Cloudflare error 1101：Durable Objects 讀取額度用完，一個 5 秒鬧鐘讀了 500 萬列">
+<meta property="og:description" content="Cloudflare 免費版 Durable Objects 每天讀取 500 萬列的額度，被遊戲伺服器的一個鬧鐘用掉 498 萬列，連錯誤收集伺服器也跟著出現 1101。這篇記錄追查原因，以及用索引、快取和監控修好的過程。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一個鬧鐘獨吞每日 500 萬列讀取額度：Durable Objects 1101 追查紀錄","description":"Cloudflare 免費版 Durable Objects 每天讀取 500 萬列的額度，被遊戲伺服器的一個鬧鐘用掉 498 萬列，連錯誤收集伺服器也跟著出現 1101。這篇記錄追查原因，以及用索引、快取和監控修好的過程。","inLanguage":"zh-TW","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"一個鬧鐘獨吞每日 500 萬列讀取額度：Durable Objects 1101 追查紀錄","item":"https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cloudflare Durable Objects 的 1101 錯誤是什麼意思？","acceptedAnswer":{"@type":"Answer","text":"有可能是超過免費額度。我這次的回應內容同時出現「Exceeded allowed rows read」，是每日讀取列數額度（整個帳號 500 萬列）被用完了。"}},{"@type":"Question","name":"Durable Objects 的讀取額度是每個伺服器各算，還是整個帳號共用？","acceptedAnswer":{"@type":"Answer","text":"在我的帳號是整個帳號一天共用 500 萬列。所以一個伺服器幾乎用光之後，另外兩個伺服器也跟著停了。"}},{"@type":"Question","name":"額度用完的那天，把伺服器修好會馬上恢復嗎？","acceptedAnswer":{"@type":"Answer","text":"不會馬上。修好部署之後，當天的額度還是用完的狀態，要等 00:00 UTC（韓國時間早上 9 點）重置才行。"}},{"@type":"Question","name":"要怎麼確認鬧鐘有沒有掃整張表？","acceptedAnswer":{"@type":"Answer","text":"把鬧鐘裡執行的查詢收集起來，跑 EXPLAIN QUERY PLAN 看看。如果執行計畫出現沒走索引的 SCAN 表名，就表示讀了整張表。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">獨立開發 失誤紀錄</p>
+    <h1>一個鬧鐘獨吞每日 500 萬列讀取額度：Durable Objects 1101 追查紀錄</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="도트혈맹 自動狩獵畫面。像素風地下城裡角色正在和怪物戰鬥，上方可以看到金幣和寶石的數字" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11 月 7 日，我的錯誤收集伺服器開始回 500，錯誤碼是 1101，訊息為「Exceeded allowed rows read」。兇手是同一個帳號下的遊戲伺服器（도트혈맹）每 5 秒跑一次的鬧鐘。這個鬧鐘在 users、feed 兩張表上沒有索引，每次都整張表掃過去，一天的讀取額度 500 萬列，它一個就用掉 498 萬列。額度是整個帳號共用的，所以邀請伺服器和錯誤收集伺服器一起掛了。我加了 2 個索引和 10 分鐘快取來修，現在每小時統計各伺服器的讀取列數，超過 60% 就連同兇手名稱一起通知我。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">先看數字</a></li><li><a href="#s2">一開始懷疑錯了伺服器</a></li><li><a href="#s3">兇手是 5 秒鬧鐘</a></li><li><a href="#s4">修了什麼</a></li><li><a href="#s5">避免同樣的事再發生</a></li><li><a href="#s6">我錯在哪</a></li></ol></nav>
+    <section id="s1"><h2>先看數字</h2>
+<p>發現錯誤收集伺服器掛掉之後，我第一件事是把數字湊齊：額度到底是多少，各個伺服器各讀了多少。</p>
+<div class="tbl"><table><thead><tr><th>項目</th><th>數字</th><th>備註</th></tr></thead><tbody><tr><td>每日讀取額度（免費）</td><td>500 萬列</td><td>帳號內所有伺服器共用。每天 00:00 UTC（韓國時間 09:00）重置</td></tr><tr><td>도트혈맹 的一個鬧鐘</td><td>498 萬列</td><td>11 月 7 日一天的總和</td></tr><tr><td>鬧鐘執行次數</td><td>每天 17,280 次</td><td>每 5 秒一次。86,400 秒除以 5</td></tr><tr><td>每次讀取的列數</td><td>約 290 列</td><td>498 萬除以 17,280 的計算值</td></tr><tr><td>錯誤收集器的請求</td><td>每天 2,000 到 3,000 筆</td><td>讀取列數為每天 140 萬到 514 萬</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="長條圖，並排顯示每日額度 500 萬列與 도트혈맹 的一個鬧鐘讀取的 498 萬列" loading="lazy" decoding="async"><figcaption>一個鬧鐘就讀掉額度的 99.6%。</figcaption></figure></section>
+<section id="s2"><h2>一開始懷疑錯了伺服器</h2>
+<p>症狀先出現在錯誤收集伺服器。呼叫工作階段清單和問題清單都回 500，回應內容只寫著 error code: 1101。同一時間，好友邀請伺服器也用同一個錯誤碼停擺。</p>
+<p>緊急通知橫幅把邀請伺服器列為兇手。其實就是把掛掉的伺服器直接當成兇手。但邀請伺服器一天只有幾千筆請求，不可能製造出那麼多讀取。</p>
+<p>錯誤收集器也一樣。請求一天 2,000 到 3,000 筆，讀取列數卻有 140 萬到 514 萬。請求數和讀取列數差這麼多，代表不是請求在讀，而是別的東西在讀。</p>
+</section>
+<section id="s3"><h2>兇手是 5 秒鬧鐘</h2>
+<p>額度是整個帳號共用，所以得分開看每個伺服器的用量。我用 Cloudflare API 抓出各個伺服器（Worker）的讀取列數，幾乎全集中在一個地方，就是 도트혈맹 的遊戲伺服器。</p>
+<p>這個伺服器每 5 秒跑一次鬧鐘。鬧鐘裡面要數目前在線的人數、讀機器人名單，這些查詢打在 users、feed 兩張表上，而這兩張表沒有索引，每次都從頭到尾整張表掃一遍。</p>
+<p>一次 290 列看起來很少。但鬧鐘一天跑 17,280 次，乘起來就是 498 萬。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="도트혈맹 強化畫面。鐵匠鋪背景裡，武器從 +7 變 +8 的成功與破壞機率顯示在畫面上" loading="lazy" decoding="async"><figcaption>兇手是這款遊戲伺服器端的鬧鐘。</figcaption></figure></section>
+<section id="s4"><h2>修了什麼</h2>
+<p>도트혈맹 伺服器和錯誤收集伺服器我各修了一次。兩邊原因一樣：沒有索引就去查範圍的查詢。</p>
+<ul><li>修好的伺服器部署上去，當天的額度早就見底了，沒辦法立刻恢復。錯誤收集伺服器要等下一次重置（00:00 UTC）才會解開。</li><li>加上索引之後，每次讀取的列數會從整張表的大小，降到真正需要的列數。</li></ul>
+<div class="tbl"><table><thead><tr><th>伺服器</th><th>修改內容</th></tr></thead><tbody><tr><td>도트혈맹</td><td>users(bot, seen)、feed(bot, ts) 兩個索引</td></tr><tr><td>도트혈맹</td><td>機器人名單在記憶體快取 10 分鐘</td></tr><tr><td>錯誤收集器</td><td>issues(last_at)、hits(day) 索引</td></tr><tr><td>錯誤收集器</td><td>每天一次刪除超過 90 天的 hits、sessions</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>避免同樣的事再發生</h2>
+<p>光是修好還不夠。這次是額度見底之後我才發現，而且是過了很久才知道是誰在吃。所以我又加了兩樣東西。</p>
+<p>第一是測試。讓鬧鐘跑 400 次，把這段時間執行過的查詢收集起來，用 EXPLAIN QUERY PLAN 看執行計畫，只要有任何一個查詢是不走索引就掃 users、feed，測試就會失敗。帶 LIMIT、在前面就停下來的查詢不算。</p>
+<p>第二是監控。每小時第 7 分鐘把各伺服器的讀取列數加總，超過額度的 60% 就附上兇手伺服器名稱和列數發出通知。我也會直接去戳邀請和錯誤收集伺服器，出現 1101 就發通知，恢復了就撤掉。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="도트혈맹 血盟聊天畫面。可以看到血盟成員在聊天視窗裡對話" loading="lazy" decoding="async"><figcaption>這是有血盟聊天的 도트혈맹 畫面。</figcaption></figure></section>
+<section id="s6"><h2>我錯在哪</h2>
+<p>錯的不只是一條查詢。好幾個伺服器共用一份免費額度，卻沒有任何地方在量每個伺服器各讀多少。一個伺服器把額度吃光，好端端的伺服器就會代替它倒下，而我只會看到倒下的那一邊。</p>
+<p>所以我在 도트혈맹 加了一個測試，檢查鬧鐘路徑上的查詢有沒有走索引。這次學到的是：額度只要是帳號共用，就得先有一張各伺服器的用量表。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Cloudflare Durable Objects 的 1101 錯誤是什麼意思？</summary><p>有可能是超過免費額度。我這次的回應內容同時出現「Exceeded allowed rows read」，是每日讀取列數額度（整個帳號 500 萬列）被用完了。</p></details><details><summary>Durable Objects 的讀取額度是每個伺服器各算，還是整個帳號共用？</summary><p>在我的帳號是整個帳號一天共用 500 萬列。所以一個伺服器幾乎用光之後，另外兩個伺服器也跟著停了。</p></details><details><summary>額度用完的那天，把伺服器修好會馬上恢復嗎？</summary><p>不會馬上。修好部署之後，當天的額度還是用完的狀態，要等 00:00 UTC（韓國時間早上 9 點）重置才行。</p></details><details><summary>要怎麼確認鬧鐘有沒有掃整張表？</summary><p>把鬧鐘裡執行的查詢收集起來，跑 EXPLAIN QUERY PLAN 看看。如果執行計畫出現沒走索引的 SCAN 表名，就表示讀了整張表。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/do-alarm-5m-rows/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

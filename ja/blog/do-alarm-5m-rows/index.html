@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durable Objects 無料枠の読み取り上限を超えた(1101):5秒ごとのアラームが500万行を読んでいた</title>
+<meta name="description" content="Cloudflareの無料枠(1日の読み取り500万行)のうち、ゲームサーバーのアラーム1つが498万行を使い、エラー収集サーバーまで1101で止まった日の記録です。原因の追い方と、インデックス・キャッシュ・監視で直した流れを書いています。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/do-alarm-5m-rows/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/do-alarm-5m-rows/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Durable Objects 無料枠の読み取り上限を超えた(1101):5秒ごとのアラームが500万行を読んでいた">
+<meta property="og:description" content="Cloudflareの無料枠(1日の読み取り500万行)のうち、ゲームサーバーのアラーム1つが498万行を使い、エラー収集サーバーまで1101で止まった日の記録です。原因の追い方と、インデックス・キャッシュ・監視で直した流れを書いています。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"アラーム1つが1日の読み取り上限500万行を使い切った:Durable Objects 1101の追跡記録","description":"Cloudflareの無料枠(1日の読み取り500万行)のうち、ゲームサーバーのアラーム1つが498万行を使い、エラー収集サーバーまで1101で止まった日の記録です。原因の追い方と、インデックス・キャッシュ・監視で直した流れを書いています。","inLanguage":"ja","datePublished":"2026-11-10","dateModified":"2026-11-10","image":"https://dumbgamelab.com/blog/img/do-alarm-5m-rows/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"アラーム1つが1日の読み取り上限500万行を使い切った:Durable Objects 1101の追跡記録","item":"https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Cloudflare Durable Objectsの1101エラーは何を意味しますか?","acceptedAnswer":{"@type":"Answer","text":"無料の上限を超えた場合があります。私の場合は本文に「Exceeded allowed rows read」も出ていて、1日の読み取り行数の上限(アカウント全体で500万行)を使い切っていました。"}},{"@type":"Question","name":"Durable Objectsの読み取り上限はサーバーごとですか、アカウント全体ですか?","acceptedAnswer":{"@type":"Answer","text":"私のアカウントでは、アカウント全体で1日500万行を分け合っていました。1つのサーバーがほぼ全部を使ったため、ほかの2つのサーバーも一緒に止まりました。"}},{"@type":"Question","name":"上限が尽きた日にサーバーを直すと、すぐ復旧しますか?","acceptedAnswer":{"@type":"Answer","text":"すぐには戻りません。直してデプロイしても、その日の上限はそのままなので、00:00 UTC(韓国時間の午前9時)のリセットを待つ必要がありました。"}},{"@type":"Question","name":"アラームがテーブル全体を読んでいるかどうか、どう確認しますか?","acceptedAnswer":{"@type":"Answer","text":"アラームの中で実行されるクエリを集めてEXPLAIN QUERY PLANを実行します。プランにインデックスなしのSCANとテーブル名が出ていたら、テーブル全体を読んでいます。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">個人開発 失敗談</p>
+    <h1>アラーム1つが1日の読み取り上限500万行を使い切った:Durable Objects 1101の追跡記録</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-10">2026-11-10</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="ドットクランの自動狩り画面。ピクセルアートのダンジョンでキャラクターがモンスターと戦い、上に金貨と宝石の数字が見える" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11月7日、エラー収集サーバーが500エラーを返し始め、エラーコードは1101、メッセージは「Exceeded allowed rows read」でした。犯人は同じアカウントのゲームサーバー(ドットクラン)で5秒ごとに動くアラームです。このアラームがusersとfeedのテーブルをインデックスなしで全部読み、1日の上限500万行のうち498万行を1つで使っていました。上限はアカウント全体で共有なので、招待サーバーとエラー収集サーバーも一緒に止まりました。インデックス2つと10分のキャッシュで直し、今は毎時サーバーごとの読み取り行数を測って、60%を超えたら犯人の名前つきで通知します。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">まず数字から</a></li><li><a href="#s2">最初は違うサーバーを疑った</a></li><li><a href="#s3">犯人は5秒ごとのアラームだった</a></li><li><a href="#s4">直したこと</a></li><li><a href="#s5">同じことを繰り返さないために</a></li><li><a href="#s6">私が間違えていたこと</a></li></ol></nav>
+    <section id="s1"><h2>まず数字から</h2>
+<p>エラー収集サーバーが止まったと気づいて最初にやったのは、数字を集めることでした。上限がいくつで、誰がどれだけ読んだのかから見ました。</p>
+<div class="tbl"><table><thead><tr><th>項目</th><th>数字</th><th>メモ</th></tr></thead><tbody><tr><td>1日の読み取り上限(無料)</td><td>500万行</td><td>アカウント内の全サーバーで共有。00:00 UTC(韓国時間 09:00)にリセット</td></tr><tr><td>ドットクランのアラーム1つ</td><td>498万行</td><td>11月7日の1日分の合計</td></tr><tr><td>アラームが動く回数</td><td>1日17,280回</td><td>5秒ごと。86,400秒を5で割った値</td></tr><tr><td>1回に読んだ行</td><td>約290行</td><td>498万を17,280で割った計算値</td></tr><tr><td>エラー収集のリクエスト</td><td>1日2〜3千件</td><td>読み取り行数は1日140万〜514万</td></tr></tbody></table></div>
+<figure><img src="/blog/img/do-alarm-5m-rows/chart.jpg" alt="1日の上限500万行と、ドットクランのアラーム1つが読んだ498万行を並べた棒グラフ" loading="lazy" decoding="async"><figcaption>アラーム1つで上限の99.6%を読んでいました。</figcaption></figure></section>
+<section id="s2"><h2>最初は違うサーバーを疑った</h2>
+<p>症状はエラー収集サーバーに先に出ました。セッション一覧とイシュー一覧を呼ぶと500が返り、本文にはerror code: 1101とだけ書かれていました。同じ時間に、友達招待サーバーも同じコードで止まっていました。</p>
+<p>緊急通知のバーには、招待サーバーが犯人として表示されました。止まったサーバーをそのまま犯人にしていたわけです。でも招待サーバーは1日のリクエストが数千件しかなく、それだけの読み取りは作れません。</p>
+<p>エラー収集サーバーも同じでした。リクエストは1日2〜3千件なのに、読み取り行数は140万〜514万。リクエスト数と読み取り行数がここまで合わないなら、リクエスト以外の誰かが読んでいるということです。</p>
+</section>
+<section id="s3"><h2>犯人は5秒ごとのアラームだった</h2>
+<p>上限はアカウント全体で共有なので、サーバーごとの使用量を別々に見る必要がありました。Cloudflare APIでサーバー(Worker)ごとの読み取り行数を出すと、ほぼ全部が1か所でした。ドットクランのゲームサーバーです。</p>
+<p>このサーバーは5秒ごとにアラームが動きます。アラームの中で、接続中の人数を数えたりボット名簿を読んだりするクエリが、usersとfeedのテーブルにインデックスがないせいで、毎回テーブルを頭から最後まで読んでいました。</p>
+<p>1回290行は小さく見えます。でもアラームは1日17,280回動くので、掛けると498万になります。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/forge.jpg" alt="ドットクランの強化画面。鍛冶場を背景に、武器が+7から+8になるときの成功率と破壊率が表示されている" loading="lazy" decoding="async"><figcaption>犯人はこのゲームのサーバー側のアラームでした。</figcaption></figure></section>
+<section id="s4"><h2>直したこと</h2>
+<p>ドットクランのサーバーとエラー収集サーバーを、それぞれ直しました。原因はどちらも同じで、インデックスなしで範囲を読むクエリでした。</p>
+<ul><li>直したサーバーをデプロイしても、その日の上限はすでに使い切っていたのですぐには復旧しませんでした。エラー収集サーバーは次のリセット(00:00 UTC)で戻ります。</li><li>インデックスを付けると、1回に読む行数がテーブル全体の大きさから、必要な行数まで減ります。</li></ul>
+<div class="tbl"><table><thead><tr><th>サーバー</th><th>変えたこと</th></tr></thead><tbody><tr><td>ドットクラン</td><td>users(bot, seen)とfeed(bot, ts)のインデックス2つ</td></tr><tr><td>ドットクラン</td><td>ボット名簿を10分間メモリにキャッシュ</td></tr><tr><td>エラー収集</td><td>issues(last_at)とhits(day)にインデックス</td></tr><tr><td>エラー収集</td><td>90日を過ぎたhitsとsessionsを1日1回削除</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>同じことを繰り返さないために</h2>
+<p>直すだけでは足りませんでした。今回は上限が尽きてから気づき、誰が使っているのかはだいぶ後でわかりました。そこで2つ足しました。</p>
+<p>1つ目はテストです。アラームを400回動かす間に実行されたクエリを集め、EXPLAIN QUERY PLANでプランを見て、usersやfeedをインデックスなしで読むクエリが1つでもあればテストが失敗します。LIMITが付いて先頭で止まるクエリは除きます。</p>
+<p>2つ目は監視です。毎時7分にサーバーごとの読み取り行数を合計し、上限の60%を超えたら、犯人サーバーの名前と行数を付けて通知を出します。招待サーバーとエラー収集サーバーを直接叩いて1101が返ってきたらそれも通知し、復旧したら消します。</p>
+<figure><img src="/blog/img/do-alarm-5m-rows/chat.jpg" alt="ドットクランのクラン内チャット画面。クランのメンバーが会話しているチャット欄が見える" loading="lazy" decoding="async"><figcaption>クランチャットのあるドットクランの画面です。</figcaption></figure></section>
+<section id="s6"><h2>私が間違えていたこと</h2>
+<p>間違いはクエリ1つではありませんでした。複数のサーバーが無料枠1つを分け合っているのに、サーバーごとにどれだけ読んでいるかを測る場所がありませんでした。1つのサーバーが上限を使い切ると、無関係なサーバーが代わりに止まり、止まった側だけが目に入ります。</p>
+<p>そこでドットクランには、アラームの経路のクエリがインデックスを使うかを見るテストを入れました。上限がアカウント共有なら、先にサーバーごとの使用量の表が必要だと、今回学びました。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Cloudflare Durable Objectsの1101エラーは何を意味しますか?</summary><p>無料の上限を超えた場合があります。私の場合は本文に「Exceeded allowed rows read」も出ていて、1日の読み取り行数の上限(アカウント全体で500万行)を使い切っていました。</p></details><details><summary>Durable Objectsの読み取り上限はサーバーごとですか、アカウント全体ですか?</summary><p>私のアカウントでは、アカウント全体で1日500万行を分け合っていました。1つのサーバーがほぼ全部を使ったため、ほかの2つのサーバーも一緒に止まりました。</p></details><details><summary>上限が尽きた日にサーバーを直すと、すぐ復旧しますか?</summary><p>すぐには戻りません。直してデプロイしても、その日の上限はそのままなので、00:00 UTC(韓国時間の午前9時)のリセットを待つ必要がありました。</p></details><details><summary>アラームがテーブル全体を読んでいるかどうか、どう確認しますか?</summary><p>アラームの中で実行されるクエリを集めてEXPLAIN QUERY PLANを実行します。プランにインデックスなしのSCANとテーブル名が出ていたら、テーブル全体を読んでいます。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/do-alarm-5m-rows/" hreflang="en" lang="en">English</a><a href="/ko/blog/do-alarm-5m-rows/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/do-alarm-5m-rows/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
