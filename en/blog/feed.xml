@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>We Got 1,269 Views and Not a Single Install</title>
+    <link>https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</guid>
+    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
+    <description>We posted promo shorts for a spinning wheel app in two formats, app screen recording (A) and character animation (B). Seven days later the views were 681 vs 588, and installs that reached the store were 0 for both. Here are the numbers and the limits.</description>
+  </item>
+  <item>
     <title>In England You Paid Tax on Every Window</title>
     <link>https://dumbgamelab.com/en/blog/window-tax/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/window-tax/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-tycoon-layout-tips/</guid>
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>Where do you place things in a Korean spa game to earn 20% more, and where do you lose 20%? The adjacency multiplier table, air conditioner range and door position from the game&#39;s real values.</description>
-  </item>
-  <item>
-    <title>We Almost Answered the Phone With Ahoy</title>
-    <link>https://dumbgamelab.com/en/blog/hello-ahoy/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hello-ahoy/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Bell wanted ahoy as the phone greeting, but Edison&#39;s hello caught on.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>再生は1,269回あったのに、インストールは1件もありませんでした</title>
+    <link>https://dumbgamelab.com/ja/blog/roulette-ab-zero-install/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/roulette-ab-zero-install/</guid>
+    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ルーレットアプリの宣伝ショート動画を、アプリ画面の録画(A)とキャラクターのアニメーション(B)に分けて投稿しました。7日間の再生数は681回と588回、ストアに届いたインストールはどちらも0件でした。数字と限界をそのまま書いています。</description>
+  </item>
+  <item>
     <title>イギリスでは窓の数だけ税金を払った</title>
     <link>https://dumbgamelab.com/ja/blog/window-tax/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/window-tax/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
     <description>QRコードは1994年に日本で、碁石の白と黒の模様からヒントを得て作られた。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>クラッシュレポートを試すためにアプリをわざと落とそうとしたら、落ちなかった</title>
-    <link>https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crash-collector-killed-its-own-test-app/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
-    <description>個人開発者がクラッシュレポートを試すため、アプリをわざと落とすスイッチを入れたところ、iPhoneで落ちませんでした。Playのプレローンチレポートのエラーをユーザーのクラッシュと数えた失敗まで、最初の1週間の誤判断を2つ書きます。</description>
   </item>
 </channel>
 </rss>
