@@ -1,0 +1,93 @@
+{
+  "id": "maple-heist",
+  "contentNotice": null,
+  "day": 60,
+  "category": "음식",
+  "title": "메이플 시럽 창고에서 시럽 3천 톤이 사라졌다",
+  "hook": "시럽 통 위에 올라간 검사관이 넘어질 뻔했다. 통이 텅 비어 있었다",
+  "open": {
+    "title": "시럽 통 위로 올라간 검사관이 넘어질 뻔한 이유",
+    "cover": "m12",
+    "line": "캐나다 퀘벡의 시럽 창고. 해마다 하는 재고 조사에서 검사관이 통 위로 올라가다 휘청였다. 통이 이상했다."
+  },
+  "summary": "2011년부터 2012년까지 퀘벡의 메이플 시럽 비축 창고에서 3천 톤 가까운 시럽이 몰래 빠져나갔다. 어떤 통에는 시럽 대신 물이 들어 있었다.",
+  "cover": "maple-heist",
+  "sources": [
+    {
+      "title": "Wikipedia: Great Canadian Maple Syrup Heist",
+      "url": "https://en.wikipedia.org/wiki/Great_Canadian_Maple_Syrup_Heist"
+    },
+    {
+      "title": "Supreme Court of Canada: R. v. Vallières (2022 SCC 10), Case in Brief",
+      "url": "https://www.scc-csc.ca/judgments-jugements/cb/2022/39162/"
+    },
+    {
+      "title": "Quebec Maple Syrup Producers: The World’s Only Reserve of Maple Syrup",
+      "url": "https://ppaq.ca/en/sale-purchase-maple-syrup/worlds-only-reserve-maple-syrup/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "maple-heist",
+      "text": [
+        "2012년 7월, 캐나다 퀘벡의 메이플 시럽 창고.",
+        "검사관이 쌓인 시럽 통 위로 올라가다 넘어질 뻔했다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "꽉 찬 통이라면 600파운드쯤 나가야 했다.",
+        "그런데 밟아 보니 통이 비어 있었다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "시럽이 다 어디 갔어?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 창고는 퀘벡 생산자 연합이 시럽을 쌓아 두던 창고였다.",
+        "연합은 풍년엔 남는 시럽을 넣어 두고, 흉년엔 꺼내 값을 고르게 맞춘다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "생산자는 수확의 25%를 연합의 비축 제도에 넘겼다.",
+        "당시 이 연합이 세계 메이플 시럽 공급의 77%를 맡았다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "maple-heist-bucket",
+      "text": [
+        "사실은 도둑들이 몇 달에 걸쳐 통에서 시럽을 빼 갔다.",
+        "어떤 통에는 시럽 대신 물이 들어 있었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "maple-heist-sap",
+      "text": [
+        "빼낸 시럽은 미국 버몬트와 캐나다 뉴브런즈윅으로 실려 가 조금씩 나뉘어 팔렸다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사라진 시럽은 3천 톤 가까이, 값은 1870만 캐나다달러였다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "캐나다 대법원 자료로는 경찰이 16명을 체포했다.",
+        "주범은 징역 8년에 벌금 900만 달러 넘게 받았고, 2022년 대법원이 그 벌금을 확정했다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

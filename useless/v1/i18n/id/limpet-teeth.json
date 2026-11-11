@@ -1,0 +1,67 @@
+{
+  "category": "Hewan",
+  "title": "Gigi siput kecil di batu lebih kuat dari sutra laba-laba",
+  "hook": "Gigi limpet mencatat nilai lebih tinggi daripada sutra laba-laba, bahan hayati terkuat sebelumnya",
+  "open": {
+    "title": "Rekor bahan hayati terkuat direbut siput pantai, kenapa?",
+    "line": "Di batu pantai menempel cangkang berbentuk kerucut. Di mulut siput kecil ini tersembunyi sebuah rekor."
+  },
+  "summary": "Limpet mengikis alga di batu dengan gigi berserat mineral besi. Penelitian 2015 menunjukkan gigi ini menahan gaya lebih besar daripada sutra laba-laba.",
+  "panels": [
+    {
+      "text": [
+        "Di batu pantai menempel cangkang berbentuk kerucut.",
+        "Itu limpet, sejenis siput pantai."
+      ]
+    },
+    {
+      "text": [
+        "Limpet punya organ mirip lidah dengan gigi berderet.",
+        "Dengan itu ia mengikis alga di permukaan batu."
+      ]
+    },
+    {
+      "text": "Giginya nggak rusak waktu mengikis batu?"
+    },
+    {
+      "text": [
+        "Giginya lebih dari 100 baris, tapi yang dipakai makan hanya 10 baris terluar.",
+        "Gigi aus terurai dalam 12 sampai 48 jam."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti Inggris mengumpulkan limpet di Southampton dan mengukur giginya.",
+        "Satu gigi panjangnya kurang dari 1 mm."
+      ]
+    },
+    {
+      "text": [
+        "Potongan kecil gigi ditarik dengan mikroskop gaya atom.",
+        "Daya tahannya 3,0 sampai 6,5 gigapascal."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata nilai ini lebih tinggi dari sutra laba-laba.",
+        "Sampai saat itu, sutra laba-laba dianggap bahan hayati terkuat."
+      ]
+    },
+    {
+      "text": [
+        "Rahasianya ada pada goetit di dalam gigi.",
+        "Serat mineral besi yang sangat halus memenuhi kerangka protein."
+      ]
+    },
+    {
+      "text": [
+        "Peneliti bilang gigi ini bisa jadi petunjuk bahan mobil, kapal, pesawat, dan perawatan gigi."
+      ]
+    }
+  ],
+  "sources": [
+    "Royal Society: Limpet teeth have super strength (2015)",
+    "Barber et al. (2015) Extreme strength observed in limpet teeth, Journal of the Royal Society Interface 12: 20141326",
+    "Wikipedia: Limpet"
+  ]
+}

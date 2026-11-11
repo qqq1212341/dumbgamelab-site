@@ -1,0 +1,66 @@
+{
+  "category": "Kata",
+  "title": "Alkohol dulunya nama bubuk riasan mata",
+  "hook": "Kata alkohol berasal dari nama bubuk hitam yang dulu dioleskan di sekitar mata",
+  "open": {
+    "title": "Ada riasan mata tersembunyi di balik nama minuman keras, alkohol",
+    "line": "Kata alkohol berasal dari bahasa Arab. Tapi mulanya kata itu bukan menunjuk sesuatu yang diminum."
+  },
+  "summary": "Alkohol berasal dari kata Arab al-kuhl, bubuk riasan mata. Kata untuk bubuk halus ini meluas ke zat hasil sulingan, lalu menyempit lagi jadi sebutan etanol, zat dalam minuman keras.",
+  "panels": [
+    {
+      "text": [
+        "Orang dulu menyimpan bubuk hitam di wadah kecil begini dan mengoleskannya di sekitar mata.",
+        "Itu kohl, riasan Mesir sejak sekitar 3100 SM."
+      ]
+    },
+    {
+      "text": [
+        "Kohl tradisionalnya dibuat dari mineral stibnit yang ditumbuk.",
+        "Dalam bahasa Arab disebut al-kuhl."
+      ]
+    },
+    {
+      "text": "Terus apa hubungannya sama minuman keras?"
+    },
+    {
+      "text": [
+        "Al itu kata sandang Arab, seperti the dalam bahasa Inggris.",
+        "Jadi al-kuhl artinya bubuk kohl itu."
+      ]
+    },
+    {
+      "text": [
+        "Awalnya kata ini menunjuk bubuk sangat halus dari stibnit.",
+        "Bubuk itu dianggap sari pati mineralnya."
+      ]
+    },
+    {
+      "text": [
+        "Terjemahan Inggris 1543 pun menulis alkohol sebagai bubuk paling halus."
+      ]
+    },
+    {
+      "text": [
+        "Lalu maknanya meluas.",
+        "Semua zat hasil sulingan disebut alkohol."
+      ]
+    },
+    {
+      "text": [
+        "Setelah itu, maknanya menyempit lagi.",
+        "Dari zat sulingan, etanol, zat dalam minuman keras, jadi wakilnya."
+      ]
+    },
+    {
+      "text": [
+        "Nama bubuk mata itu berputar-putar, kini ada di label botol minuman."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: Alcohol (chemistry), Etymology",
+    "Wikipedia: Kohl (cosmetics)",
+    "Wiktionary: alcohol"
+  ]
+}

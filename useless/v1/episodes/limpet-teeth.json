@@ -1,0 +1,93 @@
+{
+  "id": "limpet-teeth",
+  "contentNotice": null,
+  "day": 63,
+  "category": "동물",
+  "title": "바위에 붙은 작은 고둥 이빨이 거미줄보다 세다",
+  "hook": "삿갓조개 이빨은 가장 센 생물 재료로 꼽히던 거미줄보다 높은 값이 나왔다",
+  "open": {
+    "title": "가장 센 생물 재료 기록을 바닷가 고둥이 가져간 이유",
+    "line": "바닷가 바위에 고깔 모양 껍데기가 딱 붙어 있다. 이 작은 고둥의 입속에 기록이 하나 숨어 있다."
+  },
+  "summary": "삿갓조개는 철 광물 섬유가 든 이빨로 바위의 조류를 긁어 먹는다. 2015년 연구에서 이 이빨이 버티는 힘은 거미줄보다 높게 나왔다.",
+  "cover": "limpet-teeth-rock",
+  "sources": [
+    {
+      "title": "Royal Society: Limpet teeth have super strength (2015)",
+      "url": "https://royalsociety.org/news/2015/03/limpet-teeth-have-super-strength/"
+    },
+    {
+      "title": "Barber et al. (2015) Extreme strength observed in limpet teeth, Journal of the Royal Society Interface 12: 20141326",
+      "url": "https://doi.org/10.1098/rsif.2014.1326"
+    },
+    {
+      "title": "Wikipedia: Limpet",
+      "url": "https://en.wikipedia.org/wiki/Limpet"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "limpet-teeth-rock",
+      "text": [
+        "바닷가 바위에 고깔 모양 껍데기가 딱 붙어 있다.",
+        "삿갓조개다. 바닷가에 사는 고둥의 한 종류다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "삿갓조개는 혀처럼 생긴 기관에 이빨이 줄지어 있다.",
+        "이걸로 바위 표면의 조류를 긁어 먹는다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "돌을 긁는데 이가 안 나가?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "이빨은 100줄이 넘지만 먹을 때 쓰는 건 맨 바깥 10줄뿐이다.",
+        "닳은 이빨은 12시간에서 48시간 사이에 분해된다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "limpet-teeth-diagram",
+      "text": [
+        "영국 연구팀이 사우샘프턴에서 삿갓조개를 모아 이빨을 쟀다.",
+        "이빨 하나 길이는 1mm도 안 된다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이빨에서 작은 조각을 잘라 원자간력 현미경으로 잡아당겼다.",
+        "버티는 힘은 3.0에서 6.5기가파스칼이 나왔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 이 값이 거미줄보다 높다.",
+        "그때까지 가장 센 생물 재료로 꼽히던 게 거미줄이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "비결은 이빨 속 침철석이다.",
+        "아주 가는 철 광물 섬유가 단백질 틀을 촘촘히 채우고 있다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "limpet-teeth",
+      "text": [
+        "연구팀은 이 이빨이 자동차, 배, 비행기 재료와 치아 치료재에 힌트가 될 수 있다고 했다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

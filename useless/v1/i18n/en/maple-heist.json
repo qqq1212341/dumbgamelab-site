@@ -1,0 +1,66 @@
+{
+  "category": "Food",
+  "title": "Three Thousand Tons of Syrup Vanished From a Maple Syrup Warehouse",
+  "hook": "An inspector climbing onto a syrup barrel nearly fell. The barrel was empty",
+  "open": {
+    "title": "A syrup inspector nearly stumbled, and the barrel was to blame",
+    "line": "A syrup warehouse in Quebec, Canada. During the yearly inventory check, an inspector staggered while climbing onto a barrel. Something was off with it."
+  },
+  "summary": "From 2011 to 2012, nearly three thousand tons of syrup were secretly drained from a maple syrup reserve warehouse in Quebec. Some barrels held water instead of syrup.",
+  "panels": [
+    {
+      "text": [
+        "July 2012, a syrup warehouse in Quebec, Canada.",
+        "An inspector climbing the barrels nearly fell."
+      ]
+    },
+    {
+      "text": [
+        "A full barrel weighs about 600 pounds.",
+        "But stepping on it showed it was empty."
+      ]
+    },
+    {
+      "text": "Where did all the syrup go?"
+    },
+    {
+      "text": [
+        "The Quebec producers' federation stockpiled syrup here.",
+        "It stores extra in good years and releases it in bad to steady prices."
+      ]
+    },
+    {
+      "text": [
+        "Producers gave 25% of their harvest to the reserve.",
+        "It then handled 77% of the world's maple syrup supply."
+      ]
+    },
+    {
+      "text": [
+        "Actually, thieves drained syrup from barrels for months.",
+        "Some held water instead of syrup."
+      ]
+    },
+    {
+      "text": [
+        "Shipped to Vermont (US) and New Brunswick (Canada), it sold in small batches."
+      ]
+    },
+    {
+      "text": [
+        "Nearly three thousand tons were gone, worth C$18.7 million."
+      ]
+    },
+    {
+      "text": [
+        "Per Canada's Supreme Court, police arrested 16 people.",
+        "The ringleader got 8 years and a fine over 9 million dollars, upheld in 2022."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: Great Canadian Maple Syrup Heist",
+    "Supreme Court of Canada: R. v. Vallières (2022 SCC 10), Case in Brief",
+    "Quebec Maple Syrup Producers: The World’s Only Reserve of Maple Syrup"
+  ]
+}

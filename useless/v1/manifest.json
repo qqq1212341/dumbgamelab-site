@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "58-6cb0484468",
+ "version": "65-3ac2028ec2",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -392,7 +392,7 @@
   {
    "id": "eorida-fool",
    "day": 33,
-   "hash": "80350c9a65ff5c8d",
+   "hash": "e0f1516d5d6cc928",
    "ep": "episodes/eorida-fool.json",
    "i18n": {
     "en": "i18n/en/eorida-fool.json",
@@ -699,6 +699,90 @@
     "ja": "i18n/ja/eiffel-sun.json",
     "id": "i18n/id/eiffel-sun.json",
     "zh": "i18n/zh/eiffel-sun.json"
+   }
+  },
+  {
+   "id": "null-island",
+   "day": 59,
+   "hash": "97bd7334dfcb9097",
+   "ep": "episodes/null-island.json",
+   "i18n": {
+    "en": "i18n/en/null-island.json",
+    "ja": "i18n/ja/null-island.json",
+    "id": "i18n/id/null-island.json",
+    "zh": "i18n/zh/null-island.json"
+   }
+  },
+  {
+   "id": "maple-heist",
+   "day": 60,
+   "hash": "dd130fe856e011a2",
+   "ep": "episodes/maple-heist.json",
+   "i18n": {
+    "en": "i18n/en/maple-heist.json",
+    "ja": "i18n/ja/maple-heist.json",
+    "id": "i18n/id/maple-heist.json",
+    "zh": "i18n/zh/maple-heist.json"
+   }
+  },
+  {
+   "id": "alcohol-kohl",
+   "day": 61,
+   "hash": "194e5a5daa209ce8",
+   "ep": "episodes/alcohol-kohl.json",
+   "i18n": {
+    "en": "i18n/en/alcohol-kohl.json",
+    "ja": "i18n/ja/alcohol-kohl.json",
+    "id": "i18n/id/alcohol-kohl.json",
+    "zh": "i18n/zh/alcohol-kohl.json"
+   }
+  },
+  {
+   "id": "goal-net",
+   "day": 62,
+   "hash": "f85eae4f114aa7dc",
+   "ep": "episodes/goal-net.json",
+   "i18n": {
+    "en": "i18n/en/goal-net.json",
+    "ja": "i18n/ja/goal-net.json",
+    "id": "i18n/id/goal-net.json",
+    "zh": "i18n/zh/goal-net.json"
+   }
+  },
+  {
+   "id": "limpet-teeth",
+   "day": 63,
+   "hash": "26853f555916fc40",
+   "ep": "episodes/limpet-teeth.json",
+   "i18n": {
+    "en": "i18n/en/limpet-teeth.json",
+    "ja": "i18n/ja/limpet-teeth.json",
+    "id": "i18n/id/limpet-teeth.json",
+    "zh": "i18n/zh/limpet-teeth.json"
+   }
+  },
+  {
+   "id": "cash-register",
+   "day": 64,
+   "hash": "1b0ce767c2f46862",
+   "ep": "episodes/cash-register.json",
+   "i18n": {
+    "en": "i18n/en/cash-register.json",
+    "ja": "i18n/ja/cash-register.json",
+    "id": "i18n/id/cash-register.json",
+    "zh": "i18n/zh/cash-register.json"
+   }
+  },
+  {
+   "id": "slow-organ",
+   "day": 65,
+   "hash": "28ac041f8db5e2a9",
+   "ep": "episodes/slow-organ.json",
+   "i18n": {
+    "en": "i18n/en/slow-organ.json",
+    "ja": "i18n/ja/slow-organ.json",
+    "id": "i18n/id/slow-organ.json",
+    "zh": "i18n/zh/slow-organ.json"
    }
   }
  ]

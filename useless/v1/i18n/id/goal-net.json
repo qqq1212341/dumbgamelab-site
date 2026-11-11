@@ -1,0 +1,67 @@
+{
+  "category": "Olahraga",
+  "title": "Jaring gawang sepak bola lahir setelah debat gol atau bukan",
+  "hook": "Sebelum ada jaring, bola yang masuk pun dinyatakan tidak masuk",
+  "open": {
+    "title": "Dulu di sepak bola, gol bisa dianggap tidak sah padahal bola masuk, kenapa?",
+    "line": "Liverpool, 1889. Bola tampak masuk, wasit menggeleng, penonton menyoraki."
+  },
+  "summary": "Setelah melihat sengketa gol tahun 1889, John Brodie, insinyur dari Liverpool, mematenkan jaring di belakang gawang. Ia menyebut jaring ini penemuan yang paling ia banggakan.",
+  "panels": [
+    {
+      "text": [
+        "Gawang 1880-an belum berjaring.",
+        "Bola lewat dan terus ke belakang."
+      ]
+    },
+    {
+      "text": [
+        "Oktober 1889, Everton lawan Accrington.",
+        "Tendangan Everton nyaris sejajar gawang disoraki penonton."
+      ]
+    },
+    {
+      "text": [
+        "Kata wasit, bola tak masuk.",
+        "Disoraki, skor 2 lawan 2."
+      ]
+    },
+    {
+      "text": "Ada jaring pasti ketahuan!"
+    },
+    {
+      "text": [
+        "Insinyur Brodie katanya di tribun.",
+        "Koran penuh surat yang menyalahkan wasit."
+      ]
+    },
+    {
+      "text": [
+        "Brodie ingin kantong penampung bola di belakang gawang.",
+        "Jaring, bukan papan atau kain, agar pandangan lega."
+      ]
+    },
+    {
+      "text": [
+        "Awalnya ada lonceng.",
+        "Berbunyi saat bola kena jaring."
+      ]
+    },
+    {
+      "text": [
+        "Paten 28 November 1889, sebulan kemudian.",
+        "Sejak November 1891, semua liga Inggris berjaring."
+      ]
+    },
+    {
+      "text": [
+        "Ia juga merancang terowongan Mersey di Liverpool.",
+        "Tapi paling ia banggakan jaring ini."
+      ]
+    }
+  ],
+  "sources": [
+    "Everton Heritage Society: Net Gains, John Alexander Brodie’s Sporting and Civic Legacy",
+    "Wikipedia: John Alexander Brodie"
+  ]
+}

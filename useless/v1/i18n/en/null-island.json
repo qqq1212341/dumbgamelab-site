@@ -1,0 +1,64 @@
+{
+  "category": "Geography",
+  "title": "There's a Fake Island on the Map Where Lost Data Points Pile Up",
+  "hook": "Data with the wrong coordinates all lands on a single dot in the middle of the Atlantic",
+  "open": {
+    "title": "An island appears on the map in a patch of ocean with no island at all",
+    "line": "In the sea off West Africa there's a point with no island on it. Yet in map data, error records keep landing right there. Why?"
+  },
+  "summary": "Latitude 0, longitude 0 is open ocean with no island, but data with missing coordinates piles up there, so it got the name Null Island. A weather buoy named Soul was moored at that spot too.",
+  "panels": [
+    {
+      "text": [
+        "In the sea west of Africa, there's a point at latitude 0, longitude 0.",
+        "It's where the equator meets the prime meridian."
+      ]
+    },
+    {
+      "text": [
+        "It's ocean, about 600 km south of the West African coast.",
+        "The water there is about 4940 m deep."
+      ]
+    },
+    {
+      "text": "Not a single island out there?"
+    },
+    {
+      "text": [
+        "Yet map data often has error records stamped here.",
+        "Data with wrong coordinates ends up at 0, 0."
+      ]
+    },
+    {
+      "text": [
+        "So people gave the point an island name.",
+        "Null Island, from null, meaning no value."
+      ]
+    },
+    {
+      "text": [
+        "It began as a joke in 2008, and even got a website introducing the island nation."
+      ]
+    },
+    {
+      "text": [
+        "Actually, something real was there too.",
+        "A weather buoy tied to the seafloor."
+      ]
+    },
+    {
+      "text": [
+        "Buoys in the tropical Atlantic network were named after music genres.",
+        "This buoy's name was Soul."
+      ]
+    },
+    {
+      "text": [
+        "In 2018, reports said fitness app records set to 0, 0 to hide a location showed up here too."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: Null Island"
+  ]
+}

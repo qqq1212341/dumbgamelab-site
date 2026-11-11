@@ -1,0 +1,67 @@
+{
+  "category": "Animals",
+  "title": "A Tiny Snail's Teeth on a Rock Are Stronger Than Spider Silk",
+  "hook": "Limpet teeth scored higher than spider silk, once the strongest biological material",
+  "open": {
+    "title": "A seashore snail took the strongest biological material record",
+    "line": "A cone-shaped shell clings tight to a rock on the shore. This small snail has a record hiding in its mouth."
+  },
+  "summary": "Limpets scrape algae off rocks with iron mineral fiber teeth. A 2015 study measured them stronger than spider silk.",
+  "panels": [
+    {
+      "text": [
+        "A cone-shaped shell clings tight to a rock on the shore.",
+        "It's a limpet, a shore-dwelling sea snail."
+      ]
+    },
+    {
+      "text": [
+        "A limpet has rows of teeth on a tongue-like organ.",
+        "It scrapes algae off rock with them."
+      ]
+    },
+    {
+      "text": "Scraping rock and the teeth don't chip?"
+    },
+    {
+      "text": [
+        "It has over 100 rows of teeth but eats with only the outer 10.",
+        "Worn teeth break down within 12 to 48 hours."
+      ]
+    },
+    {
+      "text": [
+        "UK researchers gathered Southampton limpets and measured their teeth.",
+        "A single tooth is less than 1 mm long."
+      ]
+    },
+    {
+      "text": [
+        "They cut a tiny piece of tooth and pulled it with an atomic force microscope.",
+        "Its strength came out between 3.0 and 6.5 gigapascals."
+      ]
+    },
+    {
+      "text": [
+        "Actually, that's higher than spider silk.",
+        "Spider silk had been the strongest biological material."
+      ]
+    },
+    {
+      "text": [
+        "The secret is goethite inside the teeth.",
+        "Very thin iron mineral fibers tightly fill a protein frame."
+      ]
+    },
+    {
+      "text": [
+        "The team said they could inspire materials for cars, boats, planes and dentistry."
+      ]
+    }
+  ],
+  "sources": [
+    "Royal Society: Limpet teeth have super strength (2015)",
+    "Barber et al. (2015) Extreme strength observed in limpet teeth, Journal of the Royal Society Interface 12: 20141326",
+    "Wikipedia: Limpet"
+  ]
+}

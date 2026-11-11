@@ -1,0 +1,93 @@
+{
+  "id": "alcohol-kohl",
+  "contentNotice": null,
+  "day": 61,
+  "category": "말",
+  "title": "알코올은 원래 눈화장 가루 이름이었다",
+  "hook": "알코올이라는 말은 눈가에 바르던 검은 가루 이름에서 왔다",
+  "open": {
+    "title": "술 이름 알코올에 눈화장이 숨어 있는 이유",
+    "cover": "m2",
+    "line": "알코올이라는 말은 아랍어에서 왔다. 그런데 처음 그 말이 가리킨 건 마시는 것이 아니었다."
+  },
+  "summary": "알코올은 눈화장 가루를 뜻하는 아랍어 알 쿠흘에서 왔다. 고운 가루를 가리키던 말이 증류한 물질로 넓어졌다가 술의 성분 에탄올을 가리키는 말로 좁아졌다.",
+  "cover": "alcohol-kohl",
+  "sources": [
+    {
+      "title": "Wikipedia: Alcohol (chemistry), Etymology",
+      "url": "https://en.wikipedia.org/wiki/Alcohol_(chemistry)"
+    },
+    {
+      "title": "Wikipedia: Kohl (cosmetics)",
+      "url": "https://en.wikipedia.org/wiki/Kohl_(cosmetics)"
+    },
+    {
+      "title": "Wiktionary: alcohol",
+      "url": "https://en.wiktionary.org/wiki/alcohol"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "alcohol-kohl",
+      "text": [
+        "옛사람들은 이런 작은 통에 검은 가루를 담아 두고 눈가에 발랐다.",
+        "이집트에선 기원전 3100년 무렵부터 쓰던 화장, 콜이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "콜은 전통적으로 휘안석이라는 광물을 빻아 만들었다.",
+        "이 가루를 아랍어로 알 쿠흘이라고 한다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그게 술이랑 무슨 상관이야?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "알은 아랍어 관사다. 영어 the와 같다.",
+        "알 쿠흘은 그 콜 가루라는 뜻이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이 말이 처음 가리킨 건 휘안석에서 얻은 아주 고운 가루였다.",
+        "그 광물의 정수라고 여겼다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1543년 영국 번역서에도 알코올은 가장 고운 가루라고 적혀 있다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "alcohol-kohl-tube",
+      "text": [
+        "그러다 뜻이 넓어졌다.",
+        "증류해서 얻은 물질이 전부 알코올이 됐다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 그 뒤에 다시 좁아졌다.",
+        "증류한 것들 가운데 술의 성분, 에탄올이 알코올의 대표가 됐다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "alcohol-kohl-rods",
+      "text": [
+        "눈가에 바르던 가루 이름이 돌고 돌아, 지금은 술병 라벨에 적혀 있다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

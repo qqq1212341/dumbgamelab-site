@@ -1,0 +1,66 @@
+{
+  "category": "Keseharian",
+  "title": "Mesin kasir terinspirasi alat penghitung baling-baling kapal",
+  "hook": "Mesin kasir lahir dari penghitung baling-baling yang dilihat pemilik bar di kapal uap",
+  "open": {
+    "title": "Pemilik bar mengubah meja kasir setelah melihat mesin di atas kapal, kenapa?",
+    "line": "1878, kapal uap ke Eropa. Pemilik bar Amerika terpaku pada alat di kapal."
+  },
+  "summary": "James Ritty, pemilik bar yang curiga pegawainya menggelapkan uang, membuat mesin kasir setelah terinspirasi penghitung putaran baling-baling kapal. Bersama adiknya ia mendapat paten tahun 1879.",
+  "panels": [
+    {
+      "text": [
+        "Mesin kasir tua yang berat.",
+        "Mesin ini berawal dari curiga seorang pemilik bar."
+      ]
+    },
+    {
+      "text": [
+        "James Ritty membuka bar di Dayton, Ohio, 1871.",
+        "Ia yakin pegawainya mencuri uang pelanggan."
+      ]
+    },
+    {
+      "text": "Tanpa bukti, nggak bisa ditangkap."
+    },
+    {
+      "text": [
+        "1878, ia naik kapal uap ke Eropa.",
+        "Ia terpikat penghitung putaran baling-baling kapal."
+      ]
+    },
+    {
+      "text": [
+        "Bisa mencatat uang toko begini?",
+        "Ia membuatnya bersama adiknya, John, ahli mesin."
+      ]
+    },
+    {
+      "text": [
+        "Paten 4 November 1879."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata bukan untuk menghitung cepat.",
+        "Pegawai wajib mencatat tiap transaksi."
+      ]
+    },
+    {
+      "text": [
+        "Tekan total, laci terbuka, lonceng berbunyi.",
+        "Tanda pada pelanggan: penjualan tercatat."
+      ]
+    },
+    {
+      "text": [
+        "Model lain mereka: Kasir yang Tak Bisa Disuap.",
+        "Ritty kewalahan, usahanya dijual, jadi National Cash Register 1884."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: James Ritty",
+    "Wikipedia: Cash register"
+  ]
+}

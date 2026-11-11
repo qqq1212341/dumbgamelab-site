@@ -1,0 +1,65 @@
+{
+  "category": "Music",
+  "title": "An Organ Performance That Began in 2001 Ends in 2640",
+  "hook": "A church in Germany is in the middle of a 639 year organ performance",
+  "open": {
+    "title": "A sandbag sits on a German church organ pedal, and the music plays on",
+    "line": "St. Burchardi church in Halberstadt, Germany. The organ has no one sitting at it, yet sound carries on even now."
+  },
+  "summary": "John Cage's piece As Slow as Possible is being played from 2001 to 2640, a span of 639 years. Sandbags press the pedals to sustain the sound, and the note changes once every few months or years.",
+  "panels": [
+    {
+      "text": [
+        "In a Halberstadt, Germany church, a sandbag rests on an organ pedal.",
+        "Sound goes on with no one pressing."
+      ]
+    },
+    {
+      "text": [
+        "It's playing John Cage's As Slow as Possible.",
+        "It began on September 5, 2001."
+      ]
+    },
+    {
+      "text": "So when does it end?"
+    },
+    {
+      "text": [
+        "It ends on September 5, 2640.",
+        "That's 639 years in all."
+      ]
+    },
+    {
+      "text": [
+        "639 years: from about 1361, when the city's cathedral first had a recorded permanent organ, to 2000.",
+        "Lack of money delayed the start by a year."
+      ]
+    },
+    {
+      "text": [
+        "Actually, the first year and a half was silent.",
+        "It opens with a rest, so the first sound came February 5, 2003."
+      ]
+    },
+    {
+      "text": [
+        "The note changes every few months or years.",
+        "It always changes on the 5th of the month."
+      ]
+    },
+    {
+      "text": [
+        "In 2011 the organ got an acrylic case to cut noise."
+      ]
+    },
+    {
+      "text": [
+        "The latest change was August 5, 2026.",
+        "The next change is October 5, 2027."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: As Slow as Possible"
+  ]
+}

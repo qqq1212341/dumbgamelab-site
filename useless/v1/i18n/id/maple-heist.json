@@ -1,0 +1,66 @@
+{
+  "category": "Makanan",
+  "title": "Sirup maple tiga ribu ton hilang dari gudang",
+  "hook": "Inspektur yang naik ke atas tong sirup hampir terpeleset. Tongnya kosong",
+  "open": {
+    "title": "Inspektur yang naik ke atas tong sirup hampir jatuh, kenapa?",
+    "line": "Gudang sirup Quebec, Kanada. Saat inventaris, inspektur naik ke tong lalu oleng. Tongnya aneh."
+  },
+  "summary": "Dari 2011 sampai 2012, hampir tiga ribu ton sirup maple diam-diam keluar dari gudang cadangan sirup di Quebec. Sebagian tong berisi air, bukan sirup.",
+  "panels": [
+    {
+      "text": [
+        "Juli 2012, gudang sirup maple Quebec, Kanada.",
+        "Inspektur naik ke tumpukan tong, hampir terpeleset."
+      ]
+    },
+    {
+      "text": [
+        "Tong penuh seharusnya sekitar 600 pon.",
+        "Tapi saat diinjak, tongnya kosong."
+      ]
+    },
+    {
+      "text": "Sirupnya ke mana?"
+    },
+    {
+      "text": [
+        "Gudang federasi produsen Quebec untuk menimbun sirup.",
+        "Panen melimpah disimpan, panen buruk dikeluarkan agar harga stabil."
+      ]
+    },
+    {
+      "text": [
+        "Produsen menyerahkan 25% panen ke cadangan federasi.",
+        "Kala itu federasi memegang 77% pasokan sirup maple dunia."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata pencuri menyedot sirup dari tong berbulan-bulan.",
+        "Sebagian tong diisi air, bukan sirup."
+      ]
+    },
+    {
+      "text": [
+        "Dijual sedikit-sedikit di Vermont, Amerika, dan New Brunswick, Kanada."
+      ]
+    },
+    {
+      "text": [
+        "Hilang hampir tiga ribu ton, senilai 18,7 juta dolar Kanada."
+      ]
+    },
+    {
+      "text": [
+        "Kata Mahkamah Agung Kanada, polisi menangkap 16 orang.",
+        "Dalangnya dihukum 8 tahun, denda lebih dari 9 juta dolar, dikukuhkan Mahkamah Agung 2022."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: Great Canadian Maple Syrup Heist",
+    "Supreme Court of Canada: R. v. Vallières (2022 SCC 10), Case in Brief",
+    "Quebec Maple Syrup Producers: The World’s Only Reserve of Maple Syrup"
+  ]
+}

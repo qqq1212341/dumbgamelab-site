@@ -1,0 +1,64 @@
+{
+  "category": "Geografi",
+  "title": "Di peta ada pulau palsu tempat titik-titik nyasar berkumpul",
+  "hook": "Data dengan koordinat salah jatuh ke satu titik di tengah Samudra Atlantik",
+  "open": {
+    "title": "Di tengah laut tanpa satu pun pulau, ada pulau yang cuma ada di peta",
+    "line": "Di laut barat Afrika ada titik tanpa satu pulau pun. Tapi di data peta, titik ini sering muncul data error. Kenapa?"
+  },
+  "summary": "Lintang 0 derajat dan bujur 0 derajat adalah laut tanpa pulau, tapi data tanpa koordinat menumpuk di sana sampai dijuluki Null Island. Di titik itu juga ditambatkan sebuah pelampung pengamat bernama Soul.",
+  "panels": [
+    {
+      "text": [
+        "Di laut barat Afrika ada titik lintang 0 derajat, bujur 0 derajat.",
+        "Tempat khatulistiwa bertemu meridian utama."
+      ]
+    },
+    {
+      "text": [
+        "Sekitar 600 km di selatan pantai Afrika Barat.",
+        "Dasar lautnya sedalam sekitar 4940 m."
+      ]
+    },
+    {
+      "text": "Nggak ada pulau sama sekali, ya?"
+    },
+    {
+      "text": [
+        "Tapi di data peta, titik ini sering muncul data error.",
+        "Soalnya data dengan koordinat salah jatuh ke 0, 0."
+      ]
+    },
+    {
+      "text": [
+        "Makanya titik ini diberi nama pulau.",
+        "Null Island, null berarti tanpa nilai."
+      ]
+    },
+    {
+      "text": [
+        "Nama lelucon 2008 ini sampai punya situs web pengenal negara pulaunya."
+      ]
+    },
+    {
+      "text": [
+        "Sebenarnya di sana ada benda sungguhan.",
+        "Pelampung cuaca yang ditambatkan ke dasar laut."
+      ]
+    },
+    {
+      "text": [
+        "Pelampung jaringan Atlantik tropis dinamai aliran musik.",
+        "Yang ini bernama Soul."
+      ]
+    },
+    {
+      "text": [
+        "Laporan 2018: catatan aplikasi olahraga ber-0, 0 untuk menyembunyikan lokasi pun muncul di sini."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: Null Island"
+  ]
+}

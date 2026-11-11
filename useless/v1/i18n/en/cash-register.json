@@ -1,0 +1,66 @@
+{
+  "category": "Everyday Life",
+  "title": "The Cash Register Was Born From a Ship Propeller Counter",
+  "hook": "The cash register came from a propeller counter a bar owner saw on a steamship",
+  "open": {
+    "title": "A bar owner saw a machine on a ship and changed the checkout counter",
+    "line": "1878, a steamship bound for Europe. An American bar owner couldn't tear himself away from a device on board."
+  },
+  "summary": "Bar owner James Ritty suspected staff of pocketing money and built the cash register after seeing a ship's propeller counter. He and his brother patented it in 1879.",
+  "panels": [
+    {
+      "text": [
+        "A heavy cash register on an old shop counter.",
+        "It started with a bar owner's suspicion."
+      ]
+    },
+    {
+      "text": [
+        "James Ritty opened a bar in Dayton, Ohio, in 1871.",
+        "He believed staff were pocketing customers' money."
+      ]
+    },
+    {
+      "text": "You can't catch them without proof."
+    },
+    {
+      "text": [
+        "In 1878 he took a steamship to Europe.",
+        "A device counting the propeller's turns captivated him."
+      ]
+    },
+    {
+      "text": [
+        "Could a device like that record a shop's money too?",
+        "Back home, he began building one with his machine-savvy brother John."
+      ]
+    },
+    {
+      "text": [
+        "The brothers got a patent on November 4, 1879."
+      ]
+    },
+    {
+      "text": [
+        "Actually, it wasn't built for faster math.",
+        "Employees had to ring up every sale."
+      ]
+    },
+    {
+      "text": [
+        "Pressing the total key opened the drawer and rang a bell.",
+        "The ring told customers their purchase was recorded."
+      ]
+    },
+    {
+      "text": [
+        "Another model was the Incorruptible Cashier.",
+        "Ritty sold the business as too much work, and in 1884 it was renamed National Cash Register."
+      ]
+    }
+  ],
+  "sources": [
+    "Wikipedia: James Ritty",
+    "Wikipedia: Cash register"
+  ]
+}
