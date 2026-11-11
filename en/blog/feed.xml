@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Bubble Wrap Started Out as Wallpaper</title>
+    <link>https://dumbgamelab.com/en/blog/bubble-wrap/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/bubble-wrap/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>In 1957 two engineers sealed shower curtains together to trap air bubbles. They failed to sell it as wallpaper before it found its place as packaging.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/bubble-wrap.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>We Got 1,269 Views and Not a Single Install</title>
     <link>https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>An Olympic gold medal is silver coated with 6 g of gold.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>In a Korean spa tycoon game, where you place things decides your income more than what you buy</title>
-    <link>https://dumbgamelab.com/en/blog/jjimjilbang-tycoon-layout-tips/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-tycoon-layout-tips/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Where do you place things in a Korean spa game to earn 20% more, and where do you lose 20%? The adjacency multiplier table, air conditioner range and door position from the game&#39;s real values.</description>
   </item>
 </channel>
 </rss>

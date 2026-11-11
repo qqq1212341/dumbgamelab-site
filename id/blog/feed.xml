@@ -7,6 +7,14 @@
   <description>Tempat sehari-hari di Korea, game idle tycoon santai, dan catatan dari studio game kecil di Seoul.</description>
   <language>id</language>
   <item>
+    <title>Bubble Wrap Awalnya Dibuat sebagai Wallpaper</title>
+    <link>https://dumbgamelab.com/id/blog/bubble-wrap/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/bubble-wrap/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Pada 1957 dua insinyur merekatkan tirai kamar mandi hingga menjebak gelembung udara. Gagal dijual sebagai wallpaper, produk itu akhirnya dipakai sebagai bahan kemasan.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/bubble-wrap.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Di Inggris, Setiap Jendela Dikenai Pajak</title>
     <link>https://dumbgamelab.com/id/blog/window-tax/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/id/blog/window-tax/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Do-re-mi berasal dari suku kata pertama tiap baris himne Latin abad ke-11, dan do dulunya bernama ut.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Di Antarktika, Jam Pun Ikut Asal Paket</title>
-    <link>https://dumbgamelab.com/id/blog/south-pole-time/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/south-pole-time/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Stasiun di Kutub Selatan memakai waktu Selandia Baru, mengikuti negara yang mengirim pasokannya.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

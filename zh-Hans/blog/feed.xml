@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>气泡膜最初是当壁纸做的</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/bubble-wrap/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/bubble-wrap/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>1957年两位工程师把浴帘粘在一起，困住了一个个气泡。作为壁纸没卖出去，后来才成了包装材料。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/bubble-wrap.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>在英国，窗户越多税越重</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/window-tax/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/window-tax/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Do Re Mi 来自11世纪一首拉丁语圣歌每句的第一个音节，Do 原本是 Ut。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>在南极，连时间都看快递从哪儿来</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/south-pole-time/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/south-pole-time/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>南极点的科考站跟着给它送物资的新西兰，用的是新西兰时间。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/pole-marker.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
