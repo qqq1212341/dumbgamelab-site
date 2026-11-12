@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"484f0f7e4","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"1bf7f42f0","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -115,7 +115,8 @@
     var o = held; held = null; clearTimeout(heldT);
     /* same = 같은 프로세스에서 액티비티만 다시 만들어진 판 — 앞 페이지는 프로세스와 함께 죽지 않았다(t-261103-xdg6) */
     /* off = 가드가 꺼진 판(Play 사전 출시 로봇·디버그) — 로봇이 강제로 끈 판을 «앞 화면 꺼짐»으로 세지 않는다(주유소 1.0.1 업로드 당일 · t-261103-xdg6) */
-    if (end === "bg" || end === "gone" || end === "same" || end === "off") return;
+    /* handoff = Play 게임즈 앱 바로가기 액티비티가 Play 게임즈로 넘기고 System.exit(0) 한 판 — SDK 가 일부러 끝냈다(삐죽랜드 1.0.4 · t-261111-3qjo) */
+    if (end === "bg" || end === "gone" || end === "same" || end === "off" || end === "handoff") return;
     /* 끝이 fg·?(가드가 처음 깔린 판이라 파일이 없다)여도 OS 가 «사용자가 끔·멈춤·패키지 바뀜·업데이트(10·11·15·16)»이라 했거나
      * 죽을 때 이미 화면에 없었으면(중요도 200 초과) 앞 화면에서 죽은 게 아니다 — 크래시로 세지 않는다(Unity CrashReporter.NotCrash 와 같은 판정).
      * 업데이트 설치 첫 실행(한 번뿐인 인생 1.0.3→1.0.4 · t-261026-u4zq) · 홈 직후 «백그라운드 모두 정리»가 onStop 보다 먼저 와 파일이 fg 로 남음(알고있여우 1.0.4 · t-261030-5zdn)
@@ -140,6 +141,14 @@
       var es = /status (-?\d+)/.exec(why || "");
       o.m = "스스로 끝남 — 앞 화면에서 앱 프로세스가 exit(크래시·ANR·OS 회수 아님)";
       o.f = es ? "exit status " + es[1] : "exit status ?";
+    }
+    /* 사유 13(OTHER) = OS(system_server)가 제 판단으로 앱 프로세스를 죽인 판 — 설명이 누가 왜인지 말한다. «Died when creating service» =
+     * 우리 프로세스에 서비스를 띄우는 바인더 거래가 DeadObject(바인더 버퍼 참·프로세스 이미 죽어 감)로 실패해 AMS 가 죽였다 — 메모리 부족(3)·
+     * 웹뷰 죽음과 다른 병이니 설명으로 따로 묶는다(PC방 2.0.42 Pixel 6 Pro «RAM 2955MB» · 한 지문에 iOS·웹 오탐과 섞여 재발로 다시 열렸다 · t-261027-2nr7) */
+    if (/exit reason 13 /.test(why || "")) {
+      var od = /MB rss -?\d+MB (.*)$/.exec(why || "");
+      o.m = "시스템이 끔 — 앞 화면에서 OS 가 앱 프로세스를 죽임(사유 13 · 메모리 부족·크래시 아님)";
+      o.f = "os: " + ((od && od[1].trim()) || "?").slice(0, 60);
     }
     post("/e", o);
   }
@@ -190,6 +199,12 @@
   if (typeof Int8Array !== 'undefined') def(Object.getPrototypeOf(Int8Array.prototype), 'at', at);
   def(Array.prototype, 'findLast', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return this[i]; return undefined; });
   def(Array.prototype, 'findLastIndex', function (f, t) { for (var i = this.length - 1; i >= 0; i--) if (f.call(t, this[i], i, this)) return i; return -1; });
+  /* flat·flatMap·Object.fromEntries(es2019 · Chrome 69/73) — 옛 웹뷰는 «Object.entries(...).flatMap is not a function»(DotClan weapon.ts 무기 그림 읽기 · t-261111-v922).
+   * build.target es2018 은 문법만 내리고 함수는 안 채운다 */
+  function flat(d) { d = d === undefined ? 1 : Math.trunc(d) || 0; var out = []; (function go(a, k) { for (var i = 0; i < a.length; i++) { if (!(i in a)) continue; var v = a[i]; if (k > 0 && Array.isArray(v)) go(v, k - 1); else out.push(v); } })(this, d); return out; }
+  def(Array.prototype, 'flat', flat);
+  def(Array.prototype, 'flatMap', function (f, t) { var out = []; for (var i = 0; i < this.length; i++) { if (!(i in this)) continue; var v = f.call(t, this[i], i, this); if (Array.isArray(v)) for (var j = 0; j < v.length; j++) { if (j in v) out.push(v[j]); } else out.push(v); } return out; });
+  def(Object, 'fromEntries', function (it) { var o = {}; Array.from(it, function (e) { o[e[0]] = e[1]; }); return o; });
   def(Object, 'hasOwn', function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); });
   /* replaceChildren(Chrome 86·iOS 14) — 옛 웹뷰는 첫 화면 mount 에서 «replaceChildren is not a function»(wordchain t-261028-fecr · 엔진 대화창·여러 게임이 쓴다) */
   function replaceChildren() {
@@ -238,7 +253,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"484f0f7e4","game":"chichicamp"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"1bf7f42f0","game":"chichicamp"};</script>
 <meta name="description" content="숲속 캠핑 게임. 재료를 모아 가구를 만들고, 찾아오는 동물 친구와 캠프를 꾸며요. · A cozy camping game: craft furniture and befriend the animals who visit your forest camp.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 숲속 캠프 · Chichi Camp: Cozy Camping Game">
@@ -253,8 +268,8 @@
   <title>치치의 숲속 캠프</title>
   <script src="./js/i18n.js"></script>
   <link rel="stylesheet" href="./css/i18n-fonts.css" />
-  <script type="module" crossorigin src="./assets/index-B-6M9JnS.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-EWTtEosz.css">
+  <script type="module" crossorigin src="./assets/index-B-QxOoiY.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D_UGlg85.css">
 </head>
 <body>
 <div id="stage">
