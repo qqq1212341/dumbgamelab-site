@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App 崩溃日志来自旧版本？16 张报错工单全是“已经修好”的那一天</title>
+<meta name="description" content="打开崩溃收集器建的工单，16 个全是早就修好的 bug。原因是没更新的旧版 App 一直在上报错误，被我当成新 bug 来算。这篇写我判断错在哪，以及现在过滤的顺序。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="App 崩溃日志来自旧版本？16 张报错工单全是“已经修好”的那一天">
+<meta property="og:description" content="打开崩溃收集器建的工单，16 个全是早就修好的 bug。原因是没更新的旧版 App 一直在上报错误，被我当成新 bug 来算。这篇写我判断错在哪，以及现在过滤的顺序。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我把修好的 bug 又上报修了 16 次","description":"打开崩溃收集器建的工单，16 个全是早就修好的 bug。原因是没更新的旧版 App 一直在上报错误，被我当成新 bug 来算。这篇写我判断错在哪，以及现在过滤的顺序。","inLanguage":"zh-CN","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"芝芝的面包店","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"我把修好的 bug 又上报修了 16 次","item":"https://dumbgamelab.com/zh-Hans/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"App 崩溃报告里为什么一直出现已经修好的 bug?","acceptedAnswer":{"@type":"Answer","text":"因为没更新的用户手机上，旧版 App 还在继续运行。那个 App 一崩溃，修复之前的代码产生的错误，在收集器里就像新的一条。按 App 版本分开看就能分辨。"}},{"@type":"Question","name":"旧版 App 的报错要怎么过滤？","acceptedAnswer":{"@type":"Answer","text":"把修好错误的 commit 所在的第一个版本号记进台账，上报的版本比那个低，就不算新 bug。大部分崩溃监控工具都支持 App 版本筛选，请先用那个功能。"}},{"@type":"Question","name":"修好的版本发布后，旧版用户会留多久？","acceptedAnswer":{"@type":"Answer","text":"每个 App 不一样。按这篇文章的数字来看，11 月 3 日之后的 8 天，因旧版报错而关闭的 PR 仍有 29 个。确切的用户比例我没有统计，所以不知道。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 一波三折</p>
+    <h1>我把修好的 bug 又上报修了 16 次</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Dongne Bakery 的开始画面。店门口递面包的场景下方，显示进行到 DAY 10、累计营收 1300 万韩元" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">崩溃收集器收到报错，不代表都是新 bug。我核对了 11 月 3 日一天开出的报错工单，16 个早就在 main 修好了，发出报错的是修复之前的旧版 App。统计报错数量之前，先看“上报的 App 版本是不是比修好的版本低”才是对的顺序。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">11 月 3 日，我打开 16 张工单，却没有东西可修</a></li><li><a href="#s2">上报错误的是修复之前的 App</a></li><li><a href="#s3">一个错误判断：以为有报错进来就是新 bug</a></li><li><a href="#s4">修好之后，十天里同样的 PR 又多了 29 个</a></li><li><a href="#s5">所以我改了什么</a></li><li><a href="#s6">处境一样的话，先试试这几件事</a></li></ol></nav>
+    <section id="s1"><h2>11 月 3 日，我打开 16 张工单，却没有东西可修</h2>
+<p>先从那天日记里写的数字说起。核对报错工单后关闭的 PR 有 16 个，全部都是“已经在 main 修好”。按标题数出来的有 13 个，剩下 3 个的写法不一样。</p>
+<p>Dongne Bakery 的“异常退出”（#5259）、汗蒸房的“在上一个画面没有任何信号就关掉”（#5263）、Teolmungchi 的“异常退出”（#5287）、Wakppu Tower 的手机报错 3 条（#5307）就是例子。打开一看结论都一样：修好的 commit 早就在 main 里，代码这边没有事可做。</p>
+<p>核对一张工单要花时间：找出报错指纹、看是哪个版本出的、找到修好的 commit 再连起来。代码一行都没变，这些时间却花了 16 次。</p>
+</section>
+<section id="s2"><h2>上报错误的是修复之前的 App</h2>
+<p>原因不是错误新出现，而是旧版 App 一直在上报。没在应用商店更新的人，用的还是修复之前的版本。那个 App 一崩溃，在收集器里就成了一条新的报错。</p>
+<p>#5276 只有 Wakppu Tower 1.0.17 上报，#5275 只有面包合成游戏 1.0.3 上报。#5258 在 1.0.4 以上的版本没有再出现，是 0 次。这些数字说的是“修好之后的版本不会崩溃”。但收集器不管版本号，同一个错误就当成同一个错误来算。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Dongne Bakery 制作新面包的画面。选择面团、馅料和配料，下方以网格排列 24 种面包图鉴" loading="lazy" decoding="async"><figcaption>面包店 App 的旧版也是照这个画面装在手机上。修好的版本发布后，大家手机上还会有一阵子在跑旧版。</figcaption></figure></section>
+<section id="s3"><h2>一个错误判断：以为有报错进来就是新 bug</h2>
+<p>做收集器的时候，我假设“收到一条报错，就代表现在多了一个要修的 bug”。这个假设只看了报错进来的顺序，没有问那条报错是哪个时间点的代码出的。</p>
+<p>我修得很快，但大家更新的速度没那么快。修好的 bug 越多，“已经修好的 bug”从旧版本再次进来的路也跟着变多。</p>
+<p>那天日记“今天的浪费”的第二行就是这 16 个。每一个都花了一个 PR,改掉的代码却是 0。</p>
+</section>
+<section id="s4"><h2>修好之后，十天里同样的 PR 又多了 29 个</h2>
+<p>我在明天的待办里写了“旧版本的报错不开工单，只记进台账。版本号比 main 低就过滤掉，先从收集器做起”（t-261103-bszc）。</p>
+<p>之后到 11 月 11 日为止，数标题里带“已经修好”的报错 PR,从 11 月 1 日起共 42 个。减去 11 月 3 日的 13 个，之后 8 天是 29 个。每天平均从 13 个降到 3 到 4 个，但不是 0。</p>
+<p>#6070 面包合成游戏 1.0.3、#6377 网吧游戏 2.0.37、#6473 Algoitneun Yeou 1.0.6 就是例子。修好的版本发布后，旧版本还会活很久。这个数字是数 PR 标题得来的，所以标题写法不同的情况没有算进去。</p>
+<div class="tbl"><table><thead><tr><th>时间段</th><th>标题带“已经修好”的报错 PR</th></tr></thead><tbody><tr><td>11 月 3 日一天</td><td>13 个</td></tr><tr><td>11 月 4 日到 11 日（8 天）</td><td>29 个</td></tr><tr><td>11 月 1 日到 11 日合计</td><td>42 个</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>所以我改了什么</h2>
+<p>报错进来时，先看两件事再看数量：上报的 App 版本号，以及修好那个错误的 commit 所在的第一个版本。上报的版本比修好的版本低，就不是新 bug,而是旧版本的上报。</p>
+<p>我也增加了把修好的 commit 号用一行记进错误台账的做法。这样同样的指纹再进来时，台账马上会显示“已经修好、哪个 commit、从哪个版本开始”。工单那边则改成以 commit 为单位记录标签（#5316）。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Dongne Bakery 的剧情场景。奶奶守护的小巷面包店要重新开门的对话框，浮在等距视角的街道上方" loading="lazy" decoding="async"><figcaption>我修好的就算是“已经开着的门”,在旧版用户眼里还是关着的店。用版本号把两者分开。</figcaption></figure></section>
+<section id="s6"><h2>处境一样的话，先试试这几件事</h2>
+<p>如果你是自己接入崩溃监控的独立开发者，这个顺序能帮你省时间。工具名字不同，但大部分都有 App 版本筛选。</p>
+<p>还有一件事没做完。版本号偏低的报错，在建成工单之前自动过滤到什么程度，我写这篇时没有再用代码确认。可以确定的是，将近十天过去的现在，仍然有要打开核对再关掉的 PR。</p>
+<ul><li>统计报错数量之前，先按 App 版本分开看</li><li>把修好的 commit 所在的第一个版本号写进台账</li><li>上报的版本比那个低，就不开工单，只记进台账</li><li>确认旧版本减少的速度，判断要不要强制更新</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>App 崩溃报告里为什么一直出现已经修好的 bug?</summary><p>因为没更新的用户手机上，旧版 App 还在继续运行。那个 App 一崩溃，修复之前的代码产生的错误，在收集器里就像新的一条。按 App 版本分开看就能分辨。</p></details><details><summary>旧版 App 的报错要怎么过滤？</summary><p>把修好错误的 commit 所在的第一个版本号记进台账，上报的版本比那个低，就不算新 bug。大部分崩溃监控工具都支持 App 版本筛选，请先用那个功能。</p></details><details><summary>修好的版本发布后，旧版用户会留多久？</summary><p>每个 App 不一样。按这篇文章的数字来看，11 月 3 日之后的 8 天，因旧版报错而关闭的 PR 仍有 29 个。确切的用户比例我没有统计，所以不知道。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="芝芝的面包店" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">烘焙陈列，放置经营面包店</p><p class="gb-title"><a href="/zh-Hans/games/dongnebakery/">芝芝的面包店</a></p><p class="gb-hook">这类一波三折的事，我会继续用开发日志记录。做好的游戏可以从下面看。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Dzh-Hans" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

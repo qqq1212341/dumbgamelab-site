@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crash Reports From Old App Versions: 16 Tickets, All Already Fixed</title>
+<meta name="description" content="I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Crash Reports From Old App Versions: 16 Tickets, All Already Fixed">
+<meta property="og:description" content="I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The Day I Reported Fixing the Same 16 Bugs Twice","description":"I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.","inLanguage":"en","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Chichi's Idle Bakery Tycoon","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"The Day I Reported Fixing the Same 16 Bugs Twice","item":"https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do already fixed bugs keep showing up in app crash reports?","acceptedAnswer":{"@type":"Answer","text":"Old versions of the app keep running on the phones of users who have not updated. When that app dies, the crash from the code before the fix reaches the collector looking like a new one. Splitting the reports by app version tells them apart."}},{"@type":"Question","name":"How do I filter out crashes from old app versions?","acceptedAnswer":{"@type":"Answer","text":"Write the first version that includes the commit fixing the crash in a ledger, and do not count it as a new bug if the sending version is lower. Most crash monitoring tools support an app version filter, so use that first."}},{"@type":"Question","name":"How long do users on the old version stay around after a fix ships?","acceptedAnswer":{"@type":"Answer","text":"It depends on the app. By this post's numbers, even in the 8 days after November 3, 29 PRs were closed as old version crashes. I did not count the exact share of users, so I do not know it."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Dev log · a detour</p>
+    <h1>The Day I Reported Fixing the Same 16 Bugs Twice</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Start screen of Dongne Bakery. Below a scene of handing over bread in front of the shop, the progress reads up to DAY 10 and total sales of 13 million won" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Not every crash that reaches your collector is a new bug. When I checked the crash tickets opened in one day, November 3, 16 of them were bugs already fixed on main, and the apps that sent them were old versions from before the fix. Before you count a crash, check one thing first: is the app version that sent it older than the version with the fix?</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">November 3: I Opened 16 Tickets and Had Nothing to Fix</a></li><li><a href="#s2">The Crashes Came From the App Before the Fix</a></li><li><a href="#s3">One Wrong Assumption: I Believed Every Crash Was a New Bug</a></li><li><a href="#s4">Even After the Fix, 29 More of the Same PRs Showed Up Over Ten Days</a></li><li><a href="#s5">What I Changed</a></li><li><a href="#s6">What to Try First If You Are in the Same Spot</a></li></ol></nav>
+    <section id="s1"><h2>November 3: I Opened 16 Tickets and Had Nothing to Fix</h2>
+<p>Let me start with the numbers I wrote in that day&#39;s diary. 16 PRs checked and closed crash tickets, and every one of them said &quot;already fixed on main.&quot; 13 of them said so in the title, and the other 3 were worded differently.</p>
+<p>Here are some examples: the Dongne Bakery &quot;abnormal exit&quot; (#5259), the Korean spa game&#39;s &quot;closes without any signal on the previous screen&quot; (#5263), the Teolmungchi &quot;abnormal exit&quot; (#5287), and three phone crashes in Wakppu Tower (#5307). Each one ended the same way. The fixing commit was already on main, and there was nothing left to do in the code.</p>
+<p>Checking one ticket takes time: find the crash fingerprint, see which version it came from, and track down the fixing commit to link it. Not one line of code changed, and I spent that time 16 times.</p>
+</section>
+<section id="s2"><h2>The Crashes Came From the App Before the Fix</h2>
+<p>The cause was not new crashes. Old apps kept sending the same ones. A person who has not updated from the app store keeps running the version from before the fix. When that app dies, the collector files it as one new crash.</p>
+<p>#5276 was a crash sent only by Wakppu Tower 1.0.17, and #5275 only by the bread merge game 1.0.3. For #5258, there were 0 repeats on 1.0.4 and above. What those numbers say is &quot;the version after the fix does not crash.&quot; But the collector counted the same crash as the same crash no matter the version number.</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="New bread creation screen in Dongne Bakery. You pick dough, filling, and topping, and a grid of 24 breads from the bread collection is listed below" loading="lazy" decoding="async"><figcaption>The old version of the bakery app is installed with this exact screen too. Even after a fixed version ships, the old one keeps running on people&#39;s phones for a while.</figcaption></figure></section>
+<section id="s3"><h2>One Wrong Assumption: I Believed Every Crash Was a New Bug</h2>
+<p>When I built the collector, I assumed that one crash arriving meant one more bug to fix right now. I built it looking only at the order crashes arrive in, and never asked which point in time the code behind that crash was from.</p>
+<p>I fix things fast, but people do not update that fast. The more bugs I fix, the more ways an &quot;already fixed bug&quot; can come back from an old version.</p>
+<p>The second line under &quot;Today&#39;s waste&quot; in that day&#39;s diary was these 16. I spent one PR on each and the code changed by 0.</p>
+</section>
+<section id="s4"><h2>Even After the Fix, 29 More of the Same PRs Showed Up Over Ten Days</h2>
+<p>Under tomorrow&#39;s to-do list I wrote, &quot;Old version crashes should go into the ledger only, with no ticket. Build the collector first so anything with a version number lower than main gets filtered out&quot; (t-261103-bszc).</p>
+<p>Counting the crash PRs with &quot;already fixed&quot; in the title through November 11, the total since November 1 is 42. Subtract the 13 from November 3 and the 8 days after that hold 29. The daily average dropped from 13 to 3 or 4, but it is not 0.</p>
+<p>#6070 bread merge game 1.0.3, #6377 PC cafe game 2.0.37, and #6473 Algoitneun Yeou 1.0.6 are examples. Even after the fixed version ships, old versions stay alive for a long time. This count comes from PR titles, so cases worded differently in the title are missing.</p>
+<div class="tbl"><table><thead><tr><th>Period</th><th>Crash PRs with &quot;already fixed&quot; in the title</th></tr></thead><tbody><tr><td>November 3, one day</td><td>13</td></tr><tr><td>November 4 to 11 (8 days)</td><td>29</td></tr><tr><td>November 1 to 11 total</td><td>42</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>What I Changed</h2>
+<p>When a crash comes in, I look at two things before the count: the app version that sent it, and the first version that includes the commit fixing that crash. If the sending version is lower than the fixed one, it is not a new bug. It is a report from an old version.</p>
+<p>I also added a way to leave the fixing commit number in the crash ledger as one line. Then when the same fingerprint comes in again, the ledger immediately shows &quot;already fixed, which commit, from which version.&quot; On the ticket side, I changed it so tags are recorded per commit (#5316).</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Story scene from Dongne Bakery. A dialogue box about reopening the alley bakery that Grandma kept floats above an isometric street" loading="lazy" decoding="async"><figcaption>What I fixed may be &quot;a door already open,&quot; but to a user on the old version it is still a closed shop. The version number tells the two apart.</figcaption></figure></section>
+<section id="s6"><h2>What to Try First If You Are in the Same Spot</h2>
+<p>If you are a solo developer who set up crash monitoring yourself, this order will save you time. The tool names differ, but most of them have an app version filter.</p>
+<p>There is something I have not done yet. While writing this, I could not recheck in the code how far the automatic filtering of low-version crashes before they become tickets has gotten. What I do know is that, nearly ten days later, I am still opening and closing PRs that turn out to be already fixed.</p>
+<ul><li>Split crashes by app version before you count them</li><li>Write the first version that includes the fixing commit in the ledger</li><li>If the sending version is lower than that, do not open a ticket and only log it in the ledger</li><li>Check how fast old versions are shrinking, and decide whether a forced update is needed</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Why do already fixed bugs keep showing up in app crash reports?</summary><p>Old versions of the app keep running on the phones of users who have not updated. When that app dies, the crash from the code before the fix reaches the collector looking like a new one. Splitting the reports by app version tells them apart.</p></details><details><summary>How do I filter out crashes from old app versions?</summary><p>Write the first version that includes the commit fixing the crash in a ledger, and do not count it as a new bug if the sending version is lower. Most crash monitoring tools support an app version filter, so use that first.</p></details><details><summary>How long do users on the old version stay around after a fix ships?</summary><p>It depends on the app. By this post&#39;s numbers, even in the 8 days after November 3, 29 PRs were closed as old version crashes. I did not count the exact share of users, so I do not know it.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="Chichi&#39;s Idle Bakery Tycoon" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Bake, display, run the shop</p><p class="gb-title"><a href="/en/games/dongnebakery/">Chichi&#39;s Idle Bakery Tycoon</a></p><p class="gb-hook">I keep posting detours like this as dev logs. You can see the games I made below.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Den" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aplikasi Crash dari Versi Lama: 16 Tiket Error Ternyata Sudah Diperbaiki</title>
+<meta name="description" content="Saya membuka tiket yang dibuat pengumpul crash dan ke-16 tiketnya adalah bug yang sudah diperbaiki. Penyebabnya, error dari aplikasi versi lama yang belum diperbarui saya hitung sebagai bug baru. Di sini saya tulis di mana penilaian saya keliru dan urutan penyaringan sekarang.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/id/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Aplikasi Crash dari Versi Lama: 16 Tiket Error Ternyata Sudah Diperbaiki">
+<meta property="og:description" content="Saya membuka tiket yang dibuat pengumpul crash dan ke-16 tiketnya adalah bug yang sudah diperbaiki. Penyebabnya, error dari aplikasi versi lama yang belum diperbarui saya hitung sebagai bug baru. Di sini saya tulis di mana penilaian saya keliru dan urutan penyaringan sekarang.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hari Saya Melaporkan Memperbaiki Bug yang Sama 16 Kali","description":"Saya membuka tiket yang dibuat pengumpul crash dan ke-16 tiketnya adalah bug yang sudah diperbaiki. Penyebabnya, error dari aplikasi versi lama yang belum diperbarui saya hitung sebagai bug baru. Di sini saya tulis di mana penilaian saya keliru dan urutan penyaringan sekarang.","inLanguage":"id","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Toko Roti Chichi","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"Hari Saya Melaporkan Memperbaiki Bug yang Sama 16 Kali","item":"https://dumbgamelab.com/id/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kenapa bug yang sudah diperbaiki terus muncul di laporan crash aplikasi?","acceptedAnswer":{"@type":"Answer","text":"Karena di ponsel pengguna yang belum memperbarui, aplikasi versi lama masih terus berjalan. Saat aplikasi itu crash, error dari kode sebelum perbaikan masuk ke pengumpul seperti error baru. Memisahkan per versi aplikasi bisa membedakannya."}},{"@type":"Question","name":"Bagaimana cara menyaring error dari aplikasi versi lama?","acceptedAnswer":{"@type":"Answer","text":"Catat nomor versi pertama yang memuat commit perbaikan di buku besar, dan kalau versi pengirim lebih rendah, jangan hitung sebagai bug baru. Kebanyakan alat monitoring crash mendukung filter versi aplikasi, jadi pakai itu dulu."}},{"@type":"Question","name":"Setelah versi perbaikan rilis, berapa lama pengguna versi lama bertahan?","acceptedAnswer":{"@type":"Answer","text":"Berbeda tiap aplikasi. Dari angka di tulisan ini, bahkan dalam 8 hari setelah 3 November ada 29 PR yang ditutup karena error versi lama. Persentase pengguna yang tepat tidak saya hitung, jadi saya tidak tahu."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan dev · jalan berliku</p>
+    <h1>Hari Saya Melaporkan Memperbaiki Bug yang Sama 16 Kali</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Layar awal Dongne Bakery. Di bawah adegan menyerahkan roti di depan toko, terlihat progres sampai DAY 10 dan total penjualan 13 juta won" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Tidak semua error yang masuk ke pengumpul crash adalah bug baru. Saat saya mengecek tiket error yang dibuka dalam satu hari, 3 November, 16 di antaranya adalah bug yang sudah diperbaiki di main, dan aplikasi yang mengirimnya adalah versi lama sebelum perbaikan. Sebelum menghitung error, lihat dulu satu hal: apakah versi aplikasi pengirimnya lebih rendah dari versi yang sudah diperbaiki?</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">3 November: Saya Membuka 16 Tiket dan Tidak Ada yang Perlu Diperbaiki</a></li><li><a href="#s2">Yang Mengirim Error Adalah Aplikasi Sebelum Perbaikan</a></li><li><a href="#s3">Satu Penilaian Keliru: Saya Percaya Setiap Error yang Masuk Adalah Bug Baru</a></li><li><a href="#s4">Setelah Diperbaiki, 29 PR yang Sama Muncul Lagi dalam Sepuluh Hari</a></li><li><a href="#s5">Jadi, Apa yang Saya Ubah</a></li><li><a href="#s6">Kalau Kamu Senasib, Coba Ini Dulu</a></li></ol></nav>
+    <section id="s1"><h2>3 November: Saya Membuka 16 Tiket dan Tidak Ada yang Perlu Diperbaiki</h2>
+<p>Saya mulai dari angka yang saya tulis di catatan harian hari itu. Ada 16 PR yang mengecek lalu menutup tiket error, dan semuanya berisi «sudah diperbaiki di main». Yang saya hitung dari judulnya ada 13, dan 3 sisanya ditulis dengan ungkapan lain.</p>
+<p>Contohnya «keluar tidak normal» di Dongne Bakery (#5259), «mati tanpa sinyal di layar sebelumnya» di game sauna (#5263), «keluar tidak normal» di Teolmungchi (#5287), dan 3 error ponsel di Wakppu Tower (#5307). Begitu dibuka, kesimpulannya sama. Commit perbaikannya sudah ada di main, dan tidak ada lagi yang perlu dikerjakan di kode.</p>
+<p>Mengecek satu tiket butuh waktu: mencari sidik jari error, melihat error itu muncul di versi mana, lalu mencari commit perbaikan untuk dihubungkan. Kodenya tidak berubah satu baris pun, tetapi waktu itu terpakai 16 kali.</p>
+</section>
+<section id="s2"><h2>Yang Mengirim Error Adalah Aplikasi Sebelum Perbaikan</h2>
+<p>Penyebabnya bukan error baru muncul, melainkan aplikasi lama terus mengirimnya. Orang yang tidak memperbarui lewat toko aplikasi tetap memakai versi sebelum perbaikan. Saat aplikasi itu crash, pengumpul mencatatnya sebagai satu error baru.</p>
+<p>#5276 adalah error yang hanya dikirim Wakppu Tower 1.0.17, dan #5275 hanya dikirim game gabung roti 1.0.3. Untuk #5258, di 1.0.4 ke atas kemunculan ulangnya 0 kali. Angka itu bilang «di versi setelah perbaikan tidak terjadi». Tetapi pengumpul tidak peduli nomor versi, error yang sama dihitung sebagai error yang sama.</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Layar membuat roti baru di Dongne Bakery. Memilih adonan, isian, dan topping, dan di bawahnya berjajar kisi 24 jenis roti dalam koleksi" loading="lazy" decoding="async"><figcaption>Aplikasi toko roti versi lama juga terpasang persis dengan layar ini. Meski versi yang sudah diperbaiki rilis, di ponsel orang-orang versi lama masih jalan beberapa waktu.</figcaption></figure></section>
+<section id="s3"><h2>Satu Penilaian Keliru: Saya Percaya Setiap Error yang Masuk Adalah Bug Baru</h2>
+<p>Saat membuat pengumpul, saya berasumsi «satu error yang masuk berarti ada satu bug baru yang harus diperbaiki sekarang». Asumsi itu dibuat hanya dari urutan error masuk, dan saya tidak menanyakan error itu muncul di kode dari titik waktu yang mana.</p>
+<p>Saya memperbaiki dengan cepat, tetapi kecepatan orang memperbarui tidak secepat itu. Makin banyak bug yang diperbaiki, makin banyak pula jalan bagi «bug yang sudah diperbaiki» untuk muncul lagi dari versi lama.</p>
+<p>Baris kedua di bagian «Pemborosan hari ini» pada catatan harian hari itu adalah 16 error ini. Satu PR terpakai untuk tiap error, dan kode yang berubah 0.</p>
+</section>
+<section id="s4"><h2>Setelah Diperbaiki, 29 PR yang Sama Muncul Lagi dalam Sepuluh Hari</h2>
+<p>Di daftar tugas besok, saya menulis «Error versi lama tidak dibuatkan tiket, cukup dicatat di buku besar. Nomor versi yang lebih rendah dari main disaring, mulai dari pengumpul» (t-261103-bszc).</p>
+<p>Setelah itu, sampai 11 November, saya menghitung PR error yang judulnya berisi «sudah diperbaiki», dan sejak 1 November totalnya 42. Kurangi 13 pada 3 November, maka 8 hari sesudahnya ada 29. Rata-rata harian turun dari 13 ke 3 sampai 4, tetapi bukan 0.</p>
+<p>#6070 game gabung roti 1.0.3, #6377 game warnet 2.0.37, dan #6473 Algoitneun Yeou 1.0.6 adalah contohnya. Meski versi yang sudah diperbaiki rilis, versi lama tetap hidup lama. Angka ini dihitung dari judul PR, sehingga kasus yang judulnya berbeda ungkapan tidak ikut terhitung.</p>
+<div class="tbl"><table><thead><tr><th>Periode</th><th>PR error yang judulnya berisi «sudah diperbaiki»</th></tr></thead><tbody><tr><td>3 November, satu hari</td><td>13</td></tr><tr><td>4 sampai 11 November (8 hari)</td><td>29</td></tr><tr><td>Total 1 sampai 11 November</td><td>42</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>Jadi, Apa yang Saya Ubah</h2>
+<p>Saat error masuk, sebelum jumlahnya saya lihat dua hal: nomor versi aplikasi pengirim, dan versi pertama yang memuat commit perbaikan error itu. Jika versi pengirim lebih rendah dari versi perbaikan, itu bukan bug baru, melainkan laporan dari versi lama.</p>
+<p>Saya juga menambah cara mencatat nomor commit perbaikan di buku besar error dalam satu baris. Jadi kalau sidik jari yang sama masuk lagi, buku besar langsung menampilkan «sudah diperbaiki, commit mana, mulai dari versi berapa». Di sisi tiket, saya ubah agar label dicatat per commit (#5316).</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Adegan cerita Dongne Bakery. Kotak dialog tentang membuka kembali toko roti gang yang dijaga nenek melayang di atas jalanan isometrik" loading="lazy" decoding="async"><figcaption>Yang saya perbaiki mungkin «pintu yang sudah terbuka», tetapi di mata pengguna versi lama itu tetap toko yang tutup. Nomor versi yang membedakan keduanya.</figcaption></figure></section>
+<section id="s6"><h2>Kalau Kamu Senasib, Coba Ini Dulu</h2>
+<p>Kalau kamu developer solo yang memasang monitoring crash sendiri, urutan ini akan menghemat waktu. Nama alatnya berbeda, tetapi kebanyakan punya filter versi aplikasi.</p>
+<p>Masih ada yang belum selesai. Sejauh mana penyaringan otomatis error berversi rendah sebelum dijadikan tiket sudah berjalan, tidak saya cek ulang lewat kode saat menulis ini. Yang pasti, hampir sepuluh hari berlalu, sampai sekarang masih ada PR yang dibuka untuk dicek lalu ditutup.</p>
+<ul><li>Sebelum menghitung error, pisahkan per versi aplikasi</li><li>Catat nomor versi pertama yang memuat commit perbaikan di buku besar</li><li>Kalau versi pengirim lebih rendah, jangan buka tiket, cukup catat di buku besar</li><li>Cek kecepatan versi lama berkurang untuk menimbang perlu tidaknya update paksa</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Kenapa bug yang sudah diperbaiki terus muncul di laporan crash aplikasi?</summary><p>Karena di ponsel pengguna yang belum memperbarui, aplikasi versi lama masih terus berjalan. Saat aplikasi itu crash, error dari kode sebelum perbaikan masuk ke pengumpul seperti error baru. Memisahkan per versi aplikasi bisa membedakannya.</p></details><details><summary>Bagaimana cara menyaring error dari aplikasi versi lama?</summary><p>Catat nomor versi pertama yang memuat commit perbaikan di buku besar, dan kalau versi pengirim lebih rendah, jangan hitung sebagai bug baru. Kebanyakan alat monitoring crash mendukung filter versi aplikasi, jadi pakai itu dulu.</p></details><details><summary>Setelah versi perbaikan rilis, berapa lama pengguna versi lama bertahan?</summary><p>Berbeda tiap aplikasi. Dari angka di tulisan ini, bahkan dalam 8 hari setelah 3 November ada 29 PR yang ditutup karena error versi lama. Persentase pengguna yang tepat tidak saya hitung, jadi saya tidak tahu.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="Toko Roti Chichi" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Panggang dan tata rak roti</p><p class="gb-title"><a href="/id/games/dongnebakery/">Toko Roti Chichi</a></p><p class="gb-hook">Cerita jalan berliku seperti ini akan terus saya tulis sebagai catatan dev. Game yang saya buat bisa dilihat di bawah.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Did" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

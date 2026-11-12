@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>直したバグを16回も直したと報告した日</title>
+    <link>https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>アプリのクラッシュ収集が立てたチケットを開くと、16件すべてが修正済みのバグでした。更新されていない古いバージョンのアプリが送ったエラーを、新しいバグとして数えていたのが原因です。私の判断が間違っていた点と、振り分ける順番を書きました。</description>
+  </item>
+  <item>
     <title>プチプチはもともと壁紙として作られた</title>
     <link>https://dumbgamelab.com/ja/blog/bubble-wrap/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/bubble-wrap/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>ベルは電話のあいさつにアホイを望んだが、広まったのはエジソンのハローだった。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>韓国のPCバンはなぜゲームをする場所なのに、食事処のようにメニューを売るのか</title>
-    <link>https://dumbgamelab.com/ja/blog/why-pc-bangs-became-restaurants/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/why-pc-bangs-became-restaurants/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>韓国のPCバン(PC房)はなぜラーメンやチャーハン、チキンを出す食事処になったのでしょうか。2013年の全面禁煙、2010年のシクパラチによる申告、食べ物の売上が1割から4割に増えた流れを、出典つきでまとめました。</description>
   </item>
 </channel>
 </rss>

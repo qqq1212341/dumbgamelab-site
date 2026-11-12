@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App bị crash do phiên bản cũ: 16 ticket lỗi đều là lỗi đã sửa</title>
+<meta name="description" content="Tôi mở các ticket do bộ thu thập crash tạo ra thì cả 16 cái đều là lỗi đã sửa từ trước. Nguyên nhân là tôi đếm lỗi do bản app cũ chưa cập nhật gửi về thành lỗi mới. Bài này ghi chỗ tôi đoán sai và thứ tự lọc hiện tại.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="App bị crash do phiên bản cũ: 16 ticket lỗi đều là lỗi đã sửa">
+<meta property="og:description" content="Tôi mở các ticket do bộ thu thập crash tạo ra thì cả 16 cái đều là lỗi đã sửa từ trước. Nguyên nhân là tôi đếm lỗi do bản app cũ chưa cập nhật gửi về thành lỗi mới. Bài này ghi chỗ tôi đoán sai và thứ tự lọc hiện tại.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ngày tôi báo đã sửa lại 16 lỗi vốn đã sửa xong","description":"Tôi mở các ticket do bộ thu thập crash tạo ra thì cả 16 cái đều là lỗi đã sửa từ trước. Nguyên nhân là tôi đếm lỗi do bản app cũ chưa cập nhật gửi về thành lỗi mới. Bài này ghi chỗ tôi đoán sai và thứ tự lọc hiện tại.","inLanguage":"vi","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Chichi Mở Tiệm","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Ngày tôi báo đã sửa lại 16 lỗi vốn đã sửa xong","item":"https://dumbgamelab.com/vi/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vì sao báo cáo crash của app cứ liên tục có lỗi đã sửa?","acceptedAnswer":{"@type":"Answer","text":"Vì trên điện thoại của người dùng chưa cập nhật, bản app cũ vẫn tiếp tục chạy. Khi app đó bị crash, lỗi từ code trước khi sửa gửi về bộ thu thập trông như một lỗi mới. Chia theo phiên bản app là phân biệt được."}},{"@type":"Question","name":"Làm sao lọc lỗi của phiên bản app cũ?","acceptedAnswer":{"@type":"Answer","text":"Ghi vào sổ số phiên bản đầu tiên chứa commit sửa lỗi, nếu phiên bản gửi thấp hơn thì không đếm là bug mới. Hầu hết công cụ theo dõi crash đều hỗ trợ bộ lọc theo phiên bản app, hãy dùng cái đó trước."}},{"@type":"Question","name":"Sau khi bản sửa ra, người dùng bản cũ còn lại bao lâu?","acceptedAnswer":{"@type":"Answer","text":"Tùy từng app. Theo con số trong bài này, ngay cả 8 ngày sau 3 tháng 11 vẫn có 29 PR được đóng vì lỗi của bản cũ. Tỷ lệ người dùng chính xác thì tôi chưa đếm nên không biết."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký dev · chuyện rắc rối</p>
+    <h1>Ngày tôi báo đã sửa lại 16 lỗi vốn đã sửa xong</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Màn hình bắt đầu của Dongne Bakery. Bên dưới cảnh đưa bánh mì trước cửa tiệm là tiến trình đến DAY 10 và tổng doanh thu 13 triệu won" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Lỗi báo về bộ thu thập crash chưa chắc đều là lỗi mới. Khi tôi kiểm tra các ticket lỗi mở trong một ngày, 3 tháng 11, có 16 cái là lỗi đã sửa trên main, và app gửi lỗi là bản cũ trước khi sửa. Trước khi đếm lỗi, hãy xem trước: phiên bản app gửi lỗi có thấp hơn phiên bản đã sửa không?</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Ngày 3 tháng 11, tôi mở 16 ticket mà không có gì để sửa</a></li><li><a href="#s2">Bản app gửi lỗi là bản trước khi sửa</a></li><li><a href="#s3">Một phán đoán sai: tôi tin rằng lỗi gửi về là lỗi mới</a></li><li><a href="#s4">Sau khi sửa, trong mười ngày vẫn có thêm 29 PR giống vậy</a></li><li><a href="#s5">Vì vậy tôi đã đổi gì</a></li><li><a href="#s6">Nếu bạn cùng cảnh ngộ, hãy thử những việc này trước</a></li></ol></nav>
+    <section id="s1"><h2>Ngày 3 tháng 11, tôi mở 16 ticket mà không có gì để sửa</h2>
+<p>Tôi bắt đầu từ những con số ghi trong nhật ký hôm đó. Có 16 PR kiểm tra rồi đóng ticket lỗi, và tất cả đều là «đã sửa trên main». Đếm theo tiêu đề thì được 13 cái, 3 cái còn lại diễn đạt khác.</p>
+<p>Ví dụ là «thoát bất thường» của Dongne Bakery (#5259), «tắt mà không có tín hiệu ở màn hình trước» của game phòng xông hơi (#5263), «thoát bất thường» của Teolmungchi (#5287) và 3 lỗi trên điện thoại của Wakppu Tower (#5307). Mở ra thì kết luận đều giống nhau. Commit sửa lỗi đã nằm trên main từ trước, trong code không còn việc gì để làm.</p>
+<p>Kiểm tra một ticket mất thời gian: tìm dấu vân tay của lỗi, xem lỗi xảy ra ở phiên bản nào, rồi tìm commit đã sửa để nối vào. Code không đổi một dòng nào mà tôi đã tốn thời gian đó 16 lần.</p>
+</section>
+<section id="s2"><h2>Bản app gửi lỗi là bản trước khi sửa</h2>
+<p>Nguyên nhân không phải lỗi mới phát sinh mà là app cũ cứ liên tục gửi về. Người không cập nhật trên cửa hàng ứng dụng vẫn dùng bản trước khi sửa. Khi app đó bị crash, bộ thu thập ghi nhận thành một lỗi mới.</p>
+<p>#5276 là lỗi chỉ có Wakppu Tower 1.0.17 gửi, #5275 chỉ có game ghép bánh mì 1.0.3 gửi. Với #5258, từ 1.0.4 trở lên số lần tái phát là 0. Con số này nói rằng «bản sau khi sửa thì không bị». Nhưng bộ thu thập không quan tâm số phiên bản, cứ cùng một lỗi là đếm như cùng một lỗi.</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Màn hình làm bánh mì mới trong Dongne Bakery. Chọn bột, nhân và topping, bên dưới xếp dạng lưới 24 loại bánh trong bộ sưu tập" loading="lazy" decoding="async"><figcaption>Bản cũ của app tiệm bánh cũng được cài đúng với màn hình này. Dù bản đã sửa ra rồi, trên điện thoại mọi người bản cũ vẫn chạy thêm một thời gian.</figcaption></figure></section>
+<section id="s3"><h2>Một phán đoán sai: tôi tin rằng lỗi gửi về là lỗi mới</h2>
+<p>Khi làm bộ thu thập, tôi giả định «có một lỗi gửi về nghĩa là vừa có thêm một bug cần sửa ngay». Giả định đó chỉ dựa vào thứ tự lỗi đến, và tôi không hỏi lỗi đó xảy ra ở code thuộc thời điểm nào.</p>
+<p>Tốc độ sửa của tôi nhanh, nhưng tốc độ mọi người cập nhật không nhanh bằng. Càng sửa nhiều bug thì càng có thêm đường để «bug đã sửa» quay lại từ bản cũ.</p>
+<p>Dòng thứ hai của mục «Lãng phí hôm nay» trong nhật ký hôm đó chính là 16 lỗi này. Mỗi lỗi tốn một PR mà code thay đổi là 0.</p>
+</section>
+<section id="s4"><h2>Sau khi sửa, trong mười ngày vẫn có thêm 29 PR giống vậy</h2>
+<p>Ở mục việc cần làm ngày mai, tôi ghi «Lỗi của bản cũ thì không tạo ticket mà chỉ ghi vào sổ. Số phiên bản thấp hơn main thì bị lọc, bắt đầu từ bộ thu thập» (t-261103-bszc).</p>
+<p>Sau đó, tính đến ngày 11 tháng 11, đếm các PR lỗi có «đã sửa» trong tiêu đề thì từ ngày 1 tháng 11 tổng cộng là 42. Trừ 13 cái của ngày 3 tháng 11 thì 8 ngày sau đó có 29. Trung bình mỗi ngày giảm từ 13 xuống 3 đến 4, nhưng không phải 0.</p>
+<p>#6070 game ghép bánh mì 1.0.3, #6377 game quán net 2.0.37, #6473 Algoitneun Yeou 1.0.6 là các ví dụ. Dù bản đã sửa ra rồi, bản cũ vẫn sống rất lâu. Con số này đếm theo tiêu đề PR nên những trường hợp có tiêu đề diễn đạt khác bị bỏ sót.</p>
+<div class="tbl"><table><thead><tr><th>Thời gian</th><th>PR lỗi có «đã sửa» trong tiêu đề</th></tr></thead><tbody><tr><td>Một ngày 3 tháng 11</td><td>13</td></tr><tr><td>Từ 4 đến 11 tháng 11 (8 ngày)</td><td>29</td></tr><tr><td>Tổng từ 1 đến 11 tháng 11</td><td>42</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>Vì vậy tôi đã đổi gì</h2>
+<p>Khi có lỗi gửi về, trước khi đếm số lượng tôi xem hai thứ: số phiên bản app đã gửi, và phiên bản đầu tiên chứa commit sửa lỗi đó. Nếu phiên bản gửi thấp hơn phiên bản đã sửa thì đó không phải bug mới mà là báo cáo từ bản cũ.</p>
+<p>Tôi cũng thêm cách ghi số commit đã sửa vào sổ lỗi thành một dòng. Như vậy khi cùng một dấu vân tay gửi về lần nữa, sổ sẽ hiện ngay «đã sửa, commit nào, từ phiên bản nào». Phía ticket, tôi đổi sang ghi thẻ theo từng commit (#5316).</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Cảnh cốt truyện trong Dongne Bakery. Hộp thoại về việc mở lại tiệm bánh trong hẻm mà bà từng giữ nổi trên con phố isometric" loading="lazy" decoding="async"><figcaption>Cái tôi sửa có thể là «cánh cửa đã mở», nhưng với người dùng bản cũ đó vẫn là tiệm đóng cửa. Số phiên bản giúp phân biệt hai thứ.</figcaption></figure></section>
+<section id="s6"><h2>Nếu bạn cùng cảnh ngộ, hãy thử những việc này trước</h2>
+<p>Nếu bạn là dev làm một mình và tự gắn theo dõi crash, thứ tự này sẽ giúp bạn tiết kiệm thời gian. Tên công cụ khác nhau nhưng hầu hết đều có bộ lọc theo phiên bản app.</p>
+<p>Vẫn còn một việc tôi chưa làm xong. Việc tự động lọc các lỗi có số phiên bản thấp trước khi tạo ticket đã làm được đến đâu, tôi không kiểm tra lại bằng code khi viết bài này. Điều chắc chắn là gần mười ngày trôi qua, đến giờ vẫn còn những PR phải mở ra kiểm tra rồi đóng lại.</p>
+<ul><li>Trước khi đếm lỗi, chia theo phiên bản app</li><li>Ghi số phiên bản đầu tiên chứa commit sửa lỗi vào sổ</li><li>Nếu phiên bản gửi thấp hơn thì không mở ticket, chỉ ghi vào sổ</li><li>Kiểm tra tốc độ bản cũ giảm dần để cân nhắc có cần bắt buộc cập nhật không</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Vì sao báo cáo crash của app cứ liên tục có lỗi đã sửa?</summary><p>Vì trên điện thoại của người dùng chưa cập nhật, bản app cũ vẫn tiếp tục chạy. Khi app đó bị crash, lỗi từ code trước khi sửa gửi về bộ thu thập trông như một lỗi mới. Chia theo phiên bản app là phân biệt được.</p></details><details><summary>Làm sao lọc lỗi của phiên bản app cũ?</summary><p>Ghi vào sổ số phiên bản đầu tiên chứa commit sửa lỗi, nếu phiên bản gửi thấp hơn thì không đếm là bug mới. Hầu hết công cụ theo dõi crash đều hỗ trợ bộ lọc theo phiên bản app, hãy dùng cái đó trước.</p></details><details><summary>Sau khi bản sửa ra, người dùng bản cũ còn lại bao lâu?</summary><p>Tùy từng app. Theo con số trong bài này, ngay cả 8 ngày sau 3 tháng 11 vẫn có 29 PR được đóng vì lỗi của bản cũ. Tỷ lệ người dùng chính xác thì tôi chưa đếm nên không biết.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="Chichi Mở Tiệm" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Nướng bánh và xếp kệ bán hàng</p><p class="gb-title"><a href="/vi/games/dongnebakery/">Chichi Mở Tiệm</a></p><p class="gb-hook">Những chuyện rắc rối như thế này tôi sẽ tiếp tục đăng thành nhật ký dev. Bạn có thể xem các game tôi làm ở bên dưới.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Dvi" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

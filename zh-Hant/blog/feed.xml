@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>我把修好的 bug 又回報修了 16 次</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>打開當機收集器開的工單，16 件全是早就修好的 bug。原因是沒更新的舊版 App 一直在回報錯誤，被我當成新 bug 來算。這篇寫我判斷錯在哪裡，以及現在過濾的順序。</description>
+  </item>
+  <item>
     <title>觀看數跑到 1,269 次，安裝卻連一筆都沒有</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/roulette-ab-zero-install/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/roulette-ab-zero-install/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-guide/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>汗蒸幕（찜질방）是韓國的澡堂加三溫暖，還有休息區和睡眠室，很多24小時營業。整理入場流程、要不要穿內褲、能不能帶手機、羊頭毛巾怎麼綁、烤雞蛋和甜米露、2026價格和外國人小技巧。</description>
-  </item>
-  <item>
-    <title>網咖在每個國家名字都不一樣：2000年代那個年代的光景</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/pc-bang-names-around-the-world/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/pc-bang-names-around-the-world/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>印尼 warnet、越南 quán net、台灣網咖、中國网吧、巴西 lan house、日本ネットカフェ、泰國ร้านเกม。名字不同，2000年代的網咖光景卻很相似。整理當年玩的遊戲和印象深刻的畫面。</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App 當機回報來自舊版本？16 張錯誤單全是「已經修好」的那一天</title>
+<meta name="description" content="打開當機收集器開的工單，16 件全是早就修好的 bug。原因是沒更新的舊版 App 一直在回報錯誤，被我當成新 bug 來算。這篇寫我判斷錯在哪裡，以及現在過濾的順序。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="App 當機回報來自舊版本？16 張錯誤單全是「已經修好」的那一天">
+<meta property="og:description" content="打開當機收集器開的工單，16 件全是早就修好的 bug。原因是沒更新的舊版 App 一直在回報錯誤，被我當成新 bug 來算。這篇寫我判斷錯在哪裡，以及現在過濾的順序。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我把修好的 bug 又回報修了 16 次","description":"打開當機收集器開的工單，16 件全是早就修好的 bug。原因是沒更新的舊版 App 一直在回報錯誤，被我當成新 bug 來算。這篇寫我判斷錯在哪裡，以及現在過濾的順序。","inLanguage":"zh-TW","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"芝芝的麵包店","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"我把修好的 bug 又回報修了 16 次","item":"https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"App 當機回報裡為什麼一直出現已經修好的 bug？","acceptedAnswer":{"@type":"Answer","text":"因為沒更新的使用者手機上，舊版 App 還在繼續跑。那個 App 一當掉，修好之前的程式碼所產生的錯誤，在收集器裡就像新的一筆。依 App 版本分開看就能分辨。"}},{"@type":"Question","name":"舊版 App 的錯誤要怎麼過濾？","acceptedAnswer":{"@type":"Answer","text":"把修好錯誤的 commit 所在的第一個版本號碼寫進帳本，送出的版本比那個低，就不算新 bug。大部分當機監控工具都支援 App 版本篩選，請先用那個功能。"}},{"@type":"Question","name":"修好的版本推出後，舊版使用者會留多久？","acceptedAnswer":{"@type":"Answer","text":"每個 App 不一樣。以這篇文章的數字來看，11 月 3 日之後的 8 天，因舊版錯誤而關閉的 PR 仍有 29 件。確切的使用者比例我沒有統計，所以不知道。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 一波三折</p>
+    <h1>我把修好的 bug 又回報修了 16 次</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Dongne Bakery 的開始畫面。店門口遞麵包的場景下方，顯示進行到 DAY 10、累計營收 1300 萬韓元" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">當機收集器收到錯誤，不代表都是新 bug。我確認 11 月 3 日一天開出的錯誤工單，16 件早就在 main 修好了，送出錯誤的是修好之前的舊版 App。在計算錯誤數量之前，先看「送出錯誤的 App 版本是不是比修好的版本低」才是對的順序。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">11 月 3 日，我打開 16 張工單，卻沒有東西可以修</a></li><li><a href="#s2">送出錯誤的是修好之前的 App</a></li><li><a href="#s3">一個錯誤判斷：以為有錯誤進來就是新 bug</a></li><li><a href="#s4">修好之後，十天內同樣的 PR 又多了 29 個</a></li><li><a href="#s5">所以我改了什麼</a></li><li><a href="#s6">處境一樣的話，先試試這幾件事</a></li></ol></nav>
+    <section id="s1"><h2>11 月 3 日，我打開 16 張工單，卻沒有東西可以修</h2>
+<p>先從那天日記裡寫的數字說起。確認錯誤工單後關閉的 PR 有 16 個，全部都是「已經在 main 修好」。用標題算出來的有 13 個，剩下 3 個的寫法不一樣。</p>
+<p>Dongne Bakery 的「異常結束」（#5259）、汗蒸幕的「在上一個畫面沒有任何訊號就關掉」（#5263）、Teolmungchi 的「異常結束」（#5287）、Wakppu Tower 的手機錯誤 3 件（#5307）就是例子。打開一看結論都一樣：修好的 commit 早就在 main 裡，程式碼這邊沒有事可做。</p>
+<p>確認一張工單要花時間：找出錯誤指紋、看是哪個版本發生的、找到修好的 commit 再連起來。程式碼一行都沒變，這些時間卻花了 16 次。</p>
+</section>
+<section id="s2"><h2>送出錯誤的是修好之前的 App</h2>
+<p>原因不是錯誤新發生，而是舊版 App 一直在送。沒有在應用程式商店更新的人，用的還是修好之前的版本。那個 App 一當掉，在收集器裡就會變成一筆新的錯誤。</p>
+<p>#5276 只有 Wakppu Tower 1.0.17 送出，#5275 只有麵包合成遊戲 1.0.3 送出。#5258 在 1.0.4 以上的版本沒有再發生，是 0 件。這些數字說的是「修好之後的版本不會當機」。但收集器不管版本號碼，同一個錯誤就當成同一個錯誤來算。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Dongne Bakery 製作新麵包的畫面。選擇麵團、內餡和配料，下方以格狀排列 24 種麵包圖鑑" loading="lazy" decoding="async"><figcaption>麵包店 App 的舊版也是照這個畫面安裝在手機上。修好的版本推出後，大家的手機上還是會有一段時間跑著舊版。</figcaption></figure></section>
+<section id="s3"><h2>一個錯誤判斷：以為有錯誤進來就是新 bug</h2>
+<p>做收集器的時候，我假設「收到一筆錯誤，就代表現在多了一個要修的 bug」。這個假設只看錯誤進來的順序，沒有問那個錯誤是哪個時間點的程式碼發生的。</p>
+<p>我修得很快，但大家更新的速度沒那麼快。修好的 bug 越多，「已經修好的 bug」從舊版本再次進來的路也跟著變多。</p>
+<p>那天日記「今天的浪費」的第二行就是這 16 件。每一件都花了一個 PR，改掉的程式碼卻是 0。</p>
+</section>
+<section id="s4"><h2>修好之後，十天內同樣的 PR 又多了 29 個</h2>
+<p>我在明天的待辦寫了「舊版本的錯誤不開工單，只寫進帳本。版本號碼比 main 低就過濾掉，先從收集器做起」（t-261103-bszc）。</p>
+<p>之後到 11 月 11 日為止，數標題裡有「已經修好」的錯誤 PR，從 11 月 1 日起共 42 件。扣掉 11 月 3 日的 13 件，之後 8 天是 29 件。每天平均從 13 件降到 3 到 4 件，但不是 0。</p>
+<p>#6070 麵包合成遊戲 1.0.3、#6377 網咖遊戲 2.0.37、#6473 Algoitneun Yeou 1.0.6 就是例子。修好的版本推出後，舊版本還會活很久。這個數字是數 PR 標題得來的，所以標題寫法不同的案例沒有算進去。</p>
+<div class="tbl"><table><thead><tr><th>期間</th><th>標題含「已經修好」的錯誤 PR</th></tr></thead><tbody><tr><td>11 月 3 日一天</td><td>13 件</td></tr><tr><td>11 月 4 日到 11 日（8 天）</td><td>29 件</td></tr><tr><td>11 月 1 日到 11 日合計</td><td>42 件</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>所以我改了什麼</h2>
+<p>錯誤進來時，先看兩件事再看數量：送出的 App 版本號碼，以及修好那個錯誤的 commit 所在的第一個版本。送出的版本比修好的版本低，就不是新 bug，而是舊版本的回報。</p>
+<p>我也增加了把修好的 commit 號碼用一行記進錯誤帳本的做法。這樣同樣的指紋再進來時，帳本馬上就會顯示「已經修好、哪個 commit、從哪個版本開始」。工單那邊則改成以 commit 為單位記錄標籤（#5316）。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Dongne Bakery 的故事場景。奶奶守護的巷弄麵包店要重新開門的對話框，浮在等角視角的街道上方" loading="lazy" decoding="async"><figcaption>我修好的就算是「已經開著的門」，在舊版使用者眼裡還是關著的店。用版本號碼把兩者分開。</figcaption></figure></section>
+<section id="s6"><h2>處境一樣的話，先試試這幾件事</h2>
+<p>如果你是自己接上當機監控的獨立開發者，這個順序可以幫你省時間。工具名稱不同，但大部分都有 App 版本篩選。</p>
+<p>還有一件事沒做完。版本號碼偏低的錯誤，在開成工單之前自動過濾到什麼程度，我寫這篇時沒有再用程式碼確認。可以確定的是，將近十天過去的現在，還是有要打開確認再關掉的 PR。</p>
+<ul><li>計算錯誤數量之前，先依 App 版本分開看</li><li>把修好的 commit 所在的第一個版本號碼寫進帳本</li><li>送出的版本比那個低，就不開工單，只寫進帳本</li><li>確認舊版本減少的速度，判斷需不需要強制更新</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>App 當機回報裡為什麼一直出現已經修好的 bug？</summary><p>因為沒更新的使用者手機上，舊版 App 還在繼續跑。那個 App 一當掉，修好之前的程式碼所產生的錯誤，在收集器裡就像新的一筆。依 App 版本分開看就能分辨。</p></details><details><summary>舊版 App 的錯誤要怎麼過濾？</summary><p>把修好錯誤的 commit 所在的第一個版本號碼寫進帳本，送出的版本比那個低，就不算新 bug。大部分當機監控工具都支援 App 版本篩選，請先用那個功能。</p></details><details><summary>修好的版本推出後，舊版使用者會留多久？</summary><p>每個 App 不一樣。以這篇文章的數字來看，11 月 3 日之後的 8 天，因舊版錯誤而關閉的 PR 仍有 29 件。確切的使用者比例我沒有統計，所以不知道。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="芝芝的麵包店" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">烘焙陳列，放置經營麵包店</p><p class="gb-title"><a href="/zh-Hant/games/dongnebakery/">芝芝的麵包店</a></p><p class="gb-hook">這類一波三折的事，我會繼續用開發日誌記錄。做好的遊戲可以從下面看。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Dzh-Hant" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

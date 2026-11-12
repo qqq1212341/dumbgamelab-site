@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>The Day I Reported Fixing the Same 16 Bugs Twice</title>
+    <link>https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</guid>
+    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
+    <description>I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.</description>
+  </item>
+  <item>
     <title>Bubble Wrap Started Out as Wallpaper</title>
     <link>https://dumbgamelab.com/en/blog/bubble-wrap/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/bubble-wrap/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/revenue-92pct-one-article/</guid>
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>A solo dev split mobile game revenue by game and found out why. Of $260 earned in 14 days, $241 came from one game, mostly from traffic that one Taiwanese article created. Here is where I misread it.</description>
-  </item>
-  <item>
-    <title>Olympic Gold Medals Are Mostly Silver</title>
-    <link>https://dumbgamelab.com/en/blog/gold-medal-silver/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/gold-medal-silver/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>An Olympic gold medal is silver coated with 6 g of gold.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

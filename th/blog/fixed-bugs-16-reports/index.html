@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แอพค้างจากแอปเวอร์ชันเก่า: ตั๋วข้อผิดพลาด 16 ใบ ที่แก้ไปแล้วทั้งหมด</title>
+<meta name="description" content="ผมเปิดตั๋วที่ตัวเก็บ crash สร้างไว้ แล้วพบว่าทั้ง 16 ใบเป็นบั๊กที่แก้ไปแล้ว สาเหตุคือผมนับข้อผิดพลาดที่แอปเวอร์ชันเก่าซึ่งยังไม่อัปเดตส่งมา ว่าเป็นบั๊กใหม่ บทความนี้เล่าว่าผมตัดสินพลาดตรงไหน และลำดับการคัดกรองตอนนี้">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="แอพค้างจากแอปเวอร์ชันเก่า: ตั๋วข้อผิดพลาด 16 ใบ ที่แก้ไปแล้วทั้งหมด">
+<meta property="og:description" content="ผมเปิดตั๋วที่ตัวเก็บ crash สร้างไว้ แล้วพบว่าทั้ง 16 ใบเป็นบั๊กที่แก้ไปแล้ว สาเหตุคือผมนับข้อผิดพลาดที่แอปเวอร์ชันเก่าซึ่งยังไม่อัปเดตส่งมา ว่าเป็นบั๊กใหม่ บทความนี้เล่าว่าผมตัดสินพลาดตรงไหน และลำดับการคัดกรองตอนนี้">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"วันที่ผมรายงานว่าแก้บั๊กที่แก้ไปแล้วซ้ำถึง 16 รอบ","description":"ผมเปิดตั๋วที่ตัวเก็บ crash สร้างไว้ แล้วพบว่าทั้ง 16 ใบเป็นบั๊กที่แก้ไปแล้ว สาเหตุคือผมนับข้อผิดพลาดที่แอปเวอร์ชันเก่าซึ่งยังไม่อัปเดตส่งมา ว่าเป็นบั๊กใหม่ บทความนี้เล่าว่าผมตัดสินพลาดตรงไหน และลำดับการคัดกรองตอนนี้","inLanguage":"th","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"เบเกอรี่ของชิชิ","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"วันที่ผมรายงานว่าแก้บั๊กที่แก้ไปแล้วซ้ำถึง 16 รอบ","item":"https://dumbgamelab.com/th/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ทำไมบั๊กที่แก้แล้วถึงโผล่ในรายงาน crash ของแอปซ้ำ ๆ","acceptedAnswer":{"@type":"Answer","text":"เพราะบนมือถือของผู้ใช้ที่ไม่ได้อัปเดต แอปเวอร์ชันเก่ายังทำงานอยู่ พอแอปนั้นค้าง ข้อผิดพลาดจากโค้ดก่อนแก้ก็เข้าไปที่ตัวเก็บ crash เหมือนเป็นรายการใหม่ การแยกดูตามเวอร์ชันแอปจะช่วยแยกได้"}},{"@type":"Question","name":"จะกรองข้อผิดพลาดจากแอปเวอร์ชันเก่าออกได้อย่างไร","acceptedAnswer":{"@type":"Answer","text":"จดเลขเวอร์ชันแรกที่มีคอมมิตแก้ข้อผิดพลาดไว้ในสมุดบัญชี ถ้าเวอร์ชันที่ส่งมาต่ำกว่านั้นก็ไม่นับเป็นบั๊กใหม่ เครื่องมือตรวจจับ crash ส่วนใหญ่รองรับตัวกรองตามเวอร์ชันแอป ลองใช้ตัวนั้นก่อน"}},{"@type":"Question","name":"หลังเวอร์ชันที่แก้แล้วออก ผู้ใช้เวอร์ชันเก่าจะเหลืออยู่นานแค่ไหน","acceptedAnswer":{"@type":"Answer","text":"ต่างกันไปตามแต่ละแอป จากตัวเลขในบทความนี้ แม้ใน 8 วันหลัง 3 พฤศจิกายนก็ยังมี PR ที่ปิดเพราะข้อผิดพลาดของเวอร์ชันเก่า 29 รายการ สัดส่วนผู้ใช้ที่แน่นอนผมไม่ได้นับไว้ จึงไม่ทราบ"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกนักพัฒนา · เรื่องวุ่น ๆ</p>
+    <h1>วันที่ผมรายงานว่าแก้บั๊กที่แก้ไปแล้วซ้ำถึง 16 รอบ</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="หน้าจอเริ่มต้นของ Dongne Bakery ใต้ฉากส่งขนมปังหน้าร้าน แสดงความคืบหน้าถึง DAY 10 และยอดขายสะสม 13 ล้านวอน" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">ข้อผิดพลาดที่เข้ามาที่ตัวเก็บ crash ไม่ได้เป็นบั๊กใหม่ทั้งหมด ผมตรวจตั๋วข้อผิดพลาดที่เปิดในวันเดียวคือ 3 พฤศจิกายน พบว่า 16 ใบเป็นบั๊กที่แก้ใน main ไปแล้ว และแอปที่ส่งข้อผิดพลาดมาเป็นเวอร์ชันเก่าก่อนแก้ ก่อนจะนับข้อผิดพลาด ให้ดูก่อนว่าเวอร์ชันแอปที่ส่งมาต่ำกว่าเวอร์ชันที่แก้แล้วหรือไม่</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">3 พฤศจิกายน: ผมเปิดตั๋ว 16 ใบ แต่ไม่มีอะไรให้แก้</a></li><li><a href="#s2">ตัวที่ส่งข้อผิดพลาดมาคือแอปก่อนแก้</a></li><li><a href="#s3">การตัดสินที่ผิดอย่างหนึ่ง: ผมเชื่อว่าข้อผิดพลาดที่เข้ามาคือบั๊กใหม่</a></li><li><a href="#s4">หลังแก้แล้ว ยังมี PR แบบเดิมเพิ่มอีก 29 อันในสิบวัน</a></li><li><a href="#s5">สิ่งที่ผมเปลี่ยนจากเรื่องนี้</a></li><li><a href="#s6">ถ้าคุณอยู่ในสถานการณ์เดียวกัน ลองทำสิ่งนี้ก่อน</a></li></ol></nav>
+    <section id="s1"><h2>3 พฤศจิกายน: ผมเปิดตั๋ว 16 ใบ แต่ไม่มีอะไรให้แก้</h2>
+<p>ผมขอเริ่มจากตัวเลขที่เขียนไว้ในบันทึกของวันนั้น มี PR ที่ตรวจแล้วปิดตั๋วข้อผิดพลาด 16 รายการ และทุกรายการเป็น «แก้ใน main ไปแล้ว» ที่นับจากชื่อเรื่องได้ 13 รายการ ส่วนอีก 3 รายการใช้ถ้อยคำต่างออกไป</p>
+<p>ตัวอย่างคือ «ปิดตัวผิดปกติ» ของ Dongne Bakery (#5259), «ดับโดยไม่มีสัญญาณที่หน้าจอก่อนหน้า» ของเกมจิมจิลบัง (#5263), «ปิดตัวผิดปกติ» ของ Teolmungchi (#5287) และข้อผิดพลาดบนมือถือ 3 รายการของ Wakppu Tower (#5307) พอเปิดดูแล้วสรุปตรงกัน คอมมิตที่แก้อยู่ใน main ตั้งแต่แรก และในโค้ดไม่มีอะไรต้องทำ</p>
+<p>การตรวจตั๋วหนึ่งใบใช้เวลา ต้องหาลายนิ้วมือของข้อผิดพลาด ดูว่าเกิดในเวอร์ชันไหน แล้วหาคอมมิตที่แก้มาเชื่อมกัน โค้ดไม่เปลี่ยนสักบรรทัด แต่เวลานั้นหมดไป 16 รอบ</p>
+</section>
+<section id="s2"><h2>ตัวที่ส่งข้อผิดพลาดมาคือแอปก่อนแก้</h2>
+<p>สาเหตุไม่ใช่ข้อผิดพลาดเกิดใหม่ แต่เป็นแอปเก่าที่ส่งมาเรื่อย ๆ คนที่ไม่ได้อัปเดตในสโตร์แอปก็ยังใช้เวอร์ชันก่อนแก้อยู่ พอแอปนั้นค้าง ตัวเก็บ crash ก็บันทึกเป็นข้อผิดพลาดใหม่หนึ่งรายการ</p>
+<p>#5276 เป็นข้อผิดพลาดที่ส่งมาจาก Wakppu Tower 1.0.17 เท่านั้น และ #5275 ส่งมาจากเกมรวมขนมปัง 1.0.3 เท่านั้น ส่วน #5258 ตั้งแต่ 1.0.4 ขึ้นไปเกิดซ้ำ 0 ครั้ง ตัวเลขนี้บอกว่า «เวอร์ชันหลังแก้ไม่เกิด» แต่ตัวเก็บ crash ไม่สนเลขเวอร์ชัน และนับข้อผิดพลาดเดียวกันเป็นข้อผิดพลาดเดียวกัน</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="หน้าจอทำขนมปังใหม่ใน Dongne Bakery เลือกแป้ง ไส้ และท็อปปิ้ง ด้านล่างเรียงสมุดภาพขนมปัง 24 ชนิดเป็นตาราง" loading="lazy" decoding="async"><figcaption>แอปร้านขนมปังเวอร์ชันเก่าก็ติดตั้งอยู่ด้วยหน้าจอนี้เหมือนกัน แม้เวอร์ชันที่แก้แล้วจะออกมา บนมือถือของคนทั่วไปเวอร์ชันเก่ายังทำงานอยู่อีกพักใหญ่</figcaption></figure></section>
+<section id="s3"><h2>การตัดสินที่ผิดอย่างหนึ่ง: ผมเชื่อว่าข้อผิดพลาดที่เข้ามาคือบั๊กใหม่</h2>
+<p>ตอนสร้างตัวเก็บ crash ผมสมมติว่า «ข้อผิดพลาดเข้ามาหนึ่งรายการ แปลว่ามีบั๊กที่ต้องแก้เพิ่มหนึ่งตัวตอนนี้» สมมติฐานนี้สร้างจากลำดับที่ข้อผิดพลาดเข้ามาเท่านั้น และผมไม่ได้ถามว่าข้อผิดพลาดนั้นเกิดจากโค้ดของช่วงเวลาไหน</p>
+<p>ผมแก้เร็ว แต่คนอัปเดตไม่ได้เร็วเท่า ยิ่งแก้บั๊กไปมาก ทางที่ «บั๊กที่แก้แล้ว» จะกลับมาจากเวอร์ชันเก่าก็ยิ่งเพิ่มตามไปด้วย</p>
+<p>บรรทัดที่สองของหัวข้อ «ความสูญเปล่าของวันนี้» ในบันทึกวันนั้นคือ 16 รายการนี้ ผมใช้ PR หนึ่งอันต่อหนึ่งรายการ แต่โค้ดที่เปลี่ยนเป็น 0</p>
+</section>
+<section id="s4"><h2>หลังแก้แล้ว ยังมี PR แบบเดิมเพิ่มอีก 29 อันในสิบวัน</h2>
+<p>ในรายการงานของพรุ่งนี้ ผมเขียนว่า «ข้อผิดพลาดของเวอร์ชันเก่าไม่ต้องสร้างตั๋ว ให้จดลงสมุดบัญชีอย่างเดียว ถ้าเลขเวอร์ชันต่ำกว่า main ให้ถูกกรองออก เริ่มจากตัวเก็บ crash ก่อน» (t-261103-bszc)</p>
+<p>หลังจากนั้นถึงวันที่ 11 พฤศจิกายน ผมนับ PR ข้อผิดพลาดที่ชื่อเรื่องมีคำว่า «แก้แล้ว» ตั้งแต่วันที่ 1 พฤศจิกายน รวมได้ 42 รายการ หักของวันที่ 3 พฤศจิกายน 13 รายการออก 8 วันหลังจากนั้นมี 29 รายการ ค่าเฉลี่ยต่อวันลดจาก 13 เหลือ 3 ถึง 4 แต่ไม่ใช่ 0</p>
+<p>#6070 เกมรวมขนมปัง 1.0.3, #6377 เกมร้านเน็ต 2.0.37 และ #6473 Algoitneun Yeou 1.0.6 คือตัวอย่าง แม้เวอร์ชันที่แก้แล้วจะออกมา เวอร์ชันเก่าก็ยังอยู่ไปอีกนาน ตัวเลขนี้นับจากชื่อ PR จึงไม่รวมกรณีที่ชื่อเรื่องใช้ถ้อยคำต่างออกไป</p>
+<div class="tbl"><table><thead><tr><th>ช่วงเวลา</th><th>PR ข้อผิดพลาดที่ชื่อเรื่องมีคำว่า «แก้แล้ว»</th></tr></thead><tbody><tr><td>3 พฤศจิกายน หนึ่งวัน</td><td>13 รายการ</td></tr><tr><td>4 ถึง 11 พฤศจิกายน (8 วัน)</td><td>29 รายการ</td></tr><tr><td>รวม 1 ถึง 11 พฤศจิกายน</td><td>42 รายการ</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>สิ่งที่ผมเปลี่ยนจากเรื่องนี้</h2>
+<p>พอข้อผิดพลาดเข้ามา ผมดูสองอย่างก่อนจะดูจำนวน คือเลขเวอร์ชันของแอปที่ส่งมา และเวอร์ชันแรกที่มีคอมมิตแก้ข้อผิดพลาดนั้น ถ้าเวอร์ชันที่ส่งมาต่ำกว่าเวอร์ชันที่แก้แล้ว ก็ไม่ใช่บั๊กใหม่ แต่เป็นรายงานจากเวอร์ชันเก่า</p>
+<p>ผมยังเพิ่มวิธีจดเลขคอมมิตที่แก้ลงสมุดบัญชีข้อผิดพลาดบรรทัดเดียวด้วย แบบนี้พอลายนิ้วมือเดิมเข้ามาอีก สมุดบัญชีจะขึ้นทันทีว่า «แก้แล้ว คอมมิตไหน ตั้งแต่เวอร์ชันไหน» ฝั่งตั๋วผมเปลี่ยนให้จดแท็กเป็นรายคอมมิต (#5316)</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="ฉากเนื้อเรื่องของ Dongne Bakery กล่องบทสนทนาเรื่องการเปิดร้านขนมปังในซอยที่คุณยายเคยดูแลอีกครั้ง ลอยอยู่เหนือถนนแบบไอโซเมตริก" loading="lazy" decoding="async"><figcaption>สิ่งที่ผมแก้อาจเป็น «ประตูที่เปิดอยู่แล้ว» แต่ในสายตาผู้ใช้เวอร์ชันเก่ามันยังเป็นร้านที่ปิดอยู่ เลขเวอร์ชันช่วยแยกสองอย่างนี้ออกจากกัน</figcaption></figure></section>
+<section id="s6"><h2>ถ้าคุณอยู่ในสถานการณ์เดียวกัน ลองทำสิ่งนี้ก่อน</h2>
+<p>ถ้าคุณเป็นนักพัฒนาคนเดียวที่ติดตั้งระบบตรวจจับ crash เอง ลำดับนี้จะช่วยประหยัดเวลา ชื่อเครื่องมือต่างกัน แต่ส่วนใหญ่มีตัวกรองตามเวอร์ชันแอป</p>
+<p>ยังมีสิ่งที่ผมทำไม่เสร็จ การกรองข้อผิดพลาดที่เลขเวอร์ชันต่ำออกอัตโนมัติก่อนสร้างตั๋ว ตอนนี้ทำไปถึงไหนแล้ว ผมไม่ได้ตรวจซ้ำในโค้ดตอนเขียนบทความนี้ สิ่งที่แน่ใจคือ เวลาผ่านมาเกือบสิบวันแล้ว ตอนนี้ก็ยังมี PR ที่ต้องเปิดตรวจแล้วปิดอยู่</p>
+<ul><li>ก่อนนับข้อผิดพลาด ให้แยกตามเวอร์ชันแอปก่อน</li><li>จดเลขเวอร์ชันแรกที่มีคอมมิตแก้ไว้ในสมุดบัญชี</li><li>ถ้าเวอร์ชันที่ส่งมาต่ำกว่านั้น ไม่ต้องเปิดตั๋ว จดลงสมุดบัญชีอย่างเดียว</li><li>ดูความเร็วที่เวอร์ชันเก่าลดลง แล้วพิจารณาว่าต้องบังคับอัปเดตหรือไม่</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ทำไมบั๊กที่แก้แล้วถึงโผล่ในรายงาน crash ของแอปซ้ำ ๆ</summary><p>เพราะบนมือถือของผู้ใช้ที่ไม่ได้อัปเดต แอปเวอร์ชันเก่ายังทำงานอยู่ พอแอปนั้นค้าง ข้อผิดพลาดจากโค้ดก่อนแก้ก็เข้าไปที่ตัวเก็บ crash เหมือนเป็นรายการใหม่ การแยกดูตามเวอร์ชันแอปจะช่วยแยกได้</p></details><details><summary>จะกรองข้อผิดพลาดจากแอปเวอร์ชันเก่าออกได้อย่างไร</summary><p>จดเลขเวอร์ชันแรกที่มีคอมมิตแก้ข้อผิดพลาดไว้ในสมุดบัญชี ถ้าเวอร์ชันที่ส่งมาต่ำกว่านั้นก็ไม่นับเป็นบั๊กใหม่ เครื่องมือตรวจจับ crash ส่วนใหญ่รองรับตัวกรองตามเวอร์ชันแอป ลองใช้ตัวนั้นก่อน</p></details><details><summary>หลังเวอร์ชันที่แก้แล้วออก ผู้ใช้เวอร์ชันเก่าจะเหลืออยู่นานแค่ไหน</summary><p>ต่างกันไปตามแต่ละแอป จากตัวเลขในบทความนี้ แม้ใน 8 วันหลัง 3 พฤศจิกายนก็ยังมี PR ที่ปิดเพราะข้อผิดพลาดของเวอร์ชันเก่า 29 รายการ สัดส่วนผู้ใช้ที่แน่นอนผมไม่ได้นับไว้ จึงไม่ทราบ</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="เบเกอรี่ของชิชิ" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">อบและจัดขนมปัง บริหารร้านเบเกอรี่</p><p class="gb-title"><a href="/th/games/dongnebakery/">เบเกอรี่ของชิชิ</a></p><p class="gb-hook">เรื่องวุ่น ๆ แบบนี้ผมจะลงเป็นบันทึกนักพัฒนาต่อไป เกมที่ผมทำดูได้จากด้านล่าง</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Dth" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/fixed-bugs-16-reports/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クラッシュレポートが古いバージョンから届く問題：16件が全部「修正済み」だった日</title>
+<meta name="description" content="アプリのクラッシュ収集が立てたチケットを開くと、16件すべてが修正済みのバグでした。更新されていない古いバージョンのアプリが送ったエラーを、新しいバグとして数えていたのが原因です。私の判断が間違っていた点と、振り分ける順番を書きました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="クラッシュレポートが古いバージョンから届く問題：16件が全部「修正済み」だった日">
+<meta property="og:description" content="アプリのクラッシュ収集が立てたチケットを開くと、16件すべてが修正済みのバグでした。更新されていない古いバージョンのアプリが送ったエラーを、新しいバグとして数えていたのが原因です。私の判断が間違っていた点と、振り分ける順番を書きました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"直したバグを16回も直したと報告した日","description":"アプリのクラッシュ収集が立てたチケットを開くと、16件すべてが修正済みのバグでした。更新されていない古いバージョンのアプリが送ったエラーを、新しいバグとして数えていたのが原因です。私の判断が間違っていた点と、振り分ける順番を書きました。","inLanguage":"ja","datePublished":"2026-11-12","dateModified":"2026-11-12","image":"https://dumbgamelab.com/blog/img/fixed-bugs-16-reports/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"チーチーのベーカリー","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"直したバグを16回も直したと報告した日","item":"https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"アプリのクラッシュレポートに、修正済みのバグが何度も上がってくるのはなぜですか？","acceptedAnswer":{"@type":"Answer","text":"更新していないユーザーのスマホで、古いバージョンのアプリが動き続けているからです。そのアプリが落ちると、修正前のコードのエラーが収集の側には新しい1件のように上がってきます。アプリのバージョン別に分けて見ると区別できます。"}},{"@type":"Question","name":"古いアプリバージョンのエラーはどうやって除外しますか？","acceptedAnswer":{"@type":"Answer","text":"エラーを直したコミットが入った最初のバージョン番号を台帳に書いておき、送ってきたバージョンがそれより低ければ新しいバグとして数えません。クラッシュ監視ツールの多くはアプリのバージョンで絞り込む機能に対応しているので、まずそれを使ってください。"}},{"@type":"Question","name":"修正版が出た後、古いバージョンのユーザーはどのくらい残りますか？","acceptedAnswer":{"@type":"Answer","text":"アプリによって違います。この記事の数字で見ると、11月3日以降の8日間でも、古いバージョンのエラーとして閉じたPRが29件ありました。ユーザーの正確な割合は数えていないので、わかりません。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 · 失敗談</p>
+    <h1>直したバグを16回も直したと報告した日</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-12">2026-11-12</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/fixed-bugs-16-reports/hero.jpg" alt="Dongne Bakeryのスタート画面。お店の前でパンを渡す場面の下に、DAY 10までの進行と累計売上1300万ウォンの表示が見える" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">クラッシュ収集にエラーが届いたからといって、全部が新しいバグとは限りません。11月3日の1日で立てたエラーチケットを確認したところ、16件がすでにmainで直したバグで、エラーを送ったのは修正前の古いバージョンのアプリでした。エラーを数える前に「送ってきたアプリのバージョンが、修正したバージョンより低くないか」を先に見るのが正しい順番です。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">11月3日、チケットを16枚開いたのに直すものがありませんでした</a></li><li><a href="#s2">エラーを送ってきたのは、修正前のアプリでした</a></li><li><a href="#s3">間違った判断が1つ：エラーが来たら新しいバグだと思い込んでいた</a></li><li><a href="#s4">直した後も、10日間で同じPRがさらに29個出ました</a></li><li><a href="#s5">そこで変えたこと</a></li><li><a href="#s6">同じ状況なら、まず試してほしいこと</a></li></ol></nav>
+    <section id="s1"><h2>11月3日、チケットを16枚開いたのに直すものがありませんでした</h2>
+<p>その日の日記に書いた数字から書きます。エラーチケットを確認して閉じたPRが16個あり、すべてが「すでにmainで修正済み」でした。タイトルで数えたのは13個で、残りの3個は表現が違っていました。</p>
+<p>Dongne Bakeryの「異常終了」（#5259）、チムジルバンの「前の画面で信号なしに落ちる」（#5263）、Teolmungchiの「異常終了」（#5287）、Wakppu Towerのスマホエラー3件（#5307）がその例です。開いてみると結論は同じでした。直したコミットはすでにmainにあり、コードでやることはありませんでした。</p>
+<p>チケット1枚を確認するには、エラーの指紋を探し、どのバージョンで起きたかを見て、直したコミットを見つけてつなぐ時間がかかります。コードは1行も変わらないのに、その時間が16回かかりました。</p>
+</section>
+<section id="s2"><h2>エラーを送ってきたのは、修正前のアプリでした</h2>
+<p>原因は、エラーが新しく起きたのではなく、古いアプリが送り続けていたことです。ストアで更新していない人は、修正前のバージョンをそのまま使っています。そのアプリが落ちると、収集の側では新しいエラー1件として上がってきます。</p>
+<p>#5276はWakppu Tower 1.0.17、#5275はパン合成ゲーム1.0.3だけが送ったエラーでした。#5258は1.0.4以上で再発が0件でした。数字が教えてくれるのは「修正後のバージョンでは起きない」ということです。ところが収集は、バージョン番号に関係なく同じエラーを同じエラーとして数えていました。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Dongne Bakeryの新しいパン作りの画面。生地、具、トッピングを選び、下にパン図鑑24種が格子状に並んでいる" loading="lazy" decoding="async"><figcaption>パン屋アプリも、古いバージョンはこの画面のままインストールされています。直したバージョンが出ても、みんなのスマホではしばらく古いバージョンが動き続けます。</figcaption></figure></section>
+<section id="s3"><h2>間違った判断が1つ：エラーが来たら新しいバグだと思い込んでいた</h2>
+<p>収集の仕組みを作るとき、「エラーが1件上がってきたら、今直すバグが1つ増えた」と仮定していました。エラーが上がってくる順番だけを見て作った仮定で、そのエラーがいつ時点のコードで起きたのかは聞いていませんでした。</p>
+<p>直す速度は速いのに、みんなが更新する速度はそこまで速くありません。直したバグが増えるほど、「すでに直したバグ」が古いバージョンから再び上がってくる道も一緒に増えていきます。</p>
+<p>その日の日記の「今日の無駄」の2行目が、この16件でした。1件につきPRを1つ使って、変わったコードは0でした。</p>
+</section>
+<section id="s4"><h2>直した後も、10日間で同じPRがさらに29個出ました</h2>
+<p>明日のやることに「古いバージョンのエラーはチケットを立てず、台帳にだけ書かせる。バージョン番号がmainより低ければ除外されるよう、まず収集の仕組みから」と書きました（t-261103-bszc）。</p>
+<p>その後11月11日まで、タイトルに「修正済み」が入ったエラーPRを数えると、11月1日からで合計42件です。11月3日の13件を引くと、その後の8日間で29件になります。1日の平均は13件から3〜4件に減りましたが、0ではありません。</p>
+<p>#6070 パン合成ゲーム1.0.3、#6377 PCカフェゲーム2.0.37、#6473 Algoitneun Yeou 1.0.6がその例です。直したバージョンが出た後も、古いバージョンはかなり長く生き残ります。この数字はPRのタイトルを数えたものなので、タイトルの表現が違うものは抜けています。</p>
+<div class="tbl"><table><thead><tr><th>期間</th><th>タイトルに「修正済み」が入ったエラーPR</th></tr></thead><tbody><tr><td>11月3日の1日</td><td>13件</td></tr><tr><td>11月4日〜11日（8日間）</td><td>29件</td></tr><tr><td>11月1日〜11日の合計</td><td>42件</td></tr></tbody></table></div>
+</section>
+<section id="s5"><h2>そこで変えたこと</h2>
+<p>エラーが上がってきたら、件数よりも先に2つを見ます。送ってきたアプリのバージョン番号と、そのエラーを直したコミットが入った最初のバージョンです。送ってきたバージョンが修正版より低ければ、新しいバグではなく古いバージョンからの報告です。</p>
+<p>直したコミット番号をエラー台帳に1行で残す方法も増やしました。そうすれば同じ指紋のエラーが再び上がってきても、台帳に「修正済み、何番のコミット、どのバージョンから」がすぐ出ます。チケット側は、タグをコミット単位で書き留めるように変えました（#5316）。</p>
+<figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Dongne Bakeryのストーリー場面。おばあちゃんが守ってきた路地のパン屋を再び開けるというセリフの枠が、アイソメトリックの街並みの上に浮かんでいる" loading="lazy" decoding="async"><figcaption>直したのが「もう開いている扉」でも、古いバージョンのユーザーの目には閉まったお店です。バージョン番号で2つを見分けます。</figcaption></figure></section>
+<section id="s6"><h2>同じ状況なら、まず試してほしいこと</h2>
+<p>クラッシュ監視を自分で組み込んだ個人開発者なら、この順番が時間を節約してくれます。ツールの名前は違っても、たいていアプリのバージョンで絞り込む機能があります。</p>
+<p>まだできていないことがあります。バージョン番号が低いエラーを、チケットにする前に自動で除外する仕組みがどこまで動いているかは、この記事を書きながらコードで再確認できませんでした。確かなのは、10日近く経った今も、開いて確認して閉じるだけのPRが残っているということです。</p>
+<ul><li>エラーを数える前に、アプリのバージョン別に分けて見る</li><li>直したコミットが入った最初のバージョン番号を、台帳に書いておく</li><li>送ってきたバージョンがそれより低ければ、チケットを立てずに台帳にだけ書く</li><li>古いバージョンが減る速さを確認して、強制アップデートが必要か考える</li></ul>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>アプリのクラッシュレポートに、修正済みのバグが何度も上がってくるのはなぜですか？</summary><p>更新していないユーザーのスマホで、古いバージョンのアプリが動き続けているからです。そのアプリが落ちると、修正前のコードのエラーが収集の側には新しい1件のように上がってきます。アプリのバージョン別に分けて見ると区別できます。</p></details><details><summary>古いアプリバージョンのエラーはどうやって除外しますか？</summary><p>エラーを直したコミットが入った最初のバージョン番号を台帳に書いておき、送ってきたバージョンがそれより低ければ新しいバグとして数えません。クラッシュ監視ツールの多くはアプリのバージョンで絞り込む機能に対応しているので、まずそれを使ってください。</p></details><details><summary>修正版が出た後、古いバージョンのユーザーはどのくらい残りますか？</summary><p>アプリによって違います。この記事の数字で見ると、11月3日以降の8日間でも、古いバージョンのエラーとして閉じたPRが29件ありました。ユーザーの正確な割合は数えていないので、わかりません。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/dongnebakery.png" alt="チーチーのベーカリー" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">焼いて並べる放置型パン屋経営</p><p class="gb-title"><a href="/ja/games/dongnebakery/">チーチーのベーカリー</a></p><p class="gb-hook">こうした失敗談は、開発日誌として載せ続けています。作ったゲームは下から見られます。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dfixed-bugs-16-reports%26utm_content%3Dja" rel="noopener">Google Play</a></div></div>
+</aside>
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/fixed-bugs-16-reports/" hreflang="en" lang="en">English</a><a href="/ko/blog/fixed-bugs-16-reports/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/fixed-bugs-16-reports/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
