@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>&quot;Eorin Baekseong&quot; Did Not Mean Children</title>
+    <link>https://dumbgamelab.com/en/blog/eorida-fool/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/eorida-fool/</guid>
+    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+    <description>In the 15th century &quot;eorida&quot; meant foolish. The sense of &quot;young&quot; appeared from the 16th century and is the main meaning today.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>The Day I Reported Fixing the Same 16 Bugs Twice</title>
     <link>https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</guid>
@@ -221,13 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/how-we-check-games/</guid>
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>How Dumb Game Lab checks games before writing a games-like list: install on a real phone, measure size, launch in airplane mode, and show only screenshots we took ourselves.</description>
-  </item>
-  <item>
-    <title>My daily revenue fell to a thirtieth: 92% of 14 days of income was one article</title>
-    <link>https://dumbgamelab.com/en/blog/revenue-92pct-one-article/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/revenue-92pct-one-article/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>A solo dev split mobile game revenue by game and found out why. Of $260 earned in 14 days, $241 came from one game, mostly from traffic that one Taiwanese article created. Here is where I misread it.</description>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>「オリン・ペクソン」は子どもたちではなかった</title>
+    <link>https://dumbgamelab.com/ja/blog/eorida-fool/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/eorida-fool/</guid>
+    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+    <description>15世紀に「オリダ」は愚かだという意味で、16世紀以降に「年が若い」という意味が現れ、今ではそれが中心になった。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>直したバグを16回も直したと報告した日</title>
     <link>https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/fixed-bugs-16-reports/</guid>
@@ -222,14 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</guid>
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>サウナ経営ゲームで、どこに置くと収入が20%増え、どこに置くと20%減るのか。チムジルバン育成の隣接倍率表とエアコンの範囲、入口の位置を、ゲーム内の実際の値でまとめました。</description>
-  </item>
-  <item>
-    <title>電話に出るとき「アホイ」と言うところだった</title>
-    <link>https://dumbgamelab.com/ja/blog/hello-ahoy/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/hello-ahoy/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ベルは電話のあいさつにアホイを望んだが、広まったのはエジソンのハローだった。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

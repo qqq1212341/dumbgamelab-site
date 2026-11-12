@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>“Eorin Baekseong”并不是指孩子</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/eorida-fool/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/eorida-fool/</guid>
+    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+    <description>15世纪“eorida”的意思是愚笨，16世纪以后才出现“年纪小”的意思，如今这个意思成了主流。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>气泡膜最初是当壁纸做的</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/bubble-wrap/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/bubble-wrap/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>牛顿晚年的30年都在铸币厂度过，甚至乔装打扮，让28个造假币的人受到了惩罚。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Do Re Mi 原本是 Ut Re Mi</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/do-was-ut/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/do-was-ut/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Do Re Mi 来自11世纪一首拉丁语圣歌每句的第一个音节，Do 原本是 Ut。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/doremi-guido.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
