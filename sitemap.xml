@@ -3354,12 +3354,22 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/good-pizza-great-pizza/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/good-pizza-great-pizza/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/picks/ko/</loc><lastmod>2026-11-05</lastmod>
+  <url><loc>https://dumbgamelab.com/picks/ko/my-perfect-hotel/</loc><lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/picks/ko/my-perfect-hotel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/my-perfect-hotel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/my-perfect-hotel/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/picks/en/my-perfect-hotel/</loc><lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/picks/ko/my-perfect-hotel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/my-perfect-hotel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/my-perfect-hotel/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/picks/ko/</loc><lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/picks/ko/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/picks/en/</loc><lastmod>2026-11-05</lastmod>
+  <url><loc>https://dumbgamelab.com/picks/en/</loc><lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/picks/ko/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/picks/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/picks/en/"/>
