@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ジッパーはもともと長靴の名前だった</title>
+    <link>https://dumbgamelab.com/ja/blog/zipper-boots/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/zipper-boots/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ジッパーはもともと1923年のゴム長靴の商品名だったが、留め具がその名前を受け継いだ。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>78件閉じたのに、リストは変わらなかった</title>
     <link>https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/</guid>
@@ -222,14 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/revenue-92pct-one-article/</guid>
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>個人開発者がモバイルゲームの収益をゲームごとに分けて見て分かったこと。直近14日の売上$260のうち$241が1本のゲームで、その大半は台湾の記事1本が生んだ流入でした。どこで読みを間違えたかを書きます。</description>
-  </item>
-  <item>
-    <title>オリンピックの金メダル、じつはほぼ銀</title>
-    <link>https://dumbgamelab.com/ja/blog/gold-medal-silver/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/gold-medal-silver/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>オリンピックの金メダルは、銀に金6gをかぶせたものだ。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

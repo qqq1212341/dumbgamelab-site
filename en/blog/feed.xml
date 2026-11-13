@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Zipper Started as a Name for Boots</title>
+    <link>https://dumbgamelab.com/en/blog/zipper-boots/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/zipper-boots/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Zipper was originally a name for rubber boots in 1923. The fastener ended up taking the name.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>I Closed 78 Tickets and the Backlog Stayed the Same</title>
     <link>https://dumbgamelab.com/en/blog/ticket-101-made-78-done/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ticket-101-made-78-done/</guid>
@@ -222,13 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-cafeteria-nipponica/</guid>
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>Eight mobile games to try after the Cafeteria Nipponica trial, each relaunched in airplane mode on a Galaxy Z Flip5. Checked October 30, 2026.</description>
-  </item>
-  <item>
-    <title>Games like Egg Inc: nine idle games we launched in airplane mode</title>
-    <link>https://dumbgamelab.com/en/blog/games-like-egg-inc-offline/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-egg-inc-offline/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>9 idle games like Egg Inc, each launched in airplane mode on a real phone. Install size and the Play Offline label checked on Oct 30, 2026.</description>
   </item>
 </channel>
 </rss>

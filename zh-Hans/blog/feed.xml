@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>“Zipper”原本是胶靴的名字</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/zipper-boots/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/zipper-boots/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Zipper 原本是1923年一款胶靴的商品名，后来却成了拉链的名字。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>“Eorin Baekseong”并不是指孩子</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/eorida-fool/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/eorida-fool/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>裸鼹鼠能活37年以上，而且就算上了年纪，死亡的概率也不会升高。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>牛顿当过抓造假币的侦探</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/newton-mint/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/newton-mint/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>牛顿晚年的30年都在铸币厂度过，甚至乔装打扮，让28个造假币的人受到了惩罚。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/newton.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
