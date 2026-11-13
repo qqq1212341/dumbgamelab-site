@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>待辦清單一直不變少？一天關掉 78 張工單，卻新開了 101 張</title>
+<meta name="description" content="一個人開發的 backlog 我整天都在關，剩下的數量卻跟昨天一樣。這篇寫那天關掉 78 張、新開 101 張的數字，以及我把「關掉的張數」當成工作量，判斷錯在哪裡。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="待辦清單一直不變少？一天關掉 78 張工單，卻新開了 101 張">
+<meta property="og:description" content="一個人開發的 backlog 我整天都在關，剩下的數量卻跟昨天一樣。這篇寫那天關掉 78 張、新開 101 張的數字，以及我把「關掉的張數」當成工作量，判斷錯在哪裡。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"我關掉 78 張，清單卻原地不動","description":"一個人開發的 backlog 我整天都在關，剩下的數量卻跟昨天一樣。這篇寫那天關掉 78 張、新開 101 張的數字，以及我把「關掉的張數」當成工作量，判斷錯在哪裡。","inLanguage":"zh-TW","datePublished":"2026-11-13","dateModified":"2026-11-13","image":"https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"삐죽랜드","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"我關掉 78 張，清單卻原地不動","item":"https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"backlog 我很認真在關，為什麼還是不會變少？","acceptedAnswer":{"@type":"Answer","text":"因為每關掉一張，也有新開的張數。每天把關掉的數量、新開的數量、剩下的數量寫在同一行，就能馬上看出清單是在變少還是變多。"}},{"@type":"Question","name":"自動產生的工單要怎麼處理？","acceptedAnswer":{"@type":"Answer","text":"先算新工單裡有多少比例是自動開的。如果是同一個錯誤反覆開的類型，與其花時間一張一張關，不如訂一條把同類型合併成一張的規則，清單會減少得更多。"}},{"@type":"Question","name":"一天的成果要用什麼來衡量？","acceptedAnswer":{"@type":"Answer","text":"剩下數量的變化比關掉的張數好。不過新工單很多的那天，剩下的數量也可能原地不動，所以建議把新開的張數放在旁邊一起看。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 一波三折</p>
+    <h1>我關掉 78 張，清單卻原地不動</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-13">2026-11-13</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijukland 的樂園畫面。旋轉木馬、點心店和遊樂設施之間有 30 位遊客走動，上方顯示接近 100 萬韓元的餘額" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10 月 31 日一天我關掉 78 張工單，新開的工單卻有 101 張，剩下的數量從昨天的 335 張變成 334 張，幾乎沒動。新開的工單有不少是當機收集器和自動檢查自己開的。關掉的張數不是工作量，要同時算新開了幾張、為什麼開，才看得出清單有沒有在變少。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">10 月 31 日，合併 221 次，清單卻原地不動</a></li><li><a href="#s2">那天我聽到的一句話</a></li><li><a href="#s3">新工單有不少不是我開的</a></li><li><a href="#s4">我判斷錯的地方：把關掉的張數當成工作量</a></li><li><a href="#s5">我改的只有一行數字</a></li></ol></nav>
+    <section id="s1"><h2>10 月 31 日，合併 221 次，清單卻原地不動</h2>
+<p>那天日記最上面的數字列是這樣：工作階段 294、合併 221、新工單 101、解決 78、剩下的工單 334。前一天剩下的工單是 335。</p>
+<p>那天做的事很多。我把 Ppijukland 的上市準備擠在同一天做完，包含企劃文件、商店名稱、Android 應用程式外殼、把元素帳本缺漏的 36 格補到 0，還有十種語言的翻譯。可是清單連一格都沒有少。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijukland 的樂園畫面。畫面上有旋轉木馬、點心店和遊樂設施，樂園內有 30 位遊客，最高等級的五顆星亮著" loading="lazy" decoding="async"><figcaption>這是那天趕著準備上市的 Ppijukland。畫面是上市前的測試版。</figcaption></figure></section>
+<section id="s2"><h2>那天我聽到的一句話</h2>
+<p>早上有人指出「你有只開工單、然後往後拖的傾向」。結果那天新開了 101 張工單，等於用數字回答了這句話。</p>
+<p>關掉 78 張，工作確實有做。但新開了 101 張，照順序算應該多出 23 張才對，剩下的數量卻反而少了一張。日記裡沒有一行說明中間的差距，哪裡另外關掉了幾張，我沒有確認。</p>
+</section>
+<section id="s3"><h2>新工單有不少不是我開的</h2>
+<p>日記裡寫的原因有兩個。一個是當機收集器每遇到一個錯誤就自動開的工單，另一個是自動檢查帶著規則名稱開的工單。這兩種佔了新工單的一大塊。</p>
+<p>人寫下「這件要做」的工單，關掉的那一刻就是少了一件事。機器開的工單，同樣的錯誤再來一次就會再開一張。關得再快，只要開的速度更快，清單就是原地不動。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/minigame.jpg" alt="Ppijukland 的製作小遊戲畫面。砧板上畫著擠麵糊的虛線，老闆角色說容量滿一半就可以出發" loading="lazy" decoding="async"><figcaption>這是那天的測試版畫面。多一個新畫面，要確認的地方就多一個。</figcaption></figure></section>
+<section id="s4"><h2>我判斷錯的地方：把關掉的張數當成工作量</h2>
+<p>一天結束時，最先看到的是「今天關了幾張」。78 張，看起來是做了不少事的一天。</p>
+<p>但清單的大小不是由關掉的張數決定，而是關掉的張數和新開的張數之間的差。如果不一起算新開的張數，就會誤以為越努力、事情越少。</p>
+<ul><li>只看關掉的張數：78 張，是不錯的一天。</li><li>連新開的張數一起看：101 張，清單變長的一天。</li><li>再看為什麼開：有人寫的事，也有機器開的事，混在一起沒辦法用一個數字算。</li></ul>
+</section>
+<section id="s5"><h2>我改的只有一行數字</h2>
+<p>那天做的事很單純。我在日記最上面的數字列，把新工單數、解決數、剩下的數量一起放進去（#4504）。這樣從隔天開始，就不能只看關掉的張數就放心。</p>
+<p>這不算大的解決。減少機器開工單的數量，那天沒有做到。數字要先看得到，才能挑出該從哪裡減少，所以我先只讓它看得到。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/settle.jpg" alt="Ppijukland 的每日結算畫面。表格列出今天賺的 14,758 韓元、花掉的 65 韓元，淨利 14,693 韓元" loading="lazy" decoding="async"><figcaption>遊戲裡的結算會用賺的錢減掉花的錢，一行顯示淨利。待辦清單也需要這樣的一行。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>backlog 我很認真在關，為什麼還是不會變少？</summary><p>因為每關掉一張，也有新開的張數。每天把關掉的數量、新開的數量、剩下的數量寫在同一行，就能馬上看出清單是在變少還是變多。</p></details><details><summary>自動產生的工單要怎麼處理？</summary><p>先算新工單裡有多少比例是自動開的。如果是同一個錯誤反覆開的類型，與其花時間一張一張關，不如訂一條把同類型合併成一張的規則，清單會減少得更多。</p></details><details><summary>一天的成果要用什麼來衡量？</summary><p>剩下數量的變化比關掉的張數好。不過新工單很多的那天，剩下的數量也可能原地不動，所以建議把新開的張數放在旁邊一起看。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/ppijukland.png" alt="삐죽랜드" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">동물 손님이 찾아오는 놀이공원</p><p class="gb-title">삐죽랜드</p><p class="gb-hook">這類一波三折的事，我會繼續用開發日誌記錄。做好的遊戲可以從下面看。</p>
+  <div class="gb-btns"><a class="store ghost" href="https://dumbgamelab.com/play/ppijukland/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=ticket-101-made-78-done" rel="noopener">在瀏覽器玩</a></div></div>
+</aside>
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/ticket-101-made-78-done/" hreflang="en" lang="en">English</a><a href="/ko/blog/ticket-101-made-78-done/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/ticket-101-made-78-done/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

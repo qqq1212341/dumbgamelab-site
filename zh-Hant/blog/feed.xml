@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>我關掉 78 張，清單卻原地不動</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/</guid>
+    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+    <description>一個人開發的 backlog 我整天都在關，剩下的數量卻跟昨天一樣。這篇寫那天關掉 78 張、新開 101 張的數字，以及我把「關掉的張數」當成工作量，判斷錯在哪裡。</description>
+  </item>
+  <item>
     <title>我把修好的 bug 又回報修了 16 次</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/fixed-bugs-16-reports/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-etiquette/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>汗蒸幕要穿內褲嗎、要先洗澡嗎、可以帶手機或拍照嗎、刺青可以去嗎、要帶毛巾嗎。依提問順序整理汗蒸幕（찜질방）容易搞混的規則，各家規定不同的部分也另外標示。</description>
-  </item>
-  <item>
-    <title>第一次去韓國汗蒸幕就上手：從進門到離開的完整流程</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-guide/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-guide/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>汗蒸幕（찜질방）是韓國的澡堂加三溫暖，還有休息區和睡眠室，很多24小時營業。整理入場流程、要不要穿內褲、能不能帶手機、羊頭毛巾怎麼綁、烤雞蛋和甜米露、2026價格和外國人小技巧。</description>
   </item>
 </channel>
 </rss>

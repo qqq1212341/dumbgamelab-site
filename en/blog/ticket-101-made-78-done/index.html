@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Reduce Backlog Tickets: 78 Closed, 101 Opened in One Day</title>
+<meta name="description" content="I spent a whole day closing tickets as a solo developer, and the backlog ended the day the same size. I closed 78 and 101 new ones opened. Here are the numbers, and where I was wrong to treat closed tickets as work done.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="How to Reduce Backlog Tickets: 78 Closed, 101 Opened in One Day">
+<meta property="og:description" content="I spent a whole day closing tickets as a solo developer, and the backlog ended the day the same size. I closed 78 and 101 new ones opened. Here are the numbers, and where I was wrong to treat closed tickets as work done.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"I Closed 78 Tickets and the Backlog Stayed the Same","description":"I spent a whole day closing tickets as a solo developer, and the backlog ended the day the same size. I closed 78 and 101 new ones opened. Here are the numbers, and where I was wrong to treat closed tickets as work done.","inLanguage":"en","datePublished":"2026-11-13","dateModified":"2026-11-13","image":"https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/ticket-101-made-78-done/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"삐죽랜드","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"I Closed 78 Tickets and the Backlog Stayed the Same","item":"https://dumbgamelab.com/en/blog/ticket-101-made-78-done/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my backlog not shrink even though I keep closing tickets?","acceptedAnswer":{"@type":"Answer","text":"Because new ones open at about the same rate you close. If you write the closed, newly opened, and remaining counts on one line each day, you can see right away whether it is shrinking or growing."}},{"@type":"Question","name":"How do I handle auto generated tickets?","acceptedAnswer":{"@type":"Answer","text":"First count what share of the new tickets were opened automatically. If it is a kind where the same error opens again and again, a rule that merges that kind into one ticket will shrink the backlog more than spending time closing each one."}},{"@type":"Question","name":"What should I measure a day's progress by?","acceptedAnswer":{"@type":"Answer","text":"The change in the remaining count is better than the closed count. But on a day with many new tickets the remaining count can stay flat too, so I recommend putting the newly opened count next to it."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Dev log · a detour</p>
+    <h1>I Closed 78 Tickets and the Backlog Stayed the Same</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-13">2026-11-13</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Park screen of Ppijuk Land. 30 guests walk around between the carousel, a snack shop, and rides, and a balance in the 990,000 won range shows at the top" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">On October 31 I closed 78 tickets in one day, but 101 new ones opened, and the remaining count went from 335 yesterday to 334. A good share of the new tickets were opened on their own by the crash collector and automatic checks. The number you close is not the amount of work you did, so to see whether the backlog is shrinking you have to count how many opened and why.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">October 31: 221 Merges and the Backlog Did Not Move</a></li><li><a href="#s2">What Someone Told Me That Morning</a></li><li><a href="#s3">Many of the New Tickets Were Not Opened by Me</a></li><li><a href="#s4">Where I Was Wrong: I Counted Closed Tickets as Work Done</a></li><li><a href="#s5">The Fix Was One Line of Numbers</a></li></ol></nav>
+    <section id="s1"><h2>October 31: 221 Merges and the Backlog Did Not Move</h2>
+<p>Here is the numbers line from that day&#39;s diary. 294 sessions, 221 merges, 101 new tickets, 78 resolved, 334 tickets remaining. The day before, 335 remained.</p>
+<p>It was a busy day. I packed the Ppijuk Land launch prep into one day: the design doc, the store name, the Android app shell, bringing the missing cells in the element ledger down to 0 from 36, and translations into ten languages. And still the backlog did not shrink by even one.</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijuk Land park screen showing the carousel, a snack shop, and rides, with 30 guests in the park and a five-star top rating" loading="lazy" decoding="async"><figcaption>This is Ppijuk Land, the game I packed that launch prep around. The screen is a pre-release test build.</figcaption></figure></section>
+<section id="s2"><h2>What Someone Told Me That Morning</h2>
+<p>That morning someone pointed out that &quot;you tend to create tickets and put things off.&quot; And 101 new tickets went up that same day. The numbers answered the remark pretty well.</p>
+<p>I closed 78, so I did do work. But with 101 opened, the count should have grown by 23, and instead the remaining number dropped by one. The diary has no line that explains the gap. I could not confirm where or how many were closed on the side.</p>
+</section>
+<section id="s3"><h2>Many of the New Tickets Were Not Opened by Me</h2>
+<p>The diary names two causes. One is the crash collector, which opens a ticket automatically for each error. The other is the automatic checks, which open tickets labeled with a rule name. These two made up a big share of the new tickets.</p>
+<p>When a person writes &quot;I need to do this&quot; in a ticket, closing it finishes one piece of work. A ticket opened by a machine opens again if the same error comes back. However fast you close, if tickets open faster, the backlog stays where it was.</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/minigame.jpg" alt="Ppijuk Land making minigame screen. A dotted line for piping dough is drawn on a cutting board, and the boss character says to head out once half the capacity is filled" loading="lazy" decoding="async"><figcaption>A test build screen from that day. Every new screen adds one more place to check.</figcaption></figure></section>
+<section id="s4"><h2>Where I Was Wrong: I Counted Closed Tickets as Work Done</h2>
+<p>At the end of the day, &quot;I closed this many today&quot; is the first thing you see. 78 reads like a pretty big day.</p>
+<p>But the size of the backlog is set not by how many you closed but by the gap between closed and newly opened. If you do not count the opened ones too, the harder you work, the more you believe the work is shrinking.</p>
+<ul><li>Looking only at closed: 78, a decent day.</li><li>Adding opened: 101, the backlog grew.</li><li>Adding why they opened: tickets I wrote and tickets a machine opened are mixed together, so one number cannot count them.</li></ul>
+</section>
+<section id="s5"><h2>The Fix Was One Line of Numbers</h2>
+<p>What I did that day was simple. I added the new ticket count, the resolved count, and the remaining count to the numbers line at the top of the diary (#4504). From the next day on, I could no longer feel safe looking only at the closed count.</p>
+<p>It is not a big fix. Cutting down the tickets that machines open was not something I got to that day. I could only choose where to cut once the numbers were visible, so I made them visible first.</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/settle.jpg" alt="Ppijuk Land daily settlement screen. A table shows 14,758 won earned today, 65 won spent, and a net profit of 14,693 won" loading="lazy" decoding="async"><figcaption>The in-game settlement subtracts what you spent from what you earned and shows the net profit on one line. The to-do list needed one line like that too.</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Why does my backlog not shrink even though I keep closing tickets?</summary><p>Because new ones open at about the same rate you close. If you write the closed, newly opened, and remaining counts on one line each day, you can see right away whether it is shrinking or growing.</p></details><details><summary>How do I handle auto generated tickets?</summary><p>First count what share of the new tickets were opened automatically. If it is a kind where the same error opens again and again, a rule that merges that kind into one ticket will shrink the backlog more than spending time closing each one.</p></details><details><summary>What should I measure a day&#39;s progress by?</summary><p>The change in the remaining count is better than the closed count. But on a day with many new tickets the remaining count can stay flat too, so I recommend putting the newly opened count next to it.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/ppijukland.png" alt="삐죽랜드" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">동물 손님이 찾아오는 놀이공원</p><p class="gb-title">삐죽랜드</p><p class="gb-hook">I keep posting detours like this as dev logs. You can see the games I made below.</p>
+  <div class="gb-btns"><a class="store ghost" href="https://dumbgamelab.com/play/ppijukland/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=ticket-101-made-78-done" rel="noopener">Play in browser</a></div></div>
+</aside>
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/ticket-101-made-78-done/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/ticket-101-made-78-done/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/ticket-101-made-78-done/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

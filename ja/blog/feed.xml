@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>78件閉じたのに、リストは変わらなかった</title>
+    <link>https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/</guid>
+    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
+    <description>個人開発のバックログを1日中閉じ続けたのに、残りの件数は前日と同じでした。78件閉じて101件が新しく開いた日の数字と、閉じた件数を作業量と取り違えた私の判断が間違っていた点を書きました。</description>
+  </item>
+  <item>
     <title>「オリン・ペクソン」は子どもたちではなかった</title>
     <link>https://dumbgamelab.com/ja/blog/eorida-fool/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/eorida-fool/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>オリンピックの金メダルは、銀に金6gをかぶせたものだ。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>チムジルバン育成は、何を買うかよりどこに置くかで稼ぎが決まります</title>
-    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-tycoon-layout-tips/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>サウナ経営ゲームで、どこに置くと収入が20%増え、どこに置くと20%減るのか。チムジルバン育成の隣接倍率表とエアコンの範囲、入口の位置を、ゲーム内の実際の値でまとめました。</description>
   </item>
 </channel>
 </rss>

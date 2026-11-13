@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>バックログが減らない理由：1日で78件閉じて101件開いた日（個人開発のタスク管理）</title>
+<meta name="description" content="個人開発のバックログを1日中閉じ続けたのに、残りの件数は前日と同じでした。78件閉じて101件が新しく開いた日の数字と、閉じた件数を作業量と取り違えた私の判断が間違っていた点を書きました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/ticket-101-made-78-done/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="バックログが減らない理由：1日で78件閉じて101件開いた日（個人開発のタスク管理）">
+<meta property="og:description" content="個人開発のバックログを1日中閉じ続けたのに、残りの件数は前日と同じでした。78件閉じて101件が新しく開いた日の数字と、閉じた件数を作業量と取り違えた私の判断が間違っていた点を書きました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"78件閉じたのに、リストは変わらなかった","description":"個人開発のバックログを1日中閉じ続けたのに、残りの件数は前日と同じでした。78件閉じて101件が新しく開いた日の数字と、閉じた件数を作業量と取り違えた私の判断が間違っていた点を書きました。","inLanguage":"ja","datePublished":"2026-11-13","dateModified":"2026-11-13","image":"https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"삐죽랜드","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"78件閉じたのに、リストは変わらなかった","item":"https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"バックログを頑張って閉じているのに、なぜ減らないのですか？","acceptedAnswer":{"@type":"Answer","text":"閉じる件数と同じくらい、新しく開く件数があるからです。1日単位で、閉じた数、新しく開いた数、残りの数を1行にまとめて書くと、減っているのか増えているのかがすぐ見えます。"}},{"@type":"Question","name":"自動で作られるチケットはどう扱えばいいですか？","acceptedAnswer":{"@type":"Answer","text":"まず、新しいチケットのうち自動で開いたものの割合を数えます。同じエラーが繰り返し開く種類なら、1件ずつ閉じることに時間を使うより、同じ種類を1枚にまとめるルールを置くほうがリストは減ります。"}},{"@type":"Question","name":"1日の成果は何で測ればいいですか？","acceptedAnswer":{"@type":"Answer","text":"閉じた件数よりも、残りの件数の変化のほうがましです。ただ、残りの件数も新しいチケットが多い日は変わらないことがあるので、新しく開いた件数を隣に並べておくことをおすすめします。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 · 失敗談</p>
+    <h1>78件閉じたのに、リストは変わらなかった</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-13">2026-11-13</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijuklandの公園の画面。メリーゴーランドとおやつの店、アトラクションの間をお客さん30人が歩き回り、上部に99万ウォン台の所持金が見える" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10月31日の1日でチケットを78件閉じましたが、新しく開いたチケットは101件で、残りの件数は前日の335件から334件へほぼ横ばいでした。開いたチケットの多くは、クラッシュ収集と自動チェックが勝手に開いたものでした。閉じた件数は作業量ではないので、新しく開いた件数と開いた理由も一緒に数えないと、リストが減っているかどうかは見えません。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">10月31日、マージ221件でもリストは横ばい</a></li><li><a href="#s2">その日、こう言われました</a></li><li><a href="#s3">新しいチケットの多くは、私が開いたものではありませんでした</a></li><li><a href="#s4">私の判断が間違っていた点：閉じた件数を作業量として数えていた</a></li><li><a href="#s5">直したのは、数字の行1つでした</a></li></ol></nav>
+    <section id="s1"><h2>10月31日、マージ221件でもリストは横ばい</h2>
+<p>その日の日記の数字の行はこうです。セッション294、マージ221、新規チケット101、解決78、残りのチケット334。前日の残りは335でした。</p>
+<p>作業はたくさんした日です。Ppijuklandのリリース準備を1日に集中してやりました。企画書とストアの名前、Androidアプリの外枠、要素台帳の抜けている欄36個を0にする作業、10言語の翻訳まで入っています。それなのにリストは1件も減りませんでした。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijuklandの公園の画面。メリーゴーランドとおやつの店、アトラクションが見え、園内のお客さん30人と、最高ランクの星5つが表示されている" loading="lazy" decoding="async"><figcaption>その日に集中してリリース準備をしたPpijuklandです。画面はリリース前のテスト版です。</figcaption></figure></section>
+<section id="s2"><h2>その日、こう言われました</h2>
+<p>午前に「チケットだけ作って後回しにしがちだ」という指摘がありました。そしてその日、新しいチケットが101件立ちました。指摘にぴったりの答えが数字で出たことになります。</p>
+<p>78件閉じたので、仕事はしています。ただ、101件開いたので単純に計算すると23件増えるはずなのに、残りの数はむしろ1つ減りました。日記には、その間を説明する行がありません。どこで何件が別に閉じられたのかは、確認できませんでした。</p>
+</section>
+<section id="s3"><h2>新しいチケットの多くは、私が開いたものではありませんでした</h2>
+<p>日記に書いた原因は2つです。クラッシュ収集がエラーごとに自動で開くチケットと、自動チェックがルール名をつけて開くチケットです。この2つが新しいチケットの大きな割合を占めていました。</p>
+<p>人が「これはやらなきゃ」と書いたチケットは、閉じた瞬間に仕事が1つ終わります。機械が開いたチケットは、同じエラーがまた来ればまた開きます。閉じる速さがどれだけ速くても、開く速さのほうが速ければリストはそのままです。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/minigame.jpg" alt="Ppijuklandの作るミニゲームの画面。まな板の上に生地を絞る点線が描かれていて、店長キャラクターが定員の半分が埋まったら出発するよう話している" loading="lazy" decoding="async"><figcaption>その日のテスト版の画面です。新しい画面が1つ増えれば、確認する場所も1つ増えます。</figcaption></figure></section>
+<section id="s4"><h2>私の判断が間違っていた点：閉じた件数を作業量として数えていた</h2>
+<p>1日が終わると「今日は何件閉じた」がまず目に入ります。78件なら、かなりやった日に読めます。</p>
+<p>ところがリストの大きさを決めるのは、閉じた件数ではなく、閉じた件数と新しく開いた件数の差です。開いた件数を一緒に数えないと、頑張るほど仕事が減っていると勘違いしてしまいます。</p>
+<ul><li>閉じた件数だけ見ると78件で、悪くない日です。</li><li>開いた件数まで見ると101件で、リストは増えた日です。</li><li>開いた理由まで見ると、人が書いた仕事と機械が開いた仕事が混ざっていて、1つの数字では数えられません。</li></ul>
+</section>
+<section id="s5"><h2>直したのは、数字の行1つでした</h2>
+<p>その日やったことは単純です。日記の一番上の数字の行に、新規チケット数、解決数、残りの数を一緒に入れました（#4504）。翌日からは、閉じた件数だけ見て安心できないようにしたのです。</p>
+<p>大きな解決ではありません。機械が開くチケットを減らす作業は、その日はできませんでした。数字が見えないとどこを減らすか選べないので、まず見えるようにだけしました。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/settle.jpg" alt="Ppijuklandの1日の精算画面。今日の稼ぎ14,758ウォンと使ったお金65ウォン、純利益14,693ウォンが表になって表示されている" loading="lazy" decoding="async"><figcaption>ゲームの中の精算は、稼いだお金から使ったお金を引いて、純利益を1行で見せてくれます。タスクのリストにも、こういう1行が必要でした。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>バックログを頑張って閉じているのに、なぜ減らないのですか？</summary><p>閉じる件数と同じくらい、新しく開く件数があるからです。1日単位で、閉じた数、新しく開いた数、残りの数を1行にまとめて書くと、減っているのか増えているのかがすぐ見えます。</p></details><details><summary>自動で作られるチケットはどう扱えばいいですか？</summary><p>まず、新しいチケットのうち自動で開いたものの割合を数えます。同じエラーが繰り返し開く種類なら、1件ずつ閉じることに時間を使うより、同じ種類を1枚にまとめるルールを置くほうがリストは減ります。</p></details><details><summary>1日の成果は何で測ればいいですか？</summary><p>閉じた件数よりも、残りの件数の変化のほうがましです。ただ、残りの件数も新しいチケットが多い日は変わらないことがあるので、新しく開いた件数を隣に並べておくことをおすすめします。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/ppijukland.png" alt="삐죽랜드" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">동물 손님이 찾아오는 놀이공원</p><p class="gb-title">삐죽랜드</p><p class="gb-hook">こうした失敗談は、開発日誌として載せ続けています。作ったゲームは下から見られます。</p>
+  <div class="gb-btns"><a class="store ghost" href="https://dumbgamelab.com/play/ppijukland/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=ticket-101-made-78-done" rel="noopener">ブラウザで遊ぶ</a></div></div>
+</aside>
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/ticket-101-made-78-done/" hreflang="en" lang="en">English</a><a href="/ko/blog/ticket-101-made-78-done/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/ticket-101-made-78-done/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>待办事项越做越多？一天关掉 78 个工单，又新开了 101 个</title>
+<meta name="description" content="独立开发的 backlog 忙了一整天，剩下的数量却和昨天一样。这篇写关掉 78 个、新开 101 个那天的数字，以及我把“关掉的数量”当成工作量，错在哪里。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/ticket-101-made-78-done/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="待办事项越做越多？一天关掉 78 个工单，又新开了 101 个">
+<meta property="og:description" content="独立开发的 backlog 忙了一整天，剩下的数量却和昨天一样。这篇写关掉 78 个、新开 101 个那天的数字，以及我把“关掉的数量”当成工作量，错在哪里。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/ticket-101-made-78-done/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"关掉了 78 个，清单却没变","description":"独立开发的 backlog 忙了一整天，剩下的数量却和昨天一样。这篇写关掉 78 个、新开 101 个那天的数字，以及我把“关掉的数量”当成工作量，错在哪里。","inLanguage":"zh-CN","datePublished":"2026-11-13","dateModified":"2026-11-13","image":"https://dumbgamelab.com/blog/img/ticket-101-made-78-done/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/ticket-101-made-78-done/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"삐죽랜드","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"关掉了 78 个，清单却没变","item":"https://dumbgamelab.com/zh-Hans/blog/ticket-101-made-78-done/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"backlog 我一直在关，为什么还是不减少？","acceptedAnswer":{"@type":"Answer","text":"因为在你关掉工单的同时，也有同样多的新工单被开出来。把每天关掉的数量、新开的数量、剩余的数量写在同一行里，清单是在变少还是在变多，一眼就能看出来。"}},{"@type":"Question","name":"自动生成的工单该怎么处理？","acceptedAnswer":{"@type":"Answer","text":"先数一数新工单里自动开出来的占多少。如果是同一个错误反复开出来的类型，与其花时间一张张去关，不如定一条把同类合并成一张的规则，这样清单减得更快。"}},{"@type":"Question","name":"一天的成果该用什么来衡量？","acceptedAnswer":{"@type":"Answer","text":"看剩余数量的变化，比看关掉的数量更好。不过新工单多的那天，剩余数量也可能原地不动，所以建议把新开的数量一起放在旁边。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 · 一波三折</p>
+    <h1>关掉了 78 个，清单却没变</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-13">2026-11-13</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijukland 的乐园画面。旋转木马、小吃店和游乐设施之间有 30 位游客在走动，顶部显示着近 100 万韩元的余额" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10 月 31 日一天我关掉了 78 个工单，新开的却有 101 个，剩下的数量从昨天的 335 个变成 334 个，几乎没动。新开的工单里有不少是崩溃收集器和自动检查自己开的。关掉的数量不等于工作量，要把新开的数量和开出来的原因一起数，才看得出清单是不是在变少。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">10 月 31 日，合并 221 次，清单原地不动</a></li><li><a href="#s2">那天有人对我说了这样一句话</a></li><li><a href="#s3">新工单里有不少不是我开的</a></li><li><a href="#s4">我判断错的地方：把关掉的数量当成了工作量</a></li><li><a href="#s5">我改的只是数字行里的一行</a></li></ol></nav>
+    <section id="s1"><h2>10 月 31 日，合并 221 次，清单原地不动</h2>
+<p>那天日记里的数字行是这样写的：会话 294，合并 221，新工单 101，已解决 78，剩余工单 334。前一天剩余的工单是 335。</p>
+<p>这天干的活并不少。我把 Ppijukland 的上线准备集中在一天里做完：策划文档、商店名称、安卓应用外壳，把要素台账里缺的 36 格清到 0，还有十种语言的翻译。可是清单一格也没少。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/hero.jpg" alt="Ppijukland 的乐园画面。旋转木马、小吃店和游乐设施清晰可见，乐园里有 30 位游客，最高评级的五颗星已点亮" loading="lazy" decoding="async"><figcaption>这是那天集中准备上线的 Ppijukland，画面是上线前的测试版。</figcaption></figure></section>
+<section id="s2"><h2>那天有人对我说了这样一句话</h2>
+<p>上午有人指出“你有只建工单、然后往后拖的倾向”。结果那天新开了 101 个工单，这个指出等于被数字直接回答了。</p>
+<p>关掉 78 个，说明活是干了。可是新开了 101 个，按顺序算清单应该多 23 个，剩余数量却反而少了一个。日记里没有解释这中间差距的那一行。到底哪里另外关掉了多少个，我没有确认。</p>
+</section>
+<section id="s3"><h2>新工单里有不少不是我开的</h2>
+<p>日记里记下的原因有两个。一个是崩溃收集器每出现一次错误就自动开的工单，另一个是自动检查带着规则名称开的工单。这两类占了新工单的大头。</p>
+<p>人写下“这件事得做”的工单，关掉的那一刻就少一件事。机器开的工单，同样的错误再来一次就会再开一次。关得再快，只要开得比关得更快，清单就还是老样子。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/minigame.jpg" alt="Ppijukland 的制作小游戏画面。砧板上画着挤面团的虚线，老板角色说“等食材满一半就出发”" loading="lazy" decoding="async"><figcaption>这是那天的测试版画面。每多一个新画面，要检查的地方也多一处。</figcaption></figure></section>
+<section id="s4"><h2>我判断错的地方：把关掉的数量当成了工作量</h2>
+<p>一天结束，最先映入眼帘的是“今天关了几个”。78 个，读起来像是干了不少活的一天。</p>
+<p>可是清单的大小不是由关掉的数量决定的，而是由关掉的数量和新开的数量之差决定的。不把新开的数量一起算进去，就会误以为越努力、活越少。</p>
+<ul><li>只看关掉的数量，78 个，是不错的一天。</li><li>再看新开的数量，101 个，清单变长了的一天。</li><li>再看开出来的原因，人写的和机器开的混在一起，没法用同一个数字去算。</li></ul>
+</section>
+<section id="s5"><h2>我改的只是数字行里的一行</h2>
+<p>那天做的事很简单。我在日记最上面的数字行里，把新工单数、已解决数、剩余数一起写了进去（#4504）。这样从第二天起，就不能只看关掉的数量就觉得安心了。</p>
+<p>这算不上什么大的解决办法。减少机器开的工单这件事，那天没有做成。数字先能看见，才能选出该从哪里减少，所以我先只做到让它看得见。</p>
+<figure><img src="/blog/img/ticket-101-made-78-done/settle.jpg" alt="Ppijukland 的每日结算画面。表格里列出今天赚了 14,758 韩元、花了 65 韩元，净利润 14,693 韩元" loading="lazy" decoding="async"><figcaption>游戏里的结算会用赚到的钱减去花掉的钱，一行算出净利润。待办清单也需要这样一行。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>backlog 我一直在关，为什么还是不减少？</summary><p>因为在你关掉工单的同时，也有同样多的新工单被开出来。把每天关掉的数量、新开的数量、剩余的数量写在同一行里，清单是在变少还是在变多，一眼就能看出来。</p></details><details><summary>自动生成的工单该怎么处理？</summary><p>先数一数新工单里自动开出来的占多少。如果是同一个错误反复开出来的类型，与其花时间一张张去关，不如定一条把同类合并成一张的规则，这样清单减得更快。</p></details><details><summary>一天的成果该用什么来衡量？</summary><p>看剩余数量的变化，比看关掉的数量更好。不过新工单多的那天，剩余数量也可能原地不动，所以建议把新开的数量一起放在旁边。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/ppijukland.png" alt="삐죽랜드" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">동물 손님이 찾아오는 놀이공원</p><p class="gb-title">삐죽랜드</p><p class="gb-hook">这类一波三折的事，我会继续用开发日志记录。做好的游戏可以从下面看。</p>
+  <div class="gb-btns"><a class="store ghost" href="https://dumbgamelab.com/play/ppijukland/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=ticket-101-made-78-done" rel="noopener">在浏览器玩</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/ticket-101-made-78-done/" hreflang="en" lang="en">English</a><a href="/ko/blog/ticket-101-made-78-done/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/ticket-101-made-78-done/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/ticket-101-made-78-done/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
