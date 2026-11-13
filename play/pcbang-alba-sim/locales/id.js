@@ -2192,9 +2192,7 @@ window.__DGL_STRINGS={
 "PC 자리는 처음부터 다시 놓아요. 모아 둔 돈과 물건 값은 지갑에 넣어 뒀어요.":"Kursi PC ditata ulang dari awal. Uang yang terkumpul dan nilai barangnya sudah ada di dompet.",
 "물은 눈대중, 배달은 알바 몫이다.":"Air pakai feeling, antar ke meja tugas karyawan.",
 "공짜로 올리기":"Naik gratis",
-"나간 자리는 지저분하다. 치워야 새 손님이 앉는다.":"Bekas kursi jadi kotor. Bersihkan dulu, baru pelanggan baru bisa duduk.",
 "다음 효과":"Efek berikutnya",
-"라면 주문이 오면 내가 끓여 간다. 한 번에 한 그릇뿐이다.":"Ada pesanan mi, aku yang masak dan antar. Satu mangkuk sekali jalan.",
 "손님 폭주, 요금도 쑥 오른다":"Pelanggan membludak, tarif ikut melonjak.",
 "스트리머·하드코어 출동. 자리 왕창, 라면 자판기!":"Streamer dan gamer hardcore datang. Kursi sebanyak-banyaknya, plus mesin mi instan!",
 "앉는 시간":"Lama duduk",
@@ -2204,7 +2202,6 @@ window.__DGL_STRINGS={
 "지금 효과":"Efek sekarang",
 "하드코어가 밤샌다. 자리, 에어컨, 컵라면!":"Para gamer hardcore begadang. Kursi, AC, mi cup!",
 "학생·직장인이 몰린다. 자리 넉넉히, 자판기 하나!":"Pelajar dan pekerja bakal membludak. Kursi yang banyak, satu mesin minuman!",
-"PC 한 대 더! 자리가 곧 돈이다.":"Satu PC lagi! Kursi itu uang.",
 "PC를 놓으면 구역을 나눌 수 있어요":"Pasang PC dulu untuk membagi zona",
 "밤사이 {0} 모였어요":"Semalam terkumpul {0}",
 "설정 열기":"Buka Pengaturan",
@@ -2224,5 +2221,8 @@ window.__DGL_STRINGS={
 "손님 다 떠날 때도 저놈은 안 떠났어. 사장 할 자격 있지.":"Waktu semua pelanggan pergi, cuma dia yang bertahan. Pantas jadi bos.",
 "어제는 사장님이 제 자리에서 자고 있던데요. 키보드 위에서요.":"Kemarin Bos tidur di kursiku. Persis di atas keyboard.",
 "전국구라며. …내가 못 한 걸 너랑 치치가 했다.":"Katanya sudah terkenal se-nasional. …Yang tak bisa kulakukan, kamu dan Chichi berhasil.",
-"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Aku gambar juga Bos yang tidur di meja kasir. Pembaca pasti paling suka."
+"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Aku gambar juga Bos yang tidur di meja kasir. Pembaca pasti paling suka.",
+"자리가 곧 돈이에요. PC 한 대 더 놔 볼까요?":"Kursi itu uang. Mau pasang satu PC lagi?",
+"라면 주문은 제가 끓여 갖다줄게요. 한 번에 한 그릇씩이에요.":"Pesanan mi biar saya yang masak dan antar. Satu mangkuk setiap kali.",
+"손님이 나간 자리는 지저분해요. 치워야 다음 손님이 앉아요.":"Kursi yang baru ditinggal tamu itu berantakan. Dibersihkan dulu, baru tamu berikutnya bisa duduk."
 };

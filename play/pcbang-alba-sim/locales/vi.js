@@ -2191,9 +2191,7 @@ window.__DGL_STRINGS={
 "PC 자리는 처음부터 다시 놓아요. 모아 둔 돈과 물건 값은 지갑에 넣어 뒀어요.":"Chỗ ngồi PC sẽ đặt lại từ đầu. Tiền đã dành và giá trị đồ đều đang ở trong ví.",
 "물은 눈대중, 배달은 알바 몫이다.":"Nước đong bằng mắt, giao tận bàn là việc của nhân viên.",
 "공짜로 올리기":"Nâng cấp miễn phí",
-"나간 자리는 지저분하다. 치워야 새 손님이 앉는다.":"Ghế khách vừa rời đi rất bừa. Dọn xong khách mới mới ngồi được.",
 "다음 효과":"Hiệu quả kế tiếp",
-"라면 주문이 오면 내가 끓여 간다. 한 번에 한 그릇뿐이다.":"Có đơn mì là tôi nấu rồi bưng đi. Mỗi lần chỉ một tô.",
 "손님 폭주, 요금도 쑥 오른다":"Khách đổ về, giá cũng tăng vọt.",
 "스트리머·하드코어 출동. 자리 왕창, 라면 자판기!":"Streamer và dân hardcore xuất quân. Thật nhiều ghế, thêm máy bán mì!",
 "앉는 시간":"Thời gian ngồi",
@@ -2203,7 +2201,6 @@ window.__DGL_STRINGS={
 "지금 효과":"Hiệu quả hiện tại",
 "하드코어가 밤샌다. 자리, 에어컨, 컵라면!":"Dân hardcore sắp thức trắng đêm. Ghế, máy lạnh, mì ly!",
 "학생·직장인이 몰린다. 자리 넉넉히, 자판기 하나!":"Học sinh và dân văn phòng sắp đổ về. Nhiều ghế vào, thêm một máy bán nước!",
-"PC 한 대 더! 자리가 곧 돈이다.":"Thêm một PC nữa! Mỗi ghế là tiền.",
 "PC를 놓으면 구역을 나눌 수 있어요":"Đặt PC xong là chia khu được",
 "밤사이 {0} 모였어요":"Qua đêm đã tích được {0}",
 "설정 열기":"Mở Cài đặt",
@@ -2223,5 +2220,8 @@ window.__DGL_STRINGS={
 "손님 다 떠날 때도 저놈은 안 떠났어. 사장 할 자격 있지.":"Khách bỏ đi hết mà nó vẫn ở lại. Đủ tư cách làm chủ rồi.",
 "어제는 사장님이 제 자리에서 자고 있던데요. 키보드 위에서요.":"Hôm qua sếp ngủ ở chỗ tôi đấy. Nằm ngay trên bàn phím.",
 "전국구라며. …내가 못 한 걸 너랑 치치가 했다.":"Nghe nói nổi tiếng cả nước rồi. …Việc chú không làm được, mày với Chichi làm được rồi.",
-"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Tôi sẽ vẽ cả sếp đang ngủ trên quầy. Chắc độc giả thích nhất đoạn đó."
+"카운터에서 자는 사장님도 그려 넣을게요. 독자들이 제일 좋아할 것 같아요.":"Tôi sẽ vẽ cả sếp đang ngủ trên quầy. Chắc độc giả thích nhất đoạn đó.",
+"자리가 곧 돈이에요. PC 한 대 더 놔 볼까요?":"Chỗ ngồi chính là tiền đó. Đặt thêm một cái PC nhé?",
+"라면 주문은 제가 끓여 갖다줄게요. 한 번에 한 그릇씩이에요.":"Đơn mì để mình nấu rồi mang ra cho. Mỗi lần một tô thôi nhé.",
+"손님이 나간 자리는 지저분해요. 치워야 다음 손님이 앉아요.":"Chỗ khách vừa đi còn bừa bộn đó. Dọn xong thì khách tiếp theo mới ngồi được."
 };
