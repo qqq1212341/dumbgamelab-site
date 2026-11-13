@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "65-3ac2028ec2",
+ "version": "65-95fe8a53be",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -404,7 +404,7 @@
   {
    "id": "zipper-boots",
    "day": 34,
-   "hash": "afface8de0196a5f",
+   "hash": "fb55f4791242334c",
    "ep": "episodes/zipper-boots.json",
    "i18n": {
     "en": "i18n/en/zipper-boots.json",
