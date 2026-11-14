@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>122 of 165 New Tickets Were the Same Check</title>
+    <link>https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>165 new tickets opened in one day, and 122 of them came from a single screen check tool. Text and button overlap alone was 101. Here are the numbers from the day the backlog went from 278 to 412, and where I was wrong to answer it with one more ticket.</description>
+  </item>
+  <item>
     <title>Zipper Started as a Name for Boots</title>
     <link>https://dumbgamelab.com/en/blog/zipper-boots/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/zipper-boots/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
     <description>Venus spins backward, so the sun rises in the west, and one spin takes longer than 1 year.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/venus.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Games Like Kairosoft: 8 Games After Cafeteria Nipponica, Relaunched in Airplane Mode</title>
-    <link>https://dumbgamelab.com/en/blog/games-like-cafeteria-nipponica/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/games-like-cafeteria-nipponica/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Eight mobile games to try after the Cafeteria Nipponica trial, each relaunched in airplane mode on a Galaxy Z Flip5. Checked October 30, 2026.</description>
   </item>
 </channel>
 </rss>

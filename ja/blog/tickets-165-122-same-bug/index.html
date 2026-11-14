@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>チケットが増え続ける原因は自動チェックだった：新規165件のうち122件が同じ種類（個人開発のバックログ整理）</title>
+<meta name="description" content="1日で新しいチケットが165件開き、そのうち122件は画面チェックツール1つが自動で作ったものでした。文字とボタンの重なりだけで101件。残りが278件から412件に増えた日の数字と、これをチケット1枚で後回しにしようとした私の判断が間違っていた点を書きました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/tickets-165-122-same-bug/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/tickets-165-122-same-bug/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="チケットが増え続ける原因は自動チェックだった：新規165件のうち122件が同じ種類（個人開発のバックログ整理）">
+<meta property="og:description" content="1日で新しいチケットが165件開き、そのうち122件は画面チェックツール1つが自動で作ったものでした。文字とボタンの重なりだけで101件。残りが278件から412件に増えた日の数字と、これをチケット1枚で後回しにしようとした私の判断が間違っていた点を書きました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"新規チケット165件のうち122件が同じチェックだった","description":"1日で新しいチケットが165件開き、そのうち122件は画面チェックツール1つが自動で作ったものでした。文字とボタンの重なりだけで101件。残りが278件から412件に増えた日の数字と、これをチケット1枚で後回しにしようとした私の判断が間違っていた点を書きました。","inLanguage":"ja","datePublished":"2026-11-14","dateModified":"2026-11-14","image":"https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"ネットカフェ育成","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"新規チケット165件のうち122件が同じチェックだった","item":"https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"自動で作られるチケットが1日100件ずつ溜まったら、どうすればいいですか？","acceptedAnswer":{"@type":"Answer","text":"まず種類別に数えて、同じツールが開いた割合を見ます。1種類が70%を超えているなら、閉じる速さを上げるよりも、同じ種類を1枚にまとめるルールを置くほうがリストは減ります。"}},{"@type":"Question","name":"チェック結果を、見つけるたびにチケットにしてはいけませんか？","acceptedAnswer":{"@type":"Answer","text":"漏れはなくなりますが、同じ画面の同じ問題が何枚にもなります。ゲームや画面の単位で1枚を立て、同じ問題はその中の1行にしておくと、閉じる作業も一度で終わります。"}},{"@type":"Question","name":"チケットが多すぎることを、チケットに書いてもいいですか？","acceptedAnswer":{"@type":"Answer","text":"その日のうちに直せるなら、その日に直すほうがいいです。私はチケット1枚で後回しにして、リストが1つ増えただけで、ルールを変えたのは翌日でした。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 / 失敗談</p>
+    <h1>新規チケット165件のうち122件が同じチェックだった</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-14">2026-11-14</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="PC方経営ゲームの研究画面。椅子の手入れ、おやつのレシピ、チラシのカードが上にあり、その下にロックされた研究カードが続き、一番下のタブバーに店、ショップ、スタッフ、研究、ランキングのボタンがある" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11月4日の1日で新しいチケットが165件開き、そのうち122件は画面チェックツール1つが開いたものでした。文字とボタンの重なりが101件、セーフエリアが10件、色が8件、盤面の重なりが3件です。閉じたのは32件だったので、残りのチケットは278件から412件になりました。チェックが見つけたものを1つずつ別のチケットにする作りにしていたせいで、私は最初、これをチケット1枚で後回しにしようとしました。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">11月4日、新規チケット165件、解決32件、残り412件</a></li><li><a href="#s2">122件は全部、画面チェックツールが開いたものだった</a></li><li><a href="#s3">なぜ1種類がこんなに大量に開いたのか</a></li><li><a href="#s4">私の判断が間違っていた点：チケットの大量発生にチケットで答えた</a></li><li><a href="#s5">翌日に直したのは3つでした</a></li><li><a href="#s6">その後の数字はまだわかりません</a></li></ol></nav>
+    <section id="s1"><h2>11月4日、新規チケット165件、解決32件、残り412件</h2>
+<p>その日の日記の数字の行です。マージ269、新規チケット165、解決32、残りのチケット412。前日の残りは278件でした。1日で134件増えたことになります。</p>
+<p>仕事をしなかった日ではありません。チチの乱闘の手触りを直し、リリースを3件出し、自動チェックツールの対象も広げました。それなのにリストは増えるばかりで、新しいチケットを開いてみると、似たものがやけに多いことに気づきました。</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="PC方経営ゲームの研究画面。研究カード9枚と下のタブバーが1画面に収まっている" loading="lazy" decoding="async"><figcaption>カードと文字とボタンが詰まった画面ほど、チェックに引っかかる場所も多くなります。</figcaption></figure></section>
+<section id="s2"><h2>122件は全部、画面チェックツールが開いたものだった</h2>
+<p>新しいチケット165件を種類別に数えてみました。122件が、画面チェックツール1つの結果でした。このツールはゲームをスマホサイズで表示して、文字がボタンを隠していないか、画面の端のセーフエリアをはみ出していないか、色がずれていないかを測ります。</p>
+<p>足すと101、10、8、3で、ちょうど122件です。新しいチケットの74%が1つのツールから出ていました。前日の「古い盤面のエラー16個」と同じ形でもありました。機械が一度にたくさん見つける日は、リストが機械の側に偏ります。</p>
+<ul><li>文字とボタンの重なり 101件</li><li>セーフエリア 10件</li><li>色 8件</li><li>盤面の重なり 3件</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/shop.jpg" alt="PC方経営ゲームのショップ画面。中古PC、飲料の自販機、浄水器、ラーメン調理台がカードで並び、各カードの下に価格ボタンが付いている" loading="lazy" decoding="async"><figcaption>カードごとに文字と価格ボタンが付く画面です。こうした枠が多いほど、重なりを測る場所も増えます。</figcaption></figure></section>
+<section id="s3"><h2>なぜ1種類がこんなに大量に開いたのか</h2>
+<p>チェックツールは、問題を1つ見つけるたびにチケットを1枚立てる作りになっていました。1画面に文字とボタンの重なりが10か所あれば、チケットも10枚です。ゲームが10本で画面が何枚もあれば、1日100枚はあっという間です。</p>
+<p>1枚ずつ立てれば漏れなく拾えると考えて、そう作りました。ところが閉じる側から見ると、10枚とも「この画面のボタンの大きさを直す」という1行だけの内容でした。</p>
+</section>
+<section id="s4"><h2>私の判断が間違っていた点：チケットの大量発生にチケットで答えた</h2>
+<p>その日の私は、これを見てチケットを1枚作りました。タイトルは「自動チェックのチケット大量発生をまとめる」。日記にも「今回はチケットを立てる」と書きました。チケットが多すぎるという問題を、チケット1枚で後回しにしたわけです。</p>
+<p>そのチケットには「なぜ今やらなかったか」を書く欄があり、私は「日記の回なので範囲外」と書きました。数字はその日のうちに出ていたのに、直すのは翌日に回しました。リストを減らそうという作業が、リストを1つ増やして終わりました。</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/staff.jpg" alt="PC方経営ゲームのスタッフ画面。オーナーキャラクターのカードの下に、未開封の応募書類2枚と、新しい応募までの残り時間ボタンが並んでいる" loading="lazy" decoding="async"><figcaption>開けていない応募書類と同じで、開いたまま置いてあるだけのチケットもリストの1行を占めます。</figcaption></figure></section>
+<section id="s5"><h2>翌日に直したのは3つでした</h2>
+<p>11月5日に、チェックツールのチケットの立て方を変えました（#5783）。見つけるたびに1枚だったものを、ゲーム1本につき1枚にまとめました。</p>
+<ul><li>ゲーム1本につきチケットは1枚だけ立てます。</li><li>同じ指紋の問題は、そのチケットの中に1行だけ書きます。</li><li>問題が消えたらその行だけ消し、行が0になったらチケットを閉じます。</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/home.jpg" alt="PC方経営ゲームの店の画面。暗いPC方の中にPCの席と自販機があり、下の案内ウィンドウにスキップとOKのボタンがある" loading="lazy" decoding="async"><figcaption>案内ウィンドウ1つにも、文字とボタン2つが入っています。チェックの対象は、こういう画面すべてです。</figcaption></figure></section>
+<section id="s6"><h2>その後の数字はまだわかりません</h2>
+<p>その後、新しいチケットは11月5日に55件でした。ただ、その日は人が開いたチケットも混ざっていて、まとめたことでどれだけ減ったのかは、分けて見ることができませんでした。まとめるルールをどこに置くかを先に決めておかないと、後から効果を測れないことだけは確認できました。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>自動で作られるチケットが1日100件ずつ溜まったら、どうすればいいですか？</summary><p>まず種類別に数えて、同じツールが開いた割合を見ます。1種類が70%を超えているなら、閉じる速さを上げるよりも、同じ種類を1枚にまとめるルールを置くほうがリストは減ります。</p></details><details><summary>チェック結果を、見つけるたびにチケットにしてはいけませんか？</summary><p>漏れはなくなりますが、同じ画面の同じ問題が何枚にもなります。ゲームや画面の単位で1枚を立て、同じ問題はその中の1行にしておくと、閉じる作業も一度で終わります。</p></details><details><summary>チケットが多すぎることを、チケットに書いてもいいですか？</summary><p>その日のうちに直せるなら、その日に直すほうがいいです。私はチケット1枚で後回しにして、リストが1つ増えただけで、ルールを変えたのは翌日でした。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="ネットカフェ育成" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置タイクーン</p><p class="gb-title"><a href="/ja/games/pcbangalba/">ネットカフェ育成</a></p><p class="gb-hook">こうした失敗談は、開発日誌として載せ続けています。作ったゲームは下から見られます。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dja" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug" rel="noopener">ブラウザで遊ぶ</a></div></div>
+</aside>
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/tickets-165-122-same-bug/" hreflang="en" lang="en">English</a><a href="/ko/blog/tickets-165-122-same-bug/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/tickets-165-122-same-bug/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

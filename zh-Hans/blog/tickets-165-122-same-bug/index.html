@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自动生成的工单太多怎么办？一天新开 165 个，122 个是同一个检查开的</title>
+<meta name="description" content="一天之内新开了 165 个工单，其中 122 个都出自同一个界面检查工具，光是文字和按钮重叠就有 101 个。这篇写工单从 278 个涨到 412 个那天的数字，以及我又想用一个工单去解决工单太多，错在哪里。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/tickets-165-122-same-bug/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="自动生成的工单太多怎么办？一天新开 165 个，122 个是同一个检查开的">
+<meta property="og:description" content="一天之内新开了 165 个工单，其中 122 个都出自同一个界面检查工具，光是文字和按钮重叠就有 101 个。这篇写工单从 278 个涨到 412 个那天的数字，以及我又想用一个工单去解决工单太多，错在哪里。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/tickets-165-122-same-bug/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"新开 165 个工单，122 个是同一个检查","description":"一天之内新开了 165 个工单，其中 122 个都出自同一个界面检查工具，光是文字和按钮重叠就有 101 个。这篇写工单从 278 个涨到 412 个那天的数字，以及我又想用一个工单去解决工单太多，错在哪里。","inLanguage":"zh-CN","datePublished":"2026-11-14","dateModified":"2026-11-14","image":"https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/tickets-165-122-same-bug/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"网吧养成记","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"新开 165 个工单，122 个是同一个检查","item":"https://dumbgamelab.com/zh-Hans/blog/tickets-165-122-same-bug/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"自动生成的工单一天堆上百个，该怎么办？","acceptedAnswer":{"@type":"Answer","text":"先按类型数一遍，看同一个工具开的占多少。如果某一类超过 70%，与其加快关闭的速度，不如定一条把同类合并成一个工单的规则，清单会减得更多。"}},{"@type":"Question","name":"检查结果每发现一处就开一个工单，不行吗？","acceptedAnswer":{"@type":"Answer","text":"这样确实不会漏，但同一个界面的同一类问题会变成好几个工单。按游戏或者界面开一个工单，同类问题只在里面占一行，关闭的时候也能一次做完。"}},{"@type":"Question","name":"工单太多这件事，可以也用一个工单记下来吗？","acceptedAnswer":{"@type":"Answer","text":"当天能改的话，当天改更好。我是用一个工单往后拖，结果清单只多了一个，规则到第二天才改。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 一波三折</p>
+    <h1>新开 165 个工单，122 个是同一个检查</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-14">2026-11-14</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="PC 房打工模拟的研究所界面。上方是椅子保养法、零食配方、传单卡片，下面接着上锁的研究卡片，最下面的标签栏有店铺、商店、人员、研究、排行榜按钮" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11 月 4 日一天新开了 165 个工单，其中 122 个出自同一个界面检查工具：文字和按钮重叠 101 个，安全区域 10 个，颜色 8 个，界面重叠 3 个。我只关掉了 32 个，剩下的工单从 278 个变成了 412 个。原因是检查工具每发现一处问题就会开一个工单，而我一开始想用再开一个工单的办法把这件事往后拖。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">11 月 4 日，新工单 165 个，解决 32 个，剩余 412 个</a></li><li><a href="#s2">122 个全是界面检查工具开的</a></li><li><a href="#s3">为什么同一类会开出这么多</a></li><li><a href="#s4">我判断错的地方：用一个工单去解决工单太多</a></li><li><a href="#s5">第二天改了三件事</a></li><li><a href="#s6">那之后的数字，我还不知道</a></li></ol></nav>
+    <section id="s1"><h2>11 月 4 日，新工单 165 个，解决 32 个，剩余 412 个</h2>
+<p>那天日记里的数字行是这样写的：合并 269，新工单 165，已解决工单 32，剩余工单 412。前一天剩余的工单是 278 个。一天之内多了 134 个。</p>
+<p>这天并不是没干活。我调好了奇奇混战的手感，上线了三个版本，还把自动检查工具的范围加大了。可是清单只增不减，打开新开的工单一看，奇怪的是长得很像的特别多。</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="PC 房打工模拟的研究所界面。九张研究卡片和下方的标签栏同时出现在一个画面里" loading="lazy" decoding="async"><figcaption>卡片、文字和按钮越密的界面，检查能挑出毛病的地方也越多。</figcaption></figure></section>
+<section id="s2"><h2>122 个全是界面检查工具开的</h2>
+<p>我把 165 个新工单按类型数了一遍，有 122 个是同一个界面检查工具的结果。这个工具会把游戏按手机尺寸打开，测量文字有没有盖住按钮、有没有超出屏幕边缘的安全区域、颜色有没有对不上。</p>
+<p>加起来是 101 加 10 加 8 加 3，正好 122 个。新工单的 74% 出自同一个工具。这和前一天“旧版本的 16 个错误”是同一个模样。机器一次找出很多问题的日子，清单就会往机器那边倾斜。</p>
+<ul><li>文字和按钮重叠 101 个</li><li>安全区域 10 个</li><li>颜色 8 个</li><li>界面重叠 3 个</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/shop.jpg" alt="PC 房打工模拟的商店界面。二手电脑、饮料贩卖机、净水器、泡面台以卡片形式摆放，每张卡片下面都有价格按钮" loading="lazy" decoding="async"><figcaption>每张卡片都带文字和价格按钮的界面。这样的格子越多，要测量重叠的地方就越多。</figcaption></figure></section>
+<section id="s3"><h2>为什么同一类会开出这么多</h2>
+<p>检查工具的设定是每发现一个问题就开一个工单。一个界面里有十处文字和按钮重叠，就是十个工单。游戏有十个，每个游戏又有好几个界面，一天一百多个很快就到了。</p>
+<p>当初这样设计，是觉得一个个开出来就不会漏掉。可是站在关工单的这一边看，那十个工单全是“把这个界面的按钮改大一点”这一句话的事。</p>
+</section>
+<section id="s4"><h2>我判断错的地方：用一个工单去解决工单太多</h2>
+<p>那天我看到这个情况，做的事是再开一个工单。标题是“自动检查工单暴增，合并处理”。日记里也写着“这次用开工单的办法”。工单太多的问题，被我用一个工单推到了后面。</p>
+<p>那个工单里有一栏要写“为什么现在不做”，我写的是“日记那一回的范围之外”。数字当天已经摆在那里，可是修改被我拖到了第二天。想减少清单的这件事，最后让清单又多了一个。</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/staff.jpg" alt="PC 房打工模拟的人员界面。老板角色卡片下面，是两张没拆开的求职申请，以及排着队的“距离新申请还剩多久”按钮" loading="lazy" decoding="async"><figcaption>没打开看的申请，和只开不处理的工单一样，都在清单里占一行。</figcaption></figure></section>
+<section id="s5"><h2>第二天改了三件事</h2>
+<p>11 月 5 日，我改了检查工具开工单的方式（#5783）。原来是发现一处开一个，现在改成一个游戏只开一个。</p>
+<ul><li>一个游戏只开一个工单。</li><li>指纹相同的问题，在那个工单里只写一行。</li><li>问题消失了就删掉那一行，行数变成 0 就关掉工单。</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/home.jpg" alt="PC 房打工模拟的店铺界面。昏暗的网吧里摆着电脑座位和贩卖机，下方提示框里有“跳过”和“知道了”按钮" loading="lazy" decoding="async"><figcaption>一个提示框里也有文字和两个按钮。检查的对象就是这样的所有界面。</figcaption></figure></section>
+<section id="s6"><h2>那之后的数字，我还不知道</h2>
+<p>之后 11 月 5 日新开的工单是 55 个。不过那天里面也混着人手动开的工单，合并这一招到底少了多少，我没能单独分出来。我只确认了一点：合并的规则放在哪里，要先定下来，之后才能量出效果。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>自动生成的工单一天堆上百个，该怎么办？</summary><p>先按类型数一遍，看同一个工具开的占多少。如果某一类超过 70%，与其加快关闭的速度，不如定一条把同类合并成一个工单的规则，清单会减得更多。</p></details><details><summary>检查结果每发现一处就开一个工单，不行吗？</summary><p>这样确实不会漏，但同一个界面的同一类问题会变成好几个工单。按游戏或者界面开一个工单，同类问题只在里面占一行，关闭的时候也能一次做完。</p></details><details><summary>工单太多这件事，可以也用一个工单记下来吗？</summary><p>当天能改的话，当天改更好。我是用一个工单往后拖，结果清单只多了一个，规则到第二天才改。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="网吧养成记" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">放置经营</p><p class="gb-title"><a href="/zh-Hans/games/pcbangalba/">网吧养成记</a></p><p class="gb-hook">这类一波三折的事，我会继续用开发日志记录。做好的游戏可以从下面看。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dzh-Hans" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug" rel="noopener">在浏览器玩</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/tickets-165-122-same-bug/" hreflang="en" lang="en">English</a><a href="/ko/blog/tickets-165-122-same-bug/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/tickets-165-122-same-bug/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/tickets-165-122-same-bug/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>新規チケット165件のうち122件が同じチェックだった</title>
+    <link>https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>1日で新しいチケットが165件開き、そのうち122件は画面チェックツール1つが自動で作ったものでした。文字とボタンの重なりだけで101件。残りが278件から412件に増えた日の数字と、これをチケット1枚で後回しにしようとした私の判断が間違っていた点を書きました。</description>
+  </item>
+  <item>
     <title>ジッパーはもともと長靴の名前だった</title>
     <link>https://dumbgamelab.com/ja/blog/zipper-boots/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/zipper-boots/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
     <description>金星は逆向きに回っているので太陽が西からのぼり、ひと回りの自転が1年より長い。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/venus.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>1日の売上が約30分の1に:14日間の売上の92%が記事1本だった</title>
-    <link>https://dumbgamelab.com/ja/blog/revenue-92pct-one-article/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/revenue-92pct-one-article/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>個人開発者がモバイルゲームの収益をゲームごとに分けて見て分かったこと。直近14日の売上$260のうち$241が1本のゲームで、その大半は台湾の記事1本が生んだ流入でした。どこで読みを間違えたかを書きます。</description>
   </item>
 </channel>
 </rss>

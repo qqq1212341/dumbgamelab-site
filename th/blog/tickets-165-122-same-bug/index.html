@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>issue tracker ล้น: วันที่ตั๋วใหม่เปิด 165 ใบ และ 122 ใบมาจากการตรวจแบบเดียวกัน</title>
+<meta name="description" content="ในวันเดียวมีตั๋วใหม่เปิดขึ้น 165 ใบ แต่ 122 ใบมาจากเครื่องมือตรวจหน้าจอเครื่องเดียว เฉพาะตัวอักษรซ้อนปุ่มก็ 101 ใบ บทความนี้เล่าตัวเลขของวันที่รายการเด้งจาก 278 เป็น 412 และจุดที่ผมตัดสินพลาดตอนพยายามแก้ปัญหานี้ด้วยตั๋วอีกหนึ่งใบ">
+<link rel="canonical" href="https://dumbgamelab.com/th/blog/tickets-165-122-same-bug/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="issue tracker ล้น: วันที่ตั๋วใหม่เปิด 165 ใบ และ 122 ใบมาจากการตรวจแบบเดียวกัน">
+<meta property="og:description" content="ในวันเดียวมีตั๋วใหม่เปิดขึ้น 165 ใบ แต่ 122 ใบมาจากเครื่องมือตรวจหน้าจอเครื่องเดียว เฉพาะตัวอักษรซ้อนปุ่มก็ 101 ใบ บทความนี้เล่าตัวเลขของวันที่รายการเด้งจาก 278 เป็น 412 และจุดที่ผมตัดสินพลาดตอนพยายามแก้ปัญหานี้ด้วยตั๋วอีกหนึ่งใบ">
+<meta property="og:url" content="https://dumbgamelab.com/th/blog/tickets-165-122-same-bug/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg">
+<meta property="og:locale" content="th">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ตั๋วใหม่ 165 ใบ แต่ 122 ใบเป็นการตรวจแบบเดียวกัน","description":"ในวันเดียวมีตั๋วใหม่เปิดขึ้น 165 ใบ แต่ 122 ใบมาจากเครื่องมือตรวจหน้าจอเครื่องเดียว เฉพาะตัวอักษรซ้อนปุ่มก็ 101 ใบ บทความนี้เล่าตัวเลขของวันที่รายการเด้งจาก 278 เป็น 412 และจุดที่ผมตัดสินพลาดตอนพยายามแก้ปัญหานี้ด้วยตั๋วอีกหนึ่งใบ","inLanguage":"th","datePublished":"2026-11-14","dateModified":"2026-11-14","image":"https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/th/blog/tickets-165-122-same-bug/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"เปิดร้านเน็ต","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"บล็อก","item":"https://dumbgamelab.com/th/blog/"},{"@type":"ListItem","position":3,"name":"ตั๋วใหม่ 165 ใบ แต่ 122 ใบเป็นการตรวจแบบเดียวกัน","item":"https://dumbgamelab.com/th/blog/tickets-165-122-same-bug/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ถ้าตั๋วที่ระบบเปิดเองสะสมวันละร้อยใบ ควรทำอย่างไร","acceptedAnswer":{"@type":"Answer","text":"เริ่มจากนับแยกตามชนิดแล้วดูว่าเครื่องมือเดียวเปิดไปกี่เปอร์เซ็นต์ ถ้าชนิดเดียวเกิน 70% การตั้งกฎรวมชนิดเดียวกันเป็นใบเดียวช่วยลดรายการได้มากกว่าการเร่งปิดทีละใบ"}},{"@type":"Question","name":"เปิดตั๋วทุกครั้งที่เครื่องมือตรวจเจอปัญหาได้ไหม","acceptedAnswer":{"@type":"Answer","text":"ได้ ไม่ตกหล่น แต่ปัญหาเดียวกันของหน้าจอเดียวกันจะกลายเป็นตั๋วหลายใบ ถ้าเปิดหนึ่งใบต่อหนึ่งเกมหรือหนึ่งหน้าจอ แล้วเก็บปัญหาซ้ำเป็นหนึ่งบรรทัดข้างใน การปิดงานก็จบในครั้งเดียว"}},{"@type":"Question","name":"เขียนเรื่องที่ตั๋วเยอะเกินไปไว้ในตั๋วอีกใบได้ไหม","acceptedAnswer":{"@type":"Answer","text":"ถ้าแก้ได้ในวันเดียวกัน แก้เลยดีกว่า ผมเลื่อนไปไว้ในตั๋วใบเดียว ผลคือรายการเพิ่มอีกหนึ่งใบ ส่วนกฎผมมาเปลี่ยนวันถัดมา"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/th/games/">เกม</a><a href="/th/blog/">บล็อก</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/th/blog/">บล็อก</a> · เบื้องหลัง</p>
+    <p class="kicker">บันทึกนักพัฒนา เรื่องวุ่น ๆ</p>
+    <h1>ตั๋วใหม่ 165 ใบ แต่ 122 ใบเป็นการตรวจแบบเดียวกัน</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-14">2026-11-14</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="หน้าจอห้องวิจัยของ PC방 키우기 ด้านบนมีการ์ดวิธีดูแลเก้าอี้ สูตรขนม และใบปลิว ถัดลงมาเป็นการ์ดวิจัยที่ยังล็อกอยู่ และแถบเมนูล่างสุดมีปุ่มร้าน ร้านค้า พนักงาน วิจัย และอันดับ" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">วันที่ 4 พฤศจิกายน มีตั๋วใหม่เปิดขึ้น 165 ใบ และ 122 ใบในนั้นเปิดโดยเครื่องมือตรวจหน้าจอเครื่องเดียว ตัวอักษรซ้อนปุ่ม 101 ใบ พื้นที่ปลอดภัย 10 ใบ สี 8 ใบ กระดานซ้อนกัน 3 ใบ ผมปิดได้ 32 ใบ ตั๋วที่เหลือจึงเพิ่มจาก 278 เป็น 412 สาเหตุคือผมตั้งให้เครื่องมือตรวจเปิดตั๋วหนึ่งใบต่อหนึ่งสิ่งที่เจอ และตอนแรกผมคิดจะเลื่อนเรื่องนี้ไปไว้ในตั๋วอีกใบเดียว</p>
+    <nav class="toc"><p>สารบัญ</p><ol><li><a href="#s1">4 พฤศจิกายน: ตั๋วใหม่ 165 ใบ แก้เสร็จ 32 ใบ เหลือ 412 ใบ</a></li><li><a href="#s2">122 ใบเปิดโดยเครื่องมือตรวจหน้าจอเครื่องเดียว</a></li><li><a href="#s3">ทำไมตั๋วชนิดเดียวถึงเปิดมากขนาดนี้</a></li><li><a href="#s4">จุดที่ผมตัดสินพลาด: ตั๋วล้น แต่ผมตอบด้วยตั๋ว</a></li><li><a href="#s5">วันถัดมาผมแก้สามอย่าง</a></li><li><a href="#s6">ตัวเลขหลังจากนั้นผมยังไม่รู้</a></li></ol></nav>
+    <section id="s1"><h2>4 พฤศจิกายน: ตั๋วใหม่ 165 ใบ แก้เสร็จ 32 ใบ เหลือ 412 ใบ</h2>
+<p>นี่คือบรรทัดตัวเลขในบันทึกวันนั้น merge 269 ตั๋วใหม่ 165 แก้เสร็จ 32 ตั๋วที่เหลือ 412 ส่วนตั๋วที่เหลือของเมื่อวานคือ 278 แค่วันเดียวรายการเพิ่มขึ้น 134 ใบ</p>
+<p>ไม่ใช่วันที่ผมไม่ได้ทำงาน ผมปรับความรู้สึกตอนต่อสู้ของจี๋จี๋ ปล่อยเกมไป 3 เกม และขยายเครื่องมือตรวจอัตโนมัติด้วย แต่รายการมีแต่เพิ่ม พอเปิดตั๋วใหม่ดู ก็เห็นว่าหน้าตาคล้ายกันผิดปกติ</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="หน้าจอห้องวิจัยของ PC방 키우기 มีการ์ดวิจัยเก้าใบและแถบเมนูล่างอยู่ในหน้าจอเดียว" loading="lazy" decoding="async"><figcaption>ยิ่งหน้าจอแน่นไปด้วยการ์ด ตัวอักษร และปุ่ม ก็ยิ่งมีจุดให้เครื่องมือตรวจจับได้มาก</figcaption></figure></section>
+<section id="s2"><h2>122 ใบเปิดโดยเครื่องมือตรวจหน้าจอเครื่องเดียว</h2>
+<p>ผมลองนับตั๋วใหม่ 165 ใบแยกตามชนิด 122 ใบเป็นผลจากเครื่องมือตรวจหน้าจอเครื่องเดียว เครื่องมือนี้เปิดเกมในขนาดหน้าจอมือถือ แล้ววัดว่าตัวอักษรทับปุ่มไหม ล้นเกินพื้นที่ปลอดภัยตรงขอบจอไหม และสีเพี้ยนไหม</p>
+<p>รวมแล้ว 101 บวก 10 บวก 8 บวก 3 ได้ 122 ใบพอดี ตั๋วใหม่ 74% มาจากเครื่องมือเดียว และหน้าตาเหมือนเรื่อง «ข้อผิดพลาดของเวอร์ชันเก่า 16 รายการ» เมื่อวันก่อน วันไหนที่เครื่องเจอเยอะพร้อมกัน รายการก็เอียงไปทางเครื่องหมด</p>
+<ul><li>ตัวอักษรซ้อนปุ่ม 101 ใบ</li><li>พื้นที่ปลอดภัย 10 ใบ</li><li>สี 8 ใบ</li><li>กระดานซ้อนกัน 3 ใบ</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/shop.jpg" alt="หน้าจอร้านค้าของ PC방 키우기 มีการ์ดเครื่อง PC มือสอง ตู้ขายเครื่องดื่ม เครื่องกรองน้ำ และเคาน์เตอร์ทำราเม็ง แต่ละการ์ดมีปุ่มราคาอยู่ด้านล่าง" loading="lazy" decoding="async"><figcaption>หน้าจอที่ทุกการ์ดมีตัวอักษรและปุ่มราคา ยิ่งมีช่องแบบนี้เยอะ จุดที่ต้องวัดการซ้อนก็ยิ่งเพิ่ม</figcaption></figure></section>
+<section id="s3"><h2>ทำไมตั๋วชนิดเดียวถึงเปิดมากขนาดนี้</h2>
+<p>เครื่องมือตรวจถูกตั้งให้เปิดตั๋วหนึ่งใบทุกครั้งที่เจอปัญหาหนึ่งอย่าง ถ้าหน้าจอเดียวมีตัวอักษรซ้อนปุ่มสิบจุด ก็ได้ตั๋วสิบใบ ถ้ามีเกมสิบเกมและหน้าจอหลายหน้า วันละร้อยใบก็ถึงได้ง่าย ๆ</p>
+<p>ผมทำแบบนั้นเพราะคิดว่าเปิดทีละใบจะไม่ตกหล่น แต่พอมาดูฝั่งคนปิดงาน ตั๋วสิบใบนั้นเป็นคำสั่งบรรทัดเดียวเหมือนกันหมดว่า «แก้ขนาดปุ่มของหน้าจอนี้»</p>
+</section>
+<section id="s4"><h2>จุดที่ผมตัดสินพลาด: ตั๋วล้น แต่ผมตอบด้วยตั๋ว</h2>
+<p>วันนั้นผมเห็นแล้วเปิดตั๋วเพิ่มหนึ่งใบ ชื่อว่า «รวมตั๋วตรวจอัตโนมัติที่ล้น» ในบันทึกผมก็เขียนว่า «คราวนี้ผมจะเปิดตั๋ว» ปัญหาคือตั๋วเยอะเกินไป แล้วผมเลื่อนมันไปไว้ในตั๋วอีกใบ</p>
+<p>ตั๋วใบนั้นมีช่องให้เขียนว่า «ทำไมวันนี้ถึงไม่ทำ» ผมเขียนว่า «เป็นรอบบันทึก อยู่นอกขอบเขต» ตัวเลขออกมาตั้งแต่วันนั้นแล้ว แต่ผมโยนการแก้ไปวันถัดไป งานที่ตั้งใจจะลดรายการจบลงด้วยการเพิ่มรายการอีกหนึ่งบรรทัด</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/staff.jpg" alt="หน้าจอพนักงานของ PC방 키우기 ใต้การ์ดตัวละครเจ้าของร้านมีใบสมัครที่ยังไม่เปิดสองใบ และปุ่มเวลาที่เหลือจนถึงใบสมัครใหม่เรียงกันอยู่" loading="lazy" decoding="async"><figcaption>เหมือนใบสมัครที่ยังไม่เปิดอ่าน ตั๋วที่เปิดค้างไว้เฉย ๆ ก็กินพื้นที่ในรายการหนึ่งบรรทัดเหมือนกัน</figcaption></figure></section>
+<section id="s5"><h2>วันถัดมาผมแก้สามอย่าง</h2>
+<p>วันที่ 5 พฤศจิกายน ผมเปลี่ยนวิธีที่เครื่องมือตรวจเปิดตั๋ว (#5783) จากหนึ่งใบต่อหนึ่งสิ่งที่เจอ เป็นหนึ่งใบต่อหนึ่งเกม</p>
+<ul><li>เปิดตั๋วแค่หนึ่งใบต่อหนึ่งเกม</li><li>ปัญหาที่มีลายนิ้วมือเดียวกันให้เขียนไว้เป็นหนึ่งบรรทัดในตั๋วใบนั้น</li><li>เมื่อปัญหาหายไปก็ลบแค่บรรทัดนั้น พอเหลือ 0 บรรทัดก็ปิดตั๋ว</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/home.jpg" alt="หน้าจอร้านของ PC방 키우기 ภายในร้านเน็ตที่มืดมีที่นั่ง PC และตู้ขายของ ด้านล่างมีหน้าต่างแนะนำที่มีปุ่มข้ามและปุ่มเข้าใจแล้ว" loading="lazy" decoding="async"><figcaption>หน้าต่างแนะนำหน้าเดียวก็มีตัวอักษรกับปุ่มสองปุ่ม สิ่งที่เครื่องมือตรวจต้องดูคือหน้าจอแบบนี้ทั้งหมด</figcaption></figure></section>
+<section id="s6"><h2>ตัวเลขหลังจากนั้นผมยังไม่รู้</h2>
+<p>หลังวันนั้น ตั๋วใหม่ของวันที่ 5 พฤศจิกายนมี 55 ใบ แต่วันนั้นมีตั๋วที่คนเปิดเองปนอยู่ด้วย ผมจึงแยกไม่ได้ว่าการรวมตั๋วช่วยลดไปเท่าไร สิ่งเดียวที่ยืนยันได้คือต้องตัดสินก่อนว่ากฎการรวมจะอยู่ตรงไหน ถึงจะวัดผลทีหลังได้</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ถ้าตั๋วที่ระบบเปิดเองสะสมวันละร้อยใบ ควรทำอย่างไร</summary><p>เริ่มจากนับแยกตามชนิดแล้วดูว่าเครื่องมือเดียวเปิดไปกี่เปอร์เซ็นต์ ถ้าชนิดเดียวเกิน 70% การตั้งกฎรวมชนิดเดียวกันเป็นใบเดียวช่วยลดรายการได้มากกว่าการเร่งปิดทีละใบ</p></details><details><summary>เปิดตั๋วทุกครั้งที่เครื่องมือตรวจเจอปัญหาได้ไหม</summary><p>ได้ ไม่ตกหล่น แต่ปัญหาเดียวกันของหน้าจอเดียวกันจะกลายเป็นตั๋วหลายใบ ถ้าเปิดหนึ่งใบต่อหนึ่งเกมหรือหนึ่งหน้าจอ แล้วเก็บปัญหาซ้ำเป็นหนึ่งบรรทัดข้างใน การปิดงานก็จบในครั้งเดียว</p></details><details><summary>เขียนเรื่องที่ตั๋วเยอะเกินไปไว้ในตั๋วอีกใบได้ไหม</summary><p>ถ้าแก้ได้ในวันเดียวกัน แก้เลยดีกว่า ผมเลื่อนไปไว้ในตั๋วใบเดียว ผลคือรายการเพิ่มอีกหนึ่งใบ ส่วนกฎผมมาเปลี่ยนวันถัดมา</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="เปิดร้านเน็ต" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">เกมไอเดิล</p><p class="gb-title"><a href="/th/games/pcbangalba/">เปิดร้านเน็ต</a></p><p class="gb-hook">เรื่องวุ่น ๆ แบบนี้ผมจะลงเป็นบันทึกนักพัฒนาต่อไป เกมที่ผมทำดูได้จากด้านล่าง</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dth" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug" rel="noopener">เล่นบนเบราว์เซอร์</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>ภาษาอื่น</span><a href="/en/blog/tickets-165-122-same-bug/" hreflang="en" lang="en">English</a><a href="/ko/blog/tickets-165-122-same-bug/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/tickets-165-122-same-bug/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/tickets-165-122-same-bug/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>ไทย</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

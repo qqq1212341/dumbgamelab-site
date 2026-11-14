@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>165 ticket mới mở trong một ngày, 122 cái là cùng một loại lỗi</title>
+<meta name="description" content="Một ngày có 165 ticket mới được mở, trong đó 122 cái do cùng một công cụ kiểm tra màn hình tạo ra. Riêng chữ đè lên nút đã là 101 cái. Bài này ghi các con số của ngày danh sách tăng từ 278 lên 412 ticket, và chỗ tôi đánh giá sai khi định giải quyết chuyện đó bằng thêm một ticket nữa.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/tickets-165-122-same-bug/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="165 ticket mới mở trong một ngày, 122 cái là cùng một loại lỗi">
+<meta property="og:description" content="Một ngày có 165 ticket mới được mở, trong đó 122 cái do cùng một công cụ kiểm tra màn hình tạo ra. Riêng chữ đè lên nút đã là 101 cái. Bài này ghi các con số của ngày danh sách tăng từ 278 lên 412 ticket, và chỗ tôi đánh giá sai khi định giải quyết chuyện đó bằng thêm một ticket nữa.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/tickets-165-122-same-bug/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"165 ticket mới mà 122 cái là cùng một lần kiểm tra","description":"Một ngày có 165 ticket mới được mở, trong đó 122 cái do cùng một công cụ kiểm tra màn hình tạo ra. Riêng chữ đè lên nút đã là 101 cái. Bài này ghi các con số của ngày danh sách tăng từ 278 lên 412 ticket, và chỗ tôi đánh giá sai khi định giải quyết chuyện đó bằng thêm một ticket nữa.","inLanguage":"vi","datePublished":"2026-11-14","dateModified":"2026-11-14","image":"https://dumbgamelab.com/blog/img/tickets-165-122-same-bug/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/tickets-165-122-same-bug/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Nuôi Quán Net","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"165 ticket mới mà 122 cái là cùng một lần kiểm tra","item":"https://dumbgamelab.com/vi/blog/tickets-165-122-same-bug/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ticket tự động tạo ra mỗi ngày cả trăm cái thì nên làm gì?","acceptedAnswer":{"@type":"Answer","text":"Trước hết đếm theo từng loại để xem bao nhiêu phần trăm do cùng một công cụ mở. Nếu một loại vượt 70%, đặt quy tắc gộp cùng loại vào một ticket sẽ làm danh sách ngắn đi hơn là cố đóng nhanh hơn."}},{"@type":"Question","name":"Có nên tạo một ticket cho mỗi kết quả kiểm tra không?","acceptedAnswer":{"@type":"Answer","text":"Cách đó không bỏ sót, nhưng cùng một vấn đề trên cùng một màn hình sẽ thành nhiều ticket. Nếu mở một ticket cho mỗi game hoặc mỗi màn hình và để các vấn đề giống nhau thành từng dòng bên trong, thì việc đóng cũng xong trong một lần."}},{"@type":"Question","name":"Có nên viết chuyện quá nhiều ticket thành một ticket không?","acceptedAnswer":{"@type":"Answer","text":"Nếu sửa được ngay trong ngày thì nên sửa luôn. Tôi đã dồn nó vào một ticket nên danh sách chỉ dài thêm một cái, và ngày hôm sau tôi mới đổi quy tắc."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký dev, chuyện rắc rối</p>
+    <h1>165 ticket mới mà 122 cái là cùng một lần kiểm tra</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-14">2026-11-14</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="Màn hình phòng nghiên cứu của game quản lý quán net. Phía trên là các thẻ cách bảo dưỡng ghế, công thức đồ ăn vặt và tờ rơi, bên dưới là các thẻ nghiên cứu đang khóa, thanh tab dưới cùng có các nút Quán, Cửa hàng, Nhân sự, Nghiên cứu và Xếp hạng" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Ngày 4 tháng 11, có 165 ticket mới được mở và 122 cái trong số đó do một công cụ kiểm tra màn hình tạo ra: chữ đè lên nút 101, vùng an toàn 10, màu sắc 8, chồng lớp 3. Tôi chỉ đóng được 32 cái nên số ticket còn lại từ 278 thành 412. Nguyên nhân là tôi để công cụ mở một ticket cho mỗi lỗi nó tìm thấy, và lúc đầu tôi còn định dồn chuyện này vào một ticket nữa.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Ngày 4 tháng 11: 165 ticket mới, 32 đã giải quyết, còn lại 412</a></li><li><a href="#s2">122 cái đều do một công cụ kiểm tra màn hình mở ra</a></li><li><a href="#s3">Vì sao một loại lỗi lại mở ra nhiều ticket đến vậy</a></li><li><a href="#s4">Chỗ tôi đánh giá sai: lấy ticket để giải quyết chuyện quá nhiều ticket</a></li><li><a href="#s5">Hôm sau tôi sửa ba thứ</a></li><li><a href="#s6">Con số sau đó thì tôi chưa biết</a></li></ol></nav>
+    <section id="s1"><h2>Ngày 4 tháng 11: 165 ticket mới, 32 đã giải quyết, còn lại 412</h2>
+<p>Đây là dòng số liệu trong nhật ký hôm đó: merge 269, ticket mới 165, ticket đã giải quyết 32, ticket còn lại 412. Hôm qua số ticket còn lại là 278. Chỉ một ngày mà danh sách dài thêm 134 cái.</p>
+<p>Hôm đó không phải ngày tôi lười. Tôi sửa cảm giác tay của màn đánh nhau trong game Chichi, phát hành ba bản, và mở rộng cả công cụ tự kiểm tra. Vậy mà danh sách chỉ dài ra, và khi mở thử các ticket mới tôi thấy rất nhiều cái giống hệt nhau.</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="Màn hình phòng nghiên cứu của game quản lý quán net. Chín thẻ nghiên cứu và thanh tab dưới cùng nằm gọn trong một màn hình" loading="lazy" decoding="async"><figcaption>Màn hình càng chen chúc thẻ, chữ và nút thì càng có nhiều chỗ để công cụ kiểm tra bắt lỗi.</figcaption></figure></section>
+<section id="s2"><h2>122 cái đều do một công cụ kiểm tra màn hình mở ra</h2>
+<p>Tôi đếm 165 ticket mới theo từng loại. Có 122 cái là kết quả của cùng một công cụ kiểm tra màn hình. Công cụ này mở game ở kích thước điện thoại rồi đo xem chữ có đè lên nút không, có tràn ra ngoài vùng an toàn ở mép màn hình không, và màu có bị lệch không.</p>
+<p>Cộng lại là 101 cộng 10 cộng 8 cộng 3, đúng 122 cái. Vậy 74% ticket mới đến từ một công cụ. Nó cũng giống hệt chuyện «16 lỗi bản cũ» của ngày hôm trước. Hôm nào máy tìm ra nhiều lỗi một lúc thì danh sách nghiêng hẳn về phía máy.</p>
+<ul><li>Chữ đè lên nút: 101 ticket</li><li>Vùng an toàn: 10 ticket</li><li>Màu sắc: 8 ticket</li><li>Chồng lớp: 3 ticket</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/shop.jpg" alt="Màn hình cửa hàng của game quản lý quán net. Máy tính cũ, máy bán nước tự động, máy lọc nước và bếp nấu mì được xếp thành các thẻ, mỗi thẻ có một nút giá bên dưới" loading="lazy" decoding="async"><figcaption>Màn hình mà thẻ nào cũng có chữ và nút giá. Ô càng nhiều thì chỗ cần đo độ đè càng nhiều.</figcaption></figure></section>
+<section id="s3"><h2>Vì sao một loại lỗi lại mở ra nhiều ticket đến vậy</h2>
+<p>Công cụ kiểm tra được viết để cứ tìm thấy một vấn đề là mở một ticket. Một màn hình có mười chỗ chữ đè lên nút thì có mười ticket. Với mười game và mỗi game nhiều màn hình, một trăm ticket mỗi ngày đến rất nhanh.</p>
+<p>Lúc viết, tôi nghĩ mở từng cái một thì sẽ không sót cái nào. Nhưng đứng ở phía đóng ticket mà nhìn, cả mười cái đều chỉ là một dòng «sửa kích thước nút ở màn hình này».</p>
+</section>
+<section id="s4"><h2>Chỗ tôi đánh giá sai: lấy ticket để giải quyết chuyện quá nhiều ticket</h2>
+<p>Hôm đó nhìn cảnh này, tôi tạo một ticket với tiêu đề «gộp ticket tự động kiểm tra bị tràn». Trong nhật ký tôi cũng viết «lần này sẽ mở một ticket». Tức là vấn đề có quá nhiều ticket, tôi lại dồn cho một ticket nữa.</p>
+<p>Ticket đó có một ô ghi «vì sao hôm nay chưa làm», và tôi điền «đây là lượt nhật ký nên nằm ngoài phạm vi». Con số đã hiện ra ngay hôm đó mà tôi vẫn để việc sửa sang ngày hôm sau. Việc định làm cho danh sách ngắn lại rốt cuộc chỉ làm nó dài thêm một dòng.</p>
+<figure><img src="/blog/img/tickets-165-122-same-bug/staff.jpg" alt="Màn hình nhân sự của game quản lý quán net. Bên dưới thẻ nhân vật ông chủ là hai đơn xin việc chưa mở và nút đếm giờ chờ đơn mới xếp thành hàng" loading="lazy" decoding="async"><figcaption>Giống đơn xin việc chưa ai mở, ticket chỉ mở rồi để đó cũng chiếm một dòng trong danh sách.</figcaption></figure></section>
+<section id="s5"><h2>Hôm sau tôi sửa ba thứ</h2>
+<p>Ngày 5 tháng 11, tôi đổi cách công cụ kiểm tra tạo ticket (#5783). Từ chỗ mỗi lỗi một ticket, tôi gộp lại thành mỗi game một ticket.</p>
+<ul><li>Mỗi game chỉ mở một ticket.</li><li>Các vấn đề cùng dấu vết chỉ ghi thành một dòng trong ticket đó.</li><li>Khi vấn đề biến mất thì xóa dòng đó, và khi số dòng về 0 thì đóng ticket.</li></ul>
+<figure><img src="/blog/img/tickets-165-122-same-bug/home.jpg" alt="Màn hình quán của game quản lý quán net. Trong quán net tối có các chỗ ngồi máy tính và máy bán hàng tự động, hộp hướng dẫn bên dưới có nút Bỏ qua và nút Đã hiểu" loading="lazy" decoding="async"><figcaption>Chỉ một hộp hướng dẫn cũng đã có chữ và hai nút. Công cụ kiểm tra phải đo tất cả những màn hình như vậy.</figcaption></figure></section>
+<section id="s6"><h2>Con số sau đó thì tôi chưa biết</h2>
+<p>Sau hôm đó, ngày 5 tháng 11 có 55 ticket mới. Có điều hôm ấy còn lẫn cả ticket do người mở, nên tôi chưa tách riêng được việc gộp đã làm giảm bao nhiêu. Tôi chỉ xác nhận được một điều: phải quyết định quy tắc gộp nằm ở đâu trước, thì sau này mới đo được hiệu quả.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Ticket tự động tạo ra mỗi ngày cả trăm cái thì nên làm gì?</summary><p>Trước hết đếm theo từng loại để xem bao nhiêu phần trăm do cùng một công cụ mở. Nếu một loại vượt 70%, đặt quy tắc gộp cùng loại vào một ticket sẽ làm danh sách ngắn đi hơn là cố đóng nhanh hơn.</p></details><details><summary>Có nên tạo một ticket cho mỗi kết quả kiểm tra không?</summary><p>Cách đó không bỏ sót, nhưng cùng một vấn đề trên cùng một màn hình sẽ thành nhiều ticket. Nếu mở một ticket cho mỗi game hoặc mỗi màn hình và để các vấn đề giống nhau thành từng dòng bên trong, thì việc đóng cũng xong trong một lần.</p></details><details><summary>Có nên viết chuyện quá nhiều ticket thành một ticket không?</summary><p>Nếu sửa được ngay trong ngày thì nên sửa luôn. Tôi đã dồn nó vào một ticket nên danh sách chỉ dài thêm một cái, và ngày hôm sau tôi mới đổi quy tắc.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Tycoon Nhàn Rỗi</p><p class="gb-title"><a href="/vi/games/pcbangalba/">Nuôi Quán Net</a></p><p class="gb-hook">Những chuyện rắc rối như thế này tôi sẽ tiếp tục đăng thành nhật ký dev. Bạn có thể xem các game tôi làm ở bên dưới.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dvi" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug" rel="noopener">Chơi trên trình duyệt</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/tickets-165-122-same-bug/" hreflang="en" lang="en">English</a><a href="/ko/blog/tickets-165-122-same-bug/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/tickets-165-122-same-bug/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/tickets-165-122-same-bug/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>新開的 165 張工單裡，有 122 張是同一種檢查</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/tickets-165-122-same-bug/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/tickets-165-122-same-bug/</guid>
+    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
+    <description>一天新開了 165 張工單，其中 122 張是同一個畫面檢查工具開的，光是文字與按鈕重疊就 101 張。這篇寫待辦清單從 278 張變成 412 張那天的數字，還有我又想用一張工單去解決工單太多，判斷錯在哪裡。</description>
+  </item>
+  <item>
     <title>我關掉 78 張，清單卻原地不動</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/ticket-101-made-78-done/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/games-like-internet-cafe-simulator/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>從 Steam 和手機挑出與 Internet Cafe Simulator 1、2代相似的網咖經營遊戲，把平台、定價、離線、玩法一次列成表比較，連我們自己遊戲的弱點也寫進去。</description>
-  </item>
-  <item>
-    <title>汗蒸幕不能做的事：內褲、洗澡、手機、拍照、刺青一次看懂</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-etiquette/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-etiquette/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>汗蒸幕要穿內褲嗎、要先洗澡嗎、可以帶手機或拍照嗎、刺青可以去嗎、要帶毛巾嗎。依提問順序整理汗蒸幕（찜질방）容易搞混的規則，各家規定不同的部分也另外標示。</description>
   </item>
 </channel>
 </rss>
