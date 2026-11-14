@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>饭在那边，这只蜂却先去滚球</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/bee-ball-play/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/bee-ball-play/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>熊蜂在没有食物奖励的情况下反复滚动小球。研究团队认为，这种行为符合动物玩耍的判定标准。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/bee-ball-cover.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>“Zipper”原本是胶靴的名字</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/zipper-boots/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/zipper-boots/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>同一个词一直重复，意思会暂时消失，这就是语义饱和。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>有只老鼠活到了37岁</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/naked-mole-rat/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/naked-mole-rat/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>裸鼹鼠能活37年以上，而且就算上了年纪，死亡的概率也不会升高。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/molerat.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

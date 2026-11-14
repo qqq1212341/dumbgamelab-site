@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ごはんはあっち。でも先にボール遊び</title>
+    <link>https://dumbgamelab.com/ja/blog/bee-ball-play/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/bee-ball-play/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>マルハナバチはエサのごほうびがなくても、小さなボールを繰り返し転がした。研究チームは動物の遊びの基準に合う行動だと考えた。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/bee-ball-cover.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>新規チケット165件のうち122件が同じチェックだった</title>
     <link>https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/tickets-165-122-same-bug/</guid>
@@ -222,14 +230,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-daily-places-as-tycoon-games/</guid>
     <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
     <description>韓国のPC房は2019年の11,801店から2026年4月には6,658店に減り、公衆浴場業は最多で約1万店だったのが5,991店になりました。消えていく町の場所がなぜ経営ゲームの舞台に向くのかを、自作ゲームの画面で書きます。</description>
-  </item>
-  <item>
-    <title>金星では太陽が西からのぼる</title>
-    <link>https://dumbgamelab.com/ja/blog/venus-west/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/venus-west/</guid>
-    <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
-    <description>金星は逆向きに回っているので太陽が西からのぼり、ひと回りの自転が1年より長い。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/venus.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
