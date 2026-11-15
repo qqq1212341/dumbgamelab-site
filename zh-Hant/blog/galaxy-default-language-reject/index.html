@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三星 Galaxy Store 審核被退回，原因是「預設語言」填了韓文</title>
+<meta name="description" content="第一次把遊戲上架三星 Galaxy Store，結果收到 Test Confirmation Rejected。問題不在 App，而是預設語言欄位。賣家審核申請了四次、首次提交又踩到年齡分級欄位的坑，最後一關竟是語言。這是我的開發日誌。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/galaxy-default-language-reject/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/galaxy-default-language-reject/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/galaxy-default-language-reject/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/galaxy-default-language-reject/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/galaxy-default-language-reject/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/galaxy-default-language-reject/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="三星 Galaxy Store 審核被退回，原因是「預設語言」填了韓文">
+<meta property="og:description" content="第一次把遊戲上架三星 Galaxy Store，結果收到 Test Confirmation Rejected。問題不在 App，而是預設語言欄位。賣家審核申請了四次、首次提交又踩到年齡分級欄位的坑，最後一關竟是語言。這是我的開發日誌。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/galaxy-default-language-reject/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/galaxy-default-language-reject/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"三星 Galaxy Store 退回我的遊戲，原因是「預設語言」欄位","description":"第一次把遊戲上架三星 Galaxy Store，結果收到 Test Confirmation Rejected。問題不在 App，而是預設語言欄位。賣家審核申請了四次、首次提交又踩到年齡分級欄位的坑，最後一關竟是語言。這是我的開發日誌。","inLanguage":"zh-TW","datePublished":"2026-11-15","dateModified":"2026-11-15","image":"https://dumbgamelab.com/blog/img/galaxy-default-language-reject/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/galaxy-default-language-reject/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"僅此一次的人生","gamePlatform":[]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"三星 Galaxy Store 退回我的遊戲，原因是「預設語言」欄位","item":"https://dumbgamelab.com/zh-Hant/blog/galaxy-default-language-reject/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Galaxy Store 的預設語言要選什麼？","acceptedAnswer":{"@type":"Answer","text":"如果銷售到兩個以上的國家，預設名稱和說明必須是英文。第一次建立 App 時就把預設語言選成 English，再用新增語言補上韓文，比較保險。"}},{"@type":"Question","name":"Test Confirmation Rejected 是什麼意思？","acceptedAnswer":{"@type":"Answer","text":"表示審核被退回。原因要點開清單裡審核欄的圖示，打開附件（Report.html）才讀得到。問題也可能不在 App 本身，而是名稱、說明這類上架資訊。"}},{"@type":"Question","name":"被退回之後，可以用同一個 APK 重新送審嗎？","acceptedAnswer":{"@type":"Answer","text":"可以。審核失敗狀態下的檔案無法原樣再送，所以要到檔案分頁刪掉那個 APK，再把同一個檔案重新加入，版本號碼不變也通過了。"}},{"@type":"Question","name":"截圖也要另外上傳英文版嗎？","acceptedAnswer":{"@type":"Answer","text":"要。截圖是每個語言各自上傳的。預設語言改成英文後，英文欄位得重新補上 4～8張 截圖（我補了 6張）。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 · 波折記</p>
+    <h1>三星 Galaxy Store 退回我的遊戲，原因是「預設語言」欄位</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-15">2026-11-15</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/galaxy-default-language-reject/hero.jpg" alt="只活一次：人生模擬器 英文版畫面兩張。左邊是出生在美國的 9 歲孩子與依年齡排列的人生時間軸，右邊是 15 歲時在「Keep studying」與「Start earning money」之間做選擇的畫面" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">要把 App 賣到兩個以上的國家，三星 Galaxy Store 要求預設名稱和說明必須是英文。我把預設語言設成韓文，送出《只活一次：人生模擬器》，11月11日收到 Test Confirmation Rejected。在那之前，我已經歷了四次賣家審核，還踩過首次提交的年齡分級欄位陷阱。後來我補上英文名稱、說明和 6張 截圖重新送審；另一款設定相同的遊戲，我則直接取消審核，改成英文預設再送。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">賣家審核申請四次，接著才能提交</a></li><li><a href="#s2">退回原因：預設名稱和說明不是英文</a></li><li><a href="#s3">修正方式：預設語言改英文，韓文用「新增語言」補上</a></li><li><a href="#s4">設定相同的另一款遊戲，我先動手改了</a></li><li><a href="#s5">一個看了會想笑的原因，花了我兩天</a></li></ol></nav>
+    <section id="s1"><h2>賣家審核申請四次，接著才能提交</h2>
+<p>在 Galaxy Store 上架 App 之前，要先通過賣家審核。我 10月21日 第一次申請轉為付費賣家，11月10日 第4次申請 才通過。每次被退回的原因都一樣：商業登記資料（D-U-N-S）的檔案裡看不到網站。</p>
+<p>通過後我馬上上傳了《只活一次：人生模擬器》1.0.7。這一步也有個坑：畫面上有兩個選年齡限制的欄位，其中一個是給中國用的隱藏欄位，填在那裡的話，儲存會顯示「完成」，提交卻被擋下。我找到真正的欄位、填入 12+，清單上才跳出 Ready for Review。</p>
+<figure><img src="/blog/img/galaxy-default-language-reject/choice.jpg" alt="只活一次：人生模擬器 英文版 15 歲畫面。上方是夕陽下城市窗邊的房間與少年，下方有 Keep studying、Start earning money 兩個按鈕" loading="lazy" decoding="async"><figcaption>這是送審的《只活一次：人生模擬器》英文畫面。遊戲本身有英文介面，只有商店的預設欄位是韓文。</figcaption></figure></section>
+<section id="s2"><h2>退回原因：預設名稱和說明不是英文</h2>
+<p>提交之後，狀態變成了 Test Confirmation Rejected。退回原因要點開清單裡審核欄的圖示，打開附件（Report.html）才看得到。只有一行：「[Metadata] Default description and application name (Not in English)」。</p>
+<p>它不是說 App 會當機，也不是說違反政策。我建立 App 時把預設語言選成 Korean，而銷售國家有兩個以上，所以預設名稱和說明必須是英文。我原本以為韓文遊戲的預設就該是韓文，這個想法是錯的。</p>
+<ul><li>狀態：Test Confirmation Rejected</li><li>原因：Default description and application name (Not in English)</li><li>根源：預設語言欄位是 Korean</li></ul>
+</section>
+<section id="s3"><h2>修正方式：預設語言改英文，韓文用「新增語言」補上</h2>
+<p>修正順序是這樣：先在新增語言裡加入 English，把預設語言改成 English，再用英文重寫名稱、說明和一句話簡介。英文名稱我取為「One Life: Reborn Simulator」，韓文則留作額外語言。</p>
+<p>截圖是每個語言各自獨立的，所以我在英文欄位重新上傳了 6張 英文畫面。最後，「審核失敗」狀態下的 App 檔案無法原樣再送，我就在檔案分頁刪掉同一個 APK 再重新加入。版本號碼不用改，照樣通過了。</p>
+<figure><img src="/blog/img/galaxy-default-language-reject/result.jpg" alt="只活一次：人生模擬器 英文版結果畫面兩張。左邊是 92 歲美國記者的人生卡片，右邊是同一秒出生的五個人的年齡與國家列表" loading="lazy" decoding="async"><figcaption>這是上傳成英文截圖的結果畫面。這款遊戲會拿同一秒出生的人來互相比較。</figcaption></figure></section>
+<section id="s4"><h2>設定相同的另一款遊戲，我先動手改了</h2>
+<p>當時還有另一款遊戲在審核中。Trigger Trio 的預設語言也是韓文，一定會因為同樣的原因被退，所以我沒等結果，直接取消審核，改成英文預設再送。取消之後狀態會回到「登錄中」，就可以修改了。</p>
+<p>上架流程文件的第一行，我也從「預設語言 Korean」改成了「English」（#6643）。往後的遊戲，一開始建立就用英文。</p>
+</section>
+<section id="s5"><h2>一個看了會想笑的原因，花了我兩天</h2>
+<p>賣家審核花了3週，年齡欄位的坑踩了一次，語言欄位則花了兩天。打開退回通知之前，我一直懷疑是 App 檔案太大或權限有問題。原因明明只有一行，但要找到那一行，得點進清單圖示的裡面。</p>
+<p>兩款遊戲現在都在等審核。截至寫這篇文章時，我還不知道有沒有通過。結果出來後，我會補在這篇文章裡。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Galaxy Store 的預設語言要選什麼？</summary><p>如果銷售到兩個以上的國家，預設名稱和說明必須是英文。第一次建立 App 時就把預設語言選成 English，再用新增語言補上韓文，比較保險。</p></details><details><summary>Test Confirmation Rejected 是什麼意思？</summary><p>表示審核被退回。原因要點開清單裡審核欄的圖示，打開附件（Report.html）才讀得到。問題也可能不在 App 本身，而是名稱、說明這類上架資訊。</p></details><details><summary>被退回之後，可以用同一個 APK 重新送審嗎？</summary><p>可以。審核失敗狀態下的檔案無法原樣再送，所以要到檔案分頁刪掉那個 APK，再把同一個檔案重新加入，版本號碼不變也通過了。</p></details><details><summary>截圖也要另外上傳英文版嗎？</summary><p>要。截圖是每個語言各自上傳的。預設語言改成英文後，英文欄位得重新補上 4～8張 截圖（我補了 6張）。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/onelife.png" alt="僅此一次的人生" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">依真實出生機率度過一生的人生模擬</p><p class="gb-title">僅此一次的人生</p><p class="gb-hook">這類波折，我會持續寫成開發日誌。文中的《只活一次：人生模擬器》可以在下方看到。</p>
+  <div class="gb-btns"><a class="store ghost" href="https://dumbgamelab.com/play/one-life/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=galaxy-default-language-reject" rel="noopener">在瀏覽器玩</a></div></div>
+</aside>
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/galaxy-default-language-reject/" hreflang="en" lang="en">English</a><a href="/ko/blog/galaxy-default-language-reject/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/galaxy-default-language-reject/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

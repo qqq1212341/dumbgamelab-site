@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>Galaxy Store がゲームをリジェクトした理由は「デフォルト言語」の欄だった</title>
+    <link>https://dumbgamelab.com/ja/blog/galaxy-default-language-reject/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/galaxy-default-language-reject/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ギャラクシーストアに初めてゲームを申請し、Test Confirmation Rejected になりました。原因はアプリではなくデフォルト言語の設定でした。販売者承認に4回、初回申請では年齢設定の落とし穴にも当たり、最後の壁が言語だったという記録です。</description>
+  </item>
+  <item>
     <title>ごはんはあっち。でも先にボール遊び</title>
     <link>https://dumbgamelab.com/ja/blog/bee-ball-play/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/bee-ball-play/</guid>
@@ -223,13 +230,6 @@
     <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
     <description>オークニー諸島のウェストレー島とパパウェストレー島を結ぶフライトは2.7kmで、1分ちょっとで終わる。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>PC房とチムジルバンは、なぜコージー経営ゲームに向いているのか</title>
-    <link>https://dumbgamelab.com/ja/blog/korean-daily-places-as-tycoon-games/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-daily-places-as-tycoon-games/</guid>
-    <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
-    <description>韓国のPC房は2019年の11,801店から2026年4月には6,658店に減り、公衆浴場業は最多で約1万店だったのが5,991店になりました。消えていく町の場所がなぜ経営ゲームの舞台に向くのかを、自作ゲームの画面で書きます。</description>
   </item>
 </channel>
 </rss>
