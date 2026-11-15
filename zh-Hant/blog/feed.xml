@@ -14,6 +14,13 @@
     <description>第一次把遊戲上架三星 Galaxy Store，結果收到 Test Confirmation Rejected。問題不在 App，而是預設語言欄位。賣家審核申請了四次、首次提交又踩到年齡分級欄位的坑，最後一關竟是語言。這是我的開發日誌。</description>
   </item>
   <item>
+    <title>Roblox ASMR 塔，用手機玩的兩種方式</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/roblox-asmr-tower-on-phone/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/roblox-asmr-tower-on-phone/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>想在手機玩 Roblox 的 ASMR 塔嗎？整理了用 Roblox App 進入的方式，以及不需要 Roblox、只用一個 App 就能爬的 8 張地圖 ASMR 跳躍遊戲瓦普塔，兩者有什麼不同。</description>
+  </item>
+  <item>
     <title>新開的 165 張工單裡，有 122 張是同一種檢查</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/tickets-165-122-same-bug/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/tickets-165-122-same-bug/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/best-idle-tycoon-games-offline/</guid>
     <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
     <description>放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</description>
-  </item>
-  <item>
-    <title>類似 Game Dev Story 的遊戲，開羅遊戲之外還有這7款</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/games-like-game-dev-story/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/games-like-game-dev-story/</guid>
-    <pubDate>Thu, 15 Oct 2026 15:00:00 GMT</pubDate>
-    <description>玩完 Game Dev Story（遊戲發展國）還想繼續經營？從 Steam、App Store、Google Play 挑出7款，價格、評價、支援語言一張表比完，連我們遊戲的缺點也寫進去。</description>
   </item>
 </channel>
 </rss>

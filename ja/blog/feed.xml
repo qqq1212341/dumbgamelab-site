@@ -14,6 +14,13 @@
     <description>ギャラクシーストアに初めてゲームを申請し、Test Confirmation Rejected になりました。原因はアプリではなくデフォルト言語の設定でした。販売者承認に4回、初回申請では年齢設定の落とし穴にも当たり、最後の壁が言語だったという記録です。</description>
   </item>
   <item>
+    <title>ロブロックスのASMRタワー、スマホで遊ぶ道は2つ</title>
+    <link>https://dumbgamelab.com/ja/blog/roblox-asmr-tower-on-phone/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/roblox-asmr-tower-on-phone/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ロブロックスのASMRタワーをスマホで遊びたい人向けの整理です。ロブロックスアプリで入る道と、ロブロックスなしでアプリ1本で登る8マップのASMRジャンプゲーム、ワクプタワーの違いをまとめました。</description>
+  </item>
+  <item>
     <title>ごはんはあっち。でも先にボール遊び</title>
     <link>https://dumbgamelab.com/ja/blog/bee-ball-play/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/bee-ball-play/</guid>
@@ -222,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</guid>
     <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
     <description>ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</description>
-  </item>
-  <item>
-    <title>世界一短いフライトは1分で終わる</title>
-    <link>https://dumbgamelab.com/ja/blog/shortest-flight/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/shortest-flight/</guid>
-    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
-    <description>オークニー諸島のウェストレー島とパパウェストレー島を結ぶフライトは2.7kmで、1分ちょっとで終わる。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

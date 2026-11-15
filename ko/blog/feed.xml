@@ -14,6 +14,13 @@
     <description>갤럭시 스토어에 게임을 처음 냈다가 Test Confirmation Rejected 를 받았습니다. 이유는 앱이 아니라 기본 언어 칸이었어요. 판매자 승인에 네 번, 첫 제출에 연령 칸 함정까지 겪은 뒤 마지막 벽이 언어였던 기록입니다.</description>
   </item>
   <item>
+    <title>로블록스 왁푸 타워, 폰으로 하는 길 두 가지</title>
+    <link>https://dumbgamelab.com/ko/blog/roblox-asmr-tower-on-phone/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/roblox-asmr-tower-on-phone/</guid>
+    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
+    <description>로블록스 왁푸(왁뿌) 타워를 폰에서 하려는 사람을 위한 정리입니다. 로블록스 앱으로 들어가는 길과 로블록스 없이 폰 앱 하나로 오르는 ASMR 점프 게임의 차이를 적었습니다.</description>
+  </item>
+  <item>
     <title>밥은 저쪽인데, 이 벌은 공을 굴린다</title>
     <link>https://dumbgamelab.com/ko/blog/bee-ball-play/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/bee-ball-play/</guid>
@@ -222,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/best-pc-cafe-games-2026/</guid>
     <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
     <description>PC방·인터넷 카페 경영 게임을 아이폰, 안드로이드, Steam으로 나눠 17종 골랐습니다. 스토어 페이지에서 직접 읽은 가격, 평점, 오프라인 문구와 우리 게임의 약점까지 적었습니다.</description>
-  </item>
-  <item>
-    <title>세상에서 제일 짧은 비행은 1분이면 끝난다</title>
-    <link>https://dumbgamelab.com/ko/blog/shortest-flight/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/shortest-flight/</guid>
-    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
-    <description>오크니 제도의 웨스트레이와 파파웨스트레이를 잇는 비행은 2.7km, 1분 남짓이면 끝난다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/flight-plane.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
