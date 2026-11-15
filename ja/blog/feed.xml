@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>郵便を届けたら、船に飛び乗れ！</title>
+    <link>https://dumbgamelab.com/ja/blog/mailboat-jumpers/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/mailboat-jumpers/</guid>
+    <pubDate>Sun, 15 Nov 2026 15:00:00 GMT</pubDate>
+    <description>米ウィスコンシン州のジェニーバ湖では、夏に動く船と桟橋を行き来して郵便を配る。戻り損ねても、船長が迎えに来てくれる。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/mailboat-walworth.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Galaxy Store がゲームをリジェクトした理由は「デフォルト言語」の欄だった</title>
     <link>https://dumbgamelab.com/ja/blog/galaxy-default-language-reject/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/galaxy-default-language-reject/</guid>
@@ -222,13 +230,6 @@
     <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
     <description>宇宙ステーションは93分で地球を一周するので、一日に日の出を15〜16回見る。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</title>
-    <link>https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-pc-cafe-games-2026/</guid>
-    <pubDate>Sat, 31 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</description>
   </item>
 </channel>
 </rss>

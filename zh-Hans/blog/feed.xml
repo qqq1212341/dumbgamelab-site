@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>投完信快跑！船还在走呢</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/mailboat-jumpers/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/mailboat-jumpers/</guid>
+    <pubDate>Sun, 15 Nov 2026 15:00:00 GMT</pubDate>
+    <description>美国威斯康星州的日内瓦湖，夏季邮递员在码头与行驶中的船之间跳跃送信。没赶上回程一跳，船长会回来接人。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/mailboat-walworth.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>饭在那边，这只蜂却先去滚球</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/bee-ball-play/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/bee-ball-play/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>宝宝的膝盖骨是软骨，大约从三岁开始变成骨头。骨头的数量反而会随着长大变少。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>同一个词说太多遍，意思就没了</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/semantic-satiation/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/semantic-satiation/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>同一个词一直重复，意思会暂时消失，这就是语义饱和。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/satiation-typewriter.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

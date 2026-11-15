@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Deliver the mail. Now catch the boat!</title>
+    <link>https://dumbgamelab.com/en/blog/mailboat-jumpers/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/mailboat-jumpers/</guid>
+    <pubDate>Sun, 15 Nov 2026 15:00:00 GMT</pubDate>
+    <description>On Geneva Lake in Wisconsin, summer mail carriers jump between docks and a moving boat. If they miss the return jump, the captain comes back for them.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/mailboat-walworth.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>When do hit mobile games show their first ad? We timed 8 of them</title>
     <link>https://dumbgamelab.com/en/blog/first-ad-timing-hit-mobile-games/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/first-ad-timing-hit-mobile-games/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-seoul-for-foreigners/</guid>
     <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
     <description>Foreigners can use a Seoul PC bang (Korean internet cafe) as a kiosk &quot;Guest&quot; with no Korean phone number. Hourly prices of 1,000 to 2,000 won, overnight packages, payment, the 22:00 minors rule and Korean-server account problems, with sources.</description>
-  </item>
-  <item>
-    <title>The People Who See 16 Sunrises a Day</title>
-    <link>https://dumbgamelab.com/en/blog/iss-16-sunrises/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/iss-16-sunrises/</guid>
-    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
-    <description>The space station goes around Earth every 93 minutes, so the people on board see 15 to 16 sunrises a day.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-station.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
