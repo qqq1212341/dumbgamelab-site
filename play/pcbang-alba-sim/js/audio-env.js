@@ -282,7 +282,13 @@
           if (pausedMedia.indexOf(this) < 0) pausedMedia.push(this);
           return Promise.resolve();
         }
-        return nativePlay.apply(this, arguments);
+        /* ★ 자동재생 정책이 재생을 거절해도(«The play method is not allowed …» — 파이어폭스가 탭을 뒤에서 열었다
+           앞으로 가져왔을 때 · PC방 웹 474fed761 t-261113-tzvf) 그건 «이번엔 소리를 못 켰다»일 뿐이다 — 위 resume() 과 같다.
+           받는 손 없이 부른 play() 도 있다(서드파티·옛 코드). 거절을 여기서 한 번 받아 unhandledrejection 으로 새지 않게 하고,
+           부른 쪽은 원래 약속을 그대로 받는다(직접 then/catch 를 걸어도 된다). */
+        var promise = nativePlay.apply(this, arguments);
+        if (promise && typeof promise.catch === 'function') promise.catch(function () {});
+        return promise;
       };
     }
     ['AudioContext', 'webkitAudioContext'].forEach(function (name) {

@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"pcbangalba","build":"3f9b5d33f","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"pcbangalba","build":"528c9d214","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -167,7 +167,12 @@
    * 사파리 «문제가 발생하여 다시 읽음»). 같은 탭인지는 탭마다 따로인 sessionStorage 의 sid 로 본다 — 그 판은 탭 두 개 걱정이 없으니 hb 를 안 본다 */
   var tabPrev = "";
   try { tabPrev = sessionStorage.getItem(KEY) || ""; sessionStorage.setItem(KEY, sid); } catch (e) { /* 못 읽으면 웹 비정상 종료만 못 본다 */ }
-  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid;
+  /* 다시 읽힌 판이라도 브라우저가 «뒤에서» 버린 탭(크롬 탭 버림 · 안드로이드가 뒤로 간 렌더러를 죽임)을 돌아와 다시 읽은 것이면 앞 화면 죽음이 아니다 —
+   * 크롬은 «뒤로 감»(fg:0) 쓰기를 늦게 커밋하므로 뒤로 가자마자 죽은 탭은 fg:1 로 남는다. 마지막 손 50:48 → 다음 판 보고 …50:01(59분 넘게 뒤)
+   * 같은 탭 다시 읽기가 «앞 화면에서 꺼짐»으로 섰다(PC방 웹 3f9b5d33f · t-261114-o1cn). 브라우저가 버렸다고 말하거나(document.wasDiscarded),
+   * 마지막으로 살아 있던 때(hb·없으면 시작)에서 3분 넘게 지나 다시 읽혔으면 세지 않는다 — 앞 화면 죽음은 곧바로 다시 읽힌다(사파리 자동·크롬 «앗, 이런!» 다시 읽기) */
+  var prevAlive = prev ? Math.max(+prev.hb || 0, +prev.at || 0) : 0;
+  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid && !document.wasDiscarded && !!prevAlive && Date.now() - prevAlive < 180000;
   if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && (native ? !(prev.hb && Date.now() - prev.hb < 12000) : webDied)) {
     /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
     var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
@@ -178,7 +183,10 @@
      * 사유(사용자가 끔 10·11 포함)를 못 받고 «앞 화면에서 꺼짐»으로 샜다(주유소 1.0.1 «답 없음» · t-261103-xdg6). load 가 안 오는 판은 90초 상한 */
     if (native && (plat === "android" || plat === "ios")) {
       held = ab;
-      var noAnswer = function () { prevEnd("?", "", "", "", true); };
+      /* 가드에게 직접 묻는다(DglCrashAsk) — onPageFinished 밀어 주기만 믿으면 UI 스레드가 늦은 판은 20초 뒤 사유 없이 나갔다(빵 합치기 1.0.7 · t-261113-3rvz) */
+      var askGuard = function () { try { var A = window.DglCrashAsk, j = A && A.prevEnd && A.prevEnd(); if (j) { var a = JSON.parse(j); prevEnd(a[0], a[1], a[2], a[3]); } } catch (e) { /* 밀어 주기를 기다린다 */ } };
+      askGuard();
+      var noAnswer = function () { askGuard(); prevEnd("?", "", "", "", true); };
       heldT = setTimeout(noAnswer, 90000);
       window.addEventListener("load", function () { if (held) { clearTimeout(heldT); heldT = setTimeout(noAnswer, 20000); } });
     }
@@ -255,7 +263,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"3f9b5d33f","game":"pcbangalba","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}],"install":{"game":"pcbangalba","ios":"https://apps.apple.com/app/id6779939467","play":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba","pt":"128957953","qr":"install-qr.svg","qrFile":"marketing/web/install-qr.svg"}};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"528c9d214","game":"pcbangalba","bundle":[{"prefix":"assets/shared-human/","segments":1,"family":true}],"install":{"game":"pcbangalba","ios":"https://apps.apple.com/app/id6779939467","play":"https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba","pt":"128957953","qr":"install-qr.svg","qrFile":"marketing/web/install-qr.svg"}};</script>
 <meta name="description" content="망해가던 삼촌네 골목 PC방, 이젠 당신 것입니다. 기물을 놓고 알바를 뽑아 전국 1등 PC방으로. · Your uncle's failing back-alley internet cafe is yours now. Place gear, hire staff, play free in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PC방 키우기 · Internet Cafe: Idle Tycoon">
@@ -366,7 +374,7 @@
     #game::before { content: ''; position: absolute; z-index: 0; top: 9%; left: 19%; width: 62%; aspect-ratio: 2.7; background: url('assets/ui/logo.png') center/contain no-repeat; }
     /* 부팅 점 셋 — 느린 기기(에뮬레이터 등)에서 번들을 읽는 동안 «켜지는 중»이 보이게. 그림 파일 없이 CSS 만이라 첫 칠에 바로 선다.
        z-index 0 이라 캔버스(1)가 그려지면 그 밑으로 가려진다(로고 ::before 와 같은 방식) */
-    #game::after { content: ''; position: absolute; z-index: 0; left: calc(50% - 30px); bottom: 16%; width: 12px; height: 12px; border-radius: 50%; background: #f6c86a; box-shadow: 24px 0 #f6c86a, 48px 0 #f6c86a; animation: dgl-boot-dots 1.1s ease-in-out infinite alternate; }
+    #game::after {/* shape-ok: 진행 점·번호 칸·단추 바탕·도장 틀·로딩 점(UI 틀) */ content: ''; position: absolute; z-index: 0; left: calc(50% - 30px); bottom: 16%; width: 12px; height: 12px; border-radius: 50%; background: #f6c86a; box-shadow: 24px 0 #f6c86a, 48px 0 #f6c86a; animation: dgl-boot-dots 1.1s ease-in-out infinite alternate; }
     @keyframes dgl-boot-dots { from { opacity: .25; } to { opacity: 1; } }
     #game canvas { position: relative; z-index: 1; }
     /* ★ 안전 영역 = 변수 둘이 SOT(--dgl-safe-top·--dgl-safe-bottom). 게임 상자·DOM 고정 요소는 env() 를 직접 쓰지 않고 이 변수만 쓴다 — 출시 관문(check-safe-area-render)이 이 변수에 노치 값을 넣어 재 본다 */
@@ -414,7 +422,7 @@
       font-display: block;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BjegEIFX.js"></script>
+  <script type="module" crossorigin src="./assets/index-DMv8Sg3O.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/vendor-phaser-m-zbJ2tx.js">
 </head>
 <body>
