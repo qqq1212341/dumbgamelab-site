@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "65-45d25ca80a",
+ "version": "65-7982be1972",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -452,7 +452,7 @@
   {
    "id": "boxer-crab-gloves",
    "day": 38,
-   "hash": "48c0c1ff155f7c06",
+   "hash": "11fba15dfdd598ca",
    "ep": "episodes/boxer-crab-gloves.json",
    "i18n": {
     "en": "i18n/en/boxer-crab-gloves.json",
