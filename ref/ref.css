@@ -81,10 +81,11 @@ body.rf.rf-lock{overflow:hidden}
 /* 격자 — 줄 맞는 CSS grid. 세로 화면 = 1칸 × 3줄 · 가로 화면 = 2칸 × 2줄(--u 한 줄 높이). 그림은 자르지 않고 칸 안에 contain.
    칸 높이 = 줄 수 × --u + (줄 수 - 1) × 줄 간격(--rg). 폭 w 의 세로 칸이 ≈ 9:17, 2칸 폭 가로 칸이 ≈ 16:9 로 떨어진다(u = .575w + 16) */
 #screens,#games,.rf-gshots,.rf-rel{container-type:inline-size}
-.rf-grid{--cg:12px;--rg:12px;--cap:44px;--u:calc((100cqw - var(--cg)) / 2 * .575 + 16px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:var(--u);grid-auto-flow:dense;gap:var(--rg) var(--cg)}
-.rf-tile,.rf-card{display:flex;flex-direction:column;min-width:0;grid-row:span 3}
-.rf-tile[data-o=l],.rf-card[data-o=l]{grid-column:span 2;grid-row:span 2}
-.rf-shot{display:block;flex:1;min-height:0;border-radius:12px;background:#111113;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;overflow:hidden}
+.rf-grid{--cg:12px;--rg:12px;--cap:44px;--u:calc((100cqw - var(--cg)) / 2 * .575 + 16px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:calc((var(--u) - 3 * var(--rg)) / 4);grid-auto-flow:dense;gap:var(--rg) var(--cg)}
+.rf-tile,.rf-card{display:flex;flex-direction:column;min-width:0;grid-row:span 12}
+.rf-tile[data-o=l],.rf-card[data-o=l]{grid-column:span 2;grid-row:span var(--rs)}
+.rf-tile[data-o=s],.rf-card[data-o=s]{grid-row:span 8}
+.rf-shot{display:block;flex:0 1 auto;aspect-ratio:var(--ar);min-height:0;border-radius:12px;background:#111113;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;overflow:hidden}
 .rf-shot img{display:block;width:100%;height:100%;object-fit:contain}
 @media(hover:hover){.rf-shot:hover{outline-color:rgba(255,255,255,.4)}}
 .rf-tile figcaption,.rf-card figcaption{flex:none;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;height:var(--cap);padding-top:8px;min-width:0}
