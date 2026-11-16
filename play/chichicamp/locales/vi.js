@@ -2481,5 +2481,6 @@ window.__DGL_STRINGS = {
 "캠프에 앉을 데 있을까?":"Trại có chỗ ngồi không?",
 "타! 이 고양이가 사장이야.":"Lên đi! Con mèo này là chủ trại đấy.",
 "할아버지 잘 내려가셨어?":"Ông cụ đi xuống ổn cả chứ?",
-"오늘 마무리":"Kết thúc ngày"
+"오늘 마무리":"Kết thúc ngày",
+"밭에 심은 작물이 다 익었어요.":"Cây trồng ngoài ruộng đã chín hết rồi."
 };

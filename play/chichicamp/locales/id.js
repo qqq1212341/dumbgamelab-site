@@ -2481,5 +2481,6 @@ window.__DGL_STRINGS = {
 "캠프에 앉을 데 있을까?":"Ada tempat duduk di kemah?",
 "타! 이 고양이가 사장이야.":"Naik! Kucing ini bosnya.",
 "할아버지 잘 내려가셨어?":"Kakek sudah turun dengan aman?",
-"오늘 마무리":"Akhiri hari"
+"오늘 마무리":"Akhiri hari",
+"밭에 심은 작물이 다 익었어요.":"Semua tanaman di ladang sudah matang."
 };
