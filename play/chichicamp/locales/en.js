@@ -2480,5 +2480,6 @@ window.__DGL_STRINGS = {
 "캠프 이름":"Camp name",
 "캠프에 앉을 데 있을까?":"Any place to sit at camp?",
 "타! 이 고양이가 사장이야.":"Hop on! This cat's the boss.",
-"할아버지 잘 내려가셨어?":"Did Grandpa get down okay?"
+"할아버지 잘 내려가셨어?":"Did Grandpa get down okay?",
+"오늘 마무리":"Wrap up the day"
 };

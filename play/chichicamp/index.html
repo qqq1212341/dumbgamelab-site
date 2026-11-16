@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"1bf7f42f0","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"57baf9f7f","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -124,6 +124,8 @@
      * 몇 초는 «지각 230»으로 남는데 그 틈에 최근 앱에서 밀어 끄거나 제조사 정리가 시그널(사유 2)로 끄면 파일은 아직 fg 다(방구석뽑기왕 1.0.6 · t-261031-joyz) */
     var imp = /importance (\d+)/.exec(why || "");
     if (/exit reason (10|11|15|16) /.test(why || "") || (imp && +imp[1] > 200)) return;
+    /* OS 기록이 없는 판인데 그 뒤 기기가 다시 켜졌거나 앱이 깔렸다 — 앱이 죽은 게 아니다(가드가 «지난 판 뒤»를 붙인다 · t-261026-bqri) */
+    if (/지난 판 뒤 (기기 재부팅|앱 설치·업데이트)/.test(why || "")) return;
     /* 사유 줄 없이 보내지 않는다 — 빈 기록 한 장은 메모리 부족·강제 종료·진짜 크래시를 못 가른다(주유소 1.0.0 빵부스러기 0칸 · t-261103-xdg6).
      * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
     o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
@@ -165,7 +167,12 @@
    * 사파리 «문제가 발생하여 다시 읽음»). 같은 탭인지는 탭마다 따로인 sessionStorage 의 sid 로 본다 — 그 판은 탭 두 개 걱정이 없으니 hb 를 안 본다 */
   var tabPrev = "";
   try { tabPrev = sessionStorage.getItem(KEY) || ""; sessionStorage.setItem(KEY, sid); } catch (e) { /* 못 읽으면 웹 비정상 종료만 못 본다 */ }
-  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid;
+  /* 다시 읽힌 판이라도 브라우저가 «뒤에서» 버린 탭(크롬 탭 버림 · 안드로이드가 뒤로 간 렌더러를 죽임)을 돌아와 다시 읽은 것이면 앞 화면 죽음이 아니다 —
+   * 크롬은 «뒤로 감»(fg:0) 쓰기를 늦게 커밋하므로 뒤로 가자마자 죽은 탭은 fg:1 로 남는다. 마지막 손 50:48 → 다음 판 보고 …50:01(59분 넘게 뒤)
+   * 같은 탭 다시 읽기가 «앞 화면에서 꺼짐»으로 섰다(PC방 웹 3f9b5d33f · t-261114-o1cn). 브라우저가 버렸다고 말하거나(document.wasDiscarded),
+   * 마지막으로 살아 있던 때(hb·없으면 시작)에서 3분 넘게 지나 다시 읽혔으면 세지 않는다 — 앞 화면 죽음은 곧바로 다시 읽힌다(사파리 자동·크롬 «앗, 이런!» 다시 읽기) */
+  var prevAlive = prev ? Math.max(+prev.hb || 0, +prev.at || 0) : 0;
+  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid && !document.wasDiscarded && !!prevAlive && Date.now() - prevAlive < 180000;
   if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && (native ? !(prev.hb && Date.now() - prev.hb < 12000) : webDied)) {
     /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
     var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
@@ -176,7 +183,10 @@
      * 사유(사용자가 끔 10·11 포함)를 못 받고 «앞 화면에서 꺼짐»으로 샜다(주유소 1.0.1 «답 없음» · t-261103-xdg6). load 가 안 오는 판은 90초 상한 */
     if (native && (plat === "android" || plat === "ios")) {
       held = ab;
-      var noAnswer = function () { prevEnd("?", "", "", "", true); };
+      /* 가드에게 직접 묻는다(DglCrashAsk) — onPageFinished 밀어 주기만 믿으면 UI 스레드가 늦은 판은 20초 뒤 사유 없이 나갔다(빵 합치기 1.0.7 · t-261113-3rvz) */
+      var askGuard = function () { try { var A = window.DglCrashAsk, j = A && A.prevEnd && A.prevEnd(); if (j) { var a = JSON.parse(j); prevEnd(a[0], a[1], a[2], a[3]); } } catch (e) { /* 밀어 주기를 기다린다 */ } };
+      askGuard();
+      var noAnswer = function () { askGuard(); prevEnd("?", "", "", "", true); };
       heldT = setTimeout(noAnswer, 90000);
       window.addEventListener("load", function () { if (held) { clearTimeout(heldT); heldT = setTimeout(noAnswer, 20000); } });
     }
@@ -253,7 +263,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"1bf7f42f0","game":"chichicamp"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"57baf9f7f","game":"chichicamp"};</script>
 <meta name="description" content="숲속 캠핑 게임. 재료를 모아 가구를 만들고, 찾아오는 동물 친구와 캠프를 꾸며요. · A cozy camping game: craft furniture and befriend the animals who visit your forest camp.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 숲속 캠프 · Chichi Camp: Cozy Camping Game">
@@ -268,8 +278,8 @@
   <title>치치의 숲속 캠프</title>
   <script src="./js/i18n.js"></script>
   <link rel="stylesheet" href="./css/i18n-fonts.css" />
-  <script type="module" crossorigin src="./assets/index-B-QxOoiY.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-D_UGlg85.css">
+  <script type="module" crossorigin src="./assets/index-BcrTFXN4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B9PTCZnS.css">
 </head>
 <body>
 <div id="stage">
