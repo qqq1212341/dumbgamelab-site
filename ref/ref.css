@@ -78,22 +78,22 @@ body.rf.rf-lock{overflow:hidden}
 @media(hover:hover){.rf-sort button:hover{color:var(--ink)}}
 .rf-empty{padding:48px 0;color:var(--mute);text-align:center}
 
-/* 격자 — 폰 2열 쌓기(칸 높이가 달라도 빈틈 없다) · 데스크탑은 폭 176 고정 칸 + 4px 줄 단위(칸 높이가 달라도 빈틈 없다) */
-.rf-grid{column-count:2;column-gap:12px}
-.rf-tile,.rf-card{min-width:0;break-inside:avoid;margin-bottom:20px}
-.rf-tile[data-o=l],.rf-card[data-o=l]{column-span:all;grid-column:span 2}
-.rf-shot{display:block;border-radius:12px}
-.rf-shot img{display:block;width:100%;height:auto;border-radius:12px;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;background:var(--s1)}
-@media(hover:hover){.rf-shot:hover img{outline-color:rgba(255,255,255,.4)}}
-.rf-tile figcaption,.rf-card figcaption{display:flex;flex-direction:column;gap:1px;padding-top:10px;min-width:0}
+/* 격자 — 줄 맞는 CSS grid. 세로 화면 = 1칸 × 3줄 · 가로 화면 = 2칸 × 2줄(--u 한 줄 높이). 그림은 자르지 않고 칸 안에 contain.
+   칸 높이 = 줄 수 × --u + (줄 수 - 1) × 줄 간격(--rg). 폭 w 의 세로 칸이 ≈ 9:17, 2칸 폭 가로 칸이 ≈ 16:9 로 떨어진다(u = .575w + 16) */
+#screens,#games,.rf-gshots,.rf-rel{container-type:inline-size}
+.rf-grid{--cg:12px;--rg:12px;--cap:44px;--u:calc((100cqw - var(--cg)) / 2 * .575 + 16px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:var(--u);grid-auto-flow:dense;gap:var(--rg) var(--cg)}
+.rf-tile,.rf-card{display:flex;flex-direction:column;min-width:0;grid-row:span 3}
+.rf-tile[data-o=l],.rf-card[data-o=l]{grid-column:span 2;grid-row:span 2}
+.rf-shot{display:block;flex:1;min-height:0;border-radius:12px;background:#111113;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px;overflow:hidden}
+.rf-shot img{display:block;width:100%;height:100%;object-fit:contain}
+@media(hover:hover){.rf-shot:hover{outline-color:rgba(255,255,255,.4)}}
+.rf-tile figcaption,.rf-card figcaption{flex:none;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;height:var(--cap);padding-top:8px;min-width:0}
 .rf-tile figcaption b,.rf-card figcaption b{font-size:14px;font-weight:600;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rf-tile figcaption span,.rf-card figcaption span{color:var(--mute);font-size:12px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rf-card figcaption a{display:block;overflow:hidden;text-overflow:ellipsis}
 @media(hover:hover){.rf-card figcaption a:hover{text-decoration:underline;text-underline-offset:3px}}
 @media(min-width:720px){
-  .rf-grid{column-count:auto;display:grid;grid-template-columns:repeat(auto-fill,176px);grid-auto-rows:4px;grid-auto-flow:dense;gap:0 16px;justify-content:start}
-  .rf-tile,.rf-card{column-span:none;margin-bottom:0;grid-row:span var(--rs);padding-bottom:20px}
-  .rf-tile figcaption,.rf-card figcaption{height:48px}
+  .rf-grid{--cg:16px;--u:117px;grid-template-columns:repeat(auto-fill,176px);justify-content:start}
 }
 
 /* 맨 아래 줄 */
@@ -146,14 +146,14 @@ body.rf.rf-lock{overflow:hidden}
 .rf-crumb{display:flex;align-items:center;gap:8px;min-height:32px;color:var(--mute);font-size:13px;flex-wrap:wrap}
 @media(hover:hover){.rf-crumb a:hover{color:var(--ink)}}
 .rf-gh h1{margin-top:4px;font-size:26px;font-weight:700;letter-spacing:-.02em}
-.rf-h1w{color:var(--mute);font-weight:400;font-size:16px;letter-spacing:0}
-.rf-gh-sub{margin-top:4px;color:var(--ink2);font-size:14px}
-.rf-meta{display:flex;flex-wrap:wrap;gap:4px 20px;margin-top:10px;font-size:13px}
-.rf-meta div{display:flex;gap:6px}
-.rf-meta dt{color:var(--mute)}
-.rf-meta dt::after{content:":"}
-.rf-meta dd{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
-.rf-gshots{margin-top:24px}
+.rf-gh-sub{margin-top:2px;color:var(--ink2);font-size:13px}
+.rf-gshots{margin-top:16px}
+.rf-facts{margin-bottom:8px;font-variant-numeric:tabular-nums}
+.rf-facts div{display:flex;gap:16px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rf-facts div:last-child{border-bottom:0}
+.rf-facts dt{flex:none;width:160px;color:var(--mute);font-size:13px}
+.rf-facts dd{min-width:0}
+@media(max-width:719px){.rf-facts dt{width:110px}}
 .rf-doc{max-width:880px;padding-top:28px}
 .rf-body h2{margin:40px 0 12px;font-size:18px;font-weight:700}
 .rf-body>section:first-child h2{margin-top:0}
