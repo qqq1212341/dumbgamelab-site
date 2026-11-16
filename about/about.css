@@ -46,6 +46,19 @@
 .where span { font-weight: 800; color: var(--ink-soft); margin-right: 6px; }
 .where b { font-size: 15px; padding: 10px 18px; border-radius: 14px; background: var(--white); border: 1px solid var(--line); }
 
+/* 대표와 팀 */
+.a-team { background: var(--white); padding: 100px 0 90px; }
+.team-card { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; background: var(--cream); border: 1px solid var(--line); border-radius: var(--r); padding: 40px; }
+.team-who h3 { font-size: clamp(26px, 4vw, 38px); margin: 0 0 4px; }
+.team-who .team-role { font-weight: 800; color: var(--purple); margin: 0 0 18px; font-size: 18px; }
+.team-who p { color: var(--ink-soft); font-size: 16px; }
+.team-who .team-size b { color: var(--navy); margin-right: 6px; }
+.team-who .stores { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.team-facts { margin: 0; display: grid; gap: 14px; align-content: start; }
+.team-facts div { border-top: 1px solid var(--line); padding-top: 12px; }
+.team-facts dt { font-size: 13px; font-weight: 800; color: var(--ink-soft); }
+.team-facts dd { margin: 4px 0 0; font-size: 16px; }
+
 /* 만든 사람 */
 .a-me { background: linear-gradient(160deg, #2a1460, var(--navy)); color: var(--white); padding: 110px 0; }
 .a-me .two { display: grid; grid-template-columns: 280px 1fr; gap: 60px; align-items: center; }
@@ -66,6 +79,7 @@
   .num b { font-size: clamp(30px, 9vw, 44px); }
   .about .nav nav a.lang { display: inline-block; }
   .gc.big { grid-column: auto; }
+  .team-card { grid-template-columns: minmax(0, 1fr); padding: 26px 22px; }
   .a-me .two { grid-template-columns: 1fr; gap: 30px; }
   .a-me img { max-width: 180px; }
   .about .nav nav a:not(.nav-cta):not(.lang) { display: none; }
