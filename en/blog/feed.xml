@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>This book hides a picture in its edges</title>
+    <link>https://dumbgamelab.com/en/blog/hidden-book-painting/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hidden-book-painting/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Some books hide paintings on their page edges. Fanning the pages reveals them, and some books show a different picture in each direction.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fore-edge-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>We Tried 8 Slime Simulator Apps on a Real Phone</title>
     <link>https://dumbgamelab.com/en/blog/best-slime-simulator-games-android/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/best-slime-simulator-games-android/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</guid>
     <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
     <description>How the customer AI works in a solo-dev PC bang tycoon game. A* with a cost of 12 for tiles where a person stands, one customer per tile, a single queue outside the door, and why we count the customers we turn away, with measured numbers.</description>
-  </item>
-  <item>
-    <title>In Space, Candle Flames Are Round</title>
-    <link>https://dumbgamelab.com/en/blog/space-candle/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/space-candle/</guid>
-    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
-    <description>In space, hot air doesn&#39;t rise, so a candle flame burns round and blue.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/flame-candle.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

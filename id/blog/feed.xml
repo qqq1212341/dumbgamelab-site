@@ -7,6 +7,14 @@
   <description>Tempat sehari-hari di Korea, game idle tycoon santai, dan catatan dari studio game kecil di Seoul.</description>
   <language>id</language>
   <item>
+    <title>Buku ini menyembunyikan lukisan di sisinya</title>
+    <link>https://dumbgamelab.com/id/blog/hidden-book-painting/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/hidden-book-painting/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Lukisan tersembunyi di tepi halaman muncul saat halaman direntangkan miring. Ada pula buku yang menampilkan lukisan berbeda jika dibuka ke arah sebaliknya.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fore-edge-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Surat diantar. Cepat, kejar kapalnya!</title>
     <link>https://dumbgamelab.com/id/blog/mailboat-jumpers/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/id/blog/mailboat-jumpers/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Barcode lahir dari kode Morse yang digambar di pasir, dan barang pertama yang dipindai adalah permen karet.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Bayi Lahir Tanpa Tempurung Lutut</title>
-    <link>https://dumbgamelab.com/id/blog/baby-kneecap/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/baby-kneecap/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Tempurung lutut bayi masih berupa tulang rawan dan mulai jadi tulang sekitar umur tiga tahun. Jumlah tulang justru berkurang seiring tumbuh besar.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

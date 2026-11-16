@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>这本书把画藏在了侧面</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/hidden-book-painting/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/hidden-book-painting/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>有些书把画藏在纸页边缘，斜着展开书页才能看见。还有些书，朝不同方向展开会出现不同的画。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fore-edge-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>投完信快跑！船还在走呢</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/mailboat-jumpers/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/mailboat-jumpers/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>条形码来自沙滩上画的摩尔斯电码，第一件被扫的商品是口香糖。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>宝宝生下来没有膝盖骨</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/baby-kneecap/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/baby-kneecap/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>宝宝的膝盖骨是软骨，大约从三岁开始变成骨头。骨头的数量反而会随着长大变少。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/knee-baby.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

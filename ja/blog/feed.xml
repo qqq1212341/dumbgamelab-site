@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>この本、横っ腹に絵を隠している</title>
+    <link>https://dumbgamelab.com/ja/blog/hidden-book-painting/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/hidden-book-painting/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ページの端に隠された絵は、本のページを斜めに広げると現れる。広げる向きによって別々の絵が見える本もある。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fore-edge-book.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>スライムシミュレーターのアプリ8本を、実機で起動してみました</title>
     <link>https://dumbgamelab.com/ja/blog/best-slime-simulator-games-android/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/best-slime-simulator-games-android/</guid>
@@ -222,13 +230,6 @@
     <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
     <description>宇宙では熱い空気が上にのぼらないので、ろうそくの炎は丸く、青く燃える。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/flame-candle.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>韓国のPCバン、外国人の使い方(ソウル編)</title>
-    <link>https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-seoul-for-foreigners/</guid>
-    <pubDate>Sun, 01 Nov 2026 15:00:00 GMT</pubDate>
-    <description>外国人でもソウルのPCバン(ネットカフェ)は、韓国の電話番号なしで入口の端末の「非会員」から使えます。1時間1,000〜2,000ウォン台の料金、泊まりの定額、支払い、22時の未成年規制、韓国サーバーのアカウント問題を、出典つきでまとめました。</description>
   </item>
 </channel>
 </rss>
