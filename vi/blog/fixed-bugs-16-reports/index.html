@@ -53,23 +53,23 @@
 <p>Kiểm tra một ticket mất thời gian: tìm dấu vân tay của lỗi, xem lỗi xảy ra ở phiên bản nào, rồi tìm commit đã sửa để nối vào. Code không đổi một dòng nào mà tôi đã tốn thời gian đó 16 lần.</p>
 </section>
 <section id="s2"><h2>Bản app gửi lỗi là bản trước khi sửa</h2>
-<p>Nguyên nhân không phải lỗi mới phát sinh mà là app cũ cứ liên tục gửi về. Người không cập nhật trên cửa hàng ứng dụng vẫn dùng bản trước khi sửa. Khi app đó bị crash, bộ thu thập ghi nhận thành một lỗi mới.</p>
+<p>Nguyên nhân không phải lỗi mới phát sinh mà là app cũ cứ liên tục gửi về, vì người không cập nhật trên cửa hàng ứng dụng vẫn dùng bản trước khi sửa. Khi app đó bị crash, bộ thu thập ghi nhận thành một lỗi mới.</p>
 <p>#5276 là lỗi chỉ có Wakppu Tower 1.0.17 gửi, #5275 chỉ có game ghép bánh mì 1.0.3 gửi. Với #5258, từ 1.0.4 trở lên số lần tái phát là 0. Con số này nói rằng «bản sau khi sửa thì không bị». Nhưng bộ thu thập không quan tâm số phiên bản, cứ cùng một lỗi là đếm như cùng một lỗi.</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Màn hình làm bánh mì mới trong Dongne Bakery. Chọn bột, nhân và topping, bên dưới xếp dạng lưới 24 loại bánh trong bộ sưu tập" loading="lazy" decoding="async"><figcaption>Bản cũ của app tiệm bánh cũng được cài đúng với màn hình này. Dù bản đã sửa ra rồi, trên điện thoại mọi người bản cũ vẫn chạy thêm một thời gian.</figcaption></figure></section>
 <section id="s3"><h2>Một phán đoán sai: tôi tin rằng lỗi gửi về là lỗi mới</h2>
 <p>Khi làm bộ thu thập, tôi giả định «có một lỗi gửi về nghĩa là vừa có thêm một bug cần sửa ngay». Giả định đó chỉ dựa vào thứ tự lỗi đến, và tôi không hỏi lỗi đó xảy ra ở code thuộc thời điểm nào.</p>
-<p>Tốc độ sửa của tôi nhanh, nhưng tốc độ mọi người cập nhật không nhanh bằng. Càng sửa nhiều bug thì càng có thêm đường để «bug đã sửa» quay lại từ bản cũ.</p>
+<p>Tốc độ sửa của tôi nhanh, nhưng tốc độ mọi người cập nhật không nhanh bằng, nên càng sửa nhiều bug thì càng có thêm đường để «bug đã sửa» quay lại từ bản cũ.</p>
 <p>Dòng thứ hai của mục «Lãng phí hôm nay» trong nhật ký hôm đó chính là 16 lỗi này. Mỗi lỗi tốn một PR mà code thay đổi là 0.</p>
 </section>
 <section id="s4"><h2>Sau khi sửa, trong mười ngày vẫn có thêm 29 PR giống vậy</h2>
 <p>Ở mục việc cần làm ngày mai, tôi ghi «Lỗi của bản cũ thì không tạo ticket mà chỉ ghi vào sổ. Số phiên bản thấp hơn main thì bị lọc, bắt đầu từ bộ thu thập» (t-261103-bszc).</p>
-<p>Sau đó, tính đến ngày 11 tháng 11, đếm các PR lỗi có «đã sửa» trong tiêu đề thì từ ngày 1 tháng 11 tổng cộng là 42. Trừ 13 cái của ngày 3 tháng 11 thì 8 ngày sau đó có 29. Trung bình mỗi ngày giảm từ 13 xuống 3 đến 4, nhưng không phải 0.</p>
+<p>Sau đó, tính đến ngày 11 tháng 11, đếm các PR lỗi có «đã sửa» trong tiêu đề thì từ ngày 1 tháng 11 tổng cộng là 42, trừ 13 cái của ngày 3 tháng 11 thì 8 ngày sau đó có 29. Trung bình mỗi ngày giảm từ 13 xuống 3 đến 4, nhưng không phải 0.</p>
 <p>#6070 game ghép bánh mì 1.0.3, #6377 game quán net 2.0.37, #6473 Algoitneun Yeou 1.0.6 là các ví dụ. Dù bản đã sửa ra rồi, bản cũ vẫn sống rất lâu. Con số này đếm theo tiêu đề PR nên những trường hợp có tiêu đề diễn đạt khác bị bỏ sót.</p>
 <div class="tbl"><table><thead><tr><th>Thời gian</th><th>PR lỗi có «đã sửa» trong tiêu đề</th></tr></thead><tbody><tr><td>Một ngày 3 tháng 11</td><td>13</td></tr><tr><td>Từ 4 đến 11 tháng 11 (8 ngày)</td><td>29</td></tr><tr><td>Tổng từ 1 đến 11 tháng 11</td><td>42</td></tr></tbody></table></div>
 </section>
 <section id="s5"><h2>Vì vậy tôi đã đổi gì</h2>
 <p>Khi có lỗi gửi về, trước khi đếm số lượng tôi xem hai thứ: số phiên bản app đã gửi, và phiên bản đầu tiên chứa commit sửa lỗi đó. Nếu phiên bản gửi thấp hơn phiên bản đã sửa thì đó không phải bug mới mà là báo cáo từ bản cũ.</p>
-<p>Tôi cũng thêm cách ghi số commit đã sửa vào sổ lỗi thành một dòng. Như vậy khi cùng một dấu vân tay gửi về lần nữa, sổ sẽ hiện ngay «đã sửa, commit nào, từ phiên bản nào». Phía ticket, tôi đổi sang ghi thẻ theo từng commit (#5316).</p>
+<p>Tôi cũng thêm cách ghi số commit đã sửa vào sổ lỗi thành một dòng, nhờ vậy khi cùng một dấu vân tay gửi về lần nữa, sổ sẽ hiện ngay «đã sửa, commit nào, từ phiên bản nào». Phía ticket, tôi đổi sang ghi thẻ theo từng commit (#5316).</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Cảnh cốt truyện trong Dongne Bakery. Hộp thoại về việc mở lại tiệm bánh trong hẻm mà bà từng giữ nổi trên con phố isometric" loading="lazy" decoding="async"><figcaption>Cái tôi sửa có thể là «cánh cửa đã mở», nhưng với người dùng bản cũ đó vẫn là tiệm đóng cửa. Số phiên bản giúp phân biệt hai thứ.</figcaption></figure></section>
 <section id="s6"><h2>Nếu bạn cùng cảnh ngộ, hãy thử những việc này trước</h2>
 <p>Nếu bạn là dev làm một mình và tự gắn theo dõi crash, thứ tự này sẽ giúp bạn tiết kiệm thời gian. Tên công cụ khác nhau nhưng hầu hết đều có bộ lọc theo phiên bản app.</p>
