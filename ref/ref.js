@@ -1,4 +1,4 @@
-/* ref.js — /ref/ 의존성 없는 작은 스크립트: 허브 검색·장르 필터 · 화면 필터 · 라이트박스(←→·Esc·스와이프) · 캐러셀 화살표 · 목차 강조 · 영상 재생.
+/* ref.js — /ref/ 의존성 없는 작은 스크립트: 허브 탭·필터·검색·정렬·모바일 시트 · 라이트박스(←→·Esc·스와이프) · 영상 재생.
  * JS 가 없어도 모든 게임·화면은 그대로 보인다(필터는 덧붙는 기능). */
 (function () {
   'use strict';
@@ -9,87 +9,63 @@
   var svg = function (k) { return '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor">' + ICON[k] + '</svg>'; };
   var lang = d.documentElement.lang || 'en';
 
-  /* 칩 한 묶음 = 하나만 켜진다(라디오처럼) */
-  function chipGroup(box, attr, onChange) {
-    if (!box) return;
-    box.addEventListener('click', function (e) {
-      var b = e.target.closest('button[data-' + attr + ']'); if (!b) return;
-      $$('button', box).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      onChange(b.getAttribute('data-' + attr));
-    });
-  }
-
-  /* ── 허브: 검색 + 장르 ── */
-  var grid = $('[data-rf-grid]');
-  if (grid) {
-    var q = $('[data-rf-search]'); var genre = ''; var empty = $('[data-rf-empty]');
-    var cards = $$('.rf-card', grid);
+  /* ── 허브·화면 모음: 탭(화면·게임) · 필터(종류·장르·게임 체크) · 검색 · 정렬 · 모바일 시트 ── */
+  var lay = $('.rf-lay');
+  if (lay) {
+    d.documentElement.classList.add('rf-js');
+    var tiles = $$('.rf-tile', lay); var cards = $$('.rf-card', lay);
+    tiles.forEach(function (el, i) { el._i = i; }); cards.forEach(function (el, i) { el._i = i; });
+    var q = $('[data-rf-search]'); var empty = $('[data-rf-empty]'); var count = $('[data-rf-count]');
+    var sel = { kind: {}, genre: {}, game: {} }; var tab = 'screens'; var sort = 'new';
+    var has = function (o) { return Object.keys(o).length > 0; };
     var apply = function () {
       var t = (q.value || '').trim().toLowerCase(); var n = 0;
-      cards.forEach(function (c) {
-        var ok = (!genre || c.getAttribute('data-genre') === genre) && (!t || c.getAttribute('data-q').indexOf(t) >= 0);
-        c.hidden = !ok; if (ok) n++;
-      });
+      var inTxt = function (el) { return !t || el.getAttribute('data-q').indexOf(t) >= 0; };
+      var inGenre = function (el) { return !has(sel.genre) || sel.genre[el.getAttribute('data-genre')]; };
+      tiles.forEach(function (el) { var ok = (!has(sel.kind) || sel.kind[el.getAttribute('data-kind')]) && inGenre(el) && (!has(sel.game) || sel.game[el.getAttribute('data-game')]) && inTxt(el); el.hidden = !ok; if (ok && tab === 'screens') n++; });
+      cards.forEach(function (el) { var ok = inGenre(el) && inTxt(el); el.hidden = !ok; if (ok && tab === 'games') n++; });
       empty.hidden = n > 0;
+      count.textContent = count.getAttribute(tab === 'games' ? 'data-tpl-g' : 'data-tpl-s').replace('{n}', n).replace('{t}', (tab === 'games' ? cards : tiles).length);
     };
+    var reorder = function () {
+      [tiles, cards].forEach(function (list) {
+        if (!list.length) return; var box = list[0].parentNode;
+        list.slice().sort(function (a, b) { return sort === 'name' ? (a.getAttribute('data-name') < b.getAttribute('data-name') ? -1 : a.getAttribute('data-name') > b.getAttribute('data-name') ? 1 : a._i - b._i) : a._i - b._i; }).forEach(function (el) { box.appendChild(el); });
+      });
+    };
+    var setTab = function (v, push) {
+      tab = v; lay.setAttribute('data-tab', v);
+      $$('[data-panel]', lay).forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== v; });
+      $$('[data-tab]', d).forEach(function (a) { if (a.tagName === 'A') { if (a.getAttribute('data-tab') === v) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); } });
+      if (push) { try { history.replaceState(null, '', '#' + v); } catch (e) { /* 주소 갱신은 덤 */ } }
+      $$('[data-navtab]', d).forEach(function (a) { if (a.getAttribute('data-navtab') === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+      apply();
+    };
+    $$('.rf-tabs a', lay).forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); setTab(a.getAttribute('data-tab'), true); }); });
+    [['kind', '[data-rf-kinds]'], ['genre', '[data-rf-genres]'], ['game', '[data-rf-games]']].forEach(function (p) {
+      var box = $(p[1], lay); if (!box) return;
+      box.addEventListener('change', function (e) { var c = e.target; if (c.checked) sel[p[0]][c.value] = 1; else delete sel[p[0]][c.value]; apply(); });
+    });
+    $$('[data-rf-reset]', lay).forEach(function (b) { b.addEventListener('click', function () { sel = { kind: {}, genre: {}, game: {} }; $$('.rf-opt input', lay).forEach(function (c) { c.checked = false; }); apply(); }); });
+    $$('.rf-sort button', lay).forEach(function (b) { b.addEventListener('click', function () { sort = b.getAttribute('data-sort'); $$('.rf-sort button', lay).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); reorder(); }); });
     q.addEventListener('input', apply);
-    chipGroup($('[data-rf-genres]'), 'genre', function (v) { genre = v; apply(); });
+    q.form.addEventListener('submit', function (e) { e.preventDefault(); apply(); });
     d.addEventListener('keydown', function (e) {
       if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test((d.activeElement || {}).tagName || '') && !e.metaKey && !e.ctrlKey) { e.preventDefault(); q.focus(); }
     });
-  }
-
-  /* ── 화면 모음: 종류 × 게임 ── */
-  var tilesBox = $('[data-rf-tiles]');
-  if (tilesBox) {
-    var tiles = $$('.rf-tile', tilesBox); var kind = ''; var game = '';
-    var showing = $('[data-rf-showing]'); var emptyS = $('[data-rf-empty]');
-    /* 패싯: 칩 숫자 = 다른 쪽 필터를 건 채 몇 장인가 · 0장 칩은 잠근다(빈 화면으로 가는 길을 막는다) */
-    var facet = function (box, attr, other, otherVal) {
-      if (!box) return;
-      $$('button[data-' + attr + ']', box).forEach(function (b) {
-        var v = b.getAttribute('data-' + attr); var c = 0;
-        tiles.forEach(function (t) { if ((!v || t.getAttribute('data-' + attr) === v) && (!otherVal || t.getAttribute('data-' + other) === otherVal)) c++; });
-        var sm = $('small', b); if (sm) sm.textContent = c;
-        b.disabled = !!v && c === 0 && b.getAttribute('aria-pressed') !== 'true';
-      });
-    };
-    var pick = function () {
-      var n = 0;
-      if (game && kind && !tiles.some(function (t) { return t.getAttribute('data-kind') === kind && t.getAttribute('data-game') === game; })) {
-        game = ''; $$('button', $('[data-rf-games]')).forEach(function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-game') === '' ? 'true' : 'false'); });
-      }
-      facet($('[data-rf-kinds]'), 'kind', 'game', game); facet($('[data-rf-games]'), 'game', 'kind', kind);
-      tiles.forEach(function (t) { var ok = (!kind || t.getAttribute('data-kind') === kind) && (!game || t.getAttribute('data-game') === game); t.hidden = !ok; if (ok) n++; });
-      showing.textContent = showing.getAttribute('data-tpl').replace('{n}', n).replace('{t}', tiles.length);
-      emptyS.hidden = n > 0;
-      try { var u = new URL(location.href); kind ? u.searchParams.set('kind', kind) : u.searchParams.delete('kind'); game ? u.searchParams.set('game', game) : u.searchParams.delete('game'); history.replaceState(null, '', u); } catch (e) { /* 주소 갱신은 덤 */ }
-    };
-    chipGroup($('[data-rf-kinds]'), 'kind', function (v) { kind = v; pick(); });
-    chipGroup($('[data-rf-games]'), 'game', function (v) { game = v; pick(); });
-    try { var sp = new URL(location.href).searchParams; var pre = function (box, attr, v) { var b = v && $('button[data-' + attr + '="' + v.replace(/"/g, '') + '"]', box); if (b) b.click(); }; pre($('[data-rf-kinds]'), 'kind', sp.get('kind')); pre($('[data-rf-games]'), 'game', sp.get('game')); } catch (e) { /* 무시 */ }
-    pick();
-  }
-
-  /* ── 캐러셀 화살표(마우스용) ── */
-  var track = $('.rf-track');
-  if (track && $('.rf-car-h')) {
-    var box = d.createElement('div'); box.className = 'rf-arrows';
-    var mk = function (k, dir, label) { var b = d.createElement('button'); b.type = 'button'; b.className = 'rf-arrow'; b.setAttribute('aria-label', label); b.innerHTML = svg(k); b.addEventListener('click', function () { track.scrollBy({ left: dir * Math.max(300, track.clientWidth * 0.7), behavior: 'smooth' }); }); return b; };
-    box.appendChild(mk('l', -1, lang === 'ko' ? '이전 화면' : 'Previous screens')); box.appendChild(mk('r', 1, lang === 'ko' ? '다음 화면' : 'Next screens'));
-    $('.rf-car-h').appendChild(box);
-  }
-
-  /* ── 목차 강조 ── */
-  var toc = $('.rf-toc');
-  if (toc && 'IntersectionObserver' in window) {
-    var links = $$('a', toc); var map = {};
-    links.forEach(function (a) { var el = d.getElementById(a.getAttribute('href').slice(1)); if (el) map[el.id] = a; });
-    var cur = null;
-    var io = new IntersectionObserver(function (ents) {
-      ents.forEach(function (en) { if (en.isIntersecting) { var a = map[en.target.id]; if (a && a !== cur) { if (cur) cur.classList.remove('rf-on'); a.classList.add('rf-on'); cur = a; if (getComputedStyle(toc).overflowX === 'auto') { toc.scrollTo({ left: Math.max(0, a.offsetLeft - 24), behavior: 'smooth' }); } } } });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    Object.keys(map).forEach(function (id) { io.observe(d.getElementById(id)); });
+    /* 폰 시트 */
+    var fab = $('[data-rf-sheet]'); var scrim = $('.rf-scrim');
+    var sheet = function (on) { d.body.classList.toggle('rf-sheet-open', on); scrim.hidden = !on; fab.setAttribute('aria-expanded', on ? 'true' : 'false'); if (on) { var f = $('.rf-opt input', lay); if (f) f.focus({ preventScroll: true }); } else fab.focus({ preventScroll: true }); };
+    fab.addEventListener('click', function () { sheet(true); });
+    $$('[data-rf-close]', d).forEach(function (b) { b.addEventListener('click', function () { sheet(false); }); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape' && d.body.classList.contains('rf-sheet-open')) sheet(false); });
+    try { var sp = new URL(location.href).searchParams; if (sp.get('q')) q.value = sp.get('q'); } catch (e) { /* 무시 */ }
+    var fromHash = function () { setTab(location.hash === '#games' ? 'games' : 'screens', false); requestAnimationFrame(function () { window.scrollTo(0, 0); }); };
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+  } else {
+    var q2 = $('[data-rf-search]');
+    if (q2) d.addEventListener('keydown', function (e) { if (e.key === '/' && !/INPUT|TEXTAREA|SELECT/.test((d.activeElement || {}).tagName || '') && !e.metaKey && !e.ctrlKey) { e.preventDefault(); q2.focus(); } });
   }
 
   /* ── 영상: 누르면 그 자리에서 유튜브 ── */
@@ -105,7 +81,7 @@
   var T = lang === 'ko' ? { close: '닫기', prev: '이전 화면', next: '다음 화면', dlg: '화면 보기' } : { close: 'Close', prev: 'Previous screen', next: 'Next screen', dlg: 'Screen viewer' };
   function build() {
     lb = d.createElement('div'); lb.id = 'rf-lb'; lb.hidden = true; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true'); lb.setAttribute('aria-label', T.dlg);
-    lb.innerHTML = '<button type="button" class="rf-lb-b rf-lb-x" aria-label="' + T.close + '">' + svg('x') + '</button><button type="button" class="rf-lb-b rf-lb-p" aria-label="' + T.prev + '">' + svg('l') + '</button><button type="button" class="rf-lb-b rf-lb-nx" aria-label="' + T.next + '">' + svg('r') + '</button><figure><img alt="" decoding="async"><figcaption class="rf-lb-info"><p class="rf-lb-cap"></p><div class="rf-lb-row"><span class="rf-kc"><i></i><span class="rf-lb-kind"></span></span><span class="rf-lb-n"></span><a class="rf-btn rf-btn-y rf-lb-go" href="#"></a></div></figcaption></figure>';
+    lb.innerHTML = '<button type="button" class="rf-lb-b rf-lb-x" aria-label="' + T.close + '">' + svg('x') + '</button><button type="button" class="rf-lb-b rf-lb-p" aria-label="' + T.prev + '">' + svg('l') + '</button><button type="button" class="rf-lb-b rf-lb-nx" aria-label="' + T.next + '">' + svg('r') + '</button><figure><img alt="" decoding="async"><figcaption class="rf-lb-info"><p class="rf-lb-cap"></p><div class="rf-lb-row"><span class="rf-kc"><i></i><span class="rf-lb-kind"></span></span><span class="rf-lb-n"></span><a class="rf-btn rf-btn-w rf-lb-go" href="#"></a></div></figcaption></figure>';
     d.body.appendChild(lb);
     $('.rf-lb-x', lb).addEventListener('click', close); $('.rf-lb-p', lb).addEventListener('click', function () { go(-1); }); $('.rf-lb-nx', lb).addEventListener('click', function () { go(1); });
     lb.addEventListener('click', function (e) { if (e.target === lb || e.target.tagName === 'FIGURE') close(); });
@@ -128,7 +104,7 @@
   function open(a) {
     if (!lb) build();
     var scope = a.closest('[data-lb-group]') || d;
-    items = $$('a[data-lb]', scope).filter(function (x) { var t = x.closest('.rf-tile'); return !(t && t.hidden); });
+    items = $$('a[data-lb]', scope).filter(function (x) { return !x.closest('[hidden]'); });
     idx = Math.max(0, items.indexOf(a)); lastFocus = d.activeElement;
     show(); lb.hidden = false; d.body.classList.add('rf-lock');
     requestAnimationFrame(function () { lb.classList.add('rf-open'); $('.rf-lb-x', lb).focus(); });
