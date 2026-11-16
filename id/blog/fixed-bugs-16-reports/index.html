@@ -53,7 +53,7 @@
 <p>Mengecek satu tiket butuh waktu: mencari sidik jari error, melihat error itu muncul di versi mana, lalu mencari commit perbaikan untuk dihubungkan. Kodenya tidak berubah satu baris pun, tetapi waktu itu terpakai 16 kali.</p>
 </section>
 <section id="s2"><h2>Yang Mengirim Error Adalah Aplikasi Sebelum Perbaikan</h2>
-<p>Penyebabnya bukan error baru muncul, melainkan aplikasi lama terus mengirimnya. Orang yang tidak memperbarui lewat toko aplikasi tetap memakai versi sebelum perbaikan. Saat aplikasi itu crash, pengumpul mencatatnya sebagai satu error baru.</p>
+<p>Penyebabnya adalah aplikasi lama yang terus mengirim error itu. Orang yang tidak memperbarui lewat toko aplikasi tetap memakai versi sebelum perbaikan. Saat aplikasi itu crash, pengumpul mencatatnya sebagai satu error baru.</p>
 <p>#5276 adalah error yang hanya dikirim Wakppu Tower 1.0.17, dan #5275 hanya dikirim game gabung roti 1.0.3. Untuk #5258, di 1.0.4 ke atas kemunculan ulangnya 0 kali. Angka itu bilang «di versi setelah perbaikan tidak terjadi». Tetapi pengumpul tidak peduli nomor versi, error yang sama dihitung sebagai error yang sama.</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Layar membuat roti baru di Dongne Bakery. Memilih adonan, isian, dan topping, dan di bawahnya berjajar kisi 24 jenis roti dalam koleksi" loading="lazy" decoding="async"><figcaption>Aplikasi toko roti versi lama juga terpasang persis dengan layar ini. Meski versi yang sudah diperbaiki rilis, di ponsel orang-orang versi lama masih jalan beberapa waktu.</figcaption></figure></section>
 <section id="s3"><h2>Satu Penilaian Keliru: Saya Percaya Setiap Error yang Masuk Adalah Bug Baru</h2>
@@ -68,7 +68,7 @@
 <div class="tbl"><table><thead><tr><th>Periode</th><th>PR error yang judulnya berisi «sudah diperbaiki»</th></tr></thead><tbody><tr><td>3 November, satu hari</td><td>13</td></tr><tr><td>4 sampai 11 November (8 hari)</td><td>29</td></tr><tr><td>Total 1 sampai 11 November</td><td>42</td></tr></tbody></table></div>
 </section>
 <section id="s5"><h2>Jadi, Apa yang Saya Ubah</h2>
-<p>Saat error masuk, sebelum jumlahnya saya lihat dua hal: nomor versi aplikasi pengirim, dan versi pertama yang memuat commit perbaikan error itu. Jika versi pengirim lebih rendah dari versi perbaikan, itu bukan bug baru, melainkan laporan dari versi lama.</p>
+<p>Saat error masuk, sebelum jumlahnya saya lihat dua hal: nomor versi aplikasi pengirim, dan versi pertama yang memuat commit perbaikan error itu. Jika versi pengirim lebih rendah dari versi perbaikan, itu laporan dari versi lama, jadi tidak dihitung sebagai bug baru.</p>
 <p>Saya juga menambah cara mencatat nomor commit perbaikan di buku besar error dalam satu baris. Jadi kalau sidik jari yang sama masuk lagi, buku besar langsung menampilkan «sudah diperbaiki, commit mana, mulai dari versi berapa». Di sisi tiket, saya ubah agar label dicatat per commit (#5316).</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Adegan cerita Dongne Bakery. Kotak dialog tentang membuka kembali toko roti gang yang dijaga nenek melayang di atas jalanan isometrik" loading="lazy" decoding="async"><figcaption>Yang saya perbaiki mungkin «pintu yang sudah terbuka», tetapi di mata pengguna versi lama itu tetap toko yang tutup. Nomor versi yang membedakan keduanya.</figcaption></figure></section>
 <section id="s6"><h2>Kalau Kamu Senasib, Coba Ini Dulu</h2>

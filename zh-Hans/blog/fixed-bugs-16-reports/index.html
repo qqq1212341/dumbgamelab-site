@@ -53,7 +53,7 @@
 <p>核对一张工单要花时间：找出报错指纹、看是哪个版本出的、找到修好的 commit 再连起来。代码一行都没变，这些时间却花了 16 次。</p>
 </section>
 <section id="s2"><h2>上报错误的是修复之前的 App</h2>
-<p>原因不是错误新出现，而是旧版 App 一直在上报。没在应用商店更新的人，用的还是修复之前的版本。那个 App 一崩溃，在收集器里就成了一条新的报错。</p>
+<p>原因是旧版 App 一直在上报。没在应用商店更新的人，用的还是修复之前的版本。那个 App 一崩溃，在收集器里就成了一条新的报错。</p>
 <p>#5276 只有 Wakppu Tower 1.0.17 上报，#5275 只有面包合成游戏 1.0.3 上报。#5258 在 1.0.4 以上的版本没有再出现，是 0 次。这些数字说的是“修好之后的版本不会崩溃”。但收集器不管版本号，同一个错误就当成同一个错误来算。</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Dongne Bakery 制作新面包的画面。选择面团、馅料和配料，下方以网格排列 24 种面包图鉴" loading="lazy" decoding="async"><figcaption>面包店 App 的旧版也是照这个画面装在手机上。修好的版本发布后，大家手机上还会有一阵子在跑旧版。</figcaption></figure></section>
 <section id="s3"><h2>一个错误判断：以为有报错进来就是新 bug</h2>
@@ -68,7 +68,7 @@
 <div class="tbl"><table><thead><tr><th>时间段</th><th>标题带“已经修好”的报错 PR</th></tr></thead><tbody><tr><td>11 月 3 日一天</td><td>13 个</td></tr><tr><td>11 月 4 日到 11 日（8 天）</td><td>29 个</td></tr><tr><td>11 月 1 日到 11 日合计</td><td>42 个</td></tr></tbody></table></div>
 </section>
 <section id="s5"><h2>所以我改了什么</h2>
-<p>报错进来时，先看两件事再看数量：上报的 App 版本号，以及修好那个错误的 commit 所在的第一个版本。上报的版本比修好的版本低，就不是新 bug,而是旧版本的上报。</p>
+<p>报错进来时，先看两件事再看数量：上报的 App 版本号，以及修好那个错误的 commit 所在的第一个版本。上报的版本比修好的版本低，那就是旧版本的上报,并非新 bug。</p>
 <p>我也增加了把修好的 commit 号用一行记进错误台账的做法。这样同样的指纹再进来时，台账马上会显示“已经修好、哪个 commit、从哪个版本开始”。工单那边则改成以 commit 为单位记录标签（#5316）。</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Dongne Bakery 的剧情场景。奶奶守护的小巷面包店要重新开门的对话框，浮在等距视角的街道上方" loading="lazy" decoding="async"><figcaption>我修好的就算是“已经开着的门”,在旧版用户眼里还是关着的店。用版本号把两者分开。</figcaption></figure></section>
 <section id="s6"><h2>处境一样的话，先试试这几件事</h2>

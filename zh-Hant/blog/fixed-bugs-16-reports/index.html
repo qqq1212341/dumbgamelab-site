@@ -57,7 +57,7 @@
 <p>確認一張工單要花時間：找出錯誤指紋、看是哪個版本發生的、找到修好的 commit 再連起來。程式碼一行都沒變，這些時間卻花了 16 次。</p>
 </section>
 <section id="s2"><h2>送出錯誤的是修好之前的 App</h2>
-<p>原因不是錯誤新發生，而是舊版 App 一直在送。沒有在應用程式商店更新的人，用的還是修好之前的版本。那個 App 一當掉，在收集器裡就會變成一筆新的錯誤。</p>
+<p>原因是舊版 App 一直在送。沒有在應用程式商店更新的人，用的還是修好之前的版本。那個 App 一當掉，在收集器裡就會變成一筆新的錯誤。</p>
 <p>#5276 只有 Wakppu Tower 1.0.17 送出，#5275 只有麵包合成遊戲 1.0.3 送出。#5258 在 1.0.4 以上的版本沒有再發生，是 0 件。這些數字說的是「修好之後的版本不會當機」。但收集器不管版本號碼，同一個錯誤就當成同一個錯誤來算。</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/breads.jpg" alt="Dongne Bakery 製作新麵包的畫面。選擇麵團、內餡和配料，下方以格狀排列 24 種麵包圖鑑" loading="lazy" decoding="async"><figcaption>麵包店 App 的舊版也是照這個畫面安裝在手機上。修好的版本推出後，大家的手機上還是會有一段時間跑著舊版。</figcaption></figure></section>
 <section id="s3"><h2>一個錯誤判斷：以為有錯誤進來就是新 bug</h2>
@@ -72,7 +72,7 @@
 <div class="tbl"><table><thead><tr><th>期間</th><th>標題含「已經修好」的錯誤 PR</th></tr></thead><tbody><tr><td>11 月 3 日一天</td><td>13 件</td></tr><tr><td>11 月 4 日到 11 日（8 天）</td><td>29 件</td></tr><tr><td>11 月 1 日到 11 日合計</td><td>42 件</td></tr></tbody></table></div>
 </section>
 <section id="s5"><h2>所以我改了什麼</h2>
-<p>錯誤進來時，先看兩件事再看數量：送出的 App 版本號碼，以及修好那個錯誤的 commit 所在的第一個版本。送出的版本比修好的版本低，就不是新 bug，而是舊版本的回報。</p>
+<p>錯誤進來時，先看兩件事再看數量：送出的 App 版本號碼，以及修好那個錯誤的 commit 所在的第一個版本。送出的版本比修好的版本低，那就是舊版本的回報，並非新 bug。</p>
 <p>我也增加了把修好的 commit 號碼用一行記進錯誤帳本的做法。這樣同樣的指紋再進來時，帳本馬上就會顯示「已經修好、哪個 commit、從哪個版本開始」。工單那邊則改成以 commit 為單位記錄標籤（#5316）。</p>
 <figure><img src="/blog/img/fixed-bugs-16-reports/story.jpg" alt="Dongne Bakery 的故事場景。奶奶守護的巷弄麵包店要重新開門的對話框，浮在等角視角的街道上方" loading="lazy" decoding="async"><figcaption>我修好的就算是「已經開著的門」，在舊版使用者眼裡還是關著的店。用版本號碼把兩者分開。</figcaption></figure></section>
 <section id="s6"><h2>處境一樣的話，先試試這幾件事</h2>
