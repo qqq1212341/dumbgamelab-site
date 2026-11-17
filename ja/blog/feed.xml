@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>韓国の塩パンは日本が発祥? 日本の塩パンとの違いと、買って帰る時の日持ち・機内持ち込み</title>
+    <link>https://dumbgamelab.com/ja/blog/korean-salt-bread-vs-japanese-shiopan/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-salt-bread-vs-japanese-shiopan/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>塩パンは2003年ごろ愛媛県の小さなパン屋で生まれ、韓国では2021年ごろから流行しました。韓国で買う時の日持ちと機内持ち込み、クロワッサンとの違いを出典つきでまとめます。</description>
+  </item>
+  <item>
     <title>この本、横っ腹に絵を隠している</title>
     <link>https://dumbgamelab.com/ja/blog/hidden-book-painting/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/hidden-book-painting/</guid>
@@ -222,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</guid>
     <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
     <description>個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。</description>
-  </item>
-  <item>
-    <title>宇宙では、ろうそくの炎が丸い</title>
-    <link>https://dumbgamelab.com/ja/blog/space-candle/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-candle/</guid>
-    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
-    <description>宇宙では熱い空気が上にのぼらないので、ろうそくの炎は丸く、青く燃える。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/flame-candle.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

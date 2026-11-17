@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Where Korean salt bread really comes from: Japan&#39;s shio pan vs the Korean version</title>
+    <link>https://dumbgamelab.com/en/blog/korean-salt-bread-vs-japanese-shiopan/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-salt-bread-vs-japanese-shiopan/</guid>
+    <pubDate>Mon, 16 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Salt bread started in a small Ehime bakery in Japan around 2003 and took off in Korea around 2021. Why it is hollow, how it differs from a croissant, calories and prices, with sources.</description>
+  </item>
+  <item>
     <title>This book hides a picture in its edges</title>
     <link>https://dumbgamelab.com/en/blog/hidden-book-painting/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hidden-book-painting/</guid>
@@ -222,13 +229,6 @@
     <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
     <description>Crows recognize individual human faces and are known to spread word of dangerous people with their calls.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>How We Built the Customer AI in PC Cafe Tycoon</title>
-    <link>https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pc-bang-customer-ai-devlog/</guid>
-    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
-    <description>How the customer AI works in a solo-dev PC bang tycoon game. A* with a cost of 12 for tiles where a person stands, one customer per tile, a single queue outside the door, and why we count the customers we turn away, with measured numbers.</description>
   </item>
 </channel>
 </rss>
