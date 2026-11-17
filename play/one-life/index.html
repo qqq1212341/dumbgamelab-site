@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"onelife","build":"5f502849a","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"onelife","build":"c03621e76","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -124,6 +124,8 @@
      * 몇 초는 «지각 230»으로 남는데 그 틈에 최근 앱에서 밀어 끄거나 제조사 정리가 시그널(사유 2)로 끄면 파일은 아직 fg 다(방구석뽑기왕 1.0.6 · t-261031-joyz) */
     var imp = /importance (\d+)/.exec(why || "");
     if (/exit reason (10|11|15|16) /.test(why || "") || (imp && +imp[1] > 200)) return;
+    /* OS 기록이 없는 판인데 그 뒤 기기가 다시 켜졌거나 앱이 깔렸다 — 앱이 죽은 게 아니다(가드가 «지난 판 뒤»를 붙인다 · t-261026-bqri) */
+    if (/지난 판 뒤 (기기 재부팅|앱 설치·업데이트)/.test(why || "")) return;
     /* 사유 줄 없이 보내지 않는다 — 빈 기록 한 장은 메모리 부족·강제 종료·진짜 크래시를 못 가른다(주유소 1.0.0 빵부스러기 0칸 · t-261103-xdg6).
      * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
     o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
@@ -142,6 +144,14 @@
       o.m = "스스로 끝남 — 앞 화면에서 앱 프로세스가 exit(크래시·ANR·OS 회수 아님)";
       o.f = es ? "exit status " + es[1] : "exit status ?";
     }
+    /* 사유 13(OTHER) = OS(system_server)가 제 판단으로 앱 프로세스를 죽인 판 — 설명이 누가 왜인지 말한다. «Died when creating service» =
+     * 우리 프로세스에 서비스를 띄우는 바인더 거래가 DeadObject(바인더 버퍼 참·프로세스 이미 죽어 감)로 실패해 AMS 가 죽였다 — 메모리 부족(3)·
+     * 웹뷰 죽음과 다른 병이니 설명으로 따로 묶는다(PC방 2.0.42 Pixel 6 Pro «RAM 2955MB» · 한 지문에 iOS·웹 오탐과 섞여 재발로 다시 열렸다 · t-261027-2nr7) */
+    if (/exit reason 13 /.test(why || "")) {
+      var od = /MB rss -?\d+MB (.*)$/.exec(why || "");
+      o.m = "시스템이 끔 — 앞 화면에서 OS 가 앱 프로세스를 죽임(사유 13 · 메모리 부족·크래시 아님)";
+      o.f = "os: " + ((od && od[1].trim()) || "?").slice(0, 60);
+    }
     post("/e", o);
   }
   window.__DGL_CRASH = { report: function (msg, stack) { report("error", msg, stack, "manual", 0, 0); }, crumb: crumb, prevEnd: prevEnd, leaving: leaving };
@@ -157,7 +167,12 @@
    * 사파리 «문제가 발생하여 다시 읽음»). 같은 탭인지는 탭마다 따로인 sessionStorage 의 sid 로 본다 — 그 판은 탭 두 개 걱정이 없으니 hb 를 안 본다 */
   var tabPrev = "";
   try { tabPrev = sessionStorage.getItem(KEY) || ""; sessionStorage.setItem(KEY, sid); } catch (e) { /* 못 읽으면 웹 비정상 종료만 못 본다 */ }
-  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid;
+  /* 다시 읽힌 판이라도 브라우저가 «뒤에서» 버린 탭(크롬 탭 버림 · 안드로이드가 뒤로 간 렌더러를 죽임)을 돌아와 다시 읽은 것이면 앞 화면 죽음이 아니다 —
+   * 크롬은 «뒤로 감»(fg:0) 쓰기를 늦게 커밋하므로 뒤로 가자마자 죽은 탭은 fg:1 로 남는다. 마지막 손 50:48 → 다음 판 보고 …50:01(59분 넘게 뒤)
+   * 같은 탭 다시 읽기가 «앞 화면에서 꺼짐»으로 섰다(PC방 웹 3f9b5d33f · t-261114-o1cn). 브라우저가 버렸다고 말하거나(document.wasDiscarded),
+   * 마지막으로 살아 있던 때(hb·없으면 시작)에서 3분 넘게 지나 다시 읽혔으면 세지 않는다 — 앞 화면 죽음은 곧바로 다시 읽힌다(사파리 자동·크롬 «앗, 이런!» 다시 읽기) */
+  var prevAlive = prev ? Math.max(+prev.hb || 0, +prev.at || 0) : 0;
+  var webDied = !native && !!prev && navType() === "reload" && tabPrev === prev.sid && !document.wasDiscarded && !!prevAlive && Date.now() - prevAlive < 180000;
   if (prev && prev.fg === 1 && prev.sid && !iosGone && !prev.ia && !inApp && (native ? !(prev.hb && Date.now() - prev.hb < 12000) : webDied)) {
     /* 지난 판 기록으로 보낸다(그 판의 버전·행동) — 지문이 «비정상 종료 + 마지막 화면» 으로 묶인다 */
     var last = (prev.crumbs || []).filter(function (c) { return / 화면 /.test(c); }).pop() || "";
@@ -168,7 +183,10 @@
      * 사유(사용자가 끔 10·11 포함)를 못 받고 «앞 화면에서 꺼짐»으로 샜다(주유소 1.0.1 «답 없음» · t-261103-xdg6). load 가 안 오는 판은 90초 상한 */
     if (native && (plat === "android" || plat === "ios")) {
       held = ab;
-      var noAnswer = function () { prevEnd("?", "", "", "", true); };
+      /* 가드에게 직접 묻는다(DglCrashAsk) — onPageFinished 밀어 주기만 믿으면 UI 스레드가 늦은 판은 20초 뒤 사유 없이 나갔다(빵 합치기 1.0.7 · t-261113-3rvz) */
+      var askGuard = function () { try { var A = window.DglCrashAsk, j = A && A.prevEnd && A.prevEnd(); if (j) { var a = JSON.parse(j); prevEnd(a[0], a[1], a[2], a[3]); } } catch (e) { /* 밀어 주기를 기다린다 */ } };
+      askGuard();
+      var noAnswer = function () { askGuard(); prevEnd("?", "", "", "", true); };
       heldT = setTimeout(noAnswer, 90000);
       window.addEventListener("load", function () { if (held) { clearTimeout(heldT); heldT = setTimeout(noAnswer, 20000); } });
     }
@@ -245,7 +263,7 @@
   }
 })();
 </script>
-<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"onelife","build":"5f502849a","target":"site","links":{"web":"https://dumbgamelab.com/play/one-life/"}};</script>
+<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"onelife","build":"c03621e76","target":"site","links":{"web":"https://dumbgamelab.com/play/one-life/"}};</script>
 <script>(function(){
 'use strict';
 /* 친구 초대 코어 — 모든 게임이 같은 규칙으로 서버(i.dumbgamelab.com)와 말한다. 설명서 = core/tools/invite/README.md
@@ -728,7 +746,7 @@ window.DGLInvite = {
 })();
 
 })();</script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"5f502849a","game":"onelife"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"c03621e76","game":"onelife"};</script>
 <meta name="description" content="80억 명 중 어디에 태어날지는 고를 수 없다. 나라·집안·성별이 실제 확률로 정해지고, 한 해 한 줄씩 인생이 흘러간다. · Where you're born out of 8 billion is not up to you. Your country, family and odds are drawn from real numbers, and your life unfolds one line a year.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="한 번뿐인 인생 · One Life">
@@ -761,8 +779,8 @@ window.DGLInvite = {
     @font-face { font-family: 'NEXON Lv1 Gothic'; src: url('assets/fonts/NEXONLv1GothicLow.otf') format('opentype'); font-display: block; }
     @font-face { font-family: 'NEXON Lv1 Gothic'; font-weight: bold; src: url('assets/fonts/NEXONLv1GothicLow-Bold.otf') format('opentype'); font-display: block; }
   </style>
-  <script type="module" crossorigin src="./assets/index-xRoOS_vC.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B4Avjx2u.css">
+  <script type="module" crossorigin src="./assets/index-CQj8uYQg.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BSyDEAJY.css">
 </head>
 <body>
   <div id="app"></div>
