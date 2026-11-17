@@ -1,5 +1,5 @@
 "use strict";
-/* Dumb Game Lab — 소리 환경 판정 (web-capacitor 공용 드롭인 · 의존성 0)
+/* 소리 환경 판정 (web-capacitor 공용 드롭인 · 의존성 0)
  *
  * ★★ 이 파일이 «로컬은 무음 · 배포는 유음» 의 SOT 다 (2026-08-30 사장님 지시:
  *    "내 컴퓨터 소리 키고 싶은데 게임들이 로컬에서 소리 뜨는 게 짜증난다 —
@@ -143,6 +143,94 @@
   }
   if (local) hardMute();
 
+  /* ── ★★ 게임 시간 멈춤 버스 `DGL_PAUSE` (2026-11-02 사장님 «다른 탭으로 가면 전투 멈추고 소리 멈추기 — 내 게임들이 이걸 맨날 실수해») ──
+     소리만 멈추면 반쪽이다 — 앱을 내렸다 돌아오면 그 사이 전투·웨이브·쿨다운이 흘러가 있었다(첫 프레임 dt 가 «밖에 있던 시간» 통째).
+     멈추는 이유는 둘이고 출처는 여기 하나다:
+       · 'app' — 앱 밖으로 나감(홈·다른 앱·알림창·전화·화면 꺼짐). 아래 앱 수명주기가 직접 켜고 끈다. 게임은 안 건드린다.
+       · 그 밖의 이름(보통 'ui') — 게임 안 다른 탭·창. 전투 중 상점·가방·설정·팝업을 여는 셸이 `DGL_PAUSE.set('ui', true/false)`.
+     게임 루프는 한 줄로 붙는다: `dt = DGL_PAUSE.step(rawDt, 최대치)` — 멈춤이면 0, 돌아온 첫 프레임의 큰 dt 는 최대치로 자른다.
+     소리는 `DGL_PAUSE.on(function (paused) { … })` 로 전투 효과음을 멈춘다(BGM 은 장르 관례대로).
+     재는 자(업무폰): `DGL_PAUSE.clock(function () { return 전투시간초 })` 를 걸면 나갈 때·돌아올 때·돌아온 1초 뒤 게임 시간을
+     콘솔(`DGL_CLOCK out|in|after t=…`)에 찍고 `core/tools/phone/bg-audio.mjs --clock` 이 logcat 으로 «밖에 있던 동안 안 흘렀나»를 잰다.
+     게이트 = `core/tools/check-pause-on-blur.mjs` */
+  var pauseBus = (function () {
+    var reasons = {};
+    var subs = [];
+    var clockFn = null;
+    var reasonSubs = [];   // 이유 하나가 켜지고 꺼질 때마다(멈춤 여부가 그대로여도) — 소리 재우기('ad')가 듣는다
+    function list() {
+      return Object.keys(reasons);
+    }
+    function paused() {
+      return list().length > 0;
+    }
+    function log(tag) {
+      if (!clockFn) return;
+      try {
+        console.log('DGL_CLOCK ' + tag + ' t=' + Number(clockFn()).toFixed(3));
+      } catch (e) {}
+    }
+    function set(reason, on) {
+      reason = String(reason || 'ui');
+      on = !!on;
+      if (!!reasons[reason] === on) return;
+      var was = paused();
+      if (on) reasons[reason] = true;
+      else delete reasons[reason];
+      if (reason === 'app') {
+        if (on) log('out');
+        else {
+          log('in');
+          setTimeout(function () { log('after'); }, 1000);
+        }
+      }
+      reasonSubs.forEach(function (fn) {
+        try {
+          fn(reason, on);
+        } catch (e) {}
+      });
+      var now = paused();
+      if (was === now) return;
+      subs.slice().forEach(function (fn) {
+        try {
+          fn(now, list());
+        } catch (e) {}
+      });
+    }
+    return {
+      /** 멈춤 이유 켜기/끄기 — 'app' 은 이 파일이 쥔다. 게임 안 탭·창은 'ui'(또는 다른 이름) */
+      set: set,
+      /** 지금 하나라도 멈춤 이유가 있나 */
+      paused: paused,
+      /** 켜진 이유 목록 */
+      reasons: list,
+      /** 멈춤이 바뀔 때 fn(paused, reasons) — 해제 함수를 돌려준다 */
+      on: function (fn) {
+        subs.push(fn);
+        return function () {
+          var i = subs.indexOf(fn);
+          if (i >= 0) subs.splice(i, 1);
+        };
+      },
+      /** 이유 하나가 바뀔 때마다 fn(reason, on) — 멈춤 여부가 그대로여도 부른다 */
+      onReason: function (fn) {
+        reasonSubs.push(fn);
+      },
+      /** 게임 루프의 dt — 멈춤이면 0, 아니면 max 로 자른다(단위는 부르는 쪽 것 그대로) */
+      step: function (dt, max) {
+        if (paused()) return 0;
+        dt = Number(dt) || 0;
+        if (dt < 0) return 0;
+        return max != null && dt > max ? max : dt;
+      },
+      /** 재는 자가 읽을 게임 시간(초) — 전투·판이 흐른 시간을 돌려주는 함수 */
+      clock: function (fn) {
+        clockFn = typeof fn === 'function' ? fn : null;
+      },
+    };
+  })();
+  window.DGL_PAUSE = pauseBus;
+
   /* 앱을 떠나면 모든 웹 게임의 소리를 멈춘다. Phaser/바닐라 게임이 각각 수명주기를
      배선하지 않아도 Web Audio 와 <audio> 양쪽에 적용된다. */
   (function installAppAudioLifecycle() {
@@ -173,7 +261,7 @@
     }
     /* ★ 앱을 내린 동안엔 게임이 부르는 resume()·play() 를 막는다 — 돌아오면 그때 켠다.
        게임 코드는 소리를 낼 때마다 «잠들었으면 깨운다»(ctx.resume())를 부르는 게 흔하다. 그러면 stop() 이 재운 직후
-       다음 BGM 음표가 다시 깨워 앱을 내려도 소리가 계속 났다(치치 캠프 안드로이드 2026-10-21 · 예전부터 고질).
+       다음 BGM 음표가 다시 깨워 앱을 내려도 소리가 계속 났다(안드로이드 2026-10-21 · 예전부터 고질).
        게임마다 고치지 않고 여기서 한 번에 막는다: 쉬는 중의 resume 은 «돌아오면 켤 목록» 에 넣고 바로 끝낸다. */
     function holdWhileInactive(context) {
       var nativeResume = context.resume;
@@ -194,7 +282,13 @@
           if (pausedMedia.indexOf(this) < 0) pausedMedia.push(this);
           return Promise.resolve();
         }
-        return nativePlay.apply(this, arguments);
+        /* ★ 자동재생 정책이 재생을 거절해도(«The play method is not allowed …» — 파이어폭스가 탭을 뒤에서 열었다
+           앞으로 가져왔을 때 · PC방 웹 474fed761 t-261113-tzvf) 그건 «이번엔 소리를 못 켰다»일 뿐이다 — 위 resume() 과 같다.
+           받는 손 없이 부른 play() 도 있다(서드파티·옛 코드). 거절을 여기서 한 번 받아 unhandledrejection 으로 새지 않게 하고,
+           부른 쪽은 원래 약속을 그대로 받는다(직접 then/catch 를 걸어도 된다). */
+        var promise = nativePlay.apply(this, arguments);
+        if (promise && typeof promise.catch === 'function') promise.catch(function () {});
+        return promise;
       };
     }
     ['AudioContext', 'webkitAudioContext'].forEach(function (name) {
@@ -221,8 +315,23 @@
       TrackedContext.prototype = NativeContext.prototype;
       window[name] = TrackedContext;
     });
-    function stop() {
-      if (inactive) return;
+    /* ★ 소리를 재우는 이유는 둘이다 — 'app'(앱 밖) · 'ad'(광고 도중). 포털 쉼이 광고 앞뒤로 `DGL_PAUSE.set('ad', …)` 를 켜고 끈다.
+       Phaser 매니저만 끄던 때는 DOM 게임의 `new Audio()` BGM 이 광고 위로 계속 났다(한 번뿐인 인생 GamePix 반려 2026-11-05).
+       둘 중 하나라도 켜져 있으면 잠들고, 둘 다 풀려야 깬다 — 광고 중 앱을 내렸다 와도 광고가 끝나기 전엔 안 켜진다. */
+    var holds = {};
+    function hold(reason, on) {
+      if (!!holds[reason] === on) return;
+      if (on) holds[reason] = true;
+      else delete holds[reason];
+      if (reason === 'app') pauseBus.set('app', on);
+      var want = Object.keys(holds).length > 0;
+      if (want && !inactive) silence();
+      else if (!want && inactive) wake();
+    }
+    pauseBus.onReason(function (reason, on) { if (reason === 'ad') hold('ad', on); });
+    function stop() { hold('app', true); }
+    function resume() { if (!document.hidden) hold('app', false); }
+    function silence() {
       inactive = true;
       contexts.forEach(function (context) {
         if (context.state === 'running') {
@@ -239,8 +348,7 @@
       /* 끝난 것은 잊는다 — 계속 쌓이지 않게 */
       knownMedia = knownMedia.filter(function (m) { return !m.ended; });
     }
-    function resume() {
-      if (!inactive || document.hidden) return;
+    function wake() {
       inactive = false;
       suspended.splice(0).forEach(function (context) {
         if (context.state === 'suspended') context.resume().catch(function () {});
