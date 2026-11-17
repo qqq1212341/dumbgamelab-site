@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>One glove becomes two for this crab</title>
+    <link>https://dumbgamelab.com/en/blog/boxer-crab-gloves/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/boxer-crab-gloves/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>In an experiment with one species of boxer crab, crabs split a remaining anemone after losing the other. The two pieces regenerated over several days.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/boxer-crab-anemones.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Where Korean salt bread really comes from: Japan&#39;s shio pan vs the Korean version</title>
     <link>https://dumbgamelab.com/en/blog/korean-salt-bread-vs-japanese-shiopan/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-salt-bread-vs-japanese-shiopan/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-seoul-24-hours/</guid>
     <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
     <description>Landing in Seoul or at Incheon Airport at midnight? We compared the 24-hour jjimjilbang (Korean spa) where you can sleep overnight. Night rates start at 8 p.m. at most places and 10 p.m. at one. Surcharges, no re-entry, passports and the under-19 rule at 10 p.m. are all checked as of 2026-11-04.</description>
-  </item>
-  <item>
-    <title>Crows Remember Your Face and Spread the Word</title>
-    <link>https://dumbgamelab.com/en/blog/crow-faces/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/crow-faces/</guid>
-    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Crows recognize individual human faces and are known to spread word of dangerous people with their calls.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

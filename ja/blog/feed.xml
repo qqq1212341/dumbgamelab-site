@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>このカニは片方の手袋を一組にする</title>
+    <link>https://dumbgamelab.com/ja/blog/boxer-crab-gloves/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/boxer-crab-gloves/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>あるキンチャクガニの仲間を使った実験で、片方のイソギンチャクを失ったカニは残りを分割した。ふたつの破片は数日かけてそれぞれ再生した。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/boxer-crab-anemones.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>韓国の塩パンは日本が発祥? 日本の塩パンとの違いと、買って帰る時の日持ち・機内持ち込み</title>
     <link>https://dumbgamelab.com/ja/blog/korean-salt-bread-vs-japanese-shiopan/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-salt-bread-vs-japanese-shiopan/</guid>
@@ -222,13 +230,6 @@
     <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
     <description>カラスは人の顔を一人ずつ見分け、危険な人の情報を鳴き声で広めることが知られている。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>ネットカフェ育成のお客AI、こう作りました</title>
-    <link>https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-customer-ai-devlog/</guid>
-    <pubDate>Mon, 02 Nov 2026 15:00:00 GMT</pubDate>
-    <description>個人開発のネットカフェ育成ゲームで、お客の動きをどう作ったかの記録です。A*で人が立つマスに足すコスト12、1マスに1人、入口の外に1列だけの行列、受け入れられなかったお客を数える理由を、実測の数字つきで書きました。</description>
   </item>
 </channel>
 </rss>

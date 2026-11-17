@@ -7,6 +7,14 @@
   <description>Tempat sehari-hari di Korea, game idle tycoon santai, dan catatan dari studio game kecil di Seoul.</description>
   <language>id</language>
   <item>
+    <title>Kepiting ini mengubah satu sarung tangan jadi sepasang</title>
+    <link>https://dumbgamelab.com/id/blog/boxer-crab-gloves/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/boxer-crab-gloves/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Dalam percobaan pada satu spesies kepiting petinju, kepiting membagi anemon yang tersisa setelah anemon di capit satunya diambil. Kedua potongan beregenerasi selama beberapa hari.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/boxer-crab-anemones.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Buku ini menyembunyikan lukisan di sisinya</title>
     <link>https://dumbgamelab.com/id/blog/hidden-book-painting/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/id/blog/hidden-book-painting/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Karena teori relativitas, jam satelit GPS jadi lebih cepat 38 mikrodetik per hari. Karena itu, sebelum diluncurkan, jamnya sengaja diatur lebih lambat.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Barcode Pertama yang Dipindai Adalah Permen Karet</title>
-    <link>https://dumbgamelab.com/id/blog/barcode-gum/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/barcode-gum/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Barcode lahir dari kode Morse yang digambar di pasir, dan barang pertama yang dipindai adalah permen karet.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/barcode-scanner.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
