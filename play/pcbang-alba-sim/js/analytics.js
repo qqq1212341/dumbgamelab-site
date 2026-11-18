@@ -72,7 +72,7 @@
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
     (document.head || document.documentElement).appendChild(s);
-    gtag('js', new Date());
+    gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js', new Date());
     gtag('config', MEASUREMENT_ID, { debug_mode: DEBUG, send_page_view: true });
   }
 

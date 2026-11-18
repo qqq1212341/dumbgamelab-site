@@ -79,7 +79,7 @@
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
     (document.head || document.documentElement).appendChild(s);
-    gtag('js', new Date());
+    gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js', new Date());
     /* ★ page_location 을 지금(스크립트가 도는 순간) 박아 둔다 — gtag.js 는 비동기라 page_view 가 늦게 만들어지는데,
        그 사이 main.ts 가 공유 링크의 ?d=·?s=·utm 을 주소에서 지워 버려(history.replaceState) 유입 출처(utm_source=share)가
        통째로 direct 로 잡혔다(2026-10: 공유 130회, share 유입 0). 주소를 지우기 전 값을 GA 에 직접 넘긴다. */

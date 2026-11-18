@@ -20,7 +20,7 @@
 <!-- dgl:head -->
 <meta name="naver-site-verification" content="5042f374b9912f6cb002632fc693079e9e677b3d">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
 <!-- /dgl:head -->
 </head>
 <body>
@@ -35,16 +35,20 @@
 </nav>
 <main class="doc">
 <h1>개인정보처리방침</h1>
-<p class="updated">시행일: 2026년 10월 25일</p>
-<p>이 방침은 덤게임랩(Dumb Game Lab)이 내놓는 모바일 게임과 웹사이트에서 정보를 어떻게 다루는지 설명합니다. 계정을 만들라고 하지 않으며, 게임 안에서 이름·이메일·전화번호·정확한 위치는 받지 않습니다. 한국어판이 정본입니다.</p>
+<p class="updated">시행일: 2026년 11월 19일 · 이전 판: 2026년 10월 25일</p>
+<p>이 방침은 덤게임랩(Dumb Game Lab)이 내놓는 모바일 게임과 웹사이트에서 개인정보를 어떻게 다루는지 설명합니다(개인정보 보호법 제30조). 계정을 만들라고 하지 않으며, 게임 안에서 이름·전화번호·정확한 위치는 받지 않습니다. 한국어판이 정본입니다.</p>
 
-<h2>1. 수집하는 정보</h2>
+<h2>1. 처리하는 개인정보와 목적</h2>
 <ul>
-<li><strong>게임 데이터</strong> — 진행 상황과 설정. 기기에 저장됩니다.</li>
-<li><strong>이용 데이터</strong> — 버그를 고치고 밸런스를 맞추려고 쓰는 익명의 플레이 기록(예: 도달한 단계, 접속 시간).</li>
-<li><strong>기기·광고 식별자</strong> — 광고를 보여 주고 측정하려고 광고 파트너가 수집합니다.</li>
+<li><strong>게임 데이터</strong> — 진행 상황과 설정. 기기에 저장되며 덤게임랩 서버로 보내지 않습니다. 클라우드 저장을 지원하는 게임은 이용자 본인의 iCloud(Apple) 또는 Google Play 게임즈 계정에 사본을 둡니다. 덤게임랩은 이 사본을 볼 수 없습니다.</li>
+<li><strong>이용 기록</strong> — 게임을 고치고 밸런스를 맞추려고 Google Analytics for Firebase로 플레이 기록(도달한 단계, 이용 시간, 기기 모델, OS, 앱 버전, 나라)을 모읍니다. 이 기록에는 앱 인스턴스 ID 같은 기기 식별값이 함께 붙습니다.</li>
+<li><strong>광고 식별자</strong> — 광고를 보여 주고 측정하려고 Google AdMob이 광고 ID(안드로이드 광고 ID·iOS IDFA)와 IP 주소를 수집합니다.</li>
+<li><strong>오류 보고</strong> — 게임이 멈추거나 오류가 나면 오류 내용, 직전 화면 흐름, 앱 버전, 기기 모델과 OS를 보냅니다. IP 주소와 기기 ID는 저장하지 않습니다.</li>
+<li><strong>의견 보내기</strong> — 게임 안 «의견 보내기»로 보낸 글과 게임 이름·빌드 번호·마지막 오류 내용을 Google Analytics로 받습니다.</li>
+<li><strong>친구 초대</strong> — 초대 코드와 성사 여부를 기록합니다. 앱이 만든 무작위 값의 해시만 저장하고, IP는 날짜를 섞은 해시로 그날만 씁니다(부정 사용 막기). 기기 ID·광고 ID는 저장하지 않습니다.</li>
 <li><strong>결제 기록</strong> — 유료 상품을 사거나 복원할 때만 생깁니다(아래 2항).</li>
-<li><strong>보내 주신 문의</strong> — 이메일로 문의하시면 답장을 위해 내용과 이메일 주소를 보관합니다.</li>
+<li><strong>웹사이트 방문 기록</strong> — dumbgamelab.com은 Google Analytics 쿠키로 방문 페이지, 유입 경로, 브라우저, 대략적인 지역을 모읍니다(아래 4항).</li>
+<li><strong>문의</strong> — 이메일로 문의하시면 답장을 위해 이메일 주소와 내용을 보관합니다.</li>
 </ul>
 
 <h2>2. 결제 기록(인앱 «프리미엄»)</h2>
@@ -65,29 +69,55 @@
 <li>처리 위탁·보관: Cloudflare(서버)</li>
 </ul>
 
-<h2>3. 외부 서비스</h2>
-<p>게임은 아래 서비스를 쓰며, 각 서비스의 개인정보 방침을 따릅니다.</p>
+<h2>3. 처리 위탁과 국외 이전</h2>
+<p>덤게임랩은 아래 업체에 처리를 맡기며, 이 업체들의 서버는 대한민국 밖에 있습니다(개인정보 보호법 제28조의8 제1항 제3호 — 서비스 제공을 위해 필요하고 이 방침으로 알리는 경우). 이전은 앱·웹을 쓸 때 네트워크로 그때그때 이뤄집니다. 이전을 원하지 않으면 앱을 지우거나 웹사이트 이용을 멈추면 되며, 이 경우 게임을 쓸 수 없거나 광고·분석이 꺼집니다.</p>
+<table class="xfer">
+<thead><tr><th>받는 곳(나라)</th><th>이전 항목</th><th>목적</th><th>보유 기간</th></tr></thead>
+<tbody>
+<tr><td>Google LLC(미국) — AdMob</td><td>광고 ID, IP 주소, 기기 정보, 광고 반응</td><td>광고 표시·측정</td><td>Google 정책에 따름</td></tr>
+<tr><td>Google LLC(미국) — Firebase·Google Analytics</td><td>앱 인스턴스 ID, 이용 기록, 기기 정보, 의견 글, 웹 쿠키 ID</td><td>이용 분석·의견 수집</td><td>최대 14개월(Google Analytics 보관 한도)</td></tr>
+<tr><td>Cloudflare, Inc.(미국, 전 세계 데이터센터)</td><td>결제 기록, 사전예약 정보, 오류 보고, 초대 코드</td><td>서버 운영</td><td>2항·2-1항·6항 기간</td></tr>
+<tr><td>Apple Inc.(미국)·Google LLC(미국)</td><td>결제 정보, 클라우드 저장 사본</td><td>결제, 이용자 계정의 클라우드 저장</td><td>각 사 정책에 따름</td></tr>
+</tbody>
+</table>
+<p>각 사의 방침: <a href="https://policies.google.com/privacy" rel="noopener">Google</a> · <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a> · <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple</a>. 덤게임랩은 개인정보를 제3자에게 팔거나 제공하지 않습니다. 법령에 따른 요청이 있을 때만 예외입니다.</p>
+
+<h2>4. 쿠키와 광고 추적</h2>
 <ul>
-<li>Google AdMob(광고) — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
-<li>Google Analytics for Firebase(익명 이용 분석) — <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></li>
-<li>Apple App Store·Google Play(결제) — 결제는 스토어가 처리하며, 덤게임랩은 결제 정보를 보지 못합니다.</li>
-<li>Cloudflare(결제 기록 서버) — <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></li>
+<li>웹사이트는 Google Analytics 쿠키를 씁니다. 유럽경제지역·영국·스위스에서 접속하면 기본으로 쿠키를 쓰지 않습니다. 브라우저 설정에서 쿠키를 막거나 지울 수 있고, <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google 애널리틱스 차단 부가기능</a>도 쓸 수 있습니다.</li>
+<li>iOS에서는 맞춤 광고에 광고 식별자를 쓰기 전에 Apple의 앱 추적 투명성(ATT) 창으로 허락을 구합니다. 거절하시면 맞춤이 아닌 광고가 나옵니다.</li>
+<li>안드로이드에서는 기기 설정 › Google › 광고에서 광고 ID를 지우거나 맞춤 광고를 끌 수 있습니다.</li>
 </ul>
 
-<h2>4. 광고와 추적</h2>
-<p>iOS에서는 맞춤 광고에 광고 식별자를 쓰기 전에 Apple의 앱 추적 투명성(ATT) 창으로 허락을 구합니다. 거절하시면 맞춤이 아닌 광고가 나옵니다. 안드로이드에서는 기기 설정에서 광고 개인 맞춤을 끄거나 식별자를 초기화할 수 있습니다.</p>
+<h2>5. 만 14세 미만 아동</h2>
+<p>게임은 만 14세 미만 아동을 대상으로 하지 않으며, 만 14세 미만 아동의 개인정보를 알면서 수집하지 않습니다. 만 14세 미만 아동의 정보가 수집된 것을 알게 되면 바로 지웁니다. 법정대리인은 <a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a>으로 열람·삭제를 요청할 수 있습니다.</p>
 
-<h2>5. 어린이</h2>
-<p>게임은 일반 이용자를 위한 것이며 만 13세 미만 어린이를 대상으로 하지 않습니다. 어린이의 개인정보를 알면서 수집하지 않습니다.</p>
+<h2>6. 보유 기간과 파기</h2>
+<ul>
+<li>게임 데이터는 앱을 지울 때까지 기기에 남습니다.</li>
+<li>결제 기록은 5년, 사전예약 정보는 출시 30일 뒤까지, 문의 메일은 답변을 마치고 1년 뒤까지 보관합니다. 분석 데이터는 3항의 기간을 따릅니다.</li>
+<li>보유 기간이 끝나거나 목적을 이루면 바로 지웁니다. 전자 파일은 되살릴 수 없는 방법으로 지우고, 종이 문서는 만들지 않습니다.</li>
+</ul>
 
-<h2>6. 보관과 삭제</h2>
-<p>게임 데이터는 앱을 지울 때까지 기기에 남습니다. 분석 데이터는 각 파트너의 정책에 따라 보관됩니다. 결제 기록은 위에 적은 대로 5년간 보관합니다. 본인과 연결된 데이터를 지워 달라고 하시려면 <a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a>으로 메일을 주세요. 법에 따라 보관해야 하는 기록은 보관 기간이 끝날 때 삭제합니다.</p>
+<h2>7. 이용자의 권리</h2>
+<p>이용자(만 14세 미만이면 법정대리인)는 언제든 개인정보의 열람·정정·삭제·처리 정지를 요청하고 동의를 철회할 수 있습니다. <a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a>으로 보내 주시면 10일 안에 처리하고 결과를 알려 드립니다. 법령에 따라 보관해야 하는 정보는 그 기간이 끝난 뒤 지웁니다.</p>
 
-<h2>7. 방침의 변경</h2>
-<p>이 방침은 바뀔 수 있으며, 이 페이지에 올리는 때부터 효력이 생깁니다.</p>
+<h2>8. 안전 조치</h2>
+<p>모든 전송은 암호화(HTTPS)합니다. 서버 접근 권한은 대표자 한 명으로 제한하고, IP 주소처럼 저장할 필요가 없는 정보는 해시로 바꾸거나 저장하지 않습니다.</p>
 
-<h2>8. 문의</h2>
-<p>덤게임랩, 대한민국 — <a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a>. 사업자 정보는 <a href="/business/">여기</a>에 있습니다.</p>
+<h2>9. 개인정보 보호책임자</h2>
+<ul>
+<li>성명·직위: 이희준(대표)</li>
+<li>이메일: <a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></li>
+<li>전화: 010-2179-2724</li>
+</ul>
+<p>개인정보 침해로 상담이 필요하면 개인정보침해신고센터(privacy.kisa.or.kr · 국번 없이 118), 개인정보분쟁조정위원회(kopico.go.kr · 1833-6972), 대검찰청(spo.go.kr · 국번 없이 1301), 경찰청(ecrm.police.go.kr · 국번 없이 182)에 문의할 수 있습니다.</p>
+
+<h2>10. 방침의 변경</h2>
+<p>이 방침을 바꿀 때는 시행 7일 전부터 이 페이지에 알립니다. 수집 항목이 늘어나는 등 이용자 권리에 중요한 변경은 30일 전부터 알립니다.</p>
+
+<h2>11. 사업자</h2>
+<p>덤게임랩, 대한민국. 사업자 정보는 <a href="/business/">여기</a>에 있습니다.</p>
 <p class="langs">다른 언어: <b>한국어</b> · <a href="/privacy/" hreflang="en" lang="en">English</a> · <a href="/ja/privacy/" hreflang="ja" lang="ja">日本語</a> · <a href="/zh-Hans/privacy/" hreflang="zh-CN" lang="zh-Hans">简体中文</a> · <a href="/zh-Hant/privacy/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a> · <a href="/id/privacy/" hreflang="id" lang="id">Bahasa Indonesia</a> · <a href="/th/privacy/" hreflang="th" lang="th">ไทย</a> · <a href="/vi/privacy/" hreflang="vi" lang="vi">Tiếng Việt</a></p>
 
 
