@@ -7,6 +7,20 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>1日のトークンの25%が無駄になり、そのうち14.4%はキャッシュの温め直しだった</title>
+    <link>https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>AIエージェントでゲームを作る個人開発者の1日のトークン台帳です。90.6Mのうち22.7M(25%)が無駄になり、最大の項目はキャッシュの温め直し13.0M(14.4%)でした。原因とプロンプトキャッシュの料金の仕組み、そのあと変えたやり方をまとめました。</description>
+  </item>
+  <item>
+    <title>ゲーム効果音の候補12個がすべて負けたハチミツの足音、耳で聴いたら太鼓だった</title>
+    <link>https://dumbgamelab.com/ja/blog/twelve-sounds-old-honey-won/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/twelve-sounds-old-honey-won/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>ASMR 系の登りゲームで、ハチミツを踏む効果音を替えようと YouTube の動画から抜いた候補を12個試しました。採点表の1位は元の音でしたが、耳で聴き直すと太鼓の音でした。著作権を気にしなくていい Freesound の CC0 音源ひとつを、加工せずに10個に切り分けて差し替えた記録です。</description>
+  </item>
+  <item>
     <title>このカニは片方の手袋を一組にする</title>
     <link>https://dumbgamelab.com/ja/blog/boxer-crab-gloves/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/boxer-crab-gloves/</guid>
@@ -215,21 +229,6 @@
     <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
     <description>1957年のエイプリルフール、BBCはスイスの一家が木からスパゲッティを収穫する映像を流し、数百人が育て方を尋ねてきた。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/spaghetti-plate.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>夜12時に着いたら、ソウルのチムジルバンはどこに泊まる？</title>
-    <link>https://dumbgamelab.com/ja/blog/jjimjilbang-seoul-24-hours/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/jjimjilbang-seoul-24-hours/</guid>
-    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
-    <description>夜12時にソウルや仁川空港へ着いたとき、泊まれる24時間営業のチムジルバンを比べました。夜間料金が始まる時刻は20時が多く、22時の店もあります。追加料金、再入場不可、パスポート、22時以降の未成年ルールまで、2026-11-04時点で書いています。</description>
-  </item>
-  <item>
-    <title>カラスは私の顔を覚えていて、噂を広める</title>
-    <link>https://dumbgamelab.com/ja/blog/crow-faces/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/crow-faces/</guid>
-    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
-    <description>カラスは人の顔を一人ずつ見分け、危険な人の情報を鳴き声で広めることが知られている。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/crow-banff.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

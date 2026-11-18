@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>클로드 코드 토큰 비용 장부: 하루 25% 낭비, 그중 절반 넘게 캐시 다시 데우기</title>
+<meta name="description" content="AI 에이전트로 게임을 만드는 1인 개발자의 하루 토큰 장부입니다. 90.6M 중 22.7M(25%)이 샜고 가장 큰 칸은 캐시 다시 데우기 13.0M(14.4%)이었습니다. 원인과 프롬프트 캐싱 가격 구조, 다음에 바꾼 방법을 적었습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="클로드 코드 토큰 비용 장부: 하루 25% 낭비, 그중 절반 넘게 캐시 다시 데우기">
+<meta property="og:description" content="AI 에이전트로 게임을 만드는 1인 개발자의 하루 토큰 장부입니다. 90.6M 중 22.7M(25%)이 샜고 가장 큰 칸은 캐시 다시 데우기 13.0M(14.4%)이었습니다. 원인과 프롬프트 캐싱 가격 구조, 다음에 바꾼 방법을 적었습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"하루 토큰 25%가 샜고 그중 14.4%는 캐시 다시 데우기였다","description":"AI 에이전트로 게임을 만드는 1인 개발자의 하루 토큰 장부입니다. 90.6M 중 22.7M(25%)이 샜고 가장 큰 칸은 캐시 다시 데우기 13.0M(14.4%)이었습니다. 원인과 프롬프트 캐싱 가격 구조, 다음에 바꾼 방법을 적었습니다.","inLanguage":"ko","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"하루 토큰 25%가 샜고 그중 14.4%는 캐시 다시 데우기였다","item":"https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"프롬프트 캐싱이란 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"앞에서 한 번 처리한 프롬프트 앞부분을 잠시 보관해 두고 다음 요청에서 다시 쓰는 기능입니다. Anthropic 문서 기준으로 기본 수명은 5분이고 쓸 때마다 늘어나며, 1시간짜리를 고를 수도 있습니다."}},{"@type":"Question","name":"프롬프트 캐싱 비용은 얼마나 차이 나나요?","acceptedAnswer":{"@type":"Answer","text":"공식 문서에 나온 배율로 캐시 쓰기는 기본 입력 단가의 1.25배(5분) 또는 2배(1시간)이고 캐시 읽기는 0.1배입니다. 같은 내용을 다시 쓰면 읽을 때의 12.5배에서 20배를 냅니다."}},{"@type":"Question","name":"클로드 코드 대화를 오래 열어 두면 왜 토큰이 많이 드나요?","acceptedAnswer":{"@type":"Answer","text":"캐시 수명이 지난 뒤에 말을 걸면 앞 대화 전체를 캐시에 새로 쓰기 때문입니다. 제 경우 하루 종일 열린 폰 세션 두 개 탓에 하루 청구 90.6M 중 13.0M이 이렇게 나갔습니다."}},{"@type":"Question","name":"클로드 코드 토큰 사용량은 어떻게 확인하나요?","acceptedAnswer":{"@type":"Answer","text":"저는 컴퓨터에 남는 클로드 코드 세션 기록 파일을 하루 단위로 모아 입력·출력·캐시 쓰기·캐시 읽기로 나누고, 쉬었다 돌아온 캐시 쓰기나 결과물 없이 끝난 세션처럼 낭비 칸을 따로 셉니다. 숫자가 칸별로 보여야 어디서 새는지 알 수 있었습니다. 합계만 보던 때는 많이 썼다는 것만 알았지 이유는 몰랐어요."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">1인 개발 토큰 장부</p>
+    <h1>하루 토큰 25%가 샜고 그중 14.4%는 캐시 다시 데우기였다</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="2026-10-28 일기 원문 첫 줄. 토큰 90.6M, 낭비 22.7M, 25%라고 적혀 있다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10월 28일 하루에 청구된 토큰은 90.6M이었고 그중 22.7M(25%)이 낭비 칸에 들어갔습니다. 가장 큰 칸은 캐시 다시 데우기 13.0M(전체의 14.4%)으로 낭비의 절반이 넘습니다. 제 폰에서 연 대화 세션 두 개가 하루 종일 열려 있었고, 말을 한 마디 걸 때마다 앞 대화를 캐시에 처음부터 다시 썼기 때문입니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">하루 장부부터</a></li><li><a href="#s2">캐시 다시 데우기가 뭔가</a></li><li><a href="#s3">범인은 하루 종일 열린 폰 세션 둘</a></li><li><a href="#s4">4일째 1위, 말로는 안 줄었다</a></li><li><a href="#s5">두 번째 칸, 머지 없음 6.7M</a></li><li><a href="#s6">그래서 바꾼 방법</a></li></ol></nav>
+    <section id="s1"><h2>하루 장부부터</h2>
+<p>저는 AI 에이전트 여러 개를 하루 종일 돌려 게임을 만듭니다. 그날 쓴 토큰은 밤에 일기를 쓸 때 세션 기록을 모아 칸별로 세는데, 10월 28일 장부는 이랬습니다.</p>
+<p>청구 합계는 90.6M입니다. 입력 33K와 출력 9.6M에 캐시 쓰기 80.9M까지 더한 값인데, 이 가운데 캐시 쓰기 하나가 전체를 거의 다 채우고 있어서 처음 이 장부를 펼쳤을 때는 제가 계산을 잘못한 줄 알았어요. 캐시 쓰기가 89.4%를 차지합니다. 캐시 읽기 2.61B는 단가가 낮아서 이 합계에 넣지 않고 따로 적습니다.</p>
+<div class="tbl"><table><thead><tr><th>낭비 칸</th><th>토큰</th><th>하루 청구 대비</th></tr></thead><tbody><tr><td>캐시 다시 데우기</td><td>13.0M</td><td>14.4%</td></tr><tr><td>머지 없음</td><td>6.7M</td><td>7.4%</td></tr><tr><td>빈 장시간</td><td>2.7M</td><td>3.0%</td></tr><tr><td>Stop 훅 재호출</td><td>0.28M</td><td>0.3%</td></tr><tr><td>합계</td><td>22.7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="일기의 «오늘의 토큰» 원문. 청구 합계, 모델별, 낭비 칸, 가장 크게 샌 곳, 샌 이유가 줄마다 적혀 있다" loading="lazy" decoding="async"><figcaption>일기 원문 «오늘의 토큰». 노란 줄이 낭비 칸과 샌 이유입니다.</figcaption></figure></section>
+<section id="s2"><h2>캐시 다시 데우기가 뭔가</h2>
+<p>대화형 AI는 말을 걸 때마다 앞 대화 전체를 다시 읽습니다. 프롬프트 캐싱은 한 번 처리한 앞부분을 잠시 보관해 두고 다음 요청에서 싸게 꺼내 쓰게 해 주는 장치입니다.</p>
+<p>문제는 보관 시간입니다. Anthropic 공식 문서에 따르면 캐시의 기본 수명은 5분이고 쓸 때마다 다시 늘어나며, 따로 고르면 1시간짜리도 있습니다. 그 시간이 지나 다시 말을 걸면 앞 대화 전체를 캐시에 새로 써야 합니다.</p>
+<p>값 차이가 큽니다. 캐시 쓰기는 기본 입력 단가의 1.25배(5분짜리) 또는 2배(1시간짜리)이고, 캐시 읽기는 0.1배예요. 같은 앞 대화라도 다시 쓰면 읽을 때보다 12.5배에서 20배를 냅니다.</p>
+<div class="tbl"><table><thead><tr><th>처리 방식</th><th>기본 입력 단가 대비</th></tr></thead><tbody><tr><td>기본 입력</td><td>1배</td></tr><tr><td>캐시 쓰기(5분 수명)</td><td>1.25배</td></tr><tr><td>캐시 쓰기(1시간 수명)</td><td>2배</td></tr><tr><td>캐시 읽기</td><td>0.1배</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="토큰 장부 코드 머리말. cacheRewarm 칸은 쉬었다 와서 맥락을 통째로 다시 캐시에 쓴 토큰이라고 적혀 있다" loading="lazy" decoding="async"><figcaption>장부가 낭비 칸을 나누는 규칙입니다. 메인 세션은 60분 넘게 쉬었다 돌아온 뒤 다시 쓴 캐시를 이 칸에 셉니다.</figcaption></figure></section>
+<section id="s3"><h2>범인은 하루 종일 열린 폰 세션 둘</h2>
+<p>제 장부는 한 시간 넘게 쉬었다가 돌아온 메인 세션이 맥락을 통째로 다시 캐시에 쓴 양을 «캐시 다시 데우기»로 셉니다. 그날 이 칸을 키운 건 제가 폰으로 열어 둔 세션 두 개였습니다.</p>
+<p>하나는 1,379분, 다른 하나는 1,161분 동안 열려 있었는데 하루가 1,440분이니 두 창 모두 아침에 열어서 밤늦게까지 한 번도 제대로 닫힌 적이 없었던 셈입니다. 거의 종일이에요. 생각날 때마다 폰에서 한 마디씩 던졌고, 그때마다 식은 대화가 처음부터 다시 데워졌습니다.</p>
+<p>가장 크게 샌 세션은 «왜 정지된 거야?»로 시작한 병목 세션입니다. 160분 동안 4.8M을 캐시 다시 데우기로 썼습니다. 이 세션이 그날 쓴 7.5M의 3분의 2 가까이가 다시 데우기였어요.</p>
+</section>
+<section id="s4"><h2>4일째 1위, 말로는 안 줄었다</h2>
+<p>캐시 다시 데우기는 10월 25일부터 나흘 연속 낭비 1위였습니다. 매일 일기에 적었고 고치자는 티켓도 걸어 뒀습니다. 그래도 숫자는 내려오지 않았습니다.</p>
+<p>«세션을 짧게 쓰자»는 다짐은 폰을 든 순간 잊힙니다. 이동 중에 떠오른 걸 바로 시키려면 새 창을 열고 상황을 처음부터 설명하는 것보다 하던 대화창에 한 마디만 더 붙이는 쪽이 훨씬 편하니까요. 사람 습관에 기대는 규칙은 같은 자리에서 계속 샙니다.</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="일기의 «오늘의 낭비» 원문. 캐시 다시 데우기 13.0M, 10-25부터 4일째 같은 칸이라고 적혀 있다" loading="lazy" decoding="async"><figcaption>«10-25부터 4일째 같은 칸이다.» 일기에 같은 문장이 나흘째 나왔습니다.</figcaption></figure></section>
+<section id="s5"><h2>두 번째 칸, 머지 없음 6.7M</h2>
+<p>낭비 2위는 머지 없음 6.7M(7.4%)이었습니다. 토큰을 많이 쓰고도 결과물이 메인 코드에 한 번도 들어가지 않은 세션을 이 칸에 셉니다.</p>
+<p>서울 현황 세션(103분)과 치치 난투 세션(47분)이 여기에 걸렸습니다. 서울 쪽은 일을 하위 에이전트에 넘기고 «진행 중»이라고 답한 채 끝났어요. 서울 현황 세션은 머지 없음과 캐시 다시 데우기를 합쳐 2.4M을 썼습니다.</p>
+</section>
+<section id="s6"><h2>그래서 바꾼 방법</h2>
+<p>세션 길이는 말로 줄지 않는다는 게 그날 일기의 첫 교훈입니다. 그래서 다짐 대신 장치를 두기로 했습니다. 세션이 정해 둔 시간을 넘기면 지금까지의 내용을 요약해 저장하고 새 세션으로 넘기는 방식입니다.</p>
+<p>새 세션은 짧은 요약 하나만 들고 시작하니 다시 데울 앞 대화가 작습니다. 같은 처지라면 아래 순서로 먼저 재 보시길 권합니다.</p>
+<ul><li>하루 토큰을 입력·출력·캐시 쓰기·캐시 읽기로 나눠 적는다.</li><li>캐시 쓰기 비율이 높으면 쉬었다 돌아온 대화부터 의심한다.</li><li>가장 오래 열린 세션의 분 수를 센다.</li><li>일정 시간을 넘긴 세션은 요약을 남기고 새로 연다.</li><li>같은 칸이 며칠 연속 1위면 다짐을 그만두고 장치를 단다.</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="일기의 «교훈» 원문. 세션 길이는 말로 줄지 않는다는 문장이 굵게 적혀 있다" loading="lazy" decoding="async"><figcaption>일기 «교훈»의 첫 줄입니다.</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>프롬프트 캐싱이란 무엇인가요?</summary><p>앞에서 한 번 처리한 프롬프트 앞부분을 잠시 보관해 두고 다음 요청에서 다시 쓰는 기능입니다. Anthropic 문서 기준으로 기본 수명은 5분이고 쓸 때마다 늘어나며, 1시간짜리를 고를 수도 있습니다.</p></details><details><summary>프롬프트 캐싱 비용은 얼마나 차이 나나요?</summary><p>공식 문서에 나온 배율로 캐시 쓰기는 기본 입력 단가의 1.25배(5분) 또는 2배(1시간)이고 캐시 읽기는 0.1배입니다. 같은 내용을 다시 쓰면 읽을 때의 12.5배에서 20배를 냅니다.</p></details><details><summary>클로드 코드 대화를 오래 열어 두면 왜 토큰이 많이 드나요?</summary><p>캐시 수명이 지난 뒤에 말을 걸면 앞 대화 전체를 캐시에 새로 쓰기 때문입니다. 제 경우 하루 종일 열린 폰 세션 두 개 탓에 하루 청구 90.6M 중 13.0M이 이렇게 나갔습니다.</p></details><details><summary>클로드 코드 토큰 사용량은 어떻게 확인하나요?</summary><p>저는 컴퓨터에 남는 클로드 코드 세션 기록 파일을 하루 단위로 모아 입력·출력·캐시 쓰기·캐시 읽기로 나누고, 쉬었다 돌아온 캐시 쓰기나 결과물 없이 끝난 세션처럼 낭비 칸을 따로 셉니다. 숫자가 칸별로 보여야 어디서 새는지 알 수 있었습니다. 합계만 보던 때는 많이 썼다는 것만 알았지 이유는 몰랐어요.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>PC방 경영 게임 2026, 아이폰까지 포함한 17종</b><span class="pc-desc">PC방·인터넷 카페 경영 게임을 아이폰, 안드로이드, Steam으로 나눠 17종 골랐습니다. 스토어 페이지에서 직접 읽은 가격, 평점, 오프라인 문구와 우리 게임의 약점까지 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biaya Claude Code: 25% Token Sehari Terbuang, Paling Banyak untuk Panaskan Ulang Cache</title>
+<meta name="description" content="Catatan token harian developer game solo yang memakai AI agent. 22,7M dari 90,6M token (25%) terbuang, dan pos terbesarnya panaskan ulang cache 13,0M (14,4%). Penyebabnya, cara prompt caching dihitung, dan apa yang saya ubah.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/id/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Biaya Claude Code: 25% Token Sehari Terbuang, Paling Banyak untuk Panaskan Ulang Cache">
+<meta property="og:description" content="Catatan token harian developer game solo yang memakai AI agent. 22,7M dari 90,6M token (25%) terbuang, dan pos terbesarnya panaskan ulang cache 13,0M (14,4%). Penyebabnya, cara prompt caching dihitung, dan apa yang saya ubah.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"25% token sehari terbuang, 14,4% di antaranya untuk memanaskan ulang cache","description":"Catatan token harian developer game solo yang memakai AI agent. 22,7M dari 90,6M token (25%) terbuang, dan pos terbesarnya panaskan ulang cache 13,0M (14,4%). Penyebabnya, cara prompt caching dihitung, dan apa yang saya ubah.","inLanguage":"id","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"25% token sehari terbuang, 14,4% di antaranya untuk memanaskan ulang cache","item":"https://dumbgamelab.com/id/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apa itu prompt caching?","acceptedAnswer":{"@type":"Answer","text":"Prompt caching adalah fitur yang menyimpan sementara bagian awal prompt yang sudah diproses sekali agar bisa dipakai lagi di permintaan berikutnya. Menurut dokumentasi Anthropic, masa simpan default-nya 5 menit, diperpanjang setiap kali dipakai, dan bisa memilih versi 1 jam."}},{"@type":"Question","name":"Berapa selisih biaya prompt caching?","acceptedAnswer":{"@type":"Answer","text":"Berdasarkan pengali di dokumentasi resmi, tulis cache 1,25 kali harga input dasar (5 menit) atau 2 kali (1 jam), dan baca cache 0,1 kali. Menulis ulang isi yang sama biayanya 12,5 sampai 20 kali lipat dibanding membacanya."}},{"@type":"Question","name":"Kenapa sesi Claude Code yang dibiarkan terbuka lama boros token?","acceptedAnswer":{"@type":"Answer","text":"Karena kalau mengirim pesan setelah masa simpan cache habis, seluruh percakapan sebelumnya ditulis ulang ke cache. Dalam kasus saya, dua sesi di HP yang terbuka seharian membuat 13,0M dari tagihan harian 90,6M keluar dengan cara ini."}},{"@type":"Question","name":"Bagaimana cara cek pemakaian token Claude Code?","acceptedAnswer":{"@type":"Answer","text":"Saya kumpulkan file log sesi Claude Code yang tersimpan di komputer per hari, saya pisah menjadi input, output, tulis cache, dan baca cache, lalu saya hitung pos pemborosan secara terpisah, misalnya tulis cache setelah jeda atau sesi yang selesai tanpa hasil. Setelah angkanya terlihat per pos, baru saya tahu di mana bocornya. Waktu hanya melihat totalnya, saya cuma tahu pemakaiannya banyak tanpa tahu sebabnya."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Catatan token developer solo</p>
+    <h1>25% token sehari terbuang, 14,4% di antaranya untuk memanaskan ulang cache</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="Baris pertama catatan harian 28 Oktober. Tertulis token 90,6M, terbuang 22,7M, 25%" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Pada 28 Oktober saya ditagih 90,6M token, dan 22,7M di antaranya (25%) masuk ke pos pemborosan. Pos terbesar adalah panaskan ulang cache sebesar 13,0M, atau 14,4% dari total hari itu, lebih dari separuh seluruh pemborosan. Dua sesi chat yang saya buka di HP dibiarkan terbuka seharian, dan setiap kali saya mengirim satu pesan lagi, seluruh percakapan sebelumnya ditulis ulang ke cache dari awal.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Mulai dari catatan sehari</a></li><li><a href="#s2">Apa itu panaskan ulang cache?</a></li><li><a href="#s3">Biang keroknya dua sesi di HP yang terbuka seharian</a></li><li><a href="#s4">Empat hari di posisi pertama, janji saja tidak cukup</a></li><li><a href="#s5">Pos kedua: tanpa merge, 6,7M</a></li><li><a href="#s6">Yang akhirnya saya ubah</a></li></ol></nav>
+    <section id="s1"><h2>Mulai dari catatan sehari</h2>
+<p>Saya membuat game dengan menjalankan beberapa AI agent seharian. Malamnya, saat menulis catatan harian, saya mengumpulkan log sesi lalu membagi token hari itu ke beberapa pos. Begini catatan 28 Oktober.</p>
+<p>Total tagihannya 90,6M. Angka itu terdiri dari input 33K, output 9,6M, dan tulis cache 80,9M, dan karena tulis cache saja hampir memenuhi semuanya, waktu pertama membuka catatan ini saya kira hitungan saya salah. Tulis cache mengambil 89,4%. Baca cache mencapai 2,61B, tapi harganya murah sehingga tidak saya masukkan ke total ini dan saya catat terpisah.</p>
+<div class="tbl"><table><thead><tr><th>Pos pemborosan</th><th>Token</th><th>Dari tagihan harian</th></tr></thead><tbody><tr><td>Panaskan ulang cache</td><td>13,0M</td><td>14,4%</td></tr><tr><td>Tanpa merge</td><td>6,7M</td><td>7,4%</td></tr><tr><td>Sesi panjang menganggur</td><td>2,7M</td><td>3,0%</td></tr><tr><td>Panggilan ulang Stop hook</td><td>0,28M</td><td>0,3%</td></tr><tr><td>Total</td><td>22,7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="Bagian “token hari ini” di catatan harian. Total tagihan, per model, pos pemborosan, kebocoran terbesar, dan alasannya ditulis per baris" loading="lazy" decoding="async"><figcaption>Bagian “token hari ini” dari catatan asli. Baris kuning adalah pos pemborosan dan alasan bocornya.</figcaption></figure></section>
+<section id="s2"><h2>Apa itu panaskan ulang cache?</h2>
+<p>AI berbasis chat membaca ulang seluruh percakapan sebelumnya setiap kali kamu mengirim pesan. Prompt caching menyimpan bagian yang sudah diproses untuk sementara supaya permintaan berikutnya bisa mengambilnya dengan murah.</p>
+<p>Masalahnya ada di lama penyimpanan. Menurut dokumentasi resmi Anthropic, cache bertahan 5 menit secara default dan diperpanjang setiap kali dipakai, dan ada pilihan versi 1 jam. Lewat dari waktu itu lalu mengirim pesan lagi, seluruh percakapan sebelumnya harus ditulis ulang ke cache.</p>
+<p>Selisih harganya besar. Tulis cache dihargai 1,25 kali harga input dasar (versi 5 menit) atau 2 kali (versi 1 jam), sedangkan baca cache 0,1 kali. Untuk percakapan yang sama, menulis ulang biayanya 12,5 sampai 20 kali lipat dibanding membaca.</p>
+<div class="tbl"><table><thead><tr><th>Cara pemrosesan</th><th>Dibanding harga input dasar</th></tr></thead><tbody><tr><td>Input dasar</td><td>1x</td></tr><tr><td>Tulis cache (bertahan 5 menit)</td><td>1,25x</td></tr><tr><td>Tulis cache (bertahan 1 jam)</td><td>2x</td></tr><tr><td>Baca cache</td><td>0,1x</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="Komentar pembuka kode catatan token. Pos cacheRewarm adalah token untuk menulis ulang seluruh konteks ke cache setelah jeda" loading="lazy" decoding="async"><figcaption>Aturan yang dipakai catatan untuk membagi pos pemborosan. Sesi utama yang kembali setelah diam lebih dari 60 menit, cache yang ditulis ulangnya masuk ke pos ini.</figcaption></figure></section>
+<section id="s3"><h2>Biang keroknya dua sesi di HP yang terbuka seharian</h2>
+<p>Catatan saya menghitung “panaskan ulang cache” saat sesi utama diam lebih dari satu jam, kembali, lalu menulis ulang seluruh konteksnya ke cache. Hari itu pos ini membengkak gara-gara dua sesi yang saya biarkan terbuka di HP.</p>
+<p>Satu terbuka 1.379 menit, yang lain 1.161 menit, padahal sehari cuma 1.440 menit, jadi kedua jendela itu dibuka sejak pagi dan sampai larut malam tidak pernah benar-benar ditutup. Hampir seharian penuh. Setiap ada yang terpikir, saya kirim satu kalimat dari HP, dan setiap kali itu percakapan yang sudah dingin dipanaskan lagi dari awal.</p>
+<p>Kebocoran terbesar datang dari sesi penanganan macet yang dimulai dengan “Kenapa berhenti?”. Selama 160 menit sesi ini memakai 4,8M untuk panaskan ulang cache. Itu hampir dua pertiga dari 7,5M yang dipakai sesi ini hari itu.</p>
+</section>
+<section id="s4"><h2>Empat hari di posisi pertama, janji saja tidak cukup</h2>
+<p>Panaskan ulang cache jadi pos pemborosan terbesar empat hari berturut-turut sejak 25 Oktober. Setiap hari saya tulis di catatan harian, bahkan saya buat tiket untuk memperbaikinya. Angkanya tetap tidak turun.</p>
+<p>Janji “pakai sesi pendek saja” langsung lupa begitu HP dipegang. Kalau di jalan tiba-tiba kepikiran sesuatu yang mau langsung disuruh, menambah satu kalimat di jendela chat yang sudah terbuka jauh lebih gampang daripada membuka jendela baru dan menjelaskan semuanya dari awal. Aturan yang bergantung pada kebiasaan manusia akan terus bocor di tempat yang sama.</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="Bagian “pemborosan hari ini” di catatan harian. Tertulis panaskan ulang cache 13,0M, pos yang sama untuk hari ke-4 sejak 10-25" loading="lazy" decoding="async"><figcaption>“Pos yang sama untuk hari ke-4 sejak 10-25.” Kalimat yang sama muncul di catatan harian empat hari berturut-turut.</figcaption></figure></section>
+<section id="s5"><h2>Pos kedua: tanpa merge, 6,7M</h2>
+<p>Pemborosan kedua terbesar adalah tanpa merge, 6,7M (7,4%). Pos ini berisi sesi yang memakai banyak token tapi hasilnya tidak pernah masuk ke kode utama.</p>
+<p>Sesi status Seoul (103 menit) dan sesi Chichi tawuran (47 menit) tercatat di sini. Sesi Seoul menyerahkan pekerjaan ke sub-agent, menjawab “sedang dikerjakan”, lalu selesai begitu saja. Kalau tanpa merge dan panaskan ulang cache digabung, sesi status Seoul memakai 2,4M.</p>
+</section>
+<section id="s6"><h2>Yang akhirnya saya ubah</h2>
+<p>Pelajaran pertama di catatan hari itu: panjang sesi tidak berkurang hanya dengan niat. Karena itu saya memasang mekanisme sebagai ganti janji. Begitu sesi melewati batas waktu yang ditentukan, isinya sejauh ini diringkas dan disimpan, lalu dilanjutkan di sesi baru.</p>
+<p>Sesi baru dimulai hanya dengan satu ringkasan pendek, jadi percakapan yang perlu dipanaskan ulang kecil sekali. Kalau kamu mengalami hal serupa, saya sarankan ukur dulu dengan urutan berikut.</p>
+<ul><li>Catat token harian terpisah menjadi input, output, tulis cache, dan baca cache.</li><li>Kalau porsi tulis cache tinggi, curigai dulu percakapan yang kamu lanjutkan setelah jeda.</li><li>Hitung berapa menit sesi yang paling lama terbuka.</li><li>Sesi yang melewati batas waktu tertentu ditutup dengan ringkasan, lalu buka sesi baru.</li><li>Kalau pos yang sama jadi nomor satu beberapa hari berturut-turut, berhenti berjanji dan pasang mekanisme.</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="Bagian “pelajaran” di catatan harian. Kalimat bahwa panjang sesi tidak berkurang hanya dengan kata-kata ditulis tebal" loading="lazy" decoding="async"><figcaption>Baris pertama bagian “pelajaran” di catatan harian.</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Apa itu prompt caching?</summary><p>Prompt caching adalah fitur yang menyimpan sementara bagian awal prompt yang sudah diproses sekali agar bisa dipakai lagi di permintaan berikutnya. Menurut dokumentasi Anthropic, masa simpan default-nya 5 menit, diperpanjang setiap kali dipakai, dan bisa memilih versi 1 jam.</p></details><details><summary>Berapa selisih biaya prompt caching?</summary><p>Berdasarkan pengali di dokumentasi resmi, tulis cache 1,25 kali harga input dasar (5 menit) atau 2 kali (1 jam), dan baca cache 0,1 kali. Menulis ulang isi yang sama biayanya 12,5 sampai 20 kali lipat dibanding membacanya.</p></details><details><summary>Kenapa sesi Claude Code yang dibiarkan terbuka lama boros token?</summary><p>Karena kalau mengirim pesan setelah masa simpan cache habis, seluruh percakapan sebelumnya ditulis ulang ke cache. Dalam kasus saya, dua sesi di HP yang terbuka seharian membuat 13,0M dari tagihan harian 90,6M keluar dengan cara ini.</p></details><details><summary>Bagaimana cara cek pemakaian token Claude Code?</summary><p>Saya kumpulkan file log sesi Claude Code yang tersimpan di komputer per hari, saya pisah menjadi input, output, tulis cache, dan baca cache, lalu saya hitung pos pemborosan secara terpisah, misalnya tulis cache setelah jeda atau sesi yang selesai tanpa hasil. Setelah angkanya terlihat per pos, baru saya tahu di mana bocornya. Waktu hanya melihat totalnya, saya cuma tahu pemakaiannya banyak tanpa tahu sebabnya.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

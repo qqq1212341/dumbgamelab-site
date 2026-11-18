@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi phí Claude Code: 25% token một ngày bị phí, phần lớn vì làm nóng lại cache</title>
+<meta name="description" content="Sổ token một ngày của một người làm game một mình bằng AI agent. 22,7M trên 90,6M token (25%) bị phí, ô lớn nhất là làm nóng lại cache 13,0M (14,4%). Nguyên nhân, cách prompt caching tính tiền và điều tôi đã đổi.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Chi phí Claude Code: 25% token một ngày bị phí, phần lớn vì làm nóng lại cache">
+<meta property="og:description" content="Sổ token một ngày của một người làm game một mình bằng AI agent. 22,7M trên 90,6M token (25%) bị phí, ô lớn nhất là làm nóng lại cache 13,0M (14,4%). Nguyên nhân, cách prompt caching tính tiền và điều tôi đã đổi.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Một ngày phí 25% token, riêng làm nóng lại cache đã chiếm 14,4%","description":"Sổ token một ngày của một người làm game một mình bằng AI agent. 22,7M trên 90,6M token (25%) bị phí, ô lớn nhất là làm nóng lại cache 13,0M (14,4%). Nguyên nhân, cách prompt caching tính tiền và điều tôi đã đổi.","inLanguage":"vi","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Một ngày phí 25% token, riêng làm nóng lại cache đã chiếm 14,4%","item":"https://dumbgamelab.com/vi/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Prompt caching là gì?","acceptedAnswer":{"@type":"Answer","text":"Đây là tính năng giữ tạm phần đầu prompt đã xử lý một lần để dùng lại ở lần gọi sau. Theo tài liệu của Anthropic, cache mặc định sống 5 phút, được gia hạn mỗi lần dùng, và có thể chọn loại 1 giờ."}},{"@type":"Question","name":"Chi phí prompt caching chênh nhau bao nhiêu?","acceptedAnswer":{"@type":"Answer","text":"Theo hệ số trong tài liệu chính thức, ghi cache tốn 1,25 lần đơn giá input cơ bản (5 phút) hoặc 2 lần (1 giờ), còn đọc cache là 0,1 lần. Ghi lại cùng một nội dung tốn gấp 12,5 đến 20 lần so với đọc."}},{"@type":"Question","name":"Vì sao để phiên Claude Code mở lâu lại tốn nhiều token?","acceptedAnswer":{"@type":"Answer","text":"Vì nếu nhắn sau khi cache hết hạn, cả đoạn hội thoại trước sẽ được ghi vào cache lại từ đầu. Trường hợp của tôi, hai phiên trên điện thoại mở cả ngày đã làm 13,0M trong tổng 90,6M của ngày đi theo đường này."}},{"@type":"Question","name":"Làm sao xem lượng token Claude Code đã dùng?","acceptedAnswer":{"@type":"Answer","text":"Tôi gom các file log phiên Claude Code lưu trên máy theo từng ngày, tách thành input, output, ghi cache và đọc cache, rồi đếm riêng các ô lãng phí như ghi cache sau khi nghỉ hay phiên kết thúc mà không có kết quả. Phải thấy số theo từng ô thì mới biết rò ở đâu. Hồi chỉ nhìn tổng, tôi chỉ biết là dùng nhiều chứ không biết vì sao."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Sổ token của dev làm game một mình</p>
+    <h1>Một ngày phí 25% token, riêng làm nóng lại cache đã chiếm 14,4%</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="Dòng đầu nhật ký ngày 28/10 ghi token 90,6M, lãng phí 22,7M, 25%" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Ngày 28/10 tôi bị tính 90,6M token, trong đó 22,7M (25%) rơi vào các ô lãng phí. Ô lớn nhất là làm nóng lại cache với 13,0M, tức 14,4% cả ngày và hơn một nửa tổng phần phí. Hai phiên chat tôi mở trên điện thoại để nguyên cả ngày, và mỗi lần nhắn thêm một câu thì cả đoạn hội thoại trước đó lại được ghi vào cache từ đầu.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Xem sổ của một ngày trước</a></li><li><a href="#s2">Làm nóng lại cache là gì?</a></li><li><a href="#s3">Thủ phạm là hai phiên trên điện thoại mở cả ngày</a></li><li><a href="#s4">Bốn ngày liền đứng đầu, hứa suông không giảm</a></li><li><a href="#s5">Ô thứ hai: không merge, 6,7M</a></li><li><a href="#s6">Cách tôi đã đổi</a></li></ol></nav>
+    <section id="s1"><h2>Xem sổ của một ngày trước</h2>
+<p>Tôi làm game bằng cách chạy nhiều AI agent suốt cả ngày. Tối đến khi viết nhật ký, tôi gom log của các phiên lại và chia token của ngày đó thành từng ô. Sổ ngày 28/10 trông như sau.</p>
+<p>Tổng bị tính là 90,6M. Con số này gồm 33K input, 9,6M output và 80,9M ghi cache, mà riêng phần ghi cache đã lấp gần hết, nên lần đầu mở sổ ra tôi còn tưởng mình tính sai. Ghi cache chiếm 89,4%. Đọc cache là 2,61B nhưng đơn giá thấp nên tôi không cộng vào tổng này mà ghi riêng.</p>
+<div class="tbl"><table><thead><tr><th>Ô lãng phí</th><th>Token</th><th>So với tổng bị tính trong ngày</th></tr></thead><tbody><tr><td>Làm nóng lại cache</td><td>13,0M</td><td>14,4%</td></tr><tr><td>Không merge</td><td>6,7M</td><td>7,4%</td></tr><tr><td>Phiên dài bỏ trống</td><td>2,7M</td><td>3,0%</td></tr><tr><td>Gọi lại Stop hook</td><td>0,28M</td><td>0,3%</td></tr><tr><td>Tổng</td><td>22,7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="Phần “token hôm nay” trong nhật ký. Mỗi dòng ghi tổng bị tính, theo từng model, các ô lãng phí, chỗ rò lớn nhất và lý do" loading="lazy" decoding="async"><figcaption>Phần “token hôm nay” trong nhật ký gốc. Dòng tô vàng là các ô lãng phí và lý do bị rò.</figcaption></figure></section>
+<section id="s2"><h2>Làm nóng lại cache là gì?</h2>
+<p>AI dạng chat đọc lại toàn bộ hội thoại trước đó mỗi lần bạn nhắn. Prompt caching giữ tạm phần đã xử lý một lúc để lần gọi sau lấy ra với giá rẻ.</p>
+<p>Vấn đề nằm ở thời gian giữ. Theo tài liệu chính thức của Anthropic, cache mặc định sống 5 phút và được gia hạn mỗi lần dùng, ngoài ra có thể chọn loại 1 giờ. Quá thời gian đó mà nhắn tiếp thì cả đoạn hội thoại trước phải ghi vào cache lại từ đầu.</p>
+<p>Chênh lệch giá khá lớn. Ghi cache tốn 1,25 lần đơn giá input cơ bản (loại 5 phút) hoặc 2 lần (loại 1 giờ), còn đọc cache chỉ 0,1 lần. Cùng một đoạn hội thoại, ghi lại tốn gấp 12,5 đến 20 lần so với đọc.</p>
+<div class="tbl"><table><thead><tr><th>Cách xử lý</th><th>So với đơn giá input cơ bản</th></tr></thead><tbody><tr><td>Input cơ bản</td><td>1 lần</td></tr><tr><td>Ghi cache (sống 5 phút)</td><td>1,25 lần</td></tr><tr><td>Ghi cache (sống 1 giờ)</td><td>2 lần</td></tr><tr><td>Đọc cache</td><td>0,1 lần</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="Phần chú thích đầu file code sổ token. Ô cacheRewarm là token dùng để ghi lại toàn bộ ngữ cảnh vào cache sau khi nghỉ" loading="lazy" decoding="async"><figcaption>Quy tắc sổ dùng để chia ô lãng phí. Phiên chính nghỉ quá 60 phút rồi quay lại, phần cache phải ghi lại được tính vào ô này.</figcaption></figure></section>
+<section id="s3"><h2>Thủ phạm là hai phiên trên điện thoại mở cả ngày</h2>
+<p>Sổ của tôi gọi là “làm nóng lại cache” khi một phiên chính nghỉ hơn một tiếng, quay lại và ghi toàn bộ ngữ cảnh vào cache lần nữa. Hôm đó ô này phình to vì hai phiên tôi mở sẵn trên điện thoại.</p>
+<p>Một phiên mở 1.379 phút, phiên kia 1.161 phút, mà một ngày chỉ có 1.440 phút, nghĩa là cả hai cửa sổ được mở từ sáng và đến tận khuya chưa lần nào đóng hẳn. Gần như trọn ngày. Nghĩ ra gì là tôi nhắn một câu từ điện thoại, và mỗi lần như vậy một đoạn hội thoại đã nguội lại được làm nóng từ đầu.</p>
+<p>Chỗ rò lớn nhất là phiên xử lý nghẽn mở đầu bằng câu “Sao lại dừng rồi?”. Trong 160 phút, phiên này tốn 4,8M cho việc làm nóng lại cache. Con số đó gần bằng hai phần ba trong 7,5M phiên này dùng cả ngày.</p>
+</section>
+<section id="s4"><h2>Bốn ngày liền đứng đầu, hứa suông không giảm</h2>
+<p>Làm nóng lại cache đứng đầu danh sách lãng phí bốn ngày liền kể từ 25/10. Ngày nào tôi cũng ghi vào nhật ký, còn mở cả ticket để sửa. Vậy mà con số vẫn không xuống.</p>
+<p>Lời tự hứa “dùng phiên ngắn thôi” bị quên ngay lúc cầm điện thoại lên. Đang đi đường mà nảy ra việc cần giao thì gõ thêm một câu vào cửa sổ chat đang mở dễ hơn nhiều so với mở cửa sổ mới rồi kể lại tình hình từ đầu. Quy tắc nào dựa vào thói quen của con người thì sẽ rò mãi ở cùng một chỗ.</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="Phần “lãng phí hôm nay” trong nhật ký ghi làm nóng lại cache 13,0M, cùng một ô ngày thứ 4 kể từ 25/10" loading="lazy" decoding="async"><figcaption>“Cùng một ô ngày thứ 4 kể từ 25/10.” Câu này lặp lại trong nhật ký bốn ngày liền.</figcaption></figure></section>
+<section id="s5"><h2>Ô thứ hai: không merge, 6,7M</h2>
+<p>Đứng thứ hai trong các ô lãng phí là không merge với 6,7M (7,4%). Ô này tính những phiên dùng nhiều token mà kết quả chưa lần nào vào được code chính.</p>
+<p>Phiên tình hình Seoul (103 phút) và phiên Chichi đại chiến (47 phút) bị tính vào đây. Phiên Seoul giao việc cho agent con, trả lời “đang làm” rồi kết thúc luôn. Cộng cả không merge lẫn làm nóng lại cache, phiên tình hình Seoul tốn 2,4M.</p>
+</section>
+<section id="s6"><h2>Cách tôi đã đổi</h2>
+<p>Bài học đầu tiên trong nhật ký hôm đó là độ dài phiên không ngắn lại chỉ nhờ lời nói. Vì vậy tôi đặt một cơ chế thay cho lời hứa. Khi phiên vượt quá thời gian đã định, nó lưu bản tóm tắt nội dung đến lúc đó rồi chuyển sang phiên mới.</p>
+<p>Phiên mới bắt đầu chỉ với một bản tóm tắt ngắn nên phần hội thoại cần làm nóng lại rất nhỏ. Nếu bạn cũng đang gặp chuyện tương tự, tôi khuyên đo trước theo thứ tự sau.</p>
+<ul><li>Ghi token mỗi ngày tách thành input, output, ghi cache và đọc cache.</li><li>Nếu tỷ lệ ghi cache cao, nghi ngờ trước tiên những cuộc hội thoại bạn quay lại sau khi nghỉ.</li><li>Đếm số phút của phiên mở lâu nhất.</li><li>Phiên nào vượt thời gian đã định thì để lại tóm tắt và mở phiên mới.</li><li>Nếu cùng một ô đứng đầu nhiều ngày liền, thôi tự hứa và gắn cơ chế vào.</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="Phần “bài học” trong nhật ký. Câu độ dài phiên không ngắn lại nhờ lời nói được in đậm" loading="lazy" decoding="async"><figcaption>Dòng đầu tiên của phần “bài học” trong nhật ký.</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Prompt caching là gì?</summary><p>Đây là tính năng giữ tạm phần đầu prompt đã xử lý một lần để dùng lại ở lần gọi sau. Theo tài liệu của Anthropic, cache mặc định sống 5 phút, được gia hạn mỗi lần dùng, và có thể chọn loại 1 giờ.</p></details><details><summary>Chi phí prompt caching chênh nhau bao nhiêu?</summary><p>Theo hệ số trong tài liệu chính thức, ghi cache tốn 1,25 lần đơn giá input cơ bản (5 phút) hoặc 2 lần (1 giờ), còn đọc cache là 0,1 lần. Ghi lại cùng một nội dung tốn gấp 12,5 đến 20 lần so với đọc.</p></details><details><summary>Vì sao để phiên Claude Code mở lâu lại tốn nhiều token?</summary><p>Vì nếu nhắn sau khi cache hết hạn, cả đoạn hội thoại trước sẽ được ghi vào cache lại từ đầu. Trường hợp của tôi, hai phiên trên điện thoại mở cả ngày đã làm 13,0M trong tổng 90,6M của ngày đi theo đường này.</p></details><details><summary>Làm sao xem lượng token Claude Code đã dùng?</summary><p>Tôi gom các file log phiên Claude Code lưu trên máy theo từng ngày, tách thành input, output, ghi cache và đọc cache, rồi đếm riêng các ô lãng phí như ghi cache sau khi nghỉ hay phiên kết thúc mà không có kết quả. Phải thấy số theo từng ô thì mới biết rò ở đâu. Hồi chỉ nhìn tổng, tôi chỉ biết là dùng nhiều chứ không biết vì sao.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

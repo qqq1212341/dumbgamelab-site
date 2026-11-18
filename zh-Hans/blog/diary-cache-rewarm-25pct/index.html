@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code token 费用账本：一天浪费 25%，一半以上花在缓存重新预热</title>
+<meta name="description" content="一个人用 AI agent 做游戏的开发者，记下一天的 token 账本。90.6M 里有 22.7M（25%）浪费掉，最大的一栏是缓存重新预热 13.0M（14.4%）。这篇写了原因、提示词缓存的计费方式，以及后来改掉的做法。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Claude Code token 费用账本：一天浪费 25%，一半以上花在缓存重新预热">
+<meta property="og:description" content="一个人用 AI agent 做游戏的开发者，记下一天的 token 账本。90.6M 里有 22.7M（25%）浪费掉，最大的一栏是缓存重新预热 13.0M（14.4%）。这篇写了原因、提示词缓存的计费方式，以及后来改掉的做法。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一天的 token 浪费了 25%，其中 14.4% 是缓存重新预热","description":"一个人用 AI agent 做游戏的开发者，记下一天的 token 账本。90.6M 里有 22.7M（25%）浪费掉，最大的一栏是缓存重新预热 13.0M（14.4%）。这篇写了原因、提示词缓存的计费方式，以及后来改掉的做法。","inLanguage":"zh-CN","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"一天的 token 浪费了 25%，其中 14.4% 是缓存重新预热","item":"https://dumbgamelab.com/zh-Hans/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"提示词缓存（prompt cache）是什么？","acceptedAnswer":{"@type":"Answer","text":"把前面处理过一次的提示词开头部分暂存起来，下一次请求时再拿来用的功能。按 Anthropic 文档，默认寿命是 5 分钟，每用一次就续上，也可以选 1 小时的版本。"}},{"@type":"Question","name":"提示词缓存的费用差多少？","acceptedAnswer":{"@type":"Answer","text":"按官方文档给的倍率，缓存写入是基础输入单价的 1.25 倍（5 分钟）或 2 倍（1 小时），缓存读取是 0.1 倍。同样的内容重新写入，要付读取时的 12.5 到 20 倍。"}},{"@type":"Question","name":"Claude Code 对话开太久，为什么 token 消耗会变多？","acceptedAnswer":{"@type":"Answer","text":"因为缓存过期之后再发消息，前面整段对话都要重新写进缓存。拿我来说，两个一整天开着的手机会话，让当天计费 90.6M 里有 13.0M 就这么花掉了。"}},{"@type":"Question","name":"Claude Code 的 token 用量怎么查询？","acceptedAnswer":{"@type":"Answer","text":"我把电脑上留下的 Claude Code 会话记录文件按天收集，分成输入、输出、缓存写入、缓存读取，再把歇了一阵才回来的缓存写入、没有成果就结束的会话这类浪费栏另外统计。数字要按栏摊开，才知道是哪里在漏。以前只看合计，只知道用得多，却不知道为什么。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">一人开发的 token 账本</p>
+    <h1>一天的 token 浪费了 25%，其中 14.4% 是缓存重新预热</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="2026-10-28 日记原文第一行，写着 token 90.6M、浪费 22.7M、25%" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10 月 28 日这一天计费的 token 是 90.6M，其中 22.7M（25%）进了浪费栏。最大的一栏是缓存重新预热 13.0M（占全部的 14.4%），超过浪费的一半。原因是我用手机开的两个对话会话一整天都没关，每多说一句，前面的对话就要从头重新写进缓存。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">先看一天的账本</a></li><li><a href="#s2">缓存重新预热是什么</a></li><li><a href="#s3">元凶是一整天开着的两个手机会话</a></li><li><a href="#s4">连续 4 天第一，光靠嘴说没减下来</a></li><li><a href="#s5">第二栏：未合并 6.7M</a></li><li><a href="#s6">所以换了做法</a></li></ol></nav>
+    <section id="s1"><h2>先看一天的账本</h2>
+<p>我一整天同时跑好几个 AI agent 做游戏。当天用掉的 token，晚上写日记时会把会话记录收集起来分栏统计，10 月 28 日的账本是这样的。</p>
+<p>计费合计 90.6M。这是输入 33K、输出 9.6M 再加上缓存写入 80.9M 的总和，其中光是缓存写入就几乎占满了整个合计，所以第一次打开这本账时，我还以为是自己算错了。缓存写入占了 89.4%。缓存读取 2.61B 单价很低，不算进这个合计，另外单独记。</p>
+<div class="tbl"><table><thead><tr><th>浪费栏</th><th>token</th><th>占当天计费</th></tr></thead><tbody><tr><td>缓存重新预热</td><td>13.0M</td><td>14.4%</td></tr><tr><td>未合并</td><td>6.7M</td><td>7.4%</td></tr><tr><td>长时间空转</td><td>2.7M</td><td>3.0%</td></tr><tr><td>Stop hook 重复调用</td><td>0.28M</td><td>0.3%</td></tr><tr><td>合计</td><td>22.7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="日记里「今天的 token」原文，逐行写着计费合计、各模型用量、浪费栏、漏得最多的地方和漏掉的原因" loading="lazy" decoding="async"><figcaption>日记原文「今天的 token」。黄色那几行是浪费栏和漏掉的原因。</figcaption></figure></section>
+<section id="s2"><h2>缓存重新预热是什么</h2>
+<p>对话式 AI 每收到一条新消息，都会把前面整段对话重新读一遍。提示词缓存（prompt caching）会把处理过一次的开头部分暂存起来，下一次请求就能用便宜的价格直接取用。</p>
+<p>问题出在保存时间。按照 Anthropic 官方文档，缓存默认寿命是 5 分钟，每用一次就重新续上，另外也可以选 1 小时的版本。过了这段时间再发消息，就得把前面整段对话重新写进缓存。</p>
+<p>价差很大。缓存写入是基础输入单价的 1.25 倍（5 分钟）或 2 倍（1 小时），读取只要 0.1 倍。同样一段前文，重新写入要付读取时的 12.5 到 20 倍。</p>
+<div class="tbl"><table><thead><tr><th>处理方式</th><th>相对基础输入单价</th></tr></thead><tbody><tr><td>基础输入</td><td>1 倍</td></tr><tr><td>缓存写入（5 分钟寿命）</td><td>1.25 倍</td></tr><tr><td>缓存写入（1 小时寿命）</td><td>2 倍</td></tr><tr><td>缓存读取</td><td>0.1 倍</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="token 账本代码的开头注释，写着 cacheRewarm 这一栏是歇了一阵再回来、把上下文整段重新写进缓存的 token" loading="lazy" decoding="async"><figcaption>这是账本划分浪费栏的规则。主会话歇了 60 分钟以上再回来后重新写入的缓存，就记在这一栏。</figcaption></figure></section>
+<section id="s3"><h2>元凶是一整天开着的两个手机会话</h2>
+<p>我的账本把歇了一小时以上才回来的主会话整段重新写进缓存的上下文量，记为「缓存重新预热」。那天把这一栏撑大的，是我用手机开着的两个会话。</p>
+<p>一个开了 1,379 分钟，另一个开了 1,161 分钟，而一天只有 1,440 分钟，等于两个窗口都是早上打开后一直到深夜都没好好关过。差不多一整天。我想到什么就从手机丢一句过去，每丢一次，凉掉的对话就从头重新预热一次。</p>
+<p>漏得最多的是以「怎么停了？」开头的瓶颈会话。它在 160 分钟里花了 4.8M 在缓存重新预热上。这个会话当天用掉的 7.5M 里，将近三分之二是重新预热。</p>
+</section>
+<section id="s4"><h2>连续 4 天第一，光靠嘴说没减下来</h2>
+<p>缓存重新预热从 10 月 25 日起连续 4 天都是浪费第一名。我每天都写进日记，也开了要修的工单。数字还是没降下来。</p>
+<p>「会话要开短一点」这种决心，一拿起手机就忘了。路上想到什么要马上交代，比起开新窗口从头讲清楚情况，在原来的对话里补一句要省事得多。靠人的习惯撑着的规则，会一直在同一个地方漏。</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="日记「今天的浪费」原文，写着缓存重新预热 13.0M，从 10-25 起第 4 天是同一栏" loading="lazy" decoding="async"><figcaption>「从 10-25 起第 4 天，同一栏。」日记里同一句话已经连续出现 4 天。</figcaption></figure></section>
+<section id="s5"><h2>第二栏：未合并 6.7M</h2>
+<p>浪费第二名是未合并 6.7M（7.4%）。用了很多 token、成果却一次都没进主代码的会话，就记在这一栏。</p>
+<p>这一栏抓到的是首尔现况会话（103 分钟）和 Chichi 乱斗会话（47 分钟）。首尔那边把活交给子 agent，回了一句「进行中」就结束了。未合并和缓存重新预热加起来，首尔现况会话一共用了 2.4M。</p>
+</section>
+<section id="s6"><h2>所以换了做法</h2>
+<p>那天日记的第一条教训是：会话长度不会因为嘴上说说就变短。所以我不再下决心，改成装一个机制。会话超过预先定好的时间，就把到目前为止的内容整理成摘要存下来，再交给新会话接着做。</p>
+<p>新会话只带着一份短摘要开始，需要重新预热的前文就很小。处境相同的话，可以先按下面的顺序量一量。</p>
+<ul><li>把一天的 token 分成输入、输出、缓存写入、缓存读取记下来。</li><li>缓存写入比例偏高时，先怀疑歇了一阵才回来的对话。</li><li>数一数开得最久的会话开了多少分钟。</li><li>超过一定时间的会话，留下摘要后重新开一个。</li><li>同一栏连续好几天都是第一，就别再下决心，直接装机制。</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="日记「教训」原文，粗体写着会话长度不会因为嘴上说说就变短" loading="lazy" decoding="async"><figcaption>日记「教训」的第一行。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>提示词缓存（prompt cache）是什么？</summary><p>把前面处理过一次的提示词开头部分暂存起来，下一次请求时再拿来用的功能。按 Anthropic 文档，默认寿命是 5 分钟，每用一次就续上，也可以选 1 小时的版本。</p></details><details><summary>提示词缓存的费用差多少？</summary><p>按官方文档给的倍率，缓存写入是基础输入单价的 1.25 倍（5 分钟）或 2 倍（1 小时），缓存读取是 0.1 倍。同样的内容重新写入，要付读取时的 12.5 到 20 倍。</p></details><details><summary>Claude Code 对话开太久，为什么 token 消耗会变多？</summary><p>因为缓存过期之后再发消息，前面整段对话都要重新写进缓存。拿我来说，两个一整天开着的手机会话，让当天计费 90.6M 里有 13.0M 就这么花掉了。</p></details><details><summary>Claude Code 的 token 用量怎么查询？</summary><p>我把电脑上留下的 Claude Code 会话记录文件按天收集，分成输入、输出、缓存写入、缓存读取，再把歇了一阵才回来的缓存写入、没有成果就结束的会话这类浪费栏另外统计。数字要按栏摊开，才知道是哪里在漏。以前只看合计，只知道用得多，却不知道为什么。</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

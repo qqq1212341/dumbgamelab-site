@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code token 費用帳本：一天浪費 25%，一半以上是快取重新預熱</title>
+<meta name="description" content="一個人用 AI agent 做遊戲的開發者，記下一天的 token 帳本。90.6M 裡有 22.7M（25%）浪費掉，最大的一欄是快取重新預熱 13.0M（14.4%）。這篇寫下原因、prompt caching 的計價方式，以及後來改掉的做法。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Claude Code token 費用帳本：一天浪費 25%，一半以上是快取重新預熱">
+<meta property="og:description" content="一個人用 AI agent 做遊戲的開發者，記下一天的 token 帳本。90.6M 裡有 22.7M（25%）浪費掉，最大的一欄是快取重新預熱 13.0M（14.4%）。這篇寫下原因、prompt caching 的計價方式，以及後來改掉的做法。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一天的 token 浪費了 25%，其中 14.4% 是快取重新預熱","description":"一個人用 AI agent 做遊戲的開發者，記下一天的 token 帳本。90.6M 裡有 22.7M（25%）浪費掉，最大的一欄是快取重新預熱 13.0M（14.4%）。這篇寫下原因、prompt caching 的計價方式，以及後來改掉的做法。","inLanguage":"zh-TW","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"一天的 token 浪費了 25%，其中 14.4% 是快取重新預熱","item":"https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Prompt caching 是什麼？","acceptedAnswer":{"@type":"Answer","text":"把前面處理過一次的 prompt 開頭部分暫存起來，下一次請求時再拿來用的功能。依 Anthropic 文件，預設壽命是 5 分鐘，每用一次就延長，也可以選 1 小時的版本。"}},{"@type":"Question","name":"Prompt caching 的費用差多少？","acceptedAnswer":{"@type":"Answer","text":"依官方文件的倍率，快取寫入是基本輸入單價的 1.25 倍（5 分鐘）或 2 倍（1 小時），快取讀取是 0.1 倍。同樣的內容重新寫入，要付讀取時的 12.5 到 20 倍。"}},{"@type":"Question","name":"Claude Code 對話開太久，為什麼 token 消耗會變多？","acceptedAnswer":{"@type":"Answer","text":"因為快取壽命過了之後再說話，前面的整段對話都要重新寫進快取。以我來說，兩個整天開著的手機 session，讓當天計費 90.6M 裡有 13.0M 這樣花掉。"}},{"@type":"Question","name":"Claude Code 的 token 用量要怎麼查詢？","acceptedAnswer":{"@type":"Answer","text":"我把電腦上留下的 Claude Code session 紀錄檔按天收集，分成輸入、輸出、快取寫入、快取讀取，再把休息後回來的快取寫入、沒有成果就結束的 session 這類浪費欄另外算。數字要按欄攤開，才知道是哪裡在漏。以前只看合計時，只知道用很多，卻不知道為什麼。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">一人開發的 token 帳本</p>
+    <h1>一天的 token 浪費了 25%，其中 14.4% 是快取重新預熱</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="2026-10-28 日記原文第一行，寫著 token 90.6M、浪費 22.7M、25%" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10 月 28 日這一天被計費的 token 是 90.6M，其中 22.7M（25%）落在浪費欄。最大的一欄是快取重新預熱 13.0M（占全部的 14.4%），超過浪費的一半。原因是我用手機開的兩個對話 session 整天都開著，每多說一句話，前面的對話就得從頭重新寫進快取。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">先看一天的帳本</a></li><li><a href="#s2">什麼是快取重新預熱</a></li><li><a href="#s3">元兇是整天開著的兩個手機 session</a></li><li><a href="#s4">連續 4 天第一，嘴上說說沒有減少</a></li><li><a href="#s5">第二欄：未合併 6.7M</a></li><li><a href="#s6">所以換了做法</a></li></ol></nav>
+    <section id="s1"><h2>先看一天的帳本</h2>
+<p>我整天同時跑好幾個 AI agent 來做遊戲。當天用掉的 token，會在晚上寫日記時把 session 紀錄收集起來分欄計算，10 月 28 日的帳本是這樣的。</p>
+<p>計費合計 90.6M。這是輸入 33K、輸出 9.6M 再加上快取寫入 80.9M 的總和，其中光是快取寫入就幾乎填滿了整個合計，所以第一次打開這本帳時，我還以為是自己算錯了。快取寫入占了 89.4%。快取讀取 2.61B 的單價很低，不算進這個合計，另外記一筆。</p>
+<div class="tbl"><table><thead><tr><th>浪費欄</th><th>token</th><th>占當天計費</th></tr></thead><tbody><tr><td>快取重新預熱</td><td>13.0M</td><td>14.4%</td></tr><tr><td>未合併</td><td>6.7M</td><td>7.4%</td></tr><tr><td>長時間空轉</td><td>2.7M</td><td>3.0%</td></tr><tr><td>Stop hook 重複呼叫</td><td>0.28M</td><td>0.3%</td></tr><tr><td>合計</td><td>22.7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="日記裡「今天的 token」原文，逐行寫著計費合計、各模型用量、浪費欄、漏最多的地方和漏掉的原因" loading="lazy" decoding="async"><figcaption>日記原文「今天的 token」。黃色那幾行是浪費欄和漏掉的原因。</figcaption></figure></section>
+<section id="s2"><h2>什麼是快取重新預熱</h2>
+<p>對話式 AI 每次收到新訊息，都會把前面的整段對話重讀一遍。Prompt caching 會把處理過一次的開頭部分暫存起來，下一次請求就能用便宜的價格直接取用。</p>
+<p>問題在保存時間。根據 Anthropic 官方文件，快取的預設壽命是 5 分鐘，每用一次就重新延長，另外也可以選 1 小時的版本。過了這段時間再說話，就得把前面的整段對話重新寫進快取。</p>
+<p>價差很大。快取寫入是基本輸入單價的 1.25 倍（5 分鐘）或 2 倍（1 小時），讀取只要 0.1 倍。同樣一段前文，重新寫入要付讀取時的 12.5 到 20 倍。</p>
+<div class="tbl"><table><thead><tr><th>處理方式</th><th>相對基本輸入單價</th></tr></thead><tbody><tr><td>基本輸入</td><td>1 倍</td></tr><tr><td>快取寫入（5 分鐘壽命）</td><td>1.25 倍</td></tr><tr><td>快取寫入（1 小時壽命）</td><td>2 倍</td></tr><tr><td>快取讀取</td><td>0.1 倍</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="token 帳本程式碼的開頭註解，寫著 cacheRewarm 這一欄是休息後回來、把上下文整段重新寫進快取的 token" loading="lazy" decoding="async"><figcaption>這是帳本劃分浪費欄的規則。主 session 休息超過 60 分鐘再回來後重新寫入的快取，就算在這一欄。</figcaption></figure></section>
+<section id="s3"><h2>元兇是整天開著的兩個手機 session</h2>
+<p>我的帳本把休息超過一小時才回來的主 session 整段重新寫進快取的上下文量，算成「快取重新預熱」。那天把這一欄撐大的，是我用手機開著的兩個 session。</p>
+<p>一個開了 1,379 分鐘，另一個開了 1,161 分鐘，而一天只有 1,440 分鐘，等於兩個視窗都是早上打開後一路到深夜都沒有好好關過。幾乎整天。我想到什麼就從手機丟一句過去，每丟一次，冷掉的對話就從頭重新預熱一次。</p>
+<p>漏最多的是以「怎麼停了？」開頭的瓶頸 session。它在 160 分鐘內花了 4.8M 在快取重新預熱上。這個 session 當天用掉的 7.5M 裡，將近三分之二是重新預熱。</p>
+</section>
+<section id="s4"><h2>連續 4 天第一，嘴上說說沒有減少</h2>
+<p>快取重新預熱從 10 月 25 日起連續 4 天都是浪費第一名。我每天都寫進日記，也開了要修的 ticket。數字還是沒降下來。</p>
+<p>「session 要開短一點」這種決心，手機一拿起來就忘了。移動中想到什麼要馬上交代，比起開新視窗從頭說明狀況，在原本的對話裡多補一句輕鬆多了。靠人的習慣撐著的規則，會一直在同一個地方漏。</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="日記「今天的浪費」原文，寫著快取重新預熱 13.0M，從 10-25 起第 4 天是同一欄" loading="lazy" decoding="async"><figcaption>「從 10-25 起第 4 天，同一欄。」日記裡同一句話已經連續出現 4 天。</figcaption></figure></section>
+<section id="s5"><h2>第二欄：未合併 6.7M</h2>
+<p>浪費第二名是未合併 6.7M（7.4%）。用了很多 token、成果卻一次都沒進到主程式碼的 session，就算在這一欄。</p>
+<p>這一欄抓到的是首爾現況 session（103 分鐘）和 Chichi 亂鬥 session（47 分鐘）。首爾那邊把工作交給子 agent，回了一句「進行中」就結束了。未合併和快取重新預熱加起來，首爾現況 session 一共用了 2.4M。</p>
+</section>
+<section id="s6"><h2>所以換了做法</h2>
+<p>那天日記的第一條教訓是：session 的長度不會因為嘴上說說就變短。所以我決定不再下決心，改成裝一個機制。session 超過預先定好的時間，就把目前為止的內容整理成摘要存下來，再交給新的 session 接手。</p>
+<p>新 session 只帶著一份短摘要開始，需要重新預熱的前文就很小。處境相同的話，可以先照下面的順序量一量。</p>
+<ul><li>把一天的 token 分成輸入、輸出、快取寫入、快取讀取記下來。</li><li>快取寫入比例偏高時，先懷疑休息後才回來的對話。</li><li>數一數開最久的 session 開了幾分鐘。</li><li>超過一定時間的 session，留下摘要後重新開一個。</li><li>同一欄連續好幾天都是第一，就別再下決心，直接裝機制。</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="日記「教訓」原文，粗體寫著 session 的長度不會因為嘴上說說就變短" loading="lazy" decoding="async"><figcaption>日記「教訓」的第一行。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Prompt caching 是什麼？</summary><p>把前面處理過一次的 prompt 開頭部分暫存起來，下一次請求時再拿來用的功能。依 Anthropic 文件，預設壽命是 5 分鐘，每用一次就延長，也可以選 1 小時的版本。</p></details><details><summary>Prompt caching 的費用差多少？</summary><p>依官方文件的倍率，快取寫入是基本輸入單價的 1.25 倍（5 分鐘）或 2 倍（1 小時），快取讀取是 0.1 倍。同樣的內容重新寫入，要付讀取時的 12.5 到 20 倍。</p></details><details><summary>Claude Code 對話開太久，為什麼 token 消耗會變多？</summary><p>因為快取壽命過了之後再說話，前面的整段對話都要重新寫進快取。以我來說，兩個整天開著的手機 session，讓當天計費 90.6M 裡有 13.0M 這樣花掉。</p></details><details><summary>Claude Code 的 token 用量要怎麼查詢？</summary><p>我把電腦上留下的 Claude Code session 紀錄檔按天收集，分成輸入、輸出、快取寫入、快取讀取，再把休息後回來的快取寫入、沒有成果就結束的 session 這類浪費欄另外算。數字要按欄攤開，才知道是哪裡在漏。以前只看合計時，只知道用很多，卻不知道為什麼。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code Token Cost: 25% Wasted in a Day, Mostly on Cache Rewarming</title>
+<meta name="description" content="A solo game dev&#39;s daily Claude Code token usage log. 22.7M of 90.6M tokens (25%) went to waste, and the biggest bucket was cache rewarming at 13.0M (14.4%). The cause, how prompt caching is priced, and what I changed.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Claude Code Token Cost: 25% Wasted in a Day, Mostly on Cache Rewarming">
+<meta property="og:description" content="A solo game dev&#39;s daily Claude Code token usage log. 22.7M of 90.6M tokens (25%) went to waste, and the biggest bucket was cache rewarming at 13.0M (14.4%). The cause, how prompt caching is priced, and what I changed.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"I wasted 25% of a day's tokens, and 14.4% went to rewarming the cache","description":"A solo game dev's daily Claude Code token usage log. 22.7M of 90.6M tokens (25%) went to waste, and the biggest bucket was cache rewarming at 13.0M (14.4%). The cause, how prompt caching is priced, and what I changed.","inLanguage":"en","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"I wasted 25% of a day's tokens, and 14.4% went to rewarming the cache","item":"https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is prompt caching?","acceptedAnswer":{"@type":"Answer","text":"It keeps the start of a prompt that was already processed for a short time and reuses it on the next request. In Anthropic's documentation the default lifetime is 5 minutes, it is extended each time it is used, and you can choose a 1-hour version instead."}},{"@type":"Question","name":"How much does prompt caching cost in Claude?","acceptedAnswer":{"@type":"Answer","text":"By the multipliers in the official documentation, a cache write costs 1.25x the base input price (5 minutes) or 2x (1 hour), and a cache read costs 0.1x. Writing the same content again costs 12.5 to 20 times what reading it would."}},{"@type":"Question","name":"Why does keeping a Claude Code session open use so many tokens?","acceptedAnswer":{"@type":"Answer","text":"If you send a message after the cache lifetime has passed, the whole earlier conversation is written to the cache again. In my case, two phone sessions left open all day sent 13.0M of a 90.6M daily bill out this way."}},{"@type":"Question","name":"How do I check my Claude Code token usage?","acceptedAnswer":{"@type":"Answer","text":"I gather the Claude Code session log files left on my computer for each day, split them into input, output, cache writes and cache reads, and count waste buckets separately, such as cache writes after a break or sessions that ended with no result. Only once the numbers were broken down by bucket could I see where the leak was. When I only looked at the total, I knew I had used a lot but not why."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Solo dev token log</p>
+    <h1>I wasted 25% of a day&#39;s tokens, and 14.4% went to rewarming the cache</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="First line of the October 28 diary entry. It reads tokens 90.6M, waste 22.7M, 25%" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">On October 28 I was billed for 90.6M tokens, and 22.7M of them (25%) landed in my waste buckets. The biggest bucket was cache rewarming at 13.0M, or 14.4% of the day, which is more than half of all the waste. Two chat sessions I had opened on my phone stayed open all day, and every time I sent one more message, the whole earlier conversation was written to the cache again from scratch.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">The daily log first</a></li><li><a href="#s2">What is cache rewarming?</a></li><li><a href="#s3">The culprit: two phone sessions open all day</a></li><li><a href="#s4">Number one four days running, and promises didn&#39;t fix it</a></li><li><a href="#s5">Second bucket: no merge, 6.7M</a></li><li><a href="#s6">What I changed</a></li></ol></nav>
+    <section id="s1"><h2>The daily log first</h2>
+<p>I make games by running several AI agents all day. At night, when I write my diary, I collect the session logs and sort that day&#39;s tokens into buckets. This is what October 28 looked like.</p>
+<p>The billed total was 90.6M. That is 33K of input plus 9.6M of output plus 80.9M of cache writes, and cache writes filled almost the whole thing, so the first time I opened this log I assumed I had done the math wrong. Cache writes are 89.4% of it. Cache reads came to 2.61B, but they are priced so low that I keep them out of this total and list them separately.</p>
+<div class="tbl"><table><thead><tr><th>Waste bucket</th><th>Tokens</th><th>Share of daily bill</th></tr></thead><tbody><tr><td>Cache rewarming</td><td>13.0M</td><td>14.4%</td></tr><tr><td>No merge</td><td>6.7M</td><td>7.4%</td></tr><tr><td>Idle long sessions</td><td>2.7M</td><td>3.0%</td></tr><tr><td>Stop hook re-calls</td><td>0.28M</td><td>0.3%</td></tr><tr><td>Total</td><td>22.7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="The “today&#39;s tokens” part of the diary. Billed total, per-model usage, waste buckets, the biggest leak and the reason are each on their own line" loading="lazy" decoding="async"><figcaption>The diary&#39;s “today&#39;s tokens” section. The yellow lines are the waste buckets and why they leaked.</figcaption></figure></section>
+<section id="s2"><h2>What is cache rewarming?</h2>
+<p>A chat AI rereads the entire earlier conversation every time you send a message. Prompt caching keeps the part that was already processed for a short while, so the next request can pull it back cheaply.</p>
+<p>The catch is how long it is kept. According to Anthropic&#39;s documentation, a cache entry lives for 5 minutes by default and the timer resets each time it is used, and you can opt into a 1-hour version. Talk to the model after that window and the whole earlier conversation has to be written to the cache again.</p>
+<p>The price gap is large. A cache write costs 1.25x the base input price (5-minute cache) or 2x (1-hour cache), while a cache read costs 0.1x. Writing the same earlier conversation again costs 12.5 to 20 times what reading it would.</p>
+<div class="tbl"><table><thead><tr><th>How tokens are processed</th><th>Multiple of base input price</th></tr></thead><tbody><tr><td>Base input</td><td>1x</td></tr><tr><td>Cache write (5-minute lifetime)</td><td>1.25x</td></tr><tr><td>Cache write (1-hour lifetime)</td><td>2x</td></tr><tr><td>Cache read</td><td>0.1x</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="Header comment of the token log code. It says the cacheRewarm bucket holds tokens spent rewriting the whole context to the cache after a break" loading="lazy" decoding="async"><figcaption>The rule the log uses to split waste buckets. For a main session that comes back after more than 60 minutes idle, the cache it rewrites is counted here.</figcaption></figure></section>
+<section id="s3"><h2>The culprit: two phone sessions open all day</h2>
+<p>My log counts it as “cache rewarming” when a main session sits idle for over an hour, comes back, and rewrites its whole context to the cache. On that day, the bucket grew because of two sessions I had left open on my phone.</p>
+<p>One was open for 1,379 minutes and the other for 1,161, and since a day has 1,440 minutes, both windows were opened in the morning and never properly closed until late at night. Nearly the whole day. I dropped a line into them from my phone whenever something came to mind, and each time a cold conversation got warmed up again from the start.</p>
+<p>The biggest leak was a bottleneck session that started with “Why did it stop?”. In 160 minutes it spent 4.8M on cache rewarming. That is close to two thirds of the 7.5M this session used that day.</p>
+</section>
+<section id="s4"><h2>Number one four days running, and promises didn&#39;t fix it</h2>
+<p>Cache rewarming was the top waste bucket four days in a row, starting October 25. I wrote it down in the diary every day and even filed a ticket to fix it. The number still did not come down.</p>
+<p>A promise to “keep sessions short” is forgotten the moment I pick up my phone. When I want to hand off something that came to me on the move, adding one more line to the chat I already have open is much easier than opening a new window and explaining everything from the beginning. A rule that depends on human habit keeps leaking in the same spot.</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="The “today&#39;s waste” part of the diary. It says cache rewarming 13.0M, the same bucket for the 4th day since 10-25" loading="lazy" decoding="async"><figcaption>“Same bucket for the 4th day since 10-25.” The same sentence showed up in the diary four days running.</figcaption></figure></section>
+<section id="s5"><h2>Second bucket: no merge, 6.7M</h2>
+<p>The second biggest waste was no merge at 6.7M (7.4%). This bucket holds sessions that used a lot of tokens yet never got their work into the main code.</p>
+<p>A Seoul status session (103 minutes) and a Chichi brawl session (47 minutes) were caught here. The Seoul one handed the work to a sub-agent, replied “in progress”, and ended there. Counting both no merge and cache rewarming, the Seoul status session used 2.4M.</p>
+</section>
+<section id="s6"><h2>What I changed</h2>
+<p>The first lesson in that day&#39;s diary is that sessions don&#39;t get shorter because you tell them to. So I chose a mechanism over another promise. When a session passes a set time limit, it saves a summary of everything so far and hands off to a new session.</p>
+<p>The new session starts with one short summary, so there is very little earlier conversation to rewarm. If you are in the same spot, I&#39;d suggest measuring in this order first.</p>
+<ul><li>Write down each day&#39;s tokens split into input, output, cache writes and cache reads.</li><li>If the cache write share is high, suspect conversations you came back to after a break.</li><li>Count the minutes your longest-open session has been running.</li><li>When a session passes a set time, leave a summary and open a fresh one.</li><li>If the same bucket tops the list several days in a row, stop making promises and add a mechanism.</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="The “lessons” part of the diary. The sentence saying session length does not shrink by words alone is in bold" loading="lazy" decoding="async"><figcaption>The first line of the diary&#39;s “lessons”.</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>What is prompt caching?</summary><p>It keeps the start of a prompt that was already processed for a short time and reuses it on the next request. In Anthropic&#39;s documentation the default lifetime is 5 minutes, it is extended each time it is used, and you can choose a 1-hour version instead.</p></details><details><summary>How much does prompt caching cost in Claude?</summary><p>By the multipliers in the official documentation, a cache write costs 1.25x the base input price (5 minutes) or 2x (1 hour), and a cache read costs 0.1x. Writing the same content again costs 12.5 to 20 times what reading it would.</p></details><details><summary>Why does keeping a Claude Code session open use so many tokens?</summary><p>If you send a message after the cache lifetime has passed, the whole earlier conversation is written to the cache again. In my case, two phone sessions left open all day sent 13.0M of a 90.6M daily bill out this way.</p></details><details><summary>How do I check my Claude Code token usage?</summary><p>I gather the Claude Code session log files left on my computer for each day, split them into input, output, cache writes and cache reads, and count waste buckets separately, such as cache writes after a break or sessions that ended with no result. Only once the numbers were broken down by bucket could I see where the leak was. When I only looked at the total, I knew I had used a lot but not why.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a><a class="pcard" href="/en/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Internet Cafe Simulator Games in 2026: 17 Picks, iPhone Included</b><span class="pc-desc">Looking for an internet cafe simulator on iPhone, Android or Steam? We compared 17 games using prices, ratings and offline notes read straight off the store pages, plus our own game&#39;s weak spots.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/diary-cache-rewarm-25pct/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

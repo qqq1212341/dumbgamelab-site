@@ -7,6 +7,20 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>I wasted 25% of a day&#39;s tokens, and 14.4% went to rewarming the cache</title>
+    <link>https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>A solo game dev&#39;s daily Claude Code token usage log. 22.7M of 90.6M tokens (25%) went to waste, and the biggest bucket was cache rewarming at 13.0M (14.4%). The cause, how prompt caching is priced, and what I changed.</description>
+  </item>
+  <item>
+    <title>Twelve squelch sounds lost to my old honey sound. Then I actually listened to it.</title>
+    <link>https://dumbgamelab.com/en/blog/twelve-sounds-old-honey-won/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/twelve-sounds-old-honey-won/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>I tested 12 squelch candidates for the honey level of my ASMR climbing game. The old sound won on score, then turned out to be a drum hit. So I swapped in one Freesound CC0 recording, cut into 10 variations with no processing.</description>
+  </item>
+  <item>
     <title>One glove becomes two for this crab</title>
     <link>https://dumbgamelab.com/en/blog/boxer-crab-gloves/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/boxer-crab-gloves/</guid>
@@ -214,21 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/review-said-buttons-hidden/</guid>
     <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
     <description>A dev log that started with a 1-star review saying the game did not fit the phone. Why Android 15 edge-to-edge pushed the bottom tab bar under the navigation bar, the Capacitor adjustMarginsForEdgeToEdge setting we turned on, and why we deleted our 24px patch.</description>
-  </item>
-  <item>
-    <title>The BBC Once Said Spaghetti Grows on Trees</title>
-    <link>https://dumbgamelab.com/en/blog/spaghetti-tree/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/spaghetti-tree/</guid>
-    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
-    <description>On April Fools&#39; Day 1957 the BBC aired a report of a Swiss family harvesting spaghetti from trees, and hundreds of viewers asked how to grow their own.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/spaghetti-plate.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Landing at midnight? Where to sleep in a Seoul jjimjilbang</title>
-    <link>https://dumbgamelab.com/en/blog/jjimjilbang-seoul-24-hours/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/jjimjilbang-seoul-24-hours/</guid>
-    <pubDate>Tue, 03 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Landing in Seoul or at Incheon Airport at midnight? We compared the 24-hour jjimjilbang (Korean spa) where you can sleep overnight. Night rates start at 8 p.m. at most places and 10 p.m. at one. Surcharges, no re-entry, passports and the under-19 rule at 10 p.m. are all checked as of 2026-11-04.</description>
   </item>
 </channel>
 </rss>

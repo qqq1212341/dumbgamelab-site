@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Codeのトークン消費を記録したら1日25%が無駄、半分以上はキャッシュの温め直しだった</title>
+<meta name="description" content="AIエージェントでゲームを作る個人開発者の1日のトークン台帳です。90.6Mのうち22.7M(25%)が無駄になり、最大の項目はキャッシュの温め直し13.0M(14.4%)でした。原因とプロンプトキャッシュの料金の仕組み、そのあと変えたやり方をまとめました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/diary-cache-rewarm-25pct/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Claude Codeのトークン消費を記録したら1日25%が無駄、半分以上はキャッシュの温め直しだった">
+<meta property="og:description" content="AIエージェントでゲームを作る個人開発者の1日のトークン台帳です。90.6Mのうち22.7M(25%)が無駄になり、最大の項目はキャッシュの温め直し13.0M(14.4%)でした。原因とプロンプトキャッシュの料金の仕組み、そのあと変えたやり方をまとめました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"1日のトークンの25%が無駄になり、そのうち14.4%はキャッシュの温め直しだった","description":"AIエージェントでゲームを作る個人開発者の1日のトークン台帳です。90.6Mのうち22.7M(25%)が無駄になり、最大の項目はキャッシュの温め直し13.0M(14.4%)でした。原因とプロンプトキャッシュの料金の仕組み、そのあと変えたやり方をまとめました。","inLanguage":"ja","datePublished":"2026-11-18","dateModified":"2026-11-18","image":"https://dumbgamelab.com/blog/img/diary-cache-rewarm-25pct/head.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"1日のトークンの25%が無駄になり、そのうち14.4%はキャッシュの温め直しだった","item":"https://dumbgamelab.com/ja/blog/diary-cache-rewarm-25pct/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"プロンプトキャッシュとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"一度処理したプロンプトの前半部分をしばらく保管しておき、次のリクエストで再利用する機能です。Anthropicのドキュメントでは、標準の寿命は5分で使うたびに延び、1時間のものを選ぶこともできます。"}},{"@type":"Question","name":"プロンプトキャッシュの料金はどれくらい違いますか？","acceptedAnswer":{"@type":"Answer","text":"公式ドキュメントにある倍率では、キャッシュ書き込みは基本の入力単価の1.25倍(5分)または2倍(1時間)、キャッシュ読み込みは0.1倍です。同じ内容を書き直すと、読むときの12.5倍から20倍を払います。"}},{"@type":"Question","name":"Claude Codeの会話を長く開いておくと、なぜトークン消費が増えるのですか？","acceptedAnswer":{"@type":"Answer","text":"キャッシュの寿命が切れたあとに話しかけると、前の会話全体をキャッシュに新しく書き込むからです。私の場合、一日中開いていたスマホのセッション2つのせいで、1日の請求90.6Mのうち13.0Mがこうして出ていきました。"}},{"@type":"Question","name":"Claude Codeのトークン使用量はどう確認しますか？","acceptedAnswer":{"@type":"Answer","text":"私はパソコンに残るClaude Codeのセッション記録ファイルを1日単位で集め、入力・出力・キャッシュ書き込み・キャッシュ読み込みに分けたうえで、休んで戻ったあとのキャッシュ書き込みや成果物なしで終わったセッションのような無駄の欄を別に数えています。数字が欄ごとに見えて、やっとどこで漏れているのかが分かりました。合計だけ見ていたころは、たくさん使ったことしか分からず、理由は見えませんでした。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">個人開発のトークン台帳</p>
+    <h1>1日のトークンの25%が無駄になり、そのうち14.4%はキャッシュの温め直しだった</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-18">2026-11-18</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/diary-cache-rewarm-25pct/head.jpg" alt="2026-10-28の日記原文の1行目。トークン90.6M、無駄22.7M、25%と書かれている" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">10月28日の1日に請求されたトークンは90.6Mで、そのうち22.7M(25%)が無駄の欄に入りました。いちばん大きい欄はキャッシュの温め直し13.0M(全体の14.4%)で、無駄の半分を超えます。スマホから開いた会話セッション2つが一日中開きっぱなしで、ひと言話しかけるたびに前の会話をキャッシュへ最初から書き直していたからです。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">まず1日の台帳から</a></li><li><a href="#s2">キャッシュの温め直しとは</a></li><li><a href="#s3">犯人は一日中開いていたスマホのセッション2つ</a></li><li><a href="#s4">4日連続で1位、言葉では減らなかった</a></li><li><a href="#s5">2番目の欄、マージなし6.7M</a></li><li><a href="#s6">そこで変えたやり方</a></li></ol></nav>
+    <section id="s1"><h2>まず1日の台帳から</h2>
+<p>私はAIエージェントを何本も一日中動かしてゲームを作っています。その日に使ったトークンは、夜に日記を書くときにセッションの記録を集めて欄ごとに数えます。10月28日の台帳はこうでした。</p>
+<p>請求の合計は90.6Mです。入力33Kと出力9.6Mにキャッシュ書き込み80.9Mまで足した値ですが、このうちキャッシュ書き込みひとつで合計のほとんどが埋まっていたので、初めてこの台帳を開いたときは自分の計算ミスだと思いました。キャッシュ書き込みが89.4%を占めます。キャッシュ読み込みの2.61Bは単価が低いので、この合計には入れずに別に記録しています。</p>
+<div class="tbl"><table><thead><tr><th>無駄の欄</th><th>トークン</th><th>1日の請求に対する割合</th></tr></thead><tbody><tr><td>キャッシュの温め直し</td><td>13.0M</td><td>14.4%</td></tr><tr><td>マージなし</td><td>6.7M</td><td>7.4%</td></tr><tr><td>何もしない長時間</td><td>2.7M</td><td>3.0%</td></tr><tr><td>Stopフックの再呼び出し</td><td>0.28M</td><td>0.3%</td></tr><tr><td>合計</td><td>22.7M</td><td>25%</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/tokens.jpg" alt="日記の「今日のトークン」の原文。請求合計、モデル別、無駄の欄、いちばん大きく漏れた所、漏れた理由が1行ずつ書かれている" loading="lazy" decoding="async"><figcaption>日記の原文「今日のトークン」。黄色の行が無駄の欄と漏れた理由です。</figcaption></figure></section>
+<section id="s2"><h2>キャッシュの温め直しとは</h2>
+<p>対話型のAIは、話しかけるたびに前の会話全体を読み直します。プロンプトキャッシュは、一度処理した前半部分をしばらく保管しておき、次のリクエストで安く取り出して使えるようにする仕組みです。</p>
+<p>問題は保管時間です。Anthropicの公式ドキュメントによると、キャッシュの標準の寿命は5分で、使うたびに延び、別に選べば1時間のものもあります。その時間が過ぎてから話しかけると、前の会話全体をキャッシュに新しく書き込むことになります。</p>
+<p>料金の差は大きいです。キャッシュ書き込みは基本の入力単価の1.25倍(5分)または2倍(1時間)で、読み込みは0.1倍です。同じ前の会話でも、書き直すと読むときの12.5倍から20倍を払います。</p>
+<div class="tbl"><table><thead><tr><th>処理の種類</th><th>基本の入力単価に対する倍率</th></tr></thead><tbody><tr><td>基本の入力</td><td>1倍</td></tr><tr><td>キャッシュ書き込み(寿命5分)</td><td>1.25倍</td></tr><tr><td>キャッシュ書き込み(寿命1時間)</td><td>2倍</td></tr><tr><td>キャッシュ読み込み</td><td>0.1倍</td></tr></tbody></table></div>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/rule.jpg" alt="トークン台帳のコードの冒頭コメント。cacheRewarmの欄は、休んでから戻って文脈を丸ごとキャッシュに書き直したトークンだと書かれている" loading="lazy" decoding="async"><figcaption>台帳が無駄の欄を分けるルールです。メインセッションは60分以上休んで戻ったあとに書き直したキャッシュをこの欄に数えます。</figcaption></figure></section>
+<section id="s3"><h2>犯人は一日中開いていたスマホのセッション2つ</h2>
+<p>私の台帳は、1時間以上休んでから戻ったメインセッションが文脈を丸ごとキャッシュに書き直した量を「キャッシュの温め直し」として数えます。その日この欄を大きくしたのは、私がスマホで開いておいたセッション2つでした。</p>
+<p>1つは1,379分、もう1つは1,161分開いていて、1日は1,440分なので、どちらも朝に開いてから夜遅くまで一度もちゃんと閉じられなかったことになります。ほぼ一日中です。思いつくたびにスマホからひと言ずつ投げ、そのたびに冷めた会話が最初から温め直されました。</p>
+<p>いちばん大きく漏れたのは「なんで止まったの？」で始まったボトルネック調査のセッションです。160分のあいだに4.8Mをキャッシュの温め直しに使いました。このセッションがその日に使った7.5Mの3分の2近くが温め直しでした。</p>
+</section>
+<section id="s4"><h2>4日連続で1位、言葉では減らなかった</h2>
+<p>キャッシュの温め直しは10月25日から4日連続で無駄の1位でした。毎日日記に書き、直そうというチケットも立てていました。それでも数字は下がりませんでした。</p>
+<p>「セッションは短く使おう」という決意は、スマホを手に取った瞬間に忘れます。移動中に思いついたことをすぐ頼むなら、新しい画面を開いて状況を一から説明するより、いま使っている会話にひと言足すほうがずっと楽だからです。人の習慣に頼るルールは、同じ場所で漏れ続けます。</p>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/waste.jpg" alt="日記の「今日の無駄」の原文。キャッシュの温め直し13.0M、10-25から4日目の同じ欄だと書かれている" loading="lazy" decoding="async"><figcaption>「10-25から4日目、同じ欄だ。」日記に同じ文が4日続けて出てきました。</figcaption></figure></section>
+<section id="s5"><h2>2番目の欄、マージなし6.7M</h2>
+<p>無駄の2位はマージなしの6.7M(7.4%)でした。トークンを多く使ったのに、成果物が一度もメインのコードに入らなかったセッションをこの欄に数えます。</p>
+<p>ソウルの状況確認セッション(103分)とチチ乱闘のセッション(47分)がここに引っかかりました。ソウルのほうは仕事をサブエージェントに渡し、「進行中」と答えたまま終わっています。このセッションは、マージなしとキャッシュの温め直しを合わせて2.4Mを使いました。</p>
+</section>
+<section id="s6"><h2>そこで変えたやり方</h2>
+<p>セッションの長さは言葉では縮まらない、というのがその日の日記の最初の教訓です。そこで決意の代わりに仕組みを置くことにしました。セッションが決めておいた時間を超えたら、それまでの内容を要約して保存し、新しいセッションに引き継ぐやり方です。</p>
+<p>新しいセッションは短い要約ひとつだけを持って始まるので、温め直す前の会話が小さくて済みます。同じ状況なら、次の順番でまず測ってみてください。</p>
+<ul><li>1日のトークンを入力・出力・キャッシュ書き込み・キャッシュ読み込みに分けて記録する。</li><li>キャッシュ書き込みの割合が高ければ、休んでから戻った会話から疑う。</li><li>いちばん長く開いていたセッションの分数を数える。</li><li>一定時間を超えたセッションは要約を残して新しく開く。</li><li>同じ欄が何日も続けて1位なら、決意をやめて仕組みを入れる。</li></ul>
+<figure><img src="/blog/img/diary-cache-rewarm-25pct/lesson.jpg" alt="日記の「教訓」の原文。セッションの長さは言葉では縮まらないという文が太字で書かれている" loading="lazy" decoding="async"><figcaption>日記の「教訓」の最初の行です。</figcaption></figure></section>
+    <section class="faq"><h2>FAQ</h2><details><summary>プロンプトキャッシュとは何ですか？</summary><p>一度処理したプロンプトの前半部分をしばらく保管しておき、次のリクエストで再利用する機能です。Anthropicのドキュメントでは、標準の寿命は5分で使うたびに延び、1時間のものを選ぶこともできます。</p></details><details><summary>プロンプトキャッシュの料金はどれくらい違いますか？</summary><p>公式ドキュメントにある倍率では、キャッシュ書き込みは基本の入力単価の1.25倍(5分)または2倍(1時間)、キャッシュ読み込みは0.1倍です。同じ内容を書き直すと、読むときの12.5倍から20倍を払います。</p></details><details><summary>Claude Codeの会話を長く開いておくと、なぜトークン消費が増えるのですか？</summary><p>キャッシュの寿命が切れたあとに話しかけると、前の会話全体をキャッシュに新しく書き込むからです。私の場合、一日中開いていたスマホのセッション2つのせいで、1日の請求90.6Mのうち13.0Mがこうして出ていきました。</p></details><details><summary>Claude Codeのトークン使用量はどう確認しますか？</summary><p>私はパソコンに残るClaude Codeのセッション記録ファイルを1日単位で集め、入力・出力・キャッシュ書き込み・キャッシュ読み込みに分けたうえで、休んで戻ったあとのキャッシュ書き込みや成果物なしで終わったセッションのような無駄の欄を別に数えています。数字が欄ごとに見えて、やっとどこで漏れているのかが分かりました。合計だけ見ていたころは、たくさん使ったことしか分からず、理由は見えませんでした。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/diary-cache-rewarm-25pct/" hreflang="en" lang="en">English</a><a href="/ko/blog/diary-cache-rewarm-25pct/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/diary-cache-rewarm-25pct/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

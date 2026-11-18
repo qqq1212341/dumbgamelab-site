@@ -7,6 +7,20 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>一天的 token 浪費了 25%，其中 14.4% 是快取重新預熱</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/diary-cache-rewarm-25pct/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>一個人用 AI agent 做遊戲的開發者，記下一天的 token 帳本。90.6M 裡有 22.7M（25%）浪費掉，最大的一欄是快取重新預熱 13.0M（14.4%）。這篇寫下原因、prompt caching 的計價方式，以及後來改掉的做法。</description>
+  </item>
+  <item>
+    <title>12 個候選遊戲音效全輸給舊的蜂蜜聲，仔細一聽竟然是鼓聲</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/twelve-sounds-old-honey-won/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/twelve-sounds-old-honey-won/</guid>
+    <pubDate>Tue, 17 Nov 2026 15:00:00 GMT</pubDate>
+    <description>為了換掉 ASMR 爬塔遊戲裡踩蜂蜜的音效，我從 YouTube 影片擷取了 12 個候選來測試。評分表第一名是舊的音效，用耳朵重聽卻是鼓聲。這篇記錄我怎麼挑了一個不用擔心版權的 Freesound CC0 音效，不加處理切成 10 段換上去。</description>
+  </item>
+  <item>
     <title>韓國鹽麵包的起源在日本? 日式鹽パン與韓式鹽麵包的差別</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/korean-salt-bread-vs-japanese-shiopan/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/korean-salt-bread-vs-japanese-shiopan/</guid>
@@ -201,20 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-egg-and-sikhye/</guid>
     <pubDate>Wed, 21 Oct 2026 15:00:00 GMT</pubDate>
     <description>韓國汗蒸幕販賣部的烤雞蛋和甜米露一次整理。甜米露是酒嗎、烤雞蛋和水煮蛋差在哪、一杯多少錢、罐裝幾大卡、為什麼不要用額頭敲蛋，每個問題都附上出處。</description>
-  </item>
-  <item>
-    <title>放置遊戲是什麼？關掉 App，店也照常營業的經營遊戲</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/what-is-idle-tycoon/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/what-is-idle-tycoon/</guid>
-    <pubDate>Tue, 20 Oct 2026 15:00:00 GMT</pubDate>
-    <description>放置經營遊戲，是在經營店鋪或礦坑的遊戲上加了自動收益與離線收益的類型。和點擊遊戲差在哪、錢會一直累積的五個機制、離線收益實際有多少，我們用自己遊戲的數字說明。</description>
-  </item>
-  <item>
-    <title>溫泉與澡堂題材的遊戲8款，用商店標示比較</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/best-bathhouse-onsen-games/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/best-bathhouse-onsen-games/</guid>
-    <pubDate>Sun, 18 Oct 2026 15:00:00 GMT</pubDate>
-    <description>溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</description>
   </item>
 </channel>
 </rss>
