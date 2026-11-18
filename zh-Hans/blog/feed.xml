@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>甜点竟然伪装成了芦笋</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/ice-cream-disguise/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/ice-cream-disguise/</guid>
+    <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+    <description>过去的冰淇淋模具能做出芦笋、鱼等形状。这里说的是蔬菜外形，并不是确认了蔬菜口味。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fancy-ices.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>这只蟹能把一只手套变成一双</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/boxer-crab-gloves/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/boxer-crab-gloves/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>在植物学上，香蕉和番茄是浆果，草莓和树莓却不是。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>GPS 卫星的时钟是故意调慢的</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/gps-relativity/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/gps-relativity/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>因为相对论，GPS 卫星的时钟每天会快38微秒。所以发射前要故意把它调慢。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

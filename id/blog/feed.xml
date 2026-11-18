@@ -7,6 +7,14 @@
   <description>Tempat sehari-hari di Korea, game idle tycoon santai, dan catatan dari studio game kecil di Seoul.</description>
   <language>id</language>
   <item>
+    <title>Hidangan penutup menyamar jadi asparagus</title>
+    <link>https://dumbgamelab.com/id/blog/ice-cream-disguise/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/ice-cream-disguise/</guid>
+    <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Cetakan es krim lama dapat membentuk asparagus, ikan, dan bentuk lain. Ini cerita tentang bentuk sayuran, bukan rasa sayuran yang telah dipastikan.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/fancy-ices.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Kepiting ini mengubah satu sarung tangan jadi sepasang</title>
     <link>https://dumbgamelab.com/id/blog/boxer-crab-gloves/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/id/blog/boxer-crab-gloves/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>Dalam botani, pisang dan tomat termasuk beri, sedangkan stroberi dan raspberry bukan.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Jam Satelit GPS Sengaja Diatur Lebih Lambat</title>
-    <link>https://dumbgamelab.com/id/blog/gps-relativity/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/gps-relativity/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Karena teori relativitas, jam satelit GPS jadi lebih cepat 38 mikrodetik per hari. Karena itu, sebelum diluncurkan, jamnya sengaja diatur lebih lambat.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/gps-satellite.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
