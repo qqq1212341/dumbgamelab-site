@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "65-7982be1972",
+ "version": "65-49b70a93ce",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -488,7 +488,7 @@
   {
    "id": "caterpillar-frass",
    "day": 41,
-   "hash": "bd606e6332adc611",
+   "hash": "8917029113d13cdd",
    "ep": "episodes/caterpillar-frass.json",
    "i18n": {
     "en": "i18n/en/caterpillar-frass.json",
