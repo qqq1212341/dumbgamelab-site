@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>한국 동네 빵집 진열대에는 어떤 빵이 올라올까</title>
+    <link>https://dumbgamelab.com/ko/blog/what-is-a-korean-neighborhood-bakery/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/what-is-a-korean-neighborhood-bakery/</guid>
+    <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+    <description>한국 동네 빵집 진열대에 늘 올라오는 빵을 단팥빵, 소보로빵, 크림빵, 소금빵, 꽈배기 순으로 설명합니다. 겉모양과 속, 이름의 뜻, 빵집이 커지는 단계까지 게임 화면과 함께 봅니다.</description>
+  </item>
+  <item>
     <title>후식이 아스파라거스로 위장했다</title>
     <link>https://dumbgamelab.com/ko/blog/ice-cream-disguise/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/ice-cream-disguise/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/build-40-min-vs-5-sec/</guid>
     <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
     <description>버그 하나 고치고 확인하는 데 전체 빌드로 40분이 걸렸는데, 코드만 바뀐 판은 스크립트 DLL만 컴파일해서 5초에 끝났습니다. 시험 고리를 빠른 판부터 까는 순서와 개발 모드 스위치를 적었습니다.</description>
-  </item>
-  <item>
-    <title>우주에서는 금속끼리 그냥 달라붙는다</title>
-    <link>https://dumbgamelab.com/ko/blog/space-cold-weld/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/space-cold-weld/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
-    <description>진공에서 깨끗한 같은 종류의 금속 면이 닿으면 열 없이도 붙는다. 우주선 설계자가 조심해야 하는 현상이다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/galileo-orbiter.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

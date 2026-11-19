@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>韓国の街のパン屋には、どんなパンが並んでいるのか</title>
+    <link>https://dumbgamelab.com/ja/blog/what-is-a-korean-neighborhood-bakery/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-korean-neighborhood-bakery/</guid>
+    <pubDate>Wed, 18 Nov 2026 15:00:00 GMT</pubDate>
+    <description>韓国の街のパン屋でいつも棚に並ぶパンを、あんパン、そぼろパン、クリームパン、塩パン、クァベギ（ねじりドーナツ）の順に紹介します。見た目と中身、名前の意味、パン屋が大きくなる段階まで、ゲーム画面と一緒に見ていきます。</description>
+  </item>
+  <item>
     <title>デザートがアスパラガスに化けた</title>
     <link>https://dumbgamelab.com/ja/blog/ice-cream-disguise/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ice-cream-disguise/</guid>
@@ -222,13 +229,6 @@
     <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
     <description>真空中できれいな同種の金属面が触れ合うと、熱がなくてもくっつく。宇宙機の設計者が気をつけるべき現象だ。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/galileo-orbiter.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>「スマホの比率に合っていません」というレビューが教えてくれたこと</title>
-    <link>https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/review-said-buttons-hidden/</guid>
-    <pubDate>Wed, 04 Nov 2026 15:00:00 GMT</pubDate>
-    <description>「スマホの比率に合っていません」という星1レビューから始まった修正の記録です。Android 15のedge-to-edgeで下のタブバーがナビゲーションバーの下に潜った原因と、CapacitorのadjustMarginsForEdgeToEdge設定、24pxの応急処置を消した理由を書きました。</description>
   </item>
 </channel>
 </rss>
