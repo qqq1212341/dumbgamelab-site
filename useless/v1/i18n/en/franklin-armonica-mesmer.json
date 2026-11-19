@@ -1,0 +1,68 @@
+{
+  "category": "Music",
+  "title": "Franklin's own invention went out of fashion, and Franklin had a hand in it",
+  "hook": "A glass instrument Mozart wrote for faded, and its inventor was involved",
+  "open": {
+    "title": "Why did Benjamin Franklin's glass instrument disappear?",
+    "line": "Dozens of glass bowls threaded on an iron rod. Benjamin Franklin built this instrument."
+  },
+  "summary": "Mesmer loved Franklin's 1761 glass armonica. Franklin sat on the 1784 commission that tested Mesmer's theory, and one study links its decline to that.",
+  "panels": [
+    {
+      "text": [
+        "Dozens of glass bowls are threaded on an iron rod.",
+        "A pedal spins it, and a wet finger makes it sound."
+      ]
+    },
+    {
+      "text": [
+        "It's Benjamin Franklin's glass armonica, finished in 1761."
+      ]
+    },
+    {
+      "text": [
+        "By his death in 1790, more than 5,000 had been built.",
+        "He never patented it and made nothing."
+      ]
+    },
+    {
+      "text": [
+        "In 1791, Mozart wrote a piece for this instrument.",
+        "He even played one at the home of a man named Mesmer."
+      ]
+    },
+    {
+      "text": [
+        "Mesmer claimed an invisible force flowed in the body.",
+        "He played it for crowds he gathered."
+      ]
+    },
+    {
+      "text": "Bet that made it even more famous"
+    },
+    {
+      "text": [
+        "Actually, in 1784 a French royal commission tested that theory.",
+        "One of its members was Franklin."
+      ]
+    },
+    {
+      "text": [
+        "A Mesmer doctor said he'd charged a single tree among 5 in Franklin's garden.",
+        "A man said to be sensitive fainted at the wrong tree."
+      ]
+    },
+    {
+      "text": [
+        "One paper says it fell out of fashion once Mesmer's theory was debunked.",
+        "So Franklin indirectly helped push out his own invention."
+      ]
+    }
+  ],
+  "sources": [
+    "The Franklin Institute: Benjamin Franklin's Glass Armonica",
+    "Gallo & Finger (2000), The power of a musical instrument (PubMed 11855437)",
+    "Wikipedia: Glass harmonica",
+    "Wikipedia: Royal Commission on Animal Magnetism"
+  ]
+}

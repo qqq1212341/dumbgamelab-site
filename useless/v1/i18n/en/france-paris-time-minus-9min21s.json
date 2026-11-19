@@ -1,0 +1,65 @@
+{
+  "category": "Geography",
+  "title": "France wrote ‘Paris time minus 9 minutes 21 seconds’ into law instead of saying Greenwich",
+  "hook": "France's 1911 time law never says Greenwich",
+  "open": {
+    "title": "Why France deliberately set its clocks back 9 minutes 21 seconds",
+    "line": "March 1911: France passed a one-line time law."
+  },
+  "summary": "In 1911 France set legal time as Paris mean time minus 9 minutes 21 seconds: Greenwich time without the name.",
+  "panels": [
+    {
+      "text": [
+        "In March 1911, French law set the time as:",
+        "Paris mean time, delayed by 9 minutes 21 seconds."
+      ]
+    },
+    {
+      "text": [
+        "That's roughly the Paris to Greenwich time gap.",
+        "Yet the text never says Greenwich."
+      ]
+    },
+    {
+      "text": "Why not just write Greenwich time?"
+    },
+    {
+      "text": [
+        "In 1884, a conference voted Greenwich 0 degrees longitude.",
+        "France abstained. Only Santo Domingo voted no."
+      ]
+    },
+    {
+      "text": [
+        "Actually, an 1896 bill had named Greenwich outright.",
+        "A committee threw it out."
+      ]
+    },
+    {
+      "text": [
+        "A year later, a deputy recast it as 9 minutes 21 seconds.",
+        "With Greenwich hidden, the lower house passed it without debate."
+      ]
+    },
+    {
+      "text": [
+        "Stuck in the Senate, it passed only in March 1911.",
+        "At 12 midnight on the 10th, Paris public clocks paused 9 minutes 21 seconds."
+      ]
+    },
+    {
+      "text": [
+        "But 9 minutes 21 seconds was 0.065 seconds off the real observatory gap.",
+        "It stayed in law until UTC replaced it in 1978."
+      ]
+    }
+  ],
+  "sources": [
+    "Journal officiel, 10 mars 1911 (Gallica)",
+    "Légifrance: Loi du 9 mars 1911",
+    "International Meridian Conference 1884, Protocols of the Proceedings",
+    "Pour la Science: Comment la France adopta l'heure de Greenwich",
+    "Observatoire de Paris: L'heure légale en France",
+    "RetroNews: 1911, on a changé l'heure de Paris"
+  ]
+}

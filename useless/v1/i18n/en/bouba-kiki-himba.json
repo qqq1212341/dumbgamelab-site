@@ -1,0 +1,70 @@
+{
+  "category": "Psychology",
+  "title": "Even villagers who don't write picked the round shape for 'bouba'",
+  "hook": "Spiky is kiki, round is bouba. A Himba village in Namibia gave the same answer",
+  "open": {
+    "title": "The researchers who carried a spiky shape and a round shape to a village in Namibia",
+    "line": "One spiky star, one wobbly flower. One is bouba, the other is kiki."
+  },
+  "summary": "Most people call the round shape bouba. The Himba of Namibia, who don't write, did too, but matched taste to shape differently from Westerners.",
+  "panels": [
+    {
+      "text": [
+        "One spiky star, one wobbly flower.",
+        "One is bouba, the other is kiki."
+      ]
+    },
+    {
+      "text": "The spiky one's kiki. Why even ask?"
+    },
+    {
+      "text": [
+        "Almost everyone does.",
+        "A 2001 paper wrote that 95% of people pick the spiky one as kiki."
+      ]
+    },
+    {
+      "text": [
+        "Even with shapes they've never seen, called just a Martian word."
+      ]
+    },
+    {
+      "text": [
+        "Actually, some argued it was down to the letters.",
+        "B looks round and K looks spiky."
+      ]
+    },
+    {
+      "text": [
+        "So in 2013 a British team went to Himba villages in northern Namibia.",
+        "They don't write, and Western culture barely reaches them."
+      ]
+    },
+    {
+      "text": [
+        "28 of 34 Himba people picked the round one as bouba.",
+        "Without letters, the answer was the same."
+      ]
+    },
+    {
+      "text": "So everyone's brain works the same?"
+    },
+    {
+      "text": [
+        "Not with taste.",
+        "Westerners match sparkling water to the spiky shape. The Himba didn't."
+      ]
+    },
+    {
+      "text": [
+        "Chocolate flipped completely.",
+        "Westerners match bitter chocolate to the spiky one. The Himba more often matched milder milk chocolate to it."
+      ]
+    }
+  ],
+  "sources": [
+    "Ramachandran & Hubbard (2001), Synaesthesia: A Window Into Perception, Thought and Language, Journal of Consciousness Studies 8(12)",
+    "Bremner et al. (2013), Bouba and Kiki in Namibia?, Cognition 126(2)",
+    "Ćwiek et al. (2022), The bouba/kiki effect is robust across cultures and writing systems, Phil. Trans. R. Soc. B"
+  ]
+}

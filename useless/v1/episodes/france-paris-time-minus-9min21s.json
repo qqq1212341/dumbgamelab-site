@@ -1,0 +1,99 @@
+{
+  "id": "france-paris-time-minus-9min21s",
+  "contentNotice": null,
+  "day": 72,
+  "category": "지리",
+  "title": "프랑스는 그리니치라는 말 대신 ‘파리 시각 빼기 9분 21초’라고 법에 썼다",
+  "hook": "1911년 프랑스 시간 법에는 그리니치라는 말이 없다",
+  "open": {
+    "title": "프랑스가 나라 시계를 일부러 9분 21초 늦춘 이유",
+    "cover": "m30",
+    "line": "1911년 3월, 프랑스 의회를 통과한 시간 법은 딱 한 문장이었다."
+  },
+  "summary": "1911년 프랑스는 법정시를 파리 평균시에서 9분 21초 늦춘 시각으로 정했다. 이름만 뺀 그리니치 시간이었다.",
+  "cover": "france-paris-time-minus-9min21s",
+  "sources": [
+    {
+      "title": "Journal officiel, 10 mars 1911 (Gallica)",
+      "url": "https://gallica.bnf.fr/ark:/12148/bpt6k6338310n/f2.texteBrut"
+    },
+    {
+      "title": "Légifrance: Loi du 9 mars 1911",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000868660"
+    },
+    {
+      "title": "International Meridian Conference 1884, Protocols of the Proceedings",
+      "url": "https://www.gutenberg.org/ebooks/17759"
+    },
+    {
+      "title": "Pour la Science: Comment la France adopta l'heure de Greenwich",
+      "url": "https://www.pourlascience.fr/sd/histoire-techniques/comment-la-france-adopta-l-heure-de-greenwich-6322.php"
+    },
+    {
+      "title": "Observatoire de Paris: L'heure légale en France",
+      "url": "https://media4.obspm.fr/public/ressources_lu/pages_mesure-temps/mctc-heure-legale.html"
+    },
+    {
+      "title": "RetroNews: 1911, on a changé l'heure de Paris",
+      "url": "https://www.retronews.fr/societe/echo-de-presse/2018/01/29/1911-change-lheure-de-paris"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "france-paris-time-minus-9min21s",
+      "text": [
+        "1911년 3월 프랑스 법은 나라의 시각을 이렇게 정했다.",
+        "파리 평균시를 9분 21초 늦춘 시각."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "파리와 영국 그리니치의 시차가 거의 그만큼이다.",
+        "그런데 조문엔 그리니치라는 말이 없다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그냥 그리니치 시간이라고 쓰면 되잖아."
+    },
+    {
+      "type": "image",
+      "img": "france-paris-time-minus-9min21s-conference",
+      "text": [
+        "1884년 국제 자오선 회의에서 그리니치가 경도 0도로 뽑혔다.",
+        "프랑스는 기권했다. 반대는 산토도밍고 한 나라뿐이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 그리니치를 대놓고 쓴 법안이 1896년에 먼저 나왔다.",
+        "위원회에서 바로 밀려났다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "이듬해 다른 의원이 같은 뜻을 9분 21초 문장으로 바꿔 냈다.",
+        "그리니치가 안 보이자 하원은 토론 없이 통과시켰다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "상원에 묶였던 법은 1911년 3월에야 나왔다.",
+        "10일 밤 12시, 파리의 공공 시계들이 9분 21초 동안 멈췄다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그런데 9분 21초는 두 천문대의 실제 시차와 0.065초 어긋났다.",
+        "이 문장은 1978년 협정세계시로 바뀔 때까지 법에 남았다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

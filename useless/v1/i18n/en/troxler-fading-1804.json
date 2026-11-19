@@ -1,0 +1,69 @@
+{
+  "category": "Body",
+  "title": "Stare at one spot long enough and the things beside it really do vanish",
+  "hook": "First noted by a Swiss doctor in 1804, it hides why our eyes keep jittering",
+  "open": {
+    "title": "Stare at the cross and the pink dots vanish",
+    "line": "Pink dots sit in a ring on a gray background. Keep your eyes on the center cross and within seconds the dots get wiped away."
+  },
+  "summary": "Troxler fading, where still things around a fixed gaze vanish, was first recorded in 1804. Fixed eyes still make tiny jumps. Tests found they dropped just before things faded and rose just before they returned.",
+  "panels": [
+    {
+      "text": [
+        "Stare only at the black cross,",
+        "and in seconds the pink dots fade one by one."
+      ]
+    },
+    {
+      "text": [
+        "This one too.",
+        "Stare a few seconds and the blotches seem to vanish."
+      ]
+    },
+    {
+      "text": [
+        "In 1804, Swiss doctor Ignaz Troxler first noted it in Vienna.",
+        "Hence the name Troxler fading."
+      ]
+    },
+    {
+      "text": "Aren't your eyes just tired?"
+    },
+    {
+      "text": [
+        "Actually, it's explained by neural adaptation.",
+        "Visual nerves tune out unchanging input fast."
+      ]
+    },
+    {
+      "text": [
+        "Even fixed on one spot, eyes keep making tiny jumps.",
+        "They're called microsaccades."
+      ]
+    },
+    {
+      "text": [
+        "In 2006, Arizona researchers tracked 8 people's eyes",
+        "and had them press a button when a side target vanished."
+      ]
+    },
+    {
+      "text": [
+        "Just before it vanished, microsaccades got fewer and smaller.",
+        "Just before it returned, they got more and bigger."
+      ]
+    },
+    {
+      "text": [
+        "Early 1950s labs locked an image on one retinal spot as the eye moved.",
+        "The whole scene soon faded to one flat color."
+      ]
+    }
+  ],
+  "sources": [
+    "Martinez-Conde et al. (2006), Microsaccades Counteract Visual Fading during Fixation, Neuron 49",
+    "Troncoso et al. (2008), Microsaccades counteract perceptual filling-in, Journal of Vision",
+    "Wikipedia: Troxler's fading",
+    "Wikipedia: Ignaz Paul Vital Troxler"
+  ]
+}

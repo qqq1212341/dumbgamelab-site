@@ -1,0 +1,64 @@
+{
+  "category": "Musik",
+  "title": "Alat musik ciptaan Franklin meredup, dan Franklin sendiri ikut andil",
+  "hook": "Alat musik kaca yang sampai dibuatkan lagu oleh Mozart tersingkir, dan penciptanya sendiri ikut terlibat",
+  "open": {
+    "title": "Alat musik kaca Franklin, kenapa menghilang?",
+    "line": "Puluhan mangkuk kaca di batang besi. Ini buatan Benjamin Franklin."
+  },
+  "summary": "Glass armonica buatan Franklin tahun 1761 disukai Mesmer. Franklin ikut komisi 1784 penguji teori Mesmer, dan menurut sebuah studi pamor alat ini meredup setelah teori itu runtuh.",
+  "panels": [
+    {
+      "text": [
+        "Puluhan mangkuk kaca di batang besi berbunyi bila diputar pedal dan disentuh jari basah."
+      ]
+    },
+    {
+      "text": [
+        "Ini glass armonica, rampungan Franklin tahun 1761."
+      ]
+    },
+    {
+      "text": [
+        "Hingga wafat tahun 1790, lebih dari 5,000 dibuat, tapi tanpa paten ia tak dapat sepeser pun."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 1791, Mozart menulis lagu untuknya.",
+        "Ia pernah memainkannya di rumah Mesmer."
+      ]
+    },
+    {
+      "text": [
+        "Kata Mesmer, ada daya tak terlihat di tubuh, dan ia memainkan alat ini di depan orang banyak."
+      ]
+    },
+    {
+      "text": "Berkat dia, makin terkenal dong"
+    },
+    {
+      "text": [
+        "Ternyata, tahun 1784 raja Prancis membentuk komisi penguji teori itu, termasuk Franklin."
+      ]
+    },
+    {
+      "text": [
+        "Dokter kubu Mesmer mengaku mengisi daya sebatang dari 5 pohon kebun Franklin.",
+        "Orang yang katanya peka malah pingsan di pohon lain."
+      ]
+    },
+    {
+      "text": [
+        "Kata sebuah makalah, pamornya meredup usai teori Mesmer dipatahkan.",
+        "Jadi, Franklin tak langsung menyingkirkan ciptaannya."
+      ]
+    }
+  ],
+  "sources": [
+    "The Franklin Institute: Benjamin Franklin's Glass Armonica",
+    "Gallo & Finger (2000), The power of a musical instrument (PubMed 11855437)",
+    "Wikipedia: Glass harmonica",
+    "Wikipedia: Royal Commission on Animal Magnetism"
+  ]
+}

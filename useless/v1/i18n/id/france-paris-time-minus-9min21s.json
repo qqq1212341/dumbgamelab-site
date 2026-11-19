@@ -1,0 +1,65 @@
+{
+  "category": "Geografi",
+  "title": "Prancis menulis ‘waktu Paris dikurangi 9 menit 21 detik’ di undang-undang, bukan Greenwich",
+  "hook": "UU waktu Prancis 1911 tak menyebut Greenwich",
+  "open": {
+    "title": "Kenapa Prancis memundurkan jam 9 menit 21 detik?",
+    "line": "Maret 1911, UU waktu Prancis cuma satu kalimat."
+  },
+  "summary": "Pada 1911 Prancis menetapkan waktu resmi: waktu rata-rata Paris dikurangi 9 menit 21 detik. Itu waktu Greenwich tanpa nama.",
+  "panels": [
+    {
+      "text": [
+        "Maret 1911, UU Prancis menetapkan waktu:",
+        "Waktu rata-rata Paris mundur 9 menit 21 detik."
+      ]
+    },
+    {
+      "text": [
+        "Itu kira-kira selisih Paris dan Greenwich.",
+        "Tapi kata Greenwich tak ada di sana."
+      ]
+    },
+    {
+      "text": "Tulis aja Greenwich, kan?"
+    },
+    {
+      "text": [
+        "Tahun 1884, Greenwich dipilih jadi bujur 0 derajat.",
+        "Prancis abstain, penolaknya cuma Santo Domingo."
+      ]
+    },
+    {
+      "text": [
+        "Sebenarnya, RUU 1896 terang-terangan menyebut Greenwich.",
+        "Komisi menolaknya."
+      ]
+    },
+    {
+      "text": [
+        "Setahun kemudian, anggota lain menulisnya jadi 9 menit 21 detik.",
+        "Greenwich hilang, majelis rendah meloloskannya tanpa debat."
+      ]
+    },
+    {
+      "text": [
+        "Tertahan di Senat, baru sah Maret 1911.",
+        "Tanggal 10 pukul 12 malam, jam Paris berhenti 9 menit 21 detik."
+      ]
+    },
+    {
+      "text": [
+        "Tapi 9 menit 21 detik meleset 0.065 detik dari selisih asli kedua observatorium.",
+        "Bertahan sampai 1978, saat diganti UTC."
+      ]
+    }
+  ],
+  "sources": [
+    "Journal officiel, 10 mars 1911 (Gallica)",
+    "Légifrance: Loi du 9 mars 1911",
+    "International Meridian Conference 1884, Protocols of the Proceedings",
+    "Pour la Science: Comment la France adopta l'heure de Greenwich",
+    "Observatoire de Paris: L'heure légale en France",
+    "RetroNews: 1911, on a changé l'heure de Paris"
+  ]
+}

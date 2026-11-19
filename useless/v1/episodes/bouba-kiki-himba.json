@@ -1,0 +1,97 @@
+{
+  "id": "bouba-kiki-himba",
+  "contentNotice": null,
+  "day": 68,
+  "category": "심리",
+  "title": "글자를 안 쓰는 마을 사람들도 '부바'는 둥근 쪽을 골랐다",
+  "hook": "뾰족한 그림은 키키, 둥근 그림은 부바. 나미비아 힘바 마을에서도 답이 같았다",
+  "open": {
+    "title": "뾰족한 그림과 둥근 그림을 들고 나미비아 마을까지 간 연구팀",
+    "cover": "m34",
+    "line": "뾰족한 별 하나, 몽글몽글한 꽃 하나. 둘 중 하나는 부바, 하나는 키키다."
+  },
+  "summary": "뾰족한 그림과 둥근 그림에 부바와 키키라는 이름을 붙이라고 하면 대부분 둥근 쪽을 부바로 고른다. 글을 쓰지 않는 나미비아 힘바 사람들도 그랬지만, 맛과 모양을 잇는 방식은 서양 사람과 달랐다.",
+  "cover": "bouba-kiki-himba",
+  "sources": [
+    {
+      "title": "Ramachandran & Hubbard (2001), Synaesthesia: A Window Into Perception, Thought and Language, Journal of Consciousness Studies 8(12)",
+      "url": "https://www.sfu.ca/~kathleea/colour/docs/Ram%26Hub_2001.pdf"
+    },
+    {
+      "title": "Bremner et al. (2013), Bouba and Kiki in Namibia?, Cognition 126(2)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23121711/"
+    },
+    {
+      "title": "Ćwiek et al. (2022), The bouba/kiki effect is robust across cultures and writing systems, Phil. Trans. R. Soc. B",
+      "url": "https://doi.org/10.1098/rstb.2020.0390"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "bouba-kiki-himba",
+      "text": [
+        "뾰족한 별 하나, 몽글몽글한 꽃 하나.",
+        "둘 중 하나는 부바, 하나는 키키다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "뾰족한 게 키키지. 그걸 왜 물어?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "거의 다 그렇게 고른다.",
+        "2001년 한 논문은 사람들의 95%가 뾰족한 쪽을 키키로 고른다고 적었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "화성 말이라고만 하고 처음 보는 그림을 내밀어도 그렇다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 글자 탓이라는 반론이 있었다.",
+        "B는 둥글고 K는 뾰족하게 생겼으니까."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "bouba-kiki-himba-village",
+      "text": [
+        "그래서 2013년 영국 연구팀이 나미비아 북부 힘바 마을로 갔다.",
+        "글을 쓰지 않고 서양 문화도 거의 닿지 않은 곳이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "힘바 사람 34명 중 28명이 둥근 쪽을 부바로 골랐다.",
+        "글자를 몰라도 답은 같았다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 사람 머리는 다 똑같은 거네?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "맛은 달랐다.",
+        "서양 사람은 탄산수를 뾰족한 쪽에 붙이는데, 힘바 사람은 그러지 않았다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "초콜릿은 아예 거꾸로였다.",
+        "서양 사람은 쓴 초콜릿을 뾰족한 쪽에 붙이는데, 힘바 사람은 덜 쓴 밀크 초콜릿을 뾰족한 쪽에 더 많이 붙였다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

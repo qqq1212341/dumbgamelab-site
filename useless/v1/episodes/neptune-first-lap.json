@@ -1,0 +1,99 @@
+{
+  "id": "neptune-first-lap",
+  "contentNotice": null,
+  "day": 66,
+  "category": "우주",
+  "title": "해왕성은 발견된 뒤로 태양을 딱 한 바퀴 돌았다",
+  "hook": "1846년에 발견된 해왕성은 2011년에야 발견된 자리로 돌아왔다",
+  "open": {
+    "title": "NASA가 해왕성에게 생일 축하 사진을 보낸 날",
+    "cover": "neptune-first-lap",
+    "line": "2011년 7월 12일, NASA와 유럽우주국이 허블 우주망원경으로 찍은 해왕성 사진 네 장을 공개하며 축하를 보냈다."
+  },
+  "summary": "해왕성은 태양을 한 바퀴 도는 데 165년 가까이 걸려서, 1846년에 발견된 뒤 2011년 7월에야 첫 바퀴를 마쳤다. 갈릴레이는 그보다 230여 년 먼저 해왕성을 보고도 별로 여겼다.",
+  "cover": "neptune-first-lap",
+  "sources": [
+    {
+      "title": "NASA: Neptune Completes Its First Circuit Around The Sun Since Its Discovery",
+      "url": "https://science.nasa.gov/missions/hubble/neptune-completes-its-first-circuit-around-the-sun-since-its-discovery/"
+    },
+    {
+      "title": "ESA/Hubble: Happy Anniversary, Neptune",
+      "url": "https://esahubble.org/announcements/ann1115/"
+    },
+    {
+      "title": "NASA: Neptune Facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/"
+    },
+    {
+      "title": "Wikipedia: Discovery of Neptune",
+      "url": "https://en.wikipedia.org/wiki/Discovery_of_Neptune"
+    },
+    {
+      "title": "NASA: Pluto Facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "neptune-first-lap",
+      "text": [
+        "해왕성은 1846년 9월에 처음 발견됐다.",
+        "그 뒤로 지금까지 태양을 딱 한 바퀴 돌았다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "태양에서 지구보다 30배나 멀리 떨어져 있어서 그렇다.",
+        "한 바퀴 도는 데 165년 가까이 걸린다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 첫 바퀴는 언제 끝났어?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "2011년 7월 11일이다.",
+        "허블 우주망원경이 이걸 기념한다고 해왕성을 4시간쯤 간격으로 네 번 찍었다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "neptune-first-lap-galileo",
+      "text": [
+        "사실은 발견보다 230여 년 먼저 해왕성을 본 사람이 있다.",
+        "갈릴레이가 1612년 12월과 1613년 1월에 망원경으로 봤다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "목성 바로 옆에 붙어 있던 해왕성을 그냥 별인 줄 알았다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 진짜로는 누가 찾은 건데?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "프랑스의 르베리에는 천왕성이 계산과 다르게 움직이는 걸 보고 새 행성 자리를 계산했다.",
+        "베를린 천문대의 갈레는 그 계산을 받고 찾기 시작한 첫날 밤에 해왕성을 찾았다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "neptune-first-lap-pluto",
+      "text": [
+        "명왕성은 1930년에 발견됐는데, 한 바퀴에 248년이 걸린다.",
+        "첫 바퀴는 2178년 무렵에야 끝난다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

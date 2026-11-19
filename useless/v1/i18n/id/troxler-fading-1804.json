@@ -1,0 +1,69 @@
+{
+  "category": "Tubuh",
+  "title": "Tatap satu titik terus, benda di sebelahnya benar-benar hilang",
+  "hook": "Fenomena yang pertama dicatat dokter Swiss tahun 1804 ini menyimpan alasan mata kita tak pernah berhenti bergetar",
+  "open": {
+    "title": "Cuma tatap silangnya, titik pink di sekitar lenyap",
+    "line": "Titik pink tersusun melingkar di latar abu-abu. Kunci mata di silang tengah, dalam beberapa detik titiknya terhapus."
+  },
+  "summary": "Efek Troxler, saat menatap satu titik membuat benda diam di sekitarnya hilang, pertama dicatat tahun 1804. Mata tetap melompat sangat kecil walau menatap satu titik. Dalam percobaan, gerakan ini berkurang tepat sebelum benda hilang dan bertambah tepat sebelum muncul lagi.",
+  "panels": [
+    {
+      "text": [
+        "Tatap terus silang hitam saja,",
+        "beberapa detik, titik pink sekitarnya hilang satu-satu."
+      ]
+    },
+    {
+      "text": [
+        "Gambar ini juga.",
+        "Tatap silangnya sejenak, belangnya seperti lenyap."
+      ]
+    },
+    {
+      "text": [
+        "1804, dokter Swiss Ignaz Troxler di Wina pertama mencatatnya.",
+        "Makanya namanya efek Troxler."
+      ]
+    },
+    {
+      "text": "Bukannya cuma mata capek?"
+    },
+    {
+      "text": [
+        "Sebenarnya, penjelasannya adaptasi saraf.",
+        "Saraf mata cepat tumpul pada rangsangan tetap."
+      ]
+    },
+    {
+      "text": [
+        "Saat menatap satu titik pun, mata terus melompat kecil.",
+        "Lompatan ini disebut mikrosakade."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 2006, peneliti Arizona merekam mata 8 orang",
+        "yang menekan tombol tiap target samping hilang."
+      ]
+    },
+    {
+      "text": [
+        "Jelang target hilang, mikrosakade makin jarang dan kecil.",
+        "Jelang muncul lagi, makin sering dan besar."
+      ]
+    },
+    {
+      "text": [
+        "Awal 1950-an, lab membuat gambar diam di satu titik retina walau mata bergerak.",
+        "Hasilnya, seluruh pemandangan cepat lebur jadi satu warna."
+      ]
+    }
+  ],
+  "sources": [
+    "Martinez-Conde et al. (2006), Microsaccades Counteract Visual Fading during Fixation, Neuron 49",
+    "Troncoso et al. (2008), Microsaccades counteract perceptual filling-in, Journal of Vision",
+    "Wikipedia: Troxler's fading",
+    "Wikipedia: Ignaz Paul Vital Troxler"
+  ]
+}

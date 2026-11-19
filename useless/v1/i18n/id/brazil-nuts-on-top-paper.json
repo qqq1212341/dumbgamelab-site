@@ -1,0 +1,66 @@
+{
+  "category": "Sains",
+  "title": "Ada makalah fisika yang judulnya benar-benar \"Kenapa Kacang Brazil Ada di Atas\"",
+  "hook": "Kocok kacang campur, yang besar naik. Makalah fisika 1987 menelitinya",
+  "open": {
+    "title": "Ilmuwan menulis makalah soal kacang berat yang malah naik saat dikocok",
+    "line": "Kocok sekantong kacang campur, kacang Brazil terbesar sering naik ke paling atas."
+  },
+  "summary": "Kocok wadah berisi butiran besar dan kecil, yang besar naik. Makalah 1987 menunjukkan ini terjadi walau bahan yang besar lebih berat, dan percobaan 2001 menemukan tekanan udara di wadah juga mengubah hasilnya.",
+  "panels": [
+    {
+      "text": [
+        "Kocok kacang campur, kacang Brazil terbesar sering naik ke atas."
+      ]
+    },
+    {
+      "text": "Bukannya yang berat harusnya tenggelam?"
+    },
+    {
+      "text": [
+        "Tahun 1987, empat peneliti menulis makalah fisika soal ini.",
+        "Judulnya benar-benar \"Kenapa Kacang Brazil Ada di Atas\"."
+      ]
+    },
+    {
+      "text": [
+        "Terbit di jurnal Physical Review Letters, cuma 3 halaman.",
+        "Wadahnya dikocok berkali-kali di dalam komputer."
+      ]
+    },
+    {
+      "text": [
+        "Koin di dasar toples beras pun naik saat dikocok."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata bola besar tetap naik walau bahannya lebih berat dari bola kecil.",
+        "Itu kalimat pertama makalahnya."
+      ]
+    },
+    {
+      "text": [
+        "Ini bukan pengayakan, saat butiran kecil lolos lewat celah.",
+        "Satu penjelasan: tiap dikocok, butiran kecil menyelinap ke bawah butiran besar."
+      ]
+    },
+    {
+      "text": [
+        "Kismis yang mengumpul di atas sereal juga dianggap sama."
+      ]
+    },
+    {
+      "text": [
+        "Percobaan 2001 di Nature: berat butiran besar tak menggeser hasil ke satu arah.",
+        "Ubah tekanan udara di wadah saja, hasilnya berubah."
+      ]
+    }
+  ],
+  "sources": [
+    "Rosato et al., Why the Brazil nuts are on top, Phys. Rev. Lett. 58, 1038 (1987) abstrak",
+    "APS: Phys. Rev. Lett. 58, 1038",
+    "Möbius et al., Size separation of granular particles, Nature 414, 270 (2001)",
+    "Wikipedia: Granular convection"
+  ]
+}

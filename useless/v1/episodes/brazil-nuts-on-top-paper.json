@@ -1,0 +1,96 @@
+{
+  "id": "brazil-nuts-on-top-paper",
+  "contentNotice": null,
+  "day": 69,
+  "category": "과학",
+  "title": "물리학 논문 제목이 진짜로 '왜 브라질너트가 맨 위인가'다",
+  "hook": "믹스넛을 흔들면 큰 견과가 위로 오는 현상을 1987년 물리학 논문이 파고들었다",
+  "open": {
+    "title": "흔들면 무거운 견과가 오히려 위로 올라오는 이유를 과학자들이 논문으로 썼다",
+    "cover": "m6",
+    "line": "믹스넛 봉지를 흔들고 열면 제일 큰 브라질너트가 맨 위에 올라와 있을 때가 많다."
+  },
+  "summary": "큰 알과 작은 알이 섞인 통을 흔들면 큰 알이 위로 오른다. 1987년 논문은 큰 알이 더 무거운 재료여도 마찬가지라고 보였고, 2001년 실험은 통 속 공기 압력까지 결과를 바꾼다고 했다.",
+  "cover": "brazil-nuts-on-top-paper",
+  "sources": [
+    {
+      "title": "Rosato et al., Why the Brazil nuts are on top, Phys. Rev. Lett. 58, 1038 (1987) 초록",
+      "url": "https://researchwith.njit.edu/en/publications/why-the-brazil-nuts-are-on-top-size-segregation-of-particulate-ma"
+    },
+    {
+      "title": "APS: Phys. Rev. Lett. 58, 1038",
+      "url": "https://link.aps.org/doi/10.1103/PhysRevLett.58.1038"
+    },
+    {
+      "title": "Möbius et al., Size separation of granular particles, Nature 414, 270 (2001)",
+      "url": "https://www.nature.com/articles/35104697"
+    },
+    {
+      "title": "Wikipedia: Granular convection",
+      "url": "https://en.wikipedia.org/wiki/Granular_convection"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "brazil-nuts-on-top-paper",
+      "text": [
+        "믹스넛 봉지를 흔들고 열면 제일 큰 브라질너트가 맨 위에 올라와 있을 때가 많다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "무거운 게 밑으로 가야 하는 거 아냐?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1987년 연구자 네 명이 이걸로 물리학 논문을 냈다.",
+        "제목이 진짜로 '왜 브라질너트가 맨 위인가'다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "실린 곳은 물리학 학술지 피지컬 리뷰 레터스, 딱 3쪽짜리다.",
+        "컴퓨터 속에서 통을 수없이 흔들어 보는 계산으로 따졌다."
+      ]
+    },
+    {
+      "type": "video",
+      "video": "brazil-nuts-on-top-paper-rice",
+      "text": [
+        "쌀 병 바닥에 동전을 묻고 흔들어도 동전이 위로 올라온다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 큰 공이 작은 공들보다 더 무거운 재료여도 똑같이 올라온다.",
+        "논문 첫 문장이 바로 이 얘기다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "작은 알이 큰 알 틈으로 빠져 내려가는 체질과는 다른 일이라고 선도 그었다.",
+        "흔들 때마다 큰 알 밑 빈자리에 작은 알이 파고든다는 설명이 있다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "brazil-nuts-on-top-paper-cereal",
+      "text": [
+        "시리얼 봉지 위쪽에 건포도가 몰리는 것도 같은 일로 본다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "2001년 네이처에 실린 실험에선 큰 알 무게를 바꿔도 결과가 한 방향으로 가지 않았다.",
+        "통 속 공기 압력만 바꿔도 결과가 달라졌다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

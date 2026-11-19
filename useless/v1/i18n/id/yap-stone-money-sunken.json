@@ -1,0 +1,66 @@
+{
+  "category": "Sejarah",
+  "title": "Batu di dasar laut yang tak pernah dilihat siapa pun ternyata harta satu keluarga",
+  "hook": "Batu tenggelam diterjang badai, tapi warga bilang pemiliknya tetap",
+  "open": {
+    "title": "Kaya berkat batu yang tak pernah terlihat",
+    "line": "Yap, pulau kecil di Mikronesia. Satu keluarga dianggap kaya karena batu yang belum pernah mereka lihat."
+  },
+  "summary": "Di Yap, uang batu biasanya tak dipindah. Batu yang tenggelam pun disepakati tak hilang.",
+  "panels": [
+    {
+      "text": [
+        "Kata warga Yap, ada roda batu raksasa di dasar laut.",
+        "Katanya, batu itu pun ada pemiliknya."
+      ]
+    },
+    {
+      "text": [
+        "Warga Yap memakai roda batu berlubang sebagai uang.",
+        "Yang besar diameternya 3,6 m."
+      ]
+    },
+    {
+      "text": [
+        "Batunya ditambang di Palau, ratusan km jauhnya."
+      ]
+    },
+    {
+      "text": "Batu segede itu, bayarnya gimana?"
+    },
+    {
+      "text": [
+        "Batu besar biasanya diam, cuma pemiliknya yang ganti."
+      ]
+    },
+    {
+      "text": [
+        "Dulu, leluhur satu keluarga membawa batu besar naik rakit dan diterjang badai.",
+        "Rakit dilepas demi selamat, batunya tenggelam."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata, di dasar laut pun tak masalah.",
+        "Bukan salah pemilik, jadi batunya disepakati tak hilang."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 1903, ilmuwan Amerika di Yap mendengar kisah ini.",
+        "Keluarganya pun tak pernah melihatnya, tapi tak ada yang ragu mereka kaya."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 2010, antropolog peneliti Yap berkata soal kisah itu:",
+        "Bahkan batu yang 100 tahun lebih tak terlihat masih ada pemiliknya."
+      ]
+    }
+  ],
+  "sources": [
+    "Milton Friedman, The Island of Stone Money (Hoover Institution, 1991)",
+    "NPR Planet Money: The Island Of Stone Money (2010)",
+    "Wikipedia: Rai stones"
+  ]
+}

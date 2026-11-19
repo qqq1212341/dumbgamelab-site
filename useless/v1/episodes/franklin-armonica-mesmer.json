@@ -1,0 +1,99 @@
+{
+  "id": "franklin-armonica-mesmer",
+  "contentNotice": null,
+  "day": 70,
+  "category": "음악",
+  "title": "프랭클린이 발명한 악기, 유행이 꺾인 데엔 프랭클린도 얽혀 있다",
+  "hook": "모차르트가 곡까지 쓴 유리 악기가 밀려난 일에 발명가 본인이 끼어 있다",
+  "open": {
+    "title": "벤저민 프랭클린이 만든 유리 악기는 왜 사라졌을까",
+    "cover": "m2",
+    "line": "쇠막대에 유리그릇 수십 개를 꿴 이 악기는 벤저민 프랭클린이 만들었다."
+  },
+  "summary": "프랭클린이 1761년에 완성한 글라스 아르모니카는 메스머가 즐겨 쓴 악기였다. 메스머의 이론을 따진 1784년 위원회에 프랭클린이 있었고, 이론이 무너지자 악기의 유행도 꺾였다는 연구가 있다.",
+  "cover": "franklin-armonica-mesmer",
+  "sources": [
+    {
+      "title": "The Franklin Institute: Benjamin Franklin's Glass Armonica",
+      "url": "https://fi.edu/en/science-and-education/collection/benjamin-franklins-glass-armonica"
+    },
+    {
+      "title": "Gallo & Finger (2000), The power of a musical instrument (PubMed 11855437)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11855437/"
+    },
+    {
+      "title": "Wikipedia: Glass harmonica",
+      "url": "https://en.wikipedia.org/wiki/Glass_harmonica"
+    },
+    {
+      "title": "Wikipedia: Royal Commission on Animal Magnetism",
+      "url": "https://en.wikipedia.org/wiki/Royal_Commission_on_Animal_Magnetism"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "franklin-armonica-mesmer",
+      "text": [
+        "쇠막대에 유리그릇 수십 개가 꿰여 있다.",
+        "발판을 밟아 돌리면서 젖은 손가락을 대면 소리가 난다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "벤저민 프랭클린이 1761년에 완성한 글라스 아르모니카다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그가 죽은 1790년까지 5,000대 넘게 만들어졌다.",
+        "특허를 안 내서 그는 한 푼도 받지 않았다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "franklin-armonica-mesmer-play",
+      "text": [
+        "모차르트는 1791년에 이 악기를 위한 곡을 썼다.",
+        "메스머라는 사람 집에서 직접 쳐 보기도 했다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "franklin-armonica-mesmer-baquet",
+      "text": [
+        "메스머는 몸에 보이지 않는 기운이 흐른다고 주장했다.",
+        "사람들을 모아 놓고 이 악기를 연주했다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그 사람 덕에 더 유명해졌겠네"
+    },
+    {
+      "type": "image",
+      "img": "franklin-armonica-mesmer-franklin",
+      "text": [
+        "사실은 1784년 프랑스 왕이 그 이론을 따지는 위원회를 꾸렸다.",
+        "위원 중 한 명이 프랭클린이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "메스머 쪽 의사가 프랭클린 집 정원 나무 5그루 중 하나에 기운을 넣었다고 했다.",
+        "기운을 잘 탄다는 사람은 엉뚱한 나무 앞에서 쓰러졌다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "한 논문은 메스머 이론이 반박당한 뒤 이 악기가 유행에서 밀려났다고 본다.",
+        "프랭클린이 자기 발명품을 간접적으로 밀어낸 셈이라는 것이다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

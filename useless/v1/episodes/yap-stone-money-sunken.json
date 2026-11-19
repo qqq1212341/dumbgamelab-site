@@ -1,0 +1,94 @@
+{
+  "id": "yap-stone-money-sunken",
+  "contentNotice": null,
+  "day": 67,
+  "category": "역사",
+  "title": "바다 밑에 가라앉아 아무도 못 본 돌이 한 집안의 재산이었다",
+  "hook": "폭풍에 돌이 바다에 빠졌는데도 섬 사람들은 그 돌의 주인이 그대로라고 했다",
+  "open": {
+    "title": "아무도 본 적 없는 돌 하나로 부자 소리를 들은 집안",
+    "cover": "m7",
+    "line": "미크로네시아의 작은 섬 얍. 이 섬의 한 집안은 식구들조차 본 적 없는 돌 하나로 부자 소리를 들었다."
+  },
+  "summary": "얍 섬 사람들은 큰 돌 바퀴를 돈으로 썼고, 거래해도 돌은 대개 그 자리에 두고 주인만 바꿨다. 폭풍에 바다로 가라앉은 돌도 잃은 게 아니라고 다 같이 정해 그 집안의 재산으로 남았다.",
+  "cover": "yap-stone-money-sunken",
+  "sources": [
+    {
+      "title": "Milton Friedman, The Island of Stone Money (Hoover Institution, 1991)",
+      "url": "https://archive.org/stream/IslandOfStoneMoney/island%20of%20stone%20money_djvu.txt"
+    },
+    {
+      "title": "NPR Planet Money: The Island Of Stone Money (2010)",
+      "url": "https://www.npr.org/sections/money/2011/02/15/131934618/the-island-of-stone-money"
+    },
+    {
+      "title": "Wikipedia: Rai stones",
+      "url": "https://en.wikipedia.org/wiki/Rai_stones"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "yap-stone-money-sunken",
+      "text": [
+        "얍 섬 사람들 말로는 바다 밑에 커다란 돌 바퀴 하나가 가라앉아 있다.",
+        "그런데 그 돌에도 주인이 있다고 한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "얍 섬 사람들은 가운데 구멍 뚫린 돌 바퀴를 돈으로 썼다.",
+        "큰 건 지름이 3.6m다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "돌은 수백 km 떨어진 섬 팔라우에서 캐 왔다.",
+        "뗏목과 카누로 바다를 건너 실어 날랐다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그렇게 큰 돌로 어떻게 돈을 내?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "큰 돌은 대개 그 자리에 두고 주인만 바뀐다.",
+        "마을 사람들이 새 주인을 알면 거래가 끝난다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "옛날 한 집안 조상이 큰 돌을 뗏목에 싣고 오다 폭풍을 만났다.",
+        "살려고 뗏목을 떼어 냈고 돌은 가라앉았다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "yap-stone-money-sunken-old",
+      "text": [
+        "사실은 바다 밑이어도 상관없었다.",
+        "주인 탓이 아니니 잃은 게 아니라고 섬 사람들이 다 같이 정했다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1903년 섬에 온 미국 학자가 그 집안 얘기를 들었다.",
+        "두세 세대째 식구들조차 그 돌을 못 봤는데, 그 집 재산을 의심하는 사람은 없었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "2010년 얍을 연구하는 인류학자는 얍의 전승을 두고 이렇게 말했다.",
+        "100년 넘게 아무도 못 본 돌에도 지금 주인이 있다고."
+      ]
+    }
+  ],
+  "status": "approved"
+}

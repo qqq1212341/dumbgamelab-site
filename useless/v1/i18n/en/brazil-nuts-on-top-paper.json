@@ -1,0 +1,66 @@
+{
+  "category": "Science",
+  "title": "There's a real physics paper called \"Why the Brazil nuts are on top\"",
+  "hook": "Shake mixed nuts and the big ones rise. A 1987 physics paper dug into it",
+  "open": {
+    "title": "Scientists wrote a paper on why the heavy nut ends up on top when you shake",
+    "line": "Shake a bag of mixed nuts and the biggest Brazil nut often ends up right on top."
+  },
+  "summary": "Shaken together, big pieces rise above small ones even if made of heavier stuff, a 1987 paper showed. A 2001 experiment found air pressure inside changes it too.",
+  "panels": [
+    {
+      "text": [
+        "Shake a bag of mixed nuts and the biggest Brazil nut often lands on top."
+      ]
+    },
+    {
+      "text": "Shouldn't the heavy one sink?"
+    },
+    {
+      "text": [
+        "In 1987, four researchers wrote a physics paper on it.",
+        "Its title really is \"Why the Brazil nuts are on top.\""
+      ]
+    },
+    {
+      "text": [
+        "It ran in the physics journal Physical Review Letters: 3 pages.",
+        "They shook a can over and over in a computer."
+      ]
+    },
+    {
+      "text": [
+        "Bury coins at the bottom of a jar of rice, shake, and up they come."
+      ]
+    },
+    {
+      "text": [
+        "Actually, the big ball rises even when it's denser than the small ones.",
+        "That's the paper's first sentence."
+      ]
+    },
+    {
+      "text": [
+        "It isn't sifting, they noted, where small grains drop through gaps.",
+        "One idea: each shake, small bits slip into the gap under the big one."
+      ]
+    },
+    {
+      "text": [
+        "Raisins piling atop a cereal bag are thought to be the same thing."
+      ]
+    },
+    {
+      "text": [
+        "In a 2001 Nature experiment, the big piece's weight didn't push results one way.",
+        "Changing only the air pressure changed it too."
+      ]
+    }
+  ],
+  "sources": [
+    "Rosato et al., Why the Brazil nuts are on top, Phys. Rev. Lett. 58, 1038 (1987) abstract",
+    "APS: Phys. Rev. Lett. 58, 1038",
+    "Möbius et al., Size separation of granular particles, Nature 414, 270 (2001)",
+    "Wikipedia: Granular convection"
+  ]
+}

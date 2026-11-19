@@ -1,0 +1,66 @@
+{
+  "category": "Luar Angkasa",
+  "title": "Sejak ditemukan, Neptunus baru satu kali mengelilingi Matahari",
+  "hook": "Neptunus ditemukan tahun 1846, tapi baru kembali ke titik penemuannya tahun 2011",
+  "open": {
+    "title": "Hari saat NASA mengirim foto ulang tahun untuk Neptunus",
+    "line": "12 Juli 2011, NASA dan Badan Antariksa Eropa merilis empat foto Neptunus dari Teleskop Luar Angkasa Hubble sambil mengucapkan selamat."
+  },
+  "summary": "Neptunus butuh hampir 165 tahun untuk satu kali mengelilingi Matahari, jadi setelah ditemukan tahun 1846, putaran pertamanya baru selesai Juli 2011. Galileo sudah melihat Neptunus lebih dari 230 tahun sebelumnya, tapi mengira itu bintang.",
+  "panels": [
+    {
+      "text": [
+        "Neptunus ditemukan September 1846.",
+        "Sejak itu, baru satu kali mengitari Matahari."
+      ]
+    },
+    {
+      "text": [
+        "Jaraknya ke Matahari 30 kali jarak Bumi.",
+        "Satu putaran hampir 165 tahun."
+      ]
+    },
+    {
+      "text": "Terus, putaran pertamanya kapan kelar?"
+    },
+    {
+      "text": [
+        "11 Juli 2011.",
+        "Hubble merayakannya dengan empat foto, tiap sekitar 4 jam."
+      ]
+    },
+    {
+      "text": [
+        "Sebenarnya, ada yang melihatnya 230-an tahun lebih awal.",
+        "Galileo, lewat teleskop, Desember 1612 dan Januari 1613."
+      ]
+    },
+    {
+      "text": [
+        "Letaknya mepet Jupiter, dan ia dikira bintang biasa."
+      ]
+    },
+    {
+      "text": "Jadi, siapa penemunya?"
+    },
+    {
+      "text": [
+        "Le Verrier dari Prancis melihat Uranus melenceng, lalu menghitung letak planet baru.",
+        "Berkat hitungan itu, Galle di Berlin menemukannya di malam pertama."
+      ]
+    },
+    {
+      "text": [
+        "Pluto ditemukan 1930, satu putarannya 248 tahun.",
+        "Putaran pertamanya baru selesai sekitar 2178."
+      ]
+    }
+  ],
+  "sources": [
+    "NASA: Neptune Completes Its First Circuit Around The Sun Since Its Discovery",
+    "ESA/Hubble: Happy Anniversary, Neptune",
+    "NASA: Neptune Facts",
+    "Wikipedia: Discovery of Neptune",
+    "NASA: Pluto Facts"
+  ]
+}

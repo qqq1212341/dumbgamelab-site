@@ -1,0 +1,70 @@
+{
+  "category": "Psikologi",
+  "title": "Warga desa yang tak memakai tulisan pun memilih bentuk bulat untuk 'bouba'",
+  "hook": "Runcing itu kiki, bulat itu bouba. Di desa Himba, Namibia, jawabannya sama",
+  "open": {
+    "title": "Tim peneliti yang membawa gambar runcing dan bulat ke desa di Namibia",
+    "line": "Bintang runcing dan bunga bulat. Satu bouba, satunya kiki."
+  },
+  "summary": "Kebanyakan orang menyebut bentuk bulat bouba. Orang Himba di Namibia yang tak memakai tulisan juga begitu, tapi soal rasa dan bentuk mereka beda dari orang Barat.",
+  "panels": [
+    {
+      "text": [
+        "Bintang runcing dan bunga bulat.",
+        "Satu bouba, satu kiki."
+      ]
+    },
+    {
+      "text": "Yang runcing kiki, lah. Kok ditanya?"
+    },
+    {
+      "text": [
+        "Hampir semua memilih begitu.",
+        "Makalah 2001: 95% orang memilih yang runcing jadi kiki."
+      ]
+    },
+    {
+      "text": [
+        "Walau gambarnya baru dan disebut bahasa Mars."
+      ]
+    },
+    {
+      "text": [
+        "Sebenarnya, ada bantahan: gara-gara huruf.",
+        "B itu bulat, K itu runcing."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 2013, tim Inggris ke desa Himba di Namibia utara.",
+        "Tak ada tulisan, budaya Barat pun hampir tak sampai."
+      ]
+    },
+    {
+      "text": [
+        "28 dari 34 orang Himba memilih yang bulat sebagai bouba.",
+        "Tanpa huruf, jawabannya sama."
+      ]
+    },
+    {
+      "text": "Jadi otak manusia sama semua?"
+    },
+    {
+      "text": [
+        "Soal rasa, beda.",
+        "Orang Barat memasangkan air soda dengan yang runcing. Himba tidak."
+      ]
+    },
+    {
+      "text": [
+        "Cokelat malah terbalik.",
+        "Orang Barat memasangkan cokelat pahit dengan yang runcing, Himba lebih sering cokelat susu yang kurang pahit."
+      ]
+    }
+  ],
+  "sources": [
+    "Ramachandran & Hubbard (2001), Synaesthesia: A Window Into Perception, Thought and Language, Journal of Consciousness Studies 8(12)",
+    "Bremner et al. (2013), Bouba and Kiki in Namibia?, Cognition 126(2)",
+    "Ćwiek et al. (2022), The bouba/kiki effect is robust across cultures and writing systems, Phil. Trans. R. Soc. B"
+  ]
+}

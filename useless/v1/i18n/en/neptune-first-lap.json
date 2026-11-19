@@ -1,0 +1,66 @@
+{
+  "category": "Space",
+  "title": "Since Its Discovery, Neptune Has Made Just One Lap Around the Sun",
+  "hook": "Neptune was discovered in 1846, but only got back to its discovery spot in 2011",
+  "open": {
+    "title": "The day NASA sent Neptune birthday photos",
+    "line": "On July 12, 2011, NASA and the European Space Agency released four Hubble Space Telescope photos of Neptune and sent their congratulations."
+  },
+  "summary": "Neptune needs nearly 165 years for one lap around the Sun, so after its discovery in 1846 it did not finish its first lap until July 2011. Galileo saw Neptune over 230 years earlier but took it for a star.",
+  "panels": [
+    {
+      "text": [
+        "Neptune was found in September 1846.",
+        "It's gone around the Sun just one time since."
+      ]
+    },
+    {
+      "text": [
+        "It's 30 times farther from the Sun than Earth.",
+        "One lap takes nearly 165 years."
+      ]
+    },
+    {
+      "text": "So when did the first lap end?"
+    },
+    {
+      "text": [
+        "July 11, 2011.",
+        "Hubble marked it by shooting Neptune four times, about 4 hours apart."
+      ]
+    },
+    {
+      "text": [
+        "Actually, someone saw Neptune over 230 years earlier.",
+        "Galileo saw it by telescope in December 1612 and January 1613."
+      ]
+    },
+    {
+      "text": [
+        "It sat right by Jupiter, and he took it for a plain star."
+      ]
+    },
+    {
+      "text": "Then who really found it?"
+    },
+    {
+      "text": [
+        "France's Le Verrier saw Uranus straying from the math and calculated where a new planet should be.",
+        "Galle at the Berlin Observatory got the math and found it on his first night of looking."
+      ]
+    },
+    {
+      "text": [
+        "Pluto was found in 1930, and one lap takes it 248 years.",
+        "Its first lap ends around 2178."
+      ]
+    }
+  ],
+  "sources": [
+    "NASA: Neptune Completes Its First Circuit Around The Sun Since Its Discovery",
+    "ESA/Hubble: Happy Anniversary, Neptune",
+    "NASA: Neptune Facts",
+    "Wikipedia: Discovery of Neptune",
+    "NASA: Pluto Facts"
+  ]
+}

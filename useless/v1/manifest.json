@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "65-49b70a93ce",
+ "version": "72-5d0f5a0b73",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -783,6 +783,90 @@
     "ja": "i18n/ja/slow-organ.json",
     "id": "i18n/id/slow-organ.json",
     "zh": "i18n/zh/slow-organ.json"
+   }
+  },
+  {
+   "id": "neptune-first-lap",
+   "day": 66,
+   "hash": "cd201b89b8f9a7df",
+   "ep": "episodes/neptune-first-lap.json",
+   "i18n": {
+    "en": "i18n/en/neptune-first-lap.json",
+    "ja": "i18n/ja/neptune-first-lap.json",
+    "id": "i18n/id/neptune-first-lap.json",
+    "zh": "i18n/zh/neptune-first-lap.json"
+   }
+  },
+  {
+   "id": "yap-stone-money-sunken",
+   "day": 67,
+   "hash": "bb380ab3e12e7160",
+   "ep": "episodes/yap-stone-money-sunken.json",
+   "i18n": {
+    "en": "i18n/en/yap-stone-money-sunken.json",
+    "ja": "i18n/ja/yap-stone-money-sunken.json",
+    "id": "i18n/id/yap-stone-money-sunken.json",
+    "zh": "i18n/zh/yap-stone-money-sunken.json"
+   }
+  },
+  {
+   "id": "bouba-kiki-himba",
+   "day": 68,
+   "hash": "2fcad861fb94d117",
+   "ep": "episodes/bouba-kiki-himba.json",
+   "i18n": {
+    "en": "i18n/en/bouba-kiki-himba.json",
+    "ja": "i18n/ja/bouba-kiki-himba.json",
+    "id": "i18n/id/bouba-kiki-himba.json",
+    "zh": "i18n/zh/bouba-kiki-himba.json"
+   }
+  },
+  {
+   "id": "brazil-nuts-on-top-paper",
+   "day": 69,
+   "hash": "762c518d5cc4d1de",
+   "ep": "episodes/brazil-nuts-on-top-paper.json",
+   "i18n": {
+    "en": "i18n/en/brazil-nuts-on-top-paper.json",
+    "ja": "i18n/ja/brazil-nuts-on-top-paper.json",
+    "id": "i18n/id/brazil-nuts-on-top-paper.json",
+    "zh": "i18n/zh/brazil-nuts-on-top-paper.json"
+   }
+  },
+  {
+   "id": "franklin-armonica-mesmer",
+   "day": 70,
+   "hash": "a71ffd8a36330afc",
+   "ep": "episodes/franklin-armonica-mesmer.json",
+   "i18n": {
+    "en": "i18n/en/franklin-armonica-mesmer.json",
+    "ja": "i18n/ja/franklin-armonica-mesmer.json",
+    "id": "i18n/id/franklin-armonica-mesmer.json",
+    "zh": "i18n/zh/franklin-armonica-mesmer.json"
+   }
+  },
+  {
+   "id": "troxler-fading-1804",
+   "day": 71,
+   "hash": "416f6c21be2b54a0",
+   "ep": "episodes/troxler-fading-1804.json",
+   "i18n": {
+    "en": "i18n/en/troxler-fading-1804.json",
+    "ja": "i18n/ja/troxler-fading-1804.json",
+    "id": "i18n/id/troxler-fading-1804.json",
+    "zh": "i18n/zh/troxler-fading-1804.json"
+   }
+  },
+  {
+   "id": "france-paris-time-minus-9min21s",
+   "day": 72,
+   "hash": "1072f5ddb09097f3",
+   "ep": "episodes/france-paris-time-minus-9min21s.json",
+   "i18n": {
+    "en": "i18n/en/france-paris-time-minus-9min21s.json",
+    "ja": "i18n/ja/france-paris-time-minus-9min21s.json",
+    "id": "i18n/id/france-paris-time-minus-9min21s.json",
+    "zh": "i18n/zh/france-paris-time-minus-9min21s.json"
    }
   }
  ]
