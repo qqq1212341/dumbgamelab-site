@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>潮が引くと飛行機が来る空港</title>
+    <link>https://dumbgamelab.com/ja/blog/beach-runway/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/beach-runway/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
+    <description>スコットランドのバラ空港は砂浜を滑走路に使う。定期便は潮に合わせて運航し、空港が閉まり吹き流しが下がったあとは浜辺を歩ける。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/barra-beach-airport.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>韓国の街のパン屋には、どんなパンが並んでいるのか</title>
     <link>https://dumbgamelab.com/ja/blog/what-is-a-korean-neighborhood-bakery/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-korean-neighborhood-bakery/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/</guid>
     <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
     <description>バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。</description>
-  </item>
-  <item>
-    <title>宇宙では金属どうしがただくっつく</title>
-    <link>https://dumbgamelab.com/ja/blog/space-cold-weld/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-cold-weld/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
-    <description>真空中できれいな同種の金属面が触れ合うと、熱がなくてもくっつく。宇宙機の設計者が気をつけるべき現象だ。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/galileo-orbiter.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

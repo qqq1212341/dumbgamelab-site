@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>这座机场等退潮了才迎接飞机</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/beach-runway/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/beach-runway/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
+    <description>苏格兰巴拉机场把沙滩当作跑道，定期航班配合潮汐运行。机场关闭、风向袋降下后，人们还能在沙滩散步。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/barra-beach-airport.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>甜点竟然伪装成了芦笋</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/ice-cream-disguise/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/ice-cream-disguise/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>OK 来自一个把 all correct 写错成 oll korrect 的玩笑，后来借着竞选口号活了下来。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/ok-vanburen.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>香蕉是浆果</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/banana-berry/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/banana-berry/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>在植物学上，香蕉和番茄是浆果，草莓和树莓却不是。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/banana-bunch.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

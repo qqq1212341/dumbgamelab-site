@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>This airport waits for the tide to go out</title>
+    <link>https://dumbgamelab.com/en/blog/beach-runway/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/beach-runway/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Barra Airport in Scotland uses a beach as its runway. Scheduled flights follow the tides. Once the airport closes and the windsock is down, people can walk on the beach.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/barra-beach-airport.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>What&#39;s on the shelf at a Korean neighborhood bakery</title>
     <link>https://dumbgamelab.com/en/blog/what-is-a-korean-neighborhood-bakery/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/what-is-a-korean-neighborhood-bakery/</guid>
@@ -221,13 +229,6 @@
     <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
     <description>After about a month in weightlessness, height increases by roughly 2.5 cm, and tears cannot flow but ball up instead.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>40 Minutes to Check One Fix, and the 5 Second Path Was There All Along</title>
-    <link>https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/build-40-min-vs-5-sec/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Checking one bug fix took a 40 minute full build, but a scripts-only build that just compiles the script DLL finished in 5 seconds. Here is why we now set up the fast path first, and the dev mode switch that goes with it.</description>
   </item>
 </channel>
 </rss>
