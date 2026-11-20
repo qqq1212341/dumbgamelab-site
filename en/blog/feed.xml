@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>There&#39;s a reason this caterpillar flings poop</title>
+    <link>https://dumbgamelab.com/en/blog/caterpillar-frass/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/caterpillar-frass/</guid>
+    <pubDate>Fri, 20 Nov 2026 15:00:00 GMT</pubDate>
+    <description>One leaf-sheltering caterpillar flings its poop away. The smell can guide hunting wasps to it, so removing the clue can reduce the risk of discovery.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/skipper-caterpillar.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>We ran 9 Android ASMR games on a real phone</title>
     <link>https://dumbgamelab.com/en/blog/best-asmr-games-android-offline/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/best-asmr-games-android-offline/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/offline-mobile-management-games/</guid>
     <pubDate>Sat, 07 Nov 2026 15:00:00 GMT</pubDate>
     <description>Want a tycoon game that works with no Wi-Fi or in airplane mode? Check the store description first. We read 12 of them and sorted them into says offline, needs internet and says nothing.</description>
-  </item>
-  <item>
-    <title>The Olympics Once Gave Gold Medals for Poems and Paintings</title>
-    <link>https://dumbgamelab.com/en/blog/olympic-art/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/olympic-art/</guid>
-    <pubDate>Sat, 07 Nov 2026 15:00:00 GMT</pubDate>
-    <description>From 1912 to 1948 the Olympics held art competitions, and Coubertin won the 1912 literature gold with a poem entered under pseudonyms.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/coubertin.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

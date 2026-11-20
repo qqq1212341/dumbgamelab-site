@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>フンを遠くへ飛ばすのにも理由がある</title>
+    <link>https://dumbgamelab.com/ja/blog/caterpillar-frass/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/caterpillar-frass/</guid>
+    <pubDate>Fri, 20 Nov 2026 15:00:00 GMT</pubDate>
+    <description>葉を家にするある幼虫は、フンを遠くへ飛ばす。そのにおいが狩りをするハチの手がかりになるため、取り除くと見つかる危険を減らせる。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/skipper-caterpillar.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>韓国の人はなぜチケッティングのためにPCバンへ行くのか</title>
     <link>https://dumbgamelab.com/ja/blog/pc-bang-ticket-sniping-korea/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-ticket-sniping-korea/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-tycoon-game/</guid>
     <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
     <description>タイクーンゲームとは、お店や事業を自分で育ててお金を稼ぐ経営シミュレーションのこと。タイクーンが日本語の大君から来た言葉であること、1990年のレールロード・タイクーン、ロブロックスのタイクーンとの違いまで、ゲーム画面で解説します。</description>
-  </item>
-  <item>
-    <title>宇宙に1か月いると身長が2.5cm伸びる</title>
-    <link>https://dumbgamelab.com/ja/blog/space-taller/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/space-taller/</guid>
-    <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
-    <description>無重力では1か月ほどで身長が約2.5cm伸び、泣いても涙は流れず玉のように丸まる。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
