@@ -340,5 +340,6 @@ window.__DGL_STRINGS = {
 "지금은 결제할 수 없어요":"Ahora no se pueden hacer pagos",
 "통신판매업":"Registro de venta a distancia",
 "프리미엄":"Premium",
-"프리미엄 적용 중":"Premium activo"
+"프리미엄 적용 중":"Premium activo",
+"바로 {0}배":"{0}× ahora"
 };

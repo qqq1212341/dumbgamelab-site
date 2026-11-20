@@ -340,5 +340,6 @@ window.__DGL_STRINGS = {
 "지금은 결제할 수 없어요":"Bezahlen ist gerade nicht möglich",
 "통신판매업":"Versandhandelsgewerbe",
 "프리미엄":"Premium",
-"프리미엄 적용 중":"Premium aktiv"
+"프리미엄 적용 중":"Premium aktiv",
+"바로 {0}배":"Sofort {0}×"
 };

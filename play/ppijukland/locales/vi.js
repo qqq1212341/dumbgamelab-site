@@ -340,5 +340,6 @@ window.__DGL_STRINGS = {
 "지금은 결제할 수 없어요":"Hiện chưa thể thanh toán",
 "통신판매업":"Kinh doanh bán hàng từ xa",
 "프리미엄":"Premium",
-"프리미엄 적용 중":"Premium đang áp dụng"
+"프리미엄 적용 중":"Premium đang áp dụng",
+"바로 {0}배":"Nhân {0} ngay"
 };
