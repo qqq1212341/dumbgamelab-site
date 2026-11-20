@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "72-5d0f5a0b73",
+ "version": "72-1164b18ecd",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -500,7 +500,7 @@
   {
    "id": "curling-pebbles",
    "day": 42,
-   "hash": "3617dbc757bda0be",
+   "hash": "1a4a0f9e14988114",
    "ep": "episodes/curling-pebbles.json",
    "i18n": {
     "en": "i18n/en/curling-pebbles.json",
