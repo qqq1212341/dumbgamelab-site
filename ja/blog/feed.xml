@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>韓国の人はなぜチケッティングのためにPCバンへ行くのか</title>
+    <link>https://dumbgamelab.com/ja/blog/pc-bang-ticket-sniping-korea/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/pc-bang-ticket-sniping-korea/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
+    <description>韓国でコンサートのチケッティング日にPCバン(ネットカフェ)が混む理由と、その通説の限界を出典つきでまとめました。PCバンで待機列は早くなるのか、セキュリティ文字・ハングルキーボード・前払いの端末・韓国の携帯番号認証で外国人ファンがどこでつまずくかを整理します。</description>
+  </item>
+  <item>
     <title>潮が引くと飛行機が来る空港</title>
     <link>https://dumbgamelab.com/ja/blog/beach-runway/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/beach-runway/</guid>
@@ -222,13 +229,6 @@
     <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
     <description>無重力では1か月ほどで身長が約2.5cm伸び、泣いても涙は流れず玉のように丸まる。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>直して確かめるのに40分、5秒で済む道は最初からありました</title>
-    <link>https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/build-40-min-vs-5-sec/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:00:00 GMT</pubDate>
-    <description>バグを1つ直して確かめるのに、フルビルドで40分かかっていました。コードしか変わっていない回は、スクリプトのDLLだけコンパイルする高速版で5秒で済みました。確認の流れを高速版から組む順番と、開発モードのスイッチを書いています。</description>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,13 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>한국 사람들은 왜 티켓팅하러 PC방에 갈까</title>
+    <link>https://dumbgamelab.com/ko/blog/pc-bang-ticket-sniping-korea/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/pc-bang-ticket-sniping-korea/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:00:00 GMT</pubDate>
+    <description>한국에서 콘서트 티켓팅 날 PC방이 붐비는 이유와 그 통념의 한계를 출처와 함께 적었습니다. PC방이 대기열을 줄여 주는지, 보안문자·한글 키보드·키오스크 선불·한국 번호 인증에서 외국인 팬이 어디서 막히는지 정리합니다.</description>
+  </item>
+  <item>
     <title>이 공항은 바닷물이 빠져야 비행기가 온다</title>
     <link>https://dumbgamelab.com/ko/blog/beach-runway/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/beach-runway/</guid>
@@ -221,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/what-is-a-tycoon-game/</guid>
     <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
     <description>타이쿤 게임은 가게나 사업을 직접 키워 돈을 버는 경영 시뮬레이션입니다. 타이쿤이 일본어 大君에서 온 말이라는 것, 1990년 레일로드 타이쿤, 로블록스 타이쿤과의 차이까지 게임 화면으로 풀었습니다.</description>
-  </item>
-  <item>
-    <title>우주에 한 달 있으면 키가 2.5cm 큰다</title>
-    <link>https://dumbgamelab.com/ko/blog/space-taller/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/space-taller/</guid>
-    <pubDate>Fri, 06 Nov 2026 15:00:00 GMT</pubDate>
-    <description>무중력에서는 한 달쯤 지나면 키가 약 2.5cm 커지고, 울어도 눈물은 흐르지 않고 공처럼 뭉친다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/iss-drink.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
