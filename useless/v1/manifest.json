@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "72-1164b18ecd",
+ "version": "72-e3a71186df",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -524,7 +524,7 @@
   {
    "id": "table-galleon-cannon",
    "day": 44,
-   "hash": "c02c2904ba744bf4",
+   "hash": "34f2f3d36c350cb2",
    "ep": "episodes/table-galleon-cannon.json",
    "i18n": {
     "en": "i18n/en/table-galleon-cannon.json",
