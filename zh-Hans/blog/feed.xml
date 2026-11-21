@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>为了滑得顺，冰面反而要做成小疙瘩</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/curling-pebbles/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/curling-pebbles/</guid>
+    <pubDate>Sat, 21 Nov 2026 15:00:00 GMT</pubDate>
+    <description>冰壶场上的细小冰粒是赛前准备的一部分。处理得当能降低摩擦，但太多也可能让冰壶变慢。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/curling-ice-prep.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>把便便弹到远处，也是有原因的</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/caterpillar-frass/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/caterpillar-frass/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
     <description>宇航员去不了 universe，因为他们早就在里面了。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>海獭手牵手睡觉</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/sea-otter/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/sea-otter/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>海獭为了不被冲走，会手牵手睡觉，还会把心爱的石头揣在腋下带着走。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/otter-hands.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

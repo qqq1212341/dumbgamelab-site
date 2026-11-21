@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>よく滑るように、氷をでこぼこにする</title>
+    <link>https://dumbgamelab.com/ja/blog/curling-pebbles/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/curling-pebbles/</guid>
+    <pubDate>Sat, 21 Nov 2026 15:00:00 GMT</pubDate>
+    <description>カーリングの氷の小さな突起は、試合準備の一部だ。適切に作れば摩擦を減らすが、多すぎるとストーンが遅くなることもある。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/curling-ice-prep.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>スクイーズ・スライムのアプリ9本、触る前に何で止まるか起動してみました</title>
     <link>https://dumbgamelab.com/ja/blog/mallangi-slime-apps-korea/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/mallangi-slime-apps-korea/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/offline-mobile-management-games/</guid>
     <pubDate>Sat, 07 Nov 2026 15:00:00 GMT</pubDate>
     <description>Wi-Fi なし、機内モードで遊べるスマホの経営・タイクーンゲームを探すなら、まずストアの説明文を読みましょう。オフライン対応と書いてあるもの、ネット接続が必要と書いてあるもの、何も書いてないものに分けて、12本の文面を直接確認しました。</description>
-  </item>
-  <item>
-    <title>オリンピックには詩や絵の金メダルもあった</title>
-    <link>https://dumbgamelab.com/ja/blog/olympic-art/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/olympic-art/</guid>
-    <pubDate>Sat, 07 Nov 2026 15:00:00 GMT</pubDate>
-    <description>1912年から1948年まで、五輪に芸術競技があった。クーベルタンは偽名の詩で1912年の金メダル。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/coubertin.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

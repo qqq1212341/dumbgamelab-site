@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Bumpy ice helps these stones slide</title>
+    <link>https://dumbgamelab.com/en/blog/curling-pebbles/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/curling-pebbles/</guid>
+    <pubDate>Sat, 21 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Tiny ice bumps are part of preparing a curling rink. Properly prepared bumps reduce friction, but too many can slow the stone down.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/curling-ice-prep.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>9 Squishy and Slime Apps: What Gets in the Way Before You Touch</title>
     <link>https://dumbgamelab.com/en/blog/mallangi-slime-apps-korea/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/mallangi-slime-apps-korea/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/told-ai-not-to-be-sloppy-20-times/</guid>
     <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
     <description>Every time I showed a game screen, the feedback was &quot;this looks rushed.&quot; Writing rules twice didn&#39;t help, so I changed the order: score it side by side with the reference screen before anyone sees it. Here is the log.</description>
-  </item>
-  <item>
-    <title>Yesterday Island and Tomorrow Island Are Under 4 km Apart</title>
-    <link>https://dumbgamelab.com/en/blog/diomede-islands/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/diomede-islands/</guid>
-    <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Russia&#39;s Big Diomede and the US&#39;s Little Diomede are 3.8 km apart, yet the date line runs between them and clocks differ by 21 hours.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/diomede-space.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
