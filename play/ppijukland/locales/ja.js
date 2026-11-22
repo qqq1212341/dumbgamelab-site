@@ -19,7 +19,6 @@ window.__DGL_STRINGS = {
 "<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>일급 {3}원 · 능력 고정</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>":"<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>日給 {3}円 · 能力固定</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>",
 "<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>구매</span></button>":"<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>購入</span></button>",
 "<button class=\"selection-close\" aria-label=\"선택 해제\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}":"<button class=\"selection-close\" aria-label=\"選択を解除\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}",
-"<button id=\"moveBtn\" class=\"text-button\">자리 옮기기</button>":"<button id=\"moveBtn\" class=\"text-button\">場所を移す</button>",
 "<div class=\"decor-benefit\">미화점수 +{0}</div>":"<div class=\"decor-benefit\">美化ポイント +{0}</div>",
 "<div class=\"eyebrow\">공원 등급이 올랐어</div><h2>별 {0}개 놀이공원!</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>":"<div class=\"eyebrow\">パークランクが上がったよ</div><h2>星{0}つの遊園地！</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>",
 "<div class=\"eyebrow\">손님이 꽉 찼으면 여기</div><h2>시설 상점</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">놀이기구</button><button data-tab=\"decor\">꾸미기</button><button data-tab=\"gate\" class=\"active\">입구</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>":"<div class=\"eyebrow\">お客さんがいっぱいならここ</div><h2>施設ショップ</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">アトラクション</button><button data-tab=\"decor\">デコ</button><button data-tab=\"gate\" class=\"active\">入口</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>",
@@ -341,5 +340,11 @@ window.__DGL_STRINGS = {
 "통신판매업":"通信販売業",
 "프리미엄":"プレミアム",
 "프리미엄 적용 중":"プレミアム適用中",
-"바로 {0}배":"すぐに{0}倍"
+"바로 {0}배":"すぐに{0}倍",
+"<button id=\"moveBtn\" class=\"text-button\">배치 바꾸기</button>":"<button id=\"moveBtn\" class=\"text-button\">配置がえ</button>",
+"기구를 눌러 원하는 곳까지 끌어다 놓아줘":"施設をつかんで、好きな場所までドラッグしてね",
+"다 했어":"できた",
+"배치 바꾸기":"配置がえ",
+"길 바닥":"道の舗装",
+"길은 손님 전용이야":"道はお客さん専用だよ"
 };

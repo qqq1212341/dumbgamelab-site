@@ -19,7 +19,6 @@ window.__DGL_STRINGS = {
 "<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>일급 {3}원 · 능력 고정</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>":"<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>ค่าแรง {3} วอน/วัน · ความสามารถคงที่</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>",
 "<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>구매</span></button>":"<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>ซื้อ</span></button>",
 "<button class=\"selection-close\" aria-label=\"선택 해제\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}":"<button class=\"selection-close\" aria-label=\"ยกเลิกการเลือก\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}",
-"<button id=\"moveBtn\" class=\"text-button\">자리 옮기기</button>":"<button id=\"moveBtn\" class=\"text-button\">ย้ายที่</button>",
 "<div class=\"decor-benefit\">미화점수 +{0}</div>":"<div class=\"decor-benefit\">คะแนนความสวย +{0}</div>",
 "<div class=\"eyebrow\">공원 등급이 올랐어</div><h2>별 {0}개 놀이공원!</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>":"<div class=\"eyebrow\">อันดับสวนสนุกขึ้นแล้ว</div><h2>สวนสนุก {0} ดาว!</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>",
 "<div class=\"eyebrow\">손님이 꽉 찼으면 여기</div><h2>시설 상점</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">놀이기구</button><button data-tab=\"decor\">꾸미기</button><button data-tab=\"gate\" class=\"active\">입구</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>":"<div class=\"eyebrow\">ลูกค้าเต็มแล้วมาที่นี่</div><h2>ร้านค้าสวนสนุก</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">เครื่องเล่น</button><button data-tab=\"decor\">ของตกแต่ง</button><button data-tab=\"gate\" class=\"active\">ทางเข้า</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>",
@@ -341,5 +340,11 @@ window.__DGL_STRINGS = {
 "통신판매업":"ธุรกิจขายผ่านช่องทางสื่อสาร",
 "프리미엄":"พรีเมียม",
 "프리미엄 적용 중":"พรีเมียมใช้งานอยู่",
-"바로 {0}배":"รับ {0} เท่าทันที"
+"바로 {0}배":"รับ {0} เท่าทันที",
+"<button id=\"moveBtn\" class=\"text-button\">배치 바꾸기</button>":"<button id=\"moveBtn\" class=\"text-button\">จัดวางใหม่</button>",
+"기구를 눌러 원하는 곳까지 끌어다 놓아줘":"กดสิ่งที่วางไว้ แล้วลากไปวางตรงที่ต้องการ",
+"다 했어":"เสร็จแล้ว",
+"배치 바꾸기":"จัดวางใหม่",
+"길 바닥":"พื้นทางเดิน",
+"길은 손님 전용이야":"ทางเดินไว้ให้ลูกค้าเดินนะ"
 };

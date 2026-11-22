@@ -19,7 +19,6 @@ window.__DGL_STRINGS = {
 "<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>일급 {3}원 · 능력 고정</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>":"<article class=\"staff-card\">{0}<h3>{1}</h3><p>{2}</p><small>日薪 {3}元 · 能力固定</small><button class=\"primary\" data-hire=\"{4}\" {5}>{6}</button></article>",
 "<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>구매</span></button>":"<button class=\"buy\" data-buy=\"{0}\" {1}>{2} <span>購買</span></button>",
 "<button class=\"selection-close\" aria-label=\"선택 해제\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}":"<button class=\"selection-close\" aria-label=\"取消選取\">×</button><div class=\"selection-head\">{0}<div><span>{1}</span><h3>{2}</h3></div></div>{3}",
-"<button id=\"moveBtn\" class=\"text-button\">자리 옮기기</button>":"<button id=\"moveBtn\" class=\"text-button\">移動位置</button>",
 "<div class=\"decor-benefit\">미화점수 +{0}</div>":"<div class=\"decor-benefit\">美化分數 +{0}</div>",
 "<div class=\"eyebrow\">공원 등급이 올랐어</div><h2>별 {0}개 놀이공원!</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>":"<div class=\"eyebrow\">公園升級了</div><h2>{0} 星遊樂園！</h2><div class=\"rank-head star-up\">{1}</div>{2}<div class=\"star-ok\"></div>",
 "<div class=\"eyebrow\">손님이 꽉 찼으면 여기</div><h2>시설 상점</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">놀이기구</button><button data-tab=\"decor\">꾸미기</button><button data-tab=\"gate\" class=\"active\">입구</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>":"<div class=\"eyebrow\">客人擠滿了就來這裡</div><h2>設施商店</h2><div class=\"shop-tabs\"><button data-tab=\"rides\">遊樂設施</button><button data-tab=\"decor\">裝飾</button><button data-tab=\"gate\" class=\"active\">入口</button><b>{0}</b></div><div class=\"shop-grid\">{1}</div>",
@@ -341,5 +340,11 @@ window.__DGL_STRINGS = {
 "통신판매업":"通訊銷售業",
 "프리미엄":"高級版",
 "프리미엄 적용 중":"高級版已生效",
-"바로 {0}배":"直接{0}倍"
+"바로 {0}배":"直接{0}倍",
+"<button id=\"moveBtn\" class=\"text-button\">배치 바꾸기</button>":"<button id=\"moveBtn\" class=\"text-button\">調整配置</button>",
+"기구를 눌러 원하는 곳까지 끌어다 놓아줘":"按住設施，拖曳到想放的地方",
+"다 했어":"完成",
+"배치 바꾸기":"調整配置",
+"길 바닥":"步道鋪面",
+"길은 손님 전용이야":"步道是客人專用的喔"
 };
