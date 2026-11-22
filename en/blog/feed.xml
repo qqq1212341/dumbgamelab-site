@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Liquid metal helps flatten window glass</title>
+    <link>https://dumbgamelab.com/en/blog/float-glass-tin/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/float-glass-tin/</guid>
+    <pubDate>Sun, 22 Nov 2026 15:00:00 GMT</pubDate>
+    <description>A common flat-glass process floats molten glass on molten tin. The glass spreads into a flat ribbon, then its thickness is controlled before slow cooling and cutting.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/float-glass-factory.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Liked Papa&#39;s Bakeria? Cooking games worth playing on your phone</title>
     <link>https://dumbgamelab.com/en/blog/cooking-games-like-papas-bakeria/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/cooking-games-like-papas-bakeria/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</guid>
     <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
     <description>One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.</description>
-  </item>
-  <item>
-    <title>There&#39;s No Cat in Catgut</title>
-    <link>https://dumbgamelab.com/en/blog/catgut-strings/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/catgut-strings/</guid>
-    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Despite its name, catgut has never been documented as made from cats. It came mostly from sheep or goat intestines, and some players still use it.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/violin-strings.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

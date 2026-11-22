@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ガラスを平らにする床は液体金属</title>
+    <link>https://dumbgamelab.com/ja/blog/float-glass-tin/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/float-glass-tin/</guid>
+    <pubDate>Sun, 22 Nov 2026 15:00:00 GMT</pubDate>
+    <description>代表的な板ガラスの製法では、溶けたガラスを溶けたスズに浮かべる。平たい帯状に広がったガラスの厚さを調整し、ゆっくり冷まして切り出す。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/float-glass-factory.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Papa&#39;s Bakeria が楽しかった人に、スマホで遊べる料理ゲーム</title>
     <link>https://dumbgamelab.com/ja/blog/cooking-games-like-papas-bakeria/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/cooking-games-like-papas-bakeria/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/told-ai-not-to-be-sloppy-20-times/</guid>
     <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
     <description>ゲーム画面を見せるたびに「雑」と言われ、その数が20回になりました。ルールを2回書いても減らなかったので、見せる前にお手本の画面と並べて採点する順番に変えた記録です。</description>
-  </item>
-  <item>
-    <title>昨日の島と明日の島は4kmも離れていない</title>
-    <link>https://dumbgamelab.com/ja/blog/diomede-islands/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/diomede-islands/</guid>
-    <pubDate>Sun, 08 Nov 2026 15:00:00 GMT</pubDate>
-    <description>ロシアのビッグ・ディオミード島とアメリカのリトル・ディオミード島は3.8km離れているだけだが、間を日付変更線が通り、時差は21時間ある。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/diomede-space.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

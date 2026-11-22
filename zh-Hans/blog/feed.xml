@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>让玻璃变平的地板，竟是液态金属</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/float-glass-tin/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/float-glass-tin/</guid>
+    <pubDate>Sun, 22 Nov 2026 15:00:00 GMT</pubDate>
+    <description>一种常见平板玻璃工艺让熔化的玻璃浮在熔化的锡上。玻璃铺展成平整长带，再调整厚度，缓慢冷却后切割。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/float-glass-factory.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>为了滑得顺，冰面反而要做成小疙瘩</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/curling-pebbles/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/curling-pebbles/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
     <description>哈欠不只在人和人之间传染，也可能传给狗这样的其他动物。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/yawn-dog.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>英语里，宇宙有三个词</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/space-words/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/space-words/</guid>
-    <pubDate>Fri, 23 Oct 2026 15:00:00 GMT</pubDate>
-    <description>宇航员去不了 universe，因为他们早就在里面了。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/space-bluemarble.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
