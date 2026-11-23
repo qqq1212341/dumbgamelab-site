@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Guess the Korean bread from a description: 9 questions</title>
+    <link>https://dumbgamelab.com/en/blog/guess-the-korean-bread-from-description/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/guess-the-korean-bread-from-description/</guid>
+    <pubDate>Sun, 22 Nov 2026 15:00:00 GMT</pubDate>
+    <description>&quot;Bumpy outside and empty inside.&quot; Can you name that Korean bread? Nine classic Korean bakery items as a quiz, from soboro bread to kkwabaegi, with an answer key, Korean names and romanization.</description>
+  </item>
+  <item>
     <title>Liquid metal helps flatten window glass</title>
     <link>https://dumbgamelab.com/en/blog/float-glass-tin/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/float-glass-tin/</guid>
@@ -221,13 +228,6 @@
     <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
     <description>England introduced a tax based on the number of windows in 1696 and repealed it in 1851. Houses with windows blocked to avoid it still survive.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/window-tax.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>One Alarm Used 5 Million Rows of the Daily Read Limit on Its Own: Tracing Durable Objects Error 1101</title>
-    <link>https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/do-alarm-5m-rows/</guid>
-    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
-    <description>One alarm in my game server read 4.98 million rows of the free Durable Objects limit (5 million rows read per day), and my error collector went down with error 1101 too. Here is how I traced it and fixed it with indexes, a cache, and monitoring.</description>
   </item>
 </channel>
 </rss>

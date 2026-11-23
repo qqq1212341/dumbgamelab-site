@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>只聽描述，猜得出是哪種韓國麵包嗎? 9道題</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/guess-the-korean-bread-from-description/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/guess-the-korean-bread-from-description/</guid>
+    <pubDate>Sun, 22 Nov 2026 15:00:00 GMT</pubDate>
+    <description>「外面坑坑疤疤、裡面是空心的那個」是哪一種韓國麵包? 用9道描述題認識韓國麵包店常見的麵包，附解答表、韓文原名和中文常見叫法。</description>
+  </item>
+  <item>
     <title>喜歡 Papa&#39;s Bakeria 的話，手機上可以玩這些烹飪遊戲</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/cooking-games-like-papas-bakeria/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/cooking-games-like-papas-bakeria/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/crash-collector-killed-its-own-test-app/</guid>
     <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
     <description>獨立開發者為了測試當機回報，加了一個故意讓 App 當機的開關，結果在 iPhone 上 App 根本沒當機。連 Play 發布前報告的錯誤都被當成使用者錯誤，這是第一週的兩個誤判。</description>
-  </item>
-  <item>
-    <title>itch.io上架10款遊戲，2週瀏覽327、購買0：我判斷錯在哪裡</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/why-we-posted-devlogs-after-327-views/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/why-we-posted-devlogs-after-327-views/</guid>
-    <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
-    <description>一個人開發的我，在itch.io上架10款網頁遊戲，2週後拿到的數字是瀏覽327、購買0。這篇寫我哪裡判斷錯了、為什麼同一天去寫開發日誌，以及下一個判定日。</description>
   </item>
 </channel>
 </rss>
