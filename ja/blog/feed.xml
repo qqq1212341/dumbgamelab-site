@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>食卓の飾りに大砲までついている？</title>
+    <link>https://dumbgamelab.com/ja/blog/table-galleon-cannon/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/table-galleon-cannon/</guid>
+    <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+    <description>16世紀末の船型自動装置には時計、人形、音楽、自動の大砲があった。後世に作られた作動模型では、本物の火薬で砲声も再現した。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/table-galleon-full.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>説明だけで韓国のパンの名前を当てる9問</title>
     <link>https://dumbgamelab.com/ja/blog/guess-the-korean-bread-from-description/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/guess-the-korean-bread-from-description/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/</guid>
     <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
     <description>Cloudflareの無料枠(1日の読み取り500万行)のうち、ゲームサーバーのアラーム1つが498万行を使い、エラー収集サーバーまで1101で止まった日の記録です。原因の追い方と、インデックス・キャッシュ・監視で直した流れを書いています。</description>
-  </item>
-  <item>
-    <title>「猫の腸」の弦に、猫はいない</title>
-    <link>https://dumbgamelab.com/ja/blog/catgut-strings/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/catgut-strings/</guid>
-    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
-    <description>キャットガットは名前と違い、猫の腸で作られた記録はない。主に羊やヤギの腸で作られ、今も使う奏者がいる。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/violin-strings.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

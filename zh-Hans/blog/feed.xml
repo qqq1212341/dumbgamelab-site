@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>餐桌上的装饰品还会开炮？</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/table-galleon-cannon/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/table-galleon-cannon/</guid>
+    <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+    <description>16世纪末的机械船装饰内有时钟、人偶、音乐装置和自动小炮。后世制作的可运行模型，还用真火药重现了炮声。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/table-galleon-full.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>让玻璃变平的地板，竟是液态金属</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/float-glass-tin/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/float-glass-tin/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sun, 25 Oct 2026 15:00:00 GMT</pubDate>
     <description>人的身高早上最高，到了下午会缩一点。到了太空，还会长高2.5厘米左右。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/height-astronaut.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>哈欠还会传染给狗狗</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/yawn-dog/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/yawn-dog/</guid>
-    <pubDate>Sat, 24 Oct 2026 15:00:00 GMT</pubDate>
-    <description>哈欠不只在人和人之间传染，也可能传给狗这样的其他动物。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/yawn-dog.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
