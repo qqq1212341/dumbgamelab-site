@@ -3,15 +3,9 @@
  * 배선: <head> 안, splash.js 다음 · 나머지 게임 스크립트보다 **먼저**.
  *   <script src="js/i18n.js"></script>
  *
- * 게임 코드에서는 __t() 하나만 쓴다(같은 한국어가 자리마다 뜻이 다를 때만 __tx):
- *   __t('준비됐습니다')                → "Ready!"        (en)
- *   __t('남은 {0}초', sec)             → "残り{0}秒"      (ja)
- *   __t('동전 {0}개', n)               → n=1 "1 coin" · n=3 "3 coins"   (사전 값이 복수형 객체일 때)
- *   __tx('보석', '수정')               → "Crystal"  ·  __tx('고치기', '수정') → "Edit"
- *
- * ★ 원본은 엔진 하나다 — genres/tycoon/engine/base/public/js/i18n.js.
- *   게임 사본은 `node core/tools/i18n/sync-mirrors.js --runtime` 이 맞추고(게임의 SUPPORTED 줄만 남긴다),
- *   어긋나면 `core/tools/check-i18n-mirrors.mjs` 가 빨개진다. 사본을 손으로 고치지 마라.
+ * 게임 코드에서는 t() 하나만 쓴다:
+ *   t('준비됐습니다')                  → "Ready!"        (en)
+ *   t('남은 {0}초', sec)               → "残り{0}秒"      (ja)
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * ★ 왜 document.write 인가 (구식으로 보이지만 여기선 이게 맞다)
@@ -53,14 +47,10 @@
     tag = String(tag).replace("_", "-");
     var low = tag.toLowerCase();
     if (low.indexOf("zh") === 0) {
-      var zh = /hant|\-(tw|hk|mo)\b/.test(low) ? "zh-Hant" : "zh-Hans";
-      /* 사전이 없는 중국어 기기는 영어로 — 404 면 화면이 통째로 한국어다 */
-      return SUPPORTED.indexOf(zh) >= 0 ? zh : null;
+      if (/hant|\-(tw|hk|mo)\b/.test(low)) return "zh-Hant";
+      return "zh-Hans";
     }
     var base = low.split("-")[0];
-    /* 포르투갈어는 한 벌(pt-BR)이다 — pt-PT 기기도 여기로. SUPPORTED 에 있을 때만 맞는다
-     * (2026-10-28 한 번뿐인 인생 «Quero em português» · 게이트 = core/tools/i18n/device-locale.js) */
-    if (base === "pt") low = "pt-br";
     var hit = SUPPORTED.filter(function (s) {
       return s.toLowerCase() === low || s.toLowerCase() === base;
     })[0];
@@ -111,57 +101,11 @@
     });
   }
 
-  /* ── 복수형: 사전 값이 객체 {one, other, …}(CLDR 범주)면 첫 숫자 인자로 고른다.
-   * 한국어 키는 그대로다(키 = 원문). 영어 «1 coins»·러시아어식 범주를 문장 조각 없이 쓴다.
-   * 고를 범주가 없으면 other — other 도 없으면 사전에 없는 것으로 보고 원문으로 떨어진다. */
-  var rules = null;
-  function category(n) {
-    try {
-      if (!rules) rules = new Intl.PluralRules(locale);
-      return rules.select(n);
-    } catch (e) {
-      return n === 1 ? "one" : "other"; /* Intl 이 없는 낡은 웹뷰 */
-    }
-  }
-  function countOf(args) {
-    for (var i = 0; i < args.length; i++) {
-      var a = args[i];
-      if (typeof a === "number" && isFinite(a)) return a;
-      /* 이미 천 단위로 찍은 수(«3,700»)도 센다 — 구분자를 걷고 정수만 */
-      if (typeof a === "string" && /^[+-]?\d[\d.,\u00a0\u202f ]*$/.test(a)) return Number(a.replace(/[^\d-]/g, ""));
-    }
-    return null;
-  }
-  function pick(val, args) {
-    if (val == null || val === "") return null;
-    if (typeof val !== "object") return String(val);
-    var n = countOf(args);
-    var cat = n == null ? "other" : category(Math.abs(n));
-    var hit = val[cat] != null && val[cat] !== "" ? val[cat] : val.other;
-    return hit == null || hit === "" ? null : String(hit);
-  }
-  function lookup(key, args) {
-    var dict = window.__DGL_STRINGS;
-    if (!dict || !Object.prototype.hasOwnProperty.call(dict, key)) return null;
-    return pick(dict[key], args);
-  }
-
   function t(ko) {
     var args = Array.prototype.slice.call(arguments, 1);
-    var hit = lookup(ko, args);
-    return fill(hit == null ? ko : hit, args);
-  }
-
-  /* ── 문맥 구분자(gettext msgctxt): 같은 한국어가 자리마다 다른 뜻일 때만 쓴다.
-   *   __tx('보석', '수정')  → 사전 키 «수정‖보석»
-   * 문맥 키가 사전에 없으면 원문 키(«수정»)의 번역으로 떨어진다 — 갈라 쓰기 전과 같은 화면이다.
-   * 구분 문자 ‖(U+2016)는 스캐너(core/tools/i18n/scan.js)·verify·qa 와 같은 값이어야 한다. */
-  var CTX_SEP = "\u2016";
-  function tx(ctx, ko) {
-    var args = Array.prototype.slice.call(arguments, 2);
-    var hit = lookup(ko + CTX_SEP + ctx, args);
-    if (hit == null) hit = lookup(ko, args);
-    return fill(hit == null ? ko : hit, args);
+    var dict = window.__DGL_STRINGS;
+    var hit = dict && Object.prototype.hasOwnProperty.call(dict, ko) ? dict[ko] : null;
+    return fill(hit == null || hit === "" ? ko : hit, args);
   }
 
   var I18N = {
@@ -170,8 +114,6 @@
     },
     supported: SUPPORTED.slice(),
     t: t,
-    tx: tx,
-    ctxSep: CTX_SEP,
     /** 언어 전환 — 사전이 스크립트로 굽혀 있어 재적용은 새로고침이 가장 안전하다.
      *  (이미 그려진 DOM·캔버스 텍스트를 전부 다시 칠하는 것보다 확실하다) */
     setLocale: function (loc) {
@@ -218,7 +160,7 @@
       if (!key || !Object.prototype.hasOwnProperty.call(dict, key)) continue;
       var lead = raw.slice(0, raw.indexOf(key));
       var tail = raw.slice(raw.indexOf(key) + key.length);
-      t0.nodeValue = lead + (pick(dict[key], []) || key) + tail;
+      t0.nodeValue = lead + dict[key] + tail;
       n++;
     }
     var els = root.querySelectorAll("[" + ATTRS.join("],[") + "]");
@@ -226,7 +168,7 @@
       for (var a = 0; a < ATTRS.length; a++) {
         var v = els[j].getAttribute(ATTRS[a]);
         if (v && Object.prototype.hasOwnProperty.call(dict, v.trim())) {
-          els[j].setAttribute(ATTRS[a], pick(dict[v.trim()], []) || v.trim());
+          els[j].setAttribute(ATTRS[a], dict[v.trim()]);
           n++;
         }
       }
@@ -270,7 +212,6 @@
    *   파서가 필요한데, 이름 하나만 바꾸면 문제 자체가 사라진다.
    *   __t 는 사람이 지역 변수로 쓸 일이 없는 이름이라 충돌이 원천 봉쇄된다. */
   window.__t = t;
-  window.__tx = tx;
 
   /* <html lang> 을 실제 로케일로 — CSS 의 폰트 스택 전환(html[lang=…])과
    * 스크린리더·브라우저 자동번역 판단이 전부 여기에 물린다. */
