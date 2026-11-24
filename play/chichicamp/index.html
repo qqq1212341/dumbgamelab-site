@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"eeacea62f","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"d59bc3cf8","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -270,7 +270,7 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"eeacea62f","game":"chichicamp"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"d59bc3cf8","game":"chichicamp"};</script>
 <meta name="description" content="숲속 캠핑 게임. 재료를 모아 가구를 만들고, 찾아오는 동물 친구와 캠프를 꾸며요. · A cozy camping game: craft furniture and befriend the animals who visit your forest camp.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 숲속 캠프 · Chichi Camp: Cozy Camping Game">
@@ -285,7 +285,7 @@
   <title>치치의 숲속 캠프</title>
   <script src="./js/i18n.js"></script>
   <link rel="stylesheet" href="./css/i18n-fonts.css" />
-  <script type="module" crossorigin src="./assets/index-CrGjNA4l.js"></script>
+  <script type="module" crossorigin src="./assets/index-aBekLd4z.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-D8b4mjhR.css">
 </head>
 <body>
@@ -546,5 +546,107 @@
     document.body.appendChild(el);
   }
   if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+})();</script><!-- dgl-keyboard-guard --><script>(function () {
+  if (window.__DGL_KB_GUARD) return;
+  window.__DGL_KB_GUARD = true;
+  var TEXTY = /^(text|search|email|number|tel|url|password|)$/;
+  var lifted = null;
+  var fakeView = null;
+  var root = document.documentElement;
+
+  function isField(el) {
+    if (!el || el.nodeType !== 1) return false;
+    if (el.isContentEditable) return true;
+    var tag = el.tagName;
+    if (tag === 'TEXTAREA') return !el.readOnly && !el.disabled;
+    if (tag === 'INPUT') return TEXTY.test((el.getAttribute('type') || '').toLowerCase()) && !el.readOnly && !el.disabled;
+    return false;
+  }
+
+  function fakeRatio() {
+    var f = Number(window.__DGL_KB_FAKE);
+    return f > 0 && f < 0.95 ? f : 0;
+  }
+
+  /* 키보드 높이(CSS px) — 레이아웃 창 아래쪽 중 보이는 창이 못 덮는 부분 */
+  function kbHeight() {
+    var f = fakeRatio();
+    if (f) return Math.round(window.innerHeight * f);
+    var vv = window.visualViewport;
+    if (!vv) return 0;
+    var h = window.innerHeight - vv.height - vv.offsetTop;
+    return h > 40 ? Math.round(h) : 0; // 주소창 접힘 같은 작은 차이는 키보드가 아니다
+  }
+
+  function liftTarget(el) {
+    for (var p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      var pos = getComputedStyle(p).position;
+      if (pos === 'fixed' || pos === 'sticky') return p;
+    }
+    var top = el;
+    while (top.parentElement && top.parentElement !== document.body) top = top.parentElement;
+    return top === el ? null : top;
+  }
+
+  function drop() {
+    if (!lifted) return;
+    lifted.el.style.transform = lifted.prev;
+    lifted.el.style.transition = lifted.prevT;
+    lifted = null;
+  }
+
+  function paintFake(kb) {
+    if (!fakeRatio()) { if (fakeView) fakeView.style.display = 'none'; return; }
+    if (!fakeView) {
+      fakeView = document.createElement('div');
+      fakeView.id = 'dgl-kb-fake';
+      fakeView.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2147483646;background:#292b30;pointer-events:none';
+      document.body.appendChild(fakeView);
+    }
+    fakeView.style.height = kb + 'px';
+    fakeView.style.display = kb > 0 && isField(document.activeElement) ? 'block' : 'none';
+  }
+
+  function fit() {
+    var kb = kbHeight();
+    root.style.setProperty('--dgl-kb-height', kb + 'px');
+    root.classList.toggle('dgl-kb-open', kb > 0);
+    paintFake(kb);
+    var el = document.activeElement;
+    if (!isField(el)) { drop(); return; }
+    var vv = window.visualViewport;
+    var visibleBottom = fakeRatio() || !vv ? window.innerHeight - kb : vv.offsetTop + vv.height;
+    var gap = 12;
+    var t = liftTarget(el);
+    if (lifted && lifted.el !== t) drop();
+    /* 올리기 전 자리(지금 올린 만큼 되돌려 잰다) — 키보드가 줄면 덜 올린다 */
+    var raw = el.getBoundingClientRect().bottom + (lifted ? lifted.dy : 0);
+    if (!lifted && raw + gap > visibleBottom) {
+      try { el.scrollIntoView({ block: 'center', inline: 'nearest' }); } catch (e) { /* 옛 웹뷰 */ }
+      raw = el.getBoundingClientRect().bottom;
+    }
+    var dy = Math.min(Math.max(0, raw + gap - visibleBottom), Math.max(0, raw - 40));
+    if (!dy || !t) { drop(); return; }
+    if (!lifted) lifted = { el: t, prev: t.style.transform, prevT: t.style.transition, dy: 0 };
+    if (Math.abs(lifted.dy - dy) < 1) return;
+    lifted.dy = dy;
+    t.style.transition = 'transform .18s ease-out';
+    t.style.transform = 'translateY(' + (-dy) + 'px)' + (lifted.prev ? ' ' + lifted.prev : '');
+  }
+
+  var queued = 0;
+  function later() {
+    if (queued) return;
+    queued = setTimeout(function () { queued = 0; fit(); }, 60);
+  }
+
+  document.addEventListener('focusin', function (e) { if (isField(e.target)) { later(); setTimeout(fit, 350); } }, true);
+  document.addEventListener('focusout', function () { setTimeout(function () { if (!isField(document.activeElement)) { drop(); fit(); } }, 0); }, true);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', later);
+    window.visualViewport.addEventListener('scroll', later);
+  }
+  window.addEventListener('resize', later);
+  window.__DGL_KB_FIT = fit; // 시험용 — 가짜 키보드 값을 바꾼 뒤 바로 맞춘다
 })();</script></body>
 </html>
