@@ -1,0 +1,11 @@
+body{margin:0;font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:#ffd9c7;color:#3a2a1e;display:flex;flex-direction:column;align-items:center;min-height:100vh}
+.hero{width:100%;max-width:520px;aspect-ratio:1/1;object-fit:cover;display:block;border-bottom:4px solid #e8b98a}
+.card{width:100%;max-width:480px;box-sizing:border-box;margin:-56px 16px 24px;padding:20px 18px;background:#fff3e0;border:3px solid #e8b98a;border-radius:28px;box-shadow:0 2px 0 #c98f5a;position:relative;text-align:center}
+.gt{font-weight:900;font-size:26px;color:#c94f80;margin:0 0 4px}.gl{margin:0 0 10px;color:#8a6650;font-size:15px}
+.lb{font-weight:900;font-size:16px;color:#8a6650;margin:10px 0 0}
+.code{display:flex;justify-content:center;gap:6px;margin:6px 0 8px;user-select:all;-webkit-user-select:all}.code b{width:46px;height:58px;line-height:58px;font-size:34px;background:#fff8ee;border:3px solid #e8b98a;border-radius:12px;box-shadow:0 2px 0 #c98f5a}
+.code.r b{background:#e9f7e4;border-color:#8cc47a;box-shadow:0 2px 0 #5f9a4c}
+.steps{display:flex;justify-content:center;gap:6px;margin:12px 0 4px;font-weight:900;font-size:15px;color:#8a6650}.steps span{background:#fff8ee;border:2px solid #e8b98a;border-radius:14px;padding:4px 10px}.steps i{font-style:normal;color:#c98f5a}
+.b{display:block;box-sizing:border-box;width:100%;margin:10px 0;padding:14px;border-radius:18px;border:3px solid #c99530;background:#ffc93a;box-shadow:0 2px 0 #a8651a;color:#3a2a1e;text-decoration:none;font-weight:900;font-size:22px;cursor:pointer;font-family:inherit}
+.b.s{background:#fff2ea;border-color:#e2a86a;box-shadow:0 2px 0 #c98f5a;font-size:18px;padding:12px}.row{display:flex;gap:10px}.row .b{flex:1}
+.none .has{display:none}
