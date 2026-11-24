@@ -7,6 +7,13 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>ホットク・プンオパン・薬菓、パンはいくつ？たい焼きとの違いも</title>
+    <link>https://dumbgamelab.com/ja/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</guid>
+    <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+    <description>韓国のプンオパン（붕어빵）はたい焼きと同じ型の仲間で、発酵させない生地を焼くプルパンです。ホットクは発酵生地、お土産で見かける薬菓（ヤッカ）は揚げて蜜に漬けた韓菓。韓国語辞書の「パン」の定義で3つを分け、どっちが先かの説と日本語での呼び方もまとめました。</description>
+  </item>
+  <item>
     <title>食卓の飾りに大砲までついている？</title>
     <link>https://dumbgamelab.com/ja/blog/table-galleon-cannon/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/table-galleon-cannon/</guid>
@@ -222,13 +229,6 @@
     <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
     <description>1696年、イギリスに窓の数で課税する税が生まれ、1851年に廃止された。税を逃れるため窓をふさいだ家が今も残る。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/window-tax.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>アラーム1つが1日の読み取り上限500万行を使い切った:Durable Objects 1101の追跡記録</title>
-    <link>https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/do-alarm-5m-rows/</guid>
-    <pubDate>Mon, 09 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Cloudflareの無料枠(1日の読み取り500万行)のうち、ゲームサーバーのアラーム1つが498万行を使い、エラー収集サーバーまで1101で止まった日の記録です。原因の追い方と、インデックス・キャッシュ・監視で直した流れを書いています。</description>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Hotteok, bungeoppang and yakgwa: how many of them are actually bread?</title>
+    <link>https://dumbgamelab.com/en/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</guid>
+    <pubDate>Mon, 23 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Hotteok uses a yeast dough, bungeoppang is an unleavened fish bread from the same line as taiyaki, and yakgwa is a fried honey cookie. Here is how the Korean dictionary definition of bread sorts these three Korean street snacks, plus what to call them in English.</description>
+  </item>
+  <item>
     <title>The table decoration has a cannon?</title>
     <link>https://dumbgamelab.com/en/blog/table-galleon-cannon/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/table-galleon-cannon/</guid>
@@ -221,13 +228,6 @@
     <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
     <description>In 1957 two engineers sealed shower curtains together to trap air bubbles. They failed to sell it as wallpaper before it found its place as packaging.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/bubble-wrap.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>We Got 1,269 Views and Not a Single Install</title>
-    <link>https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/roulette-ab-zero-install/</guid>
-    <pubDate>Tue, 10 Nov 2026 15:00:00 GMT</pubDate>
-    <description>We posted promo shorts for a spinning wheel app in two formats, app screen recording (A) and character animation (B). Seven days later the views were 681 vs 588, and installs that reached the store were 0 for both. Here are the numbers and the limits.</description>
   </item>
 </channel>
 </rss>
