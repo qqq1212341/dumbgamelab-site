@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Pineapples Weren&#39;t Bought to Be Eaten</title>
+    <link>https://dumbgamelab.com/en/blog/pineapple-status/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pineapple-status/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:00:00 GMT</pubDate>
+    <description>One estimate puts the cost of growing a single pineapple in 18th-century England at about the price of a new coach. They were for showing off at parties more than for eating.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/pineapple-status-dunmore.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Hotteok, bungeoppang and yakgwa: how many of them are actually bread?</title>
     <link>https://dumbgamelab.com/en/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</guid>
     <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
     <description>I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.</description>
-  </item>
-  <item>
-    <title>Bubble Wrap Started Out as Wallpaper</title>
-    <link>https://dumbgamelab.com/en/blog/bubble-wrap/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/bubble-wrap/</guid>
-    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
-    <description>In 1957 two engineers sealed shower curtains together to trap air bubbles. They failed to sell it as wallpaper before it found its place as packaging.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/bubble-wrap.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
