@@ -356,5 +356,21 @@ window.__DGL_STRINGS = {
 "다 했어":"Done",
 "배치 바꾸기":"Rearrange",
 "길 바닥":"Path style",
-"길은 손님 전용이야":"Paths are for guests only"
+"길은 손님 전용이야":"Paths are for guests only",
+"기구 {0}/{1}":"Rides {0}/{1}",
+"꽃 아치":"Flower Arch",
+"놀이기구가 없어":"No rides",
+"동글 토피어리":"Round Topiary",
+"모든 기구에 배치됨":"All rides staffed",
+"배치":"Assigned",
+"벚꽃 나무":"Cherry Blossom Tree",
+"빙글 풍차":"Spinning Windmill",
+"살랑 튤립 화단":"Swaying Tulip Bed",
+"연꽃 연못":"Lotus Pond",
+"오렌지 알바가 출발·하차를 맡고 있어":"The orange staffer is handling departures and unloading",
+"작은 시계탑":"Little Clock Tower",
+"잔디":"Grass",
+"출발·하차 알바":"Ride operator",
+"출발·하차 알바 배치":"Assign ride operator",
+"출발이랑 하차는 내가 할게":"I'll handle departures and unloading"
 };

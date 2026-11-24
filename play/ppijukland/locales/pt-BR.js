@@ -346,5 +346,21 @@ window.__DGL_STRINGS = {
 "다 했어":"Pronto",
 "배치 바꾸기":"Reorganizar",
 "길 바닥":"Piso do caminho",
-"길은 손님 전용이야":"Os caminhos são só para os visitantes"
+"길은 손님 전용이야":"Os caminhos são só para os visitantes",
+"기구 {0}/{1}":"Brinquedos {0}/{1}",
+"꽃 아치":"Arco de flores",
+"놀이기구가 없어":"Sem brinquedos",
+"동글 토피어리":"Topiaria redondinha",
+"모든 기구에 배치됨":"Já está em todos os brinquedos",
+"배치":"Cobertura",
+"벚꽃 나무":"Cerejeira em flor",
+"빙글 풍차":"Moinho giratório",
+"살랑 튤립 화단":"Canteiro de tulipas",
+"연꽃 연못":"Lago de lótus",
+"오렌지 알바가 출발·하차를 맡고 있어":"O auxiliar laranja cuida da partida e do desembarque",
+"작은 시계탑":"Torrezinha do relógio",
+"잔디":"Grama",
+"출발·하차 알바":"Auxiliar de brinquedos",
+"출발·하차 알바 배치":"Escalar auxiliar",
+"출발이랑 하차는 내가 할게":"Eu cuido da partida e do desembarque"
 };

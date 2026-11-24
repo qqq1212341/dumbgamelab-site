@@ -346,5 +346,21 @@ window.__DGL_STRINGS = {
 "다 했어":"Selesai",
 "배치 바꾸기":"Atur ulang",
 "길 바닥":"Permukaan jalan",
-"길은 손님 전용이야":"Jalan khusus untuk pengunjung"
+"길은 손님 전용이야":"Jalan khusus untuk pengunjung",
+"기구 {0}/{1}":"Wahana {0}/{1}",
+"꽃 아치":"Gapura Bunga",
+"놀이기구가 없어":"Tidak ada wahana",
+"동글 토피어리":"Topiari Bulat",
+"모든 기구에 배치됨":"Semua wahana sudah ada staf",
+"배치":"Ditempatkan",
+"벚꽃 나무":"Pohon Sakura",
+"빙글 풍차":"Kincir Angin Berputar",
+"살랑 튤립 화단":"Petak Tulip Bergoyang",
+"연꽃 연못":"Kolam Teratai",
+"오렌지 알바가 출발·하차를 맡고 있어":"Staf jeruk sedang mengurus keberangkatan dan turunnya penumpang",
+"작은 시계탑":"Menara Jam Mungil",
+"잔디":"Rumput",
+"출발·하차 알바":"Staf Wahana",
+"출발·하차 알바 배치":"Tempatkan Staf Wahana",
+"출발이랑 하차는 내가 할게":"Aku yang urus keberangkatan dan turunnya penumpang"
 };
