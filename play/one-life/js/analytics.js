@@ -103,6 +103,9 @@
   // 네이티브(앱) = Firebase Analytics 플러그인(first_open·리텐션·AdMob수익은 SDK가 자동) / 웹 = gtag.
   // GA/Firebase 단일 소스: 웹 스트림 + iOS/Android 앱 스트림이 같은 GA4 속성(542222163)으로 모임.
   function _send(name, params) {
+    /* PostHog 층(GA 옆 두 번째 싱크) — 굽는 도구가 심은 window.DGL_PH 가 있으면 같은 이벤트를 보낸다(없으면 아무 일도 안 한다).
+       전송 규칙(로컬 차단·?dglSend=1)은 그 층이 GA 와 같게 지킨다 · SOT = core/docs/tracking-playbook.md «PostHog» */
+    try { if (window.DGL_PH) window.DGL_PH.capture(name, params); } catch (e) {}
     // 네이티브: Firebase Analytics.logEvent (예약어 session_start/first_open은 SDK가 자동수집 → 중복 방지 위해 스킵)
     try {
       var C = window.Capacitor;

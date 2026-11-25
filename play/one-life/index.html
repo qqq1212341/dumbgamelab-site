@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="utf-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"onelife","build":"d59bc3cf8","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"onelife","build":"b741c73dd","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -110,7 +110,7 @@
    * 그래서 앞/뒤는 네이티브 가드(DglCrashGuard)가 파일로 적고 페이지가 뜨면 prevEnd(끝, 사유)로 알려 준다 — 그때까지 보내지 않고 기다린다.
    * bg(뒤로 간 뒤 죽음)·gone(렌더러 죽음 — 가드가 이미 보냈다)은 버린다. 가드 없는 옛 판은 답이 없으니 기다린 뒤 예전처럼 보낸다. */
   var held = null, heldT = 0;
-  function prevEnd(end, why, dev, st, timedOut) {
+  function prevEnd(end, why, dev, st, timedOut, mem) {
     if (!held) return;
     var o = held; held = null; clearTimeout(heldT);
     /* same = 같은 프로세스에서 액티비티만 다시 만들어진 판 — 앞 페이지는 프로세스와 함께 죽지 않았다(t-261103-xdg6) */
@@ -130,6 +130,8 @@
      * 답 없음(20초) = 가드가 없는 옛 판이거나 페이지가 늦게 떴다 · 기기 한 줄은 가드가 준다(Unity·Godot 와 같은 규약) */
     o.b = o.b.concat(["네이티브 " + end + " " + (why ? String(why).slice(0, 90) : timedOut ? "답 없음(20초) — 가드 없는 옛 판·늦은 페이지" : "exit reason 모름 — 가드가 사유를 안 줌(옛 가드)")]);
     if (dev) o.b.push("기기 " + String(dev).slice(0, 90));
+    /* 지난 판 마지막 메모리(안드로이드 가드 — 앞 화면 3초마다) · 10 이하는 OS 사유가 없어 이 줄이 메모리 회수와 크래시를 가른다(삐죽랜드 1.0.17 API 25 · t-261125-fj1i) */
+    if (mem) o.b.push("지난 판 메모리 " + String(mem).slice(0, 100));
     /* ANR(사유 6) = 앞 화면에서 메인 스레드가 5초 넘게 막혀 OS 가 «앱 응답 없음»으로 끈 판 — 메모리 부족·웹뷰 죽음과 다른 병이다.
      * 가드가 OS ANR 기록에서 읽은 main 스레드 스택을 주면 그 스택으로 따로 묶는다(맨 위 우리·SDK 프레임이 지문 · 한 번뿐인 인생 1.0.6 · t-261026-u4zq) */
     if (/exit reason 6 /.test(why || "")) {
@@ -184,7 +186,7 @@
     if (native && (plat === "android" || plat === "ios")) {
       held = ab;
       /* 가드에게 직접 묻는다(DglCrashAsk) — onPageFinished 밀어 주기만 믿으면 UI 스레드가 늦은 판은 20초 뒤 사유 없이 나갔다(빵 합치기 1.0.7 · t-261113-3rvz) */
-      var askGuard = function () { try { var A = window.DglCrashAsk, j = A && A.prevEnd && A.prevEnd(); if (j) { var a = JSON.parse(j); prevEnd(a[0], a[1], a[2], a[3]); } } catch (e) { /* 밀어 주기를 기다린다 */ } };
+      var askGuard = function () { try { var A = window.DglCrashAsk, j = A && A.prevEnd && A.prevEnd(); if (j) { var a = JSON.parse(j); prevEnd(a[0], a[1], a[2], a[3], false, a[4]); } } catch (e) { /* 밀어 주기를 기다린다 */ } };
       askGuard();
       var noAnswer = function () { askGuard(); prevEnd("?", "", "", "", true); };
       heldT = setTimeout(noAnswer, 90000);
@@ -270,7 +272,82 @@
   }
 })();
 </script>
-<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"onelife","build":"d59bc3cf8","target":"site","links":{"web":"https://dumbgamelab.com/play/one-life/"}};</script>
+<script id="dgl-posthog-cfg">/* DGL PostHog 층(GA 옆 두 번째 싱크) — 굽는 도구가 index.html <head> 앞쪽(오류 수집기 바로 뒤)에 심는다. SOT = core/docs/tracking-playbook.md «PostHog»
+ * 게임 래퍼(analytics.js `_send` · core/platform/tracker.ts · 0913Sample)가 GA 로 보낼 때 window.DGL_PH.capture(name, params) 도 부른다.
+ * 심이 없으면(로컬 개발·포털·시험) DGL_PH 가 없어 아무 일도 안 한다. 상수 = core/tools/posthog/config.json(굽는 도구가 __PH_CFG__ 를 채운다).
+ *   전송 규칙 = GA 와 같다: 로컬 웹(localhost·127.0.0.1…)은 안 보낸다 · `?dglSend=1` 이면 강제 · 앱(Capacitor)은 localhost 라도 보낸다.
+ *   autocapture·pageview 끔(DGL.track 이벤트만) · 사람 프로필은 identify 한 사람만(identify 안 한다 = 익명) · 세션 녹화는 캔버스 포함(2fps·화질 0.4).
+ *   유럽·영국·스위스(시간대 Europe/*·Atlantic/Reykjavik)는 쿠키 없이(메모리) · 녹화 끔 — GA 동의 기본 거부(check-ga-consent)와 같은 선.
+ * 헤드리스(UA «HeadlessChrome»)는 posthog-js 의 봇 거르기가 버린다 — 우리 QA 촬영이 지표에 안 섞인다(검증 = ?dglSend=1 이면 거르기를 끈다).
+ * 실패해도 게임은 안 깨진다(모든 길이 try). 게이트 = core/tools/check-posthog-wiring.mjs */
+(function () {
+  if (window.DGL_PH) return;
+  var CFG = {"token":"phc_zvGHEb9RoKTPmAeLxjNkf4n5epXj6eXXSS59wormWtmg","host":"https://us.i.posthog.com","assets":"https://us-assets.i.posthog.com","game":"onelife","target":"site"};
+  var q = [], props = {}, ready = false;
+  window.DGL_PH = {
+    capture: function (n, p) { q.push(['c', n, p]); if (q.length > 200) q.shift(); },
+    register: function (o) { q.push(['r', o]); },
+    sending: false,
+  };
+  function boot() {
+    var C = window.Capacitor;
+    var native = !!(C && C.isNativePlatform && C.isNativePlatform());
+    var plat = native ? ((C.getPlatform && C.getPlatform()) || 'app') : 'web';
+    var s = String(location.search || '');
+    var force = /[?&]dglSend=1/.test(s);
+    var localWeb = !native && ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', ''].indexOf(location.hostname) >= 0;
+    if (!CFG.token || (localWeb && !force)) return false;
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var eea = /^Europe\//.test(tz) || tz === 'Atlantic/Reykjavik' || tz === 'Atlantic/Canary' || tz === 'Atlantic/Madeira' || tz === 'Atlantic/Azores';
+    var debug = /[?&]dglDebug=1/.test(s);
+
+    /* posthog-js 공식 스니펫(비동기 array.js) — 스크립트가 오기 전 부른 것은 stub 이 쌓아 둔다 */
+    !function (t, e) {
+      var o, n, p, r; if (e.__SV) return; window.posthog = e; e._i = [];
+      e.init = function (i, s, a) {
+        function g(t, e) { var o = e.split('.'); 2 == o.length && (t = t[o[0]], e = o[1]); t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; }
+        (p = t.createElement('script')).type = 'text/javascript'; p.crossOrigin = 'anonymous'; p.async = !0;
+        p.src = CFG.assets + '/static/array.js';
+        (r = t.getElementsByTagName('script')[0]) ? r.parentNode.insertBefore(p, r) : (t.head || t.documentElement).appendChild(p);
+        var u = e; for (void 0 !== a ? u = e[a] = [] : a = 'posthog', u.people = u.people || [], u.toString = function (t) { var e = 'posthog'; return 'posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e; }, u.people.toString = function () { return u.toString(1) + '.people (stub)'; }, o = 'capture register register_once unregister opt_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags getDistinctId startSessionRecording stopSessionRecording'.split(' '), n = 0; n < o.length; n++) g(u, o[n]);
+        e._i.push([i, s, a]);
+      };
+      e.__SV = 1;
+    }(document, window.posthog || []);
+
+    window.posthog.init(CFG.token, {
+      api_host: CFG.host,
+      person_profiles: 'identified_only',
+      autocapture: false,
+      capture_pageview: false,
+      capture_pageleave: false,
+      disable_surveys: true,
+      opt_out_useragent_filter: force,   /* ?dglSend=1(검증)일 때만 헤드리스도 보낸다 */
+      persistence: eea ? 'memory' : 'localStorage+cookie',
+      disable_session_recording: eea,
+      session_recording: { captureCanvas: { recordCanvas: true, canvasFps: 2, canvasQuality: '0.4' } },
+    });
+    props = { dgl_slug: CFG.game || '', platform: plat, target: CFG.target || '' };
+    if (debug) props.debug_mode = true;
+    window.posthog.register(props);
+    return true;
+  }
+  try { ready = boot(); } catch (e) { ready = false; }
+
+  if (!ready) { window.DGL_PH.capture = function () {}; window.DGL_PH.register = function () {}; q = []; return; }
+  function cap(n, p) {
+    try {
+      var o = {}; for (var k in (p || {})) o[k] = p[k];
+      window.posthog.capture(String(n), o);
+    } catch (e) { /* 계측이 판을 끊으면 안 된다 */ }
+  }
+  function reg(o) { try { window.posthog.register(o || {}); } catch (e) {} }
+  window.DGL_PH = { capture: cap, register: reg, sending: true };
+  for (var i = 0; i < q.length; i++) q[i][0] === 'c' ? cap(q[i][1], q[i][2]) : reg(q[i][1]);
+  q = [];
+})();
+</script>
+<script id="dgl-invite-cfg">window.__DGL_INVITE={"game":"onelife","build":"b741c73dd","target":"site","links":{"web":"https://dumbgamelab.com/play/one-life/"}};</script>
 <script>(function(){
 'use strict';
 /* 친구 초대 코어 — 모든 게임이 같은 규칙으로 서버(i.dumbgamelab.com)와 말한다. 설명서 = core/tools/invite/README.md
@@ -297,6 +374,12 @@ const INVITE_REDEEM_DAYS = 7;
 /** 이 번째 친구는 보상을 몇 배로 — 단계형(1·3·5명) 이 히트작 공통이다 */
 const INVITE_LADDER = { 1: 2, 3: 3, 5: 5, 10: 10 };
 const INVITE_LINK_SOURCE = 'invite';
+/** 크리에이터 링크(`/go/creator/…?p=<코드>` → Play 리퍼러·웹 쿼리)의 utm_source */
+const CREATOR_LINK_SOURCE = 'creator';
+/** 방송인이 스스로 코드를 받는 페이지(«내 방송인에게 추천하기» 공유 글에 실린다) */
+const CREATOR_JOIN_URL = 'https://dumbgamelab.com/go/creator/join/';
+/** 코드 하나의 공개 성과 페이지 */
+function creatorStatsUrl(code) { return 'https://dumbgamelab.com/go/creator/stats/?c=' + encodeURIComponent(code); }
 
 function inviteMult(index) {
   return INVITE_LADDER[index] || 1;
@@ -325,6 +408,16 @@ function makeInviteCode(random) {
   return s;
 }
 
+/** 크리에이터 코드 꼴 — 4~16자 영숫자, 친구 코드 꼴이 아닌 것. 등록돼 있는지는 서버가 본다(README «크리에이터 코드») */
+function isCreatorCode(code) {
+  return typeof code === 'string' && /^[0-9A-Z]{4,16}$/.test(code) && !isValidInviteCode(code);
+}
+
+/** 넣을 수 있는 꼴인가 — 친구 코드 또는 크리에이터 코드 */
+function isRedeemableCode(code) {
+  return isValidInviteCode(code) || isCreatorCode(code);
+}
+
 /** 기기 비밀값 — 서버는 해시만 둔다. 광고 ID·기기 ID 를 쓰지 않는다 */
 function makeSecret(random) {
   const A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -334,13 +427,15 @@ function makeSecret(random) {
   return s;
 }
 
-/** 주소 쿼리(또는 Play 설치 리퍼러 문자열)에서 친구 코드 — `utm_source=invite&utm_content=<코드>` 가 아니면 '' */
+/** 주소 쿼리(또는 Play 설치 리퍼러 문자열)에서 코드 — 친구 `utm_source=invite&utm_content=<6자>` · 크리에이터 `utm_source=creator&utm_content=<코드>`. 아니면 '' */
 function parseInviteLink(search) {
   let q;
   try { q = new URLSearchParams(String(search == null ? '' : search).replace(/^[?#]/, '')); } catch (e) { return ''; }
-  if (q.get('utm_source') !== INVITE_LINK_SOURCE) return '';
+  const src = q.get('utm_source');
   const code = normalizeInviteCode(q.get('utm_content') || '');
-  return isValidInviteCode(code) ? code : '';
+  if (src === INVITE_LINK_SOURCE) return isValidInviteCode(code) ? code : '';
+  if (src === CREATOR_LINK_SOURCE) return isCreatorCode(code) ? code : '';
+  return '';
 }
 
 /**
@@ -359,7 +454,8 @@ function createInvite(o) {
   const key = o.key || 'dgl-invite:' + game;
   const now = o.now || function () { return Date.now(); };
   const server = o.server || INVITE_SERVER;
-  const doFetch = o.fetch || (typeof fetch === 'function' ? fetch.bind(globalThis) : null);
+  /* 전역 fetch 는 부를 때 찾는다 — 만들 때 묶어 두면 촬영·시험이 나중에 갈아 끼운 가짜 서버를 못 탄다(촬영이 진짜 서버를 두드렸다) */
+  const doFetch = o.fetch || (typeof fetch === 'function' ? function (u, i) { return globalThis.fetch(u, i); } : null);
   const store = o.storage || {
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 못 쓰면 다음에 다시 */ } },
@@ -403,7 +499,8 @@ function createInvite(o) {
   }
 
   function give(ev) {
-    track('invite_reward', { why: ev.kind, index: ev.index, mult: ev.mult });
+    /* place = 친구냐 크리에이터냐(GA 에 이미 있는 맞춤 측정기준 칸 — 새 칸을 만들지 않는다) */
+    track('invite_reward', { why: ev.kind, index: ev.index, mult: ev.mult, place: ev.creator ? 'creator' : 'friend' });
     if (onReward) onReward(ev); else queued.push(ev);
   }
 
@@ -431,8 +528,53 @@ function createInvite(o) {
       });
     },
 
-    /** 내가 넣은 친구 코드 — 아직이면 '' */
+    /** 내가 넣은 코드(친구·크리에이터) — 아직이면 '' */
     redeemedCode: function () { return load().redeemed; },
+
+    /** 넣은 코드가 «진짜 플레이» 문턱을 넘어 성사됐나(환영 보상을 받았나) */
+    qualified: function () { return !!load().qualified; },
+
+    /**
+     * 팬 공동 목표 — 내가 넣은 크리에이터 코드의 공개 성과를 읽는다 → Promise<{name, confirmed, steps, reached, next, left} | null>.
+     * 내가 성사된 뒤에만, 새로 닿은 단계마다 보상 한 번({kind:'goal', index:단계}) — 단계는 서버의 성사 수로만 정해진다.
+     */
+    creatorGoal: function () {
+      const r = load();
+      if (!r.cr || !r.redeemed || !doFetch) return Promise.resolve(null);
+      return doFetch(server + '/v1/creator/' + r.redeemed, { method: 'GET' })
+        .then(function (res) { return res.json(); })
+        .then(function (g) {
+          if (!g || !g.ok) return null;
+          const cur = load();
+          if (cur.qualified) {
+            const got = Array.isArray(cur.goals) ? cur.goals : [];
+            const fresh = (g.reached || []).filter(function (s) { return got.indexOf(s) < 0; });
+            if (fresh.length) {
+              cur.goals = got.concat(fresh);
+              save(cur);
+              for (let i = 0; i < fresh.length; i++) give({ kind: 'goal', index: fresh[i], mult: 1, creator: cur.crName || '' });
+            }
+          }
+          return g;
+        })
+        .catch(function () { return null; });
+    },
+
+    /** «내 방송인에게 추천하기» — 한 기기 한 번(도배 방지). 이미 했으면 false */
+    canAskCreator: function () { return !load().asked; },
+
+    /** 추천 공유를 실제로 띄운 뒤 부른다 — 표시하고 계측(invite_share place=creator_ask). 보상 없음 */
+    noteAskCreator: function (how) {
+      const r = load();
+      if (r.asked) return false;
+      r.asked = 1;
+      save(r);
+      track('invite_share', { how: how, place: 'creator_ask' });
+      return true;
+    },
+
+    /** 넣은 코드가 크리에이터 코드면 그 크리에이터 이름(서버가 준 것) — 아니면 '' */
+    creatorName: function () { const r = load(); return r.cr ? r.crName || '' : ''; },
 
     /** 코드를 넣을 수 있나 — 이미 넣었거나 설치 뒤 너무 지났으면 false(화면이 입력칸을 숨긴다) */
     canRedeem: function () {
@@ -454,19 +596,20 @@ function createInvite(o) {
 
     pendingCode: function () {
       const r = load();
-      return !r.redeemed && r.pending && r.pending !== r.code && isValidInviteCode(r.pending) ? r.pending : '';
+      return !r.redeemed && r.pending && r.pending !== r.code && isRedeemableCode(r.pending) ? r.pending : '';
     },
 
     /**
-     * 친구 코드 넣기 → Promise<{ok:true} | {ok:false, reason}>.
+     * 코드 넣기(친구·크리에이터 같은 칸) → Promise<{ok:true, creator?:{name}} | {ok:false, reason}>.
      * reason = format · own · already · late · unknown(없는 코드) · limit · network
-     * ★ 여기선 보상을 안 준다 — 환영 보상은 qualify(진짜 플레이) 뒤다.
+     * ★ 여기선 보상을 안 준다 — 환영 보상은 qualify(진짜 플레이) 뒤다. 크리에이터 코드도 같다.
+     * ★ 한 기기 한 번 — 친구 코드와 크리에이터 코드 중 먼저 넣은 것 하나만(서버도 같은 칸으로 막는다).
      */
     redeem: function (raw) {
       const r = load();
       const code = normalizeInviteCode(raw);
       if (r.redeemed) return Promise.resolve({ ok: false, reason: 'already' });
-      if (!isValidInviteCode(code)) return Promise.resolve({ ok: false, reason: 'format' });
+      if (!isRedeemableCode(code)) return Promise.resolve({ ok: false, reason: 'format' });
       if (code === r.code) return Promise.resolve({ ok: false, reason: 'own' });
       if (!api.canRedeem()) return Promise.resolve({ ok: false, reason: 'late' });
       return post('redeem', { code: code, inv: secret(r) }).then(function (res) {
@@ -474,9 +617,11 @@ function createInvite(o) {
         const cur = load();
         cur.redeemed = code;
         cur.pending = '';
+        const cr = res.creator && typeof res.creator.name === 'string' ? res.creator : null;
+        if (cr) { cur.cr = 1; cur.crName = cr.name.slice(0, 40); }
         save(cur);
-        track('invite_entered', {});
-        return { ok: true };
+        track('invite_entered', cr ? { place: 'creator', code: code } : { place: 'friend' });
+        return cr ? { ok: true, creator: { name: cur.crName } } : { ok: true };
       });
     },
 
@@ -492,9 +637,10 @@ function createInvite(o) {
         const cur = load();
         if (cur.qualified) return false;
         cur.qualified = 1;
+        if (res.creator && typeof res.creator.name === 'string') { cur.cr = 1; cur.crName = res.creator.name.slice(0, 40); }
         save(cur);
-        track('invite_qualified', {});
-        give({ kind: 'welcome', index: 0, mult: 1 });
+        track('invite_qualified', cur.cr ? { place: 'creator', code: cur.redeemed } : { place: 'friend' });
+        give(cur.cr ? { kind: 'welcome', index: 0, mult: 1, creator: cur.crName || '' } : { kind: 'welcome', index: 0, mult: 1 });
         return true;
       });
     },
@@ -686,7 +832,7 @@ function open() {
   if (inv.canRedeem()) {
     card.appendChild(el('div', 'k', t.enter));
     var box = el('div', 'in');
-    var input = el('input'); input.setAttribute('maxlength', '8'); input.setAttribute('placeholder', t.ph);
+    var input = el('input'); input.setAttribute('maxlength', '16'); input.setAttribute('placeholder', t.ph);
     input.setAttribute('autocapitalize', 'characters'); input.setAttribute('autocomplete', 'off');
     input.value = inv.pendingCode();
     var put = el('button', 'g', t.put);
@@ -753,7 +899,7 @@ window.DGLInvite = {
 })();
 
 })();</script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"d59bc3cf8","game":"onelife"};</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"b741c73dd","game":"onelife"};</script>
 <meta name="description" content="80억 명 중 어디에 태어날지는 고를 수 없다. 나라·집안·성별이 실제 확률로 정해지고, 한 해 한 줄씩 인생이 흘러간다. · Where you're born out of 8 billion is not up to you. Your country, family and odds are drawn from real numbers, and your life unfolds one line a year.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="한 번뿐인 인생 · One Life">
@@ -786,7 +932,7 @@ window.DGLInvite = {
     @font-face { font-family: 'NEXON Lv1 Gothic'; src: url('assets/fonts/NEXONLv1GothicLow.otf') format('opentype'); font-display: block; }
     @font-face { font-family: 'NEXON Lv1 Gothic'; font-weight: bold; src: url('assets/fonts/NEXONLv1GothicLow-Bold.otf') format('opentype'); font-display: block; }
   </style>
-  <script type="module" crossorigin src="./assets/index-Mkafs0tD.js"></script>
+  <script type="module" crossorigin src="./assets/index-B0SiEEfk.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BdVKTFNc.css">
 </head>
 <body>
