@@ -2,7 +2,7 @@
 <html lang="ko" data-feedback="menu">
 <head>
   <meta charset="UTF-8" />
-<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"d59bc3cf8","target":"site"});</script>
+<script id="dgl-crash-cfg">window.__DGL_WEB=Object.assign(window.__DGL_WEB||{},{"game":"chichicamp","build":"95c149e2a","target":"site"});</script>
 <script>/* DGL 오류 수집기(클라이언트) — 굽는 도구가 index.html <head> 맨 앞에 심는다. SOT = core/tools/crash/README.md
  * 판마다: 세션 한 번(/s) · 같은 오류는 한 번만(/e) · 판당 최대 20건. 화면 없음, 플레이어 정보 없음.
  * 직전 행동(브레드크럼) 30개 — 누른 것·화면·경고·실패한 요청·앞뒤 전환 — 를 오류에 붙인다.
@@ -270,7 +270,82 @@
   }
 })();
 </script>
-<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"d59bc3cf8","game":"chichicamp"};</script>
+<script id="dgl-posthog-cfg">/* DGL PostHog 층(GA 옆 두 번째 싱크) — 굽는 도구가 index.html <head> 앞쪽(오류 수집기 바로 뒤)에 심는다. SOT = core/docs/tracking-playbook.md «PostHog»
+ * 게임 래퍼(analytics.js `_send` · core/platform/tracker.ts · 0913Sample)가 GA 로 보낼 때 window.DGL_PH.capture(name, params) 도 부른다.
+ * 심이 없으면(로컬 개발·포털·시험) DGL_PH 가 없어 아무 일도 안 한다. 상수 = core/tools/posthog/config.json(굽는 도구가 __PH_CFG__ 를 채운다).
+ *   전송 규칙 = GA 와 같다: 로컬 웹(localhost·127.0.0.1…)은 안 보낸다 · `?dglSend=1` 이면 강제 · 앱(Capacitor)은 localhost 라도 보낸다.
+ *   autocapture·pageview 끔(DGL.track 이벤트만) · 사람 프로필은 identify 한 사람만(identify 안 한다 = 익명) · 세션 녹화는 캔버스 포함(2fps·화질 0.4).
+ *   유럽·영국·스위스(시간대 Europe/*·Atlantic/Reykjavik)는 쿠키 없이(메모리) · 녹화 끔 — GA 동의 기본 거부(check-ga-consent)와 같은 선.
+ * 헤드리스(UA «HeadlessChrome»)는 posthog-js 의 봇 거르기가 버린다 — 우리 QA 촬영이 지표에 안 섞인다(검증 = ?dglSend=1 이면 거르기를 끈다).
+ * 실패해도 게임은 안 깨진다(모든 길이 try). 게이트 = core/tools/check-posthog-wiring.mjs */
+(function () {
+  if (window.DGL_PH) return;
+  var CFG = {"token":"phc_zvGHEb9RoKTPmAeLxjNkf4n5epXj6eXXSS59wormWtmg","host":"https://us.i.posthog.com","assets":"https://us-assets.i.posthog.com","game":"chichicamp","target":"site"};
+  var q = [], props = {}, ready = false;
+  window.DGL_PH = {
+    capture: function (n, p) { q.push(['c', n, p]); if (q.length > 200) q.shift(); },
+    register: function (o) { q.push(['r', o]); },
+    sending: false,
+  };
+  function boot() {
+    var C = window.Capacitor;
+    var native = !!(C && C.isNativePlatform && C.isNativePlatform());
+    var plat = native ? ((C.getPlatform && C.getPlatform()) || 'app') : 'web';
+    var s = String(location.search || '');
+    var force = /[?&]dglSend=1/.test(s);
+    var localWeb = !native && ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', ''].indexOf(location.hostname) >= 0;
+    if (!CFG.token || (localWeb && !force)) return false;
+    var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+    var eea = /^Europe\//.test(tz) || tz === 'Atlantic/Reykjavik' || tz === 'Atlantic/Canary' || tz === 'Atlantic/Madeira' || tz === 'Atlantic/Azores';
+    var debug = /[?&]dglDebug=1/.test(s);
+
+    /* posthog-js 공식 스니펫(비동기 array.js) — 스크립트가 오기 전 부른 것은 stub 이 쌓아 둔다 */
+    !function (t, e) {
+      var o, n, p, r; if (e.__SV) return; window.posthog = e; e._i = [];
+      e.init = function (i, s, a) {
+        function g(t, e) { var o = e.split('.'); 2 == o.length && (t = t[o[0]], e = o[1]); t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))); }; }
+        (p = t.createElement('script')).type = 'text/javascript'; p.crossOrigin = 'anonymous'; p.async = !0;
+        p.src = CFG.assets + '/static/array.js';
+        (r = t.getElementsByTagName('script')[0]) ? r.parentNode.insertBefore(p, r) : (t.head || t.documentElement).appendChild(p);
+        var u = e; for (void 0 !== a ? u = e[a] = [] : a = 'posthog', u.people = u.people || [], u.toString = function (t) { var e = 'posthog'; return 'posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e; }, u.people.toString = function () { return u.toString(1) + '.people (stub)'; }, o = 'capture register register_once unregister opt_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags getDistinctId startSessionRecording stopSessionRecording'.split(' '), n = 0; n < o.length; n++) g(u, o[n]);
+        e._i.push([i, s, a]);
+      };
+      e.__SV = 1;
+    }(document, window.posthog || []);
+
+    window.posthog.init(CFG.token, {
+      api_host: CFG.host,
+      person_profiles: 'identified_only',
+      autocapture: false,
+      capture_pageview: false,
+      capture_pageleave: false,
+      disable_surveys: true,
+      opt_out_useragent_filter: force,   /* ?dglSend=1(검증)일 때만 헤드리스도 보낸다 */
+      persistence: eea ? 'memory' : 'localStorage+cookie',
+      disable_session_recording: eea,
+      session_recording: { captureCanvas: { recordCanvas: true, canvasFps: 2, canvasQuality: '0.4' } },
+    });
+    props = { dgl_slug: CFG.game || '', platform: plat, target: CFG.target || '' };
+    if (debug) props.debug_mode = true;
+    window.posthog.register(props);
+    return true;
+  }
+  try { ready = boot(); } catch (e) { ready = false; }
+
+  if (!ready) { window.DGL_PH.capture = function () {}; window.DGL_PH.register = function () {}; q = []; return; }
+  function cap(n, p) {
+    try {
+      var o = {}; for (var k in (p || {})) o[k] = p[k];
+      window.posthog.capture(String(n), o);
+    } catch (e) { /* 계측이 판을 끊으면 안 된다 */ }
+  }
+  function reg(o) { try { window.posthog.register(o || {}); } catch (e) {} }
+  window.DGL_PH = { capture: cap, register: reg, sending: true };
+  for (var i = 0; i < q.length; i++) q[i][0] === 'c' ? cap(q[i][1], q[i][2]) : reg(q[i][1]);
+  q = [];
+})();
+</script>
+<script>window.__DGL_WEB={"portal":"","gameId":"","target":"site","build":"95c149e2a","game":"chichicamp"};</script>
 <meta name="description" content="숲속 캠핑 게임. 재료를 모아 가구를 만들고, 찾아오는 동물 친구와 캠프를 꾸며요. · A cozy camping game: craft furniture and befriend the animals who visit your forest camp.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="치치의 숲속 캠프 · Chichi Camp: Cozy Camping Game">
@@ -285,7 +360,7 @@
   <title>치치의 숲속 캠프</title>
   <script src="./js/i18n.js"></script>
   <link rel="stylesheet" href="./css/i18n-fonts.css" />
-  <script type="module" crossorigin src="./assets/index-aBekLd4z.js"></script>
+  <script type="module" crossorigin src="./assets/index-CxxnU-lV.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-D8b4mjhR.css">
 </head>
 <body>
