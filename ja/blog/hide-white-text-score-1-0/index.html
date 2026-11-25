@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ゲームのHUDを隠したら比較スコアが1.0になった日（モバイルゲームHUDデザインの開発日誌）</title>
+<meta name="description" content="同じ10枚で10回以上スコアを測っても、画面の形を変えても0.9前後から下がりませんでした。HUDを丸ごと隠すと1.000。画面を区域に切って測ってやっと原因が見えました。数字はすべて公開します。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="ゲームのHUDを隠したら比較スコアが1.0になった日（モバイルゲームHUDデザインの開発日誌）">
+<meta property="og:description" content="同じ10枚で10回以上スコアを測っても、画面の形を変えても0.9前後から下がりませんでした。HUDを丸ごと隠すと1.000。画面を区域に切って測ってやっと原因が見えました。数字はすべて公開します。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HUDを隠したらスコアが1.0になった","description":"同じ10枚で10回以上スコアを測っても、画面の形を変えても0.9前後から下がりませんでした。HUDを丸ごと隠すと1.000。画面を区域に切って測ってやっと原因が見えました。数字はすべて公開します。","inLanguage":"ja","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"HUDを隠したらスコアが1.0になった","item":"https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ゲームのHUDとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"戦闘やプレイ中、画面の上にずっと表示されている情報の層です。体力、スコア、ウェーブ、時間、召喚や強化のボタンなどがここに入ります。"}},{"@type":"Question","name":"HUDを外したほうがゲームがすっきり見えませんか？","acceptedAnswer":{"@type":"Answer","text":"うちの測定では逆でした。HUDを丸ごと隠すと、ブラインド判定者が10枚すべてでうちの画面を当てました（spot 1.000）。所定の位置にあってこそ正解の画面らしく見えます。外してすっきりするものではありませんでした。"}},{"@type":"Question","name":"画面の比較スコアが下がらないとき、原因はどう探せばいいですか？","acceptedAnswer":{"@type":"Answer","text":"画面を高さで上、中央、下に切り、区域ごとに別々に判定させる方法が効きました。全体のスコア1つでは見えなかった原因の区域が、すぐに分かれました。"}},{"@type":"Question","name":"スマホゲームのHUDの文字がぼやけて見えるのはなぜですか？","acceptedAnswer":{"@type":"Answer","text":"うちの場合は文字ボックスのサイズに合わせて文字が18ピクセルまで縮み、縁取りもサイズのわりに弱かったためです。文字の高さと縁取りの比率を1か所で決め、チェックツールで違反を数えながら直しました。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 開発の裏側</p>
+    <p class="kicker">開発日誌 / 失敗談</p>
+    <h1>HUDを隠したらスコアが1.0になった</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="ゾンビバスの戦闘画面3枚。上にウェーブ、時間、ゾンビ数があり、道路の下にあるバス2台の屋根に生存者が立ち、いちばん下にギャンブル、召喚、神話、強化のボタン列がある" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">ゾンビバスの盤面を作り直していた11月6日、同じ固定10枚でブラインド判定を10回以上回しました。スコアは低いほど良く、合格ラインは0.55なのに、ずっと0.9前後でした。マスの形を戻しても0.716、HUDを丸ごと隠すと1.000です。分かったのは、形に関係なくHUDはあるべきだということだけ。原因は画面を上、中央、下に切って測ってから、やっと見えました。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">スコアは低いほど良い、合格ラインは0.55</a></li><li><a href="#s2">同じ10枚で10回以上測っても0.9前後だった</a></li><li><a href="#s3">MSAAを切ったのは原因の一つだったが、一つだけだった</a></li><li><a href="#s4">HUDを隠したら1.000になった</a></li><li><a href="#s5">画面を上、中央、下に切ってやっと場所が分かった</a></li><li><a href="#s6">基準の場面を変えたら、また不合格だった</a></li><li><a href="#s7">文字がすべて18ピクセルに縮んでいた</a></li></ol></nav>
+    <section id="s1"><h2>スコアは低いほど良い、合格ラインは0.55</h2>
+<p>ゾンビバスは2つの流れで作っていたゲームです。盤面は昔のゾンビバスの形（下のバスの屋根に生存者を置き、上からゾンビの群れが降りてくる画面）で動かし、HUDは正解アプリの枠に合わせる構成でした。</p>
+<p>うまく作れたかどうかはブラインド判定で測ります。正解アプリの画面とうちの画面を混ぜて見せ、判定者にどちらがうちのものかを当ててもらいます。当てた割合がspotスコアです。0.5なら当てずっぽうと同じ、1.0ならいつも見破られるという意味なので低いほど良く、合格ラインは0.55以下を2回続けて出すことにしています。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="ゾンビバスの戦闘画面1枚。上にウェーブ8、ゾンビ53/100が見え、下に召喚ボタンがある" loading="lazy" decoding="async"><figcaption>判定に出したうちの画面。上の帯と下のボタン列がHUDです。</figcaption></figure></section>
+<section id="s2"><h2>同じ10枚で10回以上測っても0.9前後だった</h2>
+<p>昔の盤面をそのままビルドして基準を測ると0.535、測り直すと0.399まで下がりました。一方で新しく作った盤面は0.962からのスタートです。同じ判定器に同じ固定10枚なので、数字どうしを比べられます。</p>
+<p>マスを4列7行に変えて体を大きくすると0.913、バスのマスを明るくして0.899、スマホの性能のためにMSAAを切って影を減らすと0.990まで上がりました。ゾンビを60体先に置いて場面の密度を上げても0.934、ダメージ数字と赤い警告帯を足して0.931、神話とルーレットのボタン列まで付けて0.868でした。</p>
+<p>手直しを3回やってスコアが0.05ほど動く程度です。場面のせいではないことが分かっただけで、どこが問題なのかはそのままでした。</p>
+</section>
+<section id="s3"><h2>MSAAを切ったのは原因の一つだったが、一つだけだった</h2>
+<p>昔の盤面でMSAAだけを切って測ると、0.399が0.569に上がりました。合格ラインを超える数字なので、原因を一つは捕まえたことになります。スマホで動かすために切った設定がスコアを上げていたわけです。</p>
+<p>それでも新しい盤面はMSAAを戻しても0.694、出荷設定のまま測ると0.729だったので、原因が2つ以上あるのははっきりしていました。体とゾンビのモデルは昔の盤面と同じファイルなので、変える場所でもありませんでした。</p>
+<div class="tbl"><table><thead><tr><th>テスト</th><th>spotスコア</th></tr></thead><tbody><tr><td>昔の盤面を再測定</td><td>0.399</td></tr><tr><td>昔の盤面 + MSAAオフ</td><td>0.569</td></tr><tr><td>新しい盤面の出荷設定</td><td>0.729</td></tr><tr><td>新しい盤面でマスの形だけ戻す</td><td>0.716</td></tr><tr><td>新しい盤面でHUDを丸ごと隠す</td><td>1.000</td></tr><tr><td>新しい盤面に昔のHUDを1.5倍で載せる</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>HUDを隠したら1.000になった</h2>
+<p>HUDを丸ごと隠して測りました。結果は1.000。判定者が10枚すべてで、どちらがうちのものかを当てたということです。どの画面でもひと目で見破られたわけですね。</p>
+<p>それを見て、昔のHUD（上の行のウェーブパネルと下の太いボタン列）を新しい盤面の上に1.5倍で載せてみると0.924でした。今使っているHUDよりむしろ悪い結果です。HUDがないとすぐ見破られるのに、HUDの形を昔のものに変えてもスコアは動きませんでした。あればいい部品で、形は原因ではなかったんです。</p>
+<p>昔のHUDを移すために書いたコードはリポジトリには入れず、別に保管しただけです。使われないコードを残さないための判断でした。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="ゾンビバスの戦闘画面の下側。ギャンブル、召喚、神話のボタン1列と、強化、X2広告、ピンのボタン1列" loading="lazy" decoding="async"><figcaption>スコアを支えていたのはこのボタン列があるかどうかで、形ではありませんでした。</figcaption></figure></section>
+<section id="s5"><h2>画面を上、中央、下に切ってやっと場所が分かった</h2>
+<p>判定者が書いた指摘を新しい盤面の156件で数えると、固まりや重なりが139件、ユニットが小さいが123件、UIが単純が99件、道路が空いて見えるが71件、縁取りのノイズが57件と、理由がいくつにも散らばっていました。昔の盤面の36件ではUIが単純が10件、縁取りが6件だけだったので、新しい盤面だけUIと縁取りの指摘が何倍も多いことになります。</p>
+<p>こう散らばると、どこから直すか決めにくい。そこで画面を高さ0〜30%、30〜72%、72〜100%に切り、区域ごとに別々に判定させました。上0.65、中央0.15、下0.50という結果で、中央はもう見分けがつかないレベルだったので上の区域が原因、下も合格ライン近くだったので、直す順番は上からでした。</p>
+<p>上の区域にはゾンビの群れとウェーブパネルが入っています。ゾンビごとに服と肌の色合いを8通りに分けて、ひとかたまりの緑に見えていたのをほどき、ウェーブ、時間、ゾンビ数のパネルはいちばん上に上げてから警告バナーを細くしました。全体のスコアは0.455と0.507で、合格ライン0.55の下に2回続けて入りました。</p>
+</section>
+<section id="s6"><h2>基準の場面を変えたら、また不合格だった</h2>
+<p>合格を出したあと、正解アプリからゾンビの群れがたくさん集まった場面を10枚新しく選んで基準を取り直しました。前の固定10枚がたまたま空いている場面だったのではないか、確かめたかったからです。</p>
+<p>結果は0.979と0.826で不合格でした。区域別では上0.525、中央0.113、下1.000で、今回は下のHUDが原因です。判定者の理由の上位は、道路の地面がくすんでまだらに見える、ボタンの色が背景と合わない、強化ボタンの文字が薄い、神話ボタンの文字がアイコンに隠れる、の4つでした。</p>
+<p>正解アプリのほうは草むらのマップなので背景が緑。うちはアスファルトの道路の上に同じパレットのUIを載せたせいで、2つがちぐはぐになっていました。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="ゾンビバスのロビー画面。生存者募集の窓とワールドマップ、下にタブの列がある" loading="lazy" decoding="async"><figcaption>戦闘以外の画面はこの判定に出しておらず、測ったのは戦闘画面だけです。</figcaption></figure></section>
+<section id="s7"><h2>文字がすべて18ピクセルに縮んでいた</h2>
+<p>下のHUDの文字を掘ってみると、変換ツールが作ったシーンで幅0の文字ボックスに合わせて強化の文字が18ピクセルまで縮んでいて、白い文字の縁取りもサイズのわりに弱いものでした。文字の高さの基準と縁取りを1か所（UiKit.polish）で決め、読みやすさのチェックツールを作ると、違反94件が0件になりました。続けて縁取りを紺色で太くし、文字サイズの40%に合わせています（#5975、#5979）。</p>
+<p>この日、判定スコアが合格に戻ったわけではありません。スコアはまだ不合格で、その日の記録は原因の区域が下のHUDだというところで終わっています。10回を超える測定で分かったのは、どこを直してはいけないか、そしてどの区域を見るべきか、でした。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ゲームのHUDとは何ですか？</summary><p>戦闘やプレイ中、画面の上にずっと表示されている情報の層です。体力、スコア、ウェーブ、時間、召喚や強化のボタンなどがここに入ります。</p></details><details><summary>HUDを外したほうがゲームがすっきり見えませんか？</summary><p>うちの測定では逆でした。HUDを丸ごと隠すと、ブラインド判定者が10枚すべてでうちの画面を当てました（spot 1.000）。所定の位置にあってこそ正解の画面らしく見えます。外してすっきりするものではありませんでした。</p></details><details><summary>画面の比較スコアが下がらないとき、原因はどう探せばいいですか？</summary><p>画面を高さで上、中央、下に切り、区域ごとに別々に判定させる方法が効きました。全体のスコア1つでは見えなかった原因の区域が、すぐに分かれました。</p></details><details><summary>スマホゲームのHUDの文字がぼやけて見えるのはなぜですか？</summary><p>うちの場合は文字ボックスのサイズに合わせて文字が18ピクセルまで縮み、縁取りもサイズのわりに弱かったためです。文字の高さと縁取りの比率を1か所で決め、チェックツールで違反を数えながら直しました。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

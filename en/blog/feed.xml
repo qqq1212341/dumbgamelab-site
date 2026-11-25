@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>I hid the HUD and the score went to 1.0</title>
+    <link>https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:00:00 GMT</pubDate>
+    <description>I scored the same 10 screenshots more than ten times and the number sat near 0.9 no matter how I changed the layout. Hiding the whole HUD gave 1.000, and only splitting the screen into zones showed the culprit. All the numbers are here.</description>
+  </item>
+  <item>
     <title>Pineapples Weren&#39;t Bought to Be Eaten</title>
     <link>https://dumbgamelab.com/en/blog/pineapple-status/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/pineapple-status/</guid>
@@ -221,13 +228,6 @@
     <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
     <description>In the 15th century &quot;eorida&quot; meant foolish. The sense of &quot;young&quot; appeared from the 16th century and is the main meaning today.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>The Day I Reported Fixing the Same 16 Bugs Twice</title>
-    <link>https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/fixed-bugs-16-reports/</guid>
-    <pubDate>Wed, 11 Nov 2026 15:00:00 GMT</pubDate>
-    <description>I opened the tickets my crash collector created and all 16 were bugs I had already fixed. Old app versions that never updated kept sending crashes that looked new. Here is where my call was wrong and the order I filter them in now.</description>
   </item>
 </channel>
 </rss>

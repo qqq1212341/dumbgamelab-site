@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HUD game saya sembunyikan, skor perbandingan malah jadi 1.0</title>
+<meta name="description" content="Skor dari 10 gambar yang sama saya ukur lebih dari sepuluh kali dan tetap di sekitar 0.9 walau tata letak layar diubah. Begitu HUD disembunyikan total, hasilnya 1.000. Pelakunya baru kelihatan setelah layar dipotong per area. Semua angkanya saya buka di sini.">
+<link rel="canonical" href="https://dumbgamelab.com/id/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/id/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="HUD game saya sembunyikan, skor perbandingan malah jadi 1.0">
+<meta property="og:description" content="Skor dari 10 gambar yang sama saya ukur lebih dari sepuluh kali dan tetap di sekitar 0.9 walau tata letak layar diubah. Begitu HUD disembunyikan total, hasilnya 1.000. Pelakunya baru kelihatan setelah layar dipotong per area. Semua angkanya saya buka di sini.">
+<meta property="og:url" content="https://dumbgamelab.com/id/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="id">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HUD disembunyikan, skornya jadi 1.0","description":"Skor dari 10 gambar yang sama saya ukur lebih dari sepuluh kali dan tetap di sekitar 0.9 walau tata letak layar diubah. Begitu HUD disembunyikan total, hasilnya 1.000. Pelakunya baru kelihatan setelah layar dipotong per area. Semua angkanya saya buka di sini.","inLanguage":"id","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/id/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/id/blog/"},{"@type":"ListItem","position":3,"name":"HUD disembunyikan, skornya jadi 1.0","item":"https://dumbgamelab.com/id/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apa itu HUD dalam game?","acceptedAnswer":{"@type":"Answer","text":"Lapisan informasi yang terus tampil di atas layar selama pertempuran atau permainan. Darah, skor, gelombang, waktu, dan tombol panggil atau upgrade masuk ke lapisan ini."}},{"@type":"Question","name":"Kalau HUD dihapus, apakah game terlihat lebih bersih?","acceptedAnswer":{"@type":"Answer","text":"Di pengukuran kami justru kebalikannya. Saat HUD disembunyikan total, juri blind test menebak punya kami dengan benar di kesepuluh gambar (spot 1.000). HUD harus ada di tempatnya supaya layar terlihat seperti aplikasi acuan. Menghapusnya tidak membuat tampilan jadi lebih bersih."}},{"@type":"Question","name":"Bagaimana mencari penyebab kalau skor perbandingan layar tidak mau turun?","acceptedAnswer":{"@type":"Answer","text":"Yang berhasil buat kami adalah memotong layar menurut tinggi jadi atas, tengah, dan bawah, lalu menilai tiap area terpisah. Area pelaku yang tidak terlihat dari satu skor total langsung kelihatan."}},{"@type":"Question","name":"Kenapa teks HUD game mobile terlihat buram?","acceptedAnswer":{"@type":"Answer","text":"Di kasus kami teksnya menyesuaikan ukuran kotak teks sampai menyusut ke 18 piksel, dan outline-nya terlalu tipis untuk ukurannya. Kami menetapkan tinggi teks dan rasio outline di satu tempat, lalu memperbaikinya sambil menghitung pelanggaran dengan alat pengecek."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/id/games/">Game</a><a href="/id/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/id/blog/">Blog</a> · Di balik layar</p>
+    <p class="kicker">Devlog · Jatuh bangun</p>
+    <h1>HUD disembunyikan, skornya jadi 1.0</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="Tiga tangkapan layar pertempuran Zombie Bus. Di atas ada gelombang, waktu, dan jumlah zombi, di bawah jalan ada dua bus dengan penyintas berdiri di atapnya, dan di paling bawah ada deretan tombol Judi, Panggil, Mitos, Upgrade" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Tanggal 6 November, waktu sedang memulihkan papan permainan Zombie Bus, saya menjalankan blind test lebih dari sepuluh kali dengan 10 gambar tetap yang sama. Makin rendah skornya makin bagus dan batas lulusnya 0.55, tapi skornya bertahan di sekitar 0.9. Bentuk petak dikembalikan pun masih 0.716, dan saat HUD disembunyikan total hasilnya 1.000. Yang terbukti cuma satu: HUD harus ada, apa pun bentuknya. Pelakunya baru kelihatan setelah layar dipotong jadi bagian atas, tengah, dan bawah lalu diukur terpisah.</p>
+    <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Makin rendah skornya makin bagus, batas lulus 0.55</a></li><li><a href="#s2">Diukur lebih dari sepuluh kali dengan 10 gambar yang sama, tetap sekitar 0.9</a></li><li><a href="#s3">Mematikan MSAA memang salah satu pelakunya, tapi cuma satu</a></li><li><a href="#s4">HUD disembunyikan, hasilnya 1.000</a></li><li><a href="#s5">Setelah layar dipotong jadi atas, tengah, bawah, lokasinya ketemu</a></li><li><a href="#s6">Adegan acuan diganti, gagal lagi</a></li><li><a href="#s7">Semua teksnya sudah menyusut jadi 18 piksel</a></li></ol></nav>
+    <section id="s1"><h2>Makin rendah skornya makin bagus, batas lulus 0.55</h2>
+<p>Zombie Bus saya kerjakan dengan dua arah sekaligus. Papan permainannya memakai bentuk Zombie Bus lama (penyintas ditaruh di atap bus di bawah, gerombolan zombi turun dari atas), sementara HUD-nya mengikuti kerangka aplikasi acuan.</p>
+<p>Bagus atau tidaknya saya ukur dengan blind test. Tangkapan layar aplikasi acuan dan punya kami dicampur, lalu juri diminta menebak mana yang punya kami, dan persentase tebakan yang benar itulah skor spot. Skor 0.5 sama dengan menebak asal, 1.0 berarti selalu ketahuan, jadi makin rendah makin bagus. Syarat lulusnya adalah mendapat 0.55 atau kurang dua kali berturut-turut.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="Satu tangkapan layar pertempuran Zombie Bus. Di atas terlihat gelombang 8 dan zombi 53/100, di bawah ada tombol Panggil" loading="lazy" decoding="async"><figcaption>Layar dari pihak kami yang masuk penilaian. Pita di atas dan deretan tombol di bawah adalah HUD.</figcaption></figure></section>
+<section id="s2"><h2>Diukur lebih dari sepuluh kali dengan 10 gambar yang sama, tetap sekitar 0.9</h2>
+<p>Papan lama saya build apa adanya untuk mengukur garis dasar dan hasilnya 0.535, lalu waktu diukur ulang turun sampai 0.399. Papan yang baru mulai dari 0.962. Penilainya sama dan 10 gambar tetapnya juga sama, jadi angka-angka ini bisa dibandingkan.</p>
+<p>Petak saya ubah jadi 4 kolom 7 baris dan karakternya diperbesar, hasilnya 0.913. Petak bus dibuat lebih terang jadi 0.899, lalu waktu MSAA dimatikan dan bayangan dikurangi demi performa ponsel, skornya naik sampai 0.990. Menyebar 60 zombi sejak awal supaya adegan lebih padat tetap 0.934, menambah angka damage dan pita peringatan merah jadi 0.931, dan setelah deretan tombol Mitos dan roulette dipasang hasilnya 0.868.</p>
+<p>Tiga kali utak-atik baru menggeser skor sekitar 0.05. Saya cuma tahu masalahnya ada di luar adegan, sedangkan letak masalahnya tetap gelap.</p>
+</section>
+<section id="s3"><h2>Mematikan MSAA memang salah satu pelakunya, tapi cuma satu</h2>
+<p>Di papan lama saya matikan MSAA saja lalu ukur, dan 0.399 naik jadi 0.569. Angka itu melewati batas lulus, berarti satu pelaku sudah tertangkap. Pengaturan yang saya matikan supaya game jalan di ponsel ternyata ikut menaikkan skor.</p>
+<p>Masalahnya, papan baru dengan MSAA dinyalakan lagi masih 0.694, dan dengan seluruh pengaturan rilis 0.729. Jelas pelakunya lebih dari satu. Model karakter dan zombinya memakai file yang sama dengan papan lama, jadi bagian itu juga tidak perlu diubah.</p>
+<div class="tbl"><table><thead><tr><th>Uji</th><th>Skor spot</th></tr></thead><tbody><tr><td>Papan lama, ukur ulang</td><td>0.399</td></tr><tr><td>Papan lama + MSAA mati</td><td>0.569</td></tr><tr><td>Papan baru, pengaturan rilis</td><td>0.729</td></tr><tr><td>Papan baru, hanya bentuk petak dikembalikan</td><td>0.716</td></tr><tr><td>Papan baru, HUD disembunyikan total</td><td>1.000</td></tr><tr><td>Papan baru, HUD lama dipasang 1.5 kali</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>HUD disembunyikan, hasilnya 1.000</h2>
+<p>HUD saya sembunyikan total lalu diukur. Hasilnya 1.000. Artinya juri menebak dengan benar di kesepuluh gambar, mana pun layarnya langsung ketahuan dalam sekali lihat.</p>
+<p>Setelah itu saya coba memasang HUD lama (papan gelombang di baris atas dan deretan tombol tebal di bawah) di atas papan baru dengan ukuran 1.5 kali. Hasilnya 0.924, malah lebih buruk dari HUD yang sekarang. Tanpa HUD langsung ketahuan, tapi mengganti bentuk HUD ke versi lama juga tidak menggeser skor. HUD cukup ada saja, dan bentuknya ternyata bukan pelakunya.</p>
+<p>Kode yang saya tulis untuk memindahkan HUD lama tidak saya masukkan ke repo, cuma disimpan terpisah. Saya tidak mau meninggalkan kode yang tidak dipakai.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="Bagian bawah layar pertempuran Zombie Bus. Satu baris tombol Judi, Panggil, Mitos dan satu baris tombol Upgrade, iklan X2, Ping" loading="lazy" decoding="async"><figcaption>Yang menahan skor adalah ada atau tidaknya deretan tombol ini, bukan bentuknya.</figcaption></figure></section>
+<section id="s5"><h2>Setelah layar dipotong jadi atas, tengah, bawah, lokasinya ketemu</h2>
+<p>Saya hitung catatan juri untuk papan baru, totalnya 156, dan alasannya menyebar ke banyak arah: menumpuk atau bertumpuk 139, unit terlalu kecil 123, UI terlalu sederhana 99, jalan terlihat kosong 71, noise di garis tepi 57. Di papan lama dari 36 catatan cuma ada UI sederhana 10 dan garis tepi 6, jadi keluhan soal UI dan garis tepi di papan baru berlipat-lipat lebih banyak.</p>
+<p>Kalau alasannya menyebar begini, susah menentukan mulai dari mana. Layar saya potong menurut tinggi jadi 0~30%, 30~72%, dan 72~100%, lalu tiap area dinilai terpisah. Hasilnya atas 0.65, tengah 0.15, bawah 0.50. Bagian tengah sudah tidak bisa dibedakan, jadi pelakunya area atas, dan karena bawah juga mepet batas lulus, urutan perbaikannya dari atas.</p>
+<p>Area atas berisi gerombolan zombi dan panel gelombang. Warna baju dan kulit tiap zombi saya pecah jadi 8 nada supaya tidak lagi terlihat seperti satu gumpalan hijau. Panel gelombang, waktu, dan jumlah zombi saya naikkan ke paling atas dan banner peringatannya dibuat tipis. Skor totalnya 0.455 dan 0.507, dua kali berturut-turut di bawah batas lulus 0.55.</p>
+</section>
+<section id="s6"><h2>Adegan acuan diganti, gagal lagi</h2>
+<p>Setelah lulus, saya ambil 10 adegan baru dari aplikasi acuan yang zombinya sedang berkumpul banyak untuk menyusun ulang acuannya. Saya mau memastikan 10 gambar tetap sebelumnya bukan adegan yang kebetulan sepi.</p>
+<p>Hasilnya 0.979 dan 0.826, gagal. Per area atas 0.525, tengah 0.113, bawah 1.000, dan kali ini pelakunya HUD bagian bawah. Alasan juri yang paling sering adalah permukaan jalan terlihat kusam dan belang, warna tombol tidak nyambung dengan latar, teks tombol Upgrade buram, dan teks tombol Mitos tertutup ikon.</p>
+<p>Aplikasi acuan memakai peta semak-semak jadi latarnya hijau, sedangkan kami menaruh UI dengan palet yang sama di atas jalan aspal. Akibatnya keduanya terlihat tidak menyatu.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="Layar lobi Zombie Bus. Ada jendela rekrut penyintas, peta dunia, dan deretan tab di bawah" loading="lazy" decoding="async"><figcaption>Layar di luar pertempuran tidak ikut dinilai kali ini, yang diukur hanya layar pertempuran.</figcaption></figure></section>
+<section id="s7"><h2>Semua teksnya sudah menyusut jadi 18 piksel</h2>
+<p>Waktu teks HUD bawah saya bongkar, ternyata di scene buatan konverter teks Upgrade menyusut jadi 18 piksel karena menyesuaikan kotak teks yang lebarnya 0, dan outline teks putihnya juga terlalu tipis untuk ukurannya. Patokan tinggi teks dan outline saya kumpulkan di satu tempat (UiKit.polish), lalu saya buat alat pengecek keterbacaan, dan pelanggarannya turun dari 94 jadi 0. Setelah itu outline-nya saya tebalkan dengan warna biru navy sampai 40% dari ukuran teks (#5975, #5979).</p>
+<p>Hari itu skor penilaiannya belum kembali lulus. Skornya masih gagal, dan catatan hari itu berhenti di temuan bahwa area pelakunya adalah HUD bawah. Dari lebih dari sepuluh kali pengukuran, yang saya dapat adalah bagian mana yang jangan diubah dan area mana yang harus dilihat.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Apa itu HUD dalam game?</summary><p>Lapisan informasi yang terus tampil di atas layar selama pertempuran atau permainan. Darah, skor, gelombang, waktu, dan tombol panggil atau upgrade masuk ke lapisan ini.</p></details><details><summary>Kalau HUD dihapus, apakah game terlihat lebih bersih?</summary><p>Di pengukuran kami justru kebalikannya. Saat HUD disembunyikan total, juri blind test menebak punya kami dengan benar di kesepuluh gambar (spot 1.000). HUD harus ada di tempatnya supaya layar terlihat seperti aplikasi acuan. Menghapusnya tidak membuat tampilan jadi lebih bersih.</p></details><details><summary>Bagaimana mencari penyebab kalau skor perbandingan layar tidak mau turun?</summary><p>Yang berhasil buat kami adalah memotong layar menurut tinggi jadi atas, tengah, dan bawah, lalu menilai tiap area terpisah. Area pelaku yang tidak terlihat dari satu skor total langsung kelihatan.</p></details><details><summary>Kenapa teks HUD game mobile terlihat buram?</summary><p>Di kasus kami teksnya menyesuaikan ukuran kotak teks sampai menyusut ke 18 piksel, dan outline-nya terlalu tipis untuk ukurannya. Kami menetapkan tinggi teks dan rasio outline di satu tempat, lalu memperbaikinya sambil menghitung pelanggaran dengan alat pengecek.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Bahasa lain</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Bahasa Indonesia</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

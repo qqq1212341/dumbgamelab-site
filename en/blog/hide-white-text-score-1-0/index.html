@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game HUD Design Lesson: Hiding the HUD Pushed Our Blind Test Score to 1.0</title>
+<meta name="description" content="I scored the same 10 screenshots more than ten times and the number sat near 0.9 no matter how I changed the layout. Hiding the whole HUD gave 1.000, and only splitting the screen into zones showed the culprit. All the numbers are here.">
+<link rel="canonical" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" type="application/rss+xml" href="/en/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Game HUD Design Lesson: Hiding the HUD Pushed Our Blind Test Score to 1.0">
+<meta property="og:description" content="I scored the same 10 screenshots more than ten times and the number sat near 0.9 no matter how I changed the layout. Hiding the whole HUD gave 1.000, and only splitting the screen into zones showed the culprit. All the numbers are here.">
+<meta property="og:url" content="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"I hid the HUD and the score went to 1.0","description":"I scored the same 10 screenshots more than ten times and the number sat near 0.9 no matter how I changed the layout. Hiding the whole HUD gave 1.000, and only splitting the screen into zones showed the culprit. All the numbers are here.","inLanguage":"en","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/en/blog/"},{"@type":"ListItem","position":3,"name":"I hid the HUD and the score went to 1.0","item":"https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a game HUD?","acceptedAnswer":{"@type":"Answer","text":"It is the layer of information that stays on top of the screen during battle or play. Health, score, wave, time and buttons like Summon or Upgrade all live there."}},{"@type":"Question","name":"Doesn't a game look cleaner without the HUD?","acceptedAnswer":{"@type":"Answer","text":"In our measurements it was the opposite. When I hid the entire HUD, the blind test judge picked out our screen in all ten pairs (spot 1.000). The HUD has to be in place for the screen to look like the reference. Removing it did not make anything cleaner."}},{"@type":"Question","name":"How do you find the cause when a screenshot comparison score won't go down?","acceptedAnswer":{"@type":"Answer","text":"What worked was cutting the screen by height into top, middle and bottom and having each zone judged separately. The culprit zone that a single overall score had hidden showed up right away."}},{"@type":"Question","name":"Why does text in a mobile game HUD look blurry?","acceptedAnswer":{"@type":"Answer","text":"In our case the text had been scaled to fit its text box and shrunk to 18 pixels, and the outline was weak for that size. I fixed it by setting the text height and outline ratio in one place and counting violations with a checker tool."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/en/games/">Games</a><a href="/en/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/en/blog/">Blog</a> · Behind the scenes</p>
+    <p class="kicker">Dev log · a detour</p>
+    <h1>I hid the HUD and the score went to 1.0</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="Three Zombie Bus battle screens. Wave, time and zombie count sit at the top, survivors stand on the roofs of two buses near the bottom of the road, and a row of Gamble, Summon, Mythic and Upgrade buttons runs along the very bottom" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">On November 6, while rebuilding the Zombie Bus battle screen, I ran a blind test more than ten times on the same fixed set of 10 screenshots. Lower is better and the pass line is 0.55, yet the score stayed near 0.9 the whole time. Reverting the grid layout still gave 0.716, and hiding the HUD entirely gave 1.000. All that proved was that the HUD has to be there, whatever its shape. I only found the culprit after cutting the screen into top, middle and bottom zones and scoring each one.</p>
+    <nav class="toc"><p>In this post</p><ol><li><a href="#s1">Lower is better, and the pass line is 0.55</a></li><li><a href="#s2">Ten-plus runs on the same 10 screenshots, all near 0.9</a></li><li><a href="#s3">Turning off MSAA was one culprit, but only one</a></li><li><a href="#s4">Hiding the HUD gave 1.000</a></li><li><a href="#s5">Only after slicing the screen into top, middle and bottom did the location show up</a></li><li><a href="#s6">Change the reference scenes and it failed again</a></li><li><a href="#s7">Every label had shrunk to 18 pixels</a></li></ol></nav>
+    <section id="s1"><h2>Lower is better, and the pass line is 0.55</h2>
+<p>Zombie Bus was being built along two tracks. The battle board used the old Zombie Bus layout, with survivors placed on the roofs of buses at the bottom while zombie hordes come down from the top, and the HUD followed the frame of the reference app.</p>
+<p>I measure whether it looks right with a blind test. The judge sees screenshots from the reference app mixed with ours and has to pick which one is ours. The hit rate is the spot score. A score of 0.5 means the judge is guessing and 1.0 means we get caught every single time, so lower is better, and passing means scoring 0.55 or below twice in a row.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="One Zombie Bus battle screen. Wave 8 and zombies 53/100 are shown at the top with a Summon button at the bottom" loading="lazy" decoding="async"><figcaption>Our screen as it went to the judge. The top strip and the bottom button rows are the HUD.</figcaption></figure></section>
+<section id="s2"><h2>Ten-plus runs on the same 10 screenshots, all near 0.9</h2>
+<p>I built the old board as it was to get a baseline and got 0.535, and a second run went as low as 0.399. The new board started at 0.962. Same judge, same fixed 10 screenshots, so the numbers can be compared directly.</p>
+<p>Switching the grid to 4 columns by 7 rows and making the bodies bigger gave 0.913. Brightening the bus slots gave 0.899, and turning off MSAA and cutting shadows for phone performance pushed it up to 0.990. Pre-spawning 60 zombies to make the scene denser still gave 0.934, adding damage numbers and a red warning strip gave 0.931, and attaching the Mythic and Roulette button row gave 0.868.</p>
+<p>It took about three rounds of changes to move the score by roughly 0.05. All I learned was that the scene itself was off the hook. Where the real problem was, I still had no idea.</p>
+</section>
+<section id="s3"><h2>Turning off MSAA was one culprit, but only one</h2>
+<p>I turned off just MSAA on the old board and scored it again: 0.399 rose to 0.569. That is over the pass line, so I had caught one culprit. A setting I had switched off to make the game run on phones was raising the score.</p>
+<p>Even so, the new board scored 0.694 with MSAA turned back on and 0.729 with the full shipping settings, which meant there had to be more than one culprit. The bodies and zombie models were the same files as on the old board, so there was nothing to change there either.</p>
+<div class="tbl"><table><thead><tr><th>Test</th><th>spot score</th></tr></thead><tbody><tr><td>Old board, measured again</td><td>0.399</td></tr><tr><td>Old board + MSAA off</td><td>0.569</td></tr><tr><td>New board, shipping settings</td><td>0.729</td></tr><tr><td>New board, grid layout reverted only</td><td>0.716</td></tr><tr><td>New board, entire HUD hidden</td><td>1.000</td></tr><tr><td>New board, old HUD placed on top at 1.5x</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>Hiding the HUD gave 1.000</h2>
+<p>I hid the whole HUD and ran the test. The result was 1.000. The judge picked ours correctly in all ten pairs, which means any screen gave us away at a glance.</p>
+<p>Seeing that, I placed the old HUD (the wave panel along the top and the thick button rows at the bottom) over the new board at 1.5x and got 0.924. That was actually worse than the HUD we had. Without a HUD we got caught immediately, yet swapping its shape for the old one did nothing for the score. The HUD only had to exist, and its shape was never the problem.</p>
+<p>The code I wrote to port the old HUD stayed out of the repo and was archived separately. I did not want to leave unused code lying around.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="Bottom of a Zombie Bus battle screen. One row of Gamble, Summon and Mythic buttons and one row of Upgrade, X2 ad and ping buttons" loading="lazy" decoding="async"><figcaption>What held the score up was whether these button rows were there at all. Their shape did not matter.</figcaption></figure></section>
+<section id="s5"><h2>Only after slicing the screen into top, middle and bottom did the location show up</h2>
+<p>I went through 156 judge notes on the new board and counted the reasons: clumping and overlap 139, units too small 123, UI too plain 99, road looks empty 71, outline noise 57. The reasons were scattered in every direction. In 36 notes on the old board, plain UI came up only 10 times and outlines 6, so the new board drew several times more UI and outline complaints.</p>
+<p>When the reasons scatter like that it is hard to decide where to start, so I cut the screen by height into 0 to 30%, 30 to 72% and 72 to 100% and had each zone judged on its own. The top scored 0.65, the middle 0.15 and the bottom 0.50. The middle was already indistinguishable, which made the top zone the culprit, and since the bottom sat near the pass line, the fix order started from the top.</p>
+<p>The top zone holds the zombie horde and the wave panel. I split each zombie&#39;s clothing and skin tone into 8 variations to break up what had read as one green blob, moved the wave, time and zombie count panel to the very top, and made the warning banner thinner. The overall score came in at 0.455 and 0.507, under the 0.55 pass line twice in a row.</p>
+</section>
+<section id="s6"><h2>Change the reference scenes and it failed again</h2>
+<p>After the pass I pulled 10 new scenes from the reference app where zombie hordes were packed in tight and set a new baseline. I wanted to check whether the earlier fixed 10 had just been quiet scenes.</p>
+<p>The result was 0.979 and 0.826, a fail. By zone it was top 0.525, middle 0.113, bottom 1.000, so this time the bottom HUD was the culprit. The judge&#39;s top reasons were that the road surface looked dull and blotchy, the button colors clashed with the background, the Upgrade button text was faint, and the Mythic button text was hidden behind its icon.</p>
+<p>The reference app plays on a grassy map with a green background, while we had put the same palette UI on top of an asphalt road. The two simply did not belong together.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="Zombie Bus lobby screen. A survivor recruitment window, a world map and a tab bar at the bottom" loading="lazy" decoding="async"><figcaption>Screens outside battle never went to this judge. Only battle screens were scored.</figcaption></figure></section>
+<section id="s7"><h2>Every label had shrunk to 18 pixels</h2>
+<p>Digging into the bottom HUD text, I found that in the scene generated by the converter, the Upgrade label had been squeezed down to 18 pixels to fit a text box with zero width, and the white text outline was weak for its size. I set the text height standard and the outline in one place (UiKit.polish) and built a readability checker, and the violation count went from 94 to 0. Then I made the outline navy and thicker, at 40% of the font size (#5975, #5979).</p>
+<p>That day did not end with the score passing again. The score is still a fail, and that day&#39;s notes stop at the bottom HUD being the culprit zone. What more than ten rounds of measuring taught me was where not to make changes, and which zone to look at.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>What is a game HUD?</summary><p>It is the layer of information that stays on top of the screen during battle or play. Health, score, wave, time and buttons like Summon or Upgrade all live there.</p></details><details><summary>Doesn&#39;t a game look cleaner without the HUD?</summary><p>In our measurements it was the opposite. When I hid the entire HUD, the blind test judge picked out our screen in all ten pairs (spot 1.000). The HUD has to be in place for the screen to look like the reference. Removing it did not make anything cleaner.</p></details><details><summary>How do you find the cause when a screenshot comparison score won&#39;t go down?</summary><p>What worked was cutting the screen by height into top, middle and bottom and having each zone judged separately. The culprit zone that a single overall score had hidden showed up right away.</p></details><details><summary>Why does text in a mobile game HUD look blurry?</summary><p>In our case the text had been scaled to fit its text box and shrunk to 18 pixels, and the outline was weak for that size. I fixed it by setting the text height and outline ratio in one place and counting violations with a checker tool.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>More from the blog</h2><div class="cards"><a class="pcard" href="/en/blog/best-asmr-games-android-offline/"><img src="/blog/img/best-asmr-games-android-offline/hero.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>We ran 9 Android ASMR games on a real phone</b><span class="pc-desc">We installed nine ASMR games on a Samsung Galaxy Z Flip5 and relaunched each in airplane mode. Install size, first screen and whether an ad blocks the game, checked on 20 November 2026.</span></a><a class="pcard" href="/en/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Onsen and bathhouse games: 8 compared by what the store pages say</b><span class="pc-desc">Onsen and bathhouse games from Steam, Google Play and the App Store in one table: price, rating, idle or not, Korean and Japanese support, plus the weak spots of our own game.</span></a><a class="pcard" href="/en/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-en.jpg" alt="" loading="lazy"><span class="pc-type">Comparison</span><b>Idle tycoon games that work offline: 8 picks sorted by store labels</b><span class="pc-desc">Which idle tycoon games work offline? Google Play tag, store wording, list price and ads in one table, plus our own game&#39;s weak spots.</span></a><a class="pcard" href="/en/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-en.jpg" alt="" loading="lazy"><span class="pc-type">Games like</span><b>Finished Kairosoft? 14 games to play next, sorted by what you loved</b><span class="pc-desc">If you have played through Kairosoft, here are 14 games sorted into four flavors: short grow-it sessions, running a shop, watching residents live, and layout puzzles. Steam list prices, review scores and UI languages checked by hand.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Read in</span><b>English</b><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

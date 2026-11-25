@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>把 HUD 藏起來，分數變成 1.0</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:00:00 GMT</pubDate>
+    <description>同一組 10 張截圖量了十幾次，不管畫面怎麼改都卡在 0.9 上下。把 HUD 整個藏起來就變成 1.000，直到把畫面切成區塊分開量，才看出問題在哪。所有數字都公開。</description>
+  </item>
+  <item>
     <title>糖餅、韓國鯛魚燒、藥果，三種裡有幾個算麵包?</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/korean-street-bakes-hotteok-bungeoppang-yakgwa/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-tycoon-layout-tips/</guid>
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>汗蒸幕經營遊戲裡，設施放在哪裡收入會增加20%，放在哪裡又會被扣掉20%？《汗蒸館養成記》的相鄰倍率表、空調範圍與大門位置，全部用遊戲內實際數值整理。</description>
-  </item>
-  <item>
-    <title>韓國網咖為什麼賣起餐點，像一間餐廳</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/why-pc-bangs-became-restaurants/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/why-pc-bangs-became-restaurants/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>韓國 PC房（網咖）為什麼賣泡麵、炒飯和炸雞？2013 年全面禁菸、2010 年檢舉制度、餐飲營收從約 10% 到約 40%，附上來源一次整理。</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ẩn HUD game đi thì điểm so sánh lên đúng 1.0</title>
+<meta name="description" content="Tôi chấm cùng 10 ảnh hơn mười lần, đổi bố cục màn hình mà điểm vẫn quanh 0.9. Ẩn hẳn HUD thì ra 1.000, phải cắt màn hình thành từng vùng mới tìm ra thủ phạm. Toàn bộ số liệu ở đây.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Ẩn HUD game đi thì điểm so sánh lên đúng 1.0">
+<meta property="og:description" content="Tôi chấm cùng 10 ảnh hơn mười lần, đổi bố cục màn hình mà điểm vẫn quanh 0.9. Ẩn hẳn HUD thì ra 1.000, phải cắt màn hình thành từng vùng mới tìm ra thủ phạm. Toàn bộ số liệu ở đây.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ẩn HUD đi, điểm lên 1.0","description":"Tôi chấm cùng 10 ảnh hơn mười lần, đổi bố cục màn hình mà điểm vẫn quanh 0.9. Ẩn hẳn HUD thì ra 1.000, phải cắt màn hình thành từng vùng mới tìm ra thủ phạm. Toàn bộ số liệu ở đây.","inLanguage":"vi","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Ẩn HUD đi, điểm lên 1.0","item":"https://dumbgamelab.com/vi/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"HUD trong game là gì?","acceptedAnswer":{"@type":"Answer","text":"Là lớp thông tin luôn nằm trên màn hình trong lúc đánh hoặc lúc chơi. Máu, điểm, đợt, thời gian, các nút triệu hồi, nâng cấp đều nằm ở lớp này."}},{"@type":"Question","name":"Bỏ HUD đi thì game có trông gọn hơn không?","acceptedAnswer":{"@type":"Answer","text":"Trong lần đo của chúng tôi thì ngược lại. Ẩn hẳn HUD đi, giám khảo blind test đoán đúng phía chúng tôi ở cả mười ảnh (spot 1.000). HUD phải có ở đó thì màn hình mới giống app tham chiếu, bỏ đi chẳng gọn hơn chút nào."}},{"@type":"Question","name":"Điểm so sánh màn hình không chịu giảm thì tìm nguyên nhân thế nào?","acceptedAnswer":{"@type":"Answer","text":"Cách hiệu quả với chúng tôi là cắt màn hình theo chiều cao thành trên, giữa, dưới rồi chấm riêng từng vùng. Vùng thủ phạm mà một điểm tổng không cho thấy hiện ra ngay."}},{"@type":"Question","name":"Vì sao chữ trong HUD game mobile trông mờ?","acceptedAnswer":{"@type":"Answer","text":"Với chúng tôi, chữ bị co theo kích thước ô chữ xuống tận 18 pixel và viền quá mảnh so với cỡ chữ. Tôi đặt chiều cao chữ và tỉ lệ viền ở một chỗ rồi dùng công cụ kiểm tra đếm từng vi phạm để sửa."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hậu trường</p>
+    <p class="kicker">Nhật ký làm game · Chuyện trầy trật</p>
+    <h1>Ẩn HUD đi, điểm lên 1.0</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="Ba ảnh màn đánh của Zombie Bus. Phía trên có đợt, thời gian và số zombie, dưới con đường là hai chiếc xe buýt có người sống sót đứng trên nóc, dưới cùng là hàng nút Cược, Triệu hồi, Thần thoại, Nâng cấp" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">Ngày 6 tháng 11, lúc đang dựng lại màn chơi của Zombie Bus, tôi chạy blind test hơn mười lần với cùng 10 ảnh cố định. Điểm càng thấp càng tốt, ngưỡng đạt là 0.55, vậy mà suốt buổi điểm cứ quanh 0.9. Trả bố cục ô về như cũ vẫn được 0.716, còn ẩn hẳn HUD thì lên 1.000. Tôi chỉ xác nhận được là HUD phải có mặt, kiểu dáng thế nào cũng được, và phải cắt màn hình thành ba vùng trên, giữa, dưới mới thấy thủ phạm.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Điểm càng thấp càng tốt, ngưỡng đạt là 0.55</a></li><li><a href="#s2">Đo hơn mười lần với cùng 10 ảnh, điểm vẫn quanh 0.9</a></li><li><a href="#s3">Tắt MSAA đúng là một thủ phạm, nhưng chỉ là một</a></li><li><a href="#s4">Ẩn HUD đi thì ra 1.000</a></li><li><a href="#s5">Cắt màn hình thành trên, giữa, dưới mới ra vị trí</a></li><li><a href="#s6">Đổi cảnh mốc thì lại trượt</a></li><li><a href="#s7">Chữ đã bị thu hết về 18 pixel</a></li></ol></nav>
+    <section id="s1"><h2>Điểm càng thấp càng tốt, ngưỡng đạt là 0.55</h2>
+<p>Zombie Bus là game tôi làm theo hai hướng cùng lúc. Màn chơi giữ kiểu Zombie Bus cũ (đặt người sống sót lên nóc xe buýt ở dưới, đàn zombie từ trên tràn xuống), còn HUD thì đi theo khung của app tham chiếu.</p>
+<p>Làm tốt hay chưa thì tôi đo bằng blind test. Tôi trộn ảnh màn hình của app tham chiếu với ảnh của mình rồi cho giám khảo đoán ảnh nào là của chúng tôi, tỉ lệ đoán trúng chính là điểm spot. Điểm 0.5 nghĩa là đoán mò, 1.0 nghĩa là lần nào cũng bị lộ, nên càng thấp càng tốt. Muốn đạt thì phải ra 0.55 trở xuống hai lần liên tiếp.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="Một ảnh màn đánh của Zombie Bus. Phía trên thấy đợt 8 và zombie 53/100, phía dưới có nút Triệu hồi" loading="lazy" decoding="async"><figcaption>Ảnh phía chúng tôi đưa vào chấm. Dải trên cùng và hàng nút dưới cùng là HUD.</figcaption></figure></section>
+<section id="s2"><h2>Đo hơn mười lần với cùng 10 ảnh, điểm vẫn quanh 0.9</h2>
+<p>Tôi build lại nguyên màn chơi cũ để lấy mốc thì được 0.535, đo lại còn xuống tới 0.399, trong khi màn chơi mới bắt đầu ở 0.962. Cùng một bộ chấm, cùng 10 ảnh cố định, nên các con số so được với nhau.</p>
+<p>Đổi ô thành 4 cột 7 hàng và phóng to nhân vật thì ra 0.913. Làm sáng ô xe buýt được 0.899, rồi tắt MSAA và giảm bóng đổ cho nhẹ máy thì điểm vọt lên 0.990. Rải sẵn 60 con zombie cho cảnh dày hơn vẫn là 0.934, thêm số sát thương và dải cảnh báo đỏ được 0.931, gắn thêm hàng nút Thần thoại và vòng quay thì ra 0.868.</p>
+<p>Sửa ba lần thì điểm nhúc nhích khoảng 0.05. Tôi chỉ biết lỗi không nằm ở cảnh, còn chỗ nào hỏng thì vẫn mù tịt.</p>
+</section>
+<section id="s3"><h2>Tắt MSAA đúng là một thủ phạm, nhưng chỉ là một</h2>
+<p>Tôi tắt mỗi MSAA ở màn chơi cũ rồi đo, điểm từ 0.399 lên 0.569. Con số này vượt ngưỡng đạt, tức là đã bắt được một thủ phạm. Thiết lập tôi tắt để game chạy được trên điện thoại hóa ra đang đẩy điểm lên.</p>
+<p>Có điều màn chơi mới bật lại MSAA vẫn được 0.694, đo với toàn bộ thiết lập bản phát hành là 0.729, nên chắc chắn thủ phạm không chỉ có một. Nhân vật và mô hình zombie dùng chung file với màn chơi cũ, nên cũng chẳng có gì để sửa ở đó.</p>
+<div class="tbl"><table><thead><tr><th>Thử nghiệm</th><th>Điểm spot</th></tr></thead><tbody><tr><td>Màn cũ, đo lại</td><td>0.399</td></tr><tr><td>Màn cũ + tắt MSAA</td><td>0.569</td></tr><tr><td>Màn mới, thiết lập bản phát hành</td><td>0.729</td></tr><tr><td>Màn mới, chỉ trả bố cục ô về cũ</td><td>0.716</td></tr><tr><td>Màn mới, ẩn hẳn HUD</td><td>1.000</td></tr><tr><td>Màn mới, đặt HUD cũ lên với cỡ 1.5 lần</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>Ẩn HUD đi thì ra 1.000</h2>
+<p>Tôi ẩn hẳn HUD rồi đo. Kết quả là 1.000. Giám khảo đoán đúng cả mười ảnh, nhìn màn nào cũng nhận ra ngay đâu là ảnh của chúng tôi.</p>
+<p>Thấy vậy tôi thử đặt HUD cũ (bảng đợt ở dòng trên và hàng nút to ở dưới) lên màn mới với cỡ 1.5 lần, kết quả 0.924, còn tệ hơn HUD đang dùng. Không có HUD thì lộ ngay, nhưng đổi HUD sang kiểu cũ cũng không làm điểm nhúc nhích. HUD chỉ cần có mặt, còn kiểu dáng thì không phải thủ phạm.</p>
+<p>Đoạn code viết để ghép HUD cũ vào tôi không đưa vào repo mà cất riêng. Tôi không muốn để lại code không ai dùng.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="Phần dưới màn đánh của Zombie Bus. Một hàng nút Cược, Triệu hồi, Thần thoại và một hàng nút Nâng cấp, quảng cáo X2, Ping" loading="lazy" decoding="async"><figcaption>Thứ giữ điểm là hàng nút này có mặt hay không, kiểu dáng của nó thì không quan trọng.</figcaption></figure></section>
+<section id="s5"><h2>Cắt màn hình thành trên, giữa, dưới mới ra vị trí</h2>
+<p>Tôi đếm 156 nhận xét của giám khảo về màn mới thì thấy lý do tản ra nhiều hướng: bị dồn cục, chồng lên nhau 139 lần, nhân vật nhỏ 123, UI đơn giản 99, đường trông trống 71, viền nhiễu 57. Ở màn cũ chỉ có 36 nhận xét, trong đó UI đơn giản 10 và viền 6, nên màn mới bị chê UI và viền nhiều gấp mấy lần.</p>
+<p>Lý do tản ra như vậy thì khó biết nên sửa từ đâu. Tôi cắt màn hình theo chiều cao thành 0~30%, 30~72%, 72~100% rồi cho chấm riêng từng vùng. Kết quả là trên 0.65, giữa 0.15, dưới 0.50. Vùng giữa đã tới mức không phân biệt được, vậy thủ phạm là vùng trên, vùng dưới cũng sát ngưỡng đạt, nên thứ tự sửa là từ trên xuống.</p>
+<p>Vùng trên chứa đàn zombie và bảng đợt. Tôi chia màu quần áo và màu da của zombie thành 8 tông để chúng không còn trông như một mảng xanh lá liền khối, đẩy bảng đợt, thời gian, số zombie lên sát mép trên và làm dải cảnh báo mỏng lại. Điểm tổng ra 0.455 và 0.507, hai lần liên tiếp dưới ngưỡng 0.55.</p>
+</section>
+<section id="s6"><h2>Đổi cảnh mốc thì lại trượt</h2>
+<p>Đạt rồi, tôi lấy 10 cảnh mới từ app tham chiếu, toàn những lúc zombie dồn đông, để dựng lại mốc. Tôi muốn chắc rằng 10 ảnh cố định lúc trước không phải toàn cảnh vắng.</p>
+<p>Kết quả là 0.979 và 0.826, trượt. Theo vùng thì trên 0.525, giữa 0.113, dưới 1.000, lần này thủ phạm là HUD phía dưới. Những lý do giám khảo nêu nhiều nhất là mặt đường xỉn màu và loang lổ, màu nút lệch với nền, chữ trên nút Nâng cấp bị mờ, chữ trên nút Thần thoại bị biểu tượng che.</p>
+<p>Bên app tham chiếu là bản đồ bụi cỏ nên nền màu xanh lá. Chúng tôi lại đặt UI cùng bảng màu đó lên đường nhựa, nên hai thứ trông lạc nhau.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="Màn sảnh của Zombie Bus. Có cửa sổ tuyển người sống sót, bản đồ thế giới và hàng tab ở dưới" loading="lazy" decoding="async"><figcaption>Màn hình ngoài trận không đưa vào lần chấm này, tôi chỉ đo màn đánh.</figcaption></figure></section>
+<section id="s7"><h2>Chữ đã bị thu hết về 18 pixel</h2>
+<p>Đào vào chữ trong HUD phía dưới, tôi thấy trong scene do bộ chuyển đổi tạo ra, chữ Nâng cấp bị co lại còn 18 pixel cho vừa một ô chữ có chiều rộng 0, còn viền của chữ trắng thì quá mảnh so với cỡ chữ. Tôi gom chuẩn chiều cao chữ và viền về một chỗ (UiKit.polish), viết thêm công cụ kiểm tra độ dễ đọc, và số vi phạm từ 94 về 0. Sau đó tôi làm viền dày hơn, màu xanh navy, bằng 40% cỡ chữ (#5975, #5979).</p>
+<p>Hôm đó điểm chấm vẫn chưa quay về mức đạt. Điểm vẫn trượt, và ghi chép ngày hôm ấy dừng ở chỗ biết được vùng thủ phạm là HUD phía dưới. Hơn mười lần đo cho tôi biết chỗ nào không nên sửa và nên nhìn vào vùng nào.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>HUD trong game là gì?</summary><p>Là lớp thông tin luôn nằm trên màn hình trong lúc đánh hoặc lúc chơi. Máu, điểm, đợt, thời gian, các nút triệu hồi, nâng cấp đều nằm ở lớp này.</p></details><details><summary>Bỏ HUD đi thì game có trông gọn hơn không?</summary><p>Trong lần đo của chúng tôi thì ngược lại. Ẩn hẳn HUD đi, giám khảo blind test đoán đúng phía chúng tôi ở cả mười ảnh (spot 1.000). HUD phải có ở đó thì màn hình mới giống app tham chiếu, bỏ đi chẳng gọn hơn chút nào.</p></details><details><summary>Điểm so sánh màn hình không chịu giảm thì tìm nguyên nhân thế nào?</summary><p>Cách hiệu quả với chúng tôi là cắt màn hình theo chiều cao thành trên, giữa, dưới rồi chấm riêng từng vùng. Vùng thủ phạm mà một điểm tổng không cho thấy hiện ra ngay.</p></details><details><summary>Vì sao chữ trong HUD game mobile trông mờ?</summary><p>Với chúng tôi, chữ bị co theo kích thước ô chữ xuống tận 18 pixel và viền quá mảnh so với cỡ chữ. Tôi đặt chiều cao chữ và tỉ lệ viền ở một chỗ rồi dùng công cụ kiểm tra đếm từng vi phạm để sửa.</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

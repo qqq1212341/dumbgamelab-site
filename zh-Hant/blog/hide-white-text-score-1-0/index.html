@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>遊戲 HUD 是什麼？把 HUD 藏起來，盲測比對分數直接變成 1.0 的那天</title>
+<meta name="description" content="同一組 10 張截圖量了十幾次，不管畫面怎麼改都卡在 0.9 上下。把 HUD 整個藏起來就變成 1.000，直到把畫面切成區塊分開量，才看出問題在哪。所有數字都公開。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" type="application/rss+xml" href="/zh-Hant/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="遊戲 HUD 是什麼？把 HUD 藏起來，盲測比對分數直接變成 1.0 的那天">
+<meta property="og:description" content="同一組 10 張截圖量了十幾次，不管畫面怎麼改都卡在 0.9 上下。把 HUD 整個藏起來就變成 1.000，直到把畫面切成區塊分開量，才看出問題在哪。所有數字都公開。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"把 HUD 藏起來，分數變成 1.0","description":"同一組 10 張截圖量了十幾次，不管畫面怎麼改都卡在 0.9 上下。把 HUD 整個藏起來就變成 1.000，直到把畫面切成區塊分開量，才看出問題在哪。所有數字都公開。","inLanguage":"zh-TW","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"部落格","item":"https://dumbgamelab.com/zh-Hant/blog/"},{"@type":"ListItem","position":3,"name":"把 HUD 藏起來，分數變成 1.0","item":"https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"遊戲 HUD 是什麼？","acceptedAnswer":{"@type":"Answer","text":"就是戰鬥或遊玩時一直浮在畫面上的資訊層。血量、分數、波數、時間，還有召喚、強化這類按鈕都放在這裡。"}},{"@type":"Question","name":"把 HUD 拿掉，遊戲不是看起來更乾淨嗎？","acceptedAnswer":{"@type":"Answer","text":"我們量出來的結果剛好相反。HUD 整個藏起來之後，盲測評審十張全都認出了我們的畫面（spot 1.000）。HUD 要在該在的位置，畫面才會像標準答案。拿掉它並不會變乾淨。"}},{"@type":"Question","name":"畫面比對分數一直降不下來，要怎麼找原因？","acceptedAnswer":{"@type":"Answer","text":"我們有效的做法是把畫面按高度切成上、中、下，每個區塊分開給評審判。只看整體分數時看不出來的問題區塊，一下子就分出來了。"}},{"@type":"Question","name":"手機遊戲 HUD 的字為什麼看起來糊糊的？","acceptedAnswer":{"@type":"Answer","text":"我們的情況是文字被縮到配合文字框的大小，只剩 18 像素，描邊相對字的大小也太弱。後來把字高和描邊比例統一在一個地方設定，再用檢查工具一邊數違規一邊修。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hant/games/">遊戲</a><a href="/zh-Hant/blog/">部落格</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hant/blog/">部落格</a> · 開發幕後</p>
+    <p class="kicker">開發日誌 一波三折</p>
+    <h1>把 HUD 藏起來，分數變成 1.0</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="三張殭屍巴士戰鬥畫面。上方是波數、時間和殭屍數量，道路下方兩台巴士車頂站著倖存者，最下面是賭博、召喚、神話、強化按鈕列" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11 月 6 日在重做殭屍巴士的戰鬥畫面時，我用同一組固定的 10 張截圖跑了十幾次盲測。分數越低越好，及格線是 0.55，結果一直停在 0.9 附近。把格子形狀改回去還是 0.716，把 HUD 整個藏起來則是 1.000。這只證明了一件事：不管長什麼樣，HUD 都得在。真正的問題，是把畫面切成上、中、下分開量之後才看出來的。</p>
+    <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">分數越低越好，及格線是 0.55</a></li><li><a href="#s2">同一組 10 張量了十幾次，還是 0.9 上下</a></li><li><a href="#s3">關掉 MSAA 確實是原因之一，但只是其中一個</a></li><li><a href="#s4">把 HUD 藏起來，結果是 1.000</a></li><li><a href="#s5">把畫面切成上、中、下，才找到位置</a></li><li><a href="#s6">換了基準場景，又不及格了</a></li><li><a href="#s7">文字全都縮成了 18 像素</a></li></ol></nav>
+    <section id="s1"><h2>分數越低越好，及格線是 0.55</h2>
+<p>殭屍巴士是分成兩條線在做的遊戲。戰鬥盤面沿用舊版殭屍巴士的樣子（在下方巴士車頂放倖存者，殭屍群從上方往下湧），HUD 則照著標準答案 App 的框架來排。</p>
+<p>做得像不像，是用盲測來量的。把標準答案 App 的畫面和我們的畫面混在一起給評審看，讓評審猜哪一張是我們的。猜中的比例就是 spot 分數。0.5 等於隨便猜，1.0 代表每次都被認出來，所以越低越好，及格標準是連續兩次拿到 0.55 以下。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="一張殭屍巴士戰鬥畫面。上方顯示第 8 波、殭屍 53/100，下方有召喚按鈕" loading="lazy" decoding="async"><figcaption>送去給評審看的我們這邊的畫面。上面那條和下面的按鈕列就是 HUD。</figcaption></figure></section>
+<section id="s2"><h2>同一組 10 張量了十幾次，還是 0.9 上下</h2>
+<p>把舊盤面原封不動地建置出來量基準，得到 0.535，再量一次降到 0.399；新做的盤面卻是從 0.962 起跳。用的是同一個評審、同一組固定 10 張，所以數字之間可以直接比。</p>
+<p>格子改成 4 欄 7 列、角色放大之後是 0.913，把巴士格調亮變成 0.899，為了手機效能關掉 MSAA、減少陰影，反而一路升到 0.990。先放 60 隻殭屍把畫面密度拉高也還有 0.934，加上傷害數字和紅色警告條是 0.931，連神話、輪盤按鈕列都裝上去是 0.868。</p>
+<p>大概改三次，分數才動個 0.05 左右。只知道問題不在場景本身，到底卡在哪裡還是不知道。</p>
+</section>
+<section id="s3"><h2>關掉 MSAA 確實是原因之一，但只是其中一個</h2>
+<p>我在舊盤面上只關掉 MSAA 再量，0.399 變成 0.569。這個數字已經超過及格線，等於抓到了一個原因：為了在手機上跑而關掉的設定，一直在把分數往上推。</p>
+<p>不過新盤面就算把 MSAA 開回來也有 0.694，用正式出貨設定量是 0.729，可見原因不只一個。角色和殭屍模型跟舊盤面是同一批檔案，那邊也沒有東西可改。</p>
+<div class="tbl"><table><thead><tr><th>測試</th><th>spot 分數</th></tr></thead><tbody><tr><td>舊盤面重新量測</td><td>0.399</td></tr><tr><td>舊盤面 + 關閉 MSAA</td><td>0.569</td></tr><tr><td>新盤面 出貨設定</td><td>0.729</td></tr><tr><td>新盤面 只把格子形狀改回去</td><td>0.716</td></tr><tr><td>新盤面 HUD 整個藏起來</td><td>1.000</td></tr><tr><td>新盤面 疊上 1.5 倍的舊 HUD</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>把 HUD 藏起來，結果是 1.000</h2>
+<p>我把 HUD 整個藏起來量了一次。結果是 1.000，代表評審十張全部都猜中哪一張是我們的。不管哪個畫面，一眼就被認出來了。</p>
+<p>看到這個結果，我把舊 HUD（上排的波數面板和下方粗粗的按鈕列）放大 1.5 倍疊到新盤面上，得到 0.924，比現在用的 HUD 還差。少了 HUD 馬上就露餡，可是把 HUD 換回舊的樣子，分數也動不了。它是只要在場就好的零件，形狀從來不是問題所在。</p>
+<p>為了移植舊 HUD 寫的程式碼沒有放進 repo，只另外存了起來。我不想留下沒在用的程式碼。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="殭屍巴士戰鬥畫面的下半部。一排賭博、召喚、神話按鈕，一排強化、X2 廣告、標記按鈕" loading="lazy" decoding="async"><figcaption>撐住分數的是這幾排按鈕在不在，跟長什麼樣子無關。</figcaption></figure></section>
+<section id="s5"><h2>把畫面切成上、中、下，才找到位置</h2>
+<p>我把評審在新盤面寫的 156 則意見拿來數：擠成一團、重疊 139 則，單位太小 123 則，UI 太單調 99 則，道路看起來空空的 71 則，描邊雜訊 57 則，理由分散在好幾個方向。舊盤面的 36 則裡，UI 單調只有 10 則、描邊 6 則，等於只有新盤面的 UI 和描邊意見多了好幾倍。</p>
+<p>理由這麼分散，很難決定先修哪裡，所以我把畫面按高度切成 0～30%、30～72%、72～100%，每個區塊分開給評審判。上方 0.65、中間 0.15、下方 0.50。中間已經分不出來了，問題在上方；下方也在及格線附近，所以修的順序從上方開始。</p>
+<p>上方區塊裡有殭屍群和波數面板。我把每隻殭屍的衣服和膚色拆成 8 種色調，讓原本看起來像一整坨綠色的殭屍群散開，再把波數、時間、殭屍數量面板移到最上面，警告橫幅也改細。整體分數是 0.455 和 0.507，連續兩次低於 0.55 及格線。</p>
+</section>
+<section id="s6"><h2>換了基準場景，又不及格了</h2>
+<p>及格之後，我從標準答案 App 重新挑了 10 張殭屍群擠得很滿的場景當新基準，想確認之前那組固定 10 張會不會剛好都是比較空的場景。</p>
+<p>結果是 0.979 和 0.826，不及格。分區來看，上方 0.525、中間 0.113、下方 1.000，這次問題出在下方 HUD。評審給的主要理由是：道路地面看起來灰暗又斑駁、按鈕顏色跟背景不搭、強化按鈕的字很淡、神話按鈕的字被圖示擋住。</p>
+<p>標準答案 App 那邊是草叢地圖，背景是綠色的；我們卻在柏油路上放了同一套配色的 UI，兩者自然各走各的。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="殭屍巴士大廳畫面。有倖存者招募視窗和世界地圖，下方是分頁列" loading="lazy" decoding="async"><figcaption>戰鬥以外的畫面沒有送去盲測，只量了戰鬥畫面。</figcaption></figure></section>
+<section id="s7"><h2>文字全都縮成了 18 像素</h2>
+<p>往下挖下方 HUD 的文字，發現轉換工具產生的場景裡，強化的字為了塞進寬度為 0 的文字框，縮成了 18 像素，白字的描邊相對字的大小也太弱。我把文字高度標準和描邊統一在一個地方（UiKit.polish）設定，再做了可讀性檢查工具，違規從 94 則降到 0。接著把描邊改成深藍色並加粗，調成字體大小的 40%（#5975、#5979）。</p>
+<p>這天盲測分數並沒有回到及格。分數還是不及格，那天的紀錄停在「問題區塊是下方 HUD」。量了十幾次學到的，是哪裡不該動，還有該看哪個區塊。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>遊戲 HUD 是什麼？</summary><p>就是戰鬥或遊玩時一直浮在畫面上的資訊層。血量、分數、波數、時間，還有召喚、強化這類按鈕都放在這裡。</p></details><details><summary>把 HUD 拿掉，遊戲不是看起來更乾淨嗎？</summary><p>我們量出來的結果剛好相反。HUD 整個藏起來之後，盲測評審十張全都認出了我們的畫面（spot 1.000）。HUD 要在該在的位置，畫面才會像標準答案。拿掉它並不會變乾淨。</p></details><details><summary>畫面比對分數一直降不下來，要怎麼找原因？</summary><p>我們有效的做法是把畫面按高度切成上、中、下，每個區塊分開給評審判。只看整體分數時看不出來的問題區塊，一下子就分出來了。</p></details><details><summary>手機遊戲 HUD 的字為什麼看起來糊糊的？</summary><p>我們的情況是文字被縮到配合文字框的大小，只剩 18 像素，描邊相對字的大小也太弱。後來把字高和描邊比例統一在一個地方設定，再用檢查工具一邊數違規一邊修。</p></details></section>
+    
+    
+    
+    <section class="more"><h2>更多文章</h2><div class="cards"><a class="pcard" href="/zh-Hant/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>溫泉與澡堂題材的遊戲8款，用商店標示比較</b><span class="pc-desc">溫泉、澡堂題材的遊戲，依 Steam、Google Play、App Store 原文標示排成一張表。價格、評價、是否放置、有沒有韓文與日文都列出，也寫了我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>離線也能玩的放置經營手遊，用商店標示篩出的8款</b><span class="pc-desc">放置經營手遊哪些能離線玩？依 Google Play 與 App Store 原文標示，把標籤、說明、價格、廣告列成一張表，也寫出我們自己遊戲的弱點。</span></a><a class="pcard" href="/zh-Hant/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-zh-Hant.jpg" alt="" loading="lazy"><span class="pc-type">類似遊戲</span><b>開羅遊戲玩完了：依喜歡的味道挑下一款，共14款</b><span class="pc-desc">玩過一輪開羅遊戲（Kairosoft）的人，下一款可以從「短時間慢慢養、經營小店照顧員工、看居民的人生、擺設搭配益智」四個方向挑。我們確認了14款遊戲的Steam定價、評價與介面語言。</span></a><a class="pcard" href="/zh-Hant/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>網咖經營遊戲 2026,連 iPhone 也有的 17 款</b><span class="pc-desc">想找網咖模擬器?我們挑出 iPhone、Android、Steam 共 17 款網咖經營遊戲,附上直接在商店頁面讀到的價格、評分、離線標示,也寫出我們自家遊戲的缺點。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新遊戲與小消息，大約每月一封。</p><input type="email" name="email" required placeholder="電子郵件地址" aria-label="電子郵件地址"><input type="hidden" name="embed" value="1"><button type="submit">訂閱</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他語言</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><b>繁體中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

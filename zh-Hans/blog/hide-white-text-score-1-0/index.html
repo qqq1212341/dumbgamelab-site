@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>游戏HUD设计踩坑：把HUD藏起来，盲测对比分数直接变成1.0</title>
+<meta name="description" content="同一组10张截图测了十几次，不管画面怎么改都卡在0.9上下。把HUD整个藏起来就变成1.000，直到把画面切成几个区域分开测，才看出问题在哪。所有数字都公开。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="游戏HUD设计踩坑：把HUD藏起来，盲测对比分数直接变成1.0">
+<meta property="og:description" content="同一组10张截图测了十几次，不管画面怎么改都卡在0.9上下。把HUD整个藏起来就变成1.000，直到把画面切成几个区域分开测，才看出问题在哪。所有数字都公开。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"把HUD藏起来，分数变成了1.0","description":"同一组10张截图测了十几次，不管画面怎么改都卡在0.9上下。把HUD整个藏起来就变成1.000，直到把画面切成几个区域分开测，才看出问题在哪。所有数字都公开。","inLanguage":"zh-CN","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"把HUD藏起来，分数变成了1.0","item":"https://dumbgamelab.com/zh-Hans/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"游戏HUD是什么？","acceptedAnswer":{"@type":"Answer","text":"就是战斗或游玩时一直浮在画面上的信息层。血量、分数、波次、时间，还有召唤、强化这类按钮都放在这里。"}},{"@type":"Question","name":"把HUD去掉，游戏不是看起来更干净吗？","acceptedAnswer":{"@type":"Answer","text":"我们测出来的结果正好相反。HUD整个藏起来之后，盲测评审十张全都认出了我们的画面（spot 1.000）。HUD要在该在的位置，画面才像标准答案。去掉它并不会变干净。"}},{"@type":"Question","name":"画面对比分数一直降不下来，怎么找原因？","acceptedAnswer":{"@type":"Answer","text":"对我们有效的做法是把画面按高度切成上、中、下，每个区域分开让评审判。只看整体分数时看不出来的问题区域，一下子就分出来了。"}},{"@type":"Question","name":"手游HUD的字为什么看起来发糊？","acceptedAnswer":{"@type":"Answer","text":"我们的情况是文字被缩到配合文本框的大小，只剩18像素，描边相对字号也太弱。后来把字高和描边比例统一在一个地方设置，再用检查工具一边数违规一边修。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 开发幕后</p>
+    <p class="kicker">开发日志 一波三折</p>
+    <h1>把HUD藏起来，分数变成了1.0</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="三张僵尸巴士战斗画面。上方是波次、时间和僵尸数量，道路下方两辆巴士车顶站着幸存者，最下面是赌博、召唤、神话、强化按钮栏" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">11月6日重做僵尸巴士的战斗画面时，我用同一组固定的10张截图跑了十几次盲测。分数越低越好，及格线是0.55，结果一直停在0.9附近。把格子形状改回去还是0.716，把HUD整个藏起来则是1.000。这只证明了一件事：不管长什么样，HUD都必须在。真正的问题，是把画面切成上、中、下三块分开测之后才看出来的。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">分数越低越好，及格线是0.55</a></li><li><a href="#s2">同一组10张测了十几次，还是0.9上下</a></li><li><a href="#s3">关掉MSAA确实是原因之一，但只是其中一个</a></li><li><a href="#s4">把HUD藏起来，结果是1.000</a></li><li><a href="#s5">把画面切成上、中、下，才找到位置</a></li><li><a href="#s6">换了基准场景，又不及格了</a></li><li><a href="#s7">文字全都缩成了18像素</a></li></ol></nav>
+    <section id="s1"><h2>分数越低越好，及格线是0.55</h2>
+<p>僵尸巴士是分两条线在做的游戏。战斗棋盘沿用旧版僵尸巴士的样子（幸存者站在下方巴士车顶，僵尸群从上方往下涌），HUD则照着标准答案App的框架来排。</p>
+<p>做得像不像，靠盲测来测。把标准答案App的画面和我们的画面混在一起给评审看，让评审猜哪一张是我们的。猜中的比例就是spot分数。0.5等于瞎猜，1.0说明每次都被认出来，所以越低越好，及格标准是连续两次拿到0.55以下。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="一张僵尸巴士战斗画面。上方显示第8波、僵尸53/100，下方有召唤按钮" loading="lazy" decoding="async"><figcaption>送去给评审看的我们这边的画面。上面那条和下面的按钮栏就是HUD。</figcaption></figure></section>
+<section id="s2"><h2>同一组10张测了十几次，还是0.9上下</h2>
+<p>把旧棋盘原样构建出来测基准，得到0.535，再测一次降到0.399；新做的棋盘却是从0.962起步。用的是同一个评审、同一组固定10张，所以数字之间可以直接比。</p>
+<p>格子改成4列7行、角色放大之后是0.913，把巴士格调亮变成0.899，为了手机性能关掉MSAA、减少阴影，反而一路涨到0.990。先摆60只僵尸把画面密度拉高也还有0.934，加上伤害数字和红色警告条是0.931，连神话、轮盘按钮栏都加上去是0.868。</p>
+<p>大概改三次，分数才动0.05左右。只知道问题不在场景本身，到底卡在哪里还是不知道。</p>
+</section>
+<section id="s3"><h2>关掉MSAA确实是原因之一，但只是其中一个</h2>
+<p>我在旧棋盘上只关掉MSAA再测，0.399变成了0.569。这个数字已经超过及格线，等于抓到了一个原因：为了在手机上跑而关掉的设置，一直在把分数往上推。</p>
+<p>不过新棋盘就算把MSAA打开也有0.694，用正式发布设置测是0.729，可见原因不止一个。角色和僵尸模型跟旧棋盘是同一批文件，那边也没什么可改的。</p>
+<div class="tbl"><table><thead><tr><th>测试</th><th>spot分数</th></tr></thead><tbody><tr><td>旧棋盘重新测量</td><td>0.399</td></tr><tr><td>旧棋盘 + 关闭MSAA</td><td>0.569</td></tr><tr><td>新棋盘 发布设置</td><td>0.729</td></tr><tr><td>新棋盘 只把格子形状改回去</td><td>0.716</td></tr><tr><td>新棋盘 HUD整个藏起来</td><td>1.000</td></tr><tr><td>新棋盘 叠上1.5倍的旧HUD</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>把HUD藏起来，结果是1.000</h2>
+<p>我把HUD整个藏起来测了一次。结果是1.000，也就是评审十张全都猜中哪一张是我们的。不管哪个画面，一眼就被认出来了。</p>
+<p>看到这个结果，我把旧HUD（上排的波次面板和下方粗粗的按钮栏）放大1.5倍叠到新棋盘上，得到0.924，比现在用的HUD还差。没有HUD马上就露馅，可是把HUD换回旧的样子，分数也纹丝不动。它是只要在场就行的部件，形状从来不是问题所在。</p>
+<p>为了移植旧HUD写的代码没有放进仓库，只是另外存了起来。我不想留下用不上的代码。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="僵尸巴士战斗画面下半部分。一排赌博、召唤、神话按钮，一排强化、X2广告、标记按钮" loading="lazy" decoding="async"><figcaption>撑住分数的是这几排按钮在不在，跟长什么样无关。</figcaption></figure></section>
+<section id="s5"><h2>把画面切成上、中、下，才找到位置</h2>
+<p>我把评审在新棋盘上写的156条意见拿来数：挤成一团、重叠139条，单位太小123条，UI太简单99条，道路看起来空荡荡71条，描边噪点57条，理由分散在好几个方向。旧棋盘的36条里，UI简单只有10条、描边6条，也就是说只有新棋盘的UI和描边意见多了好几倍。</p>
+<p>理由这么分散，很难决定先修哪里，所以我把画面按高度切成0～30%、30～72%、72～100%，每个区域分开让评审判。上方0.65、中间0.15、下方0.50。中间已经分不出来了，问题在上方；下方也在及格线附近，所以修的顺序从上方开始。</p>
+<p>上方区域里有僵尸群和波次面板。我把每只僵尸的衣服和肤色分成8种色调，让原本看起来像一整坨绿色的僵尸群散开，再把波次、时间、僵尸数量面板移到最上面，警告横幅也改细了。整体分数是0.455和0.507，连续两次低于0.55及格线。</p>
+</section>
+<section id="s6"><h2>换了基准场景，又不及格了</h2>
+<p>及格之后，我从标准答案App里重新挑了10张僵尸群挤得满满的场景当新基准，想确认之前那组固定10张是不是刚好都是比较空的场景。</p>
+<p>结果是0.979和0.826，不及格。分区域看，上方0.525、中间0.113、下方1.000，这次问题出在下方HUD。评审给的主要理由是：道路地面看起来灰暗又斑驳、按钮颜色和背景不搭、强化按钮的字很淡、神话按钮的字被图标挡住。</p>
+<p>标准答案App那边是草丛地图，背景是绿色的；我们却在柏油路上放了同一套配色的UI，两者自然对不上。</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="僵尸巴士大厅画面。有幸存者招募窗口和世界地图，下方是标签栏" loading="lazy" decoding="async"><figcaption>战斗以外的画面没有送去盲测，只测了战斗画面。</figcaption></figure></section>
+<section id="s7"><h2>文字全都缩成了18像素</h2>
+<p>往下挖下方HUD的文字，发现转换工具生成的场景里，强化的字为了塞进宽度为0的文本框，缩成了18像素，白字的描边相对字号也太弱。我把文字高度标准和描边统一放在一个地方（UiKit.polish）设置，又做了可读性检查工具，违规从94条降到0。接着把描边改成深蓝色并加粗，调到字号的40%（#5975、#5979）。</p>
+<p>这一天盲测分数并没有回到及格。分数还是不及格，那天的记录停在「问题区域是下方HUD」。测了十几次学到的，是哪里不该动，以及该看哪个区域。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>游戏HUD是什么？</summary><p>就是战斗或游玩时一直浮在画面上的信息层。血量、分数、波次、时间，还有召唤、强化这类按钮都放在这里。</p></details><details><summary>把HUD去掉，游戏不是看起来更干净吗？</summary><p>我们测出来的结果正好相反。HUD整个藏起来之后，盲测评审十张全都认出了我们的画面（spot 1.000）。HUD要在该在的位置，画面才像标准答案。去掉它并不会变干净。</p></details><details><summary>画面对比分数一直降不下来，怎么找原因？</summary><p>对我们有效的做法是把画面按高度切成上、中、下，每个区域分开让评审判。只看整体分数时看不出来的问题区域，一下子就分出来了。</p></details><details><summary>手游HUD的字为什么看起来发糊？</summary><p>我们的情况是文字被缩到配合文本框的大小，只剩18像素，描边相对字号也太弱。后来把字高和描边比例统一在一个地方设置，再用检查工具一边数违规一边修。</p></details></section>
+    
+    
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><a href="/ko/blog/hide-white-text-score-1-0/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>

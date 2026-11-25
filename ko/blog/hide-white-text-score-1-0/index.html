@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게임 HUD를 숨겼더니 비교 점수가 1.0이 나온 날</title>
+<meta name="description" content="같은 10장으로 열 번 넘게 점수를 쟀는데 화면 모양을 바꿔도 0.9 근처에서 안 내려갔습니다. HUD를 통째로 숨기자 1.000이 나왔고, 구역으로 잘라 재서야 범인이 보였습니다. 숫자 전부 공개합니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="게임 HUD를 숨겼더니 비교 점수가 1.0이 나온 날">
+<meta property="og:description" content="같은 10장으로 열 번 넘게 점수를 쟀는데 화면 모양을 바꿔도 0.9 근처에서 안 내려갔습니다. HUD를 통째로 숨기자 1.000이 나왔고, 구역으로 잘라 재서야 범인이 보였습니다. 숫자 전부 공개합니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HUD를 숨기니 점수가 1.0이 나왔다","description":"같은 10장으로 열 번 넘게 점수를 쟀는데 화면 모양을 바꿔도 0.9 근처에서 안 내려갔습니다. HUD를 통째로 숨기자 1.000이 나왔고, 구역으로 잘라 재서야 범인이 보였습니다. 숫자 전부 공개합니다.","inLanguage":"ko","datePublished":"2026-11-25","dateModified":"2026-11-25","image":"https://dumbgamelab.com/blog/img/hide-white-text-score-1-0/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"HUD를 숨기니 점수가 1.0이 나왔다","item":"https://dumbgamelab.com/ko/blog/hide-white-text-score-1-0/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"게임 HUD는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"전투나 플레이 중 화면 위에 계속 떠 있는 정보 층입니다. 체력, 점수, 웨이브, 시간, 소환·강화 단추 같은 것이 여기에 들어갑니다."}},{"@type":"Question","name":"HUD를 빼면 게임이 더 깔끔해 보이지 않나요?","acceptedAnswer":{"@type":"Answer","text":"우리 측정에서는 반대였습니다. HUD를 통째로 숨기자 블라인드 판정자가 열 장 모두 우리 쪽을 맞혔습니다(spot 1.000). 자리에 있어야 정답 화면처럼 보이는 겁니다. 빼서 깔끔해지는 쪽이 아니었죠."}},{"@type":"Question","name":"화면 비교 점수가 안 내려갈 때 어떻게 원인을 찾나요?","acceptedAnswer":{"@type":"Answer","text":"화면을 높이 기준으로 위·가운데·아래로 잘라 구역마다 따로 판정시키는 방법이 먹혔습니다. 전체 점수 하나로는 안 보이던 범인 구역이 바로 갈렸어요."}},{"@type":"Question","name":"모바일 게임 HUD 글씨가 흐려 보이는 이유는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"우리 경우 글자 상자 크기에 글자가 맞춰져 18픽셀까지 줄어 있었고 외곽선도 크기에 비해 약해서, 글자 높이와 외곽선 비율을 한 곳에서 정하고 검사 도구로 위반을 세어 가며 고쳤어요."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 개발 이야기</p>
+    <p class="kicker">개발 일지 · 우여곡절</p>
+    <h1>HUD를 숨기니 점수가 1.0이 나왔다</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-25">2026-11-25</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="좀비 버스 전투 화면 세 장. 위에 웨이브·시간·좀비 수가 있고 도로 아래 버스 두 대 지붕에 생존자가 서 있으며 맨 아래에 도박·소환·신화·강화 단추 줄이 있다" fetchpriority="high" decoding="async"></figure>
+    <p class="tldr">좀비 버스 판을 되살리던 11월 6일, 같은 고정 10장으로 블라인드 판정을 열 번 넘게 돌렸습니다. 점수는 낮을수록 좋고 합격선은 0.55인데 내내 0.9 근처였습니다. 칸 모양을 되돌려도 0.716이었고 HUD를 통째로 숨기자 1.000이었습니다. HUD는 모양과 상관없이 있어야 한다는 것만 확인됐고, 범인은 화면을 위·가운데·아래로 잘라 재고서야 보였습니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">점수는 낮을수록 좋다, 합격선은 0.55</a></li><li><a href="#s2">같은 10장으로 열 번 넘게 쟀는데 0.9 근처였다</a></li><li><a href="#s3">MSAA를 끈 것은 범인이 맞았지만 하나뿐이었다</a></li><li><a href="#s4">HUD를 숨기니 1.000이 나왔다</a></li><li><a href="#s5">화면을 위·가운데·아래로 잘라서야 위치가 나왔다</a></li><li><a href="#s6">기준 장면을 바꾸자 다시 불합격이었다</a></li><li><a href="#s7">글씨가 전부 18픽셀로 줄어 있었다</a></li></ol></nav>
+    <section id="s1"><h2>점수는 낮을수록 좋다, 합격선은 0.55</h2>
+<p>좀비 버스는 두 갈래로 만들던 게임입니다. 판은 옛 좀비 버스 형태(아래 버스 지붕에 생존자를 놓고 위에서 좀비 떼가 내려오는 화면)로 돌리고 HUD는 정답 앱의 틀을 따라가는 구성이었습니다.</p>
+<p>잘 만들었는지는 블라인드 판정으로 잽니다. 정답 앱 화면과 우리 화면을 섞어 보여 주고 판정자에게 어느 쪽이 우리 것인지 맞히게 합니다. 맞힌 비율이 spot 점수입니다. 0.5면 찍는 것과 같고 1.0이면 항상 들킨다는 뜻이라 낮을수록 좋은데, 합격선은 0.55 이하를 두 번 연속으로 내는 것입니다.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/battle.jpg" alt="좀비 버스 전투 화면 한 장. 위에 웨이브 8, 좀비 53/100이 보이고 아래에 소환 단추가 있다" loading="lazy" decoding="async"><figcaption>판정에 올린 우리 쪽 화면. 위 띠와 아래 단추 줄이 HUD입니다.</figcaption></figure></section>
+<section id="s2"><h2>같은 10장으로 열 번 넘게 쟀는데 0.9 근처였다</h2>
+<p>옛 판을 그대로 빌드해 기준선을 쟀더니 0.535였고 다시 재면 0.399까지 내려갔는데, 새로 만든 판은 0.962로 시작했습니다. 같은 판정기에 같은 고정 10장이라서 숫자끼리 비교가 됩니다.</p>
+<p>칸을 4열 7줄로 바꾸고 몸을 키웠더니 0.913이 나왔고, 버스 칸을 밝게 해서 0.899, 폰 성능 때문에 MSAA를 끄고 그림자를 줄이자 0.990까지 올라갔습니다. 좀비를 60마리 먼저 깔아 장면 밀도를 올려도 0.934였고, 데미지 숫자와 붉은 경고 띠를 더하자 0.931, 신화·룰렛 단추 줄까지 붙이자 0.868이었습니다.</p>
+<p>손질을 세 번 해야 점수가 0.05쯤 움직이는 정도였어요. 장면 탓이 아니라는 것만 알았을 뿐 어디가 문제인지는 그대로였죠.</p>
+</section>
+<section id="s3"><h2>MSAA를 끈 것은 범인이 맞았지만 하나뿐이었다</h2>
+<p>옛 판에 MSAA만 끄고 재 보니 0.399가 0.569로 올랐습니다. 합격선을 넘는 숫자라서 범인 하나는 잡은 셈입니다. 폰에서 돌리려고 끈 설정이 점수를 올리고 있었던 겁니다.</p>
+<p>그래도 새 판은 MSAA를 다시 켜도 0.694였고 출하 설정 전체로 재면 0.729였으니, 범인이 둘 이상이라는 건 분명했습니다. 몸과 좀비 모델은 옛 판과 같은 파일이라 바꿀 곳도 아니었어요.</p>
+<div class="tbl"><table><thead><tr><th>시험</th><th>spot 점수</th></tr></thead><tbody><tr><td>옛 판 재측정</td><td>0.399</td></tr><tr><td>옛 판 + MSAA 끔</td><td>0.569</td></tr><tr><td>새 판 출하 설정</td><td>0.729</td></tr><tr><td>새 판 칸 모양만 되돌림</td><td>0.716</td></tr><tr><td>새 판 HUD 통째로 숨김</td><td>1.000</td></tr><tr><td>새 판 옛 HUD를 1.5배로 얹음</td><td>0.924</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>HUD를 숨기니 1.000이 나왔다</h2>
+<p>HUD를 통째로 숨기고 쟀습니다. 결과는 1.000이었습니다. 판정자가 열 장 모두 어느 쪽이 우리 것인지 맞혔다는 말입니다. 아무 화면에서나 한눈에 들켰다는 얘기죠.</p>
+<p>이걸 보고 옛 HUD(윗줄 웨이브 판과 아래 굵은 버튼 줄)를 새 판 위에 1.5배로 얹어 봤더니 0.924가 나왔습니다. 지금 쓰는 HUD보다 오히려 나빴습니다. HUD가 없으면 바로 들키는데, HUD 모양을 옛것으로 바꾸는 일은 점수를 못 움직였습니다. 있기만 하면 되는 부품이었고 모양은 범인이 아니었어요.</p>
+<p>옛 HUD를 이식하려고 짠 코드는 레포에 넣지 않고 따로 보관만 했습니다. 쓰이지 않는 코드를 남기지 않으려는 판단이었죠.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/hud.jpg" alt="좀비 버스 전투 화면 아래쪽. 도박·소환·신화 단추 한 줄과 강화·X2 광고·핑 단추 한 줄" loading="lazy" decoding="async"><figcaption>점수를 받치는 것은 이 단추 줄이 있느냐였고 모양은 아니었습니다.</figcaption></figure></section>
+<section id="s5"><h2>화면을 위·가운데·아래로 잘라서야 위치가 나왔다</h2>
+<p>판정자가 적은 지적을 새 판 156건에서 세어 봤더니 뭉침·겹침이 139건, 유닛이 작다 123건, UI가 단순하다 99건, 도로가 비어 보인다 71건, 외곽선 노이즈 57건으로 이유가 여러 갈래로 흩어져 있었습니다. 옛 판 36건에서는 UI 단순 10건과 외곽선 6건이 전부였으니 새 판만 UI와 외곽선 지적이 몇 배로 많은 셈이죠.</p>
+<p>이렇게 흩어지면 어디부터 고칠지 정하기 어려워서 화면을 높이 0~30%, 30~72%, 72~100%로 잘라 구역마다 따로 판정시켰습니다. 위 0.65, 가운데 0.15, 아래 0.50이 나왔는데 가운데는 이미 구분이 안 되는 수준이어서 위 구역이 범인이었고, 아래도 합격선 근처였으니 고칠 순서는 위부터였습니다.</p>
+<p>위 구역에는 좀비 떼와 웨이브 패널이 들어 있습니다. 좀비마다 옷과 피부 색조를 8가지로 갈라 한 덩어리 초록으로 보이던 것을 풀었고, 웨이브·시간·좀비 수 패널은 맨 위로 올린 뒤 경고 배너를 얇게 했어요. 전체 점수는 0.455와 0.507로, 합격선 0.55 아래로 두 번 연속 들어왔습니다.</p>
+</section>
+<section id="s6"><h2>기준 장면을 바꾸자 다시 불합격이었다</h2>
+<p>합격을 낸 뒤 정답 앱에서 좀비 떼가 많이 몰린 장면 10장을 새로 뽑아 기준을 다시 잡았는데, 앞의 고정 10장이 한가한 장면이었던 것은 아닌지 확인하려는 것이었습니다.</p>
+<p>결과는 0.979와 0.826으로 불합격이었습니다. 구역별로는 위 0.525, 가운데 0.113, 아래 1.000이었고 이번에는 아래 HUD가 범인이었어요. 판정자 근거 상위는 도로 바닥이 칙칙하고 얼룩져 보인다, 버튼 색이 배경과 어긋난다, 강화 버튼 글자가 흐리다, 신화 버튼 글자가 아이콘에 가린다였습니다.</p>
+<p>정답 앱 쪽은 풀숲 맵이라 배경이 초록인데 우리는 아스팔트 도로 위에 같은 팔레트 UI를 얹은 탓에 둘이 따로 놀았죠.</p>
+<figure><img src="/blog/img/hide-white-text-score-1-0/lobby.jpg" alt="좀비 버스 로비 화면. 생존자 모집 창과 월드 지도, 아래 탭 줄이 있다" loading="lazy" decoding="async"><figcaption>전투 밖 화면은 이 판정에 올리지 않았고 전투 화면만 쟀습니다.</figcaption></figure></section>
+<section id="s7"><h2>글씨가 전부 18픽셀로 줄어 있었다</h2>
+<p>아래 HUD 글씨를 파 보니 변환기가 만든 씬에서 너비 0인 글자 상자에 맞춰 강화 글자가 18픽셀로 쪼그라들어 있었고, 흰 글씨 외곽선도 크기에 비해 약했습니다. 글씨 높이 기준과 외곽선을 한 곳(UiKit.polish)에서 잡고 가독성 검사 도구를 만들자 위반 94건이 0이 됐습니다. 이어서 외곽선을 남색으로 굵게 해 글씨 크기의 40%로 맞췄습니다(#5975, #5979).</p>
+<p>이날 판정 점수가 합격으로 돌아온 것은 아닙니다. 점수는 아직 불합격이고 그날 기록은 범인 구역이 아래 HUD라는 데서 끝났습니다. 열 번이 넘는 측정으로 알아낸 것은 어디를 고치면 안 되는지, 그리고 어느 구역을 봐야 하는지였습니다.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>게임 HUD는 무엇인가요?</summary><p>전투나 플레이 중 화면 위에 계속 떠 있는 정보 층입니다. 체력, 점수, 웨이브, 시간, 소환·강화 단추 같은 것이 여기에 들어갑니다.</p></details><details><summary>HUD를 빼면 게임이 더 깔끔해 보이지 않나요?</summary><p>우리 측정에서는 반대였습니다. HUD를 통째로 숨기자 블라인드 판정자가 열 장 모두 우리 쪽을 맞혔습니다(spot 1.000). 자리에 있어야 정답 화면처럼 보이는 겁니다. 빼서 깔끔해지는 쪽이 아니었죠.</p></details><details><summary>화면 비교 점수가 안 내려갈 때 어떻게 원인을 찾나요?</summary><p>화면을 높이 기준으로 위·가운데·아래로 잘라 구역마다 따로 판정시키는 방법이 먹혔습니다. 전체 점수 하나로는 안 보이던 범인 구역이 바로 갈렸어요.</p></details><details><summary>모바일 게임 HUD 글씨가 흐려 보이는 이유는 무엇인가요?</summary><p>우리 경우 글자 상자 크기에 글자가 맞춰져 18픽셀까지 줄어 있었고 외곽선도 크기에 비해 약해서, 글자 높이와 외곽선 비율을 한 곳에서 정하고 검사 도구로 위반을 세어 가며 고쳤어요.</p></details></section>
+    
+    
+    
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-asmr-games-android-offline/"><img src="/blog/img/best-asmr-games-android-offline/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>안드로이드 ASMR 게임 9개를 폰에서 켜 봤습니다</b><span class="pc-desc">안드로이드 ASMR 게임 9개를 삼성 갤럭시 Z플립5에 깔아 비행기 모드로 다시 켰습니다. 설치 크기와 첫 화면, 광고가 앞을 막는지를 2026년 11월 20일 기준으로 비교했습니다.</span></a><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/hide-white-text-score-1-0/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/hide-white-text-score-1-0/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/hide-white-text-score-1-0/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+</body>
+</html>
