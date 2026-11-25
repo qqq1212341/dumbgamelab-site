@@ -1,0 +1,68 @@
+{
+  "category": "Science",
+  "title": "A bell has been ringing since 1840. You can barely hear it",
+  "hook": "An Oxford bell has rung twice a second for 186 years",
+  "open": {
+    "title": "The 186-year-old bell you can barely hear",
+    "line": "Near the entrance of Oxford's physics lab sits a glass cabinet."
+  },
+  "summary": "A bell in Oxford's Clarendon Laboratory has run on two batteries since 1840. It has rung about 10 billion times.",
+  "panels": [
+    {
+      "text": [
+        "Inside a glass case at Oxford's physics lab,",
+        "a tiny ball swings between two bells almost nonstop."
+      ]
+    },
+    {
+      "text": [
+        "It hits a bell twice every second.",
+        "The label, in a professor's handwriting, says Set up in 1840."
+      ]
+    },
+    {
+      "text": "Wait, I can barely hear it."
+    },
+    {
+      "text": [
+        "Two layers of glass muffle the sound.",
+        "It's a bell you watch more than hear."
+      ]
+    },
+    {
+      "text": [
+        "Actually, the whole thing runs on two batteries.",
+        "Each bell hangs under one of those columns. Those are the batteries."
+      ]
+    },
+    {
+      "text": [
+        "The ball picks up charge from one bell, gets pushed away, and flies to the other.",
+        "It moves so little charge that the batteries barely drain."
+      ]
+    },
+    {
+      "text": [
+        "The batteries are coated in melted sulfur.",
+        "What is inside the batteries is still just a guess."
+      ]
+    },
+    {
+      "text": [
+        "It's not perpetual motion.",
+        "It stops once the charge evens out, or the ball wears down."
+      ]
+    },
+    {
+      "text": [
+        "So far it has rung about 10 billion times.",
+        "Guinness lists it as the world's most durable battery."
+      ]
+    }
+  ],
+  "sources": [
+    "Oxford University Physics: Exhibit 1, The Clarendon Dry Pile",
+    "Wikipedia: Oxford Electric Bell",
+    "Atlas Obscura: Oxford Electric Bell"
+  ]
+}

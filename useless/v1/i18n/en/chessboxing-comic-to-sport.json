@@ -1,0 +1,65 @@
+{
+  "category": "Sports",
+  "title": "A sport of 11 alternating rounds, 4 minutes of chess and 2 of boxing, came from a comic book",
+  "hook": "There's a sport where you play chess, then switch to boxing and trade punches",
+  "open": {
+    "title": "A sport where boxers trade punches, then sit down at a chessboard",
+    "line": "Two fighters alternate between a chessboard and a boxing ring."
+  },
+  "summary": "Chessboxing came from a 1992 Enki Bilal comic. Dutch artist Iepe Rubingh made it real and became the first world champion in 2003.",
+  "panels": [
+    {
+      "text": [
+        "Two fighters alternate between a chessboard and a boxing ring.",
+        "Chess, then boxing, then chess again."
+      ]
+    },
+    {
+      "text": [
+        "The 2005 rules: 4 minutes of chess, 2 of boxing.",
+        "They alternate like this for 11 rounds."
+      ]
+    },
+    {
+      "text": "Wait, you play chess right after getting punched?"
+    },
+    {
+      "text": [
+        "Dutch artist Iepe Rubingh invented it.",
+        "He said you need the fitness to calm your pulse for chess."
+      ]
+    },
+    {
+      "text": [
+        "Checkmate or knockout wins. Run out of chess time, you lose.",
+        "Chess draw? Boxing points decide. Still tied? Black wins."
+      ]
+    },
+    {
+      "text": [
+        "Actually, this sport came from a comic book.",
+        "A 1992 Enki Bilal comic, set on a ravaged planet in 2096."
+      ]
+    },
+    {
+      "text": [
+        "In the comic, they box a full fight, then play chess.",
+        "Rubingh found that impractical and made them alternate."
+      ]
+    },
+    {
+      "text": "So he just turned a comic into real life."
+    },
+    {
+      "text": [
+        "At the first world title fight in 2003, Rubingh himself fought.",
+        "In round 11, his opponent ran out of chess time. Rubingh was the first champion."
+      ]
+    }
+  ],
+  "sources": [
+    "The Guardian (2005-10-31): Introducing the world's most unlikely sport: chessboxing",
+    "Wikipedia: Chess boxing",
+    "Wikipedia: Iepe Rubingh"
+  ]
+}

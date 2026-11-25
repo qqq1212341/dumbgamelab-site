@@ -1,0 +1,95 @@
+{
+  "id": "moon-trees-lost-and-found",
+  "contentNotice": null,
+  "day": 79,
+  "category": "우주",
+  "title": "달을 돌고 온 씨앗으로 키운 나무가 미국 공원에 그냥 서 있다",
+  "hook": "펜실베이니아의 한 공원 플라타너스가 달 궤도를 돌고 온 씨앗에서 자랐다",
+  "open": {
+    "title": "수십 년 동안 잊혔던 달 나무들",
+    "cover": "m1",
+    "line": "미국 펜실베이니아의 한 공원에 플라타너스 한 그루가 서 있다."
+  },
+  "summary": "1971년 아폴로 14호가 달 궤도에 싣고 간 나무 씨앗은 미국 곳곳에 심겼지만, 상당수는 어디 있는지 수십 년 동안 거의 잊혔다가 1996년 한 초등학교 교사의 메일로 다시 알려졌다.",
+  "cover": "moon-trees-lost-and-found",
+  "sources": [
+    {
+      "title": "NASA NSSDCA: The Moon Trees",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/lunar/moon_tree.html"
+    },
+    {
+      "title": "Wikipedia: Moon tree",
+      "url": "https://en.wikipedia.org/wiki/Moon_tree"
+    },
+    {
+      "title": "The Atlantic: We Almost Forgot About the Moon Trees",
+      "url": "https://www.theatlantic.com/science/archive/2022/01/nasa-moon-trees-apollo/621395/"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "moon-trees-lost-and-found",
+      "text": [
+        "미국 펜실베이니아의 한 공원에 플라타너스 한 그루가 서 있다.",
+        "NASA 목록에 따르면 달 궤도를 돌고 온 씨앗에서 자란 나무다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "moon-trees-lost-and-found-roosa",
+      "text": [
+        "1971년 아폴로 14호의 스튜어트 루사가 개인 짐에 씨앗 통을 넣었다.",
+        "낙하산 타고 산불 끄던 산림청 대원 출신이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그는 달에 내리지 않고 사령선에서 달 궤도를 돌았다.",
+        "씨앗은 소나무, 플라타너스, 레드우드 등 다섯 종이었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그런데 지구로 돌아와 소독하다가 씨앗 봉투가 터졌다.",
+        "씨앗은 진공 챔버에 흩어져 진공에 노출됐다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "그럼 다 죽은 거 아니야?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 싹이 텄다.",
+        "묘목들은 1976년 무렵 건국 200주년 기념으로 미국 곳곳에 심겼다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "moon-trees-lost-and-found-plaque",
+      "text": [
+        "백악관에도 심었고 브라질, 스위스, 일본 천황에게도 보냈다.",
+        "그런데 상당수는 어디 심겼는지 수십 년 동안 거의 잊혔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1996년 초등학교 3학년 교사와 아이들이 동네에서 달 나무 팻말을 발견했다.",
+        "교사가 NASA에 메일을 보냈다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "답장한 NASA 직원 데이브 윌리엄스도 달 나무가 있는 줄 몰랐다.",
+        "동료들도 대부분 몰랐다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

@@ -1,0 +1,67 @@
+{
+  "category": "Makanan",
+  "title": "Di Meksiko ada lobak yang ditanam untuk diukir, bukan dimakan",
+  "hook": "Lobak lomba yang ditanam kota Oaxaca tak layak dimakan",
+  "open": {
+    "title": "Kenapa alun-alun Meksiko penuh ukiran lobak semalam saja",
+    "line": "Tiap 23 Desember, ukiran lobak memenuhi alun-alun Oaxaca."
+  },
+  "summary": "Sejak 1897, Oaxaca di Meksiko menggelar lomba ukir lobak tiap 23 Desember. Lobaknya ditanam kota, tak layak dimakan, dan karyanya cepat layu setelah dipotong, jadi cuma dipajang beberapa jam.",
+  "panels": [
+    {
+      "text": [
+        "Malam 23 Desember, alun-alun Oaxaca penuh ukiran lobak.",
+        "Kebanyakan adegan dari beberapa lobak."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 1897, wali kota menjadikannya hari lomba ukir lobak.",
+        "Digelar tiap tahun, namanya Malam Lobak."
+      ]
+    },
+    {
+      "text": "Kenapa diukir? Makan aja."
+    },
+    {
+      "text": [
+        "Lobaknya ditanam di lahan khusus milik kota.",
+        "Dibiarkan lama lewat masa panen."
+      ]
+    },
+    {
+      "text": [
+        "Lobak ini bukan untuk dimakan.",
+        "Kebanyakan pupuk dan obat."
+      ]
+    },
+    {
+      "text": [
+        "Gantinya, bisa sepanjang 50 cm dan seberat 3 kg.",
+        "Ditanam tiap beberapa minggu, biar ukuran pilihannya beragam. Juga cegah curang."
+      ]
+    },
+    {
+      "text": [
+        "Lobak dibagikan tanggal 18,",
+        "diukir dan dipajang tanggal 23."
+      ]
+    },
+    {
+      "text": [
+        "Lobak yang dipotong cepat layu.",
+        "Cuma tampil beberapa jam malam itu, antrenya 4-5 jam."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 2014, lobak semalam itu 12 ton.",
+        "Usai dinilai sekitar jam 9 malam, langsung dibongkar."
+      ]
+    }
+  ],
+  "sources": [
+    "Smithsonian Magazine: Why Radish Carving Has Become a Popular Holiday Event in Oaxaca (2018)",
+    "Wikipedia: Night of the Radishes"
+  ]
+}

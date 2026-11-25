@@ -1,0 +1,68 @@
+{
+  "category": "Space",
+  "title": "Trees grown from seeds that orbited the Moon are just standing in US parks",
+  "hook": "NASA lists a Pennsylvania park sycamore grown from a seed that orbited the Moon",
+  "open": {
+    "title": "NASA's Moon trees, forgotten for decades",
+    "line": "In a Pennsylvania park, there's a sycamore tree."
+  },
+  "summary": "Apollo 14 carried tree seeds around the Moon in 1971. Planted across the US, many were largely forgotten until a teacher emailed NASA in 1996.",
+  "panels": [
+    {
+      "text": [
+        "In a Pennsylvania park, there's a sycamore tree.",
+        "NASA's list says it grew from a Moon-orbiting seed."
+      ]
+    },
+    {
+      "text": [
+        "In 1971, Apollo 14's Stuart Roosa took a can of seeds in his kit.",
+        "He'd been a Forest Service smokejumper."
+      ]
+    },
+    {
+      "text": [
+        "He never landed. He orbited in the command module.",
+        "Five kinds, including pine, sycamore, redwood."
+      ]
+    },
+    {
+      "text": [
+        "Back on Earth, the seed bags burst in decontamination.",
+        "The seeds were exposed to vacuum in the chamber."
+      ]
+    },
+    {
+      "text": "So they're all dead, right?"
+    },
+    {
+      "text": [
+        "Actually, they sprouted.",
+        "Around 1976, they were planted across the US for the Bicentennial."
+      ]
+    },
+    {
+      "text": [
+        "Some went to the White House, Brazil, Switzerland and Japan's Emperor.",
+        "But for decades, where many went was largely forgotten."
+      ]
+    },
+    {
+      "text": [
+        "In 1996, a third-grade teacher and her class found a Moon Tree sign.",
+        "The teacher emailed NASA."
+      ]
+    },
+    {
+      "text": [
+        "NASA's Dave Williams, who answered, had never heard of Moon trees.",
+        "Nor had most coworkers."
+      ]
+    }
+  ],
+  "sources": [
+    "NASA NSSDCA: The Moon Trees",
+    "Wikipedia: Moon tree",
+    "The Atlantic: We Almost Forgot About the Moon Trees"
+  ]
+}

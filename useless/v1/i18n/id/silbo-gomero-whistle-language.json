@@ -1,0 +1,65 @@
+{
+  "category": "Kata",
+  "title": "Di sebuah pulau Spanyol, orang saling bersiul kalimat utuh",
+  "hook": "Pulau yang dulu kirim pesan lewat siulan sampai 5 km",
+  "open": {
+    "title": "Pulau yang konon kirim kabar lewat siulan sejauh 5 km",
+    "line": "Warga La Gomera bersiul pakai lidah, bibir, dan tangan ke seberang lembah."
+  },
+  "summary": "Silbo Gomero adalah bahasa Spanyol versi siulan dari La Gomera.",
+  "panels": [
+    {
+      "text": [
+        "Warga La Gomera bersiul pakai lidah, bibir, dan tangan ke seberang lembah.",
+        "Bukan lagu. Itu kalimat."
+      ]
+    },
+    {
+      "text": [
+        "Konon siulan ini membawa kabar sampai 5 km."
+      ]
+    },
+    {
+      "text": "Siulan bisa ngomong apa?"
+    },
+    {
+      "text": [
+        "Ternyata bukan kode buatan.",
+        "Itu bahasa Spanyol, diubah jadi siulan."
+      ]
+    },
+    {
+      "word": "Silbo Gomero",
+      "mean": "siulan Gomera"
+    },
+    {
+      "text": [
+        "Lima vokal jadi dua siulan, konsonan jadi empat.",
+        "Dibedakan dari tinggi nada dan putusnya."
+      ]
+    },
+    {
+      "text": [
+        "Kata UNESCO, cuma ini bahasa siul lengkap yang dipakai 22.000 lebih orang.",
+        "Masuk daftar warisan budaya takbenda UNESCO pada 2009."
+      ]
+    },
+    {
+      "text": [
+        "Tapi banyak kelahiran 1950 sampai 1980 cuma paham, tak bisa bersiul.",
+        "Sejak 1999 diajarkan di sekolah."
+      ]
+    },
+    {
+      "text": [
+        "Riset Nature 2005: otak penyiul memprosesnya di area bahasa.",
+        "Bagi orang lain, cuma siulan."
+      ]
+    }
+  ],
+  "sources": [
+    "UNESCO Intangible Cultural Heritage: Silbo Gomero",
+    "Wikipedia: Silbo Gomero",
+    "Carreiras et al. (2005), Linguistic perception: neural processing of a whistled language, Nature 433"
+  ]
+}

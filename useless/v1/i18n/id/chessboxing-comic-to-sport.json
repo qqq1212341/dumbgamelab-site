@@ -1,0 +1,65 @@
+{
+  "category": "Olahraga",
+  "title": "Olahraga 11 ronde bergantian, catur 4 menit dan tinju 2 menit, lahir dari komik",
+  "hook": "Ada olahraga main catur, lalu pindah ke tinju dan adu pukul",
+  "open": {
+    "title": "Olahraga saat petinju adu pukul, lalu duduk di depan papan catur",
+    "line": "Dua petarung bergantian di papan catur dan ring tinju."
+  },
+  "summary": "Catur tinju lahir dari komik Enki Bilal 1992. Seniman Belanda Iepe Rubingh menjadikannya nyata dan jadi juara dunia pertama pada 2003.",
+  "panels": [
+    {
+      "text": [
+        "Dua petarung bergantian di papan catur dan ring tinju.",
+        "Catur, lalu tinju, lalu catur lagi."
+      ]
+    },
+    {
+      "text": [
+        "Aturan 2005: catur 4 menit, tinju 2 menit.",
+        "Bergantian begitu selama 11 ronde."
+      ]
+    },
+    {
+      "text": "Habis dipukul, main catur?"
+    },
+    {
+      "text": [
+        "Penciptanya seniman Belanda Iepe Rubingh.",
+        "Katanya, perlu fisik kuat untuk menenangkan jantung."
+      ]
+    },
+    {
+      "text": [
+        "Menang lewat skakmat atau KO. Waktu catur habis, kalah.",
+        "Remis? Poin tinju. Seri lagi? Hitam menang."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata ini lahir dari komik.",
+        "Komik Enki Bilal 1992, di planet rusak tahun 2096."
+      ]
+    },
+    {
+      "text": [
+        "Di komik, tinju dulu satu laga penuh, baru catur.",
+        "Rubingh mengubahnya jadi bergantian."
+      ]
+    },
+    {
+      "text": "Komiknya dibikin nyata."
+    },
+    {
+      "text": [
+        "Laga gelar dunia pertama 2003, petarungnya Rubingh sendiri.",
+        "Ronde 11, waktu catur lawan habis. Rubingh juara."
+      ]
+    }
+  ],
+  "sources": [
+    "The Guardian (2005-10-31): Introducing the world's most unlikely sport: chessboxing",
+    "Wikipedia: Chess boxing",
+    "Wikipedia: Iepe Rubingh"
+  ]
+}

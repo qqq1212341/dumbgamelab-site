@@ -1,0 +1,95 @@
+{
+  "id": "oxford-electric-bell-1840",
+  "contentNotice": null,
+  "day": 75,
+  "category": "과학",
+  "title": "1840년부터 울린 종이 아직도 울린다. 소리는 거의 안 들린다",
+  "hook": "옥스퍼드 복도의 종은 186년째 1초에 두 번 울린다",
+  "open": {
+    "title": "186년째 울리는데 소리는 거의 안 들리는 종",
+    "cover": "m27",
+    "line": "옥스퍼드 대학 물리 연구소 입구 옆에 유리 진열장이 하나 있다."
+  },
+  "summary": "옥스퍼드 클래런던 연구소의 종은 1840년부터 건전지 두 개로 울리고 있다. 지금까지 약 100억 번 울렸다.",
+  "cover": "oxford-electric-bell-1840",
+  "sources": [
+    {
+      "title": "Oxford University Physics: Exhibit 1, The Clarendon Dry Pile",
+      "url": "https://archwww.physics.ox.ac.uk/history/Exhibit1.html"
+    },
+    {
+      "title": "Wikipedia: Oxford Electric Bell",
+      "url": "https://en.wikipedia.org/wiki/Oxford_Electric_Bell"
+    },
+    {
+      "title": "Atlas Obscura: Oxford Electric Bell",
+      "url": "https://www.atlasobscura.com/places/oxford-electric-bell"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "oxford-electric-bell-1840",
+      "text": [
+        "옥스퍼드 대학 물리 연구소의 유리 진열장 안.",
+        "작은 구슬 하나가 두 종 사이를 거의 쉬지 않고 오간다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "1초에 두 번씩 종을 친다.",
+        "라벨엔 교수 손글씨로 1840년 설치라고 적혀 있다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "근데 종소리가 거의 안 들리는데?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "두 겹 유리에 막혀 소리가 먹먹하다.",
+        "그래서 귀보다 눈으로 보는 종이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "oxford-electric-bell-1840-zamboni",
+      "text": [
+        "사실은 이 종을 움직인 건 건전지 두 개였다.",
+        "종마다 위에 하나씩 세운 기둥이 그 건전지다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "구슬은 한쪽 종에서 전기를 받으면 밀려나 반대쪽 종으로 간다.",
+        "옮기는 전기가 아주 적어서 전지가 거의 안 닳는다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "전지 겉은 녹인 황으로 덮여 있다.",
+        "전지 속이 어떻게 생겼는지는 아직 추측일 뿐이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "oxford-electric-bell-1840-lab",
+      "text": [
+        "영구기관은 아니다.",
+        "두 전지의 전기가 고르게 나뉘거나 구슬이 닳으면 멈춘다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그 사이 울린 횟수가 약 100억 번이다.",
+        "기네스북엔 세계에서 가장 오래가는 전지로 올라 있다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

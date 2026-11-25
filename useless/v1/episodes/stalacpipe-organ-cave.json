@@ -1,0 +1,88 @@
+{
+  "id": "stalacpipe-organ-cave",
+  "contentNotice": null,
+  "day": 73,
+  "category": "음악",
+  "title": "동굴 종유석을 고무망치로 때려서 치는 오르간이 있다",
+  "hook": "이 오르간은 파이프 대신 동굴 종유석 37개를 때린다",
+  "open": {
+    "title": "동굴 종유석 37개에 망치를 매단 펜타곤 수학자",
+    "cover": "m1",
+    "line": "미국 버지니아의 한 동굴엔 골라 둔 종유석 37개마다 망치가 달려 있다."
+  },
+  "summary": "버지니아 루레이 동굴의 오르간은 건반을 누르면 고무망치가 종유석을 때려 소리를 낸다. 기네스가 세계에서 가장 큰 악기로 올렸다.",
+  "cover": "stalacpipe-organ-cave",
+  "sources": [
+    {
+      "title": "Luray Caverns: The Great Stalacpipe Organ",
+      "url": "https://luraycaverns.com/news/the-great-stalacpipe-organ/"
+    },
+    {
+      "title": "Wikipedia: Great Stalacpipe Organ",
+      "url": "https://en.wikipedia.org/wiki/Great_Stalacpipe_Organ"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "stalacpipe-organ-cave-striker",
+      "text": [
+        "버지니아 루레이 동굴에서 골라 둔 종유석 37개엔 고무망치가 하나씩 달려 있다.",
+        "건반을 누르면 이 망치가 돌을 톡 친다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "stalacpipe-organ-cave",
+      "text": [
+        "동굴 안엔 건반이 네 단인 오르간이 있다.",
+        "파이프 자리는 종유석 37개가 맡는다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "돌을 때리는데 음이 맞는다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "만든 사람은 1954년 펜타곤에서 일하던 수학자 릴런드 스프링클이다.",
+        "안내원이 망치로 돌을 두드려 노래하는 걸 보고 떠올렸다고 한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 동굴이 음 맞는 돌을 내준 게 아니었다.",
+        "그는 영국제 소리굽쇠 13개를 들고 돌을 하나하나 두드려 골랐다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "stalacpipe-organ-cave-cave",
+      "text": [
+        "음이 어긋난 돌은 깎아서 맞췄다.",
+        "그렇게 3년이 걸렸다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "아들 머리 박은 소리에서 시작됐다는 말도 있던데?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "1959년 잡지엔 아들이 종유석에 머리를 부딪쳐 난 소리가 시작이라고 실렸다.",
+        "고른 종유석은 동굴 1만 4천 제곱미터에 흩어져 있다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "기네스는 이걸 세계에서 가장 큰 악기로 올렸다.",
+        "스피커 없이 쳐도 26만 제곱미터 동굴 어디서나 들린다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

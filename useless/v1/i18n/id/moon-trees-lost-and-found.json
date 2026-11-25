@@ -1,0 +1,68 @@
+{
+  "category": "Antariksa",
+  "title": "Pohon dari benih yang mengitari Bulan berdiri santai di taman-taman AS",
+  "hook": "Pohon di taman Pennsylvania ini tumbuh dari benih yang mengitari Bulan",
+  "open": {
+    "title": "Pohon-pohon Bulan yang terlupa puluhan tahun",
+    "line": "Di sebuah taman di Pennsylvania, ada pohon sycamore."
+  },
+  "summary": "Tahun 1971 Apollo 14 membawa benih pohon mengitari Bulan. Pohonnya ditanam di seluruh AS, tapi lokasi banyak di antaranya nyaris terlupa puluhan tahun, sampai seorang guru mengirim email ke NASA pada 1996.",
+  "panels": [
+    {
+      "text": [
+        "Di taman Pennsylvania ini ada pohon sycamore.",
+        "Menurut daftar NASA, benihnya pernah mengitari Bulan."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 1971, Stuart Roosa dari Apollo 14 bawa sekaleng benih.",
+        "Dulu dia pemadam api hutan."
+      ]
+    },
+    {
+      "text": [
+        "Dia tak mendarat, cuma mengitari Bulan.",
+        "Benihnya ada lima jenis."
+      ]
+    },
+    {
+      "text": [
+        "Di Bumi, kantong benihnya pecah saat disterilkan.",
+        "Benihnya tersebar di ruang vakum."
+      ]
+    },
+    {
+      "text": "Berarti mati semua dong?"
+    },
+    {
+      "text": [
+        "Ternyata, benihnya bertunas.",
+        "Sekitar 1976, bibitnya ditanam di seluruh AS."
+      ]
+    },
+    {
+      "text": [
+        "Ada yang ke Gedung Putih dan Kaisar Jepang.",
+        "Tapi lokasi banyak pohon nyaris terlupa puluhan tahun."
+      ]
+    },
+    {
+      "text": [
+        "Tahun 1996, seorang guru SD dan muridnya menemukan papan itu.",
+        "Ia mengirim email ke NASA."
+      ]
+    },
+    {
+      "text": [
+        "Dave Williams dari NASA pun tak tahu pohon Bulan ada.",
+        "Rekannya juga hampir semua tak tahu."
+      ]
+    }
+  ],
+  "sources": [
+    "NASA NSSDCA: The Moon Trees",
+    "Wikipedia: Moon tree",
+    "The Atlantic: We Almost Forgot About the Moon Trees"
+  ]
+}

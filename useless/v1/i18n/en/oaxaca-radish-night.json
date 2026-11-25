@@ -1,0 +1,67 @@
+{
+  "category": "Food",
+  "title": "In Mexico, some radishes are grown to be carved, not eaten",
+  "hook": "The contest radishes Oaxaca grows aren't fit to eat",
+  "open": {
+    "title": "Why radish carvings fill a Mexican square for one night",
+    "line": "Every December 23, radish carvings go up in a square in Oaxaca."
+  },
+  "summary": "Since 1897, Oaxaca, Mexico has held a radish carving contest every December 23. The radishes are inedible, and carvings wilt fast, so they're shown only a few hours.",
+  "panels": [
+    {
+      "text": [
+        "On December 23, radish carvings line the main square in Oaxaca, Mexico.",
+        "Most are scenes made of several radishes."
+      ]
+    },
+    {
+      "text": [
+        "In 1897, the mayor made it radish carving contest day.",
+        "It's yearly, and it's called the Night of the Radishes."
+      ]
+    },
+    {
+      "text": "Why carve a radish? Just eat it."
+    },
+    {
+      "text": [
+        "The city grows them on its own plot.",
+        "They stay in the ground long past harvest."
+      ]
+    },
+    {
+      "text": [
+        "Actually, they aren't grown to be eaten.",
+        "Heavy fertilizer and chemicals make them unfit to eat."
+      ]
+    },
+    {
+      "text": [
+        "They grow up to 50 cm long and 3 kg.",
+        "Rows are planted every few weeks for varied sizes. That also stops cheating."
+      ]
+    },
+    {
+      "text": [
+        "Radishes are handed out on the 18th,",
+        "and all carving and setup happens on the 23rd."
+      ]
+    },
+    {
+      "text": [
+        "Cut radishes wilt fast.",
+        "So they last only a few evening hours. Lines can take 4 to 5 hours."
+      ]
+    },
+    {
+      "text": [
+        "In 2014, 12 tons of radishes were pulled for one night.",
+        "Judging ends around 9 pm, and the carvings are soon cleared."
+      ]
+    }
+  ],
+  "sources": [
+    "Smithsonian Magazine: Why Radish Carving Has Become a Popular Holiday Event in Oaxaca (2018)",
+    "Wikipedia: Night of the Radishes"
+  ]
+}

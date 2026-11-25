@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "72-e3a71186df",
+ "version": "79-02b68d548f",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -867,6 +867,90 @@
     "ja": "i18n/ja/france-paris-time-minus-9min21s.json",
     "id": "i18n/id/france-paris-time-minus-9min21s.json",
     "zh": "i18n/zh/france-paris-time-minus-9min21s.json"
+   }
+  },
+  {
+   "id": "stalacpipe-organ-cave",
+   "day": 73,
+   "hash": "b06472ced485a4b5",
+   "ep": "episodes/stalacpipe-organ-cave.json",
+   "i18n": {
+    "en": "i18n/en/stalacpipe-organ-cave.json",
+    "ja": "i18n/ja/stalacpipe-organ-cave.json",
+    "id": "i18n/id/stalacpipe-organ-cave.json",
+    "zh": "i18n/zh/stalacpipe-organ-cave.json"
+   }
+  },
+  {
+   "id": "silbo-gomero-whistle-language",
+   "day": 74,
+   "hash": "35cd9f2657e1f4da",
+   "ep": "episodes/silbo-gomero-whistle-language.json",
+   "i18n": {
+    "en": "i18n/en/silbo-gomero-whistle-language.json",
+    "ja": "i18n/ja/silbo-gomero-whistle-language.json",
+    "id": "i18n/id/silbo-gomero-whistle-language.json",
+    "zh": "i18n/zh/silbo-gomero-whistle-language.json"
+   }
+  },
+  {
+   "id": "oxford-electric-bell-1840",
+   "day": 75,
+   "hash": "79dda1cefa97d353",
+   "ep": "episodes/oxford-electric-bell-1840.json",
+   "i18n": {
+    "en": "i18n/en/oxford-electric-bell-1840.json",
+    "ja": "i18n/ja/oxford-electric-bell-1840.json",
+    "id": "i18n/id/oxford-electric-bell-1840.json",
+    "zh": "i18n/zh/oxford-electric-bell-1840.json"
+   }
+  },
+  {
+   "id": "oaxaca-radish-night",
+   "day": 76,
+   "hash": "a84c115550a6d522",
+   "ep": "episodes/oaxaca-radish-night.json",
+   "i18n": {
+    "en": "i18n/en/oaxaca-radish-night.json",
+    "ja": "i18n/ja/oaxaca-radish-night.json",
+    "id": "i18n/id/oaxaca-radish-night.json",
+    "zh": "i18n/zh/oaxaca-radish-night.json"
+   }
+  },
+  {
+   "id": "chessboxing-comic-to-sport",
+   "day": 77,
+   "hash": "e90186d8e61be3ac",
+   "ep": "episodes/chessboxing-comic-to-sport.json",
+   "i18n": {
+    "en": "i18n/en/chessboxing-comic-to-sport.json",
+    "ja": "i18n/ja/chessboxing-comic-to-sport.json",
+    "id": "i18n/id/chessboxing-comic-to-sport.json",
+    "zh": "i18n/zh/chessboxing-comic-to-sport.json"
+   }
+  },
+  {
+   "id": "child-mailed-parcel-post-1914",
+   "day": 78,
+   "hash": "922c67001830a81c",
+   "ep": "episodes/child-mailed-parcel-post-1914.json",
+   "i18n": {
+    "en": "i18n/en/child-mailed-parcel-post-1914.json",
+    "ja": "i18n/ja/child-mailed-parcel-post-1914.json",
+    "id": "i18n/id/child-mailed-parcel-post-1914.json",
+    "zh": "i18n/zh/child-mailed-parcel-post-1914.json"
+   }
+  },
+  {
+   "id": "moon-trees-lost-and-found",
+   "day": 79,
+   "hash": "5acef8e837eb3623",
+   "ep": "episodes/moon-trees-lost-and-found.json",
+   "i18n": {
+    "en": "i18n/en/moon-trees-lost-and-found.json",
+    "ja": "i18n/ja/moon-trees-lost-and-found.json",
+    "id": "i18n/id/moon-trees-lost-and-found.json",
+    "zh": "i18n/zh/moon-trees-lost-and-found.json"
    }
   }
  ]

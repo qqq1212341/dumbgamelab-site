@@ -1,0 +1,91 @@
+{
+  "id": "oaxaca-radish-night",
+  "contentNotice": null,
+  "day": 76,
+  "category": "음식",
+  "title": "멕시코에는 먹으려고가 아니라 깎으려고 키우는 무가 있다",
+  "hook": "오악사카 시가 키우는 대회용 무는 사람이 먹기엔 맞지 않다",
+  "open": {
+    "title": "멕시코 광장에 하룻밤만 무 조각이 서는 이유",
+    "cover": "m1",
+    "line": "해마다 12월 23일 밤, 오악사카 광장에 무로 깎은 작품들이 선다."
+  },
+  "summary": "멕시코 오악사카는 1897년부터 해마다 12월 23일에 무 조각 대회를 연다. 대회용 무는 시가 따로 키우는데 먹기엔 맞지 않고, 작품은 자른 뒤 금방 시들어 몇 시간만 전시된다.",
+  "cover": "oaxaca-radish-night",
+  "sources": [
+    {
+      "title": "Smithsonian Magazine: Why Radish Carving Has Become a Popular Holiday Event in Oaxaca (2018)",
+      "url": "https://www.smithsonianmag.com/travel/why-radish-carving-has-become-popular-holiday-event-oaxaca-180971096/"
+    },
+    {
+      "title": "Wikipedia: Night of the Radishes",
+      "url": "https://en.wikipedia.org/wiki/Night_of_the_Radishes"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "oaxaca-radish-night",
+      "text": [
+        "12월 23일 밤, 멕시코 오악사카 광장에 무 조각 작품들이 늘어선다.",
+        "대부분 무 여러 개를 깎아 짜 맞춘 장면이다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "oaxaca-radish-night-crowd",
+      "text": [
+        "1897년 시장이 이날을 무 조각 대회 날로 정했다.",
+        "그 뒤로 해마다 열린다. 이름도 무의 밤이다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "무를 왜 깎아? 그냥 먹지."
+    },
+    {
+      "type": "text",
+      "text": [
+        "대회용 무는 시가 따로 정한 밭에서 키운다.",
+        "수확 철이 지나도 안 뽑고 땅에 오래 둔다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실 이 무는 먹으려고 키우는 게 아니다.",
+        "비료와 약을 잔뜩 쳐서 사람이 먹기엔 맞지 않다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "대신 길이 50cm, 무게 3kg까지 자란다.",
+        "몇 주마다 새로 심어서 고를 크기를 여러 가지로 만든다. 속임수도 막는다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "oaxaca-radish-night-carving",
+      "text": [
+        "무는 18일에 참가자들에게 나눠 주고,",
+        "깎아서 세우는 건 23일 하루 만에 한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "잘린 무는 금방 시든다.",
+        "그래서 작품을 볼 수 있는 건 저녁 몇 시간뿐이고, 구경 줄은 4~5시간까지 늘어난다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "2014년엔 이 하룻밤을 위해 뽑은 무만 12톤이었다.",
+        "밤 9시쯤 심사가 끝나면 조각은 곧 치워진다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

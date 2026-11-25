@@ -1,0 +1,68 @@
+{
+  "category": "Sains",
+  "title": "Bel ini berdering sejak 1840, tapi suaranya nyaris tak terdengar",
+  "hook": "Bel di Oxford berdering 2 kali per detik selama 186 tahun",
+  "open": {
+    "title": "Bel 186 tahun yang suaranya nyaris tak terdengar",
+    "line": "Di dekat pintu lab fisika Oxford ada lemari kaca."
+  },
+  "summary": "Bel di Lab Clarendon, Oxford, berjalan dengan dua baterai sejak 1840. Sudah berdering sekitar 10 miliar kali.",
+  "panels": [
+    {
+      "text": [
+        "Di lemari kaca lab fisika Oxford,",
+        "bola kecil bolak-balik di antara dua bel hampir tanpa henti."
+      ]
+    },
+    {
+      "text": [
+        "Dua kali per detik.",
+        "Labelnya ditulis tangan profesor: dipasang 1840."
+      ]
+    },
+    {
+      "text": "Lho, kok hampir nggak kedengaran?"
+    },
+    {
+      "text": [
+        "Suaranya teredam dua lapis kaca.",
+        "Bel ini lebih untuk dilihat daripada didengar."
+      ]
+    },
+    {
+      "text": [
+        "Ternyata, penggeraknya cuma dua baterai.",
+        "Tiap bel tergantung di bawah satu tiang. Tiang itulah baterainya."
+      ]
+    },
+    {
+      "text": [
+        "Bola dapat muatan dari satu bel, lalu terlempar ke bel lain.",
+        "Muatannya sangat kecil, baterai hampir tak berkurang."
+      ]
+    },
+    {
+      "text": [
+        "Baterainya dilapisi belerang cair.",
+        "Isi bateri itu sendiri masih sebatas tebakan."
+      ]
+    },
+    {
+      "text": [
+        "Ini bukan mesin abadi.",
+        "Bel berhenti saat muatan seimbang atau bolanya aus."
+      ]
+    },
+    {
+      "text": [
+        "Sejauh ini bel sudah berbunyi sekitar 10 miliar kali.",
+        "Guinness mencatatnya sebagai baterai paling awet di dunia."
+      ]
+    }
+  ],
+  "sources": [
+    "Oxford University Physics: Exhibit 1, The Clarendon Dry Pile",
+    "Wikipedia: Oxford Electric Bell",
+    "Atlas Obscura: Oxford Electric Bell"
+  ]
+}

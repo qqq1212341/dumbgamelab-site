@@ -1,0 +1,91 @@
+{
+  "id": "chessboxing-comic-to-sport",
+  "contentNotice": null,
+  "day": 77,
+  "category": "스포츠",
+  "title": "체스 4분, 복싱 2분을 번갈아 11라운드 하는 스포츠는 만화에서 나왔다",
+  "hook": "체스를 두다가 복싱으로 넘어가 주먹을 주고받는 경기가 있다",
+  "open": {
+    "title": "복싱 선수들이 주먹을 주고받다 체스판 앞에 앉는 스포츠",
+    "cover": "m3",
+    "line": "두 선수가 체스판과 복싱 링을 번갈아 오간다."
+  },
+  "summary": "체스와 복싱을 번갈아 하는 체스복싱은 1992년 엔키 빌랄의 만화에서 나왔다. 네덜란드 예술가 이에페 루빙이 진짜 경기로 만들고 2003년 첫 세계 챔피언이 됐다.",
+  "cover": "chessboxing-comic-to-sport",
+  "sources": [
+    {
+      "title": "The Guardian (2005-10-31): Introducing the world's most unlikely sport: chessboxing",
+      "url": "https://www.theguardian.com/sport/2005/oct/31/georginaturner"
+    },
+    {
+      "title": "Wikipedia: Chess boxing",
+      "url": "https://en.wikipedia.org/wiki/Chess_boxing"
+    },
+    {
+      "title": "Wikipedia: Iepe Rubingh",
+      "url": "https://en.wikipedia.org/wiki/Iepe_Rubingh"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "chessboxing-comic-to-sport",
+      "text": [
+        "두 선수가 체스판과 복싱 링을 번갈아 오간다.",
+        "체스를 두다가 복싱, 그리고 다시 체스로 돌아온다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "chessboxing-comic-to-sport-board",
+      "text": [
+        "2005년 규칙은 체스 4분, 복싱 2분.",
+        "이걸 번갈아 11라운드를 한다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "맞고 나서 바로 체스가 된다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "만든 사람은 네덜란드 예술가 이에페 루빙이다.",
+        "복싱 뒤 치솟은 맥박을 가라앉힐 몸이 있어야 체스를 둔다고 했다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "체크메이트나 KO로 끝나고, 체스 시간을 넘겨도 진다.",
+        "체스가 비기면 복싱 점수, 그것도 같으면 검은 말이 이긴다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실 이 경기는 만화에서 나왔다.",
+        "1992년 엔키 빌랄의 만화 속, 2096년 망가진 행성의 경기였다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "만화에선 복싱 한 경기를 다 치른 뒤에야 체스를 둔다.",
+        "루빙은 그게 안 맞는다며 번갈아 하게 바꿨다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "만화를 진짜로 해 버렸네."
+    },
+    {
+      "type": "text",
+      "text": [
+        "2003년 첫 세계 타이틀전, 링에 오른 건 루빙 자신이었다.",
+        "11라운드에 상대가 체스 시간을 넘겨 루빙이 첫 챔피언이 됐다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

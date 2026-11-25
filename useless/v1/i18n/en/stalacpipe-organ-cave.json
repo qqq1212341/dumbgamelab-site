@@ -1,0 +1,64 @@
+{
+  "category": "Music",
+  "title": "There's an organ in a cave that plays by hitting stalactites with rubber mallets",
+  "hook": "This organ hits 37 cave stalactites instead of pipes",
+  "open": {
+    "title": "The Pentagon mathematician who wired hammers to cave stalactites",
+    "line": "In a Virginia cave, 37 chosen stalactites each have their own hammer."
+  },
+  "summary": "In Luray Caverns, Virginia, an organ key makes a rubber mallet strike a stalactite. Guinness calls it the largest instrument.",
+  "panels": [
+    {
+      "text": [
+        "In Virginia's Luray Caverns, 37 chosen stalactites each get a rubber mallet.",
+        "Press a key, and a mallet taps the rock."
+      ]
+    },
+    {
+      "text": [
+        "Inside the cave sits an organ with four keyboards.",
+        "Instead of pipes, it plays 37 stalactites."
+      ]
+    },
+    {
+      "text": "Wait, hitting rocks gives you real notes?"
+    },
+    {
+      "text": [
+        "The builder: Leland Sprinkle, a Pentagon mathematician, in 1954.",
+        "The story goes he got the idea watching a guide tap tunes on the rocks."
+      ]
+    },
+    {
+      "text": [
+        "But the cave didn't hand him rocks already in tune.",
+        "He tapped them one by one with 13 English tuning forks."
+      ]
+    },
+    {
+      "text": [
+        "Rocks that were off got shaved down to pitch.",
+        "It took him three years."
+      ]
+    },
+    {
+      "text": "Didn't it start with his son bonking his head?"
+    },
+    {
+      "text": [
+        "A 1959 magazine said it began with his son hitting his head on a stalactite.",
+        "The chosen stalactites are spread over 3.5 acres of cave."
+      ]
+    },
+    {
+      "text": [
+        "Guinness lists it as the world's largest instrument.",
+        "Even without speakers, you can hear it across all 64 acres of the cave."
+      ]
+    }
+  ],
+  "sources": [
+    "Luray Caverns: The Great Stalacpipe Organ",
+    "Wikipedia: Great Stalacpipe Organ"
+  ]
+}

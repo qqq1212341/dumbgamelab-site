@@ -1,0 +1,66 @@
+{
+  "category": "Words",
+  "title": "On one Spanish island, people whistle whole sentences to each other",
+  "hook": "An island where people once whistled messages 5 km across the valleys",
+  "open": {
+    "title": "The island where whistles once carried words 5 km away",
+    "line": "On Spain's La Gomera, people use tongue, lips and hands to whistle across the valleys."
+  },
+  "summary": "Silbo Gomero, from Spain's La Gomera, is Spanish turned into whistles. UNESCO listed it as heritage in 2009.",
+  "panels": [
+    {
+      "text": [
+        "On Spain's La Gomera, people use tongue, lips and hands to whistle across the valleys.",
+        "It's not a tune. It's a sentence."
+      ]
+    },
+    {
+      "text": [
+        "Deep ravines cut through the whole island.",
+        "These whistles reportedly carried news up to 5 km."
+      ]
+    },
+    {
+      "text": "What can you even say with a whistle? Tweet tweet?"
+    },
+    {
+      "text": [
+        "Actually, it isn't a made-up code.",
+        "It's the islanders' Spanish, turned straight into whistles."
+      ]
+    },
+    {
+      "word": "Silbo Gomero",
+      "mean": "the Gomeran whistle"
+    },
+    {
+      "text": [
+        "Five vowels become two whistles, and consonants become four.",
+        "Pitch and breaks tell them apart. With practice, you can say anything."
+      ]
+    },
+    {
+      "text": [
+        "UNESCO calls it the only fully developed whistled language used by a community of over 22,000.",
+        "It joined the heritage list in 2009."
+      ]
+    },
+    {
+      "text": [
+        "But many born from 1950 to 1980 understood it but couldn't whistle it.",
+        "So since 1999, it's been taught in schools."
+      ]
+    },
+    {
+      "text": [
+        "In a 2005 Nature study, whistlers' brains processed it in language areas.",
+        "To everyone else, it was just whistling."
+      ]
+    }
+  ],
+  "sources": [
+    "UNESCO Intangible Cultural Heritage: Silbo Gomero",
+    "Wikipedia: Silbo Gomero",
+    "Carreiras et al. (2005), Linguistic perception: neural processing of a whistled language, Nature 433"
+  ]
+}

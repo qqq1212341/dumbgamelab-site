@@ -1,0 +1,89 @@
+{
+  "id": "child-mailed-parcel-post-1914",
+  "contentNotice": null,
+  "day": 78,
+  "category": "생활",
+  "title": "아이를 우표 53센트 붙여 우편으로 부친 적이 있다",
+  "hook": "1914년 미국에서 다섯 살 아이가 소포로 부쳐졌다",
+  "open": {
+    "title": "미국 우체국이 다섯 살 아이를 소포로 받아 준 이유",
+    "cover": "m1",
+    "line": "1914년 2월, 아이다호의 한 우체국에 다섯 살짜리 소포가 들어왔다."
+  },
+  "summary": "1913년 시작한 미국 소포 우편엔 사람을 부치지 말라는 규정이 없었다. 1914년 다섯 살 메이는 우표 53센트를 소매에 달고 조부모 댁으로 부쳐졌다.",
+  "cover": "child-mailed-parcel-post-1914-mailbag",
+  "sources": [
+    {
+      "title": "National Postal Museum: The Oddest Parcels",
+      "url": "https://postalmuseum.si.edu/research-article/100-years-of-parcels-packages-and-packets-oh-my/the-oddest-parcels"
+    },
+    {
+      "title": "National Postal Museum: 250 Years of Stamps and Stories, 1910s",
+      "url": "https://postalmuseum.si.edu/exhibition/250-years-of-stamps-and-stories-of-the-us-postal-service/1910s"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "child-mailed-parcel-post-1914",
+      "text": [
+        "1914년 2월 19일, 다섯 살 메이가 소포로 부쳐졌다.",
+        "우표 53센트는 옷소매에 붙였다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "아이다호 그랜저빌 집에서 루이스턴 조부모 댁까지 가는 소포였다.",
+        "무게는 48.5파운드. 소포 한도 50파운드 바로 아래였다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "잠깐, 애를 택배로 보냈다고?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "미국 소포 우편은 1913년 1월 1일에 시작했다.",
+        "사람을 부치면 안 된다는 규정은 어디에도 없었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "메이는 우편 열차 칸에 실려 갔다.",
+        "철도 우체국 직원이 옆에서 같이 탔다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "child-mailed-parcel-post-1914-mailbag",
+      "text": [
+        "사실 메이가 처음도 아니었다.",
+        "소포 우편이 열리고 몇 주 만에 오하이오에서 아기가 먼저 부쳐졌다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "아기 무게는 10과 4분의 3파운드, 5킬로그램이 안 됐다.",
+        "부모는 우표 15센트를 붙이고 50달러짜리 보험을 들었다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "메이 일 뒤 체신장관은 사람을 우편으로 받지 말라고 전국 우체국에 알렸다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "그런데 이듬해 여섯 살 에드나는 플로리다에서 버지니아까지 우편 열차로 부쳐졌다.",
+        "기록된 우표값은 15센트였다."
+      ]
+    }
+  ],
+  "status": "approved"
+}

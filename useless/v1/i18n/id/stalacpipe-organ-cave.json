@@ -1,0 +1,64 @@
+{
+  "category": "Musik",
+  "title": "Ada organ di dalam gua yang dimainkan dengan memukul stalaktit pakai palu karet",
+  "hook": "Organ ini memukul 37 stalaktit, bukan pipa",
+  "open": {
+    "title": "Ahli matematika Pentagon yang memasang palu di stalaktit gua",
+    "line": "Di gua Virginia, 37 stalaktit pilihan dipasangi palu."
+  },
+  "summary": "Di Gua Luray, Virginia, tiap tuts organ menggerakkan palu karet yang memukul stalaktit. Guinness mencatatnya sebagai alat musik terbesar di dunia.",
+  "panels": [
+    {
+      "text": [
+        "37 stalaktit pilihan di Gua Luray diberi palu karet.",
+        "Tekan tuts, palu mengetuk batu."
+      ]
+    },
+    {
+      "text": [
+        "Di gua ada organ empat baris tuts.",
+        "Pipanya diganti 37 stalaktit."
+      ]
+    },
+    {
+      "text": "Mukul batu, nadanya bisa pas?"
+    },
+    {
+      "text": [
+        "Pembuatnya Leland Sprinkle, ahli matematika Pentagon, 1954.",
+        "Idenya muncul saat pemandu mengetuk lagu di batu."
+      ]
+    },
+    {
+      "text": [
+        "Tapi batunya tidak langsung pas nadanya.",
+        "Dia mencocokkannya satu per satu dengan 13 garpu tala."
+      ]
+    },
+    {
+      "text": [
+        "Batu yang meleset diasah sampai pas.",
+        "Butuh tiga tahun."
+      ]
+    },
+    {
+      "text": "Katanya awalnya anaknya kejedot batu?"
+    },
+    {
+      "text": [
+        "Majalah tahun 1959 menulis, anaknya kejedot stalaktit.",
+        "Stalaktitnya tersebar di 1,4 hektare."
+      ]
+    },
+    {
+      "text": [
+        "Guinness mencatatnya sebagai alat musik terbesar di dunia.",
+        "Tanpa speaker, bunyinya terdengar di seluruh gua 26 hektare."
+      ]
+    }
+  ],
+  "sources": [
+    "Luray Caverns: The Great Stalacpipe Organ",
+    "Wikipedia: Great Stalacpipe Organ"
+  ]
+}

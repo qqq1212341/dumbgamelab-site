@@ -1,0 +1,93 @@
+{
+  "id": "silbo-gomero-whistle-language",
+  "contentNotice": null,
+  "day": 74,
+  "category": "말",
+  "title": "스페인의 한 섬에서는 휘파람으로 문장을 통째로 주고받는다",
+  "hook": "골짜기 너머 5km까지 휘파람으로 말을 보냈다는 섬이 있다",
+  "open": {
+    "title": "휘파람만으로 5km 밖까지 말을 보냈다는 섬",
+    "cover": "m5",
+    "line": "스페인 라고메라 섬 사람들은 혀와 입술, 손을 써서 골짜기 너머로 휘파람을 분다."
+  },
+  "summary": "스페인 라고메라 섬의 실보 고메로는 스페인어를 휘파람으로 옮긴 말이다. 유네스코는 2009년 이것을 인류무형문화유산에 올렸다.",
+  "cover": "silbo-gomero-whistle-language",
+  "sources": [
+    {
+      "title": "UNESCO Intangible Cultural Heritage: Silbo Gomero",
+      "url": "https://ich.unesco.org/en/RL/whistled-language-of-the-island-of-la-gomera-canary-islands-the-silbo-gomero-00172"
+    },
+    {
+      "title": "Wikipedia: Silbo Gomero",
+      "url": "https://en.wikipedia.org/wiki/Silbo_Gomero"
+    },
+    {
+      "title": "Carreiras et al. (2005), Linguistic perception: neural processing of a whistled language, Nature 433",
+      "url": "https://doi.org/10.1038/433031a"
+    }
+  ],
+  "panels": [
+    {
+      "type": "image",
+      "img": "silbo-gomero-whistle-language",
+      "text": [
+        "스페인 라고메라 섬 사람들은 혀와 입술, 손을 써서 골짜기 너머로 휘파람을 분다.",
+        "노래가 아니다. 문장이다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "섬에는 깊은 골짜기가 사방으로 패어 있다.",
+        "이 휘파람으로 최대 5km 떨어진 곳까지 소식을 보냈다고 한다."
+      ]
+    },
+    {
+      "type": "say",
+      "text": "휘파람으로 무슨 말을 해? 삐익 삐익?"
+    },
+    {
+      "type": "text",
+      "text": [
+        "사실은 따로 만든 신호가 아니었다.",
+        "섬사람들이 쓰는 스페인어를 그대로 휘파람으로 옮긴 것이다."
+      ]
+    },
+    {
+      "type": "word",
+      "word": "Silbo Gomero",
+      "mean": "실보 고메로, 고메라 섬의 휘파람"
+    },
+    {
+      "type": "image",
+      "img": "silbo-gomero-whistle-language-silbo",
+      "text": [
+        "모음 다섯 개는 휘파람 두 가지로, 자음은 네 가지로 바꾼다.",
+        "음 높이와 끊기는지로 가른다. 익히면 어떤 말이든 전한다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "유네스코는 2만 2천 명 넘는 공동체가 쓰는 완전한 휘파람 언어는 이것뿐이라고 했다.",
+        "2009년 인류무형문화유산에 올렸다."
+      ]
+    },
+    {
+      "type": "image",
+      "img": "silbo-gomero-whistle-language-restaurant",
+      "text": [
+        "그런데 1950년에서 1980년 사이에 태어난 사람 중 상당수는 알아듣기만 하고 불지는 못했다.",
+        "그래서 1999년부터 학교에서 가르친다."
+      ]
+    },
+    {
+      "type": "text",
+      "text": [
+        "2005년 네이처에 실린 실험에서 실보를 아는 사람의 뇌는 이 휘파람을 언어 영역에서 처리했다.",
+        "모르는 사람에겐 그냥 휘파람이었다."
+      ]
+    }
+  ],
+  "status": "approved"
+}
