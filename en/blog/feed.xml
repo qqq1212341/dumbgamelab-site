@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Blood-Red Water Flows From Antarctic Ice</title>
+    <link>https://dumbgamelab.com/en/blog/blood-falls/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/blood-falls/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+    <description>The red water flowing from an Antarctic glacier is clear when it comes out. Beneath it live microbes thought to have survived for at least 1.5 million years.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/blood-falls.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>I hid the HUD and the score went to 1.0</title>
     <link>https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/hide-white-text-score-1-0/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ticket-101-made-78-done/</guid>
     <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
     <description>I spent a whole day closing tickets as a solo developer, and the backlog ended the day the same size. I closed 78 and 101 new ones opened. Here are the numbers, and where I was wrong to treat closed tickets as work done.</description>
-  </item>
-  <item>
-    <title>&quot;Eorin Baekseong&quot; Did Not Mean Children</title>
-    <link>https://dumbgamelab.com/en/blog/eorida-fool/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/eorida-fool/</guid>
-    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
-    <description>In the 15th century &quot;eorida&quot; meant foolish. The sense of &quot;young&quot; appeared from the 16th century and is the main meaning today.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

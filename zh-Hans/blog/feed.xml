@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>南极的冰里，流出血一样红的水</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/blood-falls/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/blood-falls/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+    <description>从南极冰川流出的红水，刚流出来时是透明的。冰川下面有微生物，据推测至少已经生活了150万年。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/blood-falls.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>菠萝当年买来，不是为了吃</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/pineapple-status/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/pineapple-status/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
     <description>二维码1994年诞生于日本，灵感来自围棋棋子的黑白图案。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>番茄酱原本是鱼酱</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/ketchup-fish/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/ketchup-fish/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:00:00 GMT</pubDate>
-    <description>ketchup 这个词原本指腌鱼的汤汁，番茄酱到19世纪才出现。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/ketchup-bottle.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
