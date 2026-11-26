@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>什麼是肉鴿射擊遊戲？用一局的流程來說明</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/what-is-a-roguelike-shooter-mobile/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/what-is-a-roguelike-shooter-mobile/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+    <description>用手遊一局的流程說明什麼是 Roguelike 射擊遊戲。三選一增幅、只有一條命、結束後仍會保留的永久強化，都用實際遊戲資料裡的數字來解釋。</description>
+  </item>
+  <item>
     <title>把 HUD 藏起來，分數變成 1.0</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/hide-white-text-score-1-0/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/revenue-92pct-one-article/</guid>
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>獨立開發者把手機遊戲收益按遊戲拆開來看，才發現近 14 天收益 $260 之中，有 $241 來自同一款遊戲，而且大半是一篇台灣報導帶來的流量。這篇記錄我哪裡讀錯了數字。</description>
-  </item>
-  <item>
-    <title>汗蒸館養成記：賺多賺少，看的不是買了什麼，而是設施擺在哪裡</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-tycoon-layout-tips/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/jjimjilbang-tycoon-layout-tips/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>汗蒸幕經營遊戲裡，設施放在哪裡收入會增加20%，放在哪裡又會被扣掉20%？《汗蒸館養成記》的相鄰倍率表、空調範圍與大門位置，全部用遊戲內實際數值整理。</description>
   </item>
 </channel>
 </rss>

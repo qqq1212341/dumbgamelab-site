@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>What is a roguelike shooter? One run, start to finish</title>
+    <link>https://dumbgamelab.com/en/blog/what-is-a-roguelike-shooter-mobile/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/what-is-a-roguelike-shooter-mobile/</guid>
+    <pubDate>Wed, 25 Nov 2026 15:00:00 GMT</pubDate>
+    <description>What a roguelike shooter is, explained through one run of a mobile game. Pick 1 of 3 augments, play with a single life, and keep permanent upgrades after a run ends, with numbers taken from the game&#39;s own data.</description>
+  </item>
+  <item>
     <title>Blood-Red Water Flows From Antarctic Ice</title>
     <link>https://dumbgamelab.com/en/blog/blood-falls/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/blood-falls/</guid>
@@ -221,13 +228,6 @@
     <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
     <description>Zipper was originally a name for rubber boots in 1923. The fastener ended up taking the name.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>I Closed 78 Tickets and the Backlog Stayed the Same</title>
-    <link>https://dumbgamelab.com/en/blog/ticket-101-made-78-done/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/ticket-101-made-78-done/</guid>
-    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
-    <description>I spent a whole day closing tickets as a solo developer, and the backlog ended the day the same size. I closed 78 and 101 new ones opened. Here are the numbers, and where I was wrong to treat closed tickets as work done.</description>
   </item>
 </channel>
 </rss>

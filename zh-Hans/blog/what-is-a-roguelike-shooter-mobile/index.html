@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>什么是肉鸽射击游戏？从增幅、1 条命到永久强化看手游入门</title>
+<meta name="description" content="用手游一局的流程讲清楚什么是 Roguelike 射击游戏。三选一增幅、只有一条命、一局结束后还能保留的永久强化，都用实际游戏数据里的数字来解释。">
+<link rel="canonical" href="https://dumbgamelab.com/zh-Hans/blog/what-is-a-roguelike-shooter-mobile/">
+<meta name="robots" content="noindex">
+
+<link rel="alternate" type="application/rss+xml" href="/zh-Hans/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="什么是肉鸽射击游戏？从增幅、1 条命到永久强化看手游入门">
+<meta property="og:description" content="用手游一局的流程讲清楚什么是 Roguelike 射击游戏。三选一增幅、只有一条命、一局结束后还能保留的永久强化，都用实际游戏数据里的数字来解释。">
+<meta property="og:url" content="https://dumbgamelab.com/zh-Hans/blog/what-is-a-roguelike-shooter-mobile/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/what-is-a-roguelike-shooter-mobile/hero.jpg">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"什么是肉鸽射击游戏？用一局的流程来讲","description":"用手游一局的流程讲清楚什么是 Roguelike 射击游戏。三选一增幅、只有一条命、一局结束后还能保留的永久强化，都用实际游戏数据里的数字来解释。","inLanguage":"zh-CN","datePublished":"2026-11-26","dateModified":"2026-11-26","image":"https://dumbgamelab.com/blog/img/what-is-a-roguelike-shooter-mobile/hero.jpg","mainEntityOfPage":"https://dumbgamelab.com/zh-Hans/blog/what-is-a-roguelike-shooter-mobile/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Trigger Trio Roguelike Shooter","gamePlatform":["Android"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.chichibrawl"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"博客","item":"https://dumbgamelab.com/zh-Hans/blog/"},{"@type":"ListItem","position":3,"name":"什么是肉鸽射击游戏？用一局的流程来讲","item":"https://dumbgamelab.com/zh-Hans/blog/what-is-a-roguelike-shooter-mobile/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"肉鸽射击游戏是什么意思？","acceptedAnswer":{"@type":"Answer","text":"这是在射击游戏上加入每局都不同的能力选择，以及死了就从头开始这条规则的类型。如果一局结束后还有保留的永久强化，有时会另外称为 Roguelite。"}},{"@type":"Question","name":"增幅是什么？","acceptedAnswer":{"@type":"Answer","text":"是一局中途从三张卡里选一张获得的能力卡。Trigger Trio 有 66 种，凑齐配对的两张卡就会解锁进化增幅。"}},{"@type":"Question","name":"只有一条命，会不会太难？","acceptedAnswer":{"@type":"Answer","text":"在一局之内生命只有一条。不过用螺母升级的 7 格永久强化下一局仍然保留，卡关的局最多也能重抽 3 次。"}},{"@type":"Question","name":"和弹幕射击一样吗？","acceptedAnswer":{"@type":"Answer","text":"躲子弹的乐趣很像，但弹幕射击的流程大多是固定的。肉鸽射击的不同在于，每次选卡，整局的样子都会跟着变化。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/zh-Hans/games/">游戏</a><a href="/zh-Hans/blog/">博客</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/zh-Hans/blog/">博客</a> · 攻略</p>
+    <p class="kicker">肉鸽射击入门</p>
+    <h1>什么是肉鸽射击游戏？用一局的流程来讲</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-26">2026-11-26</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/what-is-a-roguelike-shooter-mobile/hero.jpg" alt="Trigger Trio 对局中的画面。正要从三张增幅卡里选一张" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/chichibrawl.png" alt="Trigger Trio Roguelike Shooter" width="52" height="52">
+  <p class="gs-title">Trigger Trio Roguelike Shooter</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichibrawl&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dwhat-is-a-roguelike-shooter-mobile%26utm_content%3Dzh-Hans%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="chichibrawl" data-store="play">Google Play</a></div>
+</aside>
+    <p class="tldr">肉鸽射击游戏是在俯视角射击的基础上加了两个设计的类型。每打一局，都要从三张卡里选一张来积累能力，一旦失去生命，这一局就从头再来。以我们做的 Trigger Trio 来说，增幅 66 种、关卡 8 个、生命 1 条，再加上一局结束后还能保留的 7 格永久强化，就是这个类型的骨架。</p>
+    <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">一句话概括：每一局都是新的开始，选什么就变成什么样</a></li><li><a href="#s2">增幅：三选一，还有两张合成的进化</a></li><li><a href="#s3">1 条命：靠一口气打完 8 个关卡</a></li><li><a href="#s4">永久强化：死了还有东西留下，才会想再来一局</a></li><li><a href="#s5">第一次挑选时要确认的四件事</a></li><li><a href="#s6">另外还有 3 对 3 模式</a></li></ol></nav>
+    <section id="s1"><h2>一句话概括：每一局都是新的开始，选什么就变成什么样</h2>
+<p>Roguelike 这个词原本出自地牢探索游戏，用到射击游戏上，意思就简单多了：一局结束就从头开始，而且每一局拿到的能力是随机的。</p>
+<p>同一个关卡打十遍，会出十种不同的搭配。有的局子弹会在墙上反弹，有的局闪电会传到旁边的敌人，还有的局靠扣血来不停放大招。</p>
+<p>所以这个类型好玩的地方不只是操作。看着三张卡决定舍弃哪一张的那一刻，一局的走向就定了一半。</p>
+<figure><img src="/blog/img/what-is-a-roguelike-shooter-mobile/hero.jpg" alt="Trigger Trio 的增幅三选一界面" loading="lazy" decoding="async"><figcaption>Trigger Trio 的增幅选择界面。一次出现三张，只能拿走一张。</figcaption></figure></section>
+<section id="s2"><h2>增幅：三选一，还有两张合成的进化</h2>
+<p>增幅是一局中途选取的能力卡。Trigger Trio 一共有 66 种，分为普通增幅 56 种和进化增幅 10 种。</p>
+<p>普通的 56 种里，有 45 种是改变规则的卡。提升属性数值的卡只有 8 种，另外 3 种是同时带来好处和坏处的诅咒卡。</p>
+<p>比如玻璃大炮会让造成的伤害增加 45%，但最大生命减少 25%。血之大招要付出 5% 生命，换成每 3 秒放一次大招。选择变弱多少就强多少的卡，这种判断正是这个类型的乐趣。</p>
+<p>进化增幅要凑齐配对的两张卡才会解锁。同时拥有反弹弹和分裂弹，就会变成爆竹弹。这张进化卡会让子弹在墙上反弹 2 次，每次反弹都像爆竹一样炸开，屏幕转眼就被子弹塞满。</p>
+<div class="tbl"><table><thead><tr><th>种类</th><th>数量</th><th>作用</th></tr></thead><tbody><tr><td>规则增幅</td><td>45 种</td><td>让子弹反弹或分裂，改变攻击方式</td></tr><tr><td>属性增幅</td><td>8 种</td><td>提升伤害、生命、移动速度这类数值</td></tr><tr><td>诅咒增幅</td><td>3 种</td><td>给你很大的好处，同时制造一个弱点</td></tr><tr><td>进化增幅</td><td>10 种</td><td>凑齐配对的两张卡就会解锁</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>1 条命：靠一口气打完 8 个关卡</h2>
+<p>一局由 8 个关卡连成，生命只有一条。第 4 关和第 8 关各会出现一个巨大的 Boss。</p>
+<p>因为只有一条命，选增幅就变得很有分量。只收攻击卡，在 Boss 面前挨一下就倒；只收防御卡，又打不死 Boss。</p>
+<p>卡关的时候可以重抽。一局最多能重抽 3 次，重新拿到三张卡。章节分为 3 个，开局时从 8 位英雄里选一位。</p>
+</section>
+<section id="s4"><h2>永久强化：死了还有东西留下，才会想再来一局</h2>
+<p>严格的 Roguelike 一死就全部清零，但手游通常会另外设计一局结束后还能保留的强化，这样哪怕在地铁上只打一局就收手，进度也能一点一点积累。这个差别，对用手机玩这个类型的人来说相当明显。</p>
+<p>在 Trigger Trio 里，这个角色由螺母来担当。把一局里收集的螺母拿去升级 7 格永久强化，下一局就会在这个状态下开始。</p>
+<p>集满 300 个奖杯，就会开启 Boss Rush。它不是普通对局，而是连续挑战巨大 Boss 的模式。</p>
+</section>
+<section id="s5"><h2>第一次挑选时要确认的四件事</h2>
+<ul><li>先看一局要打几分钟。关卡有 8 个的话，零碎的空档可能会有点吃力。</li><li>确认生命数。只有一条的话，就要刻意搭配几张防御卡。</li><li>看看一局结束后有没有东西留下。如果没有螺母或经验值这类永久强化，用同样的水平就会一直撞同一堵墙。</li><li>看看有没有足够的增幅数量和配对组合。卡只有十张左右的话，打个三局就会一直重复同样的组合。</li></ul>
+</section>
+<section id="s6"><h2>另外还有 3 对 3 模式</h2>
+<p>Trigger Trio 除了 Roguelike 的闯关，还有 3 对 3 的副模式。有先收集到 10 颗宝石的模式，也有击倒赛，宝石模式的地图有 4 张。</p>
+<p>练习联赛是对战机器人的模式，很适合自己一个人练习。选增幅的判断，建议先在闯关模式里熟悉会更快。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>肉鸽射击游戏是什么意思？</summary><p>这是在射击游戏上加入每局都不同的能力选择，以及死了就从头开始这条规则的类型。如果一局结束后还有保留的永久强化，有时会另外称为 Roguelite。</p></details><details><summary>增幅是什么？</summary><p>是一局中途从三张卡里选一张获得的能力卡。Trigger Trio 有 66 种，凑齐配对的两张卡就会解锁进化增幅。</p></details><details><summary>只有一条命，会不会太难？</summary><p>在一局之内生命只有一条。不过用螺母升级的 7 格永久强化下一局仍然保留，卡关的局最多也能重抽 3 次。</p></details><details><summary>和弹幕射击一样吗？</summary><p>躲子弹的乐趣很像，但弹幕射击的流程大多是固定的。肉鸽射击的不同在于，每次选卡，整局的样子都会跟着变化。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/chichibrawl.png" alt="Trigger Trio Roguelike Shooter" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Pick 1 of 3 Augments &amp; 3v3</p><p class="gb-title">Trigger Trio Roguelike Shooter</p><p class="gb-hook">到 Trigger Trio 亲自从三张增幅卡里选一张吧。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichibrawl&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dwhat-is-a-roguelike-shooter-mobile%26utm_content%3Dzh-Hans%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="chichibrawl" data-store="play">Google Play</a></div></div>
+</aside>
+    
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>其他语言</span><a href="/en/blog/what-is-a-roguelike-shooter-mobile/" hreflang="en" lang="en">English</a><a href="/ko/blog/what-is-a-roguelike-shooter-mobile/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/what-is-a-roguelike-shooter-mobile/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/what-is-a-roguelike-shooter-mobile/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>简体中文</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
+</body>
+</html>
