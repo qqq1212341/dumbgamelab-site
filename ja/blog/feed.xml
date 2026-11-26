@@ -7,6 +7,14 @@
   <description>韓国の身近な場所、ゆるい放置系経営ゲーム、ソウルの小さなゲームスタジオの記録。</description>
   <language>ja</language>
   <item>
+    <title>白ワインに色素を足しただけで、赤ワインの香りと答えた</title>
+    <link>https://dumbgamelab.com/ja/blog/wine-color-tasters/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/wine-color-tasters/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>白ワインに香りのない赤い色素を加えただけで、醸造学部の学部生54人はそのワインを赤ワインの香りの言葉で表現した。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>ローグライク シューティングとは？ 1プレイの流れで説明します</title>
     <link>https://dumbgamelab.com/ja/blog/what-is-a-roguelike-shooter-mobile/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/what-is-a-roguelike-shooter-mobile/</guid>
@@ -221,14 +229,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/ticket-101-made-78-done/</guid>
     <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
     <description>個人開発のバックログを1日中閉じ続けたのに、残りの件数は前日と同じでした。78件閉じて101件が新しく開いた日の数字と、閉じた件数を作業量と取り違えた私の判断が間違っていた点を書きました。</description>
-  </item>
-  <item>
-    <title>「オリン・ペクソン」は子どもたちではなかった</title>
-    <link>https://dumbgamelab.com/ja/blog/eorida-fool/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ja/blog/eorida-fool/</guid>
-    <pubDate>Thu, 12 Nov 2026 15:00:00 GMT</pubDate>
-    <description>15世紀に「オリダ」は愚かだという意味で、16世紀以降に「年が若い」という意味が現れ、今ではそれが中心になった。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/haerye-book.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

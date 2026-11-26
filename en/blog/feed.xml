@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Red Dye in White Wine Got Tasters to Describe Red Wine Aromas</title>
+    <link>https://dumbgamelab.com/en/blog/wine-color-tasters/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/wine-color-tasters/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>White wine dyed red with an odorless dye was described in red wine aroma words by 54 oenology undergraduates.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>What is a roguelike shooter? One run, start to finish</title>
     <link>https://dumbgamelab.com/en/blog/what-is-a-roguelike-shooter-mobile/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/what-is-a-roguelike-shooter-mobile/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/</guid>
     <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
     <description>165 new tickets opened in one day, and 122 of them came from a single screen check tool. Text and button overlap alone was 101. Here are the numbers from the day the backlog went from 278 to 412, and where I was wrong to answer it with one more ticket.</description>
-  </item>
-  <item>
-    <title>Zipper Started as a Name for Boots</title>
-    <link>https://dumbgamelab.com/en/blog/zipper-boots/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/zipper-boots/</guid>
-    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Zipper was originally a name for rubber boots in 1923. The fastener ended up taking the name.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

@@ -7,6 +7,14 @@
   <description>Tempat sehari-hari di Korea, game idle tycoon santai, dan catatan dari studio game kecil di Seoul.</description>
   <language>id</language>
   <item>
+    <title>Wine putih cuma diberi pewarna, tapi dibilang beraroma wine merah</title>
+    <link>https://dumbgamelab.com/id/blog/wine-color-tasters/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/wine-color-tasters/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Wine putih yang hanya diberi pewarna merah tanpa aroma digambarkan oleh 54 mahasiswa sarjana enologi dengan kata-kata aroma wine merah.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Air Merah Seperti Darah Mengalir dari Es Antartika</title>
     <link>https://dumbgamelab.com/id/blog/blood-falls/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/id/blog/blood-falls/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>Bell ingin sapaan telepon berupa ahoy, tapi yang menyebar adalah hello dari Edison.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>Kode QR Lahir dari Papan Permainan Go</title>
-    <link>https://dumbgamelab.com/id/blog/qr-baduk/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/id/blog/qr-baduk/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>Kode QR dibuat di Jepang pada 1994, terinspirasi dari pola hitam putih batu Go.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

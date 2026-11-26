@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>白葡萄酒只加了色素，就被说成红酒的香气</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/wine-color-tasters/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/wine-color-tasters/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>只是往白葡萄酒里加了无味的红色素，酿酒学专业的54名本科生就用描述红葡萄酒香气的词来形容它。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>南极的冰里，流出血一样红的水</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/blood-falls/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/blood-falls/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
     <description>贝尔想用“阿嗬伊”当电话问候语，结果流行起来的是爱迪生的 Hello。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>二维码是在围棋盘上诞生的</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/qr-baduk/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/qr-baduk/</guid>
-    <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
-    <description>二维码1994年诞生于日本，灵感来自围棋棋子的黑白图案。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/qr-baduk.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

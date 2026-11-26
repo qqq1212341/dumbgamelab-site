@@ -7,6 +7,14 @@
   <description>한국의 동네 공간, 아늑한 방치형 타이쿤, 서울 작은 게임 스튜디오의 기록.</description>
   <language>ko</language>
   <item>
+    <title>흰 와인에 색소만 탔더니 레드 와인 향이라고 했다</title>
+    <link>https://dumbgamelab.com/ko/blog/wine-color-tasters/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/wine-color-tasters/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>화이트 와인에 향 없는 붉은 색소만 탔는데, 양조학부 학부생 54명은 그 와인을 레드 와인 향 단어로 묘사했다.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>로그라이크 슈팅게임이 뭔지, 한 판의 흐름으로 설명합니다</title>
     <link>https://dumbgamelab.com/ko/blog/what-is-a-roguelike-shooter-mobile/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/what-is-a-roguelike-shooter-mobile/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/tickets-165-122-same-bug/</guid>
     <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
     <description>하루에 새 티켓이 165장 열렸는데 122장은 화면 점검 도구 하나가 연 것이었습니다. 글자·단추 겹침만 101장. 목록이 278장에서 412장으로 불어난 날의 숫자와, 이걸 또 티켓 한 장으로 때우려던 내 판단이 틀린 곳을 적었습니다.</description>
-  </item>
-  <item>
-    <title>지퍼는 원래 장화 이름이었다</title>
-    <link>https://dumbgamelab.com/ko/blog/zipper-boots/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/ko/blog/zipper-boots/</guid>
-    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
-    <description>지퍼는 원래 1923년 고무장화의 상품명이었는데, 잠금장치가 그 이름을 가져갔다.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/zipper-coil.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
