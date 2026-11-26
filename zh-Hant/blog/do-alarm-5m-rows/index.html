@@ -49,6 +49,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="도트혈맹 自動狩獵畫面。像素風地下城裡角色正在和怪物戰鬥，上方可以看到金幣和寶石的數字" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">11 月 7 日，我的錯誤收集伺服器開始回 500，錯誤碼是 1101，訊息為「Exceeded allowed rows read」。兇手是同一個帳號下的遊戲伺服器（도트혈맹）每 5 秒跑一次的鬧鐘。這個鬧鐘在 users、feed 兩張表上沒有索引，每次都整張表掃過去，一天的讀取額度 500 萬列，它一個就用掉 498 萬列。額度是整個帳號共用的，所以邀請伺服器和錯誤收集伺服器一起掛了。我加了 2 個索引和 10 分鐘快取來修，現在每小時統計各伺服器的讀取列數，超過 60% 就連同兇手名稱一起通知我。</p>
     <nav class="toc"><p>本文目錄</p><ol><li><a href="#s1">先看數字</a></li><li><a href="#s2">一開始懷疑錯了伺服器</a></li><li><a href="#s3">兇手是 5 秒鬧鐘</a></li><li><a href="#s4">修了什麼</a></li><li><a href="#s5">避免同樣的事再發生</a></li><li><a href="#s6">我錯在哪</a></li></ol></nav>
     <section id="s1"><h2>先看數字</h2>
@@ -92,5 +93,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

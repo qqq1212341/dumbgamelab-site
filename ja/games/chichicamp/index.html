@@ -53,7 +53,7 @@
     <aside class="gamebox">
       <img src="/blog/icons/chichicamp.png" alt="Chichi Camp" width="88" height="88">
       <div><p class="gb-sub">Gather, craft, decorate</p><p class="gb-title">Chichi Camp</p><p class="gb-hook">Animal guests drop by every morning. Fill their requests, craft furniture and make the forest camp your own.</p>
-      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichicamp&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-chichicamp%26utm_content%3Dja" rel="noopener">Google Play</a><a class="store ghost" href="https://dumbgamelab.itch.io/chichi-camp?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=game-chichicamp" rel="noopener">ブラウザで遊ぶ</a></div></div>
+      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichicamp&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-chichicamp%26utm_content%3Dja%26utm_term%3Dgame" rel="noopener" data-cta="game" data-game="chichicamp" data-store="play">Google Play</a><a class="store ghost" href="https://dumbgamelab.itch.io/chichi-camp?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=game-chichicamp&utm_term=game" rel="noopener" data-cta="game" data-game="chichicamp" data-store="web">ブラウザで遊ぶ</a></div></div>
     </aside>
     <p>チーチーが森の中に小さなキャンプを開きました。のんびり遊べる、ほのぼのキャンプゲームです。</p>
 <p>毎朝、新しい一日が始まり、動物のお客さんが小さなお願いを持ってやって来ます。魚を何匹か、にんじんを一かご、薪をひと束、といったお願いです。</p>
@@ -67,5 +67,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

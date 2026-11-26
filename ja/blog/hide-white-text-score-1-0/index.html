@@ -49,6 +49,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="ゾンビバスの戦闘画面3枚。上にウェーブ、時間、ゾンビ数があり、道路の下にあるバス2台の屋根に生存者が立ち、いちばん下にギャンブル、召喚、神話、強化のボタン列がある" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">ゾンビバスの盤面を作り直していた11月6日、同じ固定10枚でブラインド判定を10回以上回しました。スコアは低いほど良く、合格ラインは0.55なのに、ずっと0.9前後でした。マスの形を戻しても0.716、HUDを丸ごと隠すと1.000です。分かったのは、形に関係なくHUDはあるべきだということだけ。原因は画面を上、中央、下に切って測ってから、やっと見えました。</p>
     <nav class="toc"><p>目次</p><ol><li><a href="#s1">スコアは低いほど良い、合格ラインは0.55</a></li><li><a href="#s2">同じ10枚で10回以上測っても0.9前後だった</a></li><li><a href="#s3">MSAAを切ったのは原因の一つだったが、一つだけだった</a></li><li><a href="#s4">HUDを隠したら1.000になった</a></li><li><a href="#s5">画面を上、中央、下に切ってやっと場所が分かった</a></li><li><a href="#s6">基準の場面を変えたら、また不合格だった</a></li><li><a href="#s7">文字がすべて18ピクセルに縮んでいた</a></li></ol></nav>
     <section id="s1"><h2>スコアは低いほど良い、合格ラインは0.55</h2>
@@ -97,5 +98,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

@@ -49,6 +49,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="Three Zombie Bus battle screens. Wave, time and zombie count sit at the top, survivors stand on the roofs of two buses near the bottom of the road, and a row of Gamble, Summon, Mythic and Upgrade buttons runs along the very bottom" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">On November 6, while rebuilding the Zombie Bus battle screen, I ran a blind test more than ten times on the same fixed set of 10 screenshots. Lower is better and the pass line is 0.55, yet the score stayed near 0.9 the whole time. Reverting the grid layout still gave 0.716, and hiding the HUD entirely gave 1.000. All that proved was that the HUD has to be there, whatever its shape. I only found the culprit after cutting the screen into top, middle and bottom zones and scoring each one.</p>
     <nav class="toc"><p>In this post</p><ol><li><a href="#s1">Lower is better, and the pass line is 0.55</a></li><li><a href="#s2">Ten-plus runs on the same 10 screenshots, all near 0.9</a></li><li><a href="#s3">Turning off MSAA was one culprit, but only one</a></li><li><a href="#s4">Hiding the HUD gave 1.000</a></li><li><a href="#s5">Only after slicing the screen into top, middle and bottom did the location show up</a></li><li><a href="#s6">Change the reference scenes and it failed again</a></li><li><a href="#s7">Every label had shrunk to 18 pixels</a></li></ol></nav>
     <section id="s1"><h2>Lower is better, and the pass line is 0.55</h2>
@@ -97,5 +98,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

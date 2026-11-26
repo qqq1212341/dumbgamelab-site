@@ -45,6 +45,11 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/review-said-buttons-hidden/hero.jpg" alt="Màn hình game Nuôi Quán Net (PC방 키우기). Trong quán net kiểu isometric, khách ngồi trước các máy tính, và dưới cùng màn hình có một hàng gồm ba nút: «Cửa hàng», «Tăng tốc» hình tia chớp và «Phát tờ rơi»" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="52" height="52">
+  <p class="gs-title">Nuôi Quán Net</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dvi%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden&utm_term=top" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="web">Chơi trên trình duyệt</a></div>
+</aside>
     <p class="tldr">Từ Android 15, màn hình của app có targetSdk 35 trở lên bị kéo xuống dưới cả thanh trạng thái lẫn thanh điều hướng. Nếu app Capacitor vẽ bằng WebView, hãy bật android.adjustMarginsForEdgeToEdge thành &quot;force&quot; trong capacitor.config.json để đẩy WebView vào trong thanh hệ thống, rồi sơn nền cửa sổ lộ ra sau thanh bằng màu nền của app thì các nút dưới cùng sẽ hiện lại. Cách vá bằng cách cộng thêm vài pixel ở đáy không hiệu quả, vì chiều cao thanh khác nhau theo từng máy.</p>
     <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Đánh giá đi kèm một ngôi sao</a></li><li><a href="#s2">Một sao không phải vì độ vui mà vì cái nút</a></li><li><a href="#s3">Android 15 đã đổi điều gì</a></li><li><a href="#s4">Vì sao đoạn vá lề đáy 24px là sai</a></li><li><a href="#s5">Cách sửa: một dòng cấu hình, sơn màu thanh và một bước kiểm tra</a></li><li><a href="#s6">Những điều chưa đo được</a></li><li><a href="#s7">Chia 35 đánh giá ra từng nhóm</a></li></ol></nav>
     <section id="s1"><h2>Đánh giá đi kèm một ngôi sao</h2>
@@ -89,7 +94,7 @@
     <aside class="gamebox">
   <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">Tycoon Nhàn Rỗi</p><p class="gb-title"><a href="/vi/games/pcbangalba/">Nuôi Quán Net</a></p><p class="gb-hook">Muốn xem các nút đã về đúng chỗ trong quán net trong hẻm, hãy thử nuôi một quán ngay trên điện thoại.</p>
-  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dvi" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden" rel="noopener">Chơi trên trình duyệt</a></div></div>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dreview-said-buttons-hidden%26utm_content%3Dvi%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=review-said-buttons-hidden&utm_term=end" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="web">Chơi trên trình duyệt</a></div></div>
 </aside>
     
     
@@ -101,5 +106,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

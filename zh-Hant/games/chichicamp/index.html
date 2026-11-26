@@ -53,7 +53,7 @@
     <aside class="gamebox">
       <img src="/blog/icons/chichicamp.png" alt="Chichi Camp" width="88" height="88">
       <div><p class="gb-sub">Gather, craft, decorate</p><p class="gb-title">Chichi Camp</p><p class="gb-hook">Animal guests drop by every morning. Fill their requests, craft furniture and make the forest camp your own.</p>
-      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichicamp&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-chichicamp%26utm_content%3Dzh-Hant" rel="noopener">Google Play</a><a class="store ghost" href="https://dumbgamelab.itch.io/chichi-camp?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=game-chichicamp" rel="noopener">在瀏覽器玩</a></div></div>
+      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.chichicamp&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-chichicamp%26utm_content%3Dzh-Hant%26utm_term%3Dgame" rel="noopener" data-cta="game" data-game="chichicamp" data-store="play">Google Play</a><a class="store ghost" href="https://dumbgamelab.itch.io/chichi-camp?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=game-chichicamp&utm_term=game" rel="noopener" data-cta="game" data-game="chichicamp" data-store="web">在瀏覽器玩</a></div></div>
     </aside>
     <p>芝芝在森林裡開了一座小小的營地。這是一款可以照自己步調慢慢玩的療癒露營遊戲。</p>
 <p>每天早上都是新的一天，動物朋友會帶著小小的請求來拜訪：幾條魚、一籃胡蘿蔔、一捆柴火。</p>
@@ -67,5 +67,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

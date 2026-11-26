@@ -45,6 +45,11 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/tickets-165-122-same-bug/hero.jpg" alt="Màn hình phòng nghiên cứu của game quản lý quán net. Phía trên là các thẻ cách bảo dưỡng ghế, công thức đồ ăn vặt và tờ rơi, bên dưới là các thẻ nghiên cứu đang khóa, thanh tab dưới cùng có các nút Quán, Cửa hàng, Nhân sự, Nghiên cứu và Xếp hạng" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="52" height="52">
+  <p class="gs-title">Nuôi Quán Net</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dvi%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug&utm_term=top" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="web">Chơi trên trình duyệt</a></div>
+</aside>
     <p class="tldr">Ngày 4 tháng 11, có 165 ticket mới được mở và 122 cái trong số đó do một công cụ kiểm tra màn hình tạo ra: chữ đè lên nút 101, vùng an toàn 10, màu sắc 8, chồng lớp 3. Tôi chỉ đóng được 32 cái nên số ticket còn lại từ 278 thành 412. Nguyên nhân là tôi để công cụ mở một ticket cho mỗi lỗi nó tìm thấy, và lúc đầu tôi còn định dồn chuyện này vào một ticket nữa.</p>
     <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Ngày 4 tháng 11: 165 ticket mới, 32 đã giải quyết, còn lại 412</a></li><li><a href="#s2">122 cái đều do một công cụ kiểm tra màn hình mở ra</a></li><li><a href="#s3">Vì sao một loại lỗi lại mở ra nhiều ticket đến vậy</a></li><li><a href="#s4">Chỗ tôi đánh giá sai: lấy ticket để giải quyết chuyện quá nhiều ticket</a></li><li><a href="#s5">Hôm sau tôi sửa ba thứ</a></li><li><a href="#s6">Con số sau đó thì tôi chưa biết</a></li></ol></nav>
     <section id="s1"><h2>Ngày 4 tháng 11: 165 ticket mới, 32 đã giải quyết, còn lại 412</h2>
@@ -76,7 +81,7 @@
     <aside class="gamebox">
   <img src="/blog/icons/pcbangalba.png" alt="Nuôi Quán Net" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">Tycoon Nhàn Rỗi</p><p class="gb-title"><a href="/vi/games/pcbangalba/">Nuôi Quán Net</a></p><p class="gb-hook">Những chuyện rắc rối như thế này tôi sẽ tiếp tục đăng thành nhật ký dev. Bạn có thể xem các game tôi làm ở bên dưới.</p>
-  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dvi" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug" rel="noopener">Chơi trên trình duyệt</a></div></div>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dtickets-165-122-same-bug%26utm_content%3Dvi%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=tickets-165-122-same-bug&utm_term=end" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="web">Chơi trên trình duyệt</a></div></div>
 </aside>
     
     
@@ -88,5 +93,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

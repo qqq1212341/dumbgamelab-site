@@ -49,6 +49,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/build-40-min-vs-5-sec/hero.jpg" alt="Before and after comparison shots of a camera return fix in a slime making game. Six frames of the same screen sit side by side, with a dev build marker in the bottom right corner" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">If your only test build is a full build that bakes the maps and runs a launch check, verifying one bug fix takes 40 minutes. When only code had changed, a fast build that recompiles just the script DLL finished the same check in 5 seconds. Build the fast path for your test loop first, and run the full build once, at the end.</p>
     <nav class="toc"><p>In this post</p><ol><li><a href="#s1">October 27: I Said the Same Thing Twice</a></li><li><a href="#s2">What Sat Between 40 Minutes and 5 Seconds</a></li><li><a href="#s3">How Many Fixes Fit in a Day?</a></li><li><a href="#s4">The Cause Was the Order</a></li><li><a href="#s5">The Order I Set Up for Every New Test Target</a></li><li><a href="#s6">What I Have Not Fixed Yet</a></li></ol></nav>
     <section id="s1"><h2>October 27: I Said the Same Thing Twice</h2>
@@ -92,5 +93,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

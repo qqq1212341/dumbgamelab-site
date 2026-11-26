@@ -45,6 +45,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="Layar berburu otomatis 도트혈맹. Karakter pixel art bertarung melawan monster di dungeon, dan angka koin emas serta permata terlihat di atasnya" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">Pada 7 November server pengumpul error mulai mengembalikan error 500 dengan kode 1101 dan pesan «Exceeded allowed rows read». Pelakunya alarm yang berjalan setiap 5 detik di server game (도트혈맹) pada akun yang sama. Alarm ini memindai tabel users dan feed tanpa index, dan sendirian membaca 4.98 juta dari batas 5 juta baris per hari. Batas itu dipakai bersama oleh seluruh akun, jadi server undangan teman dan server pengumpul error ikut mati. Saya memperbaikinya dengan 2 index dan cache 10 menit. Sekarang setiap jam saya mengukur baris yang dibaca tiap server, dan kalau lewat 60% muncul notifikasi lengkap dengan nama pelakunya.</p>
     <nav class="toc"><p>Isi artikel</p><ol><li><a href="#s1">Angka dulu</a></li><li><a href="#s2">Awalnya saya curiga ke server yang salah</a></li><li><a href="#s3">Pelakunya alarm 5 detik</a></li><li><a href="#s4">Yang saya perbaiki</a></li><li><a href="#s5">Supaya tidak terulang</a></li><li><a href="#s6">Yang saya salah</a></li></ol></nav>
     <section id="s1"><h2>Angka dulu</h2>
@@ -88,5 +89,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

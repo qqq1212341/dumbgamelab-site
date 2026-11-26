@@ -45,6 +45,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/hide-white-text-score-1-0/hero.jpg" alt="三张僵尸巴士战斗画面。上方是波次、时间和僵尸数量，道路下方两辆巴士车顶站着幸存者，最下面是赌博、召唤、神话、强化按钮栏" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">11月6日重做僵尸巴士的战斗画面时，我用同一组固定的10张截图跑了十几次盲测。分数越低越好，及格线是0.55，结果一直停在0.9附近。把格子形状改回去还是0.716，把HUD整个藏起来则是1.000。这只证明了一件事：不管长什么样，HUD都必须在。真正的问题，是把画面切成上、中、下三块分开测之后才看出来的。</p>
     <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">分数越低越好，及格线是0.55</a></li><li><a href="#s2">同一组10张测了十几次，还是0.9上下</a></li><li><a href="#s3">关掉MSAA确实是原因之一，但只是其中一个</a></li><li><a href="#s4">把HUD藏起来，结果是1.000</a></li><li><a href="#s5">把画面切成上、中、下，才找到位置</a></li><li><a href="#s6">换了基准场景，又不及格了</a></li><li><a href="#s7">文字全都缩成了18像素</a></li></ol></nav>
     <section id="s1"><h2>分数越低越好，及格线是0.55</h2>
@@ -93,5 +94,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

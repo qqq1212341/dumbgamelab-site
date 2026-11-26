@@ -49,6 +49,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="도트혈맹 자동 사냥 화면. 픽셀 아트 던전에서 캐릭터가 몬스터와 싸우고 위에 금화와 보석 숫자가 보인다" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">11월 7일 오류 수집 서버가 500 오류를 내기 시작했고 에러 코드는 1101 «Exceeded allowed rows read»였습니다. 범인은 같은 계정의 게임 서버(도트혈맹)가 5초마다 도는 알람이었습니다. 이 알람이 users·feed 표를 인덱스 없이 훑어 하루 읽기 한도 500만 행 중 498만 행을 혼자 썼고 한도는 계정 전체가 나눠 쓰기 때문에 초대 서버와 오류 수집 서버가 같이 멈췄습니다. 인덱스 2개와 10분 캐시로 고쳤고 이제는 매시간 서버별 읽기 행을 재서 60%가 넘으면 범인 이름과 함께 알립니다.</p>
     <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">숫자부터</a></li><li><a href="#s2">처음엔 엉뚱한 서버를 의심했다</a></li><li><a href="#s3">범인은 5초 알람이었다</a></li><li><a href="#s4">고친 것</a></li><li><a href="#s5">같은 일이 또 안 나게</a></li><li><a href="#s6">내가 틀린 것</a></li></ol></nav>
     <section id="s1"><h2>숫자부터</h2>
@@ -92,5 +93,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

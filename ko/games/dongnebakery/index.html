@@ -53,7 +53,7 @@
     <aside class="gamebox">
       <img src="/blog/icons/dongnebakery.png" alt="동네빵집 키우기" width="88" height="88">
       <div><p class="gb-sub">굽고 진열하는 빵집 경영</p><p class="gb-title">동네빵집 키우기</p><p class="gb-hook">오븐에서 빵을 굽고 진열대를 채우며, 반죽과 속과 토핑으로 새 빵을 만드는 빵집 타이쿤</p>
-      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-dongnebakery%26utm_content%3Dko" rel="noopener">Google Play</a></div></div>
+      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.dongnebakery&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-dongnebakery%26utm_content%3Dko%26utm_term%3Dgame" rel="noopener" data-cta="game" data-game="dongnebakery" data-store="play">Google Play</a></div></div>
     </aside>
     <p>골목 끝, 할머니가 지키던 작은 빵집의 문을 다시 열었습니다.</p>
 <p>오븐과 진열대 하나로 시작해 여섯 단계를 거치며, 전국에서 손님이 찾아오는 빵집으로 키우는 방치형 타이쿤입니다.</p>
@@ -83,5 +83,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

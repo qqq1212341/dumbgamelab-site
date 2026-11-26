@@ -47,7 +47,7 @@
     <aside class="gamebox">
       <img src="/blog/icons/brainrotheist.png" alt="Brainrot Heist: Chichi" width="88" height="88">
       <div><p class="gb-sub">Collect, steal, idle tycoon</p><p class="gb-title">Brainrot Heist: Chichi</p><p class="gb-hook">Collect weird creatures, earn cash, and sneak into other bases to steal theirs.</p>
-      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.brainrotheist&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-brainrotheist%26utm_content%3Den" rel="noopener">Google Play</a></div></div>
+      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.brainrotheist&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-brainrotheist%26utm_content%3Den%26utm_term%3Dgame" rel="noopener" data-cta="game" data-game="brainrotheist" data-store="play">Google Play</a></div></div>
     </aside>
     <p>Weird creatures walk by on a red carpet: a shark made of a cream bun, a frog living in a rice cooker, a penguin in a traffic cone. Tap one to buy it. It hops onto a spot in your base and starts earning cash every second.</p>
 <h2>Buy and collect</h2>
@@ -73,5 +73,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

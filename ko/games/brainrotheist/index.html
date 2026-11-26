@@ -47,7 +47,7 @@
     <aside class="gamebox">
       <img src="/blog/icons/brainrotheist.png" alt="치치의 브레인롯 털이" width="88" height="88">
       <div><p class="gb-sub">생물 모아 남의 기지 터는 게임</p><p class="gb-title">치치의 브레인롯 털이</p><p class="gb-hook">이상한 생물을 사 모아 돈을 벌고, 경비 몰래 남의 기지에서 훔쳐 오는 방치형 게임</p>
-      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.brainrotheist&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-brainrotheist%26utm_content%3Dko" rel="noopener">Google Play</a></div></div>
+      <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.brainrotheist&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgame-brainrotheist%26utm_content%3Dko%26utm_term%3Dgame" rel="noopener" data-cta="game" data-game="brainrotheist" data-store="play">Google Play</a></div></div>
     </aside>
     <p>붉은 카펫 위로 크림빵 상어가 걸어옵니다. 눌러서 사면 내 기지 빈 칸에 올라앉고, 그때부터 초마다 돈을 벌어 옵니다.</p>
 <h2>사서 모읍니다</h2>
@@ -73,5 +73,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

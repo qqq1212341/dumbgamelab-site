@@ -45,6 +45,7 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/do-alarm-5m-rows/hero.jpg" alt="Màn hình tự săn của 도트혈맹. Nhân vật pixel art đánh quái trong hầm ngục, phía trên hiện số vàng và số đá quý" fetchpriority="high" decoding="async"></figure>
+    
     <p class="tldr">Ngày 7/11, server thu lỗi bắt đầu trả lỗi 500, mã lỗi là 1101 kèm dòng «Exceeded allowed rows read». Thủ phạm là một alarm chạy mỗi 5 giây của server game (도트혈맹) trong cùng tài khoản. Alarm này quét bảng users và feed mà không có index, một mình đọc 4.98 triệu trong tổng giới hạn 5 triệu hàng mỗi ngày. Giới hạn này cả tài khoản dùng chung nên server mời bạn bè và server thu lỗi cùng chết theo. Tôi sửa bằng 2 index và cache 10 phút. Giờ mỗi giờ tôi đo số hàng đọc của từng server, vượt 60% là có thông báo kèm tên thủ phạm.</p>
     <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">Số liệu trước</a></li><li><a href="#s2">Lúc đầu tôi nghi nhầm server</a></li><li><a href="#s3">Thủ phạm là alarm 5 giây</a></li><li><a href="#s4">Những gì tôi đã sửa</a></li><li><a href="#s5">Để chuyện này không lặp lại</a></li><li><a href="#s6">Chỗ tôi đã sai</a></li></ol></nav>
     <section id="s1"><h2>Số liệu trước</h2>
@@ -88,5 +89,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>

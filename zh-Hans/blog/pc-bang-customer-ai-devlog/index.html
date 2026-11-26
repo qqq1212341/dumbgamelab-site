@@ -45,6 +45,11 @@
   </div></div>
   <article class="pbody">
     <figure><img src="/blog/img/pc-bang-customer-ai-devlog/hero.jpg" alt="网吧养成记游戏画面。等距视角的网吧里，每个电脑座位上都坐着顾客，店门前的人行道上有好几位顾客在走路。右边座位上方浮着“等待 3”的标签" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/pcbangalba.png" alt="网吧养成记" width="52" height="52">
+  <p class="gs-title">网吧养成记</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dzh-Hans%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog&utm_term=top" rel="noopener" data-cta="top" data-game="pcbangalba" data-store="web">在浏览器玩</a></div>
+</aside>
     <p class="tldr">模拟经营游戏的顾客行为逻辑（一般叫顾客 AI）守住三点就能跑起来。座位不用数字算，而是一格只站一个人；有人站着的格子不要封死，而是在 A* 寻路里加权 12；排队只排在门外一列。本文整理了《网吧养成记》选这三招的原因、实测数字，以及还没解决的问题。</p>
     <nav class="toc"><p>本文目录</p><ol><li><a href="#s1">每位顾客都带着一份行程</a></li><li><a href="#s2">座位不是数字，是格子</a></li><li><a href="#s3">有人站着的格子不要封死，加权重</a></li><li><a href="#s4">路不是铺一次就完事</a></li><li><a href="#s5">排队只排在门外一列</a></li><li><a href="#s6">排队的顾客全部朝向同一边</a></li><li><a href="#s7">网吧八成营收来自坐下之后</a></li><li><a href="#s8">还没解决的问题</a></li></ol></nav>
     <section id="s1"><h2>每位顾客都带着一份行程</h2>
@@ -91,7 +96,7 @@
     <aside class="gamebox">
   <img src="/blog/icons/pcbangalba.png" alt="网吧养成记" width="88" height="88" loading="lazy">
   <div><p class="gb-sub">放置经营</p><p class="gb-title"><a href="/zh-Hans/games/pcbangalba/">网吧养成记</a></p><p class="gb-hook">想亲眼看看顾客排队的样子，就用手机经营一间小巷里的网吧吧。</p>
-  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dzh-Hans" rel="noopener">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog" rel="noopener">在浏览器玩</a></div></div>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.pcbangalba&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dpc-bang-customer-ai-devlog%26utm_content%3Dzh-Hans%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6779939467" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="ios">App Store</a><a class="store ghost" href="https://dumbgamelab.com/play/pcbang-alba-sim/?utm_source=dumbgamelab.com&utm_medium=blog&utm_campaign=pc-bang-customer-ai-devlog&utm_term=end" rel="noopener" data-cta="end" data-game="pcbangalba" data-store="web">在浏览器玩</a></div></div>
 </aside>
     
     
@@ -103,5 +108,6 @@
   <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
   <p>© 2026 Dumb Game Lab · Seoul</p>
 </div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
 </body>
 </html>
