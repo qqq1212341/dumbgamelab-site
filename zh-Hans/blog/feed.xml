@@ -7,6 +7,14 @@
   <description>韩国日常场所、治愈放置经营游戏，以及首尔小型游戏工作室的记录。</description>
   <language>zh-CN</language>
   <item>
+    <title>美洲杯的“美洲”不是国家，是一艘船的名字</title>
+    <link>https://dumbgamelab.com/zh-Hans/blog/americas-cup-yacht/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/americas-cup-yacht/</guid>
+    <pubDate>Fri, 27 Nov 2026 15:00:00 GMT</pubDate>
+    <description>美洲杯的“美洲”，是1851年夺冠的那艘游艇的名字。</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/americas-cup-yacht.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>白葡萄酒只加了色素，就被说成红酒的香气</title>
     <link>https://dumbgamelab.com/zh-Hans/blog/wine-color-tasters/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/wine-color-tasters/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
     <description>奥运金牌是在银上镀了6克金。</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/medal-gold.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>接电话差点要说“阿嗬伊”</title>
-    <link>https://dumbgamelab.com/zh-Hans/blog/hello-ahoy/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hans/blog/hello-ahoy/</guid>
-    <pubDate>Wed, 28 Oct 2026 15:00:00 GMT</pubDate>
-    <description>贝尔想用“阿嗬伊”当电话问候语，结果流行起来的是爱迪生的 Hello。</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/hello-phone.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>

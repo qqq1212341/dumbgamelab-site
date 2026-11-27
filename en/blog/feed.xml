@@ -7,6 +7,14 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>The “America” in the America&#39;s Cup Was a Boat, Not a Country</title>
+    <link>https://dumbgamelab.com/en/blog/americas-cup-yacht/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/americas-cup-yacht/</guid>
+    <pubDate>Fri, 27 Nov 2026 15:00:00 GMT</pubDate>
+    <description>The America in the America&#39;s Cup is the name of the yacht that won in 1851.</description>
+    <enclosure url="https://dumbgamelab.com/useless/v1/img/americas-cup-yacht.jpg" type="image/jpeg" length="0"/>
+  </item>
+  <item>
     <title>Gas Station Tycoon: What to Place First in Your First 10 Minutes</title>
     <link>https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/</guid>
@@ -220,14 +228,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/roblox-asmr-tower-on-phone/</guid>
     <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
     <description>How to play a Roblox ASMR tower on your phone. The Roblox app route, and Wakppu Tower, a separate Android ASMR jump game with 8 maps. Controls, ads and what happens when you fall.</description>
-  </item>
-  <item>
-    <title>Food&#39;s over there. This bee rolls a ball.</title>
-    <link>https://dumbgamelab.com/en/blog/bee-ball-play/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/bee-ball-play/</guid>
-    <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
-    <description>Bumblebees repeatedly rolled small balls without a food reward. Researchers found that the behavior met criteria for animal play.</description>
-    <enclosure url="https://dumbgamelab.com/useless/v1/img/bee-ball-cover.jpg" type="image/jpeg" length="0"/>
   </item>
 </channel>
 </rss>
