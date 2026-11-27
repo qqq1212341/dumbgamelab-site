@@ -1,7 +1,7 @@
 {
  "schema": 1,
  "complete": true,
- "version": "79-02b68d548f",
+ "version": "79-b7fab78326",
  "epoch": "2026-10-12",
  "credits": "credits.json",
  "episodes": [
@@ -584,7 +584,7 @@
   {
    "id": "goosebumps-hair",
    "day": 49,
-   "hash": "3a6832216f0346e9",
+   "hash": "bc61b5ab33dd75d6",
    "ep": "episodes/goosebumps-hair.json",
    "i18n": {
     "en": "i18n/en/goosebumps-hair.json",
