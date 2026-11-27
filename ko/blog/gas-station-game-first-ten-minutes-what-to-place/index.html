@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주유소 경영 게임 처음 10분 공략: 어떤 기물부터 놓나 (주유소 키우기)</title>
+<meta name="description" content="주유소 게임을 시작하면 돈이 있어도 뭘 놓을지 막막합니다. 차 10종이 들르는 순서와 기물마다 새로 부르는 손님을 코드 기준으로 풀어, 처음 10분의 구매 순서를 잡았습니다.">
+<link rel="canonical" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" type="application/rss+xml" href="/ko/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="주유소 경영 게임 처음 10분 공략: 어떤 기물부터 놓나 (주유소 키우기)">
+<meta property="og:description" content="주유소 게임을 시작하면 돈이 있어도 뭘 놓을지 막막합니다. 차 10종이 들르는 순서와 기물마다 새로 부르는 손님을 코드 기준으로 풀어, 처음 10분의 구매 순서를 잡았습니다.">
+<meta property="og:url" content="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ko.jpg">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"주유소 게임 처음 10분, 무슨 기물부터 놓을까","description":"주유소 게임을 시작하면 돈이 있어도 뭘 놓을지 막막합니다. 차 10종이 들르는 순서와 기물마다 새로 부르는 손님을 코드 기준으로 풀어, 처음 10분의 구매 순서를 잡았습니다.","inLanguage":"ko","datePublished":"2026-11-27","dateModified":"2026-11-27","image":"https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ko.jpg","mainEntityOfPage":"https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Gas Station Tycoon","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"블로그","item":"https://dumbgamelab.com/ko/blog/"},{"@type":"ListItem","position":3,"name":"주유소 게임 처음 10분, 무슨 기물부터 놓을까","item":"https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"주유소 게임을 시작하면 무엇부터 사야 하나요?","acceptedAnswer":{"@type":"Answer","text":"낡은 주유기를 3대까지 먼저 놓고, 그다음 공기 주입기, 커피 자판기 순서로 놓으세요. 주유기 3대째부터 차가 5초에 한 대씩 들어오고, 공기 주입기와 커피 자판기는 각각 경운기와 택시·전기차를 새로 부릅니다."}},{"@type":"Question","name":"주유소 경영 게임에서 차가 안 오면 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"그 차종이 들를 기물이 마당에 하나도 없을 가능성이 큽니다. 기물이 순서에 없는 차는 아예 오지 않으니, 표에서 안 오는 차의 순서를 찾아 그 기물을 놓으세요."}},{"@type":"Question","name":"줄이 너무 길 때는 어떻게 하나요?","acceptedAnswer":{"@type":"Answer","text":"줄이 긴 기물과 같은 종류를 한 대 더 놓으세요. 차는 짐이 가장 적은 기물로 가기 때문에, 한 대만 늘려도 줄이 나뉩니다. 첫 정류의 줄이 꽉 차면 차가 그냥 돌아간다는 점도 기억해 두세요."}},{"@type":"Question","name":"공기 주입기나 커피 자판기가 상점에 안 보여요.","acceptedAnswer":{"@type":"Answer","text":"둘 다 낡은 주유기를 일정 수 놓아야 열립니다. 공기 주입기는 2대, 커피 자판기는 3대입니다."}},{"@type":"Question","name":"주유소 키우기는 광고가 있나요?","acceptedAnswer":{"@type":"Answer","text":"있습니다. 보상형 광고와 하루 끝 전면 광고가 있고, 전면 광고는 3일째부터 나옵니다. 인앱 구매는 없습니다."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ko/games/">게임</a><a href="/ko/blog/">블로그</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ko/blog/">블로그</a> · 공략</p>
+    <p class="kicker">주유소 경영 게임 입문</p>
+    <h1>주유소 게임 처음 10분, 무슨 기물부터 놓을까</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-27">2026-11-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ko.jpg" alt="주유소 키우기 첫날 화면. 낡은 주유기 지붕 아래로 차들이 서 있고 위쪽에 주유기 2대 놓기 목표가 떠 있다" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/gasstation.png" alt="주유소 키우기" width="52" height="52">
+  <p class="gs-title">주유소 키우기</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dko%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="top" data-game="gasstation" data-store="ios">App Store</a></div>
+</aside>
+    <p class="tldr">처음 10분은 낡은 주유기 3대, 공기 주입기, 커피 자판기 순서로 놓으면 됩니다. 이 게임의 차는 종류마다 들르는 곳이 달라서, 기물을 하나 놓을 때마다 새 차종이 들어오기 시작하기 때문입니다. 제가 만든 주유소 키우기의 차 데이터를 그대로 읽어 정리했고, 주유기 3대 안에서 이미 차 10종 중 6종이 옵니다.</p>
+    <nav class="toc"><p>이 글의 순서</p><ol><li><a href="#s1">처음 10분에 할 일은 세 가지입니다</a></li><li><a href="#s2">차마다 들르는 곳이 다릅니다</a></li><li><a href="#s3">기물 하나가 새 손님을 부릅니다</a></li><li><a href="#s4">주유기가 늘수록 차가 몰려옵니다</a></li><li><a href="#s5">줄이 길어지면 어떻게 되나</a></li><li><a href="#s6">붙여 놓으면 조금 더 법니다</a></li><li><a href="#s7">2단계부터 열리는 것</a></li><li><a href="#s8">알고 시작하면 좋은 점 하나</a></li></ol></nav>
+    <section id="s1"><h2>처음 10분에 할 일은 세 가지입니다</h2>
+<p>낡은 주유기를 3대까지 놓고, 그다음에 공기 주입기, 그다음에 커피 자판기를 놓습니다. 이 순서에는 이유가 있고, 이유는 아래 차 도착 간격과 차종 표에 나옵니다.</p>
+<p>낡은 주유기는 300원에서 시작해 한 대 늘 때마다 1.6배씩 비싸집니다. 공기 주입기(450원)는 낡은 주유기가 2대 있어야 상점에 열리고, 커피 자판기(1,200원)는 3대가 있어야 열립니다. 게임이 이 순서를 직접 알려 주는 셈입니다.</p>
+<p>1일차에는 «주유기 2대 놓기» 목표가 위에 뜹니다. 100초쯤 지나면 첫 직원 지원자도 찾아옵니다. 직원을 뽑으면 쌓인 동전을 대신 걷어 주는데 처음에는 15초 켜졌다 45초 쉬는 정도라 손이 완전히 비지는 않습니다. 다만 동전 더미는 5닢이 쌓이거나 8초가 지나면 저절로 걷히니, 일부러 누르지 않았다고 손해 보는 일은 없고 바쁜 첫 몇 분에는 주유기 자리를 채우는 데 손을 쓰는 편이 훨씬 낫습니다.</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ko.jpg" alt="주유소 키우기 첫날 화면. 낡은 주유기 지붕 아래로 차들이 서 있고 위쪽에 주유기 2대 놓기 목표가 떠 있다" loading="lazy" decoding="async"><figcaption>1일차 화면. 촬영용으로 돈을 채워 둔 상태라 잔액은 참고하지 마세요.</figcaption></figure></section>
+<section id="s2"><h2>차마다 들르는 곳이 다릅니다</h2>
+<p>이 게임에서 손님은 사람이 아니라 차입니다. 차는 10종이고 종류마다 순서가 정해져 있습니다. 택시는 LPG를 넣고 커피를 마시고 화장실에 가고, 화물차는 경유를 넣고 요소수를 사고 화장실에 갑니다. 캠핑 밴은 세차부터 하고 기름을 넣습니다.</p>
+<p>마당에 없는 기물은 그냥 건너뜁니다. 순서 안에서 들를 곳이 하나도 없는 차는 아예 오지 않습니다. 그래서 같은 주유소라도 놓은 기물에 따라 오는 차의 구성이 달라집니다.</p>
+<div class="tbl"><table><thead><tr><th>차종</th><th>들르는 순서</th><th>서비스 시간 합</th></tr></thead><tbody><tr><td>경차</td><td>주유 → 공기</td><td>8초</td></tr><tr><td>승용차</td><td>주유 → 세차 → 진공</td><td>22초</td></tr><tr><td>가족 SUV</td><td>주유 → 화장실 → 커피</td><td>24초</td></tr><tr><td>경운기</td><td>경유 → 공기</td><td>9초</td></tr><tr><td>트럭</td><td>주유 → 타이어 → 정비</td><td>24초</td></tr><tr><td>택시</td><td>LPG → 커피 → 화장실</td><td>25초</td></tr><tr><td>화물차</td><td>경유 → 요소수 → 화장실</td><td>26초</td></tr><tr><td>캠핑카</td><td>세차 → 주유 → 편의점 → 화장실</td><td>39초</td></tr><tr><td>전기차</td><td>충전 → 편의점 → 커피</td><td>27초</td></tr><tr><td>순찰차</td><td>주유 → 커피</td><td>9초</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>기물 하나가 새 손님을 부릅니다</h2>
+<p>위 표를 기물 쪽에서 거꾸로 읽으면 구매 순서가 나옵니다. 주유기만 있어도 경차·승용차·가족 SUV·트럭·캠핑카·순찰차 6종은 옵니다. 모두 순서 어딘가에 주유가 들어 있기 때문입니다.</p>
+<p>공기 주입기를 놓으면 경운기가 새로 옵니다. 커피 자판기를 놓으면 택시와 전기차가 새로 옵니다. 화장실을 놓으면 화물차까지 붙어서 10종이 모두 모입니다. 화장실은 3단계에서야 열리니 처음 10분 안에는 9종까지 가는 셈입니다.</p>
+<div class="tbl"><table><thead><tr><th>놓은 기물</th><th>새로 오기 시작하는 차</th><th>오는 차종 수</th></tr></thead><tbody><tr><td>낡은 주유기</td><td>경차 · 승용차 · 가족 SUV · 트럭 · 캠핑카 · 순찰차</td><td>6종</td></tr><tr><td>공기 주입기</td><td>경운기</td><td>7종</td></tr><tr><td>커피 자판기</td><td>택시 · 전기차</td><td>9종</td></tr><tr><td>화장실 (3단계)</td><td>화물차</td><td>10종</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>주유기가 늘수록 차가 몰려옵니다</h2>
+<p>차는 기본으로 11초에 한 대씩 들어옵니다. 주유기가 2대면 8초, 3대면 5초, 5대면 4초, 8대면 3초로 간격이 줄고, 마당에 동시에 있을 수 있는 차는 최대 8대입니다.</p>
+<p>가장 크게 달라지는 때가 주유기 3대째입니다. 간격이 8초에서 5초로 줄어서, 같은 시간에 오는 차가 1.6배가 됩니다. 처음 10분 안에 주유기를 3대까지 먼저 채우라는 말은 이 계단 때문에 나옵니다.</p>
+</section>
+<section id="s5"><h2>줄이 길어지면 어떻게 되나</h2>
+<p>기물마다 줄 길이에 한도가 있습니다. 주유기는 3대, 공기 주입기와 세차기는 1대까지 줄을 섭니다. 순서의 첫 번째 기물이 꽉 차 있으면 차는 들어오지 않고 그냥 돌아가고, 그 손님은 하루 정산에 놓친 손님으로 셉니다. 두 번째 이후 기물이 꽉 차 있으면 그 기물만 건너뛰고 다음으로 갑니다.</p>
+<p>같은 종류의 기물이 여러 대면 차는 짐이 가장 적은 쪽으로 갑니다. 지금 가는 차, 줄 서 있는 차, 쓰는 중인 차를 다 합쳐서 셉니다. 그래서 줄이 긴 곳을 보고 같은 기물을 한 대 더 놓는 게 가장 직접적인 해결입니다.</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/queue-ko.jpg" alt="주유소 키우기 하루 정산 화면. 영수증에 주유, 차 손질, 매점 편의점 항목이 나뉘어 있고 오늘 번 돈과 손님 수가 적혀 있다" loading="lazy" decoding="async"><figcaption>하루가 끝나면 이 정산 영수증에서 주유와 부가 서비스 수입이 나뉘어 보입니다.</figcaption></figure></section>
+<section id="s6"><h2>붙여 놓으면 조금 더 법니다</h2>
+<p>공기 주입기를 주유기에서 2칸 안에 두면 수입이 1.15배, 진공 청소기를 세차기 옆에 두면 1.2배, 커피 자판기를 화장실 옆에 두면 1.15배, 편의점을 정비 리프트 옆에 두면 1.15배가 됩니다. 기름 넣고 바로 바람 넣고, 세차하고 바로 진공 하는 동선을 그대로 붙여 주는 규칙입니다.</p>
+<p>가격 간판은 반경 안 주유기 수입을 최대 5%까지 올립니다. 효과가 작아서 처음 10분에는 급하지 않습니다.</p>
+</section>
+<section id="s7"><h2>2단계부터 열리는 것</h2>
+<p>승급은 누적 매출 하나로 정해집니다. 첫 승급은 8,000원이고, 목표로 잡은 시점은 3일째 정산 무렵(5분 안팎)입니다. 단계가 오를 때마다 새 기물이 열리고, 새 기물은 곧 새 차종을 뜻합니다.</p>
+<div class="tbl"><table><thead><tr><th>단계</th><th>승급 매출</th><th>열리는 기물</th></tr></thead><tbody><tr><td>2 동네 주유소</td><td>8,000원</td><td>셀프 주유기 · 진공 청소기 · 가격 간판</td></tr><tr><td>3 세차되는 주유소</td><td>127,000원</td><td>자동 세차기 · 화장실 · 화단 · 벤치</td></tr><tr><td>4 정비되는 주유소</td><td>731,000원</td><td>타이어 교체대 · 정비 리프트 · 경유 주유기</td></tr><tr><td>5 24시 주유소</td><td>2,680,000원</td><td>편의점 · LPG 충전기 · 요소수 판매대</td></tr><tr><td>6 충전되는 주유소</td><td>8,000,000원</td><td>전기차 충전기</td></tr><tr><td>7 국도 제일 주유소</td><td>22,600,000원</td><td>고급 주유기</td></tr></tbody></table></div>
+</section>
+<section id="s8"><h2>알고 시작하면 좋은 점 하나</h2>
+<p>이 게임은 무료이고 광고가 들어 있습니다. 보상형 광고(수입 2배, 바로 놓기 등)와 하루가 끝날 때 나오는 전면 광고가 있고, 전면 광고는 3일째부터 나옵니다. 1~2일차는 광고 없이 규칙을 익히는 시간입니다. 인앱 구매는 없습니다.</p>
+<p>희귀한 차도 7종 더 있습니다. 소방차와 구급차, 경주차처럼 드물게 오고 값을 더 치르는 차인데, 이 글의 10종과는 따로 셉니다.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>주유소 게임을 시작하면 무엇부터 사야 하나요?</summary><p>낡은 주유기를 3대까지 먼저 놓고, 그다음 공기 주입기, 커피 자판기 순서로 놓으세요. 주유기 3대째부터 차가 5초에 한 대씩 들어오고, 공기 주입기와 커피 자판기는 각각 경운기와 택시·전기차를 새로 부릅니다.</p></details><details><summary>주유소 경영 게임에서 차가 안 오면 어떻게 하나요?</summary><p>그 차종이 들를 기물이 마당에 하나도 없을 가능성이 큽니다. 기물이 순서에 없는 차는 아예 오지 않으니, 표에서 안 오는 차의 순서를 찾아 그 기물을 놓으세요.</p></details><details><summary>줄이 너무 길 때는 어떻게 하나요?</summary><p>줄이 긴 기물과 같은 종류를 한 대 더 놓으세요. 차는 짐이 가장 적은 기물로 가기 때문에, 한 대만 늘려도 줄이 나뉩니다. 첫 정류의 줄이 꽉 차면 차가 그냥 돌아간다는 점도 기억해 두세요.</p></details><details><summary>공기 주입기나 커피 자판기가 상점에 안 보여요.</summary><p>둘 다 낡은 주유기를 일정 수 놓아야 열립니다. 공기 주입기는 2대, 커피 자판기는 3대입니다.</p></details><details><summary>주유소 키우기는 광고가 있나요?</summary><p>있습니다. 보상형 광고와 하루 끝 전면 광고가 있고, 전면 광고는 3일째부터 나옵니다. 인앱 구매는 없습니다.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/gasstation.png" alt="주유소 키우기" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">차마다 들르는 순서가 다른 주유소</p><p class="gb-title"><a href="/ko/games/gasstation/">주유소 키우기</a></p><p class="gb-hook">차마다 다른 순서를 직접 맞춰 보세요.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dko%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="end" data-game="gasstation" data-store="ios">App Store</a></div></div>
+</aside>
+    <section class="more"><h2>같이 보면 좋은 글</h2><ul><li><a href="/ko/blog/best-idle-tycoon-games-offline/">오프라인으로 되는 방치형 타이쿤 게임 모음</a></li></ul></section>
+    <section class="more"><h2>다른 글</h2><div class="cards"><a class="pcard" href="/ko/blog/best-asmr-games-android-offline/"><img src="/blog/img/best-asmr-games-android-offline/hero.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>안드로이드 ASMR 게임 9개를 폰에서 켜 봤습니다</b><span class="pc-desc">안드로이드 ASMR 게임 9개를 삼성 갤럭시 Z플립5에 깔아 비행기 모드로 다시 켰습니다. 설치 크기와 첫 화면, 광고가 앞을 막는지를 2026년 11월 20일 기준으로 비교했습니다.</span></a><a class="pcard" href="/ko/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>온천과 목욕탕이 소재인 게임 8종, 스토어 표기로 비교했습니다</b><span class="pc-desc">온천과 목욕탕이 소재인 게임을 Steam, 구글 플레이, 앱스토어 원문 표기로 한 표에 모았습니다. 가격, 평점, 방치형 여부, 한국어·일본어 지원을 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ko.jpg" alt="" loading="lazy"><span class="pc-type">비교</span><b>오프라인으로 되는 방치형 타이쿤 게임, 스토어 표기로 가린 8종</b><span class="pc-desc">방치형 타이쿤 중 오프라인으로 되는 게임을 구글 플레이와 앱스토어 원문 표기로 가렸습니다. 태그, 스토어 문구, 가격, 광고를 한 표로 비교하고 우리 게임의 약점도 적었습니다.</span></a><a class="pcard" href="/ko/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ko.jpg" alt="" loading="lazy"><span class="pc-type">비슷한 게임</span><b>카이로소프트 다 깼다면: 어떤 맛이 좋았는지로 고르는 다음 게임 14개</b><span class="pc-desc">카이로소프트를 다 해 본 사람이 다음에 할 게임을 «짧게 키우는 맛·가게 돌보는 맛·주민 인생 구경·배치 퍼즐» 네 갈래로 나눴습니다. Steam 정가와 평가, 한국어 지원 여부를 확인한 14개를 적었습니다.</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>새 게임과 작은 소식을 한 달에 한 번쯤 보냅니다.</p><input type="email" name="email" required placeholder="이메일 주소" aria-label="이메일 주소"><input type="hidden" name="embed" value="1"><button type="submit">구독</button></form></section>
+<div class="langs"><div class="langs-in"><span>다른 언어</span><a href="/en/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="en" lang="en">English</a><b>한국어</b><a href="/ja/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
+</body>
+</html>

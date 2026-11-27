@@ -7,6 +7,13 @@
   <description>Korean everyday places, cozy idle tycoons, and notes from a tiny game studio in Seoul.</description>
   <language>en</language>
   <item>
+    <title>Gas Station Tycoon: What to Place First in Your First 10 Minutes</title>
+    <link>https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>Starting a gas station game with money in hand and no idea what to buy? This guide reads the game&#39;s car data to show the order 10 car types stop in and which new cars each piece of equipment brings, then sets your first 10 minutes of purchases.</description>
+  </item>
+  <item>
     <title>Red Dye in White Wine Got Tasters to Describe Red Wine Aromas</title>
     <link>https://dumbgamelab.com/en/blog/wine-color-tasters/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/en/blog/wine-color-tasters/</guid>
@@ -221,13 +228,6 @@
     <pubDate>Sat, 14 Nov 2026 15:00:00 GMT</pubDate>
     <description>Bumblebees repeatedly rolled small balls without a food reward. Researchers found that the behavior met criteria for animal play.</description>
     <enclosure url="https://dumbgamelab.com/useless/v1/img/bee-ball-cover.jpg" type="image/jpeg" length="0"/>
-  </item>
-  <item>
-    <title>122 of 165 New Tickets Were the Same Check</title>
-    <link>https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/en/blog/tickets-165-122-same-bug/</guid>
-    <pubDate>Fri, 13 Nov 2026 15:00:00 GMT</pubDate>
-    <description>165 new tickets opened in one day, and 122 of them came from a single screen check tool. Text and button overlap alone was 101. Here are the numbers from the day the backlog went from 278 to 412, and where I was wrong to answer it with one more ticket.</description>
   </item>
 </channel>
 </rss>

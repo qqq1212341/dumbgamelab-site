@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ガソリンスタンド経営ゲーム 最初の10分攻略：どの設備から置く？（放置ゲーム）</title>
+<meta name="description" content="ガソリンスタンドのゲームは、お金があっても何を置くか迷います。車10種が立ち寄る順番と、設備ごとに新しく呼べるお客さんをデータ基準で読み解き、最初の10分の購入順を決めました。">
+<link rel="canonical" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<link rel="alternate" type="application/rss+xml" href="/ja/blog/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="ガソリンスタンド経営ゲーム 最初の10分攻略：どの設備から置く？（放置ゲーム）">
+<meta property="og:description" content="ガソリンスタンドのゲームは、お金があっても何を置くか迷います。車10種が立ち寄る順番と、設備ごとに新しく呼べるお客さんをデータ基準で読み解き、最初の10分の購入順を決めました。">
+<meta property="og:url" content="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ja.jpg">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ガソリンスタンドのゲーム、最初の10分は何の設備から置く？","description":"ガソリンスタンドのゲームは、お金があっても何を置くか迷います。車10種が立ち寄る順番と、設備ごとに新しく呼べるお客さんをデータ基準で読み解き、最初の10分の購入順を決めました。","inLanguage":"ja","datePublished":"2026-11-27","dateModified":"2026-11-27","image":"https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ja.jpg","mainEntityOfPage":"https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"ガソリンスタンド経営","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"ブログ","item":"https://dumbgamelab.com/ja/blog/"},{"@type":"ListItem","position":3,"name":"ガソリンスタンドのゲーム、最初の10分は何の設備から置く？","item":"https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ガソリンスタンドのゲームを始めたら、何から買えばいいですか？","acceptedAnswer":{"@type":"Answer","text":"古い給油機を3台まで先に置き、そのあと空気入れ、コーヒー自販機の順に置いてください。給油機が3台目になると車が5秒に1台ずつ入ってきて、空気入れとコーヒー自販機はそれぞれ耕運機と、タクシー・電気自動車を新しく呼びます。"}},{"@type":"Question","name":"ガソリンスタンド経営ゲームで、車が来ないときはどうしますか？","acceptedAnswer":{"@type":"Answer","text":"その車種が立ち寄る設備が、敷地にひとつもない可能性が高いです。設備が順番にない車はそもそも来ないので、表で来ない車の順番を探して、その設備を置いてください。"}},{"@type":"Question","name":"行列が長すぎるときはどうしますか？","acceptedAnswer":{"@type":"Answer","text":"行列が長い設備と同じ種類を、もう1台置いてください。車は負荷がいちばん少ない設備へ向かうので、1台増やすだけで行列が分かれます。最初の設備の行列がいっぱいだと、車がそのまま帰ってしまう点も覚えておいてください。"}},{"@type":"Question","name":"空気入れやコーヒー自販機がショップに見当たりません。","acceptedAnswer":{"@type":"Answer","text":"どちらも、古い給油機を一定の数だけ置かないと解放されません。空気入れは2台、コーヒー自販機は3台です。"}},{"@type":"Question","name":"ガソリンスタンド経営は広告がありますか？","acceptedAnswer":{"@type":"Answer","text":"あります。リワード広告と1日の終わりの全画面広告があり、全画面広告は3日目から出ます。アプリ内課金はありません。"}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/ja/games/">ゲーム</a><a href="/ja/blog/">ブログ</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/ja/blog/">ブログ</a> · 攻略</p>
+    <p class="kicker">ガソリンスタンド経営 入門</p>
+    <h1>ガソリンスタンドのゲーム、最初の10分は何の設備から置く？</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-27">2026-11-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ja.jpg" alt="ガソリンスタンド経営の初日の画面。古い給油機の屋根の下に車が並び、上に「給油機を2台置く」という目標が出ている" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/gasstation.png" alt="ガソリンスタンド経営" width="52" height="52">
+  <p class="gs-title">ガソリンスタンド経営</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dja%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="top" data-game="gasstation" data-store="ios">App Store</a></div>
+</aside>
+    <p class="tldr">最初の10分は、古い給油機3台、空気入れ、コーヒー自販機の順に置けば大丈夫です。このゲームの車は種類ごとに立ち寄る場所が違うので、設備をひとつ置くたびに新しい車種が来はじめるからです。私が作った「ガソリンスタンド経営」の車のデータをそのまま読んで整理しました。給油機3台のうちに、車10種のうち6種がもう来ます。</p>
+    <nav class="toc"><p>目次</p><ol><li><a href="#s1">最初の10分にやることは3つです</a></li><li><a href="#s2">車ごとに立ち寄る場所が違います</a></li><li><a href="#s3">設備ひとつが新しいお客さんを呼びます</a></li><li><a href="#s4">給油機が増えるほど車が押し寄せます</a></li><li><a href="#s5">行列が長くなったらどうなる？</a></li><li><a href="#s6">くっつけて置くと少し多く稼げます</a></li><li><a href="#s7">第2段階から解放されるもの</a></li><li><a href="#s8">知っておくと良いことがひとつ</a></li></ol></nav>
+    <section id="s1"><h2>最初の10分にやることは3つです</h2>
+<p>古い給油機を3台まで置き、その次に空気入れ、その次にコーヒー自販機を置きます。この順番には理由があり、理由は下の車の到着間隔と車種の表に出てきます。</p>
+<p>古い給油機は300ウォンから始まり、1台増えるたびに1.6倍ずつ高くなります。空気入れ(450ウォン)は古い給油機が2台あるとショップに並び、コーヒー自販機(1,200ウォン)は3台あると並びます。ゲームがこの順番を自分で教えてくれるわけです。</p>
+<p>1日目には「給油機を2台置く」という目標が上に出ます。100秒ほどたつと最初のスタッフの応募者も来ます。スタッフを雇うと積もったコインを代わりに集めてくれますが、最初は15秒動いて45秒休むくらいなので、手が完全に空くわけではありません。ただ、コインの山は5枚たまるか8秒たつと自然に集まります。わざとタップしなくても損はしないので、忙しい最初の数分は、給油機の場所を埋めるほうに手を使うほうがずっと得です。</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-ja.jpg" alt="ガソリンスタンド経営の初日の画面。古い給油機の屋根の下に車が並び、上に「給油機を2台置く」という目標が出ている" loading="lazy" decoding="async"><figcaption>1日目の画面。撮影用にお金を入れてあるので、残高は参考にしないでください。</figcaption></figure></section>
+<section id="s2"><h2>車ごとに立ち寄る場所が違います</h2>
+<p>このゲームのお客さんは人ではなく車です。車は10種で、種類ごとに順番が決まっています。タクシーはLPGを入れてコーヒーを飲みトイレに行き、貨物トラックは軽油を入れて尿素水を買いトイレに行きます。キャンピングカーは洗車から先にして、そのあと給油します。</p>
+<p>敷地にない設備は、そのまま飛ばされます。順番の中に立ち寄る場所がひとつもない車は、そもそも来ません。なので、同じガソリンスタンドでも置いた設備によって、来る車の顔ぶれが変わります。</p>
+<div class="tbl"><table><thead><tr><th>車種</th><th>立ち寄る順番</th><th>サービス時間の合計</th></tr></thead><tbody><tr><td>軽自動車</td><td>給油 → 空気</td><td>8秒</td></tr><tr><td>乗用車</td><td>給油 → 洗車 → 掃除機</td><td>22秒</td></tr><tr><td>ファミリーSUV</td><td>給油 → トイレ → コーヒー</td><td>24秒</td></tr><tr><td>耕運機</td><td>軽油 → 空気</td><td>9秒</td></tr><tr><td>トラック</td><td>給油 → タイヤ → 整備</td><td>24秒</td></tr><tr><td>タクシー</td><td>LPG → コーヒー → トイレ</td><td>25秒</td></tr><tr><td>貨物トラック</td><td>軽油 → 尿素水 → トイレ</td><td>26秒</td></tr><tr><td>キャンピングカー</td><td>洗車 → 給油 → コンビニ → トイレ</td><td>39秒</td></tr><tr><td>電気自動車</td><td>充電 → コンビニ → コーヒー</td><td>27秒</td></tr><tr><td>パトカー</td><td>給油 → コーヒー</td><td>9秒</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>設備ひとつが新しいお客さんを呼びます</h2>
+<p>上の表を設備の側から逆に読むと、購入の順番が出てきます。給油機だけでも、軽自動車・乗用車・ファミリーSUV・トラック・キャンピングカー・パトカーの6種は来ます。どれも順番のどこかに給油が入っているからです。</p>
+<p>空気入れを置くと、耕運機が新しく来ます。コーヒー自販機を置くと、タクシーと電気自動車が新しく来ます。トイレを置くと貨物トラックまで加わって、10種がすべてそろいます。トイレは第3段階にならないと解放されないので、最初の10分のうちは9種までです。</p>
+<div class="tbl"><table><thead><tr><th>置いた設備</th><th>新しく来はじめる車</th><th>来る車種の数</th></tr></thead><tbody><tr><td>古い給油機</td><td>軽自動車 · 乗用車 · ファミリーSUV · トラック · キャンピングカー · パトカー</td><td>6種</td></tr><tr><td>空気入れ</td><td>耕運機</td><td>7種</td></tr><tr><td>コーヒー自販機</td><td>タクシー · 電気自動車</td><td>9種</td></tr><tr><td>トイレ (第3段階)</td><td>貨物トラック</td><td>10種</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>給油機が増えるほど車が押し寄せます</h2>
+<p>車は基本、11秒に1台ずつ入ってきます。給油機が2台なら8秒、3台なら5秒、5台なら4秒、8台なら3秒と間隔が縮まり、敷地に同時にいられる車は最大8台です。</p>
+<p>いちばん大きく変わるのが、給油機の3台目です。間隔が8秒から5秒に縮まって、同じ時間に来る車が1.6倍になります。最初の10分のうちに給油機を3台まで先に埋めようと言われるのは、この段差があるからです。</p>
+</section>
+<section id="s5"><h2>行列が長くなったらどうなる？</h2>
+<p>設備ごとに、行列の長さには上限があります。給油機は3台、空気入れと洗車機は1台まで並びます。順番の最初の設備がいっぱいだと、車は入ってこずにそのまま帰ってしまい、そのお客さんは1日の精算で取り逃したお客さんとして数えられます。2番目以降の設備がいっぱいなら、その設備だけ飛ばして次へ行きます。</p>
+<p>同じ種類の設備が複数台あるときは、車は負荷がいちばん少ないほうへ向かいます。いま向かっている車、並んでいる車、使っている車をすべて合わせて数えます。なので、行列が長いところを見て同じ設備をもう1台置くのが、いちばん直接的な解決です。</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/queue-ja.jpg" alt="ガソリンスタンド経営の1日の精算画面。レシートに給油、車の手入れ、売店・コンビニの項目が分かれていて、今日稼いだお金とお客さんの数が書かれている" loading="lazy" decoding="async"><figcaption>1日が終わると、この精算レシートで給油と追加サービスの収入が分かれて見えます。</figcaption></figure></section>
+<section id="s6"><h2>くっつけて置くと少し多く稼げます</h2>
+<p>空気入れを給油機から2マス以内に置くと収入が1.15倍、掃除機を洗車機の隣に置くと1.2倍、コーヒー自販機をトイレの隣に置くと1.15倍、コンビニを整備リフトの隣に置くと1.15倍になります。給油してすぐ空気を入れ、洗車してすぐ掃除機をかける動きを、そのまま近くに並べてあげるルールです。</p>
+<p>価格看板は、範囲内の給油機の収入を最大5%まで上げます。効果が小さいので、最初の10分は急がなくて大丈夫です。</p>
+</section>
+<section id="s7"><h2>第2段階から解放されるもの</h2>
+<p>昇格は累計売上ひとつで決まります。最初の昇格は8,000ウォンで、目標にしている時点は3日目の精算あたり(5分前後)です。段階が上がるたびに新しい設備が解放され、新しい設備はそのまま新しい車種を意味します。</p>
+<div class="tbl"><table><thead><tr><th>段階</th><th>昇格に必要な売上</th><th>解放される設備</th></tr></thead><tbody><tr><td>2 町のガソリンスタンド</td><td>8,000ウォン</td><td>セルフ給油機 · 掃除機 · 価格看板</td></tr><tr><td>3 洗車できるガソリンスタンド</td><td>127,000ウォン</td><td>自動洗車機 · トイレ · 花壇 · ベンチ</td></tr><tr><td>4 整備できるガソリンスタンド</td><td>731,000ウォン</td><td>タイヤ交換台 · 整備リフト · 軽油の給油機</td></tr><tr><td>5 24時間営業のスタンド</td><td>2,680,000ウォン</td><td>コンビニ · LPG充填機 · 尿素水の販売台</td></tr><tr><td>6 充電できるガソリンスタンド</td><td>8,000,000ウォン</td><td>EV充電器</td></tr><tr><td>7 国道いちのガソリンスタンド</td><td>22,600,000ウォン</td><td>高級給油機</td></tr></tbody></table></div>
+</section>
+<section id="s8"><h2>知っておくと良いことがひとつ</h2>
+<p>このゲームは無料で、広告が入っています。リワード広告(収入2倍、すぐ置くなど)と、1日の終わりに出る全画面広告があり、全画面広告は3日目から出ます。1~2日目は広告なしでルールを覚える時間です。アプリ内課金はありません。</p>
+<p>珍しい車がさらに7種います。消防車や救急車、レースカーのようにたまにしか来ず、料金を多く払う車ですが、この記事の10種とは別に数えます。</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>ガソリンスタンドのゲームを始めたら、何から買えばいいですか？</summary><p>古い給油機を3台まで先に置き、そのあと空気入れ、コーヒー自販機の順に置いてください。給油機が3台目になると車が5秒に1台ずつ入ってきて、空気入れとコーヒー自販機はそれぞれ耕運機と、タクシー・電気自動車を新しく呼びます。</p></details><details><summary>ガソリンスタンド経営ゲームで、車が来ないときはどうしますか？</summary><p>その車種が立ち寄る設備が、敷地にひとつもない可能性が高いです。設備が順番にない車はそもそも来ないので、表で来ない車の順番を探して、その設備を置いてください。</p></details><details><summary>行列が長すぎるときはどうしますか？</summary><p>行列が長い設備と同じ種類を、もう1台置いてください。車は負荷がいちばん少ない設備へ向かうので、1台増やすだけで行列が分かれます。最初の設備の行列がいっぱいだと、車がそのまま帰ってしまう点も覚えておいてください。</p></details><details><summary>空気入れやコーヒー自販機がショップに見当たりません。</summary><p>どちらも、古い給油機を一定の数だけ置かないと解放されません。空気入れは2台、コーヒー自販機は3台です。</p></details><details><summary>ガソリンスタンド経営は広告がありますか？</summary><p>あります。リワード広告と1日の終わりの全画面広告があり、全画面広告は3日目から出ます。アプリ内課金はありません。</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/gasstation.png" alt="ガソリンスタンド経営" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">車ごとに寄る順番が違うスタンド</p><p class="gb-title"><a href="/ja/games/gasstation/">ガソリンスタンド経営</a></p><p class="gb-hook">車ごとに違う順番を、自分で確かめてみてください。</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dja%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="end" data-game="gasstation" data-store="ios">App Store</a></div></div>
+</aside>
+    <section class="more"><h2>Related</h2><ul><li><a href="/ja/blog/best-idle-tycoon-games-offline/">オフラインで遊べる放置タイクーンゲームまとめ</a></li></ul></section>
+    <section class="more"><h2>ほかの記事</h2><div class="cards"><a class="pcard" href="/ja/blog/best-bathhouse-onsen-games/"><img src="/blog/img/best-bathhouse-onsen-games/start-en.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>温泉・銭湯が題材のゲーム8本、ストア表記で比べました</b><span class="pc-desc">温泉や銭湯が題材のゲームを、Steam、Google Play、App Storeの表記で1つの表にまとめました。価格、評価、放置系かどうか、韓国語・日本語対応を比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-idle-tycoon-games-offline/"><img src="/blog/img/best-idle-tycoon-games-offline/hero-ja.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>オフラインで遊べる放置系タイクーン、ストア表記で選んだ8本</b><span class="pc-desc">オフラインで遊べる放置系タイクーンを、Google Playとアプリストアの表記で選別しました。タグ、説明文、価格、広告を1つの表で比べ、自社ゲームの弱点も書いています。</span></a><a class="pcard" href="/ja/blog/best-kairosoft-alternatives/"><img src="/blog/img/best-kairosoft-alternatives/k1-ja.jpg" alt="" loading="lazy"><span class="pc-type">似ているゲーム</span><b>カイロソフトの次は何を遊ぶ？好きだった要素で選ぶおすすめ14本</b><span class="pc-desc">カイロソフトを遊び尽くした人向けに、次のゲームを「短く育てる楽しさ・お店と店員を育てる楽しさ・住人の人生を眺める楽しさ・配置パズル」の4つに分けて選びました。Steamの定価と評価、対応言語を確認した14本を載せています。</span></a><a class="pcard" href="/ja/blog/best-pc-cafe-games-2026/"><img src="/blog/img/best-pc-cafe-games-2026/hero.jpg" alt="" loading="lazy"><span class="pc-type">比較</span><b>ネットカフェ経営ゲーム 2026、iPhone も含めた17本</b><span class="pc-desc">ネットカフェを経営するシミュレーターを iPhone・Android・Steam で17本選びました。ストアページで直接確認した価格・評価・オフライン表記と、自作ゲームの弱点も載せています。</span></a></div></section>
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>新作ゲームと小さなお知らせを、月に1回ほどお届けします。</p><input type="email" name="email" required placeholder="メールアドレス" aria-label="メールアドレス"><input type="hidden" name="embed" value="1"><button type="submit">購読する</button></form></section>
+<div class="langs"><div class="langs-in"><span>他の言語</span><a href="/en/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="en" lang="en">English</a><a href="/ko/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="ko" lang="ko">한국어</a><b>日本語</b><a href="/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
+</body>
+</html>

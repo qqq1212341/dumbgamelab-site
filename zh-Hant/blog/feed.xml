@@ -7,6 +7,13 @@
   <description>韓國日常場所、療癒放置經營遊戲，以及首爾小型遊戲工作室的紀錄。</description>
   <language>zh-TW</language>
   <item>
+    <title>加油站遊戲前10分鐘，先擺哪個設備</title>
+    <link>https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/</link>
+    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/</guid>
+    <pubDate>Thu, 26 Nov 2026 15:00:00 GMT</pubDate>
+    <description>剛開始玩加油站遊戲，手上有錢卻不知道該擺什麼。這篇依遊戲資料整理出10種車會經過的順序，以及每個設備會多招來哪些客人，排出前10分鐘的購買順序。</description>
+  </item>
+  <item>
     <title>什麼是肉鴿射擊遊戲？用一局的流程來說明</title>
     <link>https://dumbgamelab.com/zh-Hant/blog/what-is-a-roguelike-shooter-mobile/</link>
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/what-is-a-roguelike-shooter-mobile/</guid>
@@ -208,13 +215,6 @@
     <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/korean-daily-places-as-tycoon-games/</guid>
     <pubDate>Fri, 30 Oct 2026 15:00:00 GMT</pubDate>
     <description>韓國網咖從 2019 年的 11,801 間減到 2026 年 4 月的 6,658 間，沐浴場業也從高峰約 1 萬間降到 5,991 間。正在消失的街角場所，為什麼是經營遊戲的好題材？我用自己做的遊戲畫面來說明。</description>
-  </item>
-  <item>
-    <title>每日收益掉到三十分之一：近 14 天收益的 92% 只靠一篇報導</title>
-    <link>https://dumbgamelab.com/zh-Hant/blog/revenue-92pct-one-article/</link>
-    <guid isPermaLink="true">https://dumbgamelab.com/zh-Hant/blog/revenue-92pct-one-article/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:00:00 GMT</pubDate>
-    <description>獨立開發者把手機遊戲收益按遊戲拆開來看，才發現近 14 天收益 $260 之中，有 $241 來自同一款遊戲，而且大半是一篇台灣報導帶來的流量。這篇記錄我哪裡讀錯了數字。</description>
   </item>
 </channel>
 </rss>

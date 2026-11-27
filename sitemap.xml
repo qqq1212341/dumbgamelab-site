@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://dumbgamelab.com/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dumbgamelab.com/press/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dumbgamelab.com/support/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dumbgamelab.com/play/heart-ratio/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dumbgamelab.com/en/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://dumbgamelab.com/press/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://dumbgamelab.com/support/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://dumbgamelab.com/play/heart-ratio/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://dumbgamelab.com/en/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -13,7 +13,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -22,7 +22,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -31,7 +31,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -40,7 +40,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -49,7 +49,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/blog/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/blog/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/"/>
@@ -489,6 +489,34 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/games-like-internet-cafe-simulator/"/>
     <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/games-like-internet-cafe-simulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/games-like-internet-cafe-simulator/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/</loc><lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/</loc><lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/</loc><lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+  </url>
+  <url><loc>https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/</loc><lastmod>2026-11-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://dumbgamelab.com/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/gas-station-game-first-ten-minutes-what-to-place/"/>
   </url>
   <url><loc>https://dumbgamelab.com/en/blog/guess-the-korean-bread-from-description/</loc><lastmod>2026-11-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/guess-the-korean-bread-from-description/"/>
@@ -3332,7 +3360,7 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://dumbgamelab.com/id/blog/wine-color-tasters/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/wine-color-tasters/"/>
   <image:image><image:loc>https://dumbgamelab.com/useless/v1/img/wine-color-tasters.jpg</image:loc></image:image><image:image><image:loc>https://dumbgamelab.com/useless/v1/img/wine-color-tasters-pour.jpg</image:loc></image:image></url>
-  <url><loc>https://dumbgamelab.com/en/blog/fur-real/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/blog/fur-real/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
@@ -3340,7 +3368,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/blog/fur-real/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/blog/fur-real/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
@@ -3348,7 +3376,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/blog/fur-real/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/blog/fur-real/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
@@ -3356,7 +3384,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/blog/fur-real/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/blog/fur-real/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
@@ -3364,7 +3392,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/blog/fur-real/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/blog/fur-real/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/blog/fur-real/"/>
@@ -3372,7 +3400,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/blog/fur-real/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/blog/fur-real/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3382,7 +3410,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3392,7 +3420,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3402,7 +3430,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3412,7 +3440,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3422,7 +3450,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3432,7 +3460,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/slimesimulator/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/slimesimulator/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/slimesimulator/"/>
@@ -3442,7 +3470,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/slimesimulator/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/slimesimulator/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3453,7 +3481,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3464,7 +3492,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3475,7 +3503,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3486,7 +3514,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3497,7 +3525,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3508,7 +3536,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3519,7 +3547,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/waxpputower/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/waxpputower/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/waxpputower/"/>
@@ -3530,7 +3558,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/waxpputower/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/waxpputower/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3541,7 +3569,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3552,7 +3580,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3563,7 +3591,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3574,7 +3602,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3585,7 +3613,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3596,7 +3624,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3607,7 +3635,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/pcbangalba/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/pcbangalba/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/pcbangalba/"/>
@@ -3618,7 +3646,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/pcbangalba/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/pcbangalba/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3629,7 +3657,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3640,7 +3668,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3651,7 +3679,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3662,7 +3690,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3673,7 +3701,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3684,7 +3712,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3695,7 +3723,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/jjimjilbang/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/jjimjilbang/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/jjimjilbang/"/>
@@ -3706,7 +3734,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/jjimjilbang/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/jjimjilbang/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3716,7 +3744,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3726,7 +3754,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3736,7 +3764,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3746,7 +3774,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3756,7 +3784,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3766,7 +3794,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/ppijukland/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/ppijukland/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/ppijukland/"/>
@@ -3776,7 +3804,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/ppijukland/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/ppijukland/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3787,7 +3815,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3798,7 +3826,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3809,7 +3837,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3820,7 +3848,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3831,7 +3859,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3842,7 +3870,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3853,7 +3881,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/chichicamp/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/chichicamp/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichicamp/"/>
@@ -3864,7 +3892,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichicamp/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichicamp/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3875,7 +3903,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3886,7 +3914,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3897,7 +3925,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3908,7 +3936,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3919,7 +3947,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3930,7 +3958,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3941,7 +3969,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/dongnebakery/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/dongnebakery/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/dongnebakery/"/>
@@ -3952,7 +3980,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/dongnebakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/dongnebakery/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/chichibrawl/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/chichibrawl/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/chichibrawl/"/>
@@ -3960,7 +3988,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/chichibrawl/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/chichibrawl/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/chichibrawl/"/>
@@ -3968,7 +3996,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/chichibrawl/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/chichibrawl/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/chichibrawl/"/>
@@ -3976,7 +4004,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/chichibrawl/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/chichibrawl/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/chichibrawl/"/>
@@ -3984,7 +4012,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/chichibrawl/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/chichibrawl/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="vi" href="https://dumbgamelab.com/vi/games/chichibrawl/"/>
@@ -3992,7 +4020,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/chichibrawl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichibrawl/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4003,7 +4031,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4014,7 +4042,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4025,7 +4053,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4036,7 +4064,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4047,7 +4075,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4058,7 +4086,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4069,7 +4097,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/breadorder/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/breadorder/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/breadorder/"/>
@@ -4080,7 +4108,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/breadorder/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/breadorder/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4091,7 +4119,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4102,7 +4130,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4113,7 +4141,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4124,7 +4152,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4135,7 +4163,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4146,7 +4174,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4157,7 +4185,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/gasstation/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/gasstation/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/gasstation/"/>
@@ -4168,7 +4196,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/gasstation/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/gasstation/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4179,7 +4207,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4190,7 +4218,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4201,7 +4229,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4212,7 +4240,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4223,7 +4251,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4234,7 +4262,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4245,7 +4273,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/bakerymerge/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/bakerymerge/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerymerge/"/>
@@ -4256,8 +4284,8 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerymerge/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerymerge/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/0913sample/</loc><lastmod>2026-11-26</lastmod></url>
-  <url><loc>https://dumbgamelab.com/en/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/0913sample/</loc><lastmod>2026-11-27</lastmod></url>
+  <url><loc>https://dumbgamelab.com/en/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4267,7 +4295,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4277,7 +4305,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4287,7 +4315,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4297,7 +4325,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4307,7 +4335,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4317,7 +4345,7 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/mergestampede/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/mergestampede/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/mergestampede/"/>
@@ -4327,17 +4355,17 @@
     <xhtml:link rel="alternate" hreflang="th" href="https://dumbgamelab.com/th/games/mergestampede/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/mergestampede/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/brainrotheist/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/brainrotheist/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/brainrotheist/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/brainrotheist/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/brainrotheist/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/brainrotheist/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/brainrotheist/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/brainrotheist/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/brainrotheist/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/brainrotheist/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4348,7 +4376,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4359,7 +4387,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4370,7 +4398,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4381,7 +4409,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4392,7 +4420,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4403,7 +4431,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4414,7 +4442,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/chichiroulette/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/chichiroulette/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/chichiroulette/"/>
@@ -4425,7 +4453,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/chichiroulette/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/chichiroulette/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4436,7 +4464,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4447,7 +4475,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4458,7 +4486,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4469,7 +4497,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4480,7 +4508,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4491,7 +4519,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4502,7 +4530,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/bakerydash/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/bakerydash/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/bakerydash/"/>
@@ -4513,7 +4541,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/bakerydash/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/bakerydash/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/en/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/en/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4524,7 +4552,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ko/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ko/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4535,7 +4563,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/ja/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/ja/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4546,7 +4574,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hant/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hant/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4557,7 +4585,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/vi/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/vi/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4568,7 +4596,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/id/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/id/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4579,7 +4607,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/th/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/th/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4590,7 +4618,7 @@
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://dumbgamelab.com/zh-Hans/games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/en/games/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/zh-Hans/games/</loc><lastmod>2026-11-26</lastmod>
+  <url><loc>https://dumbgamelab.com/zh-Hans/games/</loc><lastmod>2026-11-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://dumbgamelab.com/en/games/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ko/games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://dumbgamelab.com/ja/games/"/>
@@ -4881,28 +4909,4 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://dumbgamelab.com/ref/ko/screens/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dumbgamelab.com/ref/en/screens/"/>
   </url>
-  <url><loc>https://dumbgamelab.com/about/</loc></url>
-  <url><loc>https://dumbgamelab.com/ko/about/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/pccafe/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/slime/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/wakppu/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/onelife/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/spa/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/bakery/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/breadorder/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/useless/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/bakerymerge/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/ppijukland/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/claw/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/chichicamp/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/bakerydash/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/seoulapoc/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/merge/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/chichibrawl/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/dotclan/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/gasstation/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/zombiebus/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/wordchain/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/brainrotheist/</loc></url>
-  <url><loc>https://dumbgamelab.com/games/slimesimulator/</loc></url>
 </urlset>

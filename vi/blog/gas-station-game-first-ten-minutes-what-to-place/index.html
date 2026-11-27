@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game trạm xăng 10 phút đầu: đặt thiết bị nào trước? (Game Trạm Xăng: Tycoon)</title>
+<meta name="description" content="Mới vào game trạm xăng, có tiền rồi mà không biết đặt gì. Bài này đọc dữ liệu xe trong game để giải thích thứ tự ghé của 10 loại xe và khách mới mà mỗi thiết bị kéo về, từ đó chốt thứ tự mua trong 10 phút đầu.">
+<link rel="canonical" href="https://dumbgamelab.com/vi/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta name="robots" content="noindex">
+
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dumb Game Lab">
+<meta property="og:title" content="Game trạm xăng 10 phút đầu: đặt thiết bị nào trước? (Game Trạm Xăng: Tycoon)">
+<meta property="og:description" content="Mới vào game trạm xăng, có tiền rồi mà không biết đặt gì. Bài này đọc dữ liệu xe trong game để giải thích thứ tự ghé của 10 loại xe và khách mới mà mỗi thiết bị kéo về, từ đó chốt thứ tự mua trong 10 phút đầu.">
+<meta property="og:url" content="https://dumbgamelab.com/vi/blog/gas-station-game-first-ten-minutes-what-to-place/">
+<meta property="og:image" content="https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-vi.jpg">
+<meta property="og:locale" content="vi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#021029">
+<link rel="icon" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="/blog/blog.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Game trạm xăng 10 phút đầu: nên đặt thiết bị nào trước","description":"Mới vào game trạm xăng, có tiền rồi mà không biết đặt gì. Bài này đọc dữ liệu xe trong game để giải thích thứ tự ghé của 10 loại xe và khách mới mà mỗi thiết bị kéo về, từ đó chốt thứ tự mua trong 10 phút đầu.","inLanguage":"vi","datePublished":"2026-11-27","dateModified":"2026-11-27","image":"https://dumbgamelab.com/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-vi.jpg","mainEntityOfPage":"https://dumbgamelab.com/vi/blog/gas-station-game-first-ten-minutes-what-to-place/","author":{"@type":"Person","name":"Justin Lee","jobTitle":"Founder","url":"https://dumbgamelab.com/about/","worksFor":{"@type":"Organization","name":"Dumb Game Lab","url":"https://dumbgamelab.com/"}},"publisher":{"@type":"Organization","name":"Dumb Game Lab","logo":{"@type":"ImageObject","url":"https://dumbgamelab.com/img/logo.png"}},"about":{"@type":"VideoGame","name":"Game Trạm Xăng","gamePlatform":["Android","iOS"],"url":"https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dumb Game Lab","item":"https://dumbgamelab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://dumbgamelab.com/vi/blog/"},{"@type":"ListItem","position":3,"name":"Game trạm xăng 10 phút đầu: nên đặt thiết bị nào trước","item":"https://dumbgamelab.com/vi/blog/gas-station-game-first-ten-minutes-what-to-place/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Mới chơi game trạm xăng thì nên mua gì trước?","acceptedAnswer":{"@type":"Answer","text":"Đặt trụ bơm cũ đến 3 trụ trước, rồi máy bơm hơi, rồi máy cà phê. Từ trụ bơm thứ 3, cứ 5 giây có một xe vào, còn máy bơm hơi và máy cà phê lần lượt kéo về máy cày, taxi và xe điện."}},{"@type":"Question","name":"Trong game quản lý trạm xăng, xe không đến thì làm sao?","acceptedAnswer":{"@type":"Answer","text":"Nhiều khả năng trong sân chưa có thiết bị nào mà loại xe đó cần ghé. Xe có thứ tự không chứa thiết bị nào của sân thì không đến luôn, nên hãy tìm thứ tự của loại xe thiếu trong bảng rồi đặt thiết bị đó."}},{"@type":"Question","name":"Hàng xe quá dài thì làm thế nào?","acceptedAnswer":{"@type":"Answer","text":"Đặt thêm một thiết bị cùng loại với thiết bị đang có hàng dài. Xe chọn thiết bị ít việc nhất nên chỉ thêm một cái là hàng đã chia ra. Cũng nhớ rằng nếu hàng ở bước đầu kín thì xe quay đầu đi luôn."}},{"@type":"Question","name":"Tôi không thấy máy bơm hơi hay máy cà phê trong cửa hàng.","acceptedAnswer":{"@type":"Answer","text":"Cả hai chỉ mở khi bạn đã đặt đủ một số trụ bơm cũ. Máy bơm hơi cần 2 trụ, máy cà phê cần 3 trụ."}},{"@type":"Question","name":"Game trạm xăng này có quảng cáo không?","acceptedAnswer":{"@type":"Answer","text":"Có. Có quảng cáo thưởng và quảng cáo toàn màn hình cuối ngày, quảng cáo toàn màn hình bắt đầu từ ngày thứ 3. Game không có mua trong ứng dụng."}}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-07GYE9HE5C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('js',new Date());gtag('config','G-07GYE9HE5C');</script>
+</head>
+<body>
+<header class="bnav"><div class="bnav-in">
+  <a class="brand" href="/"><img src="/img/logo.png" alt="" width="34" height="34"><span>Dumb Game Lab</span></a>
+  <nav><a href="/vi/games/">Trò chơi</a><a href="/vi/blog/">Blog</a><a href="/press/">Press</a></nav>
+</div></header>
+<main class="post">
+  <div class="phead"><div class="phead-in">
+    <p class="crumb"><a href="/vi/blog/">Blog</a> · Hướng dẫn</p>
+    <p class="kicker">Game quản lý trạm xăng cho người mới</p>
+    <h1>Game trạm xăng 10 phút đầu: nên đặt thiết bị nào trước</h1>
+    <p class="meta"><a href="/about/">Justin Lee</a>, Dumb Game Lab · <time datetime="2026-11-27">2026-11-27</time></p>
+  </div></div>
+  <article class="pbody">
+    <figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-vi.jpg" alt="Màn hình ngày đầu tiên của game trạm xăng. Xe đứng dưới mái che của trụ bơm cũ, phía trên hiện mục tiêu đặt 2 trụ bơm" fetchpriority="high" decoding="async"></figure>
+    <aside class="gamestrip">
+  <img src="/blog/icons/gasstation.png" alt="Game Trạm Xăng" width="52" height="52">
+  <p class="gs-title">Game Trạm Xăng</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dvi%26utm_term%3Dtop" rel="noopener" data-cta="top" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="top" data-game="gasstation" data-store="ios">App Store</a></div>
+</aside>
+    <p class="tldr">10 phút đầu cứ đặt 3 trụ bơm cũ, rồi máy bơm hơi, rồi máy cà phê. Xe trong game này mỗi loại ghé một chỗ khác nhau, nên cứ đặt thêm một thiết bị là có loại xe mới bắt đầu vào trạm. Mình đọc thẳng dữ liệu xe của game trạm xăng do mình làm để tổng hợp, và chỉ với 3 trụ bơm đã có 6 trong 10 loại xe ghé.</p>
+    <nav class="toc"><p>Nội dung</p><ol><li><a href="#s1">10 phút đầu chỉ có ba việc</a></li><li><a href="#s2">Mỗi loại xe ghé một chỗ khác nhau</a></li><li><a href="#s3">Mỗi thiết bị kéo về một loại khách mới</a></li><li><a href="#s4">Trụ bơm càng nhiều, xe càng đổ về</a></li><li><a href="#s5">Hàng dài thì sao</a></li><li><a href="#s6">Đặt sát nhau thì kiếm thêm một chút</a></li><li><a href="#s7">Những thứ mở từ giai đoạn 2</a></li><li><a href="#s8">Một điều nên biết trước khi chơi</a></li></ol></nav>
+    <section id="s1"><h2>10 phút đầu chỉ có ba việc</h2>
+<p>Đặt trụ bơm cũ đến 3 trụ, rồi máy bơm hơi, rồi máy cà phê. Thứ tự này có lý do, và lý do nằm ở bảng khoảng cách xe đến và bảng loại xe bên dưới.</p>
+<p>Trụ bơm cũ bắt đầu ở giá 300 won và mỗi trụ thêm lại đắt gấp 1,6 lần. Máy bơm hơi (450 won) chỉ mở trong cửa hàng khi bạn đã có 2 trụ bơm cũ, còn máy cà phê (1.200 won) cần 3 trụ. Nói cách khác, chính game đã chỉ thứ tự cho bạn.</p>
+<p>Ngày 1 có mục tiêu «đặt 2 trụ bơm» hiện phía trên. Khoảng 100 giây sau, ứng viên nhân viên đầu tiên cũng đến xin việc. Thuê rồi thì nhân viên thu xu thay bạn, nhưng lúc đầu chỉ chạy 15 giây rồi nghỉ 45 giây nên tay bạn vẫn chưa rảnh hẳn. Mà đống xu cũng tự được thu khi chất đủ 5 xu hoặc sau 8 giây, nên không bấm cũng chẳng thiệt gì, và mấy phút đầu bận rộn thì dùng tay để lấp chỗ trụ bơm vẫn có lợi hơn nhiều.</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/hero-vi.jpg" alt="Màn hình ngày đầu tiên của game trạm xăng. Xe đứng dưới mái che của trụ bơm cũ, phía trên hiện mục tiêu đặt 2 trụ bơm" loading="lazy" decoding="async"><figcaption>Màn hình ngày 1. Ảnh chụp khi đã nạp sẵn tiền nên đừng lấy số dư làm chuẩn.</figcaption></figure></section>
+<section id="s2"><h2>Mỗi loại xe ghé một chỗ khác nhau</h2>
+<p>Khách trong game này không phải người mà là xe. Có 10 loại xe, mỗi loại có thứ tự riêng. Taxi đổ LPG, uống cà phê rồi vào nhà vệ sinh, xe chở hàng đổ dầu diesel, mua dung dịch AdBlue rồi vào nhà vệ sinh. Xe cắm trại thì rửa xe trước rồi mới đổ xăng.</p>
+<p>Thiết bị nào chưa có trong sân thì xe bỏ qua. Nếu trong thứ tự không còn chỗ nào để ghé thì xe không đến luôn. Vì vậy cùng một trạm nhưng đặt thiết bị khác nhau thì thành phần xe đến cũng khác.</p>
+<div class="tbl"><table><thead><tr><th>Loại xe</th><th>Thứ tự ghé</th><th>Tổng thời gian phục vụ</th></tr></thead><tbody><tr><td>Xe hạng nhỏ</td><td>Đổ xăng → Bơm hơi</td><td>8 giây</td></tr><tr><td>Xe con</td><td>Đổ xăng → Rửa xe → Hút bụi</td><td>22 giây</td></tr><tr><td>SUV gia đình</td><td>Đổ xăng → Nhà vệ sinh → Cà phê</td><td>24 giây</td></tr><tr><td>Máy cày</td><td>Diesel → Bơm hơi</td><td>9 giây</td></tr><tr><td>Xe tải</td><td>Đổ xăng → Thay lốp → Sửa xe</td><td>24 giây</td></tr><tr><td>Taxi</td><td>LPG → Cà phê → Nhà vệ sinh</td><td>25 giây</td></tr><tr><td>Xe chở hàng</td><td>Diesel → AdBlue → Nhà vệ sinh</td><td>26 giây</td></tr><tr><td>Xe cắm trại</td><td>Rửa xe → Đổ xăng → Cửa hàng tiện lợi → Nhà vệ sinh</td><td>39 giây</td></tr><tr><td>Xe điện</td><td>Sạc → Cửa hàng tiện lợi → Cà phê</td><td>27 giây</td></tr><tr><td>Xe tuần tra</td><td>Đổ xăng → Cà phê</td><td>9 giây</td></tr></tbody></table></div>
+</section>
+<section id="s3"><h2>Mỗi thiết bị kéo về một loại khách mới</h2>
+<p>Đọc bảng trên theo chiều ngược lại, từ phía thiết bị, bạn sẽ ra thứ tự mua. Chỉ có trụ bơm thôi cũng đã có xe hạng nhỏ, xe con, SUV gia đình, xe tải, xe cắm trại và xe tuần tra ghé, tổng cộng 6 loại, vì thứ tự của cả sáu đều có bước đổ xăng.</p>
+<p>Đặt máy bơm hơi thì máy cày bắt đầu đến. Đặt máy cà phê thì taxi và xe điện đến thêm. Đặt nhà vệ sinh thì xe chở hàng cũng nhập hội, đủ cả 10 loại. Nhà vệ sinh phải đến giai đoạn 3 mới mở, nên trong 10 phút đầu bạn chỉ đi được đến 9 loại.</p>
+<div class="tbl"><table><thead><tr><th>Thiết bị đã đặt</th><th>Xe mới bắt đầu đến</th><th>Số loại xe ghé</th></tr></thead><tbody><tr><td>Trụ bơm cũ</td><td>Xe hạng nhỏ · Xe con · SUV gia đình · Xe tải · Xe cắm trại · Xe tuần tra</td><td>6 loại</td></tr><tr><td>Máy bơm hơi</td><td>Máy cày</td><td>7 loại</td></tr><tr><td>Máy cà phê</td><td>Taxi · Xe điện</td><td>9 loại</td></tr><tr><td>Nhà vệ sinh (giai đoạn 3)</td><td>Xe chở hàng</td><td>10 loại</td></tr></tbody></table></div>
+</section>
+<section id="s4"><h2>Trụ bơm càng nhiều, xe càng đổ về</h2>
+<p>Mặc định cứ 11 giây có một xe vào. Có 2 trụ bơm thì còn 8 giây, 3 trụ là 5 giây, 5 trụ là 4 giây, 8 trụ là 3 giây, và sân chứa tối đa 8 xe cùng lúc.</p>
+<p>Bước nhảy lớn nhất là ở trụ bơm thứ 3. Khoảng cách giảm từ 8 giây xuống 5 giây, nghĩa là trong cùng một thời gian số xe đến gấp 1,6 lần. Lời khuyên lắp đủ 3 trụ bơm trong 10 phút đầu bắt nguồn từ chính bậc thang này.</p>
+</section>
+<section id="s5"><h2>Hàng dài thì sao</h2>
+<p>Mỗi thiết bị có giới hạn độ dài hàng. Trụ bơm cho 3 xe xếp hàng, máy bơm hơi và máy rửa xe chỉ 1 xe. Nếu thiết bị đầu tiên trong thứ tự đã kín thì xe không vào mà quay đầu đi luôn, và khách đó được tính là khách bỏ lỡ trong bản chốt ngày. Nếu thiết bị từ thứ hai trở đi kín thì xe chỉ bỏ qua thiết bị đó rồi sang bước tiếp theo.</p>
+<p>Khi có nhiều thiết bị cùng loại, xe chọn cái ít việc nhất, tính cả xe đang đi tới, xe đang xếp hàng và xe đang dùng. Vì thế thấy chỗ nào hàng dài thì đặt thêm một thiết bị cùng loại là cách xử lý trực tiếp nhất.</p>
+<figure><img src="/blog/img/gas-station-game-first-ten-minutes-what-to-place/queue-vi.jpg" alt="Màn hình chốt ngày của game trạm xăng. Hóa đơn chia các mục đổ xăng, chăm sóc xe, quầy hàng và cửa hàng tiện lợi, ghi tiền kiếm được hôm nay và số khách" loading="lazy" decoding="async"><figcaption>Hết ngày, hóa đơn chốt này tách riêng thu nhập từ đổ xăng và dịch vụ kèm theo.</figcaption></figure></section>
+<section id="s6"><h2>Đặt sát nhau thì kiếm thêm một chút</h2>
+<p>Máy bơm hơi đặt trong phạm vi 2 ô quanh trụ bơm thì thu nhập ×1,15, máy hút bụi cạnh máy rửa xe ×1,2, máy cà phê cạnh nhà vệ sinh ×1,15, cửa hàng tiện lợi cạnh cầu nâng sửa xe ×1,15. Đây là quy tắc nối liền đường đi quen thuộc: đổ xăng xong bơm hơi ngay, rửa xe xong hút bụi ngay.</p>
+<p>Biển giá tăng thu nhập của các trụ bơm trong bán kính tối đa 5%. Hiệu quả nhỏ nên 10 phút đầu chưa cần vội.</p>
+</section>
+<section id="s7"><h2>Những thứ mở từ giai đoạn 2</h2>
+<p>Lên giai đoạn chỉ dựa vào một thứ là doanh thu tích lũy. Lần lên đầu tiên cần 8.000 won, và mốc dự kiến là lúc chốt ngày thứ 3 (khoảng 5 phút). Mỗi lần lên giai đoạn lại mở thiết bị mới, mà thiết bị mới cũng có nghĩa là loại xe mới.</p>
+<div class="tbl"><table><thead><tr><th>Giai đoạn</th><th>Doanh thu để lên</th><th>Thiết bị mở</th></tr></thead><tbody><tr><td>2 Trạm xăng khu phố</td><td>8.000 won</td><td>Trụ bơm tự phục vụ · Máy hút bụi · Biển giá</td></tr><tr><td>3 Trạm xăng có rửa xe</td><td>127.000 won</td><td>Máy rửa xe tự động · Nhà vệ sinh · Bồn hoa · Ghế băng</td></tr><tr><td>4 Trạm xăng có sửa xe</td><td>731.000 won</td><td>Bệ thay lốp · Cầu nâng sửa xe · Trụ bơm dầu diesel</td></tr><tr><td>5 Trạm xăng 24 giờ</td><td>2.680.000 won</td><td>Cửa hàng tiện lợi · Trụ bơm LPG · Quầy dung dịch AdBlue</td></tr><tr><td>6 Trạm xăng có sạc điện</td><td>8.000.000 won</td><td>Trạm sạc xe điện</td></tr><tr><td>7 Trạm xăng số một quốc lộ</td><td>22.600.000 won</td><td>Trụ bơm cao cấp</td></tr></tbody></table></div>
+</section>
+<section id="s8"><h2>Một điều nên biết trước khi chơi</h2>
+<p>Game miễn phí và có quảng cáo. Có quảng cáo thưởng (nhân đôi thu nhập, đặt ngay...) và quảng cáo toàn màn hình hiện khi hết ngày, quảng cáo toàn màn hình bắt đầu từ ngày thứ 3. Ngày 1 và 2 chưa hiện quảng cáo nào, là lúc làm quen luật chơi. Game không có mua trong ứng dụng.</p>
+<p>Còn 7 loại xe hiếm nữa. Xe cứu hỏa, xe cấp cứu, xe đua... thỉnh thoảng mới đến và trả giá cao hơn, và được đếm riêng, không nằm trong 10 loại của bài này.</p>
+</section>
+    <section class="faq"><h2>FAQ</h2><details><summary>Mới chơi game trạm xăng thì nên mua gì trước?</summary><p>Đặt trụ bơm cũ đến 3 trụ trước, rồi máy bơm hơi, rồi máy cà phê. Từ trụ bơm thứ 3, cứ 5 giây có một xe vào, còn máy bơm hơi và máy cà phê lần lượt kéo về máy cày, taxi và xe điện.</p></details><details><summary>Trong game quản lý trạm xăng, xe không đến thì làm sao?</summary><p>Nhiều khả năng trong sân chưa có thiết bị nào mà loại xe đó cần ghé. Xe có thứ tự không chứa thiết bị nào của sân thì không đến luôn, nên hãy tìm thứ tự của loại xe thiếu trong bảng rồi đặt thiết bị đó.</p></details><details><summary>Hàng xe quá dài thì làm thế nào?</summary><p>Đặt thêm một thiết bị cùng loại với thiết bị đang có hàng dài. Xe chọn thiết bị ít việc nhất nên chỉ thêm một cái là hàng đã chia ra. Cũng nhớ rằng nếu hàng ở bước đầu kín thì xe quay đầu đi luôn.</p></details><details><summary>Tôi không thấy máy bơm hơi hay máy cà phê trong cửa hàng.</summary><p>Cả hai chỉ mở khi bạn đã đặt đủ một số trụ bơm cũ. Máy bơm hơi cần 2 trụ, máy cà phê cần 3 trụ.</p></details><details><summary>Game trạm xăng này có quảng cáo không?</summary><p>Có. Có quảng cáo thưởng và quảng cáo toàn màn hình cuối ngày, quảng cáo toàn màn hình bắt đầu từ ngày thứ 3. Game không có mua trong ứng dụng.</p></details></section>
+    
+    <aside class="gamebox">
+  <img src="/blog/icons/gasstation.png" alt="Game Trạm Xăng" width="88" height="88" loading="lazy">
+  <div><p class="gb-sub">Mỗi xe ghé một thứ tự khác nhau</p><p class="gb-title"><a href="/vi/games/gasstation/">Game Trạm Xăng</a></p><p class="gb-hook">Tự tay thử khớp thứ tự khác nhau của từng loại xe nhé.</p>
+  <div class="gb-btns"><a class="store" href="https://play.google.com/store/apps/details?id=com.dumbgamelab.gasstation&referrer=utm_source%3Ddumbgamelab.com%26utm_medium%3Dblog%26utm_campaign%3Dgas-station-game-first-ten-minutes-what-to-place%26utm_content%3Dvi%26utm_term%3Dend" rel="noopener" data-cta="end" data-game="gasstation" data-store="play">Google Play</a><a class="store" href="https://apps.apple.com/app/id6836327122" rel="noopener" data-cta="end" data-game="gasstation" data-store="ios">App Store</a></div></div>
+</aside>
+    <section class="more"><h2>Related</h2><ul><li><a href="/vi/blog/best-idle-tycoon-games-offline/">Tổng hợp game idle tycoon chơi được offline</a></li></ul></section>
+    
+  </article>
+</main>
+<section class="subscribe"><form action="https://buttondown.com/api/emails/embed-subscribe/dumbgamelab" method="post" target="_blank"><p>New games and small updates, about once a month.</p><input type="email" name="email" required placeholder="Email address" aria-label="Email address"><input type="hidden" name="embed" value="1"><button type="submit">Subscribe</button></form></section>
+<div class="langs"><div class="langs-in"><span>Ngôn ngữ khác</span><a href="/en/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="en" lang="en">English</a><a href="/ko/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="ko" lang="ko">한국어</a><a href="/ja/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/blog/gas-station-game-first-ten-minutes-what-to-place/" hreflang="zh-TW" lang="zh-Hant">繁體中文</a><b>Tiếng Việt</b></div></div>
+<footer class="bfoot"><div class="bfoot-in">
+  <div class="links"><a href="/support/">Support</a><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a><a href="/paid/">Paid Service Policy</a><a href="/business/">Business Info</a><a href="mailto:info@dumbgamelab.com">info@dumbgamelab.com</a></div>
+  <p>© 2026 Dumb Game Lab · Seoul</p>
+</div></footer>
+<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-cta]');if(!a||typeof gtag!=='function')return;gtag('event','store_click',{cta_pos:a.dataset.cta,game:a.dataset.game,store:a.dataset.store,transport_type:'beacon'});});</script>
+</body>
+</html>
